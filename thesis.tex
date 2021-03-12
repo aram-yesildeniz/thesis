@@ -1,0 +1,84 @@
+% ---------------------------------------------------------------------
+% Das Dokument kompiliert mit pdflatex und ist auf Basis 
+% von Koma-Script entstanden. 
+%
+% Autor des Templates (für Anmerkungen): 
+% Michael von Riegen, riegen@informatik.uni-hamburg.de
+%
+% Einzelne Code-Teile für das Titelblatt sind aus dem Template 
+% von Benjamin Kirchheim entnommen.
+%
+% 25.05.09, Frank Langanke: Vorlage auf aktuelle KOMA-Version aktualisiert
+% 26.05.09, Michael von Riegen: Anmerkung --> aktuelles Koma-Script ist nötig!
+% 17.10.2016 neues Uni logo
+% ---------------------------------------------------------------------
+\documentclass[11pt,DIV=15,BCOR=20mm,bibliography=totoc]{scrbook}
+
+% Import von Paketen und Optionen die das gesamte Dokument betreffen
+% sind in myPreamble.sty ausgelagert.
+\usepackage{myPreamble}
+   
+% Arbeitet man nur an einem Kapitel, wird durch folgenden Befehl nur dieses eingebunden.
+% Spart manuelles auskommentieren von vielen include-Befehlen;
+% hat keine Auswirkung auf input-Befehle
+% \includeonly{kapitel1}
+   
+\begin{document}
+
+
+\include{_titlepage}
+
+
+
+% VERZEICHNISSE (Inhaltsverzeichnis, Abkürzungen)
+% Vorspann einleiten --> Seitennummerierung römisch
+\frontmatter
+
+% Inhaltsverzeichnis
+\tableofcontents
+\cleardoublepage
+
+
+% Hauptteil einleiten --> Seitennummerierung wieder arabisch
+\mainmatter
+
+
+
+\include{chapters/1_introduction/introduction}
+
+\include{chapters/2_terms_and_definitions/terms_and_definitions}
+
+\include{chapters/3_related_work/related_work}
+
+\include{chapters/4_approach/approach}
+
+\include{chapters/5_evaluation/evaluation}
+
+\include{chapters/6_future_work/future_work}
+
+\include{chapters/7_conclusion/conclusion}
+
+\include{chapters/8_appendix/appendix}
+
+
+\cleardoublepage
+
+
+
+% VERZEICHNISSE (Abbildungen, Tabellen)
+% Literatur
+\nocite{wiki:wissarbeit}
+\bibliographystyle{alphadin}
+\bibliography{thesis}
+\cleardoublepage
+
+
+
+
+% ERKLÄRUNG
+\input{_eidversicherung}
+
+
+
+    
+\end{document}

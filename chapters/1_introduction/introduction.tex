@@ -1,0 +1,301 @@
+\chapter{Introduction}
+
+\begin{itemize}
+	\item Explain structure of this thesis and maybe give some "eckdaten"
+	\item This chapter: Describe shortly all sections from this chapter
+	\item In the next chapter...
+\end{itemize}
+
+\section{E-Commerce}
+
+\begin{itemize}
+\item Overview and general introduction to e-commerce
+\item Relevance of e-commerce
+\end{itemize}
+
+
+\subsection{User Satisfaction}
+
+\begin{itemize}
+\item What is user satisfaction and why is it important
+\item Prove that Page Speed = Money
+\item Introduction to A/B Testing. How and for which reasons A/B Testing is used in practice.
+\end{itemize}
+
+
+% Why it matters / performance = money:
+% 2016 Witt
+
+
+
+
+
+\section{Web Analytics}
+
+\begin{itemize}
+\item Historical background and contextualisation, usage, definition
+\item Web Analytics Process
+\item Mechanisms, Measurement methods / Collecting data: Log file analysis, client site page tagging, alternatives
+\end{itemize}
+
+
+% History, Usage:
+% 2009 Croll p. 69
+% 2009 Jansen ch. 3
+% 2015 Zheng
+% 2015 Bekavac
+% 2019 Hussaina
+% 2019 Kumar
+
+
+% Process:
+% 2009 Jansen ch. 6.2
+% 2009 Waisberg
+% 2012 Kumar
+% 2015 Bekavac
+% 2019 Hussaina
+% 2019 Kumar
+
+
+% Log vs Page tagging:
+% 2009 Waisberg
+% Hassler ch. 2
+% Wolle Draft
+% 2011 Marek
+% 2019 Kumar
+
+
+
+\subsection{Web Performance}
+
+\begin{itemize}
+\item What is web performance? Why it matters
+\item Overview of factors that impact performance, bottlenecks
+\item Overview of measurement methods, techniques and metrics
+\end{itemize}
+
+
+
+% Bottlenecks of performance, big picture:
+% 2016 Witt
+
+
+
+
+\subsection{Tools}
+
+% TODO: move this to related work ?
+
+\begin{itemize}
+\item Some short overview about existing tools
+\item Conclude that I use WPT for synthetic performance testing and GA for RUM
+\end{itemize}
+
+% 2011 Marek: Choose a program
+% 2015 Bekavac
+% 2016 Bartuskova: 1.2 Services for Website Speed Testing
+% 2016 Kaur: Tools for Measuring the Performance of Websites
+% 2019 Hussaina
+% 2019 Kumar
+
+% 2020 Quintel: Matomo
+% Lighthouse Performance Scoring
+
+
+\section{Research Question}
+
+\begin{itemize}
+\item Difficulty of defining scope
+\item Measuring performance of a web site impacts its performance or other effects take place / Observer effect
+\item Why the research question is relevant
+\end{itemize}
+
+
+% Tools: Kessler 2016 p. 576
+
+% Measuring Real User Performance in the Browser: Avoiding the Observer Effect
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\cite{Gray1981}, \cite{Cerami2002}
+
+\noindent Hier kommt ein Listing \ref{lst:soap}.
+
+\begin{center}
+\begin{lstlisting}[caption={SOAP Anfrage an einen HalloWelt-Web-Service},label=lst:soap,language=XML,label={lst:soap}]
+<?xml version='1.0' encoding='UTF-8'>
+<SOAP-ENV:Envelope (*@\label{lst:soapEnv}@*)
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:ns1="http://localhost/wsdl/HalloWeltService.wsdl">
+  
+  <SOAP-ENV:Body>(*@\label{lst:soapBody}@*)
+  	<ns1:gruss>
+  		<name xsi:type="xsd:string">
+  			Michael
+  		</name>
+  	</ns1:gruss>
+  </SOAP-ENV:Body>
+
+</SOAP-ENV:Envelope>
+\end{lstlisting}
+\end{center}
+
+\noindent Hier kommt eine etwas komplizierte Tabelle:
+
+\begin{table}[h]
+	\caption[Transaktionale Ablaufmodelle im Vergleich]{Transaktionale Ablaufmodelle im Vergleich; teilweise aus \cite{DBLP:books/infix/Schwarz99}; das Wort "`Transaktion"' wird in der Tabelle als TA abgekürzt}
+	\label{tab:tamodelleVergleich}
+	\centering
+		\begin{tabular*}{\textwidth}{| l@{\extracolsep\fill} r || c | c | c || c | c || c || c || c | c | c || c | c |}
+			\hline
+			
+			Modelle & 
+				\rotatebox{90}{Eigenschaften} &
+					\rotatebox{90}{vital} &
+						\rotatebox{90}{non-vital} &
+							\rotatebox{90}{Alternativtransaktion } &				
+								\rotatebox{90}{sequenziell} &
+									\rotatebox{90}{parallel} &
+  									\rotatebox{90}{unabhängig} &
+	    								\rotatebox{90}{temporal} &
+			    							\rotatebox{90}{geschlossen geschachtelt } &
+					    						\rotatebox{90}{offen geschachtelt} &
+							    					\rotatebox{90}{Kompensation} &
+									    				\rotatebox{90}{endliche Schachtelung } &
+											    			\rotatebox{90}{unendliche Schachtelung } \\
+			
+			\hline
+			\hline
+			
+			\multicolumn{2}{|l||}{Geschl. gesch. TA} &
+				\checkmark &
+				 (\checkmark) &
+				 	(\checkmark) &
+				 		\checkmark &
+				 			\checkmark &
+				 			
+				 			  - &
+				 			  - &
+				 			
+				 				\checkmark &
+				 				  - &
+				 				  	-	&
+				 				  		\checkmark &
+				 				  			\checkmark \\
+			\hline
+
+			\multicolumn{2}{|l||}{Offen gesch. TA} &
+				\checkmark &
+				 (\checkmark) &
+				 	(\checkmark) &
+				 		\checkmark &
+				 			\checkmark &
+				 			 
+				 			  - &
+				 			  - &
+				 			
+				 				- &
+				 				  \checkmark &
+				 				  	\checkmark &
+				 				  		\checkmark &
+				 				  			\checkmark \\
+			\hline
+
+			\multicolumn{2}{|l||}{Sagas} &
+				\checkmark &
+				 - &
+				 	- &
+				 		\checkmark &
+				 			- &
+				 			
+				 			  - &
+				 			  - &
+				 			
+				 				- &
+				 				  \checkmark &
+				 				  	\checkmark &	
+				 				  		\checkmark &
+				 				  			- \\
+			\hline
+
+			\multicolumn{2}{|l||}{Flex-TA} &
+				\checkmark &
+				 \checkmark &
+				 	\checkmark &
+				 		\checkmark &
+				 			\checkmark &
+				 			
+				 			- &
+				 			\checkmark &
+				 			 
+				 			
+				 				\checkmark &
+				 				  \checkmark &
+				 				  	\checkmark &
+				 				  		\checkmark &
+				 				  			- \\
+			
+			\hline
+
+			\multicolumn{2}{|l||}{ConTracts} &
+				\checkmark &
+				 \checkmark &
+				 	- &
+				 		\checkmark &
+				 			\checkmark &
+				 			
+				 			 -&
+				 			 -&
+				 			
+				 				\checkmark &
+				 				  \checkmark &
+				 				  	\checkmark &
+				 				  		\checkmark &
+				 				  			\checkmark \\
+
+			\hline
+
+			\multicolumn{2}{|l||}{Business-TA} &
+				\checkmark &
+				 \checkmark &
+				 	\checkmark &
+				 		\checkmark &
+				 			\checkmark &
+
+  			 			 \checkmark &
+				 			 \checkmark &
+				 			  
+				 				\checkmark &
+				 				  \checkmark &
+				 				  	\checkmark &
+				 				  		\checkmark &
+				 				  			\checkmark \\			 				  			
+			\hline
+				
+		\end{tabular*}
+\end{table}

@@ -1,0 +1,629 @@
+\chapter{Terms and Definitions}
+
+\begin{itemize}
+	\item Last chapter...
+	\item This chapter: Describe shortly all sections from this chapter
+	\item In the next chapter...
+\end{itemize}
+
+\begin{itemize}
+\item This chapter should cover all relevant terms and definitions within web performance measurement
+\item How terms can be structured / taxonomy
+\item Ambiguity of definitions
+\end{itemize}
+
+
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+
+
+
+\section{Metrics}
+
+
+
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+
+
+\subsection{Introduction}
+
+\begin{itemize}
+\item Metrics jungle, difficulty of taxonomy
+\item Performance vs UX
+\end{itemize}
+
+% 2015 Bekavac:
+% Metrics for describing visits, visitors, visitor engagement, conversion metrics
+
+% 2019 Enghardt
+
+% 2019 Hussaina:
+% Key metrics: visitors, page views, referrers, bounce rate, keywords and phrases
+
+
+
+
+\subsection{"Non-Performance" metrics}
+
+\begin{itemize}
+\item User engagement: session length, bounce rate, etc.
+\item Business KPIs: Cart size, conversion rate, etc.
+\item QA metadata: Page views, JS errors, etc.
+\end{itemize}
+
+
+
+% 2004 Peterson
+\begin{itemize}
+\item Hit
+\item Click-Through
+\item Page View
+\item Visit
+\item Visitor / Unique Visitor
+\item Referrer
+\item Conversion Rate
+\item Abandonment Rate
+\item Attrition
+\item Loyalty, Frequency and Recency
+\item Measuring Reach: ...
+\item Measuring Acquisition: ...
+\item Measuring Conversion: ...
+\item Measuring Retention: ...
+\end{itemize}
+
+
+% 2004 Phippen
+\begin{itemize}
+\item Basic metrics (see table): basic metrics are meaningless
+\item Advanced metrics: Customer lifecycle analysis, customer behaviour analysis
+\end{itemize}
+
+
+% 2007 Burby
+\begin{itemize}
+\item Types: Counts, Rations, KPIs
+\item Definitions for all terms, like Page view, unique visitor, etc.
+\end{itemize}
+
+
+
+
+% 2008 Reese
+\begin{itemize}
+\item Importance of setting goals
+\item Conversion Rate
+\item Kennzahlen für Websites nach Typ: ROI-Ebene, Online-Shop, ...
+\end{itemize}
+
+
+
+
+
+% 2009 Croll
+\begin{itemize}
+\item Conversion Rates, pages that visitors abandon most
+\item Click throughs
+\item UGC (User generated content)
+\item Subscriptions, Signups
+\item Referring URL
+\item Visitor Motivaton, VOC: Voice of the Customer
+\item Ad and campaign effectiveness
+\item Findability and Search Effectiveness
+\item Trouble Ticketing and Escalation
+\item Loyalty: Ratio of new to returning visitors; average time between visits; time since last login; rate of attrition or disengagement
+\end{itemize}
+
+p.15 "whether your business benefited in some way from their visits."
+
+The percentage of visitors that your site converts to contributors, buyers, or users is the most important metric you can track -> Conversion Rate
+
+
+
+
+
+
+% 2009 Jansen
+% "Metrics: statistical data collected from a Website such as number of unique visitors, most popular pages, etc."
+\begin{itemize}
+\item 4 categories: site usage, referrers, site content analysis, quality assurance
+\item 8 fundamental metrics
+\item Site usage:
+	\begin{itemize}
+	\item Demographics and System Statistics
+	\item Internal Search Information
+	\item Visit Length
+	\item Visitor Type
+	\end{itemize}
+\item Referrers:
+	\begin{itemize}
+	\item Referrering URL and Keyword Analysis
+	\end{itemize}
+\item Site content analysis:
+	\begin{itemize}
+	\item Top Pages
+	\item Visitor Path
+	\end{itemize}
+\item Quality assurance:
+	\begin{itemize}
+	\item Errors
+	\end{itemize}
+\end{itemize}
+
+
+% Kessler 2012
+\begin{itemize}
+\item Erfolg messen und bewerten
+\item Traffic:
+	\begin{itemize}
+	\item Page Impression / Page View
+	\item Visit
+	\item Visitor / Unique visitor
+	\end{itemize}
+\item Bounce rate
+\item Conversion rate
+\item CTR: Click-through-rate
+\item Session length
+\end{itemize}
+
+
+
+% 2012 Kumar
+\begin{itemize}
+\item Good metrics should be: Uncomplex, Relevant, Timely, Instantly Useful
+\item Basic metrics: Visits, bounce rate, page views, pages/visits, avg time, \% new visits
+\item Guidance Performance Indicator (GPI) metric
+\end{itemize}
+
+
+% 2015 Zheng
+\begin{itemize}
+\item Visit count: page view, visit, unique visitor
+\item Visit duration: time on page, time on site.
+\item Bounce rate and exit rate.
+\end{itemize}
+
+
+
+% 2016 Kollewe
+\begin{itemize}
+\item Besucheranalyse: Wie viele Besucher?, Anzahl Besucher mit Mobilgerät, Demographische Daten (Geschlecht, Altersgruppe)
+\item Seitenanalyse: Was machen die Besucher im Shop?, Zielseite / Startseite: Erste Seite, die ein Besucher angeschaut hat, Ausstiegseite
+\item E-Commerce-Analyse: Transkations-daten aus Shop, Funnel-Analyse
+\end{itemize}
+
+
+% 2017 Hassler
+\begin{itemize}
+\item Types: Anzahl, Relations, Werte
+\item Content: Where, Who, How, What
+\item Hits
+\item Page Views
+\item Visits / Sessions
+\item Visitor / Unique Visitor
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+
+
+
+\subsection{Performance Metrics}
+
+\begin{itemize}
+\item Introduction to the Web Performance Working Group
+\item Overview of Browser APIs and the data they expose: High Resolution Time API, Navigation Timing API, etc.
+\item If possible make one deep dive into one API: What exactly gets measured? Maybe check out html standard, v8 or chromium implementation, etc.
+\end{itemize}
+
+
+\subsubsection{Standards and APIs, Browser metrics, standards}
+
+% Measuring Real User Performance in the Browser youtube
+
+
+\begin{itemize}
+		\item Web Performance Working Group
+		\item User Timing API
+		\item Navigation Timing API: Level 1 (performance.timing), Level 2 (PerformanceNavigationTiming) ?
+		\item Network Information API
+		\item Resource Timing API
+		\item Paint Timing API
+		\item High Resolution Time API
+		\item Performance Timeline API
+		\item Performance Observer API
+		\item Long Tasks API
+		\item Element Timing API
+		\item Event Timing API
+		\item Server Timing API
+\end{itemize}
+
+
+
+\paragraph{Navigation Timing API}
+
+\begin{itemize}
+\item Show image of navigation timings
+\item Explain one or two events directly with specification: navigationStart, domInteractive, etc.
+\end{itemize}
+
+% 2013 Meenan
+
+
+
+
+
+
+
+
+
+
+
+\subsubsection{Google metrics? User-centric / UX / visual}
+
+
+\paragraph{Web Vitals}
+
+% Walton user-centric
+% Walton https://web.dev/vitals/
+% Walton user centric metrics
+
+\begin{itemize}
+\item Key questions: Is is usable, is it delightful, ...
+\item Types of metrics
+\item important metrics
+\item custom metrics
+\end{itemize}
+
+% 2017 Panicker, Walton
+
+\begin{itemize}
+\item Core Web Vitals: First Input Delay, Cumulative Layout Shift, Largest Contentful Paint
+\item First Paint, First Contentful Paint: Is it happening? PerformanceObserver
+\item First Meaningful Paint, Hero Element: Is it useful? 
+\item Time To Interactive: Is it usable? Use Polyfill
+\item Long Tasks: Is it delightful? PerformanceObserver
+\item Total Blocking Time
+\item Time To First Byte
+\end{itemize}
+
+
+\subparagraph{Core Web Vitals}
+
+% Introduction
+% 2020 Sullivan
+\begin{itemize}
+\item Most important metrics, Apply to all websites, Measures real user experience, Measurement support for Lab and Field, Concise and clear
+\item LCP: Progressive loading. FCP may become a core web vital
+\item FID: Interactivity during load
+\item CLS: Visual stability
+\item Future goals: Better support for Single Page Apps, Input responsiveness, Scrolling and animations
+\item Areas of user experience beyond performance: Security, Privacy, Accessibility
+\end{itemize}
+
+% LCP https://web.dev/lcp/
+\begin{itemize}
+\item Introduction, what is it
+\item How to measure
+\item How to improve
+\end{itemize}
+
+% FID https://web.dev/fid/
+\begin{itemize}
+\item Introduction, what is it
+\item How to measure
+\item How to improve
+\end{itemize}
+
+% CLS https://web.dev/cls/
+\begin{itemize}
+\item Introduction, what is it
+\item How to measure
+\item How to improve
+\end{itemize}
+
+
+% Tool support
+% Osmani: Tools to measure
+% Walton user-centric: How to measure in Lab and Field
+% Philip Walton. Best practices for measuring Web Vitals in the field
+
+
+% Science background
+% 2020 Sagoo: Science: Thresholds, impact on business
+% McQuade: thresholds
+
+
+
+\paragraph{Others}
+
+% Measuring Real User Performance in the Browser youtube:
+% - first paint, fcp, fmp, visually complete, speed index
+
+
+\begin{itemize}
+\item Visually complete ?
+\end{itemize}
+
+% 2018 Netravali:
+% Page load time, TTFP, Above the fold time, Speed Index, User perceived PLT, TTI
+
+% https://docs.webpagetest.org/metrics/speedindex/
+\subparagraph{Speed Index}
+
+
+
+
+%----------------------------------------------------------------
+
+
+
+
+
+\subsection{WebPageTest Metrics}
+
+% https://docs.webpagetest.org/getting-started/
+
+
+\begin{itemize}
+\item Metrics Categories:
+	\begin{itemize}
+	\item High Level Metrics:
+		\begin{itemize}
+		\item Document Complete
+		\item Fully Loaded
+		\item Load Time
+		\item First Byte
+		\item Start Render
+		\item Requests
+		\item Bytes In (Page Size)
+		\end{itemize}
+	\item Page-level Metrics:
+		\begin{itemize}
+		\item Technical Page Metrics:
+			\begin{itemize}
+			\item -> APIs, GA Site Speed Metrics
+			\item TTFB
+			\item loadTime
+			\item docTime
+			\item ...
+			\end{itemize}
+		\item Visual Metrics:
+			\begin{itemize}
+			\item SpeedIndex
+			\item firstPaint
+			\item firstContentfulPaint
+			\item firstMeaningfulPaint
+			\item ...
+			\end{itemize}
+		\item Javascript and CPU timings
+		\item Page Information
+		\item Browser State
+		\item Lighthouse Summary Metrics
+		\item Optimization Checks/Grades
+		\item Instrumented Metrics
+		\item Test Information
+		\item Misc
+		\end{itemize}
+	\item Request-level metrics:
+		\begin{itemize}
+		\item Request Details
+		\item Request Timings
+		\item Request Stats
+		\item Headers
+		\item Protocol Information
+		\item Javascript/CPU details
+		\item Optimization Checks
+		\item Misc	
+		\end{itemize}
+	\end{itemize}
+	
+\item Optimization Grades:
+	\begin{itemize}
+	\item Keep-alive Enabled
+	\item Compress Text
+	\item Compress Images
+	\item Cache Static Content
+	\item Use of CDN
+	\end{itemize}
+\item First View and Repeat View
+\end{itemize}
+
+% Taken from WPT book p. 34, ...
+% https://www.webpagetest.org/forums/showthread.php?tid=10315
+% https://www.webpagetest.org/forums/showthread.php?tid=13266
+% https://www.webpagetest.org/forums/showthread.php?tid=332
+% https://www.webpagetest.org/forums/showthread.php?tid=10732
+% https://www.webpagetest.org/forums/showthread.php?tid=12846
+
+\begin{center}
+	\small
+	\begin{longtable}{ p{0.4\linewidth} | p{0.6\linewidth} }
+	Name & Description \\ 
+	\hline
+	Successful Tests & Amount of tests who completed successfully  \\
+	
+	Document Complete & The time from the initial request until the browser fires load event. Also known as the document complete time. This is the time at which the Document Object Model (DOM) has been created and all images have been downloaded and displayed. For most traditional web pages, the load time is a suitable metric for representing how long a user must wait until the page becomes usable. This is the default performance metric on WebPageTest. Also known as Load Time (?). Around this time, the page's script is hard at work in the load-event handler firing off more requests for secondary content. The incomplete nature of this metric is why Fully Loaded was added to the table of metrics from the previous section. window.onload (?). The point where the browser onLoad event fires. The equivalent Navigation Timing event is loadEventStart. Document Complete Time: Amount of time that has elapsed from the initial page request until the browser fires the load event. This is the time at which the Document Object Model (DOM) has been created and all images have been downloaded and displayed. \\
+	
+	Fully Loaded & The time from the initial request until WebPageTest determines that the page has finished loading content. The page might have waited for the load event to defer loading secondary content. The time it takes to load the secondary content is accounted for in the Fully Loaded Time. The time (in ms) the page took to be fully loaded — e.g., 2 seconds of no network activity after Document Complete. This will usually include any activity that is triggered by javascript after the main page loads. The point after onLoad where network activity has stopped for 2 seconds. Specific to WebPageTest and not provided by Performance API. Fully loaded waits for 2 seconds of no network activity (and no outstanding requests) after onLoad and then calls it done (only measures to the last activity, doesn't include the 2 seconds of silence in the measurement). Fully Loaded is a measure based on the network activity and is the point after onload when there was no activity for 2 seconds. \\
+	
+	First Byte & Time until the server responds with the first byte of the response.  \\
+	
+	Start Render & Time until the browser paints content to the screen. The time for the browser to display the first pixel of content (paint) on the screen. Time until the browser paints content to the screen. WebPageTest's own metric, determined by programmatically watching for visual changes to the page. Same as First Render? \\
+	
+	Bytes In (Doc) & Total size of the Document Complete Requests' response bodies in bytes.  \\
+	
+	Requests (Doc) & Number of HTTP requests before the load event, not including the initial request. \\
+	
+	Load Event Start & Time in ms since navigation started until window.onload event was triggered (from W3C Navigation Timing). \\
+	
+	Speed Index	& See Speed Index  \\
+	
+	Last Visual Change & Time in ms until the last visual changed occured. Last change is a completely visual measurement and is the last point in the test when something visually changed on the screen. It could be something as simple as an animated gif or ad even that didn't really cause much CPU work but changed some pixels on the screen. It is only captured when video is recorded because it depends on the video capture to measure it. \\
+	
+	Visually Complete & Time in ms when page was visually completed. Is measured from a video capture of the viewport loading and is the point when the visible part of the page first reached 100\% "completeness" compared to the end state of the test. \\
+	\caption{Your caption here} % needs to go inside longtable environment
+	\label{tab:myfirstlongtable}
+	\end{longtable}
+\end{center}
+
+
+
+%----------------------------------------------------------------
+
+
+\subsection{Google Analytics Site Speed Metrics}
+
+GA does not really provide any UX metrics! The site speed metrics are all from navigation timing api which are measurements from the browser.
+
+GA Site Speed Metrics (description from \url{https://support.google.com/analytics/answer/2383341?hl=en&ref_topic=1282106})
+
+\url{https://stackoverflow.com/questions/18972615/how-do-the-metrics-of-google-analytics-site-speed-map-to-the-w3c-navigation-timi}
+
+\begin{center}
+\small
+
+	\begin{tabular}{ p{0.4\linewidth} | p{0.6\linewidth} }
+	Name & Description  \\ 
+	\hline
+	Page Load Sample & The number of pageviews that were sampled to calculate the average page-load time.  \\
+	
+	Speed Metrics Sample & The sample set (or count) of pageviews used to calculate the averages of site speed metrics. This metric is used in all site speed average calculations, including avgDomainLookupTime, avgPageDownloadTime, avgRedirectionTime, avgServerConnectionTime, and avgServerResponseTime.  \\
+	
+	DOM Latency Metrics Sample & Sample set (or count) of pageviews used to calculate the averages for site speed DOM metrics. This metric is used to calculate ga:avgDomContentLoadedTime and ga:avgDomInteractiveTime.  \\
+
+	Page Load Time (sec) & The average amount of time (in seconds) it takes that page to load, from initiation of the pageview (e.g., click on a page link) to load completion in the browser.  \\
+	
+	Domain Lookup Time (sec) & The average amount of time spent in DNS lookup for the page.  \\
+	
+	Page Download Time (sec) & The time to download your page.  \\
+	
+	Redirection Time (sec) & The time spent in redirection before fetching the page. If there are no redirects, the value for this metric is expected to be 0.  \\
+	
+	Server Connection Time (sec) & The time needed for the user to connect to your server.  \\
+
+	Server Response Time (sec) & The time for your server to respond to a user request, including the network time from the user's location to your server.  \\
+	
+	Document Interactive Time (sec) & The average time (in seconds) that the browser takes to parse the document (DOMInteractive), including the network time from the user's location to your server. At this time, the user can interact with the Document Object Model even though it is not fully loaded.  \\
+
+	Document Content Loaded Time (sec) & The average time (in seconds) that the browser takes to parse the document and execute deferred and parser-inserted scripts (DOMContentLoaded), including the network time from the user's location to your server. Parsing of the document is finished, the Document Object Model is ready, but referenced style sheets, images, and subframes may not be finished loading. This event is often the starting point for javascript framework execution, e.g., JQuery's onready() callback, etc.  \\
+	\end{tabular}
+\end{center}
+
+
+%----------------------------------------------------------------
+
+
+
+\subsection{Comparison}
+
+\begin{center}
+	\begin{tabular}{ l | l | l }
+	Navigation Timing API & WPT & GA \\ 
+	\hline
+	loadEventStart - navigationStart & Document Complete, Load Event Start & pageLoadTime \\
+	domainLookupEnd - domainLookupStart & DNS lookup, dns\textunderscore ms & domainLookupTime \\
+	connectEnd - connectStart & connect\textunderscore ms & serverConnectionTime \\
+	responseStart - requestStart & .. & serverResponseTime \\
+	responseEnd - responseStart & .. & pageDownloadTime \\
+	fetchStart - navigationStart & .. & redirectionTime \\
+	domInteractive - navigationStart & .. & domInteractiveTime \\
+	domContentLoadedEventStart - navigationStart & domContentLoadedEventStart & domContentLoadedTime \\
+	\end{tabular}
+\end{center}
+
+\begin{itemize}
+\item We can show this with experiments
+\item Load test page on a specific day only once and save timings exposed by performance.timing object (from console)
+\item Calculate differences corresponding to the table
+\item Get GA data for that day and save it
+\item 
+\end{itemize}
+
+
+
+
+
+
+
+
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+
+
+
+
+\section{Measuring Methods}
+
+\begin{itemize}
+\item Explanation and comparison of synthetic and real-user monitoring with concrete examples
+\item Short overview of other measuring methods such as log analysis or surveys
+\end{itemize}
+
+
+
+% 2009 Croll
+% 2013 Meenan
+% 2015 Cito
+% 2016 Viscomi Synthetic Versus RUM
+% Eggplant whitepaper
+
+
+\subsection{Synthetic Monitoring}
+
+\begin{itemize}
+    \item What is it
+    \item How does it work
+    \item Application, real life scenario
+    \item Examples:
+    \begin{itemize}
+        \item WebPageTest
+        \item Google Lighthouse
+        \item Other solutions
+    \end{itemize}
+\end{itemize}
+
+
+
+
+
+%----------------------------------------------------------------
+
+
+
+
+\subsection{Real-User Monitoring}
+
+\begin{itemize}
+    \item What is it
+    \item How does it work
+    \item Application, real life scenario
+    \item Examples:
+    \begin{itemize}
+        \item Google Analyitcs
+        \item CrUX
+        \item SpeedKit
+        \item Other solutions
+    \end{itemize}
+\end{itemize}
+
