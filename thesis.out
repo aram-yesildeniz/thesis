@@ -3,56 +3,64 @@
 \BOOKMARK [2][-]{subsection.1.1.1}{User Satisfaction}{section.1.1}% 3
 \BOOKMARK [1][-]{section.1.2}{Web Analytics}{chapter.1}% 4
 \BOOKMARK [2][-]{subsection.1.2.1}{Web Performance}{section.1.2}% 5
-\BOOKMARK [1][-]{section.1.3}{Research Question}{chapter.1}% 6
-\BOOKMARK [0][-]{chapter.2}{Terms and Definitions}{}% 7
-\BOOKMARK [1][-]{section.2.1}{Metrics}{chapter.2}% 8
-\BOOKMARK [2][-]{subsection.2.1.1}{"Non-Performance" metrics}{section.2.1}% 9
-\BOOKMARK [2][-]{subsection.2.1.2}{Performance Metrics}{section.2.1}% 10
-\BOOKMARK [2][-]{subsection.2.1.3}{WebPageTest Metrics}{section.2.1}% 11
-\BOOKMARK [2][-]{subsection.2.1.4}{Google Analytics Site Speed Metrics}{section.2.1}% 12
-\BOOKMARK [2][-]{subsection.2.1.5}{Comparison}{section.2.1}% 13
-\BOOKMARK [1][-]{section.2.2}{Measuring Methods}{chapter.2}% 14
-\BOOKMARK [2][-]{subsection.2.2.1}{Synthetic Monitoring}{section.2.2}% 15
-\BOOKMARK [2][-]{subsection.2.2.2}{Real-User Monitoring}{section.2.2}% 16
-\BOOKMARK [0][-]{chapter.3}{Related Work}{}% 17
-\BOOKMARK [1][-]{section.3.1}{WebPageTest}{chapter.3}% 18
-\BOOKMARK [1][-]{section.3.2}{Google Analytics}{chapter.3}% 19
-\BOOKMARK [1][-]{section.3.3}{Research}{chapter.3}% 20
-\BOOKMARK [0][-]{chapter.4}{Approach}{}% 21
-\BOOKMARK [1][-]{section.4.1}{Experiment}{chapter.4}% 22
-\BOOKMARK [1][-]{section.4.2}{Test Environment}{chapter.4}% 23
-\BOOKMARK [2][-]{subsection.4.2.1}{WordPress}{section.4.2}% 24
-\BOOKMARK [2][-]{subsection.4.2.2}{Mirroring a complete e-commerce website}{section.4.2}% 25
-\BOOKMARK [2][-]{subsection.4.2.3}{Plain / Skeletal Website}{section.4.2}% 26
-\BOOKMARK [2][-]{subsection.4.2.4}{HTTP Archive inspired website}{section.4.2}% 27
-\BOOKMARK [1][-]{section.4.3}{Test Runs}{chapter.4}% 28
-\BOOKMARK [2][-]{subsection.4.3.1}{WPT Configurations}{section.4.3}% 29
-\BOOKMARK [2][-]{subsection.4.3.2}{Website Variations}{section.4.3}% 30
-\BOOKMARK [2][-]{subsection.4.3.3}{Plan}{section.4.3}% 31
-\BOOKMARK [2][-]{subsection.4.3.4}{Tool support}{section.4.3}% 32
-\BOOKMARK [0][-]{chapter.5}{Evaluation}{}% 33
-\BOOKMARK [1][-]{section.5.1}{General}{chapter.5}% 34
-\BOOKMARK [1][-]{section.5.2}{Plain / Skeletal Website}{chapter.5}% 35
-\BOOKMARK [1][-]{section.5.3}{Mirroring}{chapter.5}% 36
-\BOOKMARK [1][-]{section.5.4}{HTTP Archive inspired website}{chapter.5}% 37
-\BOOKMARK [1][-]{section.5.5}{WebPageTest Bulk Tests}{chapter.5}% 38
-\BOOKMARK [2][-]{subsection.5.5.1}{Bulk Test Overview: Description of test result page}{section.5.5}% 39
-\BOOKMARK [2][-]{subsection.5.5.2}{Summary File for one Test}{section.5.5}% 40
-\BOOKMARK [2][-]{subsection.5.5.3}{Aggregate Statistics File}{section.5.5}% 41
-\BOOKMARK [2][-]{subsection.5.5.4}{Compare Section}{section.5.5}% 42
-\BOOKMARK [0][-]{chapter.6}{Future Work}{}% 43
-\BOOKMARK [1][-]{section.6.1}{Limitations of this thesis}{chapter.6}% 44
-\BOOKMARK [1][-]{section.6.2}{Other measurement tools and metrics}{chapter.6}% 45
-\BOOKMARK [2][-]{subsection.6.2.1}{Google Analytics 4}{section.6.2}% 46
-\BOOKMARK [1][-]{section.6.3}{PWAs, AMPs, Service Workers, Caching, etc.}{chapter.6}% 47
-\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 48
-\BOOKMARK [0][-]{chapter.8}{Appendix}{}% 49
-\BOOKMARK [1][-]{section.8.1}{WebPageTest Bulk Tests}{chapter.8}% 50
-\BOOKMARK [2][-]{subsection.8.1.1}{Single Test Raw page data}{section.8.1}% 51
-\BOOKMARK [2][-]{subsection.8.1.2}{Single Test Raw object data}{section.8.1}% 52
-\BOOKMARK [2][-]{subsection.8.1.3}{Single Test Http archive \(.har\)}{section.8.1}% 53
-\BOOKMARK [2][-]{subsection.8.1.4}{Combined Test Raw page data}{section.8.1}% 54
-\BOOKMARK [2][-]{subsection.8.1.5}{Combined Test Raw object data}{section.8.1}% 55
-\BOOKMARK [2][-]{subsection.8.1.6}{Combined Test Aggregate data}{section.8.1}% 56
-\BOOKMARK [0][-]{chapter*.15}{Bibliography}{}% 57
-\BOOKMARK [0][-]{chapter*.16}{Eidesstattliche Versicherung}{}% 58
+\BOOKMARK [2][-]{subsection.1.2.2}{Tools}{section.1.2}% 6
+\BOOKMARK [1][-]{section.1.3}{Research Question}{chapter.1}% 7
+\BOOKMARK [0][-]{chapter.2}{Terms and Definitions}{}% 8
+\BOOKMARK [1][-]{section.2.1}{Metrics}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.1.1}{Introduction}{section.2.1}% 10
+\BOOKMARK [2][-]{subsection.2.1.2}{"Non-Performance" metrics}{section.2.1}% 11
+\BOOKMARK [2][-]{subsection.2.1.3}{Performance Metrics}{section.2.1}% 12
+\BOOKMARK [2][-]{subsection.2.1.4}{WebPageTest Metrics}{section.2.1}% 13
+\BOOKMARK [2][-]{subsection.2.1.5}{Google Analytics Site Speed Metrics}{section.2.1}% 14
+\BOOKMARK [2][-]{subsection.2.1.6}{Comparison}{section.2.1}% 15
+\BOOKMARK [1][-]{section.2.2}{Measuring Methods}{chapter.2}% 16
+\BOOKMARK [2][-]{subsection.2.2.1}{Synthetic Monitoring}{section.2.2}% 17
+\BOOKMARK [2][-]{subsection.2.2.2}{Real-User Monitoring}{section.2.2}% 18
+\BOOKMARK [0][-]{chapter.3}{Related Work}{}% 19
+\BOOKMARK [1][-]{section.3.1}{WebPageTest}{chapter.3}% 20
+\BOOKMARK [2][-]{subsection.3.1.1}{Overview}{section.3.1}% 21
+\BOOKMARK [2][-]{subsection.3.1.2}{Configuration}{section.3.1}% 22
+\BOOKMARK [2][-]{subsection.3.1.3}{Private Instances}{section.3.1}% 23
+\BOOKMARK [1][-]{section.3.2}{Google Analytics}{chapter.3}% 24
+\BOOKMARK [1][-]{section.3.3}{Research}{chapter.3}% 25
+\BOOKMARK [0][-]{chapter.4}{Approach}{}% 26
+\BOOKMARK [1][-]{section.4.1}{Empirical Research Methods}{chapter.4}% 27
+\BOOKMARK [2][-]{subsection.4.1.1}{Controlled Experiment}{section.4.1}% 28
+\BOOKMARK [1][-]{section.4.2}{Setup: Test website}{chapter.4}% 29
+\BOOKMARK [2][-]{subsection.4.2.1}{WordPress}{section.4.2}% 30
+\BOOKMARK [2][-]{subsection.4.2.2}{Mirroring a complete e-commerce website}{section.4.2}% 31
+\BOOKMARK [2][-]{subsection.4.2.3}{Plain / Skeletal Website}{section.4.2}% 32
+\BOOKMARK [2][-]{subsection.4.2.4}{HTTP Archive inspired website}{section.4.2}% 33
+\BOOKMARK [1][-]{section.4.3}{Test Runs}{chapter.4}% 34
+\BOOKMARK [2][-]{subsection.4.3.1}{WPT Configurations}{section.4.3}% 35
+\BOOKMARK [2][-]{subsection.4.3.2}{Website Variations}{section.4.3}% 36
+\BOOKMARK [2][-]{subsection.4.3.3}{Plan}{section.4.3}% 37
+\BOOKMARK [2][-]{subsection.4.3.4}{Tool support}{section.4.3}% 38
+\BOOKMARK [0][-]{chapter.5}{Evaluation}{}% 39
+\BOOKMARK [1][-]{section.5.1}{Internal, external validity}{chapter.5}% 40
+\BOOKMARK [1][-]{section.5.2}{General}{chapter.5}% 41
+\BOOKMARK [1][-]{section.5.3}{Plain / Skeletal Website}{chapter.5}% 42
+\BOOKMARK [1][-]{section.5.4}{Mirroring}{chapter.5}% 43
+\BOOKMARK [1][-]{section.5.5}{HTTP Archive inspired website}{chapter.5}% 44
+\BOOKMARK [1][-]{section.5.6}{WebPageTest Bulk Tests}{chapter.5}% 45
+\BOOKMARK [2][-]{subsection.5.6.1}{Bulk Test Overview: Description of test result page}{section.5.6}% 46
+\BOOKMARK [2][-]{subsection.5.6.2}{Summary File for one Test}{section.5.6}% 47
+\BOOKMARK [2][-]{subsection.5.6.3}{Aggregate Statistics File}{section.5.6}% 48
+\BOOKMARK [2][-]{subsection.5.6.4}{Compare Section}{section.5.6}% 49
+\BOOKMARK [0][-]{chapter.6}{Future Work}{}% 50
+\BOOKMARK [1][-]{section.6.1}{Limitations of this thesis}{chapter.6}% 51
+\BOOKMARK [1][-]{section.6.2}{Other measurement tools and metrics}{chapter.6}% 52
+\BOOKMARK [2][-]{subsection.6.2.1}{Google Analytics 4}{section.6.2}% 53
+\BOOKMARK [1][-]{section.6.3}{Speed Kit}{chapter.6}% 54
+\BOOKMARK [1][-]{section.6.4}{PWAs, AMPs, Service Workers, Caching, etc.}{chapter.6}% 55
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 56
+\BOOKMARK [0][-]{chapter.8}{Appendix}{}% 57
+\BOOKMARK [1][-]{section.8.1}{WebPageTest Bulk Tests}{chapter.8}% 58
+\BOOKMARK [2][-]{subsection.8.1.1}{Single Test Raw page data}{section.8.1}% 59
+\BOOKMARK [2][-]{subsection.8.1.2}{Single Test Raw object data}{section.8.1}% 60
+\BOOKMARK [2][-]{subsection.8.1.3}{Single Test Http archive \(.har\)}{section.8.1}% 61
+\BOOKMARK [2][-]{subsection.8.1.4}{Combined Test Raw page data}{section.8.1}% 62
+\BOOKMARK [2][-]{subsection.8.1.5}{Combined Test Raw object data}{section.8.1}% 63
+\BOOKMARK [2][-]{subsection.8.1.6}{Combined Test Aggregate data}{section.8.1}% 64
+\BOOKMARK [0][-]{chapter*.16}{Bibliography}{}% 65
+\BOOKMARK [0][-]{chapter*.17}{Eidesstattliche Versicherung}{}% 66
