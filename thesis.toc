@@ -7,62 +7,71 @@
 \contentsline {subsection}{\numberline {1.2.1}Web Performance}{1}{subsection.1.2.1}
 \contentsline {subsection}{\numberline {1.2.2}Tools}{2}{subsection.1.2.2}
 \contentsline {section}{\numberline {1.3}Research Question}{2}{section.1.3}
-\contentsline {chapter}{\numberline {2}Terms and Definitions}{5}{chapter.2}
-\contentsline {section}{\numberline {2.1}Metrics}{5}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Introduction}{5}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}"Non-Performance" metrics}{5}{subsection.2.1.2}
-\contentsline {subsection}{\numberline {2.1.3}Performance Metrics}{8}{subsection.2.1.3}
-\contentsline {subsubsection}{\nonumberline Standards and APIs, Browser metrics, standards}{8}{section*.3}
-\contentsline {paragraph}{\nonumberline Navigation Timing API}{9}{section*.4}
-\contentsline {subsubsection}{\nonumberline Google metrics? User-centric / UX / visual}{9}{section*.5}
-\contentsline {paragraph}{\nonumberline Web Vitals}{9}{section*.6}
-\contentsline {subparagraph}{\nonumberline Core Web Vitals}{10}{section*.7}
-\contentsline {paragraph}{\nonumberline Others}{10}{section*.8}
-\contentsline {subparagraph}{\nonumberline Speed Index}{10}{section*.9}
-\contentsline {subsection}{\numberline {2.1.4}WebPageTest Metrics}{10}{subsection.2.1.4}
-\contentsline {subsection}{\numberline {2.1.5}Google Analytics Site Speed Metrics}{14}{subsection.2.1.5}
-\contentsline {subsection}{\numberline {2.1.6}Comparison}{15}{subsection.2.1.6}
-\contentsline {section}{\numberline {2.2}Measuring Methods}{16}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Synthetic Monitoring}{16}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Real-User Monitoring}{17}{subsection.2.2.2}
-\contentsline {chapter}{\numberline {3}Related Work}{19}{chapter.3}
-\contentsline {section}{\numberline {3.1}WebPageTest}{19}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Overview}{19}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Configuration}{19}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Private Instances}{20}{subsection.3.1.3}
-\contentsline {section}{\numberline {3.2}Google Analytics}{20}{section.3.2}
-\contentsline {section}{\numberline {3.3}Research}{20}{section.3.3}
-\contentsline {chapter}{\numberline {4}Approach}{21}{chapter.4}
-\contentsline {section}{\numberline {4.1}Empirical Research Methods}{21}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Controlled Experiment}{21}{subsection.4.1.1}
-\contentsline {section}{\numberline {4.2}Setup: Test website}{21}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}WordPress}{22}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Mirroring a complete e-commerce website}{22}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Plain / Skeletal Website}{22}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}HTTP Archive inspired website}{22}{subsection.4.2.4}
-\contentsline {section}{\numberline {4.3}Test Runs}{22}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}WPT Configurations}{22}{subsection.4.3.1}
-\contentsline {subsubsection}{\nonumberline Setting option}{22}{section*.10}
-\contentsline {paragraph}{\nonumberline Explanations}{22}{section*.11}
-\contentsline {paragraph}{\nonumberline Configuration 1}{26}{table.4.2}
-\contentsline {paragraph}{\nonumberline Configuration 2}{26}{section*.13}
+\contentsline {chapter}{\numberline {2}Terms and Definitions}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Metrics}{3}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Introduction}{3}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}"Non-Performance" metrics}{3}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Performance Metrics}{6}{subsection.2.1.3}
+\contentsline {subsubsection}{\nonumberline Standards and APIs, Browser metrics, standards}{6}{section*.3}
+\contentsline {paragraph}{\nonumberline Navigation Timing API}{7}{section*.4}
+\contentsline {subsubsection}{\nonumberline Google metrics? User-centric / UX / visual}{7}{section*.5}
+\contentsline {paragraph}{\nonumberline Web Vitals}{7}{section*.6}
+\contentsline {subparagraph}{\nonumberline Core Web Vitals}{8}{section*.7}
+\contentsline {paragraph}{\nonumberline Others}{8}{section*.8}
+\contentsline {subparagraph}{\nonumberline Speed Index}{8}{section*.9}
+\contentsline {subsection}{\numberline {2.1.4}WebPageTest Metrics}{8}{subsection.2.1.4}
+\contentsline {subsection}{\numberline {2.1.5}Google Analytics Site Speed Metrics}{12}{subsection.2.1.5}
+\contentsline {subsection}{\numberline {2.1.6}Comparison}{13}{subsection.2.1.6}
+\contentsline {section}{\numberline {2.2}Measuring Methods}{15}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Synthetic Monitoring}{15}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Real-User Monitoring}{15}{subsection.2.2.2}
+\contentsline {chapter}{\numberline {3}Related Work}{17}{chapter.3}
+\contentsline {section}{\numberline {3.1}WebPageTest}{17}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Overview}{17}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Configuration}{17}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Private Instances}{18}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}Google Analytics}{18}{section.3.2}
+\contentsline {section}{\numberline {3.3}Research}{18}{section.3.3}
+\contentsline {paragraph}{\nonumberline 2014 Singal}{18}{section*.10}
+\contentsline {chapter}{\numberline {4}Approach}{19}{chapter.4}
+\contentsline {section}{\numberline {4.1}Empirical Research Methods}{19}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Controlled Experiment}{19}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Test Setup}{19}{subsection.4.1.2}
+\contentsline {paragraph}{\nonumberline Measure effects: Dependent Variables}{19}{section*.11}
+\contentsline {paragraph}{\nonumberline Test object / HTML Template}{20}{section*.12}
+\contentsline {subsubsection}{\nonumberline Lab and Field}{20}{section*.13}
+\contentsline {subsection}{\numberline {4.1.3}Independent Variables within template}{20}{subsection.4.1.3}
+\contentsline {paragraph}{\nonumberline Other IVs not included but worth mentioning}{20}{section*.14}
+\contentsline {section}{\numberline {4.2}Test Object: HTML Template / Test website ideas}{20}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}WordPress}{20}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Plain / Skeletal Website}{24}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}HTTP Archive inspired website}{24}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Mirroring a complete e-commerce website}{24}{subsection.4.2.4}
+\contentsline {paragraph}{\nonumberline Comparison to original webpage}{24}{section*.15}
+\contentsline {section}{\numberline {4.3}Test Runs}{25}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}WPT Configurations}{25}{subsection.4.3.1}
+\contentsline {subsubsection}{\nonumberline Setting option}{25}{section*.16}
+\contentsline {paragraph}{\nonumberline Explanations}{25}{section*.17}
+\contentsline {paragraph}{\nonumberline Configuration 1}{25}{table.4.2}
+\contentsline {paragraph}{\nonumberline Configuration 2}{26}{section*.19}
 \contentsline {subsection}{\numberline {4.3.2}Website Variations}{26}{subsection.4.3.2}
-\contentsline {paragraph}{\nonumberline variant1.html}{27}{section*.14}
-\contentsline {paragraph}{\nonumberline variant2.html}{27}{section*.15}
-\contentsline {paragraph}{\nonumberline variant3.html}{27}{section*.16}
-\contentsline {subsection}{\numberline {4.3.3}Plan}{28}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Tool support}{28}{subsection.4.3.4}
+\contentsline {paragraph}{\nonumberline variant1.html}{26}{section*.20}
+\contentsline {paragraph}{\nonumberline variant2.html}{26}{section*.21}
+\contentsline {paragraph}{\nonumberline variant3.html}{26}{section*.22}
+\contentsline {subsection}{\numberline {4.3.3}Plan}{26}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Tool support}{27}{subsection.4.3.4}
 \contentsline {chapter}{\numberline {5}Evaluation}{29}{chapter.5}
-\contentsline {section}{\numberline {5.1}Internal, external validity}{30}{section.5.1}
-\contentsline {section}{\numberline {5.2}General}{30}{section.5.2}
+\contentsline {section}{\numberline {5.1}Internal, external validity}{29}{section.5.1}
+\contentsline {section}{\numberline {5.2}General}{29}{section.5.2}
 \contentsline {section}{\numberline {5.3}Plain / Skeletal Website}{30}{section.5.3}
-\contentsline {section}{\numberline {5.4}Mirroring}{31}{section.5.4}
-\contentsline {section}{\numberline {5.5}HTTP Archive inspired website}{31}{section.5.5}
-\contentsline {section}{\numberline {5.6}WebPageTest Bulk Tests}{31}{section.5.6}
-\contentsline {subsection}{\numberline {5.6.1}Bulk Test Overview: Description of test result page}{31}{subsection.5.6.1}
-\contentsline {subsection}{\numberline {5.6.2}Summary File for one Test}{32}{subsection.5.6.2}
-\contentsline {subsection}{\numberline {5.6.3}Aggregate Statistics File}{32}{subsection.5.6.3}
-\contentsline {subsection}{\numberline {5.6.4}Compare Section}{32}{subsection.5.6.4}
+\contentsline {section}{\numberline {5.4}Mirroring}{30}{section.5.4}
+\contentsline {section}{\numberline {5.5}HTTP Archive inspired website}{30}{section.5.5}
+\contentsline {section}{\numberline {5.6}WebPageTest Bulk Tests}{30}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}Bulk Test Overview: Description of test result page}{30}{subsection.5.6.1}
+\contentsline {subsection}{\numberline {5.6.2}Summary File for one Test}{31}{subsection.5.6.2}
+\contentsline {subsection}{\numberline {5.6.3}Aggregate Statistics File}{31}{subsection.5.6.3}
+\contentsline {subsection}{\numberline {5.6.4}Compare Section}{31}{subsection.5.6.4}
+\contentsline {section}{\numberline {5.7}Wpt waterfall}{33}{section.5.7}
 \contentsline {chapter}{\numberline {6}Future Work}{35}{chapter.6}
 \contentsline {section}{\numberline {6.1}Limitations of this thesis}{35}{section.6.1}
 \contentsline {section}{\numberline {6.2}Other measurement tools and metrics}{35}{section.6.2}
@@ -78,5 +87,5 @@
 \contentsline {subsection}{\numberline {8.1.4}Combined Test Raw page data}{43}{subsection.8.1.4}
 \contentsline {subsection}{\numberline {8.1.5}Combined Test Raw object data}{43}{subsection.8.1.5}
 \contentsline {subsection}{\numberline {8.1.6}Combined Test Aggregate data}{43}{subsection.8.1.6}
-\contentsline {chapter}{\nonumberline Bibliography}{45}{chapter*.17}
-\contentsline {chapter}{Eidesstattliche Versicherung}{47}{chapter*.18}
+\contentsline {chapter}{\nonumberline Bibliography}{45}{chapter*.23}
+\contentsline {chapter}{Eidesstattliche Versicherung}{47}{chapter*.24}

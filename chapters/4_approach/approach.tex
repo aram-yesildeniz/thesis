@@ -17,11 +17,14 @@
 
 
 % --------------------------------------------------------
-
+% --------------------------------------------------------
+% --------------------------------------------------------
+% --------------------------------------------------------
 
 
 
 \section{Empirical Research Methods}
+
 
 \begin{itemize}
 \item Overview of methods
@@ -40,6 +43,12 @@
 % 2012 Maxion: Hallmarks of good experiment, Validity
 
 % 2014 Tedre: Experimentation in computing
+
+
+
+% --------------------------------------------------------
+
+
 
 
 \subsection{Controlled Experiment}
@@ -62,45 +71,66 @@
 
 
 
-
-\section{Setup: Test website}
-
+\subsection{Test Setup}
 
 \begin{itemize}
-\item Discuss variables
-\item Each website should be discussed of its usefulness, advantages and disadvantages
+\item What is test object (website)
+\item What are dependent variables: Performance metrics
+\item What are independent variables: Specific changes in test object (see next chapter)
 \end{itemize}
 
 
-\subsection{WordPress}
+\paragraph{Measure effects: Dependent Variables}
 
 \begin{itemize}
-    \item Show usage of WordPress with some statistics: Why is it so verbreitet
-    \item Explain Plugin system
-    \item Explain Setup on localhost with wocommerce and GA plugin
-    \item Elaborate why this idea was not used
+\item Performance metrics from Lab and Field, see terms and definitions
+\item But also quality of RUM data. Because we could have a nice performance but RUM will be of bad quality. 
 \end{itemize}
 
-\subsection{Mirroring a complete e-commerce website}
+
+\paragraph{Test object / HTML Template}
 
 \begin{itemize}
-    \item Idea: Close to reality as possible
-    \item Problems when mirroring a website
-    \item Elaborate why this idea was not used
+\item Depending on different approaches / Ideas (see next chapter), template looks different
+\item But general structure stays the same and independent variables can be defined
+\item Here we show different independent variables and variants
 \end{itemize}
 
-\subsection{Plain / Skeletal Website}
+
+\subsubsection{Lab and Field}
 
 \begin{itemize}
-    \item Idea: Lab environment to have control over all and see effects of changing independent variables
-    \item Problem: Too far away from reality
+\item I want to collect Lab and field data for dependent variables for comparison
+\item This setup is a special case because lab bots (e.g. WPT) simulate at the same time real users for RUM data
 \end{itemize}
 
-\subsection{HTTP Archive inspired website}
+
+
+% --------------------------------------------------------
+
+
+
+\subsection{Independent Variables within template}
+
 
 \begin{itemize}
-    \item Idea: Get correct page weight
+\item IV 1: Position of included analyitcs script. Values: top-head, bottom-head, bottom-body
+\item IV 2: Attribute of included analyitcs script: no-attribute, async, defer
+\item IV 3: Other tracking script included
+\item Other IVs not included but worth mentioning
 \end{itemize}
+
+
+
+
+\paragraph{Other IVs not included but worth mentioning}
+
+\begin{itemize}
+\item More or less infinite number of independent variables
+\item Again the big and important fact that each website is different
+\end{itemize}
+
+
 
 
 % Position
@@ -340,6 +370,148 @@
 
 
 
+
+
+
+
+
+% --------------------------------------------------------
+% --------------------------------------------------------
+% --------------------------------------------------------
+% --------------------------------------------------------
+
+
+
+
+\section{Test Object: HTML Template / Test website ideas}
+
+
+\begin{itemize}
+\item Several ideas are proposed
+\item Each idea has pro and contra: each idea should be discussed of its usefulness, advantages and disadvantages
+\end{itemize}
+
+
+
+% --------------------------------------------------------
+
+
+\subsection{WordPress}
+
+\begin{itemize}
+    \item Show usage of WordPress with some statistics: Why is it so verbreitet
+    \item Explain Plugin system
+    \item Explain Setup on localhost with wocommerce and GA plugin
+    \item Elaborate why this idea was not used
+\end{itemize}
+
+
+
+
+% --------------------------------------------------------
+
+
+
+\subsection{Plain / Skeletal Website}
+
+\begin{itemize}
+    \item Idea: Lab environment to have control over all and see effects of changing independent variables
+    \item Problem: Too far away from reality
+    \item Use this as the simplest test possible, not even POC (POC is http archive site)
+\end{itemize}
+
+
+
+
+% --------------------------------------------------------
+
+
+
+\subsection{HTTP Archive inspired website}
+
+\begin{itemize}
+    \item Idea: Get correct page weight
+    \item POC: Show that changing independent variables X affect result
+\end{itemize}
+
+
+
+
+
+
+% --------------------------------------------------------
+
+
+
+\subsection{Mirroring a complete e-commerce website}
+
+Re-write this to otto start page clone chapter
+
+Manual adjustments:
+- Move everything to test folder because top domain is /otto
+
+What did not work (mostly 404s):
+- user-set-consent-id-cookie: Cookie with name consentId is not set, user-set-consent-id-cookie returns therefore 404
+- subscribeToNewsletterSnippetContent: Change path did not work...
+- amount.json: Not found, also wl\_miniWishlistAmount in local storage does not created
+- a\_info: Mock a\_info response json does not work...
+
+- footer
+- userTiming
+
+
+
+
+\begin{itemize}
+    \item Idea: Close to reality as possible
+    \item Problems when mirroring a website
+    \item Elaborate why this idea of mirroring complete website was not used
+    \item I used mock of start page of otto, which works fine
+    \item Compare original otto website with mock
+\end{itemize}
+
+
+
+
+
+\paragraph{Comparison to original webpage}
+
+\begin{itemize}
+    \item Remove GA again from mock, so that mock and original are as similar as possible
+    \item Run the same lab test on both pages: WPT and mabye lighthouse
+    \item Compare both results and explain differences
+\end{itemize}
+
+
+
+- Setup: Run WPT on mock and on original website
+- WPT config:
+- Browser: Chrome
+- Number of test runs: 3
+- FV and RV
+- Capture Video
+- Capture DevTools Timeline
+- Bulk testing: 100x
+
+
+
+Diagrams with FV and RV for both cases:
+
+Technical:
+- First Byte
+- Bytes In (Doc)
+- Requests (Doc)
+
+VIsual:
+- Document Complete
+- Speed Index
+
+
+
+
+
+
+
 % --------------------------------------------------------
 
 
@@ -478,35 +650,6 @@ Positions:
 \end{center}
 
 \paragraph{variant1.html}
-
-
-\begin{center}
-\begin{lstlisting}[caption={Variant 1},label=lst:soap,language=html,label={lst:soap}]
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- Google Analytics -->
-    <script>
-            (function (i, s, o, g, r, a, m) {
-            ...
-    </script>
-    <!-- End Google Analytics -->
-
-    <meta charset="utf-8">
-    <title>Median Website</title>
-    <meta name="author" content="">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSS / JS -->
-    ...
-</head>
-<body>
-...
-</body>
-</html>
-\end{lstlisting}
-\end{center}
 
 
 \paragraph{variant2.html}

@@ -35,6 +35,8 @@
 \item Performance vs UX
 \end{itemize}
 
+% 2014 Singal: Types of metrics
+
 % 2015 Bekavac:
 % Metrics for describing visits, visitors, visitor engagement, conversion metrics
 
@@ -492,6 +494,13 @@ The percentage of visitors that your site converts to contributors, buyers, or u
 
 \subsection{Google Analytics Site Speed Metrics}
 
+
+Show with analytics.js that it is indeed those navigation timing api calculations.
+
+Ec = function (a)...
+
+
+
 GA does not really provide any UX metrics! The site speed metrics are all from navigation timing api which are measurements from the browser.
 
 GA Site Speed Metrics (description from \url{https://support.google.com/analytics/answer/2383341?hl=en&ref_topic=1282106})
@@ -535,6 +544,9 @@ GA Site Speed Metrics (description from \url{https://support.google.com/analytic
 
 \subsection{Comparison}
 
+
+\begin{sidewaysfigure}
+
 \begin{center}
 	\begin{tabular}{ l | l | l }
 	Navigation Timing API & WPT & GA \\ 
@@ -549,6 +561,12 @@ GA Site Speed Metrics (description from \url{https://support.google.com/analytic
 	domContentLoadedEventStart - navigationStart & domContentLoadedEventStart & domContentLoadedTime \\
 	\end{tabular}
 \end{center}
+
+
+\end{sidewaysfigure}
+
+
+
 
 \begin{itemize}
 \item We can show this with experiments

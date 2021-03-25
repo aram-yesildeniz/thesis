@@ -56,20 +56,30 @@
 
 
 
-
-
 \section{Web Analytics}
 
 \begin{itemize}
 \item Historical background and contextualisation, usage, definition
 \item Web Analytics Process
 \item Mechanisms, Measurement methods / Collecting data: Log file analysis, client site page tagging, alternatives
+\item KPIs ?
 \end{itemize}
+
+
+% Definitions:
+% 2014 Singal: "Web Analytics is the objective tracking, collection, measurement, reporting and analysis of quantitative internet data to optimize websites and web marketing initiatives."
+
+
 
 
 % History, Usage:
 % 2009 Croll p. 69
 % 2009 Jansen ch. 3
+
+% 2014 Singal
+% - Genesis of Web Analytics (nice graphic) with WAA, DAA
+% - History of tools
+
 % 2015 Zheng
 % 2015 Bekavac
 % 2019 Hussaina
@@ -90,8 +100,13 @@
 % Hassler ch. 2
 % Wolle Draft
 % 2011 Marek
+% 2014 Singal provides table with pros and cons
 % 2019 Kumar
 
+
+
+% KPIs:
+% 2014 Singal describes KPIs for different businesses
 
 
 \subsection{Web Performance}
@@ -173,165 +188,3 @@
 
 
 
-
-
-
-\cite{Gray1981}, \cite{Cerami2002}
-
-\noindent Hier kommt ein Listing \ref{lst:soap}.
-
-\begin{center}
-\begin{lstlisting}[caption={SOAP Anfrage an einen HalloWelt-Web-Service},label=lst:soap,language=XML,label={lst:soap}]
-<?xml version='1.0' encoding='UTF-8'>
-<SOAP-ENV:Envelope (*@\label{lst:soapEnv}@*)
-  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-  xmlns:ns1="http://localhost/wsdl/HalloWeltService.wsdl">
-  
-  <SOAP-ENV:Body>(*@\label{lst:soapBody}@*)
-  	<ns1:gruss>
-  		<name xsi:type="xsd:string">
-  			Michael
-  		</name>
-  	</ns1:gruss>
-  </SOAP-ENV:Body>
-
-</SOAP-ENV:Envelope>
-\end{lstlisting}
-\end{center}
-
-\noindent Hier kommt eine etwas komplizierte Tabelle:
-
-\begin{table}[h]
-	\caption[Transaktionale Ablaufmodelle im Vergleich]{Transaktionale Ablaufmodelle im Vergleich; teilweise aus \cite{DBLP:books/infix/Schwarz99}; das Wort "`Transaktion"' wird in der Tabelle als TA abgekürzt}
-	\label{tab:tamodelleVergleich}
-	\centering
-		\begin{tabular*}{\textwidth}{| l@{\extracolsep\fill} r || c | c | c || c | c || c || c || c | c | c || c | c |}
-			\hline
-			
-			Modelle & 
-				\rotatebox{90}{Eigenschaften} &
-					\rotatebox{90}{vital} &
-						\rotatebox{90}{non-vital} &
-							\rotatebox{90}{Alternativtransaktion } &				
-								\rotatebox{90}{sequenziell} &
-									\rotatebox{90}{parallel} &
-  									\rotatebox{90}{unabhängig} &
-	    								\rotatebox{90}{temporal} &
-			    							\rotatebox{90}{geschlossen geschachtelt } &
-					    						\rotatebox{90}{offen geschachtelt} &
-							    					\rotatebox{90}{Kompensation} &
-									    				\rotatebox{90}{endliche Schachtelung } &
-											    			\rotatebox{90}{unendliche Schachtelung } \\
-			
-			\hline
-			\hline
-			
-			\multicolumn{2}{|l||}{Geschl. gesch. TA} &
-				\checkmark &
-				 (\checkmark) &
-				 	(\checkmark) &
-				 		\checkmark &
-				 			\checkmark &
-				 			
-				 			  - &
-				 			  - &
-				 			
-				 				\checkmark &
-				 				  - &
-				 				  	-	&
-				 				  		\checkmark &
-				 				  			\checkmark \\
-			\hline
-
-			\multicolumn{2}{|l||}{Offen gesch. TA} &
-				\checkmark &
-				 (\checkmark) &
-				 	(\checkmark) &
-				 		\checkmark &
-				 			\checkmark &
-				 			 
-				 			  - &
-				 			  - &
-				 			
-				 				- &
-				 				  \checkmark &
-				 				  	\checkmark &
-				 				  		\checkmark &
-				 				  			\checkmark \\
-			\hline
-
-			\multicolumn{2}{|l||}{Sagas} &
-				\checkmark &
-				 - &
-				 	- &
-				 		\checkmark &
-				 			- &
-				 			
-				 			  - &
-				 			  - &
-				 			
-				 				- &
-				 				  \checkmark &
-				 				  	\checkmark &	
-				 				  		\checkmark &
-				 				  			- \\
-			\hline
-
-			\multicolumn{2}{|l||}{Flex-TA} &
-				\checkmark &
-				 \checkmark &
-				 	\checkmark &
-				 		\checkmark &
-				 			\checkmark &
-				 			
-				 			- &
-				 			\checkmark &
-				 			 
-				 			
-				 				\checkmark &
-				 				  \checkmark &
-				 				  	\checkmark &
-				 				  		\checkmark &
-				 				  			- \\
-			
-			\hline
-
-			\multicolumn{2}{|l||}{ConTracts} &
-				\checkmark &
-				 \checkmark &
-				 	- &
-				 		\checkmark &
-				 			\checkmark &
-				 			
-				 			 -&
-				 			 -&
-				 			
-				 				\checkmark &
-				 				  \checkmark &
-				 				  	\checkmark &
-				 				  		\checkmark &
-				 				  			\checkmark \\
-
-			\hline
-
-			\multicolumn{2}{|l||}{Business-TA} &
-				\checkmark &
-				 \checkmark &
-				 	\checkmark &
-				 		\checkmark &
-				 			\checkmark &
-
-  			 			 \checkmark &
-				 			 \checkmark &
-				 			  
-				 				\checkmark &
-				 				  \checkmark &
-				 				  	\checkmark &
-				 				  		\checkmark &
-				 				  			\checkmark \\			 				  			
-			\hline
-				
-		\end{tabular*}
-\end{table}
