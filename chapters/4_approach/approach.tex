@@ -445,6 +445,8 @@
 
 \subsection{Mirroring a complete e-commerce website}
 
+\paragraph{Otto}
+
 Re-write this to otto start page clone chapter
 
 Manual adjustments:
@@ -459,6 +461,15 @@ What did not work (mostly 404s):
 - footer
 - userTiming
 
+
+WPT RV is returning empty csv when 404s are encountered.
+Therefore i mock the missing ressources so that WPT can run bulk tests successfully.
+
+- mock image sprite\_all\_1ba408b2.png
+
+- create empty file called user-set-consent-id-cookie
+
+- change path for subscribeToNewsletterSnippetContent: This will remove the cookie banner... but then WPT works
 
 
 
@@ -506,8 +517,25 @@ VIsual:
 - Document Complete
 - Speed Index
 
+\paragraph{Problem with Repeat View}
+
+- Problem with RV, Caching:
+Otto sets request headers to cache-control: no-cache which means that RV basically downloads all resources again.
+The mock is hosted on Github, where the cache-control header is set to ...
+It is not possible to change the github request headers. We can modify the http request headers via html, but this is not a clean solution.
+Therefore I use a different e-commerce website which does not shut down caching so that the RV results are more similar.
+
+Ideally I would host the mock website on a similar infrastructure as the original site with the same webserver configuration. This is for a masters thesis not feasible.
 
 
+% --------------------------------------------------------
+
+
+\paragraph{Zalando}
+
+Idea: It looks like zalando page does not has that many cache-control headers, therefore it may be easier to clone so that RVs are more similar.
+
+Comparison Diagrams with fixed traffic shaping:
 
 
 
@@ -524,10 +552,16 @@ VIsual:
     \item Explain test configuration: how many runs, dependent and independent variables, etc.
 \end{itemize}
 
+
+
+% --------------------------------------------------------
+
+
+
 \subsection{WPT Configurations}
 
 
-\subsubsection{Setting option}
+\subsubsection{General Settings}
 
 \begin{table}[h]
 	\caption[Test Runs]{Test Runs \cite{DBLP:books/infix/Schwarz99}}
@@ -604,6 +638,24 @@ Emulate Mobile Browser
 
 
 
+\subsubsection{Traffic Shaping}
+
+\begin{itemize}
+\item Important to have stable and realistic network condition
+\item Chromes tool is not the best for this % see blogpost https://calendar.perfplanet.com/2016/testing-with-realistic-networking-conditions/
+\item Private WPT Instance docker on mac does not allow traffic shaping functionality from WPT
+\item I use Network Link Conditioner from Apple to slow down the whole machine. See in same blogpost that Patrick highly recommends this
+\item WPT also slows down their whole machines % https://forums.webpagetest.org/t/measure-internet-speed/11593
+\item IN general internet connection is very unstable. If i run network link conditionier with e.g. DSL each speedtest gives different results. And other test platforms such as fast.com gives also different result.
+\end{itemize}
+
+
+
+
+
+% --------------------------------------------------------
+
+
 
 \subsection{Website Variations}
 
@@ -649,14 +701,23 @@ Positions:
 	\end{longtable}
 \end{center}
 
+
+
 \paragraph{variant1.html}
 
 
 \paragraph{variant2.html}
 
+
+
 \paragraph{variant3.html}
 
-\subsection{Plan}
+
+
+% --------------------------------------------------------
+
+
+\subsection{Test Plan}
 
 The Google Analytics code is more or less fixed and there are no configurations.
 It would be possible to change config of script, e.g. change sample rate, track other metrics etc.
@@ -680,7 +741,14 @@ How the script is included into the file should reflected withing Website Variat
 \end{table}
 
 
-\subsection{Tool support}
+
+
+% --------------------------------------------------------
+
+
+
+
+\subsection{Tool support for diagrams and data analysis}
 
 \begin{itemize}
 \item python

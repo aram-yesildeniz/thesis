@@ -23,7 +23,7 @@
 \BOOKMARK [2][-]{subsection.3.1.3}{Private Instances}{section.3.1}% 23
 \BOOKMARK [1][-]{section.3.2}{Google Analytics}{chapter.3}% 24
 \BOOKMARK [1][-]{section.3.3}{Research}{chapter.3}% 25
-\BOOKMARK [2][-]{subsection.3.3.1}{Lit. review, general introducions}{section.3.3}% 26
+\BOOKMARK [2][-]{subsection.3.3.1}{some title for first category}{section.3.3}% 26
 \BOOKMARK [2][-]{subsection.3.3.2}{Research about Tools}{section.3.3}% 27
 \BOOKMARK [2][-]{subsection.3.3.3}{Research about Metrics}{section.3.3}% 28
 \BOOKMARK [0][-]{chapter.4}{Approach}{}% 29
@@ -39,8 +39,8 @@
 \BOOKMARK [1][-]{section.4.3}{Test Runs}{chapter.4}% 39
 \BOOKMARK [2][-]{subsection.4.3.1}{WPT Configurations}{section.4.3}% 40
 \BOOKMARK [2][-]{subsection.4.3.2}{Website Variations}{section.4.3}% 41
-\BOOKMARK [2][-]{subsection.4.3.3}{Plan}{section.4.3}% 42
-\BOOKMARK [2][-]{subsection.4.3.4}{Tool support}{section.4.3}% 43
+\BOOKMARK [2][-]{subsection.4.3.3}{Test Plan}{section.4.3}% 42
+\BOOKMARK [2][-]{subsection.4.3.4}{Tool support for diagrams and data analysis}{section.4.3}% 43
 \BOOKMARK [0][-]{chapter.5}{Evaluation}{}% 44
 \BOOKMARK [1][-]{section.5.1}{Internal, external validity}{chapter.5}% 45
 \BOOKMARK [1][-]{section.5.2}{General}{chapter.5}% 46
@@ -58,7 +58,7 @@
 \BOOKMARK [1][-]{section.6.2}{Other measurement tools and metrics}{chapter.6}% 58
 \BOOKMARK [2][-]{subsection.6.2.1}{Google Analytics 4}{section.6.2}% 59
 \BOOKMARK [1][-]{section.6.3}{Speed Kit}{chapter.6}% 60
-\BOOKMARK [1][-]{section.6.4}{PWAs, AMPs, Service Workers, Caching, etc.}{chapter.6}% 61
+\BOOKMARK [1][-]{section.6.4}{PWAs, AMPs, Service Workers, Caching, HTTP2 etc.}{chapter.6}% 61
 \BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 62
 \BOOKMARK [0][-]{chapter.8}{Appendix}{}% 63
 \BOOKMARK [1][-]{section.8.1}{WebPageTest Bulk Tests}{chapter.8}% 64
@@ -68,5 +68,5 @@
 \BOOKMARK [2][-]{subsection.8.1.4}{Combined Test Raw page data}{section.8.1}% 68
 \BOOKMARK [2][-]{subsection.8.1.5}{Combined Test Raw object data}{section.8.1}% 69
 \BOOKMARK [2][-]{subsection.8.1.6}{Combined Test Aggregate data}{section.8.1}% 70
-\BOOKMARK [0][-]{chapter*.24}{Bibliography}{}% 71
-\BOOKMARK [0][-]{chapter*.25}{Eidesstattliche Versicherung}{}% 72
+\BOOKMARK [0][-]{chapter*.29}{Bibliography}{}% 71
+\BOOKMARK [0][-]{chapter*.30}{Eidesstattliche Versicherung}{}% 72
