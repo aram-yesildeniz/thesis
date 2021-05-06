@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.5)  6 MAY 2021 18:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.5)  6 MAY 2021 20:11
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1056,7 +1056,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Underfull \vbox (badness 10000) detected at line 728
  []
 
-[29]) [30] [31]
+[29] [30]) [31]
 \openout2 = `chapters/5_evaluation/evaluation.aux'.
 
  (./chapters/5_evaluation/evaluation.tex [32
@@ -1066,7 +1066,7 @@ Underfull \vbox (badness 10000) detected at line 728
 
 ]
 Chapter 5.
-<./images/test.pdf, id=743, 462.52798pt x 346.89601pt>
+<./images/test.pdf, id=744, 462.52798pt x 346.89601pt>
 File: ./images/test.pdf Graphic file (type pdf)
  <use ./images/test.pdf>
 Package pdftex.def Info: ./images/test.pdf used on input line 4.
@@ -1253,16 +1253,16 @@ Package rerunfilecheck Warning: File `thesis.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `thesis.out':
-(rerunfilecheck)             Before: F8E9B24156EBDD75A4684B6F506C9457;5024
-(rerunfilecheck)             After:  FB504D047B7387EDDE287E94F0F52F22;5043.
+(rerunfilecheck)             Before: FB504D047B7387EDDE287E94F0F52F22;5043
+(rerunfilecheck)             After:  5F67570269C8C8F064BCB8DF54EEC2A4;5110.
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 84.
  ) 
 Here is how much of TeX's memory you used:
- 11084 strings out of 493089
- 167293 string characters out of 6134843
+ 11085 strings out of 493089
+ 167309 string characters out of 6134843
  425338 words of memory out of 5000000
  13943 multiletter control sequences out of 15000+600000
  37549 words of font info for 85 fonts, out of 8000000 for 9000
@@ -1278,10 +1278,10 @@ ts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type
 1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/p
 alatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino
 /uplri8a.pfb>
-Output written on thesis.pdf (57 pages, 409275 bytes).
+Output written on thesis.pdf (57 pages, 409900 bytes).
 PDF statistics:
- 975 PDF objects out of 1000 (max. 8388607)
- 858 compressed objects within 9 object streams
- 321 named destinations out of 1000 (max. 500000)
+ 976 PDF objects out of 1000 (max. 8388607)
+ 859 compressed objects within 9 object streams
+ 322 named destinations out of 1000 (max. 500000)
  592 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -68,7 +68,8 @@
 \contentsline {subsection}{\numberline {4.3.2}Test Object (Website) Variations}{29}{subsection.4.3.2}
 \contentsline {paragraph}{\nonumberline Variants}{29}{section*.28}
 \contentsline {subsection}{\numberline {4.3.3}Test Plan. Generate the data}{30}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Tool support for diagrams and data analysis}{30}{subsection.4.3.4}
+\contentsline {subsection}{\numberline {4.3.4}Test Protocol}{31}{subsection.4.3.4}
+\contentsline {subsection}{\numberline {4.3.5}Tool support for diagrams and data analysis}{31}{subsection.4.3.5}
 \contentsline {chapter}{\numberline {5}Evaluation}{33}{chapter.5}
 \contentsline {section}{\numberline {5.1}Internal, external validity}{33}{section.5.1}
 \contentsline {section}{\numberline {5.2}General}{33}{section.5.2}
