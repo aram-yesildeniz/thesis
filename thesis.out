@@ -38,8 +38,8 @@
 \BOOKMARK [2][-]{subsection.4.2.4}{Mirroring a complete e-commerce website}{section.4.2}% 38
 \BOOKMARK [1][-]{section.4.3}{Test Runs}{chapter.4}% 39
 \BOOKMARK [2][-]{subsection.4.3.1}{WPT Configurations}{section.4.3}% 40
-\BOOKMARK [2][-]{subsection.4.3.2}{Website Variations}{section.4.3}% 41
-\BOOKMARK [2][-]{subsection.4.3.3}{Test Plan}{section.4.3}% 42
+\BOOKMARK [2][-]{subsection.4.3.2}{Test Object \(Website\) Variations}{section.4.3}% 41
+\BOOKMARK [2][-]{subsection.4.3.3}{Test Plan. Generate the data}{section.4.3}% 42
 \BOOKMARK [2][-]{subsection.4.3.4}{Tool support for diagrams and data analysis}{section.4.3}% 43
 \BOOKMARK [0][-]{chapter.5}{Evaluation}{}% 44
 \BOOKMARK [1][-]{section.5.1}{Internal, external validity}{chapter.5}% 45
@@ -68,5 +68,5 @@
 \BOOKMARK [2][-]{subsection.8.1.4}{Combined Test Raw page data}{section.8.1}% 68
 \BOOKMARK [2][-]{subsection.8.1.5}{Combined Test Raw object data}{section.8.1}% 69
 \BOOKMARK [2][-]{subsection.8.1.6}{Combined Test Aggregate data}{section.8.1}% 70
-\BOOKMARK [0][-]{chapter*.31}{Bibliography}{}% 71
-\BOOKMARK [0][-]{chapter*.32}{Eidesstattliche Versicherung}{}% 72
+\BOOKMARK [0][-]{chapter*.29}{Bibliography}{}% 71
+\BOOKMARK [0][-]{chapter*.30}{Eidesstattliche Versicherung}{}% 72

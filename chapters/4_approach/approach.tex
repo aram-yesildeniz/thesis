@@ -114,11 +114,38 @@
 
 
 \begin{itemize}
-\item IV 1: Position of included analyitcs script. Values: top-head, bottom-head, bottom-body
-\item IV 2: Attribute of included analyitcs script: no-attribute, async, defer
-\item IV 3: Other tracking script included
+\item IV 1 POSITION: Position of included analyitcs script. Values: top-head, bottom-head, bottom-body
+\item IV 2 ATTRIBUTE: Attribute of included analyitcs script: no-attribute, async, defer
+\item IV 3 OTHER SCRIPT: Other tracking script included
 \item Other IVs not included but worth mentioning
 \end{itemize}
+
+
+
+
+\begin{table}[]
+	\centering
+	\begin{tabular}{| l | l | }
+	\hline
+	Variable & Values \\
+	\hline
+	Position & top-head, bottom-head, bottom-body \\
+	Attribute & no attribute, async, defer \\
+	Other Script & false, true \\
+	\hline
+	\end{tabular}
+\end{table}
+
+I will compare the values from one independent variable only.
+Therefore, when comparing the values of one independent variable, i need to set a default value for the other independent variables.
+The default values are:
+
+Position: top-head
+Attribute: no attribute
+Other Script: false
+
+
+
 
 
 
@@ -666,44 +693,35 @@ Emulate Mobile Browser
 
 
 
-\subsection{Website Variations}
+\subsection{Test Object (Website) Variations}
+
+as described before, i will compare the values within one independent variable. 
+This is needed in order to compare the impact of the different values within one IV.
+For example, i want to measure if there is a difference in performance between the different script attributes. To measure this, i set the default values for the other IVs and vary the values for the IV attribute
 
 Positions:
 1: Top of head element
 2: just before closing head element
 3: just before closing body element
 
+
+\paragraph{Variants}
+
 \begin{center}
 	\begin{longtable}{ |c|c|c|c|  }
 	\hline
-	Variant & Attribute & Position & Additional Scripts \\
+	Variant & Position & Attribute & Other Scripts \\
+	\hline
+	Variant P1 & top-head & \cellcolor{lightgrey} none & \cellcolor{lightgrey} no \\
+	   Variant P2 & bottom-head & \cellcolor{lightgrey} none & \cellcolor{lightgrey} no \\
+	   Variant P3 & bottom-body & \cellcolor{lightgrey} none & \cellcolor{lightgrey} no \\
 	  \hline
-	  \rowcolor{lightgrey}
-	   Variant 1 & none & 1 & no \\
-	  \rowcolor{lightgrey}
-	  Variant 3 & async & 1 & no \\
-	   & defer & 1 & no \\
-	   
-  	   & none & 2 & no \\
-	   & async & 2 & no \\
-  	   & defer & 2 & no \\
-
-  	   & none & 3 & no \\
-	   & async & 3 & no \\
-  	   & defer & 3 & no \\
-  	   
-	  \rowcolor{lightgrey}
-	   Variant 2 & none & 1 & yes \\
-	   & async & 1 & yes \\
-  	   & defer & 1 & yes \\
-
-  	   & none & 2 & yes \\
-	   & async & 2 & yes \\
-  	   & defer & 2 & yes \\
-
-  	   & none & 3 & yes \\
-	   & async & 3 & yes \\
-  	   & defer & 3 & yes \\
+	   Variant A1 & \cellcolor{lightgrey} top-head & none & \cellcolor{lightgrey} no \\
+	   Variant A2 & \cellcolor{lightgrey} top-head & async & \cellcolor{lightgrey} no \\
+	   Variant A3 & \cellcolor{lightgrey} top-head & defer & \cellcolor{lightgrey} no \\
+	  \hline
+	  Variant OS1 & \cellcolor{lightgrey} top-head & \cellcolor{lightgrey} none & no \\
+	  Variant OS2 & \cellcolor{lightgrey} top-head & \cellcolor{lightgrey} none & yes \\
 	  \hline
 	\caption{Your caption here} % needs to go inside longtable environment
 	\label{tab:myfirstlongtable}
@@ -711,22 +729,23 @@ Positions:
 \end{center}
 
 
+I will not compare variants which are not from the same subgroup, e.g. Variant A2 will not be compared to Variant OS2.
+Because the first row of the variants table also includes the default values for Attribute and Other Scripts, VP1 is equal to VA1 and VO1.
 
-\paragraph{variant1.html}
+With the defined IVs and variants, I can create the test objects, that is the index.html files with the corresponding setup.
+Because its easier to differentiate i will create for the three equal variants nevertheless own index files.
 
+For each test variant, I will create a concrete test artefact, which is a modified index.html.
+This index.html needs to be uploaded to the webserver before starting with the tests.
 
-\paragraph{variant2.html}
-
-
-
-\paragraph{variant3.html}
+All variants will have the same name which is index.html. This is the default file which will be delivered by the webserver when accessing root path of webpage.
 
 
 
 % --------------------------------------------------------
 
 
-\subsection{Test Plan}
+\subsection{Test Plan. Generate the data}
 
 The Google Analytics code is more or less fixed and there are no configurations.
 It would be possible to change config of script, e.g. change sample rate, track other metrics etc.
@@ -734,20 +753,41 @@ But it is not possible to change default tracking behaviour (?)
 
 How the script is included into the file should reflected withing Website Variations
 
-% add Date as column? e.g. 2021-03-25
+I will use only one WPT Configuration for all tests.
+Other WPT config can be used in future work, e.g. emulate mobile device.
+
+
 \begin{table}[h]
 	\caption[Test Runs]{Test Runs \cite{DBLP:books/infix/Schwarz99}}
 	\label{tab:tamodelleVergleich}
 	\centering
-	\begin{tabular}{ |c|c|c } 
+	\begin{tabular}{ |c|c|c|c| } 
 	 \hline
-	  WPT & Website & Date \\
+	  Variant & Traffic Shaping & Runs & Date \\
 	  \hline
-	  C1 & V1 & 2021-04-01 \\ 
-	  .. & .. & ..\\ 
+	  V-P1 & DSL & 500 & 2021-05-07 \\
+	  V-P2 & DSL & 500 & 2021-05-07 \\
+	  V-P3 & DSL & 500 & 2021-05-07 \\
+	  \hline
+	  V-A1 & DSL & 500 & 2021-05-07 \\
+	  V-A2 & DSL & 500 & 2021-05-07 \\
+	  V-A3 & DSL & 500 & 2021-05-07 \\
+	  \hline
+	  V-OS1 & DSL & 500 & 2021-05-07 \\
+	  V-OS1 & DSL & 500 & 2021-05-07 \\
 	  \hline
 	  \end{tabular}
 \end{table}
+
+
+
+Pre-step: Compare Mock website with and without GA included
+The comparison between mock and original is part of chapter Test Object
+
+
+
+
+
 
 
 
