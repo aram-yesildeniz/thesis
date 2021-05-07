@@ -468,6 +468,11 @@ Other Script: false
     \item POC: Show that changing independent variables X affect result
 \end{itemize}
 
+% 2011 Butkiewicz: Correlation between website complexity and its performance:
+% -> Therefore it makes sense for me to use http archive inspired website approach, since page weight / page complexity impacts performance
+% - Measures impact of website complexity on performance
+% - Finds out that top 5 metrics that determine performance are:
+% total number of objects loaded,  the number of these objects that are Javascripts,  the total web- page size,  and the number of servers and origins contacted in loading objects on the page.
 
 
 
@@ -654,16 +659,17 @@ For e.g. 500 URLs in the bulk test list, we have a total of $500 \times 6 = 3000
 	Browser & Chrome \\
 	\hline
 	Connection & LAN \\
-	Number of Tests to Run & 3 \\
+	Desktop Browser Dimensions & default (1366x768) \\
+	Number of Tests to Run & 1 \\
 	Repeat View & First View and Repeat View \\
 	Capture Video & True \\
 	Keep Test Private & False \\
 	Label & none \\
 	\hline	  
 	Advanced Tab & Nothing selected \\
-	Chromium Tab & Nothing selected  \\
+	Chromium Tab & Capture Dev Tools Timeline selected  \\
 	Auth, Script, Block, SPOF, Custom Tabs & Nothing  \\
-	Bulk Testing Tab & URL aramyesildeniz... 100 times \\
+	Bulk Testing Tab & Test URL x times according to test plan \\
 	\hline
 	\end{tabular}
 \end{table}
@@ -683,6 +689,8 @@ Emulate Mobile Browser
 \item I use Network Link Conditioner from Apple to slow down the whole machine. See in same blogpost that Patrick highly recommends this
 \item WPT also slows down their whole machines % https://forums.webpagetest.org/t/measure-internet-speed/11593
 \item IN general internet connection is very unstable. If i run network link conditionier with e.g. DSL each speedtest gives different results. And other test platforms such as fast.com gives also different result.
+\item as long as internet connection is stable along all tests, it should not make a big difference because i compare the different variants. Therefore internet connection will fall out of the equation
+\item i will use the durchschnitt in germany which seems to be 40 mbit per second. or actually i use LTE profile from network conditioner which is 50 mbit per second 
 \end{itemize}
 
 
