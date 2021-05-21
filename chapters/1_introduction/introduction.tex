@@ -137,37 +137,61 @@ In the next section, I will describe the findings between the correlation betwee
 \subsection{User Satisfaction and Performance}
 
 % [User Satisfaction]
-The aim of this thesis is not to deep dive into terms and concepts or the problem of defining user satisfaction, usability or the like.
-Therefore the term user satisfaction is in this context loosely defined as how happy the user is with the website he interacts with.\footnote{For a more profound discussion cf. "User satisfaction measurement" in } %cite 2010 Islam
+The aim of this thesis is not to deep dive into terms and concepts or the non-trivial problem of defining user satisfaction, usability or the like.
+Therefore the term user satisfaction is in this context loosely defined as how happy the user is with the website he or she interacts with.\footnote{For a discussion cf. "User satisfaction measurement" in } %cite 2010 Islam
 
 % [Performance]
 For this context, performance can be understood as the the speed of an online shop, e.g. how long it takes the page to load, how quickly the user can interact with the page, and how the user perceives the performance of the website.
 Later we will see that measuring performance is not that trivial and a lot of ideas and metrics are existing to measure it.
 
-% [SpeedHub.org]
-Speedstudy: Largest study, Baqend with Google
-Many studies, reports, collection of videos and blog posts.
-
+% [SpeedHub]
+% QUESTION: should i cite only the keynote or the literature used in the keynote directly ?
+\subsubsection{SpeedHub}
+A plethora of information and studies about the phenomenon of user satisfaction and web site performance is collected at \textit{SpeedHub.org}, a portal by \textit{Baqend} in cooperation with \textit{Google} which provides "the largest systematic study of Mobile Site Speed and the Impact on E-Commerce."\footnote{\url{https://www.speedhub.org/} [21.05.2021]}
+On the hub, not only studies and reports are available, but also collections of videos and blog posts.
 
 % [code.talks 2019]
-In his keynote at code talks 2019, Felix Gessert provides an overview. %cite 2019 Gessert
+In his presentation at code talks 2019, Felix Gessert summarizes the findings and provides insights to the most relevant aspects and questions of the study: %cite 2019 Gessert
 
-To answer the question between the correlation of user satisfaction and performance, one has to distinguish between different users and their context:
-User profile, device and context all play a role how performance is being received.
+% [User Profile and Psychology]
+The first observation when tackling the question regarding a correlation between the performance of a system and the user satisfaction, is that the users have to be distinguished which leads to the concept of a \textit{User Profile}: Regarding gender, young woman are the most demanding consumers and buy less on slow pages.
+Generally, people between 18 and 24 have higher expectations regarding site speed than their older counterparts.
+There are also differences between nations and regions, for example people from Japan have the highest expectations, which for a certainty coheres with the technological progress in this country.
+Not only the expectations themselves differ geographically, but also how speed influences the users, for example "speed influences New Yorkers more than Californians."
 
-From a Psychology perspective, studies show that the attention: stay under 1000 ms
+What all users have in common is their human psychology. With respect to performance, researchers generally suggest to keep waiting times under 1000 ms in order to keep the users attention.
 
-Taking a look at real life examples and studies:
-There are studies from big companies which prove that site speed impacts revenue.
-Amazon, Zalando, Walmart
-SEO: GQ, Google, Pinterest
-Engagement: Forrester, Otto, Akamai
-Satisfaction: radware, AberdeedGroup, Imperial College London
+% [Devices]
+After considering the user itself, the next step is to investigate the influence of the device in use: Studies show that mobile users are more likely to buy products and services than their colleagues using a desktop computer, where iOS users have generally more expectations regarding site speed.
+ 
+% [Context]
+Last but not least is the context and the users condition important, where naturally relaxed and calm users perceive sites faster than stressed users or people that are in a hurry.
+Also when on the move, users experience sites slower.
 
-Summary: Page Speed = Money
+% [Studies]
+There are many real world examples and studies existing which prove and demonstrate the importance of site speed with respect to user satisfaction and eventually revenue:
+\textit{Amazon} fount out that a decrease of 100 ms in page loading leads to -1\% conversion rates.
+If the site loads 100 ms faster, \textit{Walmart} observed that the revenue increases by 1\%.
+For \textit{Zalando}, increasing site speed by 100 ms leads to an uplift of 0.7\% revenue per session.
 
+% [SEO]
+Search Engine Optimization is heavily impacted by load speed:
+For \textit{Google}, 500 ms slower sites lead to a decrease of 20\% in traffic.
+\textit{GQs} traffic increased by 80\% after the page load went down from 7 s to 2 s.
+And for \textit{Pinterest}, 40\% faster loads led to 15\% more SEO traffic.
 
-In order to measure impact of performance in a scientific profound way, we need to to testing, which is possible through A/B Testing, which is described in the next section.
+% [Engagement & Satisfaction]
+Also the user engagement and satisfaction rely heavily on load times:  \textit{Forrester} noted an increase of 60\% for the session length while brining down the load time 80\%.
+\textit{Akamai} monitored that the bounce rate climbed up incredible 103\% when the load time increased by 2 s.
+And for the \textit{AberdeedGroup}, the customer satisfaction dropped by 16\% at one more second delay in response times.
+
+To summarize, many studies and real world examples prove and demonstrate that faster web sites and online shops cause a better user experience and typically lead to happier customers. 
+Concluding in commercial terms, one can say with certainty that page speed equals money.
+\\
+
+A scientific method is needed in order to test the impact of performance on the users.
+One of them is A/B Testing, which is the content of the next section.
+After a discussion of A/B Testing, I will move on to the examination of Web Analytics, a term which subsumes methods, tools and instruments for businesses to better understand their business and customers.
 
 
 \subsubsection{A/B Testing}
@@ -175,8 +199,12 @@ In order to measure impact of performance in a scientific profound way, we need 
 % How to quantify, measure impact of performance?
 % Try to be scientifically solid
 
-% 2012 Kessler AB Tests
+% 2012 Kessler 17.2  AB Tests
+
+
+
 % 2016 Kohavi
+
 % 2017 Kohavi
 % 2018 Morys
 % 2018 Fabijan
@@ -201,6 +229,7 @@ In order to measure impact of performance in a scientific profound way, we need 
 \end{itemize}
 
 
+\subsection{Introduction}
 
 % Definitions:
 % -----------
@@ -221,8 +250,7 @@ In order to measure impact of performance in a scientific profound way, we need 
 
 
 
-% History:
-% -------
+\subsection{Short History}
 
 
 % 2009 Croll p. 69
@@ -238,6 +266,7 @@ In order to measure impact of performance in a scientific profound way, we need 
 % 2019 Kumar
 
 
+\subsection{Web Analytics Process}
 % Process:
 % --------
 
