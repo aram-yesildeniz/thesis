@@ -196,20 +196,53 @@ After a discussion of A/B Testing, I will move on to the examination of Web Anal
 
 \subsubsection{A/B Testing}
 
-% How to quantify, measure impact of performance?
-% Try to be scientifically solid
-
-% 2012 Kessler 17.2  AB Tests
-
+% 2012 Kessler 17.2  AB Tests ?
 
 
 % 2016 Kohavi
+- Offline: Long existing since 1920s
+- Online since 1990s with rise of internet, and is widely used also by big companies -> indispensable
+- See if there is a difference and ideally support decision making
 
-% 2017 Kohavi
+- Is a scientific method
+- Controlled experiment
+- "establishing a causal relationship with high probability"
+- Helps to test hypothesis and questions of structure: If i change one specific feature / element, will it help to improve X?
+- Evaluation with real users
+
+- In practice:
+- split users randomly in two groups
+- use web analytics to measure metrics
+
+- Elements:
+- Control (version a, default variant) and a changed variation called treatment (version B)
+- If more than 2 versions or one treatment: A/B/n split test
+- Univariable: test one variable at the time
+- Multivariable: change more than one variable at the same time
+
+
+- More details about controlled experiments are in chapter about Controlled Experiments
+
+
 % 2018 Morys
-% 2018 Fabijan
-% 2020 Heinemann 4.1.4
+- Directly test ideas (hypothesis) on production system
+- Data driven and quantitative validation
+- Participant does not now that he is part of an experiment: no bias
+- 5 steps:
+- 1. quality of hypothesis according to SOR Paradigma
+- 2. quality of testconcept: isolation and contrast of changed parameters
+- 3. quality of implementation and quality assurance: running tests should not be visible by user (e.g. suddenly UI changes) and performance of website should not be impacted
+- 4. quality of measurement: significant difference in primary goals
+- 5. quality of statistical interpretation: amount of data, statistical methods
 
+ 
+
+
+
+% [Transition to Web Analytics]
+
+- Coming back to performance, with A/B testing it is possible to serve two different versions of the same site to two groups, one being slow, the other one fast, at the same time.
+With web analytics, it is possible to measure how the different groups behave differently on the two systems.
 
 
 
@@ -227,6 +260,10 @@ After a discussion of A/B Testing, I will move on to the examination of Web Anal
 \item Mechanisms, Measurement methods / Collecting data: Log file analysis, client site page tagging, alternatives
 \item KPIs ?
 \end{itemize}
+
+
+% 2020 Heinemann 4.1.4
+
 
 
 \subsection{Introduction}
@@ -389,6 +426,8 @@ After a discussion of A/B Testing, I will move on to the examination of Web Anal
 \item Why the research question is relevant
 \end{itemize}
 
+What is the research question of this thesis?
+What is the goal?
 
 % Tools: Kessler 2016 p. 576
 
