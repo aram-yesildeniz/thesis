@@ -3,6 +3,13 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: thesis.aux
 A level-1 auxiliary file: _titlepage.aux
 A level-1 auxiliary file: chapters/1_introduction/introduction.aux
+A level-1 auxiliary file: chapters/2_terms_and_definitions/terms_and_definitions.aux
+A level-1 auxiliary file: chapters/3_related_work/related_work.aux
+A level-1 auxiliary file: chapters/4_approach/approach.aux
+A level-1 auxiliary file: chapters/5_evaluation/evaluation.aux
+A level-1 auxiliary file: chapters/6_future_work/future_work.aux
+A level-1 auxiliary file: chapters/7_conclusion/conclusion.aux
+A level-1 auxiliary file: chapters/8_appendix/appendix.aux
 The style file: alphadin.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -10,44 +17,44 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: thesis.bib
-You've used 4 entries,
+You've used 10 entries,
             4793 wiz_defined-function locations,
-            920 strings with 7019 characters,
-and the built_in function-call counts, 1739 in all, are:
-= -- 166
-> -- 35
-< -- 34
-+ -- 33
-- -- 9
-* -- 97
-:= -- 313
-add.period$ -- 5
-call.type$ -- 4
-change.case$ -- 16
-chr.to.int$ -- 4
-cite$ -- 4
-duplicate$ -- 68
-empty$ -- 150
-format.name$ -- 27
-if$ -- 357
+            976 strings with 8722 characters,
+and the built_in function-call counts, 7584 in all, are:
+= -- 791
+> -- 184
+< -- 268
++ -- 296
+- -- 70
+* -- 528
+:= -- 1258
+add.period$ -- 15
+call.type$ -- 10
+change.case$ -- 54
+chr.to.int$ -- 10
+cite$ -- 10
+duplicate$ -- 189
+empty$ -- 513
+format.name$ -- 122
+if$ -- 1469
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 15
-newline$ -- 31
-num.names$ -- 13
-pop$ -- 27
+missing$ -- 49
+newline$ -- 71
+num.names$ -- 30
+pop$ -- 76
 preamble$ -- 1
-purify$ -- 24
+purify$ -- 74
 quote$ -- 0
-skip$ -- 97
+skip$ -- 416
 stack$ -- 0
-substring$ -- 72
-swap$ -- 11
-text.length$ -- 10
+substring$ -- 698
+swap$ -- 46
+text.length$ -- 36
 text.prefix$ -- 4
 top$ -- 0
-type$ -- 36
+type$ -- 82
 warning$ -- 0
-while$ -- 14
-width$ -- 5
-write$ -- 56
+while$ -- 56
+width$ -- 13
+write$ -- 144
