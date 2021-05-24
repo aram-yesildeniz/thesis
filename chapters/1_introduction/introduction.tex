@@ -181,17 +181,17 @@ For \textit{Google}, 500 ms slower sites lead to a decrease of 20\% in traffic.
 And for \textit{Pinterest}, 40\% faster loads led to 15\% more SEO traffic.
 
 % [Engagement & Satisfaction]
-Also the user engagement and satisfaction rely heavily on load times:  \textit{Forrester} noted an increase of 60\% for the session length while brining down the load time 80\%.
-\textit{Akamai} monitored that the bounce rate climbed up incredible 103\% when the load time increased by 2 s.
+Also the user engagement and satisfaction rely heavily on load times:  \textit{Forrester} noted an increase of 60\% for the session length while brining down the load time by 80\%.
+\textit{Akamai} monitored that the bounce rate climbed up incredible 103\% when the load time increased by 2 seconds.
 And for the \textit{AberdeedGroup}, the customer satisfaction dropped by 16\% at one more second delay in response times.
 
 To summarize, many studies and real world examples prove and demonstrate that faster web sites and online shops cause a better user experience and typically lead to happier customers. 
-Concluding in commercial terms, one can say with certainty that page speed equals money.
+Concluding in commercial terms, one can say with a certainty that page speed equals money.
 \\
 
-A scientific method is needed in order to test the impact of performance on the users.
-One of them is A/B Testing, which is the content of the next section.
-After a discussion of A/B Testing, I will move on to the examination of Web Analytics, a term which subsumes methods, tools and instruments for businesses to better understand their business and customers.
+In order to properly test the impact of performance on the users, a scientific method is needed.
+A/B testing as a controlled experiment is one of them and will be explained in the next section.
+After a discussion of A/B Testing, I will move on to the examination of \textit{Web Analytics}, a term which subsumes methods, tools and instruments for businesses to better understand their business and customers.
 
 
 \subsubsection{A/B Testing}
@@ -200,113 +200,163 @@ After a discussion of A/B Testing, I will move on to the examination of Web Anal
 
 
 % 2016 Kohavi
-- Offline: Long existing since 1920s
-- Online since 1990s with rise of internet, and is widely used also by big companies -> indispensable
-- See if there is a difference and ideally support decision making
+Controlled experiments such as A/B Testing are not a new tool for scientists and researchers and have been used already in the 1920s. % cite Kohavi 2016
+With the rise of the internet in the 1990s, the concept has been adopted to the online domain and is as of today widely used by big companies such as Amazon, Facebook or Google to directly test ideas and hypothesises on a live system.
+Controlled experiments such as A/B Testing are utilised to support decision making and to deliver "causal relationship with high probability". % cite Kohavi 2016
+They enable a data driven and quantitative validation of the hypothesis. % cite Morys 2018
 
-- Is a scientific method
-- Controlled experiment
-- "establishing a causal relationship with high probability"
-- Helps to test hypothesis and questions of structure: If i change one specific feature / element, will it help to improve X?
-- Evaluation with real users
+Controlled experiments help to test hypothesis and questions of the form: "If I change feature X, will it help to improve the key performance indicator Y?"
 
-- In practice:
-- split users randomly in two groups
-- use web analytics to measure metrics
+To answer this question,  two systems are needed: Version A, the control variant or default version, and a slightly different version B, called the treatment.
+If more than two versions or one treatment should be evaluated at the same time,  an A/B/n split test has to be implemented.
+For an univariable setup, only one variable differs between the systems, where in a multivariable structure, more than one variables are changed at the same time.
 
-- Elements:
-- Control (version a, default variant) and a changed variation called treatment (version B)
-- If more than 2 versions or one treatment: A/B/n split test
-- Univariable: test one variable at the time
-- Multivariable: change more than one variable at the same time
-
-
-- More details about controlled experiments are in chapter about Controlled Experiments
+Usually, the users of the system are randomly split into two groups and testing is directly performed with real users on a production system.
+Beneficial, also when comparing with other experimental setups, is, that the users and participants are not aware that they are part of an experiment, which leads to less bias and side effects.
+In order to measure the differences and the user behaviour, web analytics has to be integrated within the system.
+% cite Kohavi 2016
 
 
 % 2018 Morys
-- Directly test ideas (hypothesis) on production system
-- Data driven and quantitative validation
-- Participant does not now that he is part of an experiment: no bias
-- 5 steps:
-- 1. quality of hypothesis according to SOR Paradigma
-- 2. quality of testconcept: isolation and contrast of changed parameters
-- 3. quality of implementation and quality assurance: running tests should not be visible by user (e.g. suddenly UI changes) and performance of website should not be impacted
-- 4. quality of measurement: significant difference in primary goals
-- 5. quality of statistical interpretation: amount of data, statistical methods
+%- 5 steps:
+%- 1. quality of hypothesis according to SOR Paradigma
+%- 2. quality of testconcept: isolation and contrast of changed parameters
+%- 3. quality of implementation and quality assurance: running tests should not be visible by user (e.g. suddenly UI changes) and performance of website should not be impacted
+%- 4. quality of measurement: significant difference in primary goals
+%- 5. quality of statistical interpretation: amount of data, statistical methods
 
- 
 
+A short and general discussion about controlled experiments in computer science is in chapter X. %link chapter about controlled experiments
 
 
 % [Transition to Web Analytics]
 
-- Coming back to performance, with A/B testing it is possible to serve two different versions of the same site to two groups, one being slow, the other one fast, at the same time.
-With web analytics, it is possible to measure how the different groups behave differently on the two systems.
+To resume with the question of performance and user satisfaction,  A/B testing enables to serve two different versions of the same site to two groups, one site being slow, the other one fast, at the same time without the users knowing.
+With web analytics implemented, it is possible to measure how the different systems and user groups behave.
 
+What web analytics exactly is, what tools are available and how a web analytics process looks like, will be discussed in the next section.
+
+
+
+
+% Heinemann 2020 A/B Tests nach 4.1.4
 
 
 
 % ------------------------------------------------------------------------------------
 % ------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------------
+
+
+
 
 
 
 \section{Web Analytics}
 
-\begin{itemize}
-\item Historical background and contextualisation, usage, definition
-\item Web Analytics Process
-\item Mechanisms, Measurement methods / Collecting data: Log file analysis, client site page tagging, alternatives
-\item KPIs ?
-\end{itemize}
-
-
-% 2020 Heinemann 4.1.4
-
+First some definitions, then quickly summarize the history, and then technical aspects of collecting data.
 
 
 \subsection{Introduction}
 
-% Definitions:
-% -----------
+% [Definitions]
+What is Web Analytics?
+Going through the literature, makes it clear that multiple definitions are existing:
+
+Nakatani et al. state that "Web analytics is used to understand online customers and their behaviors, design actions influential to them, and ultimately foster behaviors beneficial to the business and achieve the organization's goal." % cite 2011 Nakatani
+According to this definition, web analytics is about getting insights of the users using the system, not only who or what they are, but also how they interact with the system.
+Additionally, the definition stressed that the underlying motivation of web analytics is are the achievement business goals.
+
+Singal et al provide a more technical definition by pointing out that "Web Analytics is the objective tracking, collection, measurement, reporting and analysis of quantitative internet data to optimize websites and web marketing initiatives." % cite 2014 Singal with note that this definition is directly taken from Kaushik
+Again, the ultimate target is to drive business forward, but backed up with data science methods and instruments such as tracking, collecting and analysis of vast amount of data.
+
+Bekavac et al provide a similar definition by pointing out that web analytics is "the analysis of qualitative and quantitative data on the website in order to continuously improve the online experience of visitors, which leads to more efficient and effective realization of the company's planned goals." %cite 2015 Bekavac:
+
+% [Use Cases]
+% 2015 Zheng
+- 4 usages:
+- Improving website/application design and user experience
+- Optimizing e-Commerce and improving e-CRM on customer orientation, acquisition and retention
+- Tracking and measuring success of actions and programs such as commercial campaigns
+- Identifying problems and improving performance of web applications
+
+Summarizing above definitions, we can see that web analytics is composed of two important aspects: A data driven, information focused and technical aspect of collecting and analysis data about the users, and a commercial perspective, which provides the main motivation of collecting the data beforehand, by setting business goals.
 
 
-% 2011 Nakatani:
-% Web analytics is used to understand online customers and their behaviors, design actions influential to them, and ultimately foster behaviors beneficial to the business and achieve the organization’s goal.
-
-
-% 2014 Singal: "Web Analytics is the objective tracking, collection, measurement, reporting and analysis of quantitative internet data to optimize websites and web marketing initiatives."
-
-% 2015 Bekavac:
-
-% "According to the official definition of [13], web analytics refers to a combination of (a) measuring, (b) acquisition, (c) analyzing and (d) reporting of data collected from the Internet with the aim of understanding and optimizing web experience."
-
-% "the analysis of qualitative and quantitative data on the website in order to continuously improve the online experience of visitors, which leads to more efficient and effective realization of the company’s planned goals"
-
+% 2019 Kumar
+- 2 categories: on-site and offsite
 
 
 
 \subsection{Short History}
 
+TODO check out Wolles dissertation!
 
 % 2009 Croll p. 69
-% 2009 Jansen ch. 3
+- Logfiles, 1996 ELF
+- GetStats, one of the first tools to present log files nicely to user
+- Only interesting for IT in the beginning
+- With 1.5 billion internet users in 2009, also interesting for marketing
+- Focus shifted to visitor, so that his behaviour can be linked e.g. with purchase.  Cookies helped with this
+- Segmentation as crucial step
+- First web analytics companies tracked log files, which needs it heavy infrastructure
+- Generally the shift was from technical aspects (such as where are 404 on the server requests) to marketing in order to get more insights about users of website
+
+- 3 important changes for this shift from IT to marketing:
+- 1.  JS enables to bypass IT and track data directy without the need to gather log files. 1996: Urchin released service called Quantified
+- 2.  With Googles ad system, shift to information about success of campaign and referrer sites
+- 3. New cost model for analytics service: pay for traffic you measure. Analytics as percentage of web revenues
+
+- Cookies to identify unique users
+- Page tagging: not only track technical data but also business context, e.g. analyst can say if user buys shoes he also buys jackets
+- "Today, web analytics is a marketing discipline used to measure the effectiveness of communications strategies" p.83
+- p. 84 visual history of web analytics
+- More data: performance data, visitor opinion, usability data
+
+
+% 2009 Jansen ch. 3. only provides a literature review over log analysis
+
 
 % 2014 Singal
-% - Genesis of Web Analytics (nice graphic) with WAA, DAA
-% - History of tools
+- 1990 birth of WWW
+- Hit: when visitor requests html file. is in log file
+- WebTrends 1993
+- 1995: Analog. First free log file analysis software
+- 1996: WebCounter: hit counter service
+- JS page tagging
+- 2003: Foundation of Web Analytics Association WAA by Edwards, Eisenberg and Sterne.
+- 2006 In-Page analytics
+- 2012 WAA renamed to Digital Analytics Association as all digital users are inlcuded in web analytics
+- Image: Genesis of Web Analytics (nice graphic) with WAA, DAA
 
-% 2015 Zheng
-% 2015 Bekavac
-% 2019 Hussaina
+
+
+% 2015 Zheng:
+- Ever growing since start of WWW
+- From http traffic logging to use data tracking, analysis and reporting
+- Log file analysis
+- First browser Mosaic 1993
+- WebTrends 1993
+- 1995 Analog
+- 1996 WebSideStory
+- Page tagging
+- Trends:
+- mobile analytics,
+- application specific analytics
+- from web to digital analytics: understand entire digital footprint of users (see name change of WAA)
+
+
+% 2015 Bekavac not really infos about history...
+% 2019 Hussaina no history...
+
 % 2019 Kumar
+- all 500 imortant companies run websites
+- Rise in the volume of data and internet users
+- 
 
 
 \subsection{Web Analytics Process}
-% Process:
-% --------
-
 
 % 2009 Jansen ch. 6.2
 % 2009 Waisberg
@@ -320,8 +370,11 @@ With web analytics, it is possible to measure how the different groups behave di
 % 2019 Kumar
 
 
-% Log vs Page tagging:
-% --------------------
+\paragraph{Data Sources: Log Analysis versus Page tagging}
+
+
+% 2009 Croll
+- Page tagging illustration p. 82
 
 
 % 2009 Waisberg
@@ -332,11 +385,11 @@ With web analytics, it is possible to measure how the different groups behave di
 
 % 2011 Marek
 
-
 % 2011 Nakatani: Pros and cons
 
-
 % 2014 Singal provides table with pros and cons
+
+% 2015 Zheng
 
 % 2015 Bekavac
 
@@ -344,7 +397,9 @@ With web analytics, it is possible to measure how the different groups behave di
 
 
 
-% KPIs:
+
+
+% KPIs: ?
 % -----
 
 % 2014 Singal describes KPIs for different businesses
@@ -354,8 +409,10 @@ With web analytics, it is possible to measure how the different groups behave di
 % - Table with KPIs related to business model
 
 
-\subsection{Web Performance}
 
+
+\subsection{Web Performance}
+TODO move this to end of web analytics chapter? like again focus on performance...
 \begin{itemize}
 \item What is web performance? Why it matters
 \item Overview of factors that impact performance, bottlenecks
@@ -380,6 +437,8 @@ With web analytics, it is possible to measure how the different groups behave di
 \item Conclude that I use WPT for synthetic performance testing and GA for RUM
 \end{itemize}
 
+% Croll 2009 Choosing a analytics platform p. 144
+
 % 2011 Marek: Choose a program
 
 
@@ -391,6 +450,10 @@ With web analytics, it is possible to measure how the different groups behave di
 % 2: SaaS vs in-house
 % 3: mobile vs non-mobile
 % 4: Time lag
+
+
+
+% 2014 Singal table history of analytics tools
 
 
 
@@ -413,8 +476,11 @@ With web analytics, it is possible to measure how the different groups behave di
 
 
 
-% -----------------------------------
-% -----------------------------------
+% ------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------------
+
 
 
 
