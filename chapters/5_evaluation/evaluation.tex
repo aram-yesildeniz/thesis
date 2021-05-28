@@ -13,18 +13,79 @@
 
 
 
-\section{Internal, external validity}
+
+% ----------------------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------------------
 
 
-\begin{itemize}
-\item At this point, i have the data collected and can analyse it
-\item The quality and quantity of the data needs to be discussed
-\item Quality: There are chances that some data are malformed, e.g. because internet connection was bad, etc.
-\item Quantity: Is the amount of data sufficient to make the evaluation generalisable
-\end{itemize}
+\section{Test Results}
+
+\subsection{Metrics for Evaluation}
+
+Page Weight: Measured by WPT:
+- bytes
+- bytes uncompressed
+- Requests
 
 
-% 2016 Kohavi: Analysis of Experiments
+Technical Timings / API: Measured by WPT and GA:
+- page load time
+- domain lookup time
+- page download time
+- redirection time
+- server connection time
+- server response time
+- Dom interactive time
+- Dom content loaded time
+
+Visual Metrics / Web Vitals: Measured by WPT
+TODO Measure also with GA / own script ??:
+- CLS
+- FCP
+- FMP
+- LCP
+- SI
+
+- Visually complete ?
+- Time  to Interactive ? Is this the same as DOM interactive time ?
+
+Core Web Vital FID ?? -> Can not be measured without real users...
+
+From WPT bulk section. Also include this somewhere for comparison ?:
+- Filmstrips ?
+- Waterfall ?
+- Visual Progress ?
+- Layout Shifts ?
+
+
+
+\subsection{Original vs Mock Plain}
+
+
+
+\subsection{Mock Plain vs Position 1 (which is default position of GA: Check this again!)}
+TODO rename this like with GA true false ?
+
+
+
+\subsection{Position 1 vs 2 vs 3}
+
+
+
+\subsection{Attribute 1 vs 2 vs 3}
+
+
+
+\subsection{Other script True vs False}
+
+
+
+
+
+
+
+% ----------------------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------------------
 
 
 \section{General}
@@ -36,6 +97,9 @@
 generalizability: meine Daten zeige nur für Chrome, MacBook, diese Geschwindigkeit etc.
 Und auch nur für diese Test-Website
 Die Schwierigkeit der Generalisierbarkeit ist eines der grössten Probleme bei dieser Fragestellung
+
+
+% TODO get rid of this? Maybe just evaluate all other apporaches quickly in approach section?
 
 \section{Plain / Skeletal Website}
 
@@ -58,6 +122,9 @@ Die Schwierigkeit der Generalisierbarkeit ist eines der grössten Probleme bei d
 
 
 
+
+
+% TODO rework sections below. Here i dont need to present all options / results from WPT again but rather my results ??
 
 \section{WebPageTest Bulk Tests}
 
@@ -182,4 +249,19 @@ The compare page contains:
 
 
 
-\section{Wpt waterfall}
+
+
+
+
+\section{Internal, external validity}
+
+
+\begin{itemize}
+\item At this point, i have the data collected and can analyse it
+\item The quality and quantity of the data needs to be discussed
+\item Quality: There are chances that some data are malformed, e.g. because internet connection was bad, etc.
+\item Quantity: Is the amount of data sufficient to make the evaluation generalisable
+\end{itemize}
+
+
+% 2016 Kohavi: Analysis of Experiments
