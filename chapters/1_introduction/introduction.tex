@@ -145,7 +145,6 @@ Later we will see that measuring performance is not that trivial and a lot of id
 
 
 % [SpeedHub]
-% TODO: directly cite studies from powerpoint
 \subsubsection{SpeedHub}
 
 A plethora of information and studies about the phenomenon of user satisfaction and web site performance is collected at \textit{SpeedHub.org}, a portal by \textit{Baqend} in cooperation with \textit{Google} which provides "the largest systematic study of Mobile Site Speed and the Impact on E-Commerce."\footnote{\url{https://www.speedhub.org/} [21.05.2021]}
@@ -179,7 +178,7 @@ After considering the user itself, the next step is to investigate the influence
 % [Context]
 Last but not least is the context and the users condition important, where naturally relaxed and calm users perceive sites faster than stressed users or people that are in a hurry.
 Also when on the move, users experience sites slower.
-% Performance Matters. 9 Key Consumer Insights, Akamai, 2014.
+% cite Performance Matters. 9 Key Consumer Insights, Akamai, 2014.
 
 
 % [Studies]
@@ -303,6 +302,12 @@ Again, the ultimate target is to drive business forward, but backed up with data
 
 Bekavac et al provide a similar definition by pointing out that web analytics is "the analysis of qualitative and quantitative data on the website in order to continuously improve the online experience of visitors, which leads to more efficient and effective realization of the company's planned goals." %cite 2015 Bekavac:
 
+
+
+
+% Official definition by WAA: the measurement, collection, analysis and reporting of Internet data for the purposes of understanding and optimizing Web usage.
+
+
 % [Use Cases]
 % 2015 Zheng
 - 4 usages:
@@ -314,14 +319,32 @@ Bekavac et al provide a similar definition by pointing out that web analytics is
 Summarizing above definitions, we can see that web analytics is composed of two important aspects: A data driven, information focused and technical aspect of collecting and analysis data about the users, and a commercial perspective, which provides the main motivation of collecting the data beforehand, by setting business goals.
 
 
-% 2019 Kumar
-- 2 categories: on-site and offsite
+
+% TODO add 2009 Waisberg? "Web Analytics can be defined as the act of increasing a website’s persuasion and relevancy to achieve higher conversion rates."
+
+% 2019 Kumar 5. CHALLeNGeS oF WeB ANALyTICS ?
+
+
+% ------------------------------------------
+
 
 
 
 \subsection{Short History}
 
-TODO check out Wolles dissertation!
+
+- Very technical in the beginning, only for IT
+- Log files
+- With WWW, interesting for marketing -> page tagging, cookies
+
+- Companies:
+- GetStats
+- WebTrends
+- Analog
+- WebCounter
+- WebSideStory
+- WAA
+
 
 % 2009 Croll p. 69
 - Logfiles, 1996 ELF
@@ -345,7 +368,6 @@ TODO check out Wolles dissertation!
 - More data: performance data, visitor opinion, usability data
 
 
-% 2009 Jansen ch. 3. only provides a literature review over log analysis
 
 
 % 2014 Singal
@@ -377,66 +399,302 @@ TODO check out Wolles dissertation!
 - from web to digital analytics: understand entire digital footprint of users (see name change of WAA)
 
 
-% 2015 Bekavac not really infos about history...
-% 2019 Hussaina no history...
 
 % 2019 Kumar
 - all 500 imortant companies run websites
 - Rise in the volume of data and internet users
-- 
+
+
+
+
+% ------------------------------------------
+
+
 
 
 \subsection{Web Analytics Process}
 
+
+Main goal: revenue
+
+Several process ideas are proposed:
+WAA process guide
+5 steps process from other papers
+
+
+KPIs as part of process, e.g. by defining them
+Types of KPIs according to business
+
+
 % 2009 Jansen ch. 6.2
+- Important to understand relationship between metrics and KPIs
+- KPI " in-depth picture of visitor behavior on a site"
+- Main goal: Increase revenue
+- identify areas for improving
+
+-WAA: nine key best practices for process (with figure)
+- 1. identify key stake holders
+- 2. define primary goals of website and prioritize them
+- 3. identify most important site visitors
+- 4. determine key performance indicators
+- 5. Identify and Implement the Right Solution
+- 6. Use Multiple Technologies and Methods
+- 7. Make Improvements Iteratively
+- 8. Hire and Empower a Full-Time Analyst
+- 9. Establish a Process of Continuous Improvement
+
+
+
 % 2009 Waisberg
-% 2012 Kumar
+- Goal: improve website, increase revenue
+- Process based on industries best practice, with figure
+- Define GOals
+- Build KPIs
+- Collect Data
+- Analyze Data
+- Implement Changes
+- Repeat last two steps
+
+
+
+
+% 2014 Singal
+- same WAA 9 key practices process with same graphic
+- Provides some KPIs for different businesses, for commerce:
+- Conversion Rate, avg order value, avg visit value, customer loyalty, bounce rate 
+
+
 
 % 2015 Bekavac:
-% - Copies from Waisberg and Kaushik
+- process as "cyclical process of website optimization"
+- Copies 5 steps from Waisberg and Kaushik
+- KPIs for commercial model: Ratio of new to returning visitors, percentage of new visitors, referring domains, search keywords/phrases, average order value, key conversion rates
 
 
-% 2019 Hussaina
-% 2019 Kumar
 
 
-\paragraph{Data Sources: Log Analysis versus Page tagging}
+
+% ------------------------------------------
+
+
+
+\subsection{Data Collection/Sources: Log Analysis versus Page tagging}
+
+
+- 2 main techniques to collect data: Log files and client side js tagging
+- Other methods worth mentioning: packet sniffing and web beacons
+
+- Explain both in a nutshell
+- Show some graphics
+- Comparison between the two (pro and cons)
+
+
 
 
 % 2009 Croll
-- Page tagging illustration p. 82
+- How JS analytics works, nice illustration p. 82
 
 
 % 2009 Waisberg
+- 4 main ways to collect data:
 
-% Hassler ch. 2
+- 1. web logs, Extend Log File Format: IP, timestamp, time taken, bytes transferred, whether a cache hit occured, referrer
+- Advantages: website/server owner owns data, history of logs available, saves web crawler behaviour
+- Process: url in browser, request reaches webserver, server creates entry in log file, page as response to client
 
-% Wolle Draft
+- 2.  JS Tagging
+- insert JS on each website you want to analyse
+- Advantages: counts every page visit, analysis process outsourced (storage of data)
+- Process: ...
+
+- 3. web beacons
+- measure banner impressions and click through
+
+- 4. packet sniffing
+
+
 
 % 2011 Marek
+- Collect users click stream data
 
-% 2011 Nakatani: Pros and cons
+- Log file:
+- original method
+- Data: page name, IP, browser, date and time stamp
+- Disadvantage: technical information: not useful for user behaviour
+
+- Page tagging:
+- insert JS to source of webpage
+- JS collects data and sends it to analytics provider
+- Advantages: easy to implement, good if user has no access to web server, control over data for teams, 
+- Disadvantages: privacy concerns: relies on cookies and people may deactivate them or even JS
+
+- web beacons
+
+- packet sniffing
+
+
+% 2011 Nakatani
+- Page tagging
+- Pros:
+- JS is executed whenever page is loaded
+- custom data collection
+- track events that do not send requests to server
+- Cookies: unique / repeat visitor
+- Service available from third party
+
+Cons:
+- Availability: only tagged websites send data
+
+
+- log files
+Pros:
+- User owns data
+- Data history available
+- Reliable log entries from server
+- standard format, easy to switch log analyzers
+- Completeness: also see failed requests and requests from spiders
+
+- web beacons
+
+- packet sniffing
+
+
+
 
 % 2014 Singal provides table with pros and cons
+- Page tagging vs Log file:
+- Extra code added to website VS no changes on website needed
+- uses extra bandwidth each time page load VS no extra bandwidth
+- hard to switch tools VS easy to switch tools
+- Only captures successful page loads VS logs success and failures
+- Real time reporting VS captures only interactions with web server
+
+- Web beacons
+
+- Packet sniffing
+
 
 % 2015 Zheng
+Logging:
+- traditional method
+- NCSA Common Log Format: server IP, date/time, HTTP request command, response status, and response size
+- Log analysis software (Analog, Deep Log Analyzer, Webalizer, AWStats)
+- less invasive and does not require page modification
+- everything what happens in the browser / client without firing a request is not in the log file
 
-% 2015 Bekavac
+JS
+- track infos and store data in cookie
+- send info to analytics server
+- major type of web usage data collection
+- easy data management and reporting through third party services
+- client scripts may have access to additional information about the client such as computer screen size and color depth.
+- can track client side user actions or events such as keyboard pressing and mouse clicking.
+- Important for rich internet applications (RIA) which do not fire requests that often
+
+- Application level logging
+tightly coupled to application
+
+
+% 2017 Hassler ch. 2
+
+
 
 % 2019 Kumar
+tagging:
+- cookie: identify user, also for next visit
+
+
+comparison log vs js:
+table with 12 points. same as singal
 
 
 
 
+- packet sniffing
 
-% KPIs: ?
-% -----
+- click analytics
 
-% 2014 Singal describes KPIs for different businesses
+- visitors geo-location
 
-% 2015 Bekavac:
-% - KPI definition as part of web analytics process
-% - Table with KPIs related to business model
+
+
+% ------------------------------------------
+
+
+
+
+\subsection{Tools}
+
+% TODO: move this to related work ?
+% What is the purpose of this chapter ??
+Give an overview of existing tools?
+compare tools?
+tool selection methods ?
+
+
+% 2009 Jansen ch. 6.3
+- paraphrases 10 tips by Kaushik... i would neet to cite them directly
+
+
+% Croll 2009 Choosing a analytics platform p. 144
+- free vs paid
+- real time vs long term
+- hosted vs in-house
+- data portability
+- 
+
+
+% 2011 Marek: Choose a program
+
+
+% 2014 Singal 
+- table history of analytics tools. some of most important tools
+- should this be part of history section ?? yes i guess so. this chapter here about tools should only describe some questions to ask, some categories of tools etc.
+- Also tool selection method is part of related work chapter
+
+
+% 2015 Bekavac --> Move this to related work ??
+% - 5 categories of tools
+% - Process of selecting tool
+% - Table with features of tools
+
+
+% 2016 Bartuskova: 1.2 Services for Website Speed Testing
+
+
+
+% 2019 Hussaina
+- GA
+- Yahoo Analytics
+- Clicky
+- GrapeWebStatistics
+- Open Web Analytics
+- ...
+
+
+% 2019 Kumar
+- free / open source tools
+- proprietary tools
+- Service Hosted Software
+- GA most popular one
+
+
+% 2020 Quintel: Matomo --> put this to related work ??
+% Lighthouse Performance Scoring ?
+
+
+
+% 2020 Heinemann 4.1.4
+- GA
+- Adobe Site..
+- Webtrekk
+- Econda shop monitor
+- piwik
+
+
+
+
+% ------------------------------------------
 
 
 
@@ -453,55 +711,24 @@ TODO move this to end of web analytics chapter? like again focus on performance.
 
 % Bottlenecks of performance, big picture:
 % 2013 Grigorik: Latency as bottleneck and not bandwith
+
+
 % 2016 Witt
 
 
 
 
-\subsection{Tools}
-
-% TODO: move this to related work ?
-
-\begin{itemize}
-\item Some short overview about existing tools
-\item Conclude that I use WPT for synthetic performance testing and GA for RUM
-\end{itemize}
-
-% Croll 2009 Choosing a analytics platform p. 144
-
-% 2011 Marek: Choose a program
+Measure performance:
+% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- Log file
+- Synthetic
+- RUM
+- CrUX
+- Surveys
 
 
-
-% 2011 Nakatani:
-% "Web analytics tools collect click-stream data, track users navigation paths, process and present the data as meaningful information.
-% - Categorizations:
-% 1: By 4 different data collection methods
-% 2: SaaS vs in-house
-% 3: mobile vs non-mobile
-% 4: Time lag
-
-
-
-% 2014 Singal table history of analytics tools
-
-
-
-% 2015 Bekavac
-% - 5 categories of tools
-% - Process of selecting tool
-% - Table with features of tools
-
-
-% 2016 Bartuskova: 1.2 Services for Website Speed Testing
 % 2016 Kaur: Tools for Measuring the Performance of Websites
-% 2019 Hussaina
-% 2019 Kumar
 
-% 2020 Quintel: Matomo
-% Lighthouse Performance Scoring
-
-% 2020 Heinemann 4.1.4
 
 
 
@@ -525,12 +752,21 @@ TODO move this to end of web analytics chapter? like again focus on performance.
 What is the research question of this thesis?
 What is the goal?
 
-% Tools: Kessler 2016 p. 576
+
+
 
 % Measuring Real User Performance in the Browser: Avoiding the Observer Effect
 
 
 
+Motivation
+
+
+Goals of this thesis
+
+
+\subsection{Chapter Outline}
+[tbd]
 
 
 
@@ -539,8 +775,7 @@ What is the goal?
 
 
 
-
-
+% Tools: Kessler 2016 p. 576 ??
 
 
 
