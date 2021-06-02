@@ -350,219 +350,130 @@ Privacy: tbd
 The history of web analytics can be described as its shift from an IT domain and technical log file analysis tool towards a sophisticated, polymorphic instrument for marketers.
 
 % [For IT: Logs]
+% TODO add somewhere: Log file analysis is discussed in greater detail in chapter X. %refernece chapter
 
 Everytime a user requests an html file or another resource from the webserver, an entry in a dedicated log file is made by the server. %cite Singal 2014
-This information was in the beginning mainly interesting for maintenance, e.g. how many error codes such as 404s occurred.
-
 The first log entries followed the Common Log Format (CLF) which provides rudimentary information such as the date, the HTTP status code or the number of bytes transmitted.
 In 1996, the Extended Log Format (ELF) was introduced with more flexibility and information in mind.
-
 Thanks to the standardized format of log files, software could be build to analyse the log files and present them in a user friendly fashion.
-
 \textit{GetStats} was one of the first tools which generated statistics and user friendly output for analysts.
 % cite Croll 2009 p 69
-
-In 1995, Dr. Stephen Turner created Analog, the first free log file analysis software% cite Zheng 2015
-
-Log file analysis is discussed in greater detail in chapter X. %refernece chapter
+and in 1995, Dr. Stephen Turner created Analog, the first free log file analysis software.% cite Zheng 2015
 
 % [Shift]
 
-In 1989 kick off of World Wide Web.
-In 1993 Mosaic first widely used and  WebTrends released one of the first commercial analytics software
-% cite Zheng 2015
+What was in the beginning mainly interesting for maintenance and IT personal who answered questions such as how many 404s occurred on the server, turned into a website information pool interesting for marketers.
 
-Shift from http traffic logging to user data tracking, analysis and reporting
-With the increase in provided information it came clear that the data can be used for more than just analysing the servers behaviour.
+With the increase in available information it came clear that the data can be used for more than just analysing the servers behaviour.
 But log file analysis was not sufficient enough to get details about how users interact with the website.
+Web analytics experienced a transformation from log analysis logging to user data tracking, analysis and reporting.
 
-
-% 2009 Croll p. 69
-Croll describes three important changes which helped with the shift from IT to marketing:
-
-- 1.  JS enables to bypass IT and track data directy without the need to gather log files. 1996: Urchin released service called Quantified
-- 2.  With Googles ad system, shift to information about success of campaign and referrer sites
-- 3. New cost model for analytics service: pay for traffic you measure. Analytics as percentage of web revenues
-
+Croll describes the move of analytics from IT to marketing with three steps: %cite Croll 2009
+\begin{enumerate}
+\item JavaScript made log files redundant and also empowered marketers to maintain and implement their analytics solutions, unravelling their dependence from the IT department.
+\item The introduced advertisement economy from search engines like Google led to a new focus for analysts on user attraction and conversion rates.
+\item New cost models enabled the marketers to pay for the analytics service according to the websites traffic, instead of paying for hard- and software in advance. The expenses for analytics were therefore coupled with the websites traffic and ideally revenue.
+\end{enumerate}
 
 
 % [For Marketing: JS]
 
+In 1990 the \textit{World Wide Web} kicked off and one of the first widely used browsers \textit{Mosaic} launched in 1993.
+At the same time \textit{WebTrends} developed and released one of the first analytics software.
+A lot more services followed, such as \textit{WebSideStory} in 1996 % cite Zheng 2015
+or Quantified by Urchin in the same year.%cite croll 2009
 
-% 2009 Croll p. 69
-- With 1.5 billion internet users in 2009, also interesting for marketing
-- Focus shifted to visitor, so that his behaviour can be linked e.g. with purchase.  Cookies helped with this
-- Segmentation as crucial step
-- get more insights about users of website
-- Cookies to identify unique users
-- Page tagging: not only track technical data but also business context, e.g. analyst can say if user buys shoes he also buys jackets
-- More data: performance data, visitor opinion, usability data
-% TODO add ? - p. 84 visual history of web analytics
-
-
-% 2014 Singal
-- 1990 birth of WWW
-- JS page tagging
-- 2003: Foundation of Web Analytics Association WAA by Edwards, Eisenberg and Sterne.
-- 2012 WAA renamed to Digital Analytics Association as all digital users are inlcuded in web analytics
-- Image: Genesis of Web Analytics (nice graphic) with WAA, DAA
-
-- table history of analytics tools. some of most important tools
-
-- WebTrends 1993
-- 1995: Analog. First free log file analysis software
-- 1996: WebCounter: hit counter service
-- 2006 In-Page analytics
-
-
-Some methods about tool selection are described in chapter X.
-
-
-% 2015 Zheng:
-- 1996 WebSideStory
-- Trends:
-- mobile analytics,
-- application specific analytics
-
-- from web to digital analytics: understand entire digital footprint of users (see name change of WAA)
-
-% 2019 Kumar
-- all 500 imortant companies run websites
-- Rise in the volume of data and internet users
-
-% 2020 Heinemann 4.1.4
-- GA
-- Adobe Site..
-- Webtrekk
-- Econda shop monitor
-- piwik
-
-
-
+The page tagging technique enabled the collection of not only technical data, but also business relevant information.
+Visitors and their behaviour were the main concern and coined to questions such as: How is this user behaviour linked to a purchase? If a user buys shoes, will he also buy socks?
+The development and implementation of Cookies enabled the identification of unique users.
+Not only business related questions were asked and answered, but also investigations of performance and usability.
+% cite 2009 Croll p. 69
 
 More details about page tagging in chapter X.
 
 
+% 2014 Singal
+In 2003, Edwards, Eisenberg and Sterne founded the Web Analytics Association (WAA).
+The WAA is brings together and supports all actors of web analytics such as users, marketers and IT specialists on an international stage.
+Due to the digitalization and its all-embracing impact, WAA renamed itself to Digital Analytics Association (DAA), as the web is not the only domain where users leave their digital footprint.
+% cite 2014 Singal
+
+As already described in the above section, the numbers of participants and users of the internet are still increasing and all Fortune 500 companies operate websites, with Web Analytics as a centrepiece tool in marketing. %cite Kumar 2019
+
+Some of the most established tools today are Google Analytics, Adobe SiteCatalyst, Webtrekk and Piwik. % cite Heinemann 2020 4.1.4
+
+Google Analyitcs will be discussed in chapter X.
+
+Zheng et al. identify several future trends for Web Analytics, such as mobile web and application specific analytics like video-, search-, learning- or social media analytics. %cite Zheng 2015
+
+
+% TODO add Image: Genesis of Web Analytics (nice graphic) with WAA, DAA ? should remove then in-page analytics arrow
+% TODO add somewhere Some methods about tool selection are described in chapter X.
+
+% TODO next section will be about process
 
 
 % ------------------------------------------
-
-
-\subsubsection{Tools}
-
-
-% What is the purpose of this chapter ??
-History of tools
-Some comparison
-GA in more detail in chapter X
-Refer to related work section for some tool selection methods
-
-
-
-% 2009 Jansen ch. 6.3
-% - paraphrases 10 tips by Kaushik... i would neet to cite them directly
-
-
-% Croll 2009 Choosing a analytics platform p. 144
-- free vs paid
-- real time vs long term
-- hosted vs in-house
-- data portability
-
-
-% 2011 Marek: Choose a program
-
-
-% 2015 Bekavac --> Move this to related work ??
-% - 5 categories of tools
-% - Process of selecting tool
-% - Table with features of tools
-
-
-% 2016 Bartuskova: 1.2 Services for Website Speed Testing
-
-
-
-% 2019 Kumar
-- free / open source tools
-- proprietary tools
-- Service Hosted Software
-- GA most popular one
-
-
-% 2020 Quintel: Matomo --> put this to related work ??
-% Lighthouse Performance Scoring ?
-
-
-
-
-
-
-% ------------------------------------------
-
 
 
 
 \subsection{Web Analytics Process}
 
 
-Main goal: revenue
+Web Analytics can be described as a process, where as a rule the main goal is to increase revenue.
+In literature, two main ideas and process flows are indicated, the first one being from the Web Analytics Association, and the second one derived from industries best practices and described in multiple papers.
+They will be concisely described in this section.
 
-In literature, Several process ideas are proposed:
-WAA process guide
-5 steps process from other papers
+What both processes have in common is that they aim for improving the website and consequently increase the business revenue.
+
+\textit{Key Performance Indicators} (KPIs) are the ideal tool to instrument web analytics and they help to determine areas and room for improving.
+They are an integral part and play a major role in any web analytics process as they provide an "in-depth picture of visitor behavior on a site". %cite 2009 Jansen ch. 6.2
+
+KPIs can differ according to the business they operate it.
+For commercial domains, common KPIs are conversion rates, average order or visit value, customer loyalty, bounce rate, and so on.% cite 2014 Singal
+Defining the right KPIs is a crucial step.
+
+% 2015 Bekavac:  KPIs for commercial model: Ratio of new to returning visitors, percentage of new visitors, referring domains, search keywords/phrases, average order value, key conversion rates
 
 
-KPIs as part of process, e.g. by defining them
-Types of KPIs according to business
 
+\subsubsection{WAA process guide}
 
 % 2009 Jansen ch. 6.2
-- Important to understand relationship between metrics and KPIs
-- KPI " in-depth picture of visitor behavior on a site"
-- Main goal: Increase revenue
-- identify areas for improving
-
--WAA: nine key best practices for process (with figure)
-- 1. identify key stake holders
-- 2. define primary goals of website and prioritize them
-- 3. identify most important site visitors
-- 4. determine key performance indicators
-- 5. Identify and Implement the Right Solution
-- 6. Use Multiple Technologies and Methods
-- 7. Make Improvements Iteratively
-- 8. Hire and Empower a Full-Time Analyst
-- 9. Establish a Process of Continuous Improvement
+\begin{enumerate}
+\item Identify key stake holders
+\item define primary goals of website and prioritize them
+\item identify most important site visitors
+\item determine key performance indicators
+\item Identify and Implement the Right Solution
+\item Use Multiple Technologies and Methods
+\item Make Improvements Iteratively
+\item Hire and Empower a Full-Time Analyst
+\item Establish a Process of Continuous Improvement
+\end{enumerate}
 
 
 
-% 2009 Waisberg
-- Goal: improve website, increase revenue
-- Process based on industries best practice, with figure
-- Define GOals
-- Build KPIs
-- Collect Data
-- Analyze Data
-- Implement Changes
-- Repeat last two steps
+\subsubsection{5 steps}
+
+Waisberg and Kaushik derive from industries best practices a five step process with the main goal, improve website, increase revenue, in mind:
+
+\begin{itemize}
+\item Define Goals
+\item Build KPIs
+\item Collect Data
+\item Analyze Data
+\item Implement Changes
+\item Repeat last two steps
+\end{itemize}
+% TODO add graphic instead of list
+% cite 2009 Waisberg
 
 
-
-
-% 2014 Singal
-- same WAA 9 key practices process with same graphic
-- Provides some KPIs for different businesses, for commerce:
-- Conversion Rate, avg order value, avg visit value, customer loyalty, bounce rate 
-
-
-
-% 2015 Bekavac:
-- process as "cyclical process of website optimization"
-- Copies 5 steps from Waisberg and Kaushik
-- KPIs for commercial model: Ratio of new to returning visitors, percentage of new visitors, referring domains, search keywords/phrases, average order value, key conversion rates
-
-
-
+% [Comparison]
+Comparing both proposed processes, it is evident that both 
+WAA is more fine grained but also
+where as Waisberg and Kaushiks idea is inherent cyclical.
 
 
 % ------------------------------------------
@@ -572,8 +483,9 @@ Types of KPIs according to business
 \subsection{Data Collection/Sources: Log Analysis versus Page tagging}
 
 
+As already mentioned in chapter X, two main data collection methods are established in web analytics: Log file analysis and Page Tagging.
+
 - 2 main techniques to collect data: Log files and client side js tagging
-- Other methods worth mentioning: packet sniffing and web beacons
 
 - Explain both in a nutshell
 - Show some graphics
@@ -581,6 +493,12 @@ Types of KPIs according to business
 
 
 
+\subsubsection{Log File Analysis}
+
+
+
+
+\subsubsection{Page Tagging}
 
 % 2009 Croll
 - How JS analytics works, nice illustration p. 82
@@ -706,6 +624,9 @@ table with 12 points. same as singal
 - click analytics
 
 - visitors geo-location
+
+
+- Other methods worth mentioning: packet sniffing and web beacons
 
 
 
