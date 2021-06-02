@@ -246,6 +246,7 @@ In order to measure the differences and the user behaviour, web analytics has to
 % cite Kohavi 2016
 
 
+% TODO write those steps down ?
 % 2018 Morys
 %- 5 steps:
 %- 1. quality of hypothesis according to SOR Paradigma
@@ -280,8 +281,6 @@ What web analytics exactly is, what tools are available and how a web analytics 
 
 
 
-
-
 \section{Web Analytics}
 
 First some definitions, then quickly summarize the history, and then technical aspects of collecting data.
@@ -302,107 +301,199 @@ Again, the ultimate target is to drive business forward, but backed up with data
 
 Bekavac et al provide a similar definition by pointing out that web analytics is "the analysis of qualitative and quantitative data on the website in order to continuously improve the online experience of visitors, which leads to more efficient and effective realization of the company's planned goals." %cite 2015 Bekavac:
 
-
-
-
+% TODO: where can i find this officially ?
 % Official definition by WAA: the measurement, collection, analysis and reporting of Internet data for the purposes of understanding and optimizing Web usage.
 
+% TODO add 2009 Waisberg? "Web Analytics can be defined as the act of increasing a website’s persuasion and relevancy to achieve higher conversion rates."
 
-% [Use Cases]
-% 2015 Zheng
-- 4 usages:
-- Improving website/application design and user experience
-- Optimizing e-Commerce and improving e-CRM on customer orientation, acquisition and retention
-- Tracking and measuring success of actions and programs such as commercial campaigns
-- Identifying problems and improving performance of web applications
+% TODO add Croll 2009? "Today, web analytics is a marketing discipline used to measure the effectiveness of communications strategies" p.83
 
 Summarizing above definitions, we can see that web analytics is composed of two important aspects: A data driven, information focused and technical aspect of collecting and analysis data about the users, and a commercial perspective, which provides the main motivation of collecting the data beforehand, by setting business goals.
 
 
+% [Use Cases]
+Moving from the definitions to the practical domain, Zheng et al. describe four main use cases for web analytics:
 
-% TODO add 2009 Waisberg? "Web Analytics can be defined as the act of increasing a website’s persuasion and relevancy to achieve higher conversion rates."
+% 2015 Zheng
+% TODO write more here
+\begin{itemize}
+\item Improve overall design and user experience
+\item Optimize for your business goals
+\item Monitoring
+\item Improve performance
+\end{itemize}
 
-% 2019 Kumar 5. CHALLeNGeS oF WeB ANALyTICS ?
+Those use cases in the end also target to make customers more happy and increase revenue.
+
+
+% [Challenges]
+Web analytics is also difficult and there are some obstacles to avoid and challenges to tackle.
+
+% 2019 Kumar
+Kumar et al. describe the hurdles as follows:
+Data science challenges:
+Statistical methods are not yet sophisticated enough.
+Collected data is heterogeneous and incomplete.
+A lot of data is available (big data).
+Analysis not fast enough.
+
+Privacy: tbd
+
+
 
 
 % ------------------------------------------
 
 
-
-
 \subsection{Short History}
 
+The history of web analytics can be described as its shift from an IT domain and technical log file analysis tool towards a sophisticated, polymorphic instrument for marketers.
 
-- Very technical in the beginning, only for IT
-- Log files
-- With WWW, interesting for marketing -> page tagging, cookies
+% [For IT: Logs]
 
-- Companies:
-- GetStats
-- WebTrends
-- Analog
-- WebCounter
-- WebSideStory
-- WAA
+Everytime a user requests an html file or another resource from the webserver, an entry in a dedicated log file is made by the server. %cite Singal 2014
+This information was in the beginning mainly interesting for maintenance, e.g. how many error codes such as 404s occurred.
+
+The first log entries followed the Common Log Format (CLF) which provides rudimentary information such as the date, the HTTP status code or the number of bytes transmitted.
+In 1996, the Extended Log Format (ELF) was introduced with more flexibility and information in mind.
+
+Thanks to the standardized format of log files, software could be build to analyse the log files and present them in a user friendly fashion.
+
+\textit{GetStats} was one of the first tools which generated statistics and user friendly output for analysts.
+% cite Croll 2009 p 69
+
+In 1995, Dr. Stephen Turner created Analog, the first free log file analysis software% cite Zheng 2015
+
+Log file analysis is discussed in greater detail in chapter X. %refernece chapter
+
+% [Shift]
+
+In 1989 kick off of World Wide Web.
+In 1993 Mosaic first widely used and  WebTrends released one of the first commercial analytics software
+% cite Zheng 2015
+
+Shift from http traffic logging to user data tracking, analysis and reporting
+With the increase in provided information it came clear that the data can be used for more than just analysing the servers behaviour.
+But log file analysis was not sufficient enough to get details about how users interact with the website.
 
 
 % 2009 Croll p. 69
-- Logfiles, 1996 ELF
-- GetStats, one of the first tools to present log files nicely to user
-- Only interesting for IT in the beginning
-- With 1.5 billion internet users in 2009, also interesting for marketing
-- Focus shifted to visitor, so that his behaviour can be linked e.g. with purchase.  Cookies helped with this
-- Segmentation as crucial step
-- First web analytics companies tracked log files, which needs it heavy infrastructure
-- Generally the shift was from technical aspects (such as where are 404 on the server requests) to marketing in order to get more insights about users of website
+Croll describes three important changes which helped with the shift from IT to marketing:
 
-- 3 important changes for this shift from IT to marketing:
 - 1.  JS enables to bypass IT and track data directy without the need to gather log files. 1996: Urchin released service called Quantified
 - 2.  With Googles ad system, shift to information about success of campaign and referrer sites
 - 3. New cost model for analytics service: pay for traffic you measure. Analytics as percentage of web revenues
 
+
+
+% [For Marketing: JS]
+
+
+% 2009 Croll p. 69
+- With 1.5 billion internet users in 2009, also interesting for marketing
+- Focus shifted to visitor, so that his behaviour can be linked e.g. with purchase.  Cookies helped with this
+- Segmentation as crucial step
+- get more insights about users of website
 - Cookies to identify unique users
 - Page tagging: not only track technical data but also business context, e.g. analyst can say if user buys shoes he also buys jackets
-- "Today, web analytics is a marketing discipline used to measure the effectiveness of communications strategies" p.83
-- p. 84 visual history of web analytics
 - More data: performance data, visitor opinion, usability data
-
-
+% TODO add ? - p. 84 visual history of web analytics
 
 
 % 2014 Singal
 - 1990 birth of WWW
-- Hit: when visitor requests html file. is in log file
-- WebTrends 1993
-- 1995: Analog. First free log file analysis software
-- 1996: WebCounter: hit counter service
 - JS page tagging
 - 2003: Foundation of Web Analytics Association WAA by Edwards, Eisenberg and Sterne.
-- 2006 In-Page analytics
 - 2012 WAA renamed to Digital Analytics Association as all digital users are inlcuded in web analytics
 - Image: Genesis of Web Analytics (nice graphic) with WAA, DAA
 
+- table history of analytics tools. some of most important tools
+
+- WebTrends 1993
+- 1995: Analog. First free log file analysis software
+- 1996: WebCounter: hit counter service
+- 2006 In-Page analytics
+
+
+Some methods about tool selection are described in chapter X.
 
 
 % 2015 Zheng:
-- Ever growing since start of WWW
-- From http traffic logging to use data tracking, analysis and reporting
-- Log file analysis
-- First browser Mosaic 1993
-- WebTrends 1993
-- 1995 Analog
 - 1996 WebSideStory
-- Page tagging
 - Trends:
 - mobile analytics,
 - application specific analytics
+
 - from web to digital analytics: understand entire digital footprint of users (see name change of WAA)
-
-
 
 % 2019 Kumar
 - all 500 imortant companies run websites
 - Rise in the volume of data and internet users
+
+% 2020 Heinemann 4.1.4
+- GA
+- Adobe Site..
+- Webtrekk
+- Econda shop monitor
+- piwik
+
+
+
+
+More details about page tagging in chapter X.
+
+
+
+
+% ------------------------------------------
+
+
+\subsubsection{Tools}
+
+
+% What is the purpose of this chapter ??
+History of tools
+Some comparison
+GA in more detail in chapter X
+Refer to related work section for some tool selection methods
+
+
+
+% 2009 Jansen ch. 6.3
+% - paraphrases 10 tips by Kaushik... i would neet to cite them directly
+
+
+% Croll 2009 Choosing a analytics platform p. 144
+- free vs paid
+- real time vs long term
+- hosted vs in-house
+- data portability
+
+
+% 2011 Marek: Choose a program
+
+
+% 2015 Bekavac --> Move this to related work ??
+% - 5 categories of tools
+% - Process of selecting tool
+% - Table with features of tools
+
+
+% 2016 Bartuskova: 1.2 Services for Website Speed Testing
+
+
+
+% 2019 Kumar
+- free / open source tools
+- proprietary tools
+- Service Hosted Software
+- GA most popular one
+
+
+% 2020 Quintel: Matomo --> put this to related work ??
+% Lighthouse Performance Scoring ?
+
+
 
 
 
@@ -417,7 +508,7 @@ Summarizing above definitions, we can see that web analytics is composed of two 
 
 Main goal: revenue
 
-Several process ideas are proposed:
+In literature, Several process ideas are proposed:
 WAA process guide
 5 steps process from other papers
 
@@ -623,80 +714,6 @@ table with 12 points. same as singal
 
 
 
-\subsection{Tools}
-
-% TODO: move this to related work ?
-% What is the purpose of this chapter ??
-Give an overview of existing tools?
-compare tools?
-tool selection methods ?
-
-
-% 2009 Jansen ch. 6.3
-- paraphrases 10 tips by Kaushik... i would neet to cite them directly
-
-
-% Croll 2009 Choosing a analytics platform p. 144
-- free vs paid
-- real time vs long term
-- hosted vs in-house
-- data portability
-- 
-
-
-% 2011 Marek: Choose a program
-
-
-% 2014 Singal 
-- table history of analytics tools. some of most important tools
-- should this be part of history section ?? yes i guess so. this chapter here about tools should only describe some questions to ask, some categories of tools etc.
-- Also tool selection method is part of related work chapter
-
-
-% 2015 Bekavac --> Move this to related work ??
-% - 5 categories of tools
-% - Process of selecting tool
-% - Table with features of tools
-
-
-% 2016 Bartuskova: 1.2 Services for Website Speed Testing
-
-
-
-% 2019 Hussaina
-- GA
-- Yahoo Analytics
-- Clicky
-- GrapeWebStatistics
-- Open Web Analytics
-- ...
-
-
-% 2019 Kumar
-- free / open source tools
-- proprietary tools
-- Service Hosted Software
-- GA most popular one
-
-
-% 2020 Quintel: Matomo --> put this to related work ??
-% Lighthouse Performance Scoring ?
-
-
-
-% 2020 Heinemann 4.1.4
-- GA
-- Adobe Site..
-- Webtrekk
-- Econda shop monitor
-- piwik
-
-
-
-
-% ------------------------------------------
-
-
 
 
 \subsection{Web Performance}
@@ -706,6 +723,11 @@ TODO move this to end of web analytics chapter? like again focus on performance.
 \item Overview of factors that impact performance, bottlenecks
 \item Overview of measurement methods, techniques and metrics
 \end{itemize}
+
+% Link here to other chapters:
+Metrics in chapter X
+Measuring methods in chapter Y
+Practical example and experiment in chapter Z
 
 
 
@@ -731,7 +753,16 @@ Measure performance:
 
 
 % https://developer.mozilla.org/en-US/docs/Learn/Performance/What_is_web_performance
+- notes
+
+
+
+
+
 % https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
+- notes
+
+
 
 
 % ------------------------------------------------------------------------------------
@@ -767,7 +798,8 @@ Goals of this thesis
 
 
 \subsection{Chapter Outline}
-[tbd]
+
+tbd
 
 
 
