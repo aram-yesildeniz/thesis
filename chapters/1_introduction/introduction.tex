@@ -1,5 +1,7 @@
 \chapter{Introduction}
 
+[tbd]
+
 \begin{itemize}
 	\item Explain structure and main goal of this thesis
 	\item Introduction Chapter: Describe shortly all sections from this chapter and what the reader can expect
@@ -7,8 +9,8 @@
 \end{itemize}
 
 
-% -----------------------------------
-% -----------------------------------
+% ---------------------------------------------------------------------------------------------------------
+% ---------------------------------------------------------------------------------------------------------
 
 
 \section{E-Commerce}
@@ -495,144 +497,94 @@ Log file analysis is considered to be the traditional and original approach to w
 Once the users enters a URL in the browser and hits enter, the request arrives at some web server.
 The server then creates an entry in a log file and sends back the requested page or resource as a response to the client. % cite % 2009 Waisberg
 
-The information within the log entry can vary depending on the log format,but standardly provided are the users IP, browser, timestamp , time taken, bytes transferred, whether a cache hit occured and the referrer. %cite 2009 Waisberg
+The information within the log entry can vary depending on the log format, mostly provided are the IP, browser, timestamp, time taken, bytes transferred, whether a cache hit occured and the referrer. %cite 2009 Waisberg
 
-The common log format provides:
-% TODO as code snippet
+The standardized Common Log Format provides host, ident, authuser, date, request, status, bytes, as seen in example X. \footnote{\url{https://www.w3.org/Daemon/User/Config/Logging.html\#common-logfile-format} [03.06.2021]}
+
+\begin{center}
+\begin{lstlisting}[caption={Position 1}, language=bash, numbers=none, basicstyle=\tiny]
 127.0.0.1 user-identifier frank [10/Oct/2000:13:55:36 -0700] "GET /apache_pb.gif HTTP/1.0" 200 2326
-- NCSA Common Log Format: server IP, date/time, HTTP request command, response status, and response size
-- Log analysis software (such as Analog, Deep Log Analyzer, Webalizer, AWStats) %cite 2015 Zheng
+\end{lstlisting}
+\end{center}
+% TODO add caption
 
+Standard formats of log files and entries allow log file analysis software to process, evaluate and report valuable statistics to users, such as Analog, Webalizer or AWStats. %cite 2015 Zheng
 
 
 % [Pro]
+Following are lists describing the advantages and disadvantages of log file analysis.
 
+Advantages of log file analysis are:
 
-% 2009 Waisberg
-- Advantages: website/server owner owns data, history of logs available, saves web crawler behaviour
-
-% 2011 Nakatani
-- log files
-Pros:
-- User owns data
-- Data history available
-- Reliable log entries from server
-- standard format, easy to switch log analyzers
-- Completeness: also see failed requests and requests from spiders
-
-% 2015 Zheng
-- less invasive and does not require page modification
-
+\begin{itemize}
+\item JavaScript and Cookies are not required on the client side
+\item Maintainer of the website and server owns the data %cite 2009 Waisberg
+\item Bots and web crawler requests are also logged %cite 2009 Waisberg
+\item History of data is available %cite 2011 Nakatani
+\item Log entries are reliable %cite 2011 Nakatani
+\item The standard format of log files enables easy switching of analysis tools %cite 2011 Nakatani
+\item The web server also logs failed requests %cite 2011 Nakatani
+\item No modification on the web page needed %cite 2015 Zheng
+\item Does not demand more bandwidth %cite 2014 Singal
+\end{itemize}
 
 
 % [Con]
+Some disadvantages are:
 
-
-% 2011 Marek
-- Disadvantage: technical information: not useful for user behaviour
-
-
-% 2015 Zheng
-- everything what happens in the browser / client without firing a request is not in the log file
-
-very technical data, no events, no custom metrics, no business related metrics, etc.
+\begin{itemize}
+\item Log entries provide mainly technical information, which may not be very useful for user behaviour analysis. Business related metrics such as bounce rates are not available. % cite Marek 2011
+\item Only direct requests from the client to the web server are logged: Any user interaction in the web browser, which does not fires a request, is not getting logged. Also responses from caches and proxies are not visible in the web servers log file. Only interactions with the web server are logged.%cite 2015 Zheng
+\end{itemize}
 
 
 
 % ------------------------------------------
 
 
-
 \subsubsection{Page Tagging}
 
+In a nutshell, page tagging describes the analytics method of including JavaScript on the web page, which collects data and sends it to an analytics server. %cite 2011 Marek
+For this, JavaScript has to be included on every page which should be analysed. %cite 2009 Waisberg
+Page tagging is the main method used in web analytics today. %cite 2015 Zheng
+
+Croll provides a vivid graphic about the page tagging process which will be discussed here (fig. X). %cite Croll 2009
+
+\begin{center}
+\includegraphics[width=0.5\textwidth]{page_tagging.png}
+% TODO add caption
+\end{center}
+
+The client (browser) requests a page from the web server (1, 2).
+Within the html file an external JavaScript resource, the analytics code, is linked and received from the analytics server (3, 4).
+The analytics script tracks and measures the user behaviour and eventually sends the data back to the analytics server (5, 6, 7).
+
+The collected data can also be stored in cookies, which persist data beyond one session and enable user identification, e.g. on his next page visit. %cite 2019 Kumar
 
 
-% 2009 Croll
-- How JS analytics works, nice illustration p. 82
-
-% 2009 Waisberg
-- 2.  JS Tagging
-- insert JS on each website you want to analyse
-- Process: ...
-
-
-% 2011 Marek
-- Page tagging:
-- insert JS to source of webpage
-- JS collects data and sends it to analytics provider
-
-
-% 2015 Zheng
-JS
-- track infos and store data in cookie
-- send info to analytics server
-- major type of web usage data collection
-
-
-- Application level logging
-tightly coupled to application
-
-
-% 2019 Kumar
-tagging:
-- cookie: identify user, also for next visit
-
-
+The advantages and disadvantages of page tagging are as follows:
 
 % [Pro]
-
-% 2009 Waisberg
-- Advantages: counts every page visit, analysis process outsourced (storage of data)
-
-% 2011 Marek
-- Advantages: easy to implement, good if user has no access to web server, control over data for teams, 
-
-% 2011 Nakatani
-- Page tagging
-- Pros:
-- JS is executed whenever page is loaded
-- custom data collection
-- track events that do not send requests to server
-- Cookies: unique / repeat visitor
-- Service available from third party
-
-
-% 2015 Zheng
-- easy data management and reporting through third party services
-- client scripts may have access to additional information about the client such as computer screen size and color depth.
-- can track client side user actions or events such as keyboard pressing and mouse clicking.
-- Important for rich internet applications (RIA) which do not fire requests that often
+\begin{itemize}
+\item Every page visit is counted %cite 2009 Waisberg
+\item The analytics service is outsourced, which includes the storage of the data, but also data analysis and reporting %cite 2009 Waisberg
+\item Page tagging is rather easy to implement and favourable when the analyst does not have access to the web server %cite 2011 Marek
+\item Highly customizable: anything that JavaScript allows to measure, collect and track is obtainable. This also includes information about the client such as screen size, device used or color depth. %cite 2011 Nakatani
+\item Possibility to track events and actions such as mouse clicks that do not send requests to the web server. This is especially important for single-page or progressive web applications which do not fire requests that often. %cite 2011 Nakatani and 2015 Zheng
+\item Mechanics of cookies provide identification of unique and repeat visitors %cite 2011 Nakatani
+\item Real time reporting %cite  2014 Singal 
+\end{itemize}
 
 
 
 % [Con]
-
-% 2011 Marek
-- Disadvantages: privacy concerns: relies on cookies and people may deactivate them or even JS
-
-% 2011 Nakatani
-Cons:
-- Availability: only tagged websites send data
-
-
-% TODO exract those and move to pro and con fields
-
-% 2014 Singal provides table with pros and cons
-- Page tagging vs Log file:
-- Extra code added to website VS no changes on website needed
-- uses extra bandwidth each time page load VS no extra bandwidth
-- hard to switch tools VS easy to switch tools
-- Only captures successful page loads VS logs success and failures
-- Real time reporting VS captures only interactions with web server
-
+Some disadvantages are mainly privacy concerns, the analytics process relies on the usage of JavaScript and cookies which can be deactivated by the user %cite 2011 Marek
+, every page which should collect data needs to include the analytics script, and due to the use of a third party analytics service it is rather difficult to switch tools. %cite 2014 Singal
 
 
 % TODO 2017 Hassler ch. 2 ??
 
-
-
 % TODO web beacons and packet sniffig ?
-
 % 2011 Marek
 % 2011 Nakatani
 % 2014 Singal
