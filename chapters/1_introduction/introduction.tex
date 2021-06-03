@@ -485,7 +485,7 @@ WAAs process is are more fine grained and practical approach, where as Waisberg 
 
 
 
-\subsection{Data Collection/Sources: Log Analysis versus Page tagging}
+\subsection{Data Collection: Log File Analysis and Page Tagging}
 
 There are four main ways to collect data for web analytics: Logs, JavaScript Tagging (or page tagging), web beacons and packet sniffing. %cite 2009 Waisberg
 
@@ -603,39 +603,30 @@ Some disadvantages are mainly privacy concerns, the analytics process relies on 
 \subsection{Web Performance}
 
 
-\subsubsection{Introduction}
-
 % [Definitions]
 
 As already described in chapter X, web performance plays a non negligible role regarding user satisfaction and business success.
-The referenced studies demonstrate that increasing the websites performance also increases the revenue, or as Google states it: "Performance plays a major role in the success of any online venture".\footnote{\url{https://web.dev/why-speed-matters/} [03.06.2021]}
+The above referenced studies demonstrate that increasing the websites performance also increases the revenue, or as Google states it: "Performance plays a major role in the success of any online venture".\footnote{\url{https://web.dev/why-speed-matters/} [03.06.2021]}
+
+The MDN Web Docs identify multiple areas of web performance:\footnote{\url{https://developer.mozilla.org/en-US/docs/Learn/Performance/What_is_web_performance} [03.06.2021]}
+\begin{itemize}
+\item Reducing overall load time
+\item Making the site usable as soon as possible
+\item Smoothness and interactivity
+\item Perceived performance
+\item Performance measurements
+\end{itemize}
+
+\paragraph{Reducing load time} The question what makes websites slow is discussed in chapter X.
+
+\paragraph{Usability and interactivity} As I will describe in chapter X, several metrics are available which try to reflect and approximate performance areas such as load time, smoothness and interactivity, and as well as for the distinction between technical- and user perceived performance, specific metrics are available.
 
 
-
-% TODO add this?
-% https://developer.mozilla.org/en-US/docs/Learn/Performance/why_web_performance
-% financial aspect of downloading data and big websites
-
-
-
-% https://developer.mozilla.org/en-US/docs/Learn/Performance/What_is_web_performance
-- major areas:
-- reducing overall load time
-- Making the site usable as soon as possible
-- Smoothness and interactivity
-- Perceived performance
-- Performance measurements
-
-
-
-The distinction between technical performance and user perceived performance is also reflected in the performance metrics, which will be discussed in chapter X.
-
-
-% [Perception]
+\paragraph{Performance perception}
 
 The perception of performance is in general subjective.
 As already seen in chapter X, there are some quantifiable time intervals which correlate to the human psychology regarding received performance.
-Table X provides "unofficial rule of thumb" thresholds of delay as seen in table X. %cite 2013 Grigorik https://hpbn.co/primer-on-web-performance/
+Table X provides "unofficial rule of thumb" thresholds of delay. %cite 2013 Grigorik https://hpbn.co/primer-on-web-performance/
 
 \begin{table}[h]
 	\centering
@@ -653,42 +644,18 @@ Table X provides "unofficial rule of thumb" thresholds of delay as seen in table
 \end{table}
 % TODO caption and cite % 2013 Grigorik https://hpbn.co/primer-on-web-performance/
 
+Interpreting the numbers from the table, the statement can be made that keeping load times under one second is desirable.
 Thresholds for specific performance metrics and the psychological rationale of setting them will be discussed in chapter X.
 
+Performance measurement methods are described in chapter X.
 
-
-\subsubsection{Why are websites slow?}
-
-In his code talk 2016, Witt identifies three main areas or bottlenecks where bad performance is being produced: In the Frontend, the Backend, and on the network layer. 
-
-% 2016 Witt code talks
-- the three bottlenecks: Frontend, network, backend
-
-- FE:
-- crp
-- render and parser blocking
-- tools available
-
-network:
-- dns lookup
-- initial connection
-- time to first byte
-- content downloaded
-- latency
--> caching and CDNs
-
-BE:
-- load balancer, server and DB
-- 
-
-
-% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
-- Latency as a Performance Bottleneck
+% TODO add this?
+% https://developer.mozilla.org/en-US/docs/Learn/Performance/why_web_performance
+% financial aspect of downloading data and big websites
 
 
 
-
-\subsubsection{Measuring Methods and Metrics}
+\paragraph{Measuring Methods and Metrics}
 
 
 Multiple methods for measuring performance exist.
@@ -697,6 +664,8 @@ RUM will be discussed in chapter X.
 
 The aspect that performance can not only be measured with a technical number but is much more meaningful and significant when the user perceived performance is captured, is also reflected in the available performance metrics.
 The performance metrics are discussed in detail in chapter X.
+
+
 
 
 
