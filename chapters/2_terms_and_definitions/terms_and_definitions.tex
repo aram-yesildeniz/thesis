@@ -19,6 +19,142 @@
 %----------------------------------------------------------------
 
 
+
+
+\section{Measuring Methods}
+
+\begin{itemize}
+\item Explanation and comparison of synthetic and real-user monitoring with concrete examples
+\item Short overview of other measuring methods such as log analysis or surveys
+\end{itemize}
+
+
+
+
+
+
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+synthetic:
+- lab environment: geography, network, device, browser, etc.
+- control variables to identify performance issues. this does not reflect real world and real user experience
+- automated
+- simulate user paths
+- traffic is generated artificial and is not by real users
+ - can also be used for live system monitoring
+ - fairly easy to implement, inexpensive
+
+RUM:
+- measure from real users machine
+- part of page tagging (same technique with including some JS)
+- measures actual use cases
+
+
+
+% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
+- Synthetic and Real-User Performance Measurement
+
+
+
+% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- Log file
+- Synthetic: will be discussed in chapter X
+- RUM which will be covered in chapter X
+- CrUX
+- Surveys
+
+
+% 2016 Kaur: Tools for Measuring the Performance of Websites
+- Pingdom
+- GTMetrix
+- Website Grader
+- Site Speed checker
+
+
+
+
+
+
+
+% 2009 Croll
+% 2013 Meenan
+% 2013 Grigorik
+% 2015 Cito
+% 2016 Viscomi Synthetic Versus RUM
+% Eggplant whitepaper
+
+
+
+%----------------------------------------------------------------
+
+
+
+\subsection{Synthetic Monitoring}
+
+\begin{itemize}
+    \item What is it
+    \item How does it work
+    \item Application, real life scenario
+    \item Examples:
+    \begin{itemize}
+        \item WebPageTest
+        \item Google Lighthouse
+        \item Other solutions
+    \end{itemize}
+\end{itemize}
+
+
+
+
+
+%----------------------------------------------------------------
+
+
+
+
+\subsection{Real-User Monitoring}
+
+\begin{itemize}
+    \item What is it
+    \item How does it work
+    \item Application, real life scenario
+    \item Examples:
+    \begin{itemize}
+        \item Google Analyitcs
+        \item CrUX
+        \item SpeedKit
+        \item Other solutions
+    \end{itemize}
+\end{itemize}
+
+% boomerang Akamai
+
+
+
+%----------------------------------------------------------------
+
+
+\subsection{Other methods}
+
+Reports such as CruX or http archive
+surveys
+log files
+
+
+
+
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
 % Explain first how browsers work? Like CRP etc
 % https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 
@@ -31,6 +167,7 @@
 % https://developer.mozilla.org/en-US/docs/Learn/Performance/What_is_web_performance#how_content_is_rendered
 
 % % https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
+
 
 \section{Metrics}
 
@@ -45,8 +182,6 @@
 % https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
 
 
-%----------------------------------------------------------------
-%----------------------------------------------------------------
 
 
 \subsection{Introduction}
@@ -75,6 +210,7 @@
 
 
 \subsection{"Non-Performance" metrics}
+% business related metrics
 
 \begin{itemize}
 \item User engagement: session length, bounce rate, etc.
@@ -646,67 +782,7 @@ GA Site Speed Metrics (description from \url{https://support.google.com/analytic
 
 
 
-%----------------------------------------------------------------
-%----------------------------------------------------------------
-%----------------------------------------------------------------
-%----------------------------------------------------------------
 
 
 
 
-\section{Measuring Methods}
-
-\begin{itemize}
-\item Explanation and comparison of synthetic and real-user monitoring with concrete examples
-\item Short overview of other measuring methods such as log analysis or surveys
-\end{itemize}
-
-
-
-% 2009 Croll
-% 2013 Meenan
-% 2013 Grigorik
-% 2015 Cito
-% 2016 Viscomi Synthetic Versus RUM
-% Eggplant whitepaper
-
-
-\subsection{Synthetic Monitoring}
-
-\begin{itemize}
-    \item What is it
-    \item How does it work
-    \item Application, real life scenario
-    \item Examples:
-    \begin{itemize}
-        \item WebPageTest
-        \item Google Lighthouse
-        \item Other solutions
-    \end{itemize}
-\end{itemize}
-
-
-
-
-
-%----------------------------------------------------------------
-
-
-
-
-\subsection{Real-User Monitoring}
-
-\begin{itemize}
-    \item What is it
-    \item How does it work
-    \item Application, real life scenario
-    \item Examples:
-    \begin{itemize}
-        \item Google Analyitcs
-        \item CrUX
-        \item SpeedKit
-        \item Other solutions
-    \end{itemize}
-\end{itemize}
-
-% boomerang Akamai

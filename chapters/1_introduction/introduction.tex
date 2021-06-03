@@ -409,8 +409,13 @@ Google Analyitcs will be discussed in chapter X.
 Zheng et al. identify several future trends for Web Analytics, such as mobile web and application specific analytics like video-, search-, learning- or social media analytics. %cite Zheng 2015
 
 
+% TODO metrics will be discussed in chapter X
+
+
 % TODO add Image: Genesis of Web Analytics (nice graphic) with WAA, DAA ? should remove then in-page analytics arrow
 % TODO add somewhere Some methods about tool selection are described in chapter X.
+
+
 
 % TODO next section will be about process
 
@@ -603,29 +608,13 @@ Some disadvantages are mainly privacy concerns, the analytics process relies on 
 % [Definitions]
 
 As already described in chapter X, web performance plays a non negligible role regarding user satisfaction and business success.
-The cited studies demonstrate that increasing the websites performance also increases the revenue. 
+The referenced studies demonstrate that increasing the websites performance also increases the revenue, or as Google states it: "Performance plays a major role in the success of any online venture".\footnote{\url{https://web.dev/why-speed-matters/} [03.06.2021]}
 
 
 
-% What is good performance ? -> Perceived performance
-As seen in chapter X, everything below one seconds is good.
-Thresholds for specific performance metrics and the psychological rationale of setting them will be discussed in chapter X.
-
-Generally 
-
-"A good goal for web performance is for users to not notice performance. "
-
-
-% https://web.dev/why-speed-matters/
-"Performance plays a major role in the success of any online venture"
-"Performance is a foundational aspect of good user experiences. "
-
-
-
+% TODO add this?
 % https://developer.mozilla.org/en-US/docs/Learn/Performance/why_web_performance
-- UX is subjective
-"A good goal for web performance is for users to not notice performance. "
-- financial aspect of downloading data and big websites
+% financial aspect of downloading data and big websites
 
 
 
@@ -638,32 +627,59 @@ Generally
 - Performance measurements
 
 
-%  https://developer.mozilla.org/en-US/docs/Web/Performance
-"Web performance is how long a site takes to load, become interactive and responsive, and how smooth the content is during user interactions"
+
+The distinction between technical performance and user perceived performance is also reflected in the performance metrics, which will be discussed in chapter X.
+
+
+% [Perception]
+
+The perception of performance is in general subjective.
+As already seen in chapter X, there are some quantifiable time intervals which correlate to the human psychology regarding received performance.
+Table X provides "unofficial rule of thumb" thresholds of delay as seen in table X. %cite 2013 Grigorik https://hpbn.co/primer-on-web-performance/
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{| l | l | }
+	\hline
+	Delay & User Perception \\
+	\hline
+	0-100 ms & Instant \\
+	100-300 ms & Small perceptible delay \\
+	300-1000 ms & Machine is working \\
+	> 1 s & Likely mental context switch \\
+	> 10 s & Task is abandoned \\
+	\hline
+	\end{tabular}
+\end{table}
+% TODO caption and cite % 2013 Grigorik https://hpbn.co/primer-on-web-performance/
+
+Thresholds for specific performance metrics and the psychological rationale of setting them will be discussed in chapter X.
 
 
 
+\subsubsection{Why are websites slow?}
 
+In his code talk 2016, Witt identifies three main areas or bottlenecks where bad performance is being produced: In the Frontend, the Backend, and on the network layer. 
 
-
-
-
-Technical metrics which measure time stamps and UX. This will be discussed later in detail.
-UX is in the end the truth.
-
-
-
-
-
-
-% [Bottlenecks]
-
-Why are websites slow?
-
-
-% 2016 Witt
+% 2016 Witt code talks
 - the three bottlenecks: Frontend, network, backend
 
+- FE:
+- crp
+- render and parser blocking
+- tools available
+
+network:
+- dns lookup
+- initial connection
+- time to first byte
+- content downloaded
+- latency
+-> caching and CDNs
+
+BE:
+- load balancer, server and DB
+- 
 
 
 % 2013 Grigorik https://hpbn.co/primer-on-web-performance/
@@ -672,50 +688,15 @@ Why are websites slow?
 
 
 
-
-
-
 \subsubsection{Measuring Methods and Metrics}
 
-Metrics in chapter X
 
-Synthetic vs RUM
+Multiple methods for measuring performance exist.
+Synthetic monitoring is covered in chapter X.
+RUM will be discussed in chapter X.
 
-Practical example and experiment in chapter Z
-
-
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
-
-
-
-
-
-% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
-- Synthetic and Real-User Performance Measurement
-
-
-
-% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-- Log file
-- Synthetic: will be discussed in chapter X
-- RUM which will be covered in chapter X
-- CrUX
-- Surveys
-
-
-% 2016 Kaur: Tools for Measuring the Performance of Websites
-- Pingdom
-- GTMetrix
-- Website Grader
-- Site Speed checker
-
-
-
-
-
-
-
-
+The aspect that performance can not only be measured with a technical number but is much more meaningful and significant when the user perceived performance is captured, is also reflected in the available performance metrics.
+The performance metrics are discussed in detail in chapter X.
 
 
 
