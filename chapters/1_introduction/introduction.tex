@@ -1,3 +1,4 @@
+% TODO rename Introduction and Background ?
 \chapter{Introduction}
 
 [tbd]
@@ -674,38 +675,51 @@ The performance metrics are discussed in detail in chapter X.
 % ---------------------------------------------------------------------------------------------------------------------------------
 
 
-
 \section{Research Question}
 
-\begin{itemize}
-\item Difficulty of defining scope
-\item Measuring performance of a web site impacts its performance or other effects take place / Observer effect
-\item Why the research question is relevant
-\end{itemize}
+The e-commerce industry is booming and there are no signs that this trend will turn around; on the contrary.
+Performance plays a major role in this matter regarding customer satisfaction and impacts business revenue.
+To better understand visitors of e-commerce websites, page tagging is widely used and implemented.
 
-\subsection{Motivation}
+Within this field, multiple questions and issues may arise: Has page tagging an impact on the websites performance?
+Intuitively one may say that loading additional JavaScript will decrease the websites performance, depending on the scripts size and the network condition.
+But are there more unforeseeable side effects? 
+Do the different techniques of embedding a tracking script affect the collected and measured data?
+Will various included tracking scripts interfere with each other?
 
-Now we have a general understanding of the field where the research should happen on.
+One hypothesis of this thesis is, that tracking tools slow down the monitored websites, that they decrease speed and performance of the website, and therefore affect user experience unfavourable.
 
-What is the research question of this thesis?
-What is the goal?
+Those questions should be addressed within this thesis.
 
+
+\subsection{Goal}
+
+This thesis has several goals:
+
+The internet and web sites are in general of complicated, complex, and convoluted nature.
+Although basic HTML structures are standardized, each website follows its own shape and is unique and sui generis.
+One goal is to approximate real websites with an artificial, in the lab generated website, which is completely under control of the researcher and manipulable.
+Question of how to even measure this: Experimental setup, variables, etc.
 the intrinsic complexity of the field and the internet in general
 
-% Measuring Real User Performance in the Browser: Avoiding the Observer Effect
+
+As we will see in chapter X, many metrics are existing
+
+- setup a reliable and close to reality test environment
+- collect data
+- visualize and analyse the data
+
+- Also: Many metrics exists and sometimes they are not clearly defined: Goal is to bring some order into the metrics zoo.
+Ideally Create some sort of taxonomy for performance metrics
 
 
 
-\subsection{Hypothesis}
 
 
-The underlying assumption and hypothesis of this thesis is, that tracking tools slow down the monitored websites, that they decrease speed and performance of the website, and therefore affect user experience unfavourable, which consequently leads to misleading collected data and bad decisions.
-The motivation of this thesis is to study and understand negative impact on performance of tracking tools, and thereafter prototype a tracking tool whose negative impact on the websites performance and user experience are as little as possible. The research motivation is to investigate if, and how tracking tools are slowing down websites and which particular features of those tools impact how and why the websites performance.
-Within this investigation, the trade-off between “meaningful” collected data and the websites performance is of special interest. The assumption is that slim, performant tracking tools may not aggregate that much useful data as heavy and presumably the website decelerating tools.
 
+% The research motivation is to investigate if, and how tracking tools are slowing down websites and which particular features of those tools impact how and why the websites performance.
 
-\subsection{Goals of this Thesis}
-
+% Within this investigation, the trade-off between “meaningful” collected data and the websites performance is of special interest. The assumption is that slim, performant tracking tools may not aggregate that much useful data as heavy and presumably the website decelerating tools.
 
 
 
