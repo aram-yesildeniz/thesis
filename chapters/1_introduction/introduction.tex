@@ -11,9 +11,10 @@
 
 
 %TODO
-% internet cap Internet
+% internet schreibweise: Gross oder kleines I
 % when to use italic for a term and when not ?
 % numbers: 1´000 or 1,000 or 1000 ? 12.3 or 12,3 ?
+% for example: e.g., i.e., "for example" .. ?
 
 
 % ---------------------------------------------------------------------------------------------------------
@@ -21,6 +22,9 @@
 
 
 \section{E-Commerce}
+
+[tbd]
+What the reader can expect in this chapter 1.1
 
 
 \subsection{The Internet}
@@ -48,7 +52,7 @@ Before discussing the term "e-commerce" and take a grasp at its history and type
 \subsubsection{Introduction}
 
 From the global data report\footnote{\url{https://datareportal.com/reports/digital-2021-germany} [14.05.2021]}, one can read out that over 90\% of the world population visited an online retail site and over 76\% of the world population purchased a product online.
-% For most of the categories, such as ?? growth is over 15\%.  %TODO
+% For most of the categories growth is over 15\%.  %TODO which categories ?
 As usual, for or a western country like Germany, the figures are higher:
 92.5\% of the German population visited an online retail site and over 80\% purchased a product online.
 And the usage is expanding: the growth of the amount spent within the category food and personal care is 28.6\%, and 17.6\% for the category fashion and beauty.
@@ -149,8 +153,6 @@ Later I will discuss that measuring performance is not so trivial and there are 
 
 % [SpeedHub]
 \subsubsection{SpeedHub}
-
-%TODO maybe use some paragraphs here?
 
 A plethora of information and studies about the phenomenon of user satisfaction and web site performance is collected at \textit{SpeedHub.org}, a portal by \textit{Baqend} in cooperation with \textit{Google} which provides "the largest systematic study of Mobile Site Speed and the Impact on E-Commerce."\footnote{\url{https://www.speedhub.org/} [21.05.2021]}
 Not only are studies and reports available on the hub, but also collections of videos and blog posts.
@@ -271,30 +273,30 @@ What web analytics exactly is, what tools are available and what a web analytics
 % ------------------------------------------------------------------------------------
 % ------------------------------------------------------------------------------------
 
-%------------- %TODO I AM HERE -------------
 
 
 \section{Web Analytics}
 
-%TODO outwrite this
-First some definitions, then quickly summarize the history, and then technical aspects of collecting data.
+This chapter is about web analytics.
+I will first discuss definitions and give a short introduction to web analytics.
+Then, a brief history of web analytics will be given to help contextualize.
+After characterizing two web analytics process descriptions, data collection methods will be discussed. Finally, web performance will be explained, which leads the way to the research questions.
 
 
 \subsection{Introduction}
 
 % [Definitions]
-%TODO rewrite this
-What is Web Analytics?
-Going through the literature, makes it clear that multiple definitions are existing:
+What is \textit{Web Analytics}?
+Reviewing the literature, it is clear that there are several definitions:
 
 Nakatani et al. state that "Web analytics is used to understand online customers and their behaviors, design actions influential to them, and ultimately foster behaviors beneficial to the business and achieve the organization's goal." % cite 2011 Nakatani
 According to this definition, web analytics is about getting insights of the users using the system, not only who or what they are, but also how they interact with the system.
-Additionally, the definition stresses that the underlying motivation of web analytics is the achievement business goals.
+Additionally, the definition emphasizes that the underlying motivation of web analytics is to achieve business goals.
 
 Singal et al. provide a more technical definition by pointing out that "Web Analytics is the objective tracking, collection, measurement, reporting and analysis of quantitative internet data to optimize websites and web marketing initiatives." % cite 2014 Singal with note that this definition is directly taken from Kaushik
-Again, the ultimate target is to drive business forward, but backed up with data science methods and instruments such as tracking, collecting and analysis of vast amount of data.
+Again, the ultimate goal is to drive business, but supported by data science methods and tools such as tracking, collecting and analysing massive amounts of data.
 
-Bekavac et al. provide a similar definition by pointing out that web analytics is "the analysis of qualitative and quantitative data on the website in order to continuously improve the online experience of visitors, which leads to more efficient and effective realization of the company's planned goals." %cite 2015 Bekavac:
+Bekavac et al. provide a similar definition by pointing out that web analytics is "the analysis of qualitative and quantitative data on the website in order to continuously improve the online experience of visitors, which leads to more efficient and effective realization of the company's planned goals." %cite 2015 Bekavac
 
 % TODO: where can i find this officially ?
 % Official definition by WAA: the measurement, collection, analysis and reporting of Internet data for the purposes of understanding and optimizing Web usage.
@@ -303,124 +305,100 @@ Bekavac et al. provide a similar definition by pointing out that web analytics i
 
 % TODO add Croll 2009? "Today, web analytics is a marketing discipline used to measure the effectiveness of communications strategies" p.83
 
-Summarizing above definitions, it is noticeable that web analytics is composed out of two important elements: A data driven, information focused and technical element of collecting and analysing data about the users, and a commercial and business driven element, which provides the main motivation of collecting the data in the first place., by setting business goals.
+Summarizing the above definitions, it is noticeable that web analytics consists of two important elements: a data-driven, information-oriented and technical element of collecting and analyzing data about users and a commercial and business-driven element that provides the main motivation for collecting the data primarily by setting business goals.
 \\
 
 % [Use Cases]
-Moving from the definitions to the practical domain, Zheng et al. describe four main use cases for web analytics:
+Moving from definitions to the practical realm, Zheng et al. describe four main use cases for web analytics: % cite 2015 Zheng
 
-% 2015 Zheng
-% TODO write more here
 \begin{itemize}
-\item Improve overall design and user experience
-\item Optimize for your business goals
-\item Monitoring
-\item Improve performance
+\item Improving the overall design and usability, for example of the navigation or layout of the website.
+\item Optimize for your business goals: Whatever goals the business is trying to achieve, generating conversions is the goal.
+\item Monitor campaigns: Understand and measure the success of advertising campaigns.
+\item Improve performance by examining metrics such as page load time. This is discussed further in chapter \ref{chap:web_performance}.
 \end{itemize}
 
-%TODO outwrite this
-Those use cases in the end also target to make customers more happy and increase revenue.
-
-
 % [Challenges]
-Web analytics is also difficult and there are some obstacles to avoid and challenges to tackle.
+Web analytics is also difficult and there are some obstacles and challenges to overcome.
+Kumar et al. describe some of the hurdles as follows: % cite 2019 Kumar
+The analysis and interpretation of the data and the goals and measures derived from it are reactive rather than anticipatory, since "predictive modelling applications" for web analytics are not yet on the market.
 
-% 2019 Kumar
-Kumar et al. describe the hurdles as follows:
-Data science challenges:
-Statistical methods are not yet sophisticated enough.
-Collected data is heterogeneous and incomplete.
-A lot of data is available (big data).
-Analysis not fast enough.
+Big data, that is the volume, variety and velocity of data collected, can be challenging to manage,
+for example, important insights can be lost or overlooked.
 
-Privacy: tbd
-
+Privacy and the information collected from visitors and customers can be another challenge in terms of inappropriate use of data and GDPR compliance.
 
 
 
 % ------------------------------------------
 
 
-\subsection{Short History}
+\subsection{Brief History}
 
-The history of web analytics can be described as a shift from an IT domain and technical log file analysis tool towards a sophisticated, polymorphic instrument for marketers.
+The history of web analytics can be described as a transformation from an IT domain and a technical log file analysis tool to a sophisticated, polymorphic tool for marketers.
 
 % [For IT: Logs]
-% TODO add somewhere: Log file analysis is discussed in greater detail in chapter X. %refernece chapter
-
-Everytime a user requests an HTML file or another resource from a web server, an entry in a dedicated log file is made by the server. %cite Singal 2014
+Each time a user requests an HTML file or other resource from a web server, the server makes an entry in a special log file. %cite Singal 2014
 The first log entries followed the \textit{Common Log Format} (CLF) which provides rudimentary information such as the date, the HTTP status code or the number of bytes transmitted.
 In 1996, the \textit{Extended Log Format} (ELF) was introduced with more flexibility and information in mind.
-Thanks to the standardized format of log files, software could be build to analyse the log files and present them in a readable manner to users.
+Thanks to the standardized format of the log files, it was possible to create software that evaluates the log files and presents them to users in a readable form.
 \textit{GetStats} was one of the first tools which generated statistics and user friendly output for analysts.
 % cite Croll 2009 p 69
-%TODO rewrite
-and in 1995, Dr. Stephen Turner created Analog, the first free log file analysis software.% cite Zheng 2015
-\\
+In 1995, Dr. Stephen Turner developed \textit{Analog}, the first free software for analyzing log files.% cite Zheng 2015
+Log file analysis will be further discussed in chapter \ref{chap:log_file}.
+
 % [Shift]
+What was initially mainly interesting for maintenance and IT staff, who for example answered the question of how many 404s occurred on the server, developed into an interesting website information pool for marketers.
 
-What was in the beginning mainly interesting for maintenance and IT personal who answered questions such as how many 404s occurred on the server, turned into a website information pool interesting for marketers.
-
-With the increase in available information it came clear that the data can be used for more than just analysing the servers behaviour.
-But log file analysis was not sufficient enough to get details about how users interact with the website.
-Web analytics experienced a transformation from log analysis logging to user data tracking, analysis and reporting.
+As the available information increased, it became clear that the data could be used for more than just analyzing server behavior.
+But log file analysis was not enough to provide details about how users interact with the site.
+Web analytics underwent a transformation from log analysis to user data tracking, analysis, and reporting.
 
 Croll describes the move of analytics from IT to marketing with three steps: %cite Croll 2009
 \begin{enumerate}
-\item JavaScript made log files redundant and also empowered marketers to maintain and implement their analytics solutions, unravelling their dependence from the IT department.
-\item The introduced advertisement economy from search engines like Google led to a new focus for analysts on user attraction and conversion rates.
-\item New cost models enabled the marketers to pay for the analytics service according to the websites traffic, instead of paying for hard- and software in advance. The expenses for analytics were therefore coupled with the websites traffic and ideally revenue.
+\item JavaScript eliminated the need for log files and enabled marketers to maintain and deploy their analytics solutions themselves, making them less dependent on IT.
+\item The introduced advertising economy of search engines like Google led to a new focus of analysts on user attraction and conversion rates.
+\item New cost models allowed marketers to pay for the analytics service based on website traffic, rather than paying upfront for hardware and software. Analytics spend was thus linked to website traffic and, ideally, revenue.
 \end{enumerate}
 
-
 % [For Marketing: JS]
-
-In 1990 the \textit{WWW} kicked off and one of the first widely used browsers \textit{Mosaic} launched in 1993.
+In 1990 the WWW started and in 1993 one of the first widely used browsers \textit{Mosaic} was launched.
 At the same time \textit{WebTrends} developed and released one of the first analytics software.
 A lot more services followed, such as \textit{WebSideStory} in 1996 % cite Zheng 2015
 or \textit{Quantified} by Urchin in the same year.%cite croll 2009
 
-The page tagging technique enabled the collection of not only technical data, but also business relevant information.
-Visitors and their behaviour were the main concern and coined to questions such as: How is this user behaviour linked to a purchase? If a user buys shoes, will he also buy socks?
-The development and implementation of Cookies enabled the identification of unique users.
-Not only business related questions were asked and answered, but also investigations of performance and usability.
-% cite 2009 Croll p. 69
-
-%TODO
-log file analsysis chatper x
-More details about page tagging in chapter X.
+Page tagging made it possible to collect not only technical data, but also business-relevant information.
+Visitors and their behaviour were the focus, shaping questions like: How is this user behaviour related to a purchase? If a user buys shoes, will he also buy socks?
+The development and implementation of cookies enabled the identification of unique users.
+Not only business-relevant questions were asked and answered, but also studies on performance and usability. % cite 2009 Croll p. 69
+More details about page tagging can be found in chapter \ref{chap:page_tagging}.
 \\
 
-
-% 2014 Singal
+% [WAA, Today]
 In 2003, Edwards, Eisenberg and Sterne founded the \textit{Web Analytics Association} (WAA).
-The WAA is brings together and supports all actors of web analytics such as users, marketers and IT specialists on an international stage.
-Due to the digitalization and its all-embracing impact, WAA renamed itself to \textit{Digital Analytics Association} (DAA), as the web is not the only domain where users leave their digital footprint.
+The WAA brings together and supports all the players in web analytics such as users, marketers and IT specialists on an international stage.
+Due to digitalization and its all-encompassing effects, the WAA has renamed itself \textit{Digital Analytics Association} (DAA) in 2012 because the web is not the only area where users leave their digital footprint.
 % cite 2014 Singal
 
-As already described in the above section, the numbers of participants and users of the internet are still increasing and all Fortune 500 companies operate websites, with web analytics as a centrepiece tool in marketing. %cite Kumar 2019
+As described in the section above, participant and user numbers on the Internet continue to rise and now all Fortune 500 companies operate websites, with web analytics a key marketing tool.%cite Kumar 2019
 
 Some of the most established tools today are \textit{Google Analytics}, \textit{Adobe SiteCatalyst}, \textit{Webtrekk} and \textit{Piwik}. % cite Heinemann 2020 4.1.4
+Google Analyitcs will be further discussed in chapter \ref{??}.
 
-%TODO rewrite
-Google Analyitcs will be discussed in chapter X.
-
-Zheng et al. identify several future trends for web analytics, such as mobile web and application specific analytics like video-, search-, learning- or social media analytics. %cite Zheng 2015
-
-
-%TODO metrics will be discussed in chapter X
+% [Future]
+Looking ahead, Zheng et al. identify several trends for web analytics, such as mobile web and application-specific analytics like video, search, learning, or social media analytics. %cite Zheng 2015
 
 
-
-%TODO next section will be about process
-
+% TODO next section will be about process ??
 
 % TODO add Image: Genesis of Web Analytics (nice graphic) with WAA, DAA ? should remove then in-page analytics arrow
+
 % TODO add somewhere Some methods about tool selection are described in chapter X.
 
 
 % ------------------------------------------
 
+%TODO CONTINUE HERE
 
 
 \subsection{Web Analytics Process}
@@ -444,7 +422,10 @@ Defining the right KPIs and align them with the business goals is a crucial step
 
 
 \subsubsection{WAA Process Guide}
+
 %TODO
+% compare both processes directly with a table with 2 columns?
+
 Web Analytics Association provides a nine step guide:% cite 2009 Jansen ch. 6.2
 \begin{enumerate}
 \item Identify key stake holders
@@ -493,6 +474,7 @@ In this section, I will briefly describe both mechanisms and compare them to eac
 
 
 \subsubsection{Log File Analysis}
+\label{chap:log_file}
 
 As already described in the above section X, log file analysis is about getting insights from the web servers log files records.
 Log file analysis is considered to be the traditional and original approach to web analytics. %cite 2011 Marek and 2015 Zheng
@@ -543,6 +525,7 @@ Some disadvantages are:
 
 
 \subsubsection{Page Tagging}
+\label{chap:page_tagging}
 
 In a nutshell, page tagging describes the analytics method of including JavaScript on the web page, which collects data and sends it to an analytics server. %cite 2011 Marek
 For this, JavaScript has to be included on every page which should be analysed. %cite 2009 Waisberg
@@ -596,6 +579,7 @@ Some disadvantages are mainly privacy concerns, the analytics process relies on 
 
 
 \subsection{Web Performance}
+\label{chap:web_performance}
 
 
 % [Definitions]
