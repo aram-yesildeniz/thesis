@@ -22,19 +22,17 @@
 
 
 \section{E-Commerce}
-\label{chap:e-commerce}
+\label{chapter:e-commerce}
 
-[tbd]
-%TODO reference chapters here as well
-What the reader can expect in chapter \ref{chap:e-commerce}.
+This chapter gives an introduction to e-commerce.
+Before going into the details, the emergence of e-commerce is described, starting with the Internet in section \ref{chapter:internet}.
+In the following, I will briefly discuss the history of e-commerce and its types in section \ref{chapter:ecommerce_subchapter}.
+The relationship between user satisfaction and the website performance is covered in section \ref{chapter:user_satisfaction}, which then leads to the chapter \ref{chapter:web_analytics} which is about web analytics.
 
-Some words about where it all began: THe Internet
-E-COmmerce: History, types
-
-User satisfaction and performance, which leads to the chapter X about web analytics.
 
 
 \subsection{The Internet}
+\label{chapter:internet}
 
 In the last 50 years, a new technology emerged, spread over the entire world and influenced many aspects of most peoples life.
 Within the turmoil of the cold war, the United State's \textit{Advanced Research Projects Agency} (ARPA) established in 1957 a communication network to bring together universities and their researches all around the country in order to be able compete against the USSR \cite{2011Cohen}.
@@ -55,6 +53,8 @@ Before discussing the term "e-commerce" and take a grasp at its history and type
 
 
 \subsection{E-Commerce}
+\label{chapter:ecommerce_subchapter}
+
 
 \subsubsection{Introduction}
 
@@ -119,7 +119,7 @@ There are several types in e-commerce and they emerge from the possible combinat
 Business to Consumer in e-commerce describes basically online shopping, by means of a business offering its services and products to the consumer over the \textit{WWW}.
 The consumer can browse through the products and services presented within an online shop and order them directly via the website.
 A variety of payment and delivery options conclude the B2C type \cite{2020Heinemann}.
-% cite Heinemann with correct page p. 75 ?
+% TODO cite Heinemann with correct page p. 75 ?
 
 %TODO where to put this sentence?
 For an aspiring business, there are several ready-made software solutions for setting up an online store, as for example. \textit{Shopify}, \textit{ePages}, \textit{Magento} or \textit{WooCommerce} \cite{2019Steireif}.
@@ -148,15 +148,15 @@ In the next section, I will describe the findings between the correlation betwee
 
 
 \subsection{User Satisfaction and Performance}
-\label{chap:user_satisfaction}
+\label{chapter:user_satisfaction}
 
 % [User Satisfaction]
 The aim of this thesis is not to deep dive into terms and concepts or the non-trivial problem of defining user satisfaction, usability or the like.
-Therefore the term user satisfaction is in this context loosely defined as how happy the user is with the website he or she interacts with.\footnote{For a discussion cf. "User satisfaction measurement" in X} %TODO cite 2010 Islam
+Therefore the term user satisfaction is in this context loosely defined as how happy the user is with the website he or she interacts with.\footnote{For a discussion cf. "User satisfaction measurement" in \cite{2010Islam}}
 
 % [Performance]
 Performance can be understood as the speed of an online shop, e.g. how long it takes the page to load, how quickly the user can interact with the page, and how the user perceives the performance of the website.
-Later I will discuss that measuring performance is not so trivial and there are a lot of ideas and metrics to measure it. %TODO in chapter X
+In chapter X I will discuss that measuring performance is not so trivial and there are a lot of ideas and metrics to measure it. %TODO in chapter X
 
 
 % [SpeedHub]
@@ -166,22 +166,17 @@ A plethora of information and studies about the phenomenon of user satisfaction 
 Not only are studies and reports available on the hub, but also collections of videos and blog posts.
 
 % [code.talks 2019]
-In his talk at code.talks 2019, Felix Gessert summarizes the results and provides insights into the most important aspects and questions of the study so far: %cite 2019 Gessert
+In his talk at code.talks 2019, Felix Gessert summarizes the results and provides insights into the most important aspects and questions of the study so far \cite{2019Gessert}:
 
 % [User Profile and Psychology]
 The first observation when asking for a correlation between the performance of a system and user satisfaction is that users need to be differentiated, which leads to the concept of a \textit{User Profile}: In terms of gender, young women are the most demanding consumers and are less likely to buy from slow sites.
 In general, people between the ages of 18 and 24 have higher expectations of a site's speed than their older counterparts.
 
 There are also differences between nations and regions, for example people from Japan have the highest expectations, which is almost certainly related to technological advancements in that country.
-Not only the expectations themselves differ geographically, but also how speed influences the users, for example "speed influences New Yorkers more than Californians."
-% cite 
-% Think Fast, The 2019 Page Speed Report Stats & Trends for Marketers, Unbounce, 2019
-% Brain Food, Speed Matters, Designing for Mobile Performance, Google, 2017
+Not only the expectations themselves differ geographically, but also how speed influences the users, for example "speed influences New Yorkers more than Californians." \cite{2019Thinkfast}, \cite{2017Brainfood}
 
 What all users have in common is their human psychology. 
-In terms of performance, researchers generally suggest keeping wait times below one second to keep users' attention. (cf. also Performance perception in chapter X). 
-% cite I. Girgorik, High performance browser networking, O'Reilly Media 2013
-% and Jakob Nielsen, Usability Engineering, Morgan Kaufmann, 1994
+In terms of performance, researchers generally suggest keeping wait times below one second to keep users' attention. (cf. "Performance perception" in \ref{chapter:web_performance}). 
 
 % [Devices]
 After considering the user himself, the next step is to examine the influence of the device used: Studies show that mobile users are more likely to buy products and services than their colleagues using a desktop computer, where iOS users have generally more expectations regarding site speed.
@@ -251,7 +246,7 @@ Usually, the users of the system are randomly split into two groups and testing 
 It is advantageous, also compared to other experimental set-ups, that the users and participants are not aware that they are part of an experiment, which leads to fewer biases and side effects.
 In order to measure the differences and the user behaviour, web analytics has to be integrated within the system. % cite Kohavi 2016
 
-A brief and general discussion of controlled experiments in computer science can be found in chapter X.  %link chapter about controlled experiments
+A brief and general discussion of controlled experiments in computer science can be found in chapter X.  %TODO link chapter about controlled experiments
 \\
 
 % [Transition to Web Analytics]
@@ -284,15 +279,17 @@ What web analytics exactly is, what tools are available and what a web analytics
 
 
 \section{Web Analytics}
+\label{chapter:web_analytics}
 
-%TODO reference chapters
 This chapter is about web analytics.
-I will first discuss definitions and give a short introduction to web analytics.
-Then, a brief history of web analytics will be given to help contextualize.
-After characterizing two web analytics process descriptions, data collection methods will be discussed. Finally, web performance will be explained, which leads the way to the research questions.
+I will first discuss definitions and give a short introduction to web analytics in section \ref{chapter:web_analytics_introduction}.
+Then, a brief history of web analytics will be given in section \ref{chapter:web_analytics_history} to help contextualize.
+After characterizing two web analytics process descriptions in section \ref{chapter:web_analytics_process}, data collection methods will be discussed in section \ref{chapter:web_analytics_logfile_pagetagging}.
+Finally, web performance will be explained in \ref{chapter:web_performance}, which leads the way to the research questions.
 
 
 \subsection{Introduction}
+\label{chapter:web_analytics_introduction}
 
 % [Definitions]
 What is \textit{Web Analytics}?
@@ -324,7 +321,7 @@ Moving from definitions to the practical realm, Zheng et al. describe four main 
 \item Improving the overall design and usability, for example of the navigation or layout of the website.
 \item Optimize for your business goals: Whatever goals the business is trying to achieve, generating conversions is the goal.
 \item Monitor campaigns: Understand and measure the success of advertising campaigns.
-\item Improve performance by examining metrics such as page load time. This is discussed further in chapter \ref{chap:web_performance}.
+\item Improve performance by examining metrics such as page load time. This is discussed further in chapter \ref{chapter:web_performance}.
 \end{itemize}
 
 % [Challenges]
@@ -343,7 +340,7 @@ Privacy and the information collected from visitors and customers can be another
 
 
 \subsection{Brief History}
-\label{chap:web_analytics_history}
+\label{chapter:web_analytics_history}
 
 The history of web analytics can be described as a transformation from an IT domain and a technical log file analysis tool to a sophisticated, polymorphic tool for marketers.
 
@@ -355,7 +352,7 @@ Thanks to the standardized format of the log files, it was possible to create so
 \textit{GetStats} was one of the first tools which generated statistics and user friendly output for analysts.
 % cite Croll 2009 p 69
 In 1995, Dr. Stephen Turner developed \textit{Analog}, the first free software for analyzing log files.% cite Zheng 2015
-Log file analysis will be further discussed in chapter \ref{chap:log_file}.
+Log file analysis will be further discussed in chapter \ref{chapter:log_file}.
 
 % [Shift]
 What was initially mainly interesting for maintenance and IT staff, who for example answered the question of how many 404s occurred on the server, developed into an interesting website information pool for marketers.
@@ -381,7 +378,7 @@ Page tagging made it possible to collect not only technical data, but also busin
 Visitors and their behaviour were the focus, shaping questions like: How is this user behaviour related to a purchase? If a user buys shoes, will he also buy socks?
 The development and implementation of cookies enabled the identification of unique users.
 Not only business-relevant questions were asked and answered, but also studies on performance and usability. % cite 2009 Croll p. 69
-More details about page tagging can be found in chapter \ref{chap:page_tagging}.
+More details about page tagging can be found in chapter \ref{chapter:page_tagging}.
 \\
 
 % [WAA, Today]
@@ -410,6 +407,7 @@ Looking ahead, Zheng et al. identify several trends for web analytics, such as m
 
 
 \subsection{Web Analytics Process}
+\label{chapter:web_analytics_process}
 
 
 Web analytics can be described as a process in which the main goal is usually to increase sales.
@@ -477,16 +475,17 @@ The WAA process is a finer-grained and more practical approach, with Waisberg an
 
 
 \subsection{Log File Analysis and Page Tagging}
+\label{chapter:web_analytics_logfile_pagetagging}
 
 There are four main methods of collecting data for web analytics: through log file analysis, JavaScript page tagging, web beacons, and packet sniffing. %cite 2009 Waisberg
 
-As already mentioned in chapter \ref{chap:web_analytics_history},  the two most important methods of data collection are log file analysis and page tagging.
+As already mentioned in chapter \ref{chapter:web_analytics_history},  the two most important methods of data collection are log file analysis and page tagging.
 In this section I will briefly describe and compare both mechanisms.
 
 
 
 \subsubsection{Log File Analysis}
-\label{chap:log_file}
+\label{chapter:log_file}
 
 
 As already described, the log file analysis is about gaining knowledge from the log file records of the web server.
@@ -539,7 +538,7 @@ Some disadvantages of log file analysis are:
 
 
 \subsubsection{Page Tagging}
-\label{chap:page_tagging}
+\label{chapter:page_tagging}
 
 In a nutshell, page tagging describes the analysis method used to incorporate JavaScript into the website, which collects data and sends it to an analysis server. %cite 2011 Marek
 To do this, JavaScript must be integrated on every page to be analysed.  %cite 2009 Waisberg
@@ -596,14 +595,14 @@ that every page that is supposed to collect data must contain the analytics scri
 
 
 \subsection{Web Performance}
-\label{chap:web_performance}
+\label{chapter:web_performance}
 
 % [Introduction]
 This chapter gives only a brief overview of the various aspects of web performance.
 Reference is made below to the appropriate sections that cover the topics in more detail.
 
 % [Definitions]
-As already described in chapter \ref{chap:user_satisfaction}, web performance plays a role that cannot be neglected for user satisfaction and business success.
+As already described in chapter \ref{chapter:user_satisfaction}, web performance plays a role that cannot be neglected for user satisfaction and business success.
 The above studies show that increasing website performance also increases sales, or as Google states it: "Performance plays a major role in the success of any online venture".\footnote{\url{https://web.dev/why-speed-matters/} [03.06.2021]}
 
 The MDN Web Docs identify multiple areas of web performance:\footnote{\url{https://developer.mozilla.org/en-US/docs/Learn/Performance/What_is_web_performance} [03.06.2021]}
@@ -629,7 +628,7 @@ As I will describe in chapter X, there are several metrics available that attemp
 \paragraph{Performance perception}
 
 The perception of performance is generally subjective.
-As already seen in chapter \ref{chap:user_satisfaction}, there are some quantifiable time intervals that correlate with human psychology regarding the received performance.
+As already seen in chapter \ref{chapter:user_satisfaction}, there are some quantifiable time intervals that correlate with human psychology regarding the received performance.
 Table \ref{table:perception} contains "unofficial rule of thumb" for delay thresholds.  %cite 2013 Grigorik https://hpbn.co/primer-on-web-performance/
 
 
@@ -676,6 +675,7 @@ There are several methods of measuring performance.
 
 
 \section{Research Question}
+\label{chapter:research_question}
 
 The e-commerce industry is booming and there are no signs that this trend is reversing; on the other hand.
 Performance plays an important role in terms of customer satisfaction and how this directly affects business revenue.

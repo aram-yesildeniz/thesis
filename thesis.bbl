@@ -26,6 +26,19 @@
 \newblock DOI 10.4018/jte.2011040104. --
 \newblock ISSN 1947--3451, 1947--346X
 
+\bibitem[GA]{2017Brainfood}
+\textsc{Google} ; \textsc{Awwwards}:
+\newblock \emph{Speed Matters. Designing for Mobile Performance}.
+\newblock \url{https://www.awwwards.com/brain-food-perceived-performance/},
+  Abruf: 2021-05-06
+
+\bibitem[Ges21]{2019Gessert}
+\textsc{Gessert}, Felix:
+\newblock \emph{Mobile Site Speed and the Impact on E-Commerce}.
+\newblock \url{https://youtu.be/RTt1RfMUvOQ}.
+\newblock \,Version:\,05.06.2021. --
+\newblock code.talks 2019
+
 \bibitem[Hei20]{2020Heinemann}
 \textsc{Heinemann}, Gerrit:
 \newblock \emph{Der neue {Online}-{Handel}: {Geschäftsmodelle},
@@ -37,6 +50,14 @@
 \newblock E-Commerce: History and Impact on the Business and Consumers.
 \newblock {In: }\emph{International Journal of Engineering Science} 9 (2019),
   Nr. 3
+
+\bibitem[IKOK10]{2010Islam}
+\textsc{Islam}, A.K.M.~N. ; \textsc{Koivulahti-Ojala}, Mervi  ;
+  \textsc{K{\"a}k{\"o}l{\"a}}, Timo:
+\newblock A lightweight, industrially-validated instrument to measure user
+  satisfaction and service quality experienced by the users of a UML modeling
+  tool.
+\newblock {In: }\emph{AMCIS 2010 Proceedings} 8 (2010)
 
 \bibitem[LO20]{2020Lang}
 \textsc{Lang}, Gil ; \textsc{Otten}, Steffen:
@@ -75,6 +96,12 @@
 \newblock \url{http://dx.doi.org/10.5430/ijba.v8n7p130}. --
 \newblock DOI 10.5430/ijba.v8n7p130. --
 \newblock ISSN 1923--4015, 1923--4007
+
+\bibitem[Unb]{2019Thinkfast}
+\textsc{Unbounce}:
+\newblock \emph{Think Fast: The 2019 Page Speed Report Stats \& Trends for
+  Marketers}.
+\newblock \url{https://unbounce.com/page-speed-report/}, Abruf: 2021-05-06
 
 \bibitem[Wik16]{wiki:wissarbeit}
 \textsc{Wikipedia}:
