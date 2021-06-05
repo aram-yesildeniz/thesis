@@ -22,9 +22,16 @@
 
 
 \section{E-Commerce}
+\label{chap:e-commerce}
 
 [tbd]
-What the reader can expect in this chapter 1.1
+%TODO reference chapters here as well
+What the reader can expect in chapter \ref{chap:e-commerce}.
+
+Some words about where it all began: THe Internet
+E-COmmerce: History, types
+
+User satisfaction and performance, which leads to the chapter X about web analytics.
 
 
 \subsection{The Internet}
@@ -141,6 +148,7 @@ In the next section, I will describe the findings between the correlation betwee
 
 
 \subsection{User Satisfaction and Performance}
+\label{chap:user_satisfaction}
 
 % [User Satisfaction]
 The aim of this thesis is not to deep dive into terms and concepts or the non-trivial problem of defining user satisfaction, usability or the like.
@@ -223,7 +231,7 @@ In commercial terms, one can conclude that page speed equals money.
 
 In order to properly test the effects of performance on users, a scientific method is required.
 A/B testing as a controlled experiment is one of them and will be explained in the next section.
-After discussing A/B testing, I'll move on to examining \textit{Web Analytics}, a term that encompasses methods, tools, and instruments for companies to better understand their business and customers.
+After discussing A/B testing, I will move on to examining \textit{Web Analytics}, a term that encompasses methods, tools, and instruments for companies to better understand their business and customers.
 
 
 \subsubsection{A/B Testing}
@@ -277,6 +285,7 @@ What web analytics exactly is, what tools are available and what a web analytics
 
 \section{Web Analytics}
 
+%TODO reference chapters
 This chapter is about web analytics.
 I will first discuss definitions and give a short introduction to web analytics.
 Then, a brief history of web analytics will be given to help contextualize.
@@ -334,6 +343,7 @@ Privacy and the information collected from visitors and customers can be another
 
 
 \subsection{Brief History}
+\label{chap:web_analytics_history}
 
 The history of web analytics can be described as a transformation from an IT domain and a technical log file analysis tool to a sophisticated, polymorphic tool for marketers.
 
@@ -398,52 +408,51 @@ Looking ahead, Zheng et al. identify several trends for web analytics, such as m
 
 % ------------------------------------------
 
-%TODO CONTINUE HERE
-
 
 \subsection{Web Analytics Process}
 
 
-Web Analytics can be described as a process, where as a rule the main goal is to increase revenue.
-In literature, two main ideas and process flows are indicated, the first one being from the Web Analytics Association, and the second one derived from industries best practices.
-They will be concisely described in this section.
+Web analytics can be described as a process in which the main goal is usually to increase sales.
+The literature cites two main ideas and processes, the first from the Web Analytics Association and the second from industry best practices.
+They are briefly described in this section.
 
-What both processes have in common is that they aim for improving the website and consequently increase the business revenue.
+Both processes have in common that they are aimed at improving the website and thus increasing business revenue.
 
-\textit{Key Performance Indicators} (KPIs) are the ideal tool to instrument web analytics and they help to determine areas and room for improving.
-They are an integral part and play a major role in any web analytics process as they provide an "in-depth picture of visitor behavior on a site". %cite 2009 Jansen ch. 6.2
+% [KPIs]
+\textit{Key Performance Indicators} (KPIs) are the ideal tool for the instrumentation of web analytics and help to identify areas and potential for improvement.
+They are an integral part and play an important role in any web analytics process as they provide a "in-depth picture of visitor behavior on a site". %cite 2009 Jansen ch. 6.2
 
-KPIs can differ according to the business they operate it.
-For commercial domains, common KPIs are conversion rates, average order or visit value, customer loyalty, bounce rate, and so on.% cite 2014 Singal
-Defining the right KPIs and align them with the business goals is a crucial step in any web analytics process.
+KPIs can differ depending on the business in which they operate.
+For commercial domains, common KPIs are conversion rates, average order or visit value, customer loyalty, bounce rate, etc. % cite 2014 Singal
 
+Defining the right KPIs and aligning them with business goals is a critical step in any web analytics process.
+
+% TODO add more ?:
 % 2015 Bekavac:  KPIs for commercial model: Ratio of new to returning visitors, percentage of new visitors, referring domains, search keywords/phrases, average order value, key conversion rates
 
 
 
 \subsubsection{WAA Process Guide}
 
-%TODO
-% compare both processes directly with a table with 2 columns?
+% TODO compare both processes directly with a table with 2 columns?
 
-Web Analytics Association provides a nine step guide:% cite 2009 Jansen ch. 6.2
+The Web Analytics Association offers a web analytics guide that consists of nine steps. They are:% cite 2009 Jansen ch. 6.2
 \begin{enumerate}
 \item Identify key stake holders
-\item define primary goals of website and prioritize them
-\item identify most important site visitors
-\item determine key performance indicators
-\item Identify and Implement the Right Solution
-\item Use Multiple Technologies and Methods
-\item Make Improvements Iteratively
-\item Hire and Empower a Full-Time Analyst
-\item Establish a Process of Continuous Improvement
+\item Define primary goals of website and prioritize them
+\item Identify most important site visitors
+\item Determine key performance indicators
+\item Identify and implement the right solution
+\item Use multiple technologies and methods
+\item Make improvements iteratively
+\item Hire and empower a full-time analyst
+\item Establish a process of continuous improvement
 \end{enumerate}
-
 
 
 \subsubsection{Industries Best Practices}
 
-Waisberg and Kaushik derive from industries best practices a five step process with the main goal, improve website, increase revenue, in mind:% cite 2009 Waisberg
+On the contrary, Waisberg and Kaushik derive a five-step process from industry best practices with the main goal of improving the website and increasing sales: % cite 2009 Waisberg
 
 \begin{itemize}
 \item Define Goals
@@ -453,12 +462,14 @@ Waisberg and Kaushik derive from industries best practices a five step process w
 \item Implement Changes
 \item Repeat last two steps
 \end{itemize}
-% TODO add graphic instead of list
+
+% TODO add graphic instead of list ??
 
 
 % [Comparison]
-Comparing both proposed processes, it is evident that both put the identification and awareness of the main business goals upfront.
-WAAs process is are more fine grained and practical approach, where as Waisberg and Kaushiks flow abstracts the principal activities.
+When comparing the two proposed processes, it becomes clear that both focus on identifying and being aware of the most important business goals.
+The WAA process is a finer-grained and more practical approach, with Waisberg and Kaushik abstracting the main activities.
+
 
 
 % ------------------------------------------
@@ -466,40 +477,42 @@ WAAs process is are more fine grained and practical approach, where as Waisberg 
 
 
 \subsection{Log File Analysis and Page Tagging}
-%TODO
-There are four main ways to collect data for web analytics: Logs, JavaScript Tagging (or page tagging), web beacons and packet sniffing. %cite 2009 Waisberg
 
-As already mentioned in chapter X,  the two main data collection methods are Log file analysis and Page Tagging.
-In this section, I will briefly describe both mechanisms and compare them to each other.
+There are four main methods of collecting data for web analytics: through log file analysis, JavaScript page tagging, web beacons, and packet sniffing. %cite 2009 Waisberg
+
+As already mentioned in chapter \ref{chap:web_analytics_history},  the two most important methods of data collection are log file analysis and page tagging.
+In this section I will briefly describe and compare both mechanisms.
+
 
 
 \subsubsection{Log File Analysis}
 \label{chap:log_file}
 
-As already described in the above section X, log file analysis is about getting insights from the web servers log files records.
-Log file analysis is considered to be the traditional and original approach to web analytics. %cite 2011 Marek and 2015 Zheng
-Once the users enters a URL in the browser and hits enter, the request arrives at some web server.
-The server then creates an entry in a log file and sends back the requested page or resource as a response to the client. % cite % 2009 Waisberg
 
-The information within the log entry can vary depending on the log format, mostly provided are the IP, browser, timestamp, time taken, bytes transferred, whether a cache hit occured and the referrer. %cite 2009 Waisberg
-The standardized Common Log Format provides host, ident, authuser, date, request, status, bytes, as seen in example X. \footnote{\url{https://www.w3.org/Daemon/User/Config/Logging.html\#common-logfile-format} [03.06.2021]}
+As already described, the log file analysis is about gaining knowledge from the log file records of the web server.
+Log file analysis is considered to be the traditional and original approach to web analytics.%cite 2011 Marek and 2015 Zheng
+As soon as the user types a URL into the browser and presses the enter key, the request arrives at a web server.
+The server then creates an entry in a log file and sends the requested page or resource back to the client in response. % cite 2009 Waisberg
+The information within the log entry can vary depending on the log format, usually IP, browser, time stamp, time required, transferred bytes, whether a cache hit occurs and the referrer is specified. %cite 2009 Waisberg
+The standardized Common Log Format provides host, ident, authuser, date, request, status, bytes, as can be seen in listing \ref{lst:log}.\footnote{\url{https://www.w3.org/Daemon/User/Config/Logging.html\#common-logfile-format} [03.06.2021]}
 
 \begin{center}
-\begin{lstlisting}[caption={Position 1}, language=bash, numbers=none, basicstyle=\tiny]
+\begin{lstlisting}[caption={CLF}, language=bash, numbers=none, basicstyle=\tiny, label={lst:log}]
 127.0.0.1 user-identifier frank [10/Oct/2000:13:55:36 -0700] "GET /apache_pb.gif HTTP/1.0" 200 2326
 \end{lstlisting}
 \end{center}
 % TODO add caption
 
-Standard formats of log files and entries allow log file analysis software to process, evaluate and report valuable statistics to users, such as \textit{Analog}, \textit{Webalizer} or \textit{AWStats}. %cite 2015 Zheng
+Standard formats of log files and entries enable log file analysis software to process, evaluate and report valuable statistics such as \textit{Analog}, \textit{Webalizer} or \textit{AWStats} to users. %cite 2015 Zheng
 
 
 % [Pro]
-Following are some points describing the advantages and disadvantages of log file analysis.
-Advantages of log file analysis are:
+Below are a few points that describe the pros and cons of log file analysis.
+The advantages of log file analysis are: 
+% TODO just cite here above all
 
 \begin{itemize}
-\item JavaScript and Cookies are not required on the client side
+\item JavaScript and cookies are not required on the client side
 \item Maintainer of the website and server owns the data %cite 2009 Waisberg
 \item Bots and web crawler requests are also logged %cite 2009 Waisberg
 \item History of data is available %cite 2011 Nakatani
@@ -512,11 +525,12 @@ Advantages of log file analysis are:
 
 
 % [Con]
-Some disadvantages are:
+Some disadvantages of log file analysis are:
 
 \begin{itemize}
 \item Log entries provide mainly technical information, which may not be very useful for user behaviour analysis. Business related metrics such as bounce rates are not available. % cite Marek 2011
-\item Only direct requests from the client to the web server are logged: Any user interaction in the web browser, which does not fires a request, is not getting logged. Also responses from caches and proxies are not visible in the web servers log file. Only interactions with the web server are logged.%cite 2015 Zheng
+\item Only direct requests from the client to the web server are logged: Any user interaction in the web browser that does not trigger a request is not logged. Responses from caches and proxies are also not visible in the web server's log file. Only interactions with the web server are logged
+%cite 2015 Zheng
 \end{itemize}
 
 
@@ -527,47 +541,50 @@ Some disadvantages are:
 \subsubsection{Page Tagging}
 \label{chap:page_tagging}
 
-In a nutshell, page tagging describes the analytics method of including JavaScript on the web page, which collects data and sends it to an analytics server. %cite 2011 Marek
-For this, JavaScript has to be included on every page which should be analysed. %cite 2009 Waisberg
-Page tagging is the main method used in web analytics today. %cite 2015 Zheng
+In a nutshell, page tagging describes the analysis method used to incorporate JavaScript into the website, which collects data and sends it to an analysis server. %cite 2011 Marek
+To do this, JavaScript must be integrated on every page to be analysed.  %cite 2009 Waisberg
+Page tagging is the most important method in web analytics today. %cite 2015 Zheng
 
-Croll provides a vivid graphic about the page tagging process which will be discussed here (fig. X). %cite Croll 2009
 
+Croll provides a graphic illustration (figure \ref{img:page_tagging}) of the page tagging process which is explained below. %cite Croll 2009
+
+\begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{page_tagging.png}
-% TODO add caption
+\caption{Page Tagging}
+\label{img:page_tagging}
 \end{center}
+\end{figure}
 
 The client (browser) requests a page from the web server (1, 2).
 Within the HTML file an external JavaScript resource, the analytics code, is linked and received from the analytics server (3, 4).
 The analytics script tracks and measures the user behaviour and eventually sends the data back to the analytics server (5, 6, 7).
 
-The collected data can also be stored in cookies, which persist data beyond one session and enable user identification, e.g. on his next page visit. %cite 2019 Kumar
+The data collected can also be stored in cookies, which contain data beyond a session and enable the user to be identified, e.g. the next time he visits the page. %cite 2019 Kumar
 
 
-The advantages and disadvantages of page tagging are as follows:
+The advantages and disadvantages of page tagging are as follows, starting with the pros:
+% TODO again put all references on top ?
 
 % [Pro]
 \begin{itemize}
 \item Every page visit is counted %cite 2009 Waisberg
-\item The analytics service is outsourced, which includes the storage of the data, but also data analysis and reporting %cite 2009 Waisberg
+\item The analytics service is outsourced, which includes the storage of the data, but also the data analysis and reporting %cite 2009 Waisberg
 \item Page tagging is rather easy to implement and favourable when the analyst does not have access to the web server %cite 2011 Marek
-\item Highly customizable: anything that JavaScript allows to measure, collect and track is obtainable. This also includes information about the client such as screen size, device used or color depth. %cite 2011 Nakatani
-\item Possibility to track events and actions such as mouse clicks that do not send requests to the web server. This is especially important for single-page or progressive web applications which do not fire requests that often. %cite 2011 Nakatani and 2015 Zheng
+\item Highly customizable: Everything that JavaScript enables to measure, collect, and track is available. This also includes information about the client such as screen size, device used or color depth. %cite 2011 Nakatani
+\item Ability to track events and actions such as mouse clicks that do not send requests to the web server. This is especially important for single-page or progressive web applications that do not generate requests as often.  %cite 2011 Nakatani and 2015 Zheng
 \item Mechanics of cookies provide identification of unique and repeat visitors %cite 2011 Nakatani
-\item Real time reporting %cite  2014 Singal 
+\item Real time reporting is possible %cite  2014 Singal 
 \end{itemize}
 
 
-
 % [Con]
-Some disadvantages are mainly privacy concerns, the analytics process relies on the usage of JavaScript and cookies which can be deactivated by the user %cite 2011 Marek
-, every page which should collect data needs to include the analytics script, and due to the use of a third party analytics service it is rather difficult to switch tools. %cite 2014 Singal
-
+Some drawbacks are mainly privacy concerns, that the analysis process relies on the use of JavaScript and cookies that can be disabled by the user,  %cite 2011 Marek
+that every page that is supposed to collect data must contain the analytics script and due to the use of a third party analytics service it is pretty difficult to switch tools %cite 2014 Singal
 
 % TODO 2017 Hassler ch. 2 ??
 
-% TODO web beacons and packet sniffig ?
+% TODO web beacons and packet sniffig ?:
 % 2011 Marek
 % 2011 Nakatani
 % 2014 Singal
@@ -581,11 +598,13 @@ Some disadvantages are mainly privacy concerns, the analytics process relies on 
 \subsection{Web Performance}
 \label{chap:web_performance}
 
+% [Introduction]
+This chapter gives only a brief overview of the various aspects of web performance.
+Reference is made below to the appropriate sections that cover the topics in more detail.
 
 % [Definitions]
-
-As already described in chapter X, web performance plays a non negligible role regarding user satisfaction and business success.
-The above referenced studies demonstrate that increasing the websites performance also increases the revenue, or as Google states it: "Performance plays a major role in the success of any online venture".\footnote{\url{https://web.dev/why-speed-matters/} [03.06.2021]}
+As already described in chapter \ref{chap:user_satisfaction}, web performance plays a role that cannot be neglected for user satisfaction and business success.
+The above studies show that increasing website performance also increases sales, or as Google states it: "Performance plays a major role in the success of any online venture".\footnote{\url{https://web.dev/why-speed-matters/} [03.06.2021]}
 
 The MDN Web Docs identify multiple areas of web performance:\footnote{\url{https://developer.mozilla.org/en-US/docs/Learn/Performance/What_is_web_performance} [03.06.2021]}
 \begin{itemize}
@@ -596,16 +615,23 @@ The MDN Web Docs identify multiple areas of web performance:\footnote{\url{https
 \item Performance measurements
 \end{itemize}
 
-\paragraph{Reducing load time} The question what makes websites slow is discussed in chapter X.
+%TODO add chapter references
+\paragraph{Reducing load time}
 
-\paragraph{Usability and interactivity} As I will describe in chapter X, several metrics are available which try to reflect and approximate performance areas such as load time, smoothness and interactivity, and as well as for the distinction between technical- and user perceived performance, specific metrics are available.
+The question of what makes websites slow is covered in chapter X.
+
+
+\paragraph{Usability and interactivity}
+
+As I will describe in chapter X, there are several metrics available that attempt to reflect areas of performance such as load time, smoothness, and interactivity, and specific metrics are available as well as for differentiating between technical and user-perceived performance.
 
 
 \paragraph{Performance perception}
 
-The perception of performance is in general subjective.
-As already seen in chapter X, there are some quantifiable time intervals which correlate to the human psychology regarding received performance.
-Table X provides "unofficial rule of thumb" thresholds of delay. %cite 2013 Grigorik https://hpbn.co/primer-on-web-performance/
+The perception of performance is generally subjective.
+As already seen in chapter \ref{chap:user_satisfaction}, there are some quantifiable time intervals that correlate with human psychology regarding the received performance.
+Table \ref{table:perception} contains "unofficial rule of thumb" for delay thresholds.  %cite 2013 Grigorik https://hpbn.co/primer-on-web-performance/
+
 
 \begin{table}[h]
 	\centering
@@ -620,13 +646,14 @@ Table X provides "unofficial rule of thumb" thresholds of delay. %cite 2013 Grig
 	> 10 s & Task is abandoned \\
 	\hline
 	\end{tabular}
+	\label{table:perception}
+	\caption{Rule of thumbs for delay}
 \end{table}
 % TODO caption and cite % 2013 Grigorik https://hpbn.co/primer-on-web-performance/
 
-Interpreting the numbers from the table, the statement can be made that keeping load times under one second is desirable.
-Thresholds for specific performance metrics and the psychological rationale of setting them will be discussed in chapter X.
+If one interprets the numbers from the table, one can make the statement that it is desirable to keep loading times below one second.
+Thresholds for certain performance metrics and the psychological rationale for setting them are discussed in chapter X.
 
-Performance measurement methods are described in chapter X.
 
 % TODO add this?
 % https://developer.mozilla.org/en-US/docs/Learn/Performance/why_web_performance
@@ -634,16 +661,11 @@ Performance measurement methods are described in chapter X.
 
 
 
-\paragraph{Measuring Methods and Metrics}
+\paragraph{Performance measurements}
 
-
-Multiple methods for measuring performance exist.
-Synthetic monitoring is covered in chapter X.
-RUM will be discussed in chapter X.
-
-The aspect that performance can not only be measured with a technical number but is much more meaningful and significant when the user perceived performance is captured, is also reflected in the available performance metrics.
-The performance metrics are discussed in detail in chapter X.
-
+There are several methods of measuring performance.
+\textit{Synthetic monitoring }is discussed in chapter X.
+\textit{Real User Monitoring} (RUM) is covered in chapter X.
 
 
 
@@ -655,36 +677,36 @@ The performance metrics are discussed in detail in chapter X.
 
 \section{Research Question}
 
-The e-commerce industry is booming and there are no signs that this trend will turn around; on the contrary.
-Performance plays a major role in this matter regarding customer satisfaction and how this directly impacts business revenue.
-To better understand visitors of e-commerce websites, page tagging is widely used and implemented.
+The e-commerce industry is booming and there are no signs that this trend is reversing; on the other hand.
+Performance plays an important role in terms of customer satisfaction and how this directly affects business revenue.
+To better understand e-commerce website visitors, page tagging is widely used and implemented.
 
-Within this field and context, multiple questions and issues may arise: Has page tagging an impact on the websites performance?
-Intuitively one may say that loading additional JavaScript will decrease the websites performance, depending on parameters such as the scripts size and the network condition.
-But are there more unforeseeable side effects?
-Do the different techniques of embedding a tracking script affect the collected and measured data?
-Will various included tracking scripts interfere with each other?
+Several questions and issues can arise in this area and context, such as: Does page tagging affect the website's performance?
+Intuitively, it can be said that loading additional JavaScript will reduce the performance of the website, depending on parameters such as the script size and network condition.
+But are there more unpredictable side effects?
+Do the various techniques of embedding a tracking script affect the data collected and measured?
+Will the various tracking scripts supplied interfere with each other?
 
-One hypothesis of this thesis is, that tracking tools slow down the monitored websites, that they decrease speed and performance of the website, and therefore affect user experience unfavourable.
+A hypothesis of this work is that tracking tools slow down the monitored websites, reduce the speed and performance of the website and thus have an unfavourable effect on the user experience.
 
-Those questions should be addressed within this thesis.
+These questions are to be investigated within the scope of this thesis.
 
 
 \subsection{Goal}
 
 This thesis has several goals:
 
-The internet and web sites are in general of complicated, complex, and convoluted nature.
-Although basic HTML structures are standardized, each website follows its own shape and is unique and sui generis.
-In order to conduct a controlled experiment and test hypothesises, one goal is to approximate real websites with an artificial, in the lab generated website, which is completely under control of the researcher and manipulable.
+The Internet and websites in general are complicated, complex, and tangled.
+Although basic HTML structures are standardized, each website follows its own form and is unique and sui generis.
+In order to conduct a controlled experiment and test hypotheses, one goal is to approximate real websites with an artificial, laboratory-generated website that is completely controlled and manipulated by the researcher.
 
-The goal is to establish a test environment which is reliable but also convincing in the objective to model and reproduce real life behaviour.
+The aim is to create a reliable, but also convincing test environment in order to model and reproduce real behaviour.
 
-Once the test environment is up and running, questions of how to measure performance need to be addressed.
-The goal is to measure, collect, visualize and analyse performance data.
+Once the test environment is up and running, performance measurement issues need to be addressed.
+The aim is to measure, collect, visualize and analyse performance data.
 
-As we will see in chapter X, many metrics for capturing performance exists.
-Another goal of this thesis is to establish something like a taxonomy of performance metrics.
+As we will see in chapter X, there are many metrics for measuring performance.
+Another goal of this work is to establish something like a taxonomy of performance metrics.
 
 
 
