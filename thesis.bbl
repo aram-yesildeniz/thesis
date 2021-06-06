@@ -96,6 +96,11 @@
 \newblock \,Version:\,05.06.2021. --
 \newblock code.talks 2019
 
+\bibitem[Gri13]{2013Grigorik}
+\textsc{Grigorik}, Ilya:
+\newblock \emph{High Performance Browser Networking}.
+\newblock Beijing ; Sebastopol, CA : O'Reilly, 2013
+
 \bibitem[Hei20]{2020Heinemann}
 \textsc{Heinemann}, Gerrit:
 \newblock \emph{Der neue {Online}-{Handel}: {Geschäftsmodelle},
