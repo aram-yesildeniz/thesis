@@ -8,6 +8,29 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
+\bibitem[Abe]{2008Aberdeen}
+\textsc{AberdeenGroup}:
+\newblock \emph{The Performance of Web Applications. Customers Are Won or Lost
+  in One Second.}
+\newblock
+  \url{https://info.headspin.io/hubfs/Analyst%20Reports/5136-RR-performance-web-application.pdf},
+  Abruf: 2021-06-06
+
+\bibitem[Akaa]{2017Akamai}
+\textsc{Akamai}:
+\newblock \emph{Akamai Online Retail Performance Report: Milliseconds Are
+  Critical}.
+\newblock
+  \url{https://www.akamai.com/de/de/about/news/press/2017-press/akamai-releases-spring-2017-state-of-online-retail-performance-report.jsp},
+  Abruf: 2021-06-06
+
+\bibitem[Akab]{2014Akamai}
+\textsc{Akamai}:
+\newblock \emph{Performance Matters. 9 Key Consumer Insights}.
+\newblock
+  \url{https://www.akamai.com/us/en/multimedia/documents/content/akamai-performance-matters-key-consumer-insights-ebook.pdf},
+  Abruf: 2021-06-06
+
 \bibitem[BAB{\etalchar{+}}20]{2020Bhatti}
 \textsc{Bhatti}, Anam ; \textsc{Akram}, Hamza ; \textsc{Basit}, Hafiz~M. ;
   \textsc{Khan}, Ahmed~U. ; \textsc{Naqvi}, Syeda Mahwish~R.  ; \textsc{Bilal},
@@ -17,6 +40,13 @@
   and Networking} 13 (2020), Nr. 2, S. 1449--1452. --
 \newblock ISSN 2233--7857 IJFGCN
 
+\bibitem[BGP15]{2015Bekavac}
+\textsc{Bekavac}, Ivan ; \textsc{Garbin~Prani{\v c}evi{\'c}}, Daniela:
+\newblock Web analytics tools and web metrics tools: An overview and
+  comparative analysis.
+\newblock {In: }\emph{Croatian Operational Research Review} 6 (2015), Oktober,
+  Nr. 2, S. 373--386
+
 \bibitem[CA11]{2011Cohen}
 \textsc{Cohen-Almagor}, Raphael:
 \newblock Internet {History}.
@@ -25,6 +55,33 @@
 \newblock \url{http://dx.doi.org/10.4018/jte.2011040104}. --
 \newblock DOI 10.4018/jte.2011040104. --
 \newblock ISSN 1947--3451, 1947--346X
+
+\bibitem[CKR]{2012Walmart}
+\textsc{Crocker}, Cliff ; \textsc{Kulick}, Aaron  ; \textsc{Ram}, Balaji:
+\newblock \emph{Real-User Monitoring at Walmart. SF \& SV Web Performance
+  Group.}
+\newblock
+  \url{https://www.slideshare.net/devonauerswald/walmart-pagespeedslide},
+  Abruf: 2021-06-06
+
+\bibitem[CP09]{2009Croll}
+\textsc{Croll}, Alistair ; \textsc{Power}, Sean:
+\newblock \emph{Complete Web Monitoring}.
+\newblock 1st ed.
+\newblock Beijing; Cambridge [Mass.] : O'Reilly, 2009
+
+\bibitem[Dev]{2019Deviceatlas}
+\textsc{DeviceAtlas}:
+\newblock \emph{Android v iOS market share 2019}.
+\newblock \url{https://deviceatlas.com/blog/android-v-ios-market-share}, Abruf:
+  2021-06-06
+
+\bibitem[For]{2017Forrester}
+\textsc{Forrester}:
+\newblock \emph{The Total Economic Impact Of Accelerated Mobile Pages}.
+\newblock
+  \url{https://amp.dev/static/files/The_Total_Economic_Impact_Of_AMP.pdf},
+  Abruf: 2021-06-06
 
 \bibitem[GA]{2017Brainfood}
 \textsc{Google} ; \textsc{Awwwards}:
@@ -59,10 +116,73 @@
   tool.
 \newblock {In: }\emph{AMCIS 2010 Proceedings} 8 (2010)
 
+\bibitem[Jan09]{2009Jansen}
+\textsc{Jansen}, Bernard~J.:
+\newblock Understanding {User}-{Web} {Interactions} via {Web} {Analytics}.
+\newblock {In: }\emph{Synthesis Lectures on Information Concepts, Retrieval,
+  and Services} 1 (2009), Januar, Nr. 1, S. 1--102
+
+\bibitem[KL17]{2016Kohavi}
+\textsc{Kohavi}, Ron ; \textsc{Longbotham}, Roger:
+\newblock Online {Controlled} {Experiments} and {A}/{B} {Testing}.
+\newblock {In: }\emph{Encyclopedia of {Machine} {Learning} and {Data}
+  {Mining}}.
+\newblock Boston, MA : Springer US, 2017, S. 922--929
+
+\bibitem[KO20]{2019Kumar}
+\textsc{Kumar}, Vikas ; \textsc{Ogunmola}, Gabriel~A.:
+\newblock Web {Analytics} for {Knowledge} {Creation}: {A} {Systematic} {Review}
+  of {Tools}, {Techniques}, and {Practices}.
+\newblock {In: }\emph{International Journal of Cyber Behavior, Psychology and
+  Learning} 10 (2020), Januar, Nr. 1, S. 1--14
+
+\bibitem[Lin]{2006Linden}
+\textsc{Linden}, Greg:
+\newblock \emph{Make Data Useful. Standford Data Mining Class CS345A, 2006.}
+\newblock
+  \url{http://glinden.blogspot.com/2006/12/slides-from-my-talk-at-stanford.html},
+  Abruf: 2021-06-06
+
 \bibitem[LO20]{2020Lang}
 \textsc{Lang}, Gil ; \textsc{Otten}, Steffen:
 \newblock \emph{Erfolgreicher {Online}-{Handel} für Dummies}.
 \newblock Weinheim : Wiley-VCH, 2020
+
+\bibitem[MAC]{2017Pinterest}
+\textsc{Meder}, Sam ; \textsc{Antonov}, Vadim  ; \textsc{Chang}, Jeff:
+\newblock \emph{Driving user growth with performance improvements}.
+\newblock
+  \url{https://medium.com/pinterest-engineering/driving-user-growth-with-performance-improvements-cfc50dafadd7},
+  Abruf: 2021-06-06
+
+\bibitem[Mar15]{2011Marek}
+\textsc{Marek}, Kate:
+\newblock \emph{Library technology reports: expert guides to library systems
+  and services. Using Web Analytics in the Library. {Volume} 47, Number 5}.
+\newblock 2015
+
+\bibitem[May]{2006Mayer}
+\textsc{Mayer}, Marissa:
+\newblock \emph{Conference Keynote, Web 2.0, 2006}
+
+\bibitem[Mor18]{2018Morys}
+\textsc{Morys}, André:
+\newblock Mit {A}/{B}-{Tests} die {Optimierungsideen} validieren.
+\newblock {In: }\emph{Die digitale {Wachstumsstrategie}}.
+\newblock Wiesbaden : Springer Fachmedien Wiesbaden, 2018, S. 97--119
+
+\bibitem[Mos]{2015GQ}
+\textsc{Moses}, Lucia:
+\newblock \emph{How GQ cut its webpage load time by 80 percent}.
+\newblock
+  \url{https://digiday.com/media/gq-com-cut-page-load-time-80-percent/}, Abruf:
+  2021-06-06
+
+\bibitem[NC11]{2011Nakatani}
+\textsc{Nakatani}, Kazuo ; \textsc{Chuang}, Ta-Tao:
+\newblock A web analytics tool selection method: an analytical hierarchy
+  process approach.
+\newblock {In: }\emph{Internet Research} 21 (2011), Januar, Nr. 2, S. 171--186
 
 \bibitem[SB19]{2019Stone}
 \textsc{Stone}, Brad ; \textsc{Bezos}, Jeffrey:
@@ -85,6 +205,22 @@
   zur konsistenten Spezifikation von Abhänigigkeiten in komplexen
   Anwendungen.}}}
 \newblock Infix Verlag, St. Augustin, Germany, 1999
+
+\bibitem[SKG{\etalchar{+}}]{2018Zalando}
+\textsc{Schelhowe}, Luetke ; \textsc{Kagawa}, Shuhei ; \textsc{Gruda},
+  Thorbjoern ; \textsc{Cybulski}, Jeff  ; \textsc{Martin}, David:
+\newblock \emph{Loading Time Matters}.
+\newblock
+  \url{https://engineering.zalando.com/posts/2018/06/loading-time-matters.html},
+  Abruf: 2021-06-06
+
+\bibitem[SKS14]{2014Singal}
+\textsc{Singal}, Himani ; \textsc{Kohli}, Shruti  ; \textsc{Sharma}, Amit~K.:
+\newblock Web analytics: {State}-of-art \& literature assessment.
+\newblock {In: }\emph{2014 5th {International} {Conference} - {Confluence}
+  {The} {Next} {Generation} {Information} {Technology} {Summit}
+  ({Confluence})}.
+\newblock Noida : IEEE, September 2014, S. 24--29
 
 \bibitem[SSMG17]{2017DosSantos}
 \textsc{Santos}, Valdeci Ferreira~d. ; \textsc{Sabino}, Leandro~R. ;
@@ -109,5 +245,17 @@
 \newblock
   \url{https://de.wikipedia.org/w/index.php?title=Wissenschaftliche\_Arbeit&oldid=156007167}.
 \newblock \,Version:\,2016, Abruf: 2016-07-21
+
+\bibitem[WK09]{2009Waisberg}
+\textsc{Waisberg}, Daniel ; \textsc{Kaushik}, Avinash:
+\newblock Web Analytics 2.0: Empowering Customer Centricity.
+\newblock   (2009)
+
+\bibitem[ZP15]{2015Zheng}
+\textsc{Zheng}, Guangzhi ; \textsc{Peltsverger}, Svetlana:
+\newblock Web Analytics Overview.
+\newblock {In: }\textsc{Khosrow-Pour}, Mehdi (Hrsg.): \emph{Encyclopedia of
+  information science and technology}.
+\newblock Information Science Reference, 2015, Kapitel  756, S. 7674--7683
 
 \end{thebibliography}

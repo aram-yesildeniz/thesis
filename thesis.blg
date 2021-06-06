@@ -17,44 +17,47 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: thesis.bib
-You've used 14 entries,
+Warning--I didn't find a database entry for "2015Croll"
+Warning--empty year in 2006Mayer
+You've used 36 entries,
             4793 wiz_defined-function locations,
-            1000 strings with 9424 characters,
-and the built_in function-call counts, 9523 in all, are:
-= -- 991
-> -- 244
-< -- 308
-+ -- 347
-- -- 90
-* -- 646
-:= -- 1596
-add.period$ -- 20
-call.type$ -- 14
-change.case$ -- 73
-chr.to.int$ -- 14
-cite$ -- 14
-duplicate$ -- 250
-empty$ -- 649
-format.name$ -- 161
-if$ -- 1868
-int.to.chr$ -- 1
+            1133 strings with 13294 characters,
+and the built_in function-call counts, 21522 in all, are:
+= -- 2231
+> -- 578
+< -- 617
++ -- 705
+- -- 198
+* -- 1395
+:= -- 3638
+add.period$ -- 46
+call.type$ -- 36
+change.case$ -- 178
+chr.to.int$ -- 35
+cite$ -- 37
+duplicate$ -- 619
+empty$ -- 1534
+format.name$ -- 378
+if$ -- 4303
+int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 72
-newline$ -- 93
-num.names$ -- 42
-pop$ -- 108
+missing$ -- 175
+newline$ -- 207
+num.names$ -- 109
+pop$ -- 296
 preamble$ -- 1
-purify$ -- 101
+purify$ -- 250
 quote$ -- 0
-skip$ -- 522
+skip$ -- 1178
 stack$ -- 0
-substring$ -- 780
-swap$ -- 60
-text.length$ -- 45
-text.prefix$ -- 6
+substring$ -- 1480
+swap$ -- 145
+text.length$ -- 105
+text.prefix$ -- 17
 top$ -- 0
-type$ -- 122
-warning$ -- 0
-while$ -- 73
-width$ -- 17
-write$ -- 195
+type$ -- 339
+warning$ -- 1
+while$ -- 184
+width$ -- 41
+write$ -- 464
+(There were 2 warnings)

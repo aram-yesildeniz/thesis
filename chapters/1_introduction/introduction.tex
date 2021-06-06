@@ -179,46 +179,32 @@ What all users have in common is their human psychology.
 In terms of performance, researchers generally suggest keeping wait times below one second to keep users' attention. (cf. "Performance perception" in \ref{chapter:web_performance}). 
 
 % [Devices]
-After considering the user himself, the next step is to examine the influence of the device used: Studies show that mobile users are more likely to buy products and services than their colleagues using a desktop computer, where iOS users have generally more expectations regarding site speed.
-% cite Android vs iOS market share 2019 Q2. DeviceAtlas, 2019.
+After considering the user himself, the next step is to examine the influence of the device used: Studies show that mobile users are more likely to buy products and services than their colleagues using a desktop computer, where iOS users have generally more expectations regarding site speed \cite{2019Deviceatlas}.
  
 % [Context]
 Last but not least, the context and state of the user is important, with naturally relaxed and calm users perceiving pages faster than stressed or hurried users.
-Also users experience websites more slowly while on the go.  % cite Performance Matters. 9 Key Consumer Insights, Akamai, 2014.
+Also users experience websites more slowly while on the go \cite{2014Akamai}.
 \\
 
 % [Studies]
 There are many real world examples and studies that prove and demonstrate the importance of website speed in terms of user satisfaction and ultimately sales:
 \textit{Amazon} fount out that a decrease of 100 ms in page loading leads to -1\% conversion rates.
 If the site loads 100 ms faster, \textit{Walmart} observed that the revenue increases by 1\%.
-For \textit{Zalando}, increasing site speed by 100 ms has led to an uplift of 0.7\% revenue per session.
-% cite
-% Greg Linden. Make Data Useful. Standford Data Mining Class CS345A, 2006.
-% Shuhei Kagawa, Jeff Cybulski, David Martin Jones, et al.. Landing Time Matters. Zalando Tech Blog, 2018
-% C. Crocker, A. Kulick, B. Ram. Real-User Monitoring at Walmart. SF & SV Web Performance Group, 2012
+For \textit{Zalando}, increasing site speed by 100 ms has led to an uplift of 0.7\% revenue per session \cite{2006Linden}, \cite{2018Zalando}, \cite{2012Walmart}.
+
 
 % [SEO]
 Search engine optimization is heavily impacted by load speed:
 For \textit{Google}, 500 ms slower sites led to a decrease of 20\% in traffic.
 \textit{GQs} traffic increased by 80\% after the page load went down from 7 s to 2 s.
-And for \textit{Pinterest}, 40\% faster loads led to 15\% more SEO traffic.
-% cite
-% Lucia Moses. How GQ Cut Its Webpage Load Time By 80 Percent. Digiday, 2015
-% Marissa Mayer, Conference Keynote, Web 2.0, 2006.
-% Sam Meder, Vadim Antonov, Jeff Chang. Driving User Growth With Performance Improvements, Pinterest Blog, 2017
-
+And for \textit{Pinterest}, 40\% faster loads led to 15\% more SEO traffic \cite{2015GQ}, \cite{2006Mayer}, \cite{2017Pinterest}.
 
 
 % [Engagement & Satisfaction]
 User engagement and satisfaction also depend heavily on loading times:
 \textit{Forrester} noted an increase of 60\% for the session length while brining down the load time by 80\%.
 \textit{Akamai} monitored that the bounce rate climbed up incredible 103\% when the load time increased by 2 seconds.
-And for the \textit{AberdeedGroup}, the customer satisfaction dropped by 16\% at one more second delay in response times.
-% cite
-% Forrester. The Total Economic Impact Of Accelerated Mobile Pages, 2017.
-% Akamai, Akamai Online Retail Performance Report: Milliseconds Are Critical, Akamai Blog, 2017
-% The Performance of Web Applications: Customers Are Won or Lost in One Second. Aberdeen Group, 2008.
-
+And for the \textit{AberdeedGroup}, the customer satisfaction dropped by 16\% at one more second delay in response times \cite{2017Forrester}, \cite{2017Akamai}, \cite{2008Aberdeen}.
 
 In summary, it can be said that many studies and practical examples prove and demonstrate that faster websites and online stores lead to a better user experience and usually to happier customers.
 In commercial terms, one can conclude that page speed equals money.
@@ -231,10 +217,10 @@ After discussing A/B testing, I will move on to examining \textit{Web Analytics}
 
 \subsubsection{A/B Testing}
 
-Controlled experiments like A/B testing are not a new tool for scientists and researchers and were used as early as the 1920s.% cite Kohavi 2016
+Controlled experiments like A/B testing are not a new tool for scientists and researchers and were used as early as the 1920s \cite{2016Kohavi}.
 With the advent of the Internet in the 1990s, the concept was adopted into the online domain and is now used by large companies such as Amazon, Facebook or Google to test ideas and hypotheses directly on a live system.
-Controlled experiments such as A/B testing are used to aid decision making and provide a "causal relationship with high probability". % cite Kohavi 2016
-They enable a data-driven and quantitative validation of the hypothesis. % cite Morys 2018
+Controlled experiments such as A/B testing are used to aid decision making and provide a "causal relationship with high probability" \cite{2016Kohavi}.
+They enable a data-driven and quantitative validation of the hypothesis \cite{2018Morys}.
 
 Controlled experiments help to test hypothesis and questions of form: "If I change feature X, will it help to improve the key performance indicator Y?"
 
@@ -244,7 +230,7 @@ With a univariable setup, only one variable differs between the systems; with a 
 
 Usually, the users of the system are randomly split into two groups and testing is directly performed with real users on a production system.
 It is advantageous, also compared to other experimental set-ups, that the users and participants are not aware that they are part of an experiment, which leads to fewer biases and side effects.
-In order to measure the differences and the user behaviour, web analytics has to be integrated within the system. % cite Kohavi 2016
+In order to measure the differences and the user behaviour, web analytics has to be integrated within the system \cite{2016Kohavi}.
 
 A brief and general discussion of controlled experiments in computer science can be found in chapter X.  %TODO link chapter about controlled experiments
 \\
@@ -295,14 +281,14 @@ Finally, web performance will be explained in \ref{chapter:web_performance}, whi
 What is \textit{Web Analytics}?
 Reviewing the literature, it is clear that there are several definitions:
 
-Nakatani et al. state that "Web analytics is used to understand online customers and their behaviors, design actions influential to them, and ultimately foster behaviors beneficial to the business and achieve the organization's goal." % cite 2011 Nakatani
+Nakatani et al. state that "Web analytics is used to understand online customers and their behaviors, design actions influential to them, and ultimately foster behaviors beneficial to the business and achieve the organization's goal." \cite{2011Nakatani}
 According to this definition, web analytics is about getting insights of the users using the system, not only who or what they are, but also how they interact with the system.
 Additionally, the definition emphasizes that the underlying motivation of web analytics is to achieve business goals.
 
-Singal et al. provide a more technical definition by pointing out that "Web Analytics is the objective tracking, collection, measurement, reporting and analysis of quantitative internet data to optimize websites and web marketing initiatives." % cite 2014 Singal with note that this definition is directly taken from Kaushik
+Singal et al. provide a more technical definition by pointing out that "Web Analytics is the objective tracking, collection, measurement, reporting and analysis of quantitative internet data to optimize websites and web marketing initiatives." \cite{2014Singal} %TODO note that this definition is directly taken from Kaushik ?
 Again, the ultimate goal is to drive business, but supported by data science methods and tools such as tracking, collecting and analysing massive amounts of data.
 
-Bekavac et al. provide a similar definition by pointing out that web analytics is "the analysis of qualitative and quantitative data on the website in order to continuously improve the online experience of visitors, which leads to more efficient and effective realization of the company's planned goals." %cite 2015 Bekavac
+Bekavac et al. provide a similar definition by pointing out that web analytics is "the analysis of qualitative and quantitative data on the website in order to continuously improve the online experience of visitors, which leads to more efficient and effective realization of the company's planned goals." \cite{2015Bekavac}
 
 % TODO: where can i find this officially ?
 % Official definition by WAA: the measurement, collection, analysis and reporting of Internet data for the purposes of understanding and optimizing Web usage.
@@ -311,11 +297,11 @@ Bekavac et al. provide a similar definition by pointing out that web analytics i
 
 % TODO add Croll 2009? "Today, web analytics is a marketing discipline used to measure the effectiveness of communications strategies" p.83
 
-Summarizing the above definitions, it is noticeable that web analytics consists of two important elements: a data-driven, information-oriented and technical element of collecting and analyzing data about users and a commercial and business-driven element that provides the main motivation for collecting the data primarily by setting business goals.
+Summarizing the above definitions, it is noticeable that web analytics consists of two important elements: a data-driven, information-oriented and technical element of collecting and analysing data about users and a commercial and business-driven element that provides the main motivation for collecting the data primarily by setting business goals.
 \\
 
 % [Use Cases]
-Moving from definitions to the practical realm, Zheng et al. describe four main use cases for web analytics: % cite 2015 Zheng
+Moving from definitions to the practical realm, Zheng et al. describe four main use cases for web analytics: \cite{2015Zheng}
 
 \begin{itemize}
 \item Improving the overall design and usability, for example of the navigation or layout of the website.
@@ -345,13 +331,12 @@ Privacy and the information collected from visitors and customers can be another
 The history of web analytics can be described as a transformation from an IT domain and a technical log file analysis tool to a sophisticated, polymorphic tool for marketers.
 
 % [For IT: Logs]
-Each time a user requests an HTML file or other resource from a web server, the server makes an entry in a special log file. %cite Singal 2014
+Each time a user requests an HTML file or other resource from a web server, the server makes an entry in a special log file \cite{2014Singal}.
 The first log entries followed the \textit{Common Log Format} (CLF) which provides rudimentary information such as the date, the HTTP status code or the number of bytes transmitted.
 In 1996, the \textit{Extended Log Format} (ELF) was introduced with more flexibility and information in mind.
 Thanks to the standardized format of the log files, it was possible to create software that evaluates the log files and presents them to users in a readable form.
-\textit{GetStats} was one of the first tools which generated statistics and user friendly output for analysts.
-% cite Croll 2009 p 69
-In 1995, Dr. Stephen Turner developed \textit{Analog}, the first free software for analyzing log files.% cite Zheng 2015
+\textit{GetStats} was one of the first tools which generated statistics and user friendly output for analysts \cite{2009Croll}. %TODO add p. 69?
+In 1995, Dr. Stephen Turner developed \textit{Analog}, the first free software for analysing log files \cite{2015Zheng}.
 Log file analysis will be further discussed in chapter \ref{chapter:log_file}.
 
 % [Shift]
@@ -361,7 +346,7 @@ As the available information increased, it became clear that the data could be u
 But log file analysis was not enough to provide details about how users interact with the site.
 Web analytics underwent a transformation from log analysis to user data tracking, analysis, and reporting.
 
-Croll describes the move of analytics from IT to marketing with three steps: %cite Croll 2009
+Croll describes the move of analytics from IT to marketing with three steps: \cite{2009Croll}
 \begin{enumerate}
 \item JavaScript eliminated the need for log files and enabled marketers to maintain and deploy their analytics solutions themselves, making them less dependent on IT.
 \item The introduced advertising economy of search engines like Google led to a new focus of analysts on user attraction and conversion rates.
@@ -371,29 +356,28 @@ Croll describes the move of analytics from IT to marketing with three steps: %ci
 % [For Marketing: JS]
 In 1990 the WWW started and in 1993 one of the first widely used browsers \textit{Mosaic} was launched.
 At the same time \textit{WebTrends} developed and released one of the first analytics software.
-A lot more services followed, such as \textit{WebSideStory} in 1996 % cite Zheng 2015
-or \textit{Quantified} by Urchin in the same year.%cite croll 2009
+A lot more services followed, such as \textit{WebSideStory} in 1996 \cite{2015Croll}
+or \textit{Quantified} by Urchin in the same year \cite{2009Croll}.
 
 Page tagging made it possible to collect not only technical data, but also business-relevant information.
 Visitors and their behaviour were the focus, shaping questions like: How is this user behaviour related to a purchase? If a user buys shoes, will he also buy socks?
 The development and implementation of cookies enabled the identification of unique users.
-Not only business-relevant questions were asked and answered, but also studies on performance and usability. % cite 2009 Croll p. 69
+Not only business-relevant questions were asked and answered, but also studies on performance and usability \cite{2009Croll}. %TODO add p. 69 ?
 More details about page tagging can be found in chapter \ref{chapter:page_tagging}.
 \\
 
 % [WAA, Today]
 In 2003, Edwards, Eisenberg and Sterne founded the \textit{Web Analytics Association} (WAA).
 The WAA brings together and supports all the players in web analytics such as users, marketers and IT specialists on an international stage.
-Due to digitalization and its all-encompassing effects, the WAA has renamed itself \textit{Digital Analytics Association} (DAA) in 2012 because the web is not the only area where users leave their digital footprint.
-% cite 2014 Singal
+Due to digitalization and its all-encompassing effects, the WAA has renamed itself \textit{Digital Analytics Association} (DAA) in 2012 because the web is not the only area where users leave their digital footprint \cite{2014Singal}.
 
-As described in the section above, participant and user numbers on the Internet continue to rise and now all Fortune 500 companies operate websites, with web analytics a key marketing tool.%cite Kumar 2019
+As described in the section above, participant and user numbers on the Internet continue to rise and now all Fortune 500 companies operate websites, with web analytics a key marketing tool \cite{2019Kumar}.
 
-Some of the most established tools today are \textit{Google Analytics}, \textit{Adobe SiteCatalyst}, \textit{Webtrekk} and \textit{Piwik}. % cite Heinemann 2020 4.1.4
-Google Analyitcs will be further discussed in chapter \ref{??}.
+Some of the most established tools today are \textit{Google Analytics}, \textit{Adobe SiteCatalyst}, \textit{Webtrekk} and \textit{Piwik} \cite{2020Heinemann}. %TODO add chapter 4.1.4
+Google Analytics will be further discussed in chapter \ref{??}. %TODO add reference
 
 % [Future]
-Looking ahead, Zheng et al. identify several trends for web analytics, such as mobile web and application-specific analytics like video, search, learning, or social media analytics. %cite Zheng 2015
+Looking ahead, Zheng et al. identify several trends for web analytics, such as mobile web and application-specific analytics like video, search, learning, or social media analytics \cite{2015Zheng}.
 
 
 % TODO next section will be about process ??
@@ -418,10 +402,10 @@ Both processes have in common that they are aimed at improving the website and t
 
 % [KPIs]
 \textit{Key Performance Indicators} (KPIs) are the ideal tool for the instrumentation of web analytics and help to identify areas and potential for improvement.
-They are an integral part and play an important role in any web analytics process as they provide a "in-depth picture of visitor behavior on a site". %cite 2009 Jansen ch. 6.2
+They are an integral part and play an important role in any web analytics process as they provide a "in-depth picture of visitor behavior on a site" \cite{2009Jansen}. %TODO add ch. 6.2 ?
 
 KPIs can differ depending on the business in which they operate.
-For commercial domains, common KPIs are conversion rates, average order or visit value, customer loyalty, bounce rate, etc. % cite 2014 Singal
+For commercial domains, common KPIs are conversion rates, average order or visit value, customer loyalty, bounce rate, etc. \cite{2014Singal}.
 
 Defining the right KPIs and aligning them with business goals is a critical step in any web analytics process.
 
@@ -434,7 +418,8 @@ Defining the right KPIs and aligning them with business goals is a critical step
 
 % TODO compare both processes directly with a table with 2 columns?
 
-The Web Analytics Association offers a web analytics guide that consists of nine steps. They are:% cite 2009 Jansen ch. 6.2
+The Web Analytics Association offers a web analytics guide that consists of nine steps. They are: \cite{2009Jansen} %TODO add ch. 6.2 ?
+
 \begin{enumerate}
 \item Identify key stake holders
 \item Define primary goals of website and prioritize them
@@ -450,13 +435,13 @@ The Web Analytics Association offers a web analytics guide that consists of nine
 
 \subsubsection{Industries Best Practices}
 
-On the contrary, Waisberg and Kaushik derive a five-step process from industry best practices with the main goal of improving the website and increasing sales: % cite 2009 Waisberg
+On the contrary, Waisberg and Kaushik derive a five-step process from industry best practices with the main goal of improving the website and increasing sales \cite{2009Waisberg}: %TODO improve waisberg citation
 
 \begin{itemize}
 \item Define Goals
 \item Build KPIs
 \item Collect Data
-\item Analyze Data
+\item Analyse Data
 \item Implement Changes
 \item Repeat last two steps
 \end{itemize}
@@ -477,7 +462,7 @@ The WAA process is a finer-grained and more practical approach, with Waisberg an
 \subsection{Log File Analysis and Page Tagging}
 \label{chapter:web_analytics_logfile_pagetagging}
 
-There are four main methods of collecting data for web analytics: through log file analysis, JavaScript page tagging, web beacons, and packet sniffing. %cite 2009 Waisberg
+There are four main methods of collecting data for web analytics: through log file analysis, JavaScript page tagging, web beacons, and packet sniffing \cite{2009Waisberg}.
 
 As already mentioned in chapter \ref{chapter:web_analytics_history},  the two most important methods of data collection are log file analysis and page tagging.
 In this section I will briefly describe and compare both mechanisms.
@@ -489,10 +474,10 @@ In this section I will briefly describe and compare both mechanisms.
 
 
 As already described, the log file analysis is about gaining knowledge from the log file records of the web server.
-Log file analysis is considered to be the traditional and original approach to web analytics.%cite 2011 Marek and 2015 Zheng
+Log file analysis is considered to be the traditional and original approach to web analytics \cite{2011Marek}, \cite{2015Zheng}. %TODO improve Marek citation
 As soon as the user types a URL into the browser and presses the enter key, the request arrives at a web server.
-The server then creates an entry in a log file and sends the requested page or resource back to the client in response. % cite 2009 Waisberg
-The information within the log entry can vary depending on the log format, usually IP, browser, time stamp, time required, transferred bytes, whether a cache hit occurs and the referrer is specified. %cite 2009 Waisberg
+The server then creates an entry in a log file and sends the requested page or resource back to the client in response \cite{2009Waisberg}.
+The information within the log entry can vary depending on the log format, usually IP, browser, time stamp, time required, transferred bytes, whether a cache hit occurs and the referrer is specified \cite{2009Waisberg}.
 The standardized Common Log Format provides host, ident, authuser, date, request, status, bytes, as can be seen in listing \ref{lst:log}.\footnote{\url{https://www.w3.org/Daemon/User/Config/Logging.html\#common-logfile-format} [03.06.2021]}
 
 \begin{center}
@@ -502,13 +487,13 @@ The standardized Common Log Format provides host, ident, authuser, date, request
 \end{center}
 % TODO add caption
 
-Standard formats of log files and entries enable log file analysis software to process, evaluate and report valuable statistics such as \textit{Analog}, \textit{Webalizer} or \textit{AWStats} to users. %cite 2015 Zheng
+Standard formats of log files and entries enable log file analysis software to process, evaluate and report valuable statistics such as \textit{Analog}, \textit{Webalizer} or \textit{AWStats} to users \cite{2015Zheng}.
 
 
 % [Pro]
 Below are a few points that describe the pros and cons of log file analysis.
-The advantages of log file analysis are: 
-% TODO just cite here above all
+The advantages of log file analysis are (\cite{2009Waisberg}, \cite{2011Nakatani}, \cite{2014Singal}, \cite{2015Zheng}):
+%TODO just cite here above all or in the list ?
 
 \begin{itemize}
 \item JavaScript and cookies are not required on the client side
@@ -524,7 +509,7 @@ The advantages of log file analysis are:
 
 
 % [Con]
-Some disadvantages of log file analysis are:
+Some disadvantages of log file analysis are (\cite{2011Marekt}, \cite{2015Zheng}):
 
 \begin{itemize}
 \item Log entries provide mainly technical information, which may not be very useful for user behaviour analysis. Business related metrics such as bounce rates are not available. % cite Marek 2011
@@ -540,12 +525,12 @@ Some disadvantages of log file analysis are:
 \subsubsection{Page Tagging}
 \label{chapter:page_tagging}
 
-In a nutshell, page tagging describes the analysis method used to incorporate JavaScript into the website, which collects data and sends it to an analysis server. %cite 2011 Marek
-To do this, JavaScript must be integrated on every page to be analysed.  %cite 2009 Waisberg
-Page tagging is the most important method in web analytics today. %cite 2015 Zheng
+In a nutshell, page tagging describes the analysis method used to incorporate JavaScript into the website, which collects data and sends it to an analysis server \cite{2011Marek}.
+To do this, JavaScript must be integrated on every page to be analysed \cite{2009Waisberg}.
+Page tagging is the most important method in web analytics today \cite{2015Zheng}.
 
 
-Croll provides a graphic illustration (figure \ref{img:page_tagging}) of the page tagging process which is explained below. %cite Croll 2009
+Croll provides a graphic illustration (figure \ref{img:page_tagging}) of the page tagging process which is explained below \cite{2009Croll}.
 
 \begin{figure}[h!]
 \begin{center}
@@ -559,11 +544,12 @@ The client (browser) requests a page from the web server (1, 2).
 Within the HTML file an external JavaScript resource, the analytics code, is linked and received from the analytics server (3, 4).
 The analytics script tracks and measures the user behaviour and eventually sends the data back to the analytics server (5, 6, 7).
 
-The data collected can also be stored in cookies, which contain data beyond a session and enable the user to be identified, e.g. the next time he visits the page. %cite 2019 Kumar
+The data collected can also be stored in cookies, which contain data beyond a session and enable the user to be identified, e.g. the next time he visits the page \cite{2019Kumar}.
 
 
-The advantages and disadvantages of page tagging are as follows, starting with the pros:
-% TODO again put all references on top ?
+The advantages and disadvantages of page tagging are as follows, starting with the pros (\cite{2009Waisberg}, \cite{2011Nakatani}, \cite{2011Marek}, \cite{2014Singal}, \cite{2015Zheng}):
+
+%TODO again put all references on top ?
 
 % [Pro]
 \begin{itemize}
@@ -578,8 +564,7 @@ The advantages and disadvantages of page tagging are as follows, starting with t
 
 
 % [Con]
-Some drawbacks are mainly privacy concerns, that the analysis process relies on the use of JavaScript and cookies that can be disabled by the user,  %cite 2011 Marek
-that every page that is supposed to collect data must contain the analytics script and due to the use of a third party analytics service it is pretty difficult to switch tools %cite 2014 Singal
+Some drawbacks are mainly privacy concerns, that the analysis process relies on the use of JavaScript and cookies that can be disabled by the user \cite{2011Marek}, that every page that is supposed to collect data must contain the analytics script and due to the use of a third party analytics service it is pretty difficult to switch tools \cite{2014Singal}.
 
 % TODO 2017 Hassler ch. 2 ??
 
