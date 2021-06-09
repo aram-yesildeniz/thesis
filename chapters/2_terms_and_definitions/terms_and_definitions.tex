@@ -1,11 +1,17 @@
-% TODO rename Metrics and Measuring Methods ?
-\chapter{Terms and Definitions}
+% Terms and Definitions
+\chapter{Metrics and Measurement Methods}
+
+[tbd]
 
 \begin{itemize}
 	\item Last chapter...
 	\item This chapter: Describe shortly all sections from this chapter
 	\item In the next chapter...
 \end{itemize}
+
+
+% [This chapter]
+In this chapter, I will cover measurement methods and discuss common performance metrics.
 
 \begin{itemize}
 \item This chapter should cover all relevant terms and definitions within web performance measurement
@@ -14,17 +20,22 @@
 \end{itemize}
 
 
-%----------------------------------------------------------------
-%----------------------------------------------------------------
+% ---------------------------------------------------------------------------------------------------
+% ---------------------------------------------------------------------------------------------------
 
 
 
 
-\subsubsection{Why are websites slow?}
+\section{Why are Websites slow?}
 
-In his code talk 2016, Witt identifies three main areas or bottlenecks where bad performance is being produced: In the Frontend, the Backend, and on the network layer. 
+% technical introduction: how browser works, crp, FE, BE, network
+% rather a short chapter
+% describe shortly the three bottlenecks and the latency vs bandwith issue
+
+
 
 % 2016 Witt code talks
+In his code talk 2016, Witt identifies three main areas or bottlenecks where bad performance is being produced: In the Frontend, the Backend, and on the network layer. 
 - the three bottlenecks: Frontend, network, backend
 
 - FE:
@@ -47,18 +58,133 @@ BE:
 
 % 2013 Grigorik https://hpbn.co/primer-on-web-performance/
 - Latency as a Performance Bottleneck
+- Show this very famous image with 2x bandwith... 
+
+
+
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+-> This is basically a description of this famous image regarding navigation
+
+Overview
+---------
+
+- Latency as main threat
+- "Network latency is the time it takes to transmit bytes over-the-air to computers"
+- Browser is single threaded
+- Enable smooth interaction: scrolling, responsive to touch, etc.
+- Render time is key
+- Goal: Main thread can complete all the work and still is available to handle user interaction
+-> Improvement: Understand single thread concept of browser and minimize main threads responsibilities
+-> Should lead to: rendering is fast and smooth and responses to interactions are immediate
+
+
+Navigation
+----------
+
+- First step in loading a web page
+- Goal:  minimize the amount of time a navigation takes to complete
+
+DNS Lookup:
+- translate URL to IP address. Can be cached by browser
+- Must be done for each unique URL, e.g. when images are from different server
+
+TCP Handshake:
+- 3-way-handshake between client and server
+-> 3 more requests between client and server
+
+TLS Negotiation:
+- Make connection secure by changing cipher etc
+-> 3 more round trips
+
+
+-> At this point already 8 round trips
+
+
+Request/Response
+-------------------
+
+- HTTP Get request by client to server
+- Response contains first byte of data received -> Time to First Byte Metric! -> link here to metric description
+
+TCP Slow Start / 14kb rule:
+- Is an algorithm: Slow start gradually increases the amount of data transmitted until the network's maximum bandwidth can be determined
+- Avoid congestion
+- This is not part of TCP handshake but for first HTTP request
+- Initial response is 14Kb, second one is 28, etc.
+- Congestion Control algorithms: determine send rate
+
+
+Parsing
+-------
+
+- Starts when browser received fist data
+- HTML, CSS, and JavaScript have to be parsed.
+- Parsing is the step the browser takes to turn the data it receives over the network into the DOM and CSSOM, which is used by the renderer to paint a page to the screen.
+- DOM: internal representation of the markup for the browser
+- DOM is also exposed, and can be manipulated through various APIs in JavaScript
+- Browser will begin parsing as soon as data received: Important to include most important stuff in first 14Kb
+
+
+Building the DOM tree:
+- Build CRP in 5 steps:
+- 1: 
+
+
+Preload scanner:
+
+
+Building the CSSOM:
+
+
+Other Processes:
+
+
+Render
+-------
+
+
+
+Interactivity
+------------
 
 
 
 
 
-%----------------------------------------------------------------
-%----------------------------------------------------------------
+% https://medium.com/reloading/javascript-start-up-performance-69200f43b201
+
+
+
+% https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance
+
+
+
+% https://developer.mozilla.org/en-US/docs/Learn/Performance/What_is_web_performance#how_content_is_rendered
 
 
 
 
-\section{Measuring Methods}
+% % https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
+
+
+
+
+
+% -------------------------------------------------------------------------------------------------
+% -------------------------------------------------------------------------------------------------
+
+
+
+
+\section{Measurement Methods}
+
+
+% [Introduction]
+- synthetic monitoring
+- RUM
+- other methods briefly described
+
 
 \begin{itemize}
 \item Explanation and comparison of synthetic and real-user monitoring with concrete examples
@@ -66,6 +192,9 @@ BE:
 \end{itemize}
 
 
+
+% About measuring web performance
+% Why web performance? As we saw its important for business
 
 
 
@@ -110,19 +239,28 @@ RUM:
 
 
 
-
-
-
 % 2009 Croll
+
+
 % 2013 Meenan
+
+
 % 2013 Grigorik
+
+
 % 2015 Cito
+
+
 % 2016 Viscomi Synthetic Versus RUM
+
+
 % Eggplant whitepaper
 
 
 
-%----------------------------------------------------------------
+
+% ----------------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------------
 
 
 
@@ -144,8 +282,16 @@ RUM:
 
 
 
-%----------------------------------------------------------------
 
+
+
+
+
+
+
+
+% ----------------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------------
 
 
 
@@ -168,7 +314,12 @@ RUM:
 
 
 
-%----------------------------------------------------------------
+
+
+
+% ----------------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------------
+
 
 
 \subsection{Other methods}
@@ -179,36 +330,35 @@ log files
 
 
 
+% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- Log file
+- Synthetic: will be discussed in chapter X
+- RUM which will be covered in chapter X
+- CrUX
+- Surveys
 
 
 
 
-%--------------------------------------------------------------------------------------------------------------------------------
-%--------------------------------------------------------------------------------------------------------------------------------
+% ---------------------------------------------------------------------------------------------------
+% ---------------------------------------------------------------------------------------------------
+% ---------------------------------------------------------------------------------------------------
+% ---------------------------------------------------------------------------------------------------
 
-
-
-
-
-
-
-% Explain first how browsers work? Like CRP etc
-% https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-
-
-
-% https://medium.com/reloading/javascript-start-up-performance-69200f43b201
-
-% https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance
-
-% https://developer.mozilla.org/en-US/docs/Learn/Performance/What_is_web_performance#how_content_is_rendered
-
-% % https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
 
 
 \section{Metrics}
 
 
+% taxonomy ?
+
+% First list all metrics -> get overview
+% Then think about possible categories
+
+% Structure of this chapter ??
+
+% APIs
+% Web Vitals and Core Web Vitals
 
 % own / user specific metrics, e.g. time to first tweet for twitter (meenan 2021)
 
@@ -219,6 +369,24 @@ log files
 % https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
 
 
+
+
+% ===== START: HERE I WILL LIST ALL METRICS =====
+
+Check out glossary: https://developer.mozilla.org/en-US/docs/Glossary
+
+
+Time to First Byte:
+% https://developer.mozilla.org/en-US/docs/Glossary/time_to_first_byte
+
+
+
+
+
+
+
+
+% ===== END: HERE I WILL LIST ALL METRICS =====
 
 
 \subsection{Introduction}
@@ -424,13 +592,7 @@ p. 74 Page View, first useful web analytics metric
 
 
 
-
-
-
-
-
-%----------------------------------------------------------------
-%----------------------------------------------------------------
+% ------------------------------------------------------------------------------------------------
 
 
 
@@ -606,8 +768,10 @@ p. 74 Page View, first useful web analytics metric
 %----------------------------------------------------------------
 
 
+% Chapter title: Tools / Tool Support ?
+% I could also move this to related work if i explain here WPT in detail
 
-
+% Better not use own chapter for WPT Metrics: Once i have written down all metrics and categorised them, i can describe here which tools expose what. WPT would be the biggest example for a synthetic monitoring tool
 
 \subsection{WebPageTest Metrics}
 
@@ -684,6 +848,11 @@ p. 74 Page View, first useful web analytics metric
 % https://www.webpagetest.org/forums/showthread.php?tid=332
 % https://www.webpagetest.org/forums/showthread.php?tid=10732
 % https://www.webpagetest.org/forums/showthread.php?tid=12846
+
+
+
+% Move those definitions to chapter above?
+% Here i could only describe which metrics are available in WPT
 
 \begin{center}
 	\small
