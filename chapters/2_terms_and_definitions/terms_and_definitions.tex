@@ -20,6 +20,10 @@ In this chapter, I will cover measurement methods and discuss common performance
 \end{itemize}
 
 
+
+% TODO
+% IF possible use more cool tables, Wolle likes them :)
+
 % ---------------------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------------------
 
@@ -52,6 +56,21 @@ Possible sections:
 
 
 - For details on networking like TCP TLS etc always cf to Grigorik
+
+
+
+How about:
+
+- Frontend Backend Network: Backend nothing to say, will discuss Network and then Frontend
+
+- Network:
+	- Bandwidth vs Latency
+	- Navigation: DNS, TCP, TLS
+
+- Front End
+	- How Browser works, CRP: First byte, style, layout etc.
+	- External Resources
+
 
 
 
@@ -297,26 +316,82 @@ maybe ch 2 and 6
 Chapter 2 The Basics of Page Speed
 -------------------------------------
 
+% "Steve Souders says, “80 to 90% of the end user response time is spent on the frontend.” --> Find and cite this
+
 How Browsers Render Content:
+- Steps between user types and submits URL and sees page on screen
+- DNS Lookup (only when unknown domain)
+- Very simple image: Send request, search on server, respond and render
+- TTFB
+- Browsers try to parallelize requests for content
 
-- Requests
+- Requests:
+- Optimizing size and amount of requests has big impact on performance, e.g. get all images in one requests using Sprites
 
-- Connections
+- Connections:
+- Number of connections is not the same as number of requests it takes to load the page
+- SSL Negotiation explained
+- Persistent Connection: Browser keeps connection open for multiple requests
+- Parellell possible open connections, 6 for Chrome
+- To each domain one connection ??
 
 
 Page Weight:
+- Sum of all file sizes
+- Explains YSlow
+- Averages in httparchive, which i also used in one approach % https://httparchive.org/reports/state-of-the-web?start=latest
 
 
 Perceived Performance:
-- CRP
+- Perception more important than actual numbers
+- Perception based on how quickly they start to see content render on the page, how quickly it becomes interactive, and how smoothly the site scrolls.
 
-- Jank
+- CRP:
+- Creation of DOM Tree out of HTML
+- Request for stylesheet will block parsing -> CSS is render-blocking resource
+- Creation of CSSOM
+- Creation of Render Tree by combining DOM and CSSOM
+- Start Render Metric
+- JS blocks DOM construction unsless its declared async or defer
+
+- Optimizations of CRP:
+- media types and queries on css resources, which makes them non-blocking
+- Load JS efficient
+- Priotize requests for above the fold
+- etc. % Do i need to explain this ??
+
+
+- Jank: About srolling, not very interesting for me...
 
 
 Other Impacts on Page Speed
-- Geo
+
+- "environmental factors"
+
+- Geography, CDNs
 - Network
 - Browser
+
+
+
+
+Ch4 Optimizing Markup and Styles
+-----------------------------------
+
+CSS and JavaScript Loading:
+- Rules:
+- Load CSS in head
+- CSS blocks rendering
+
+- Load JS at bottom of the page
+- Load Async
+- JS blocks DOM construction, because browser knows that content from script tag may change Render Tree
+- async tag will execute script once its ready, but order is not berücksichtigt
+- Anything that loads late and changes UI can cause layout shifts
+- 3rd party scripts: Need additional DNS lookup, should not be single point of failure
+
+
+
 
 
 
@@ -325,6 +400,7 @@ Ch 6 Measuring and Iterating on Performance
 ----------------------------------------------
 
 Browser Tools
+
 
 Synthetic Testing
 
@@ -421,6 +497,9 @@ RUM:
 
 
 % 2013 Grigorik
+
+
+% 2014 Hogan
 
 
 % 2015 Cito
@@ -585,8 +664,15 @@ onload Event: % https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHand
 
 
 
+Start Render % https://designingforperformance.com/basics-of-page-speed/
+- tells you how many seconds it took for the browser to begin rendering content
+
 
 Time to First Byte: % https://developer.mozilla.org/en-US/docs/Glossary/time_to_first_byte
+
+% 2014 Hogan
+- First byte that the browser receives
+- It’s a good indicator of how quickly the backend of your site is able to process and send back content
 
 
 
