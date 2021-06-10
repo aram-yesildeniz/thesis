@@ -5,18 +5,13 @@
 
 \begin{itemize}
 	\item Last chapter...
-	\item This chapter: Describe shortly all sections from this chapter
+	\item This chapter: In this chapter, I will cover measurement methods and discuss common performance metrics.
+	\begin{itemize}
+		\item This chapter should cover all relevant terms and definitions within web performance measurement
+		\item How terms can be structured / taxonomy
+		\item Ambiguity of definitions
+	\end{itemize}
 	\item In the next chapter...
-\end{itemize}
-
-
-% [This chapter]
-In this chapter, I will cover measurement methods and discuss common performance metrics.
-
-\begin{itemize}
-\item This chapter should cover all relevant terms and definitions within web performance measurement
-\item How terms can be structured / taxonomy
-\item Ambiguity of definitions
 \end{itemize}
 
 
@@ -24,87 +19,126 @@ In this chapter, I will cover measurement methods and discuss common performance
 % TODO
 % IF possible use more cool tables, Wolle likes them :)
 
+
 % ---------------------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------------------
 
 
+%TODO find better title
+\section{Technical Background}
 
-Technical Background ??
-\section{Why are Websites slow?}
+% [Introduction]
 
-% technical introduction: how browser works, crp, FE, BE, network
-% rather a short chapter
-% describe shortly the three bottlenecks and the latency vs bandwith issue
-
-% It is important to understand how things work, because Metrics and also how to measure them are derived from those processes
-
-
-% How to optimise websites is not part of this thesis
+- Brief technical introduction
+- It is important to understand how things work, because Metrics and also how to measure them are derived from those processes
+- The entities of web applications are in general Frontend, Backend and Network which connects them
+- BE is not discussed (server time, data base, etc.)
+- Section X is about Network
+- Section X is about Front end: how browser works, crp, 
+- How to optimise websites is not part of this thesis
 
 
+% 2016 Witt code talks
+In his code talk 2016, Witt identifies three main areas or bottlenecks where bad performance is being produced: In the Frontend, the Backend, and on the network layer. 
+- the three bottlenecks: Frontend, network, backend
 
-Possible sections:
 
-- Page Speed
+% --------------------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------------------
 
-- Critical Rendering Path: How the Browser works, what exactly happens with the received html etc.
-- Part of this ? or even before is the connection with this famous image
+	
+
+\subsection{Network: Latency and Bandwidth}
+
+- Key takeaway: Latency is bottleneck
 
 - Regarding Networking the Latency issue is important
-
-- Talk a little bit about FE improvement ?
-
-
 - For details on networking like TCP TLS etc always cf to Grigorik
 
 
 
-How about:
 
-- Frontend Backend Network: Backend nothing to say, will discuss Network and then Frontend
+% 2013 Grigorik
+Chapter 1 :
+- Latency: The time from the source sending a packet to the destination receiving it
+- Bandwidth: Maximum throughput of a logical or physical communication path
+- I will not go into details here, just cite Grigorik and in the end important is the impact on speed
+- CDN: Help against this issue. Put stuff close to client
+- Bandwidth can more easily be increased with more cables and WDM upgrades
+- Decrease latency is not that simple due to physical restrictions. Data already travels with 2/3 speed of light
+- Use other techniques such as CDNs, caching, pre-fetching, etc
 
-- Network:
-	- Bandwidth vs Latency
-	- Navigation: DNS, TCP, TLS
-
-- Front End
-	- How Browser works, CRP: First byte, style, layout etc.
-	- External Resources
-
-
-
-
-\subsection{Navigation}
-
-% Where to put this ??
-% Because this is highly related to metrics, e.g. metrics are derived from this.
-% Maybe put this in metrics ?
-
-% [This famous image]
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
+Chapter 10:
+- Bandwidth: For video
+- when it comes to everyday web browsing, which requires fetching hundreds of relatively small resources from dozens of different hosts, roundtrip latency is the limiting factor
+- Latency as a Performance Bottleneck
+- Very nice graphic...
+- Show this very famous image with 2x bandwith... 
+- Why ? The previous results are a surprise to many, but they really should not be, as they are a direct consequence of the performance characteristics of the underlying protocols: TCP handshakes, flow and congestion control, and head-of-line blocking due to packet loss. Most of the HTTP data flows consist of small, bursty data transfers, whereas TCP is optimized for long-lived connections and bulk data transfers.
+-  wireless latencies are significantly higher, making networking optimization a critical priority for the mobile web.
 
 
-
-
-% https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
--> This is basically a description of this famous image regarding navigation
-
-Overview
----------
-
+% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 - Latency as main threat
 - "Network latency is the time it takes to transmit bytes over-the-air to computers"
-- Browser is single threaded
-- Enable smooth interaction: scrolling, responsive to touch, etc.
-- Render time is key
-- Goal: Main thread can complete all the work and still is available to handle user interaction
--> Improvement: Understand single thread concept of browser and minimize main threads responsibilities
--> Should lead to: rendering is fast and smooth and responses to interactions are immediate
 
 
-Navigation
-----------
+% Understanding Latency https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+- time it takes for a packet of data to travel from source to a destination
 
+What is Latency?:
+- amount of time it takes from when a request is made by the user to the time it takes for the response to get back to that user
+- For first request latency is longer as it includes a DNS lookup, a TCP handshake, the secure TLS negotiation
+- Latency describes the amount of delay on a network or Internet connection
+- One of the main aims of improving performance is to reduce latency.
+- We can determine the amount of latency by measuring the speed with which the data moves from one network location to another.
+- Latency can be measured one way or entire round-trip
+- Generally measured in round-trip
+
+Network throttling:
+- Emulate download speed, upload speed, and minimum latency
+
+
+
+
+
+
+% --------------------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------------------
+
+
+
+
+\subsection{Front End: Navigation and Critical Rendering Path}
+
+
+- Critical Rendering Path: How the Browser works, what exactly happens with the received html etc.
+
+
+- How Browser works, CRP: First byte, style, layout etc.
+- External Resources
+
+
+
+
+% --------------------------------------------------------------------------------------------
+
+
+\subsubsection{Navigation}
+
+% [This famous image]
+% https://www.w3.org/TR/navigation-timing/
+% TODO mark withing this image the CRP with a box: Is it the last two steps, Processing and  onLoad ?
+
+- Navigation: DNS, TCP, TLS
+
+- Now the browser renders the page: CRP in section X
+
+- From this derived are Navigation Timings and Resource Timings -> See chapter X metrics 
+
+
+
+% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 - First step in loading a web page
 - Goal:  minimize the amount of time a navigation takes to complete
 
@@ -120,12 +154,10 @@ TLS Negotiation:
 - Make connection secure by changing cipher etc
 -> 3 more round trips
 
-
 -> At this point already 8 round trips
 
 
-Request/Response
--------------------
+Request/Response:
 
 - HTTP Get request by client to server
 - Response contains first byte of data received -> Time to First Byte Metric! -> link here to metric description
@@ -138,8 +170,109 @@ TCP Slow Start / 14kb rule:
 - Congestion Control algorithms: determine send rate
 
 
-Parsing
--------
+
+% 2013 Grigorik
+Chapter 10:
+- Script execution can issue a synchronous doc.write and block DOM parsing and construction
+- JavaScript can also block on CSS
+- DOM construction cannot proceed until JavaScript is executed, and JavaScript execution cannot proceed until CSSOM is available
+-> styles at the top, scripts at the bottom best practice
+- Different browsers implement different logic for when, and in which order, the individual resource requests are dispatched. As a result, the performance of the application will vary from browser to browser.
+- The execution of a web program primarily involves three tasks: fetching resources, page layout and rendering, and JavaScript execution.
+- The rendering and scripting steps follow a single-threaded, interleaved model of execution
+
+
+
+
+% 2014 Hogan https://designingforperformance.com/
+Chapter 2 The Basics of Page Speed
+% "Steve Souders says, “80 to 90% of the end user response time is spent on the frontend.” --> Find and cite this
+
+How Browsers Render Content:
+- Steps between user types and submits URL and sees page on screen
+- DNS Lookup (only when unknown domain)
+- Very simple image: Send request, search on server, respond and render
+- TTFB
+- Browsers try to parallelize requests for content
+
+- Requests:
+- Optimizing size and amount of requests has big impact on performance, e.g. get all images in one requests using Sprites
+
+- Connections:
+- Number of connections is not the same as number of requests it takes to load the page
+- SSL Negotiation explained
+- Persistent Connection: Browser keeps connection open for multiple requests
+- Parellell possible open connections, 6 for Chrome
+- To each domain one connection ??
+
+Page Weight:
+- Sum of all file sizes
+- Explains YSlow
+- Averages in httparchive, which i also used in one approach % https://httparchive.org/reports/state-of-the-web?start=latest
+
+Other Impacts on Page Speed
+- "environmental factors"
+- Geography, CDNs
+- Network
+- Browser
+
+
+
+
+
+
+
+% 2016 Witt code talks
+Network:
+- DNS lookup
+- Initial connection: TCP Handshake and TLS handshake
+- time to first byte: When first page data byte receives on client side
+- content download
+-> Max 6 parallel connections
+
+- Avg total requests % https://httparchive.org/
+
+- latency impact: 2 times bandwith makes no difference, half of latency makes half of load time
+
+- Possible Improvements:
+- HTTP2
+- Avoid redirects
+- Caching headers
+- CDNs
+- Single Page Apps
+
+
+
+
+% Understanding Latency https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+Network Timings:
+- Blocked: When a request is in queue
+- Blocking happens when there are too many simultaneous connections to single server over HTTP
+- DNS resolution: Time it took for DNS lookup
+- TCP, TLS
+- Sending, Waiting, Receiving
+
+
+
+
+% --------------------------------------------------------------------------------------------
+
+
+
+\subsubsection{Critical Rendering Path}
+
+- Is basically a subpart of the navigation process
+
+
+% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+- Browser is single threaded
+- Enable smooth interaction: scrolling, responsive to touch, etc.
+- Render time is key
+- Goal: Main thread can complete all the work and still is available to handle user interaction
+-> Improvement: Understand single thread concept of browser and minimize main threads responsibilities
+-> Should lead to: rendering is fast and smooth and responses to interactions are immediate
+
+Parsing:
 
 - Starts when browser received fist data
 - HTML, CSS, and JavaScript have to be parsed.
@@ -147,7 +280,6 @@ Parsing
 - DOM: internal representation of the markup for the browser
 - DOM is also exposed, and can be manipulated through various APIs in JavaScript
 - Browser will begin parsing as soon as data received: Important to include most important stuff in first 14Kb
-
 
 - Build CRP: Here 5 steps from CRP are described:
 1. Building DOM tree
@@ -179,8 +311,7 @@ Other Processes:
 - Building the Accessibility Tree (AOM)
 
 
-Render
--------
+Render:
 
 3. Style:
 - Build Render Tree
@@ -196,156 +327,13 @@ Render
 - Paint nodes on screen
 -> First Meaningful Paint
 
-
-Interactivity
-------------
-
 - Time to Interactive
 
 
 
 
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-- time it takes for a packet of data to travel from source to a destination
-
-What is Latency?:
-- amount of time it takes from when a request is made by the user to the time it takes for the response to get back to that user
-- For first request latency is longer as it includes a DNS lookup, a TCP handshake, the secure TLS negotiation
-- Latency describes the amount of delay on a network or Internet connection
-- One of the main aims of improving performance is to reduce latency.
-- We can determine the amount of latency by measuring the speed with which the data moves from one network location to another.
-- Latency can be measured one way or entire round-trip
-- Generally measured in round-trip
-
-
-Network throttling:
-- Emulate download speed, upload speed, and minimum latency
-
-
-Network Timings:
-- Blocked: When a request is in queue
-- Blocking happens when there are too many simultaneous connections to single server over HTTP
-- DNS resolution: Time it took for DNS lookup
-- TCP, TLS
-- Sending, Waiting, Receiving
-
-
-
-
-% https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-Performance APIs:
-- Many Web APIs available % https://developer.mozilla.org/en-US/docs/Web/API
-- Performance API is one API within Web APIs collection: Includes other APIs
-- Navigation Timing API: Famous image: Exposes metrics related to navigation events
-
-Tools and metrics:
-- 2 categories: Tools for measuring (reporting) and tools for improving
-- Reporting:
-- PageSpeedInsights
-- WebPageTest
-- Network:
-- Network Panel in DevTools
-
-
-
-
-
-
-
-
-% 2016 Witt code talks
-In his code talk 2016, Witt identifies three main areas or bottlenecks where bad performance is being produced: In the Frontend, the Backend, and on the network layer. 
-- the three bottlenecks: Frontend, network, backend
-
-FE:
-- crp: render and parser blocking
-- tools available:
-- Profiling: GTMetrix, WebPageTest, PageSpeed Insigths
-- Inlining and Optimization: Critical, PostCSS, processhtml
-- Minification and Compression: Goole Closure, tinyPng, Uglifycss and cssmin
-
-
-Network:
-- DNS lookup
-- Initial connection: TCP Handshake and TLS handshake
-- time to first byte: When first page data byte receives on client side
-- content download
--> Max 6 parallel connections
-
-- Avg total requests % https://httparchive.org/
-
-- latency impact: 2 times bandwith makes no difference, half of latency makes half of load time
-
-- Possible Improvements:
-- HTTP2
-- Avoid redirects
-- Caching headers
-- CDNs
-- Single Page Apps
-
-
-BE:
-- load balancer, server and DB
-
-
-% [CRP]
-
-https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp
-
-
-
-
-
-% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
-%TODO i have already notes on Grigorik... Check where they are
-
-Chapter 1 Latency and Bandwith
-
-- Latency as a Performance Bottleneck
-- Show this very famous image with 2x bandwith... 
-
-Chapter 10 Web Performance
-
-
-
-
-
-%TODO 2014 Hogan: read this book, or find out what can be used from there: https://designingforperformance.com/
-maybe ch 2 and 6
-
-Chapter 2 The Basics of Page Speed
--------------------------------------
-
-% "Steve Souders says, “80 to 90% of the end user response time is spent on the frontend.” --> Find and cite this
-
-How Browsers Render Content:
-- Steps between user types and submits URL and sees page on screen
-- DNS Lookup (only when unknown domain)
-- Very simple image: Send request, search on server, respond and render
-- TTFB
-- Browsers try to parallelize requests for content
-
-- Requests:
-- Optimizing size and amount of requests has big impact on performance, e.g. get all images in one requests using Sprites
-
-- Connections:
-- Number of connections is not the same as number of requests it takes to load the page
-- SSL Negotiation explained
-- Persistent Connection: Browser keeps connection open for multiple requests
-- Parellell possible open connections, 6 for Chrome
-- To each domain one connection ??
-
-
-Page Weight:
-- Sum of all file sizes
-- Explains YSlow
-- Averages in httparchive, which i also used in one approach % https://httparchive.org/reports/state-of-the-web?start=latest
-
-
-Perceived Performance:
-- Perception more important than actual numbers
-- Perception based on how quickly they start to see content render on the page, how quickly it becomes interactive, and how smoothly the site scrolls.
-
+% 2014 Hogan https://designingforperformance.com/
+Chapter 2
 - CRP:
 - Creation of DOM Tree out of HTML
 - Request for stylesheet will block parsing -> CSS is render-blocking resource
@@ -360,23 +348,7 @@ Perceived Performance:
 - Priotize requests for above the fold
 - etc. % Do i need to explain this ??
 
-
-- Jank: About srolling, not very interesting for me...
-
-
-Other Impacts on Page Speed
-
-- "environmental factors"
-
-- Geography, CDNs
-- Network
-- Browser
-
-
-
-
-Ch4 Optimizing Markup and Styles
------------------------------------
+Chapter 4:
 
 CSS and JavaScript Loading:
 - Rules:
@@ -394,36 +366,51 @@ CSS and JavaScript Loading:
 
 
 
+% 2016 Witt code talks
 
 
-Ch 6 Measuring and Iterating on Performance
-----------------------------------------------
-
-Browser Tools
 
 
-Synthetic Testing
+
+% TODO add this ??
+% https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
+% https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp
 
 
-Real User Monitoring
 
 
-Changes over Time
+
+
+
+% --------------------------------------------------------------------------------------------
+
+
+% [Conclusion]
+
+% Optimisation ??
+
+% 2013 Grigorik
+- Browser optimizations...
+
+% 2016 Witt code talks
+- tools available:
+- Profiling: GTMetrix, WebPageTest, PageSpeed Insigths
+- Inlining and Optimization: Critical, PostCSS, processhtml
+- Minification and Compression: Goole Closure, tinyPng, Uglifycss and cssmin
+
 
 
 
 
 %TODO add this ??
-
-% CRP? https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-
 % [JavaScript Parsing]
 % https://medium.com/reloading/javascript-start-up-performance-69200f43b201
 
 
 
-% -------------------------------------------------------------------------------------------------
-% -------------------------------------------------------------------------------------------------
+% ---------------------------------------------------------------------------------------------------------------------------------------
+% ---------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -499,7 +486,17 @@ RUM:
 % 2013 Grigorik
 
 
-% 2014 Hogan
+
+
+% 2014 Hogan https://designingforperformance.com/
+Ch 6 Measuring and Iterating on Performance
+
+- Browser Tools
+- Synthetic Testing
+- Real User Monitoring
+- Changes over Time
+
+
 
 
 % 2015 Cito
@@ -605,7 +602,11 @@ log files
 
 
 % taxonomy ?
+
 % Navigation Events: Exposed by Navigation Timing API: navigationStart, domContentLoaded, etc.
+% = Navigation Timings
+% Resource Timings ?
+%  navigation timing measures the main document's timings whereas the resource timing provides the times for all the assets or resources called in by that main document and the resources' requested resources.
 
 
 
@@ -662,6 +663,16 @@ Receiving / Download Time ?? % https://developer.mozilla.org/en-US/docs/Web/Perf
 onload Event: % https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onload
 
 
+DOMContentLoaded Event % https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
+
+
+
+
+Page Load Time: % https://hpbn.co/primer-on-web-performance/
+- Has been the de facto metric of the web performance world
+- Increasingly insufficient performance benchmark: we are no longer building pages, we are building dynamic and interactive web applications
+
+
 
 
 Start Render % https://designingforperformance.com/basics-of-page-speed/
@@ -673,6 +684,11 @@ Time to First Byte: % https://developer.mozilla.org/en-US/docs/Glossary/time_to_
 % 2014 Hogan
 - First byte that the browser receives
 - It’s a good indicator of how quickly the backend of your site is able to process and send back content
+
+
+
+
+
 
 
 
@@ -707,8 +723,24 @@ Time to Interactive: % https://developer.mozilla.org/en-US/docs/Glossary/Time_to
 
 % ======== APIs ========
 
+% Measuring Performance https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
+Performance APIs:
+- Many Web APIs available % https://developer.mozilla.org/en-US/docs/Web/API
+- Performance API is one API within Web APIs collection: Includes other APIs
+- Navigation Timing API: Famous image: Exposes metrics related to navigation events
+
+Tools and metrics:
+- 2 categories: Tools for measuring (reporting) and tools for improving
+- Reporting:
+- PageSpeedInsights
+- WebPageTest
+- Network:
+- Network Panel in DevTools
+
+
 % https://siusin.github.io/perf-timing-primer/
 
+% https://w3c.github.io/perf-timing-primer/
 
 
 Performance API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_API
@@ -717,8 +749,15 @@ Performance API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_A
 
 
 Navigation Timing API % https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API
+Navigation Timing API Level 2 % https://www.w3.org/TR/navigation-timing-2/
 
 Performance Timeline API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_Timeline
+
+Performance Entry API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
+
+PerformanceNavigationTiming % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
+
+
 
 User Timing API % https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API
 
