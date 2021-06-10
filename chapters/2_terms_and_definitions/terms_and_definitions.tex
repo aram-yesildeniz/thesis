@@ -60,7 +60,9 @@ Network is what connects clients and servers, FE and BE, infrastructure element 
 % --------------------------------------------------------------------------------------------
 
 
-\subsection{Network: Latency and Bandwidth}
+\subsection{Network Questions}
+
+\subsubsection{Latency vs Bandwidth}
 
 There are two important attributes when discussing network performance: Latency and Bandwidth.
 - Key takeaway: Latency is bottleneck
@@ -139,44 +141,20 @@ Chapter 2 The Basics of Page Speed
 
 
 
-% --------------------------------------------------------------------------------------------
-% --------------------------------------------------------------------------------------------
+\subsubsection{Navigation Process}
 
-
-
-\subsection{Front End: Navigation and Critical Rendering Path}
-
-- This section explains what happens on the Front End, that is in the browser
 - I will explain briefly the general navigation process
 - Last part of this process is when browser receives finally the HTML / Document. 
+- This section briefly describes the steps from start to end.
+- On the network, establishing a connection with DNS etc.
+- Then the server creates the response, maybe calls a DB etc.
+- What then happens in the browser is part of the next section.
 - What happens then is explained in CRP
 
-% [Navigation]
-- From Start when user types in URL and hits enter, until the end when he sees the website fully loaded on his screen
-
-
-% [CRP]
-- Critical Rendering Path: How the Browser works, what exactly happens with the received html etc.
-- How Browser works, CRP: First byte, style, layout etc.
-- External Resources
-
-
-
-% --------------------------------------------------------------------------------------------
-
-
-\subsubsection{Navigation}
-
-%TODO move this to Network section? As DNS etc is part of networking and not really front end
+- Process From Start when user types in URL and hits enter, until the end when he sees the website fully loaded on his screen
 
 % [This famous image]
 % https://www.w3.org/TR/navigation-timing/
-
-This section briefly describes the steps from start to end.
-On the network, establishing a connection with DNS etc.
-Then the server creates the response, maybe calls a DB etc.
-What then happens in the browser is part of the next section.
-
 
 \begin{figure}[h!]
 \begin{center}
@@ -187,11 +165,11 @@ What then happens in the browser is part of the next section.
 \end{figure}
 
 
-
 % 2014 Hogan https://designingforperformance.com/
 Chapter 2 The Basics of Page Speed
 How Browsers Render Content:
 - Steps between user types and submits URL and sees page on screen
+
 
 
 % ----------------------------------
@@ -204,7 +182,6 @@ DNS Lookup:
 - translate URL to IP address. Can be cached by browser
 - Must be done for each unique URL, e.g. when images are from different server
 
-
 % 2014 Hogan https://designingforperformance.com/
 Chapter 2 The Basics of Page Speed - How Browsers Render Content:
 - DNS Lookup (only when unknown domain)
@@ -212,7 +189,6 @@ Chapter 2 The Basics of Page Speed - How Browsers Render Content:
 % 2016 Witt code talks
 Network:
 - DNS lookup
-
 
 % Understanding Latency https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
 Network Timings:
@@ -307,7 +283,10 @@ Request/Response:
 - CRP enters the stage see section X
 
 
+% ----------------------------------
+
 % [Optimization and Performance]
+%TODO maybe move each optimization trick to his corresponding section ?
 
 % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 - Goal: minimize the amount of time a navigation takes to complete
@@ -348,9 +327,18 @@ Other Impacts on Page Speed
 
 
 % --------------------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------------------
 
 
-\subsubsection{Critical Rendering Path}
+
+\subsection{Front End: Critical Rendering Path}
+
+- This section explains what happens on the Front End, that is in the browser
+
+- Critical Rendering Path: How the Browser works, what exactly happens with the received html etc.
+- How Browser works, CRP: First byte, style, layout etc.
+- External Resources
+
 
 The CRP is the last part of the whole process.
 In happens in the browser once it received the data / document / HTML
