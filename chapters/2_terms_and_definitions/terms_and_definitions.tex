@@ -28,55 +28,65 @@
 \section{Technical Background}
 
 % [Introduction]
-
 - Brief technical introduction
 - It is important to understand how things work, because Metrics and also how to measure them are derived from those processes
-- The entities of web applications are in general Frontend, Backend and Network which connects them
+
+
+% [FE, BE, Network]
+In his code talk 2016, Witt identifies three main areas or bottlenecks where bad performance is being produced: In the Frontend, the Backend, and on the network layer.  % cite 2016 Witt or just say this ??
+The Front End is everyhting the user sees on the screen, client, UI, browser, sends requests to a back end, etc.
+The Back End is the logic, servier, also data base, handles requests and sends responses to a front end
+Network is what connects clients and servers, FE and BE, infrastructure element composed of routers, cables, wireless connections etc.
+
+
 - BE is not discussed (server time, data base, etc.)
 - Section X is about Network
 - Section X is about Front end: how browser works, crp, 
 - How to optimise websites is not part of this thesis
 
 
-% 2016 Witt code talks
-In his code talk 2016, Witt identifies three main areas or bottlenecks where bad performance is being produced: In the Frontend, the Backend, and on the network layer. 
-- the three bottlenecks: Frontend, network, backend
-
 
 % --------------------------------------------------------------------------------------------
 % --------------------------------------------------------------------------------------------
 
-	
-
+%TODO is this chapter even relevant for me ??
 \subsection{Network: Latency and Bandwidth}
 
+There are two important attributes when discussing network performance: Latency and Bandwidth.
 - Key takeaway: Latency is bottleneck
 
-- Regarding Networking the Latency issue is important
-- For details on networking like TCP TLS etc always cf to Grigorik
+% 2013 Grigorik
+- Very nice graphic...
+- Ch 10: Why ? The previous results are a surprise to many, but they really should not be, as they are a direct consequence of the performance characteristics of the underlying protocols: TCP handshakes, flow and congestion control, and head-of-line blocking due to packet loss. Most of the HTTP data flows consist of small, bursty data transfers, whereas TCP is optimized for long-lived connections and bulk data transfers.
 
 
+% [Bandwidth]
 
+% 2013 Grigorik
+Chapter 1 :
+- Bandwidth: Maximum throughput of a logical or physical communication path
+- Bandwidth can more easily be increased with more cables and WDM upgrades
+
+Chapter 10:
+- Bandwidth: For video
+
+
+% [Latency]
 
 % 2013 Grigorik
 Chapter 1 :
 - Latency: The time from the source sending a packet to the destination receiving it
-- Bandwidth: Maximum throughput of a logical or physical communication path
-- I will not go into details here, just cite Grigorik and in the end important is the impact on speed
-- CDN: Help against this issue. Put stuff close to client
-- Bandwidth can more easily be increased with more cables and WDM upgrades
+
+% 2013 Grigorik
+Chapter 1 :
 - Decrease latency is not that simple due to physical restrictions. Data already travels with 2/3 speed of light
 - Use other techniques such as CDNs, caching, pre-fetching, etc
+- CDN: Help against this issue. Put stuff close to client
 
 Chapter 10:
-- Bandwidth: For video
 - when it comes to everyday web browsing, which requires fetching hundreds of relatively small resources from dozens of different hosts, roundtrip latency is the limiting factor
 - Latency as a Performance Bottleneck
-- Very nice graphic...
-- Show this very famous image with 2x bandwith... 
-- Why ? The previous results are a surprise to many, but they really should not be, as they are a direct consequence of the performance characteristics of the underlying protocols: TCP handshakes, flow and congestion control, and head-of-line blocking due to packet loss. Most of the HTTP data flows consist of small, bursty data transfers, whereas TCP is optimized for long-lived connections and bulk data transfers.
 -  wireless latencies are significantly higher, making networking optimization a critical priority for the mobile web.
-
 
 % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 - Latency as main threat
@@ -95,9 +105,25 @@ What is Latency?:
 - Latency can be measured one way or entire round-trip
 - Generally measured in round-trip
 
+
+% [Conclusion]
+
+% 2016 Witt code talks
+- latency impact: 2 times bandwith makes no difference, half of latency makes half of load time
+
+- For more details on networking like TCP TLS etc always cf to Grigorik
+
+% Some direct implications for performance measurement ?
+% Understanding Latency https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
 Network throttling:
 - Emulate download speed, upload speed, and minimum latency
 
+% 2014 Hogan https://designingforperformance.com/
+Chapter 2 The Basics of Page Speed
+% "Steve Souders says, “80 to 90% of the end user response time is spent on the frontend.” --> Find and cite this
+- use this as transition to Front End Section
+
+
 
 
 
@@ -105,19 +131,23 @@ Network throttling:
 
 % --------------------------------------------------------------------------------------------
 % --------------------------------------------------------------------------------------------
-
-
 
 
 \subsection{Front End: Navigation and Critical Rendering Path}
 
+- This section explains what happens on the Front End, that is in the browser
+- I will explain briefly the general navigation process
+- Last part of this process is when browser receives finally the HTML / Document. 
+- What happens then is explained in CRP
 
+% [Navigation]
+- From Start when user types in URL and hits enter, until the end when he sees the website fully loaded on his screen
+
+
+% [CRP]
 - Critical Rendering Path: How the Browser works, what exactly happens with the received html etc.
-
-
 - How Browser works, CRP: First byte, style, layout etc.
 - External Resources
-
 
 
 
@@ -129,39 +159,45 @@ Network throttling:
 % [This famous image]
 % https://www.w3.org/TR/navigation-timing/
 % TODO mark withing this image the CRP with a box: Is it the last two steps, Processing and  onLoad ?
-
-- Navigation: DNS, TCP, TLS
-
-- Now the browser renders the page: CRP in section X
-
-- From this derived are Navigation Timings and Resource Timings -> See chapter X metrics 
+% TODO show this image here without all the exposed events ? The events are useful in the metrics section
 
 
+% 2014 Hogan https://designingforperformance.com/
+Chapter 2 The Basics of Page Speed
+How Browsers Render Content:
+- Steps between user types and submits URL and sees page on screen
+
+
+
+% [DNS]
 
 % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-- First step in loading a web page
-- Goal:  minimize the amount of time a navigation takes to complete
-
 DNS Lookup:
 - translate URL to IP address. Can be cached by browser
 - Must be done for each unique URL, e.g. when images are from different server
 
+
+% 2014 Hogan https://designingforperformance.com/
+Chapter 2 The Basics of Page Speed - How Browsers Render Content:
+- DNS Lookup (only when unknown domain)
+
+% 2016 Witt code talks
+Network:
+- DNS lookup
+
+
+% Understanding Latency https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+Network Timings:
+- DNS resolution: Time it took for DNS lookup
+
+
+
+% [TCP]
+
+% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 TCP Handshake:
 - 3-way-handshake between client and server
 -> 3 more requests between client and server
-
-TLS Negotiation:
-- Make connection secure by changing cipher etc
--> 3 more round trips
-
--> At this point already 8 round trips
-
-
-Request/Response:
-
-- HTTP Get request by client to server
-- Response contains first byte of data received -> Time to First Byte Metric! -> link here to metric description
-
 TCP Slow Start / 14kb rule:
 - Is an algorithm: Slow start gradually increases the amount of data transmitted until the network's maximum bandwidth can be determined
 - Avoid congestion
@@ -169,45 +205,79 @@ TCP Slow Start / 14kb rule:
 - Initial response is 14Kb, second one is 28, etc.
 - Congestion Control algorithms: determine send rate
 
-
-
-% 2013 Grigorik
-Chapter 10:
-- Script execution can issue a synchronous doc.write and block DOM parsing and construction
-- JavaScript can also block on CSS
-- DOM construction cannot proceed until JavaScript is executed, and JavaScript execution cannot proceed until CSSOM is available
--> styles at the top, scripts at the bottom best practice
-- Different browsers implement different logic for when, and in which order, the individual resource requests are dispatched. As a result, the performance of the application will vary from browser to browser.
-- The execution of a web program primarily involves three tasks: fetching resources, page layout and rendering, and JavaScript execution.
-- The rendering and scripting steps follow a single-threaded, interleaved model of execution
-
-
-
-
 % 2014 Hogan https://designingforperformance.com/
-Chapter 2 The Basics of Page Speed
-% "Steve Souders says, “80 to 90% of the end user response time is spent on the frontend.” --> Find and cite this
-
-How Browsers Render Content:
-- Steps between user types and submits URL and sees page on screen
-- DNS Lookup (only when unknown domain)
-- Very simple image: Send request, search on server, respond and render
-- TTFB
-- Browsers try to parallelize requests for content
-
-- Requests:
-- Optimizing size and amount of requests has big impact on performance, e.g. get all images in one requests using Sprites
-
+Chapter 2 The Basics of Page Speed - How Browsers Render Content:
 - Connections:
 - Number of connections is not the same as number of requests it takes to load the page
 - SSL Negotiation explained
 - Persistent Connection: Browser keeps connection open for multiple requests
 - Parellell possible open connections, 6 for Chrome
 - To each domain one connection ??
+- TTFB
 
-Page Weight:
+
+% [TLS]
+
+% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+TLS Negotiation:
+- Make connection secure by changing cipher etc
+-> 3 more round trips
+
+-> At this point already 8 round trips
+
+% 2016 Witt code talks
+Network:
+- Initial connection: TCP Handshake and TLS handshake
+- time to first byte: When first page data byte receives on client side
+- content download
+-> Max 6 parallel connections
+
+
+% Understanding Latency https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+Network Timings:
+- Blocked: When a request is in queue
+- Blocking happens when there are too many simultaneous connections to single server over HTTP
+
+% Understanding Latency https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+- TCP, TLS
+- Sending, Waiting, Receiving
+
+
+
+% [HTTP Request and Response]
+
+% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+Request/Response:
+- HTTP Get request by client to server
+- Response contains first byte of data received -> Time to First Byte Metric! -> link here to metric description
+
+
+% 2016 Witt code talks
+- Avg total requests % https://httparchive.org/
+
+
+
+% [Rendering/Parsing: Transition to CRP]
+
+- Navigation now finished
+- From this derived are Navigation Timings and Resource Timings -> See chapter X metrics 
+
+- What happens exactly when the browser received the first data?
+- CRP enters the stage see section X
+
+
+% [Optimization and Performance]
+
+% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+- Goal: minimize the amount of time a navigation takes to complete
+
+% 2014 Hogan https://designingforperformance.com/
+Chapter 2 The Basics of Page Speed - How Browsers Render Content:
+- Browsers try to parallelize requests for content
+- Requests: Optimizing size and amount of requests has big impact on performance, e.g. get all images in one requests using Sprites
+
+Page Weight is somewhat important:
 - Sum of all file sizes
-- Explains YSlow
 - Averages in httparchive, which i also used in one approach % https://httparchive.org/reports/state-of-the-web?start=latest
 
 Other Impacts on Page Speed
@@ -217,23 +287,7 @@ Other Impacts on Page Speed
 - Browser
 
 
-
-
-
-
-
 % 2016 Witt code talks
-Network:
-- DNS lookup
-- Initial connection: TCP Handshake and TLS handshake
-- time to first byte: When first page data byte receives on client side
-- content download
--> Max 6 parallel connections
-
-- Avg total requests % https://httparchive.org/
-
-- latency impact: 2 times bandwith makes no difference, half of latency makes half of load time
-
 - Possible Improvements:
 - HTTP2
 - Avoid redirects
@@ -241,16 +295,6 @@ Network:
 - CDNs
 - Single Page Apps
 
-
-
-
-% Understanding Latency https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-Network Timings:
-- Blocked: When a request is in queue
-- Blocking happens when there are too many simultaneous connections to single server over HTTP
-- DNS resolution: Time it took for DNS lookup
-- TCP, TLS
-- Sending, Waiting, Receiving
 
 
 
@@ -262,6 +306,15 @@ Network Timings:
 \subsubsection{Critical Rendering Path}
 
 - Is basically a subpart of the navigation process
+
+
+% [Parsing]
+
+% [Layout]
+
+% [Paint]
+
+
 
 
 % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
@@ -331,6 +384,18 @@ Render:
 
 
 
+% 2013 Grigorik
+Chapter 10:
+- Script execution can issue a synchronous doc.write and block DOM parsing and construction
+- JavaScript can also block on CSS
+- DOM construction cannot proceed until JavaScript is executed, and JavaScript execution cannot proceed until CSSOM is available
+-> styles at the top, scripts at the bottom best practice
+- Different browsers implement different logic for when, and in which order, the individual resource requests are dispatched. As a result, the performance of the application will vary from browser to browser.
+- The execution of a web program primarily involves three tasks: fetching resources, page layout and rendering, and JavaScript execution.
+- The rendering and scripting steps follow a single-threaded, interleaved model of execution
+
+
+
 
 % 2014 Hogan https://designingforperformance.com/
 Chapter 2
@@ -365,13 +430,6 @@ CSS and JavaScript Loading:
 
 
 
-
-% 2016 Witt code talks
-
-
-
-
-
 % TODO add this ??
 % https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
@@ -386,9 +444,18 @@ CSS and JavaScript Loading:
 % --------------------------------------------------------------------------------------------
 
 
-% [Conclusion]
 
-% Optimisation ??
+\subsection{Conclusion}
+
+% Connection to Optimisation
+
+% We could see that performance Metrics are directly derived from this process
+
+% Metrics will be discussed next
+
+% After that, i will talk about how to actually measure the metrics
+
+
 
 % 2013 Grigorik
 - Browser optimizations...
@@ -398,8 +465,6 @@ CSS and JavaScript Loading:
 - Profiling: GTMetrix, WebPageTest, PageSpeed Insigths
 - Inlining and Optimization: Critical, PostCSS, processhtml
 - Minification and Compression: Goole Closure, tinyPng, Uglifycss and cssmin
-
-
 
 
 
