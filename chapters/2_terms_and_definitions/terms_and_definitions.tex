@@ -74,7 +74,7 @@ After discussing this issue, i will continue by describing the process or naviga
 % --------------------------------------------------------------------------------------------
 
 
-\subsubsection{Latency vs Bandwidth}
+\subsubsection{Latency and Bandwidth}
 
 There are two important attributes when discussing network performance: Latency and Bandwidth.
 The important thing to say here is that Latency is bottleneck for performance, and not bandwidth.
@@ -185,23 +185,12 @@ How the browser transfers the HTML into an interactive website is part of the ne
 %\end{figure}
 
 
-% [Connection vs Request]
 
-Explain here difference between Connection and Request.
-
-% 2014 Hogan https://designingforperformance.com/
-Chapter 2 The Basics of Page Speed - How Browsers Render Content:
-- Connections:
-- Number of connections is not the same as number of requests it takes to load the page
-- Persistent Connection: Browser keeps connection open for multiple requests
-- Parellell possible open connections, 6 for Chrome
-- To each domain one connection ??
-
-
+%TODO add this ?
 % Understanding Latency https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-Network Timings:
-- Blocked: When a request is in queue
-- Blocking happens when there are too many simultaneous connections to single server over HTTP
+%Network Timings:
+%- Blocked: When a request is in queue
+%- Blocking happens when there are too many simultaneous connections to single server over HTTP
 
 
 
@@ -249,7 +238,7 @@ For a detailed discussion cf "Building Blocks of TCP" in 2013 Grigorik % cite ht
 
 
 % [TLS]
-\paragraph{TLS}
+\paragraph{TLS Negotiation}
 
 TLS is another protocol which has the goal to establish a secure connection in terms of data encryption.
 Data transmitted over the network has to be encrypted so that aussenstehende can not read or manipulate the data.
@@ -269,27 +258,29 @@ for a detailed discussion see Transport Layer Security (TLS) in 2013 Grigorik % 
 % [HTTP Request and Response]
 \paragraph{HTTP Request and Response}
 
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-Request/Response:
-- HTTP Get request by client to server
-- Response contains first byte of data received -> Time to First Byte Metric! -> link here to metric description
+Now that a secure connection is established, the client fetches the first resources via HTTP GET request.
+Most often, the server will respond by sending back the index.html file, which then can be used by the browser to build the web site. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+
+The time when this first response containing the first byte for building the web site is reflected in the metric TTFB which is discussed in section X.
 
 
-% 2016 Witt code talks
-- Avg total requests % https://httparchive.org/
+% [Connection vs Request]
+
+Usually, many more resources are requested by the browser to complete the build of the web site.
+As of today, the median value is about 70 requests per web site. % footnote https://httparchive.org/reports/state-of-the-web#reqTotal
+
+A request is not the same as a connection.
+Once the connection is established via the above described procedures such as DNS lookup, TCP and TLS handshakes, multiple requests can be transmitted over the same connection.
+Usually, the number of requests is much higher than the number of connections to load a website, as the browser persist connections, keep them open for multiple requests.
+Median connections for a web site today is about 13. % footnoe https://httparchive.org/reports/state-of-the-web#tcp
+Modern browsers like Chrome enable up to six open connections in parallel. % cite 2014 Hogan
 
 
 
-% ----------------------------------
+% [Transition to CRP]
 
-
-% [Rendering/Parsing: Transition to CRP]
-
-- Navigation now finished
-- From this derived are Navigation Timings and Resource Timings -> See chapter X metrics 
-
-- What happens exactly when the browser received the first data?
-- CRP enters the stage see section X
+At this point, the browser has received the first data about the web site and he can start with rendering the page.
+How this exactly happens, is explained in the next section.
 
 
 
@@ -297,10 +288,9 @@ Request/Response:
 
 
 % [Optimization and Performance]
-%TODO maybe move each optimization trick to his corresponding section ?
-
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-- Goal: minimize the amount of time a navigation takes to complete
+%TODO
+% maybe move each optimization trick to his corresponding section ?
+% Should I even explain this ??
 
 
 % Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
@@ -341,61 +331,38 @@ Other Impacts on Page Speed
 % --------------------------------------------------------------------------------------------
 
 
-
 \subsection{Front End: Critical Rendering Path}
 
-- This section explains what happens on the Front End, that is in the browser
-
-- Critical Rendering Path: How the Browser works, what exactly happens with the received html etc.
-- How Browser works, CRP: First byte, style, layout etc.
-- External Resources
-
-
-The CRP is the last part of the whole process.
-In happens in the browser once it received the data / document / HTML
-
-There are a sequence of steps the browser goes through to render the page.
-
-Basic idea:  Convert HTML, CSS and JS to actual pixels on the screen
-
-
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-Parsing:
-- Starts when browser received fist data
-- HTML, CSS, and JavaScript have to be parsed.
-- Parsing is the step the browser takes to turn the data it receives over the network into the DOM and CSSOM, which is used by the renderer to paint a page to the screen.
-
-
-
-
-% [Single Thread]
-
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-- This is somewhat the bottleneck or the technical state of the browser
-- Browser is single threaded
-- Still: Enable smooth interaction: scrolling, responsive to touch, etc.
-- Render time is key
-- Goal: Main thread can complete all the work and still is available to handle user interaction
--> Improvement: Understand single thread concept of browser and minimize main threads responsibilities
--> Should lead to: rendering is fast and smooth and responses to interactions are immediate
-
+This section explains what happens after the first bytes of the web sites arrived in the browser.
+The following processes are typically called the Critical Rendering Path (CRP).
+The CRP is the last part of the navigation process as seen in image X.
 
 
 % [CRP Steps]
 
-The CRP consists of multiple steps.
-Once the HTML is received, the browser will parse it to the DOM.
+There are a sequence of steps the browser goes through to render the page.
+The basic idea is to convert HTML, CSS and JS to actual pixels on the screen.
+In short, the task of the CRP is to build a render tree, who then can be layout for the desired screen and pixels can be painted on it, see image X.
+
+Once the HTML is received, the browser starts with parsing the HTML and translate it into the DOM.
 The HTML references CSS and JS files.
 
-CSS will be parsed to CSSOM.
+The browser will request those external resources when he sees them.
 
+
+
+When the The content of the CSS files will be parsed to the CSSOM.
 JS needs also to be executed.
-
 Render Tree: Once DOM and CSSOM are available, the Render Tree is being created.
-
 Layout: When the Render Tree is available, Layout is happening.
-
 Paint: Finally, pixels can be printed on the screen.
+% cite https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
+
+
+
+Some requests are blocking, which means the parsing of the rest of the HTML is halted until the imported asset is handled. The browser continues to parse the HTML making requests and building the DOM, until it gets to the end, at which point it constructs the CSS object model. With the DOM and CSSOM complete, the browser builds the render tree, computing the styles for all the visible content. After the render tree is complete, layout occurs, defining the location and size of all the render tree elements. Once complete, the page is rendered, or 'painted' on the screen.
+
+
 
 %TODO add image from macbook!
 %\begin{figure}[h!]
@@ -411,69 +378,152 @@ The individual steps are discussed below.
 
 
 
+
+
+
+% [Single Thread]
+%TODO do i need this ?
+% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+- This is somewhat the bottleneck or the technical state of the browser
+- Browser is single threaded
+- Still: Enable smooth interaction: scrolling, responsive to touch, etc.
+- Render time is key
+- Goal: Main thread can complete all the work and still is available to handle user interaction
+-> Improvement: Understand single thread concept of browser and minimize main threads responsibilities
+-> Should lead to: rendering is fast and smooth and responses to interactions are immediate
+
+
+
 % ------------------------------------------------------------
+
 
 \paragraph{From HTML to DOM}
 
+% [Introduction]
 
-% [DOM]
+The goal is to convert the content of the received HTML file into a Document Object Model, or DOM.
+DOM is a tree structure and internal representation of the HTML for the browser. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+DOM is specified in the living standard. % footnote https://dom.spec.whatwg.org/
+The Parsing of the HTML into the DOM is defined in the HTML standard % footnote https://html.spec.whatwg.org/multipage/parsing.html#parsing
+"The DOM tree captures the properties and relationships of the document markup, but it doesn't tell us how the element will look when rendered. 
+That’s the responsibility of the CSSOM."
 
+Browser will begin parsing as soon as data is being received. %cite How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 
-- DOM:
-	- Converting HTML to DOM:
-		- Defined in HTML specification
-		- Characters -> Tokens -> Nodes -> DOM
-
-	- Tokenizer:
-		- <html><head><meta name="viewport">
-		-> Tokens: [StartTag: HTML], [StartTag: head], [Tag: meta], [EndTag: head], ...
-
-	- Convert tokens to node objects:
-		-> DOM:
-			- Tree structure
-			- Objects also contain properties
-
-		- Created incrementally
-		-> Beneficial for performance
-		- Return partial HTML
+That means the DOM is created incrementally which is beneficial for performance.
 
 
-% https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
-- Bytes -> characters -> tokens -> nodes -> object model.
-- HTML markup is transformed into a Document Object Model (DOM)
-- The DOM tree captures the properties and relationships of the document markup, but it doesn't tell us how the element will look when rendered. That’s the responsibility of the CSSOM.
+The general process is translating Bytes -> characters -> tokens -> nodes -> object model. % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
 
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-- DOM
+
+
+% [External Resources]
+
+At some point, the process will encounter a linked and external resource, such as a Cascading Style Sheer or JavaScript.
+The question is if the fetched resources will block the ongoing parsing of the HTML process.
+
+Browser requests non-blocking resources and continues parsing % cite How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+
+
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+When the parser finds non-blocking resources, such as an image, the browser will request those resources and continue parsing.
+Parsing can also continue when a CSS file is encountered,
+But script tags without async or defer attribute block rendering and pause the parsing of HTML.
+Though the browser's preload scanner hastens this process.
+
 
 
 % https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
-- DOM
+as the parser finds any links for CSS or Javascript, it immediatelly sends a request for them, after that it also sends requests for all the other assets found in the rest of the page
+The sequence is: Build DOM, build CSSOM, Run JS
 
 
+
+
+
+% [CSS]
+
+
+A CSS is does not block parsing. % cite How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+
+Creation of CSSOM happens after DOM is completed. % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
+CSSOM will be discussed in next paragraph.
+
+
+Optimization: use media queries
+
+
+% https://web.dev/render-blocking-resources/
+Lighthouse flags resources as render blocking when:
+A <link rel="stylesheet"> tag that:
+Does not have a disabled attribute. When this attribute is present, the browser does not download the stylesheet.
+Does not have a media attribute that matches the user's device.
+
+
+
+
+% [JS]
+
+
+Scripts on the other hand, which dont have the attribute async or defer, will block the parsing process.
+This means that excessive scripts can be a significant bottleneck % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+
+
+The JS can change the DOM % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
 
 
 % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-- DOM: internal representation of the markup for the browser
-- DOM is also exposed, and can be manipulated through various APIs in JavaScript
-- Browser will begin parsing as soon as data received: Important to include most important stuff in first 14Kb
-
-1. Building the DOM tree:
-- Build DOM tree by processing HTML markup (tokenization, tree construction)
-- Browser requests non-blocking resources and continues parsing
-- CSS does not block parsing
 - scripts which are not async or defer block parsing -> excessive scripts can be a significant bottleneck
+Other Processes:
+- JavaScript Compilation: JavaScript is interpreted, compiled, parsed and executed.
 
+
+
+% https://web.dev/render-blocking-resources/
+Lighthouse flags resources as render blocking when:
+A <script> tag that:
+Is in the <head> of the document.
+Does not have a defer attribute.
+Does not have an async attribute.
+
+
+
+
+
+% https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
+Javascript is a powerful tool that can manipulate both the DOM and CSSOM, so to execute Javascript, the browser has to wait for the DOM, then it has to download and parse all the CSS files, get to the CSSOM event and only then finally execute Javascript.
+
+When the parser finds a script tag it blocks DOM construction, then waits for the browser to get the file and for the javascript engine to parse the script, this is why Javascript is parser blocking.
+
+There are only two cases when Javascript does not block on CSSOM:
+1. Inlined scripts above the css files ‘<link>’ in the ‘<head>
+2. Async scripts.
+Async scripts don’t block DOM construction and don’t have the need to wait for the CSSOM event
+
+
+
+
+% [Some more Infos]
+
+% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+- DOM is also exposed, and can be manipulated through various APIs in JavaScript
 Optimisation: Preload scanner:
 - This process occupies main thread while browser is building DOM Tree
 - parse through the content available and request high priority resources like CSS, JavaScript, and web fonts.
 - will retrieve resources in the background so that by the time the main HTML parser reaches requested assets, they may possibly already be in flight, or have been downloaded
-- CSS fetch does not block HTML parsing but JS
 
+
+
+% ---------------
 
 
 % https://medium.com/jspoint/how-the-browser-renders-a-web-page-dom-cssom-and-rendering-df10531c9969
 As we have learned that DOM tree generation is incremental which means as the browser reads HTML, it will add DOM elements to the DOM tree
+
+
+
+
 
 
 % 2014 Hogan https://designingforperformance.com/
@@ -487,8 +537,9 @@ Chapter 2
 
 \paragraph{From CSS to CSSOM}
 
+Is defined here % footnote https://drafts.csswg.org/cssom/
 
-% [CSSOM]
+
 
 - DOM and CSSOM are independent data structures.
 
@@ -513,6 +564,9 @@ Chapter 2
 	
 	
 % https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css
+By default, CSS is treated as a render blocking resource, which means that the browser won't render any processed content until the CSSOM is constructed.
+Media types and media queries allow us to mark some CSS resources as non-render blocking.
+The browser downloads all CSS resources, regardless of blocking or non-blocking behavior.
 
 
 
@@ -522,7 +576,12 @@ Chapter 2
 
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-- CSSOM
+The CSSOM contains all the styles of the page
+Is not being created incremental: The incremental processing features don't apply to CSS like they do with HTML, because subsequent rules may override previous ones. Cascading
+Is render blocking: the browser blocks page rendering until it receives and processes all of the CSS
+CSS is render blocking because rules can be overwritten, so the content can't be rendered until the CSSOM is complete.
+
+
 
 % https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
 - CSSOM
@@ -545,11 +604,17 @@ Chapter 2
 - Creation of CSSOM
 
 
+
 % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 2. Building the CSSOM:
 - Process CSS and build CSSOM tree
 - Similar to DOM
 - Usually very fast
+
+
+
+
+
 
 
 
@@ -574,14 +639,9 @@ Chapter 2
 	- DOM parsing continues
 	
 	
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-- scripts which are not async or defer block parsing -> excessive scripts can be a significant bottleneck
+	
 
 
-
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-Other Processes:
-- JavaScript Compilation: JavaScript is interpreted, compiled, parsed and executed.
 
 
 
@@ -621,9 +681,11 @@ Chapter 2
 % ------------------------------------------------------------
 
 
+
 \paragraph{Building the Render Tree}
 
-% [Render Tree]
+
+HTML and CSS are both render blocking, as they prohibit the rendering of the render tree.
 
 
 - Render Tree:
@@ -672,9 +734,8 @@ Chapter 2
 
 % ------------------------------------------------------------
 
+
 \paragraph{Layout}
-
-
 
 
 % [Layout]
@@ -717,6 +778,7 @@ Chapter 2
 
 
 % ------------------------------------------------------------
+
 
 \paragraph{Paint}
 
@@ -873,15 +935,11 @@ CSS and JavaScript Loading:
 
 
 
+% ------------------------------
 
+% [Conclusion CRP]
 
-
-
-
-
-
-
-
+Time it takes for first render is captured in metric TIme to first render, see section X.
 
 
 
