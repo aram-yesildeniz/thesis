@@ -35,7 +35,7 @@
 
 
 %TODO find better title
-\section{Technical Background}
+\section{How Websites are being loaded}
 
 % [Introduction]
 - Brief technical introduction
@@ -43,6 +43,7 @@
 
 
 % [3 Entities: FE, BE, Network]
+It is possible to divide the website loading process into three entities which play a role.
 In his code talk 2016, Witt identifies three main areas or bottlenecks where bad performance is being produced: In the Frontend, the Backend, and on the network layer.  % cite 2016 Witt or just say this ??
 The Front End is everyhting the user sees on the screen, client, UI, browser, sends requests to a back end, etc.
 The Back End is the logic, servier, also data base, handles requests and sends responses to a front end
@@ -60,25 +61,41 @@ Network is what connects clients and servers, FE and BE, infrastructure element 
 % --------------------------------------------------------------------------------------------
 
 
-\subsection{Network Questions}
+\subsection{The Network Realm}
+
+Starting from hardware, ISP, routers, switches etc and the cables connecting them is part of the network.
+But also communication protocols such as the Internet protocol suite.
+
+Regarding performance, latency and bandwidth come into mind, and we will see that latency has a bigger impact on performance than bandwidth in section X.
+
+After discussing this issue, i will continue by describing the process or navigation steps which happen once the user enters a URL into the browser, up until he sees pixels on his screen and can use the website.
+
+
+% --------------------------------------------------------------------------------------------
+
 
 \subsubsection{Latency vs Bandwidth}
 
 There are two important attributes when discussing network performance: Latency and Bandwidth.
-- Key takeaway: Latency is bottleneck
-
-% 2013 Grigorik
-- Very nice graphic...
-- Ch 10: Why ? The previous results are a surprise to many, but they really should not be, as they are a direct consequence of the performance characteristics of the underlying protocols: TCP handshakes, flow and congestion control, and head-of-line blocking due to packet loss. Most of the HTTP data flows consist of small, bursty data transfers, whereas TCP is optimized for long-lived connections and bulk data transfers.
+The important thing to say here is that Latency is bottleneck for performance, and not bandwidth.
 
 
 % [Bandwidth]
+Bandwidth is the "maximum throughput of a logical or physical communication path". %cite 2013 Grigorik
+In other words, bandwidth describes the amount of data which can be sent in parallel from one node in a network to another. 
+
+Physical communication paths are most likely cables such as metal wires or fiber-optic cables, where fiber-optic cables have less signal loss, and lower lifetime maintenance costs.
+With methods such as wavelength-division multiplexing (WDM), it is possible to transmit up to 70 Tbit/s over a fiber-optic connection.  %cite 2013 Grigorik
+
+This high technology stuff is only used in the backbone infrastructure, e.g. for connecting Europe with America.
+For the end user, bandwidth is much lower, and the average was in late 2015 just 5.1 Mbps %cite 2013 Grigorik
+
+A high bandwidth is useful for bulk or large data transfer such as streaming of video or audio.
+
+
+But for loading a website, the performance bottleneck is latency.
 
 % 2013 Grigorik
-Chapter 1 :
-- Bandwidth: Maximum throughput of a logical or physical communication path
-- Bandwidth can more easily be increased with more cables and WDM upgrades
-
 Chapter 10:
 - Bandwidth: For video
 
@@ -122,6 +139,19 @@ What is Latency?:
 - Generally measured in round-trip
 
 
+
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{latency.png}
+\caption{Latency vs Bandwidth}
+\label{img:latency}
+\end{center}
+\end{figure}
+
+
+
+
 % [Conclusion]
 
 % 2016 Witt code talks
@@ -141,6 +171,17 @@ Chapter 2 The Basics of Page Speed
 
 
 
+% 2013 Grigorik
+- Very nice graphic...
+- Ch 10: Why ? The previous results are a surprise to many, but they really should not be, as they are a direct consequence of the performance characteristics of the underlying protocols: TCP handshakes, flow and congestion control, and head-of-line blocking due to packet loss. Most of the HTTP data flows consist of small, bursty data transfers, whereas TCP is optimized for long-lived connections and bulk data transfers.
+
+
+
+
+% --------------------------------------------------------------------------------------------
+
+
+
 \subsubsection{Navigation Process}
 
 - I will explain briefly the general navigation process
@@ -156,13 +197,14 @@ Chapter 2 The Basics of Page Speed
 % [This famous image]
 % https://www.w3.org/TR/navigation-timing/
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.8\textwidth]{timing_overview.png}
-\caption{Timing Overview}
-\label{img:timing_overview}
-\end{center}
-\end{figure}
+%TODO add image from macbook!!
+%\begin{figure}[h!]
+%\begin{center}
+%\includegraphics[width=0.8\textwidth]{timing_overview.png}
+%\caption{Timing Overview}
+%\label{img:timing_overview}
+%\end{center}
+%\end{figure}
 
 
 % 2014 Hogan https://designingforperformance.com/
@@ -386,13 +428,14 @@ Layout: When the Render Tree is available, Layout is happening.
 
 Paint: Finally, pixels can be printed on the screen.
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.7\textwidth]{crp.png}
-\caption{Critical Rendering Path}
-\label{img:crp}
-\end{center}
-\end{figure}
+%TODO add image from macbook!
+%\begin{figure}[h!]
+%\begin{center}
+%\includegraphics[width=0.7\textwidth]{crp.png}
+%\caption{Critical Rendering Path}
+%\label{img:crp}
+%\end{center}
+%\end{figure}
 
 The individual steps are discussed below.
 
