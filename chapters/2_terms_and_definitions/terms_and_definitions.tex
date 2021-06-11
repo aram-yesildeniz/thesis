@@ -81,6 +81,7 @@ The important thing to say here is that Latency is bottleneck for performance, a
 
 
 % [Bandwidth]
+
 Bandwidth is the "maximum throughput of a logical or physical communication path". %cite 2013 Grigorik
 In other words, bandwidth describes the amount of data which can be sent in parallel from one node in a network to another. 
 
@@ -91,54 +92,25 @@ This high technology stuff is only used in the backbone infrastructure, e.g. for
 For the end user, bandwidth is much lower, and the average was in late 2015 just 5.1 Mbps %cite 2013 Grigorik
 
 A high bandwidth is useful for bulk or large data transfer such as streaming of video or audio.
-
-
-But for loading a website, the performance bottleneck is latency.
-
-% 2013 Grigorik
-Chapter 10:
-- Bandwidth: For video
+But for loading a website,or any browser activity that depends on many requests that fetch data from many different locations around the globe, the performance bottleneck is latency. % cite 2013 Grigorik
 
 
 % [Latency]
 
-% 2013 Grigorik
-Chapter 1 :
-- Latency: The time from the source sending a packet to the destination receiving it
-- Decrease latency is not that simple due to physical restrictions. Data already travels with 2/3 speed of light
-- Use other techniques such as CDNs, caching, pre-fetching, etc
-- CDN: Help against this issue. Put stuff close to client
+Latency is "the time from the source sending a packet to the destination receiving it".  % cite 2013 Grigorik
 
-Chapter 10:
-- when it comes to everyday web browsing, which requires fetching hundreds of relatively small resources from dozens of different hosts, roundtrip latency is the limiting factor
-- Latency as a Performance Bottleneck
--  wireless latencies are significantly higher, making networking optimization a critical priority for the mobile web.
+Latency is measured in seconds and can be the time spent for one-way, or more common, how long it takes for the transmitted data package for the round-trip time (RTT), from source to destination and back.
+In other words, latency "describes the amount of delay on a network or Internet connection". % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+
+For the very first request when establishing a connection, latency is longer due to DNS lookup, TCP and TLS handshakes.
+Those will be discussed in section X. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
 
 
-% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
-% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
-- Why are mobile latencies so high?
-- Why is latency the bottleneck?
+% [Experiment]
 
-
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-- Latency as main threat
-- "Network latency is the time it takes to transmit bytes over-the-air to computers"
-
-
-% Understanding Latency https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-- time it takes for a packet of data to travel from source to a destination
-
-What is Latency?:
-- amount of time it takes from when a request is made by the user to the time it takes for the response to get back to that user
-- For first request latency is longer as it includes a DNS lookup, a TCP handshake, the secure TLS negotiation
-- Latency describes the amount of delay on a network or Internet connection
-- One of the main aims of improving performance is to reduce latency.
-- We can determine the amount of latency by measuring the speed with which the data moves from one network location to another.
-- Latency can be measured one way or entire round-trip
-- Generally measured in round-trip
-
-
+To get an idea about how the two aspects, bandwidth and latency, impact web performance,  Mike Belshe launched a study. % cite https://docs.google.com/a/chromium.org/viewer?a=v&pid=sites&srcid=Y2hyb21pdW0ub3JnfGRldnxneDoxMzcyOWI1N2I4YzI3NzE2
+Once setup has a fixed latency and bandwidth is variable, and vice versa.
+He and compared the performance of the two experiments using the Page Load Time metric. (cf. X for this metric)
 
 
 \begin{figure}[h!]
@@ -150,31 +122,37 @@ What is Latency?:
 \end{figure}
 
 
+We can see that the impact of bandwidth is trivial: if the available bandwidth is doubled, e.g. from 5 to 10 Mbps, there is no change in performance load time.
+For Latency on the other hand, the picture is different: If the latency can be decreased by half, e.g. from 120 ms to 60 ms, the page load time also sinkt um die hälfte.
+
+Or as Belshe states it, "[reducing] cross-atlantic RTTs from 150ms to 100ms [...] would have a larger effect on the speed of the internet than increasing a user's bandwidth from 3.9Mbps to 10Mbps or even 1Gbps." % cite https://docs.google.com/a/chromium.org/viewer?a=v&pid=sites&srcid=Y2hyb21pdW0ub3JnfGRldnxneDoxMzcyOWI1N2I4YzI3NzE2
+
+This obersvations can be explained with the many short, small connections and requests are made when browsing websites and the contrary underlying structure of the communication protocols, which are "optimized for long-lived connections and bulk data transfers. " %cite 2013 Grigorik ch 10
+
+But just simply decreasing the latency is not straightforward: The speed of data transfer is already at a 2/3 of light, but the physical constraint is the limiting factor, e.g. there is a minimum distance between London and New York which can not be optimized. % cite 2013 Grigorik Ch 1
 
 
-% [Conclusion]
+% [Other Aspects]
 
-% 2016 Witt code talks
-- latency impact: 2 times bandwith makes no difference, half of latency makes half of load time
+Another aspect of latency is that for wireless connections and therefore mobile devices, latency is even higher, "making networking optimization a critical priority for the mobile web." % cite 2013 Grigork Ch 1
 
-- For more details on networking like TCP TLS etc always cf to Grigorik
+This is due to the infrastructure of mobile nets, latency is high for mobile users. cf.  Why are mobile latencies so high? in Grigorik % cite https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
+
+
+As latency is a important factor, what happens on the front end is still important.
+And again for this thesis metrics measuring performance in the front end are the focus.
+
+Before i will discuss what happens in the browser once the website data arrived, i will briefly describe the preceding steps of establishing a connection between the browser (client) and the server.
+
+
+% TODO add this ?
+
+% Use other techniques such as CDNs, caching, pre-fetching, etc % 2013 Grigorik
+% CDN: Help against this issue. Put stuff close to client % 2013 Grigorik
 
 % Some direct implications for performance measurement ?
 % Understanding Latency https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-Network throttling:
-- Emulate download speed, upload speed, and minimum latency
-
-% 2014 Hogan https://designingforperformance.com/
-Chapter 2 The Basics of Page Speed
-% "Steve Souders says, “80 to 90% of the end user response time is spent on the frontend.” --> Find and cite this
-- use this as transition to Front End Section
-
-
-
-% 2013 Grigorik
-- Very nice graphic...
-- Ch 10: Why ? The previous results are a surprise to many, but they really should not be, as they are a direct consequence of the performance characteristics of the underlying protocols: TCP handshakes, flow and congestion control, and head-of-line blocking due to packet loss. Most of the HTTP data flows consist of small, bursty data transfers, whereas TCP is optimized for long-lived connections and bulk data transfers.
-
+% Network throttling: Emulate download speed, upload speed, and minimum latency
 
 
 
@@ -184,15 +162,15 @@ Chapter 2 The Basics of Page Speed
 
 \subsubsection{Navigation Process}
 
-- I will explain briefly the general navigation process
-- Last part of this process is when browser receives finally the HTML / Document. 
-- This section briefly describes the steps from start to end.
-- On the network, establishing a connection with DNS etc.
-- Then the server creates the response, maybe calls a DB etc.
-- What then happens in the browser is part of the next section.
-- What happens then is explained in CRP
+I will explain briefly the general navigation process: It begins when the user is submitting a URL in the browser and ends when he received website data.
 
-- Process From Start when user types in URL and hits enter, until the end when he sees the website fully loaded on his screen
+The main steps can be divided into networking, that is, establishing a connection with DNS etc., backend processing, e.g. data base queries etc., and the rendering in the front end, as seen in image X.
+The last part of this process is when browser receives finally the HTML / Document. 
+How the browser transfers the HTML into an interactive website is part of the next section.
+
+
+"To start, it is important to recognize that every HTTP request is composed of a number of separate stages (Figure 10-3): DNS resolution, TCP connection handshake, TLS negotiation (if required), dispatch of the HTTP request, followed by content download." % cite Grigorik 2013
+
 
 % [This famous image]
 % https://www.w3.org/TR/navigation-timing/
@@ -207,82 +185,17 @@ Chapter 2 The Basics of Page Speed
 %\end{figure}
 
 
-% 2014 Hogan https://designingforperformance.com/
-Chapter 2 The Basics of Page Speed
-How Browsers Render Content:
-- Steps between user types and submits URL and sees page on screen
+% [Connection vs Request]
 
-
-
-% ----------------------------------
-
-
-% [DNS]
-
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-DNS Lookup:
-- translate URL to IP address. Can be cached by browser
-- Must be done for each unique URL, e.g. when images are from different server
-
-% 2014 Hogan https://designingforperformance.com/
-Chapter 2 The Basics of Page Speed - How Browsers Render Content:
-- DNS Lookup (only when unknown domain)
-
-% 2016 Witt code talks
-Network:
-- DNS lookup
-
-% Understanding Latency https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-Network Timings:
-- DNS resolution: Time it took for DNS lookup
-
-
-
-% ----------------------------------
-
-
-% [TCP]
-
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-TCP Handshake:
-- 3-way-handshake between client and server
--> 3 more requests between client and server
-TCP Slow Start / 14kb rule:
-- Is an algorithm: Slow start gradually increases the amount of data transmitted until the network's maximum bandwidth can be determined
-- Avoid congestion
-- This is not part of TCP handshake but for first HTTP request
-- Initial response is 14Kb, second one is 28, etc.
-- Congestion Control algorithms: determine send rate
+Explain here difference between Connection and Request.
 
 % 2014 Hogan https://designingforperformance.com/
 Chapter 2 The Basics of Page Speed - How Browsers Render Content:
 - Connections:
 - Number of connections is not the same as number of requests it takes to load the page
-- SSL Negotiation explained
 - Persistent Connection: Browser keeps connection open for multiple requests
 - Parellell possible open connections, 6 for Chrome
 - To each domain one connection ??
-- TTFB
-
-
-% ----------------------------------
-
-
-% [TLS]
-
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-TLS Negotiation:
-- Make connection secure by changing cipher etc
--> 3 more round trips
-
--> At this point already 8 round trips
-
-% 2016 Witt code talks
-Network:
-- Initial connection: TCP Handshake and TLS handshake
-- time to first byte: When first page data byte receives on client side
-- content download
--> Max 6 parallel connections
 
 
 % Understanding Latency https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
@@ -290,17 +203,71 @@ Network Timings:
 - Blocked: When a request is in queue
 - Blocking happens when there are too many simultaneous connections to single server over HTTP
 
-% Understanding Latency https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-- TCP, TLS
-- Sending, Waiting, Receiving
+
+
+% ----------------------------------
+
+
+% [DNS]
+\paragraph{DNS Lookup}
+
+When the requested resource can not be loaded from the browsers cache, the first step to establish a connection is a DNS Lookup (or DNS Resolution).
+
+This step is about translate URL to IP address.
+Must be done for each unknown URL, e.g. when linked images within a website are from different server, for each unique URL DNS Lookup has to be done.
+The mapping of URL to IP can be cached by browser, which makes repeated views faster. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+
+Avg. time is 20 and 120 ms % https://www.keycdn.com/support/reduce-dns-lookups
+Can be considered a performance metric, see section X.
+
+
+% ----------------------------------
+
+
+% [TCP]
+\paragraph{TCP Handshake}
+
+Once a connection between a client and a server is established, the TCP 3-way-Handshake comes into play.
+
+The goal of TCP is to establish a reliable connection within an unreliable network.
+TCP  "guaranteed that all bytes sent will be identical with bytes received and that they will arrive in the same order to the client. " %cite 2013 Grigorik
+Regarding performance, the handshake adds two more round trips, which is bad for performance as we have seen because of latency.
+
+Many algorithms and techniques to get optimal data transfer and also avoid congestion are existing, such as Slow-Start.
+Slow-Start is an algorithm that determines the maximum bandwidth that can be used by gradually increasing the amount of data sent.
+Slow start prevents that the full capacity of the network is being used from the beginning, which in performance terms adds again more round trips and latency. %cite 2013 Grigorik
+
+
+%TODO
+A performance metric reflecting the time spent for establishing a TCP connection is X, see section X.
+
+For a detailed discussion cf "Building Blocks of TCP" in 2013 Grigorik % cite https://hpbn.co/building-blocks-of-tcp/
 
 
 
 % ----------------------------------
 
 
+% [TLS]
+\paragraph{TLS}
+
+TLS is another protocol which has the goal to establish a secure connection in terms of data encryption.
+Data transmitted over the network has to be encrypted so that aussenstehende can not read or manipulate the data.
+For encryption,  a cipher to be used needs to be established, which will be shared between client and server during the TLS Negotiation. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+
+TLS again adds more round trips which is bad for performance.
+
+%TODO
+A performance metric reflecting the time spent for a TLS negotiating is blabla in section X.
+
+for a detailed discussion see Transport Layer Security (TLS) in 2013 Grigorik % https://hpbn.co/transport-layer-security-tls/
+
+
+% ----------------------------------
+
 
 % [HTTP Request and Response]
+\paragraph{HTTP Request and Response}
 
 % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 Request/Response:
@@ -325,7 +292,9 @@ Request/Response:
 - CRP enters the stage see section X
 
 
+
 % ----------------------------------
+
 
 % [Optimization and Performance]
 %TODO maybe move each optimization trick to his corresponding section ?
@@ -1195,6 +1164,7 @@ Check out glossary: https://developer.mozilla.org/en-US/docs/Glossary
 
 
 DNS resolution / DNS lookup time % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+= GAs Avg. Domain Lookup Time (sec) % https://metriclabs.com.au/glossary/analytics-metrics/avg-domain-lookup-time-sec/
 
 
 Connecting / TCP Handshake time % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
