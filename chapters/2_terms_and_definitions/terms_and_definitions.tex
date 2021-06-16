@@ -153,7 +153,8 @@ And again for this thesis metrics measuring performance in the front end are the
 Before i will discuss what happens in the browser once the website data arrived, i will briefly describe the preceding steps of establishing a connection between the browser (client) and the server.
 
 
-% TODO add this ?
+
+%TODO add this ?
 
 % Use other techniques such as CDNs, caching, pre-fetching, etc % 2013 Grigorik
 % CDN: Help against this issue. Put stuff close to client % 2013 Grigorik
@@ -180,10 +181,6 @@ How the browser transfers the HTML into an interactive website is part of the ne
 "To start, it is important to recognize that every HTTP request is composed of a number of separate stages (Figure 10-3): DNS resolution, TCP connection handshake, TLS negotiation (if required), dispatch of the HTTP request, followed by content download." % cite Grigorik 2013
 
 
-% [This famous image]
-% https://www.w3.org/TR/navigation-timing/
-
-%TODO add image from macbook!!
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{timing_overview.png}
@@ -205,7 +202,6 @@ How the browser transfers the HTML into an interactive website is part of the ne
 % ----------------------------------
 
 
-% [DNS]
 \paragraph{DNS Lookup}
 
 When the requested resource can not be loaded from the browsers cache, the first step to establish a connection is a DNS Lookup (or DNS Resolution).
@@ -221,7 +217,6 @@ Can be considered a performance metric, see section X.
 % ----------------------------------
 
 
-% [TCP]
 \paragraph{TCP Handshake}
 
 Once a connection between a client and a server is established, the TCP 3-way-Handshake comes into play.
@@ -235,17 +230,14 @@ Slow-Start is an algorithm that determines the maximum bandwidth that can be use
 Slow start prevents that the full capacity of the network is being used from the beginning, which in performance terms adds again more round trips and latency. %cite 2013 Grigorik
 
 
-%TODO
+%TODO once i know which metric add it here
 A performance metric reflecting the time spent for establishing a TCP connection is X, see section X.
-
 For a detailed discussion cf "Building Blocks of TCP" in 2013 Grigorik % cite https://hpbn.co/building-blocks-of-tcp/
-
 
 
 % ----------------------------------
 
 
-% [TLS]
 \paragraph{TLS Negotiation}
 
 TLS is another protocol which has the goal to establish a secure connection in terms of data encryption.
@@ -254,7 +246,7 @@ For encryption,  a cipher to be used needs to be established, which will be shar
 
 TLS again adds more round trips which is bad for performance.
 
-%TODO
+%TODO once i know which metric add it here
 A performance metric reflecting the time spent for a TLS negotiating is blabla in section X.
 
 for a detailed discussion see Transport Layer Security (TLS) in 2013 Grigorik % https://hpbn.co/transport-layer-security-tls/
@@ -263,7 +255,6 @@ for a detailed discussion see Transport Layer Security (TLS) in 2013 Grigorik % 
 % ----------------------------------
 
 
-% [HTTP Request and Response]
 \paragraph{HTTP Request and Response}
 
 Now that a secure connection is established, the client fetches the first resources via HTTP GET request.
@@ -292,51 +283,10 @@ How this exactly happens, is explained in the next section.
 
 
 
-% ----------------------------------
-
-
-% [Optimization and Performance]
-%TODO
-% maybe move each optimization trick to his corresponding section ?
-% Should I even explain this ??
-
-
-% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
-% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
-% - Optimize your networking stack!
-
-
-
-% 2014 Hogan https://designingforperformance.com/
-% Chapter 2 The Basics of Page Speed - How Browsers Render Content:
-%- Browsers try to parallelize requests for content
-%- Requests: Optimizing size and amount of requests has big impact on performance, e.g. get all images in one requests using Sprites
-
-%Page Weight is somewhat important:
-%- Sum of all file sizes
-%- Averages in httparchive, which i also used in one approach % https://httparchive.org/reports/state-of-the-web?start=latest
-
-%Other Impacts on Page Speed
-%- "environmental factors"
-%- Geography, CDNs
-%- Network
-%- Browser
-
-
-% 2016 Witt code talks
-%- Possible Improvements:
-%- HTTP2
-%- Avoid redirects
-%- Caching headers
-%- CDNs
-%- Single Page Apps
-
-
-
-
 
 % --------------------------------------------------------------------------------------------
 % --------------------------------------------------------------------------------------------
+
 
 
 \subsection{Front End: Critical Rendering Path}
@@ -346,6 +296,24 @@ The following processes are typically called the Critical Rendering Path (CRP).
 The CRP is the last part of the navigation process as seen in image X.
 
 
+% [Critical]
+
+The critical rendering path is the minimum steps that the browser has to take from the moment it receives the first byte of HTML to the moment that it renders pixels on the screen for the first time.
+
+% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
+- Critical: Resources that delay the first render of the page are considered to be critical.
+- Non-critical: resources that are loaded after the initial page render are considered to be non-critical ,  that is, they dont delay the initial render of the page
+- HTML to be one of our render-blocking, critical resources ,  we cant render any content if we havent parsed it yet
+
+% https://gtmetrix.com/blog/how-to-eliminate-render-blocking-resources/
+- Non-critical resources are those that provide contributions to secondary/tertiary functionality or styling for the content on your page, e.g., a calendar widget on the sidebar below-the-fold.
+
+
+% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
+- Any CSS that is not necessary for the first load can be considered “non-critical”
+
+
+
 % [CRP Steps]
 
 There are a sequence of steps the browser goes through to render the page.
@@ -353,11 +321,6 @@ The basic idea is to convert HTML, CSS and JS to actual pixels on the screen.
 In short, the task of the CRP is to build a render tree, who then can be layout for the desired screen and pixels can be painted on it, see image X.
 
 Once the HTML is received, the browser starts with parsing the HTML and translate it into the DOM.
-The HTML references CSS and JS files.
-
-The browser will request those external resources when he sees them.
-
-
 When the The content of the CSS files will be parsed to the CSSOM.
 JS needs also to be executed.
 Render Tree: Once DOM and CSSOM are available, the Render Tree is being created.
@@ -366,10 +329,10 @@ Paint: Finally, pixels can be printed on the screen.
 % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
 
 
-
-Some requests are blocking, which means the parsing of the rest of the HTML is halted until the imported asset is handled. The browser continues to parse the HTML making requests and building the DOM, until it gets to the end, at which point it constructs the CSS object model. With the DOM and CSSOM complete, the browser builds the render tree, computing the styles for all the visible content. After the render tree is complete, layout occurs, defining the location and size of all the render tree elements. Once complete, the page is rendered, or 'painted' on the screen.
-
-The critical rendering path is the minimum steps that the browser has to take from the moment it receives the first byte of HTML to the moment that it renders pixels on the screen for the first time.
+Some requests are blocking, which means the parsing of the rest of the HTML is halted until the imported asset is handled. 
+The browser continues to parse the HTML making requests and building the DOM, until it gets to the end, at which point it constructs the CSS object model. With the DOM and CSSOM complete, the browser builds the render tree, computing the styles for all the visible content. 
+After the render tree is complete, layout occurs, defining the location and size of all the render tree elements. 
+Once complete, the page is rendered, or 'painted' on the screen.
 
 
 \begin{figure}[h!]
@@ -414,12 +377,19 @@ That’s the responsibility of the CSSOM."
 The general process is translating Bytes -> characters -> tokens -> nodes -> object model. % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
 
 
-% [Context within Process]
+% [Render Blocking]
 
 DOM constructoin is the very first step after HTML is received.
 Subsequent are the creaton of CSSOM which is discussed below, which then leads to the render tree, which will be rendered to the screen.
 
 Therefore, HTML is considered to be a render blocking resource. % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css
+As the parsing process blocks the rendering of the page.
+
+% https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
+- HTML and CSS are render-blocking resources
+
+
+
 
 
 % [Incrementally]
@@ -431,6 +401,7 @@ That means the DOM is created incrementally which is beneficial for performance.
 As we have learned that DOM tree generation is incremental which means as the browser reads HTML, it will add DOM elements to the DOM tree
 
 
+
 % [Resources]
 
 At some point, the process will encounter a linked and external resource, such as a Cascading Style Sheer or JavaScript.
@@ -440,37 +411,25 @@ Immediately when external references stylesheet is arrived (<link href..>) brows
 as the parser finds any links for CSS or Javascript, it immediatelly sends a request for them, after that it also sends requests for all the other assets found in the rest of the page
 The sequence is: Build DOM, build CSSOM, Run JS
 
-How CSS and JS is being handled is part of next sections.
-
-% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
-- Critical: Resources that delay the first render of the page are considered to be critical.
-- Non-critical: resources that are loaded after the initial page render are considered to be non-critical ,  that is, they dont delay the initial render of the page
-- HTML to be one of our render-blocking, critical resources ,  we cant render any content if we havent parsed it yet
+% https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+%- Parsing of HTML can continue when a CSS file is encountered
 
 
-% https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
-- HTML and CSS are render-blocking resources
-
-
-% https://gtmetrix.com/blog/how-to-eliminate-render-blocking-resources/
-- If these resources are at the bottom of the page, they would be the last things to be parsed, eliminating any blocking that may occur early on.
-- Non-critical resources are those that provide contributions to secondary/tertiary functionality or styling for the content on your page, e.g., a calendar widget on the sidebar below-the-fold.
-
-
-
-
-
-% [Some more Infos]
-
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-- DOM is also exposed, and can be manipulated through various APIs in JavaScript
-Optimisation: Preload scanner:
-- This process occupies main thread while browser is building DOM Tree
-- parse through the content available and request high priority resources like CSS, JavaScript, and web fonts.
-- will retrieve resources in the background so that by the time the main HTML parser reaches requested assets, they may possibly already be in flight, or have been downloaded
+How CSS is converted into CSSOM is part of next section.
 
 
 Time it takes for first render is captured in metric TIme to first render, see section X.
+
+
+
+%TODO add this?
+
+% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+%- DOM is also exposed, and can be manipulated through various APIs in JavaScript 
+%Optimisation: Preload scanner:
+%- This process occupies main thread while browser is building DOM Tree
+%- parse through the content available and request high priority resources like CSS, JavaScript, and web fonts.
+%- will retrieve resources in the background so that by the time the main HTML parser reaches requested assets, they may possibly already be in flight, or have been downloaded
 
 
 
@@ -481,50 +440,23 @@ Time it takes for first render is captured in metric TIme to first render, see s
 \paragraph{From CSS to CSSOM}
 
 
-% [Introduction,  Parser Blocking]
-
-CSSOM is standardized here % footnote https://drafts.csswg.org/cssom/
-
+% [Introduction]
 
 % https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
 - The CSS bytes are converted into characters, then tokens, then nodes, and finally they are linked into a tree structure known as the "CSS Object Model" (CSSOM):
 
-% https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-- Parsing of HTML can continue when a CSS file is encountered
+- CSSOM: Characters -> Tokens -> Nodes -> CSSOM
 
+Creation of CSSOM happens after DOM is completed. % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
+- DOM and CSSOM are independent data structures.
 
-% 2014 Hogan https://designingforperformance.com/
-Chapter 2
-- Request for stylesheet will block parsing 
-
-- <link rel="stylesheet" href="a.css">: Browser waits on this line, until file is received
+CSSOM is standardized here % footnote https://drafts.csswg.org/cssom/
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
 The CSSOM contains all the styles of the page
 
-A CSS is does not block parsing. % cite How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-
-Creation of CSSOM happens after DOM is completed. % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-
-- DOM and CSSOM are independent data structures.
-
-- CSSOM: Characters -> Tokens -> Nodes -> CSSOM
-
 % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 - CSSOM construction usually very fast
-
-
-% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
-- If we encounter a CSS style sheet (embedded or linked), start building the CSSOM
-- Turning CSS into the CSSOM is considered to be a “render-blocking” stage just like building the DOM out of our HTML.
-- If it just went ahead and rendered to pixels without waiting for the CSSOM we’d see a flash of unstyled content (ugly!) for a moment while the CSSOM was parsing.
-- browser blocks rendering until it has parsed all CSS
-- Any CSS that is not necessary for the first load can be considered “non-critical”
-
-
-% https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
-- As soon as the parser reaches the line with <link rel="stylesheet" href="style.css">, a request is made to fetch the CSS file, style.css
-- The DOM construction continues, and as soon as the CSS file returns with some content, the CSSOM construction begins
 
 
 
@@ -544,14 +476,39 @@ Is not being created incremental: The incremental processing features don't appl
 - browsers can’t build the CSSOM tree incrementally as it reads the CSS content. The reason for that is, a CSS rule at the end of the file might override a CSS rule written at the top of the file
 
 
+
+
+% [Not Parser Blocking]
+
+A CSS is does not block parsing. % cite How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+
+% https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
+- As soon as the parser reaches the line with <link rel="stylesheet" href="style.css">, a request is made to fetch the CSS file, style.css
+- The DOM construction continues, and as soon as the CSS file returns with some content, the CSSOM construction begins
+
+
+% from SO
+When the parser sees a stylesheet to load, it issues the request to the server, and moves on. If there are other resources to load, these can all be fetched in parallel (subject to some HTTP restrictions). 
+
+
+%TODO add FOUC ?
+
+% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
+- If it just went ahead and rendered to pixels without waiting for the CSSOM we’d see a flash of unstyled content (ugly!) for a moment while the CSSOM was parsing.
+
+
+
 % [Render Blocking]
+
+% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
+- Turning CSS into the CSSOM is considered to be a “render-blocking” stage just like building the DOM out of our HTML.
+- browser blocks rendering until it has parsed all CSS
 
 - Browser blocks page rendering until it receives all of the CSS
 -> CSS is render blocking
 	
 -> Rendering is blocked on CSS
 - Browser needs all of the CSS before putting anything on the screen
-- CSS is truly critical
 
 CSS is a render blocking resource, as rendering of the page can only happen when CSSOM and therefore CSS is available. % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css
 
@@ -571,17 +528,19 @@ CSS is render blocking because rules can be overwritten, so the content can't be
 - Once the browser makes a request to fetch an external stylesheet, the Render Tree construction is halted.
 
 
+% from SO
+But only when the CSS resources are loaded and ready can the page be painted on the screen. 
+That's render blocking, and because the fetches are in parallel, it's a less serious slow down.
+
+
 
 % [When finished]
-
 
 - When parsing is finished, At this point DOM and CSSOM are existing
 - Redner Tree is built, out of DOM and CSSOM
 
-
-
-
-
+The render tree is discussed in paragraph X
+Before we need to discuss JS.
 
 
 % [Optimization]
@@ -697,6 +656,9 @@ Chapter 10:
 - DOM construction cannot proceed until JavaScript is executed, and JavaScript execution cannot proceed until CSSOM is available
 
 
+
+% from SO
+Imagine an HTML page has two <script src="..."> elements. The parser sees the first one. It has to stop* parsing while it fetches and then executes the javascript, because it might contain document.write() method calls that fundamentally change how the subsequent markup is to be parsed. Fetching resources over the internet is comparatively much slower than the other things the browser does, so it sits waiting with nothing to do. Eventually the JS arrive, executes and the parser can move on. It then sees the second <script src="..."> tag and has to go through the whole process of waiting for the resource to load again. It's a sequential process, and that's parser blocking.
 
 
 
@@ -1055,6 +1017,35 @@ Render Tree:
 
 
 
+
+% 2014 Hogan https://designingforperformance.com/
+% Chapter 2 The Basics of Page Speed - How Browsers Render Content:
+%- Browsers try to parallelize requests for content
+%- Requests: Optimizing size and amount of requests has big impact on performance, e.g. get all images in one requests using Sprites
+
+%Page Weight is somewhat important:
+%- Sum of all file sizes
+%- Averages in httparchive, which i also used in one approach % https://httparchive.org/reports/state-of-the-web?start=latest
+
+%Other Impacts on Page Speed
+%- "environmental factors"
+%- Geography, CDNs
+%- Network
+%- Browser
+
+
+% 2016 Witt code talks
+%- Possible Improvements:
+%- HTTP2
+%- Avoid redirects
+%- Caching headers
+%- CDNs
+%- Single Page Apps
+
+
+
+
+
 %TODO add this ??
 % [JavaScript Parsing]
 % https://medium.com/reloading/javascript-start-up-performance-69200f43b201
@@ -1246,10 +1237,14 @@ log files
 
 
 
+
+
 % ---------------------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------------------
+
+
 
 
 
