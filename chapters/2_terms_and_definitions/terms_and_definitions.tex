@@ -369,6 +369,7 @@ Paint: Finally, pixels can be printed on the screen.
 
 Some requests are blocking, which means the parsing of the rest of the HTML is halted until the imported asset is handled. The browser continues to parse the HTML making requests and building the DOM, until it gets to the end, at which point it constructs the CSS object model. With the DOM and CSSOM complete, the browser builds the render tree, computing the styles for all the visible content. After the render tree is complete, layout occurs, defining the location and size of all the render tree elements. Once complete, the page is rendered, or 'painted' on the screen.
 
+The critical rendering path is the minimum steps that the browser has to take from the moment it receives the first byte of HTML to the moment that it renders pixels on the screen for the first time.
 
 
 \begin{figure}[h!]
@@ -403,14 +404,22 @@ The individual steps are discussed below.
 
 % [Introduction, Standard]
 
-The goal is to convert the content of the received HTML file into a Document Object Model, or DOM.
+In this step, the goal is to convert the content of the received HTML file into a Document Object Model, or DOM.
 DOM is a tree structure and internal representation of the HTML for the browser. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 DOM is specified in the living standard. % footnote https://dom.spec.whatwg.org/
-The specification is new.
+This specification is new.
 The Parsing of the HTML into the DOM is defined in the HTML standard % footnote https://html.spec.whatwg.org/multipage/parsing.html#parsing
 "The DOM tree captures the properties and relationships of the document markup, but it doesn't tell us how the element will look when rendered. 
 That’s the responsibility of the CSSOM."
 The general process is translating Bytes -> characters -> tokens -> nodes -> object model. % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
+
+
+% [Context within Process]
+
+DOM constructoin is the very first step after HTML is received.
+Subsequent are the creaton of CSSOM which is discussed below, which then leads to the render tree, which will be rendered to the screen.
+
+Therefore, HTML is considered to be a render blocking resource. % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css
 
 
 % [Incrementally]
@@ -422,29 +431,32 @@ That means the DOM is created incrementally which is beneficial for performance.
 As we have learned that DOM tree generation is incremental which means as the browser reads HTML, it will add DOM elements to the DOM tree
 
 
-% [External References]
+% [Resources]
 
 At some point, the process will encounter a linked and external resource, such as a Cascading Style Sheer or JavaScript.
-The question is if the fetched resources will block the ongoing parsing of the HTML process.
-- Immediately when external references stylesheet is arrived (<link href..>) browser requests it, that is dispatching HTTP GET request.
--> In the meantime, DOM construction continues!
-
-- Browser will not put anything on the screen until style information is received, that is CSS and CSSOM
-
-
-% [Non-blocking resources]
-
-% https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-- When the parser finds non-blocking resources, such as an image, the browser will request those resources and continue parsing.
-- Parsing can also continue when a CSS file is encountered,
-- But script tags without async or defer attribute block rendering and pause the parsing of HTML.
-Though the browser's preload scanner hastens this process.
-
-
+Immediately when external references stylesheet is arrived (<link href..>) browser requests it, that is dispatching HTTP GET request.
 
 % https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
 as the parser finds any links for CSS or Javascript, it immediatelly sends a request for them, after that it also sends requests for all the other assets found in the rest of the page
 The sequence is: Build DOM, build CSSOM, Run JS
+
+How CSS and JS is being handled is part of next sections.
+
+% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
+- Critical: Resources that delay the first render of the page are considered to be critical.
+- Non-critical: resources that are loaded after the initial page render are considered to be non-critical ,  that is, they dont delay the initial render of the page
+- HTML to be one of our render-blocking, critical resources ,  we cant render any content if we havent parsed it yet
+
+
+% https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
+- HTML and CSS are render-blocking resources
+
+
+% https://gtmetrix.com/blog/how-to-eliminate-render-blocking-resources/
+- If these resources are at the bottom of the page, they would be the last things to be parsed, eliminating any blocking that may occur early on.
+- Non-critical resources are those that provide contributions to secondary/tertiary functionality or styling for the content on your page, e.g., a calendar widget on the sidebar below-the-fold.
+
+
 
 
 
@@ -458,120 +470,140 @@ Optimisation: Preload scanner:
 - will retrieve resources in the background so that by the time the main HTML parser reaches requested assets, they may possibly already be in flight, or have been downloaded
 
 
+Time it takes for first render is captured in metric TIme to first render, see section X.
+
+
+
 
 % ------------------------------------------------------------
 
 
 \paragraph{From CSS to CSSOM}
 
-Is defined here % footnote https://drafts.csswg.org/cssom/
+
+% [Introduction,  Parser Blocking]
+
+CSSOM is standardized here % footnote https://drafts.csswg.org/cssom/
 
 
-CSS arrived:
-- Can not be parsed incrementally due to the cascading nature of CSS
-- Browser needs entire file beforehand (not like with HTML which can be parsed incrementally, e.g. when not the whole file is available)
-- Then CSSOM is constructed
+% https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
+- The CSS bytes are converted into characters, then tokens, then nodes, and finally they are linked into a tree structure known as the "CSS Object Model" (CSSOM):
 
--> Rendering is blocked on CSS
-- Browser needs all of the CSS before putting anything on the screen
-- CSS is truly critical
+% https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+- Parsing of HTML can continue when a CSS file is encountered
 
-- You want to get CSS down to the user as quick as possible:
-	- Inlining styles
-	- Load not needed styles later
 
-- When parsing is finished, At this point DOM and CSSOM are existing
+% 2014 Hogan https://designingforperformance.com/
+Chapter 2
+- Request for stylesheet will block parsing 
 
-- Redner Tree is built, out of DOM and CSSOM
-- Multiple Render Trees are existing
+- <link rel="stylesheet" href="a.css">: Browser waits on this line, until file is received
 
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
+The CSSOM contains all the styles of the page
 
 A CSS is does not block parsing. % cite How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 
 Creation of CSSOM happens after DOM is completed. % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-CSSOM will be discussed in next paragraph.
-
-
-Optimization: use media queries
-- FOUC: Flash of Unstyled Content: If unstyled content is visible on the screen
-
-% https://web.dev/render-blocking-resources/
-Lighthouse flags resources as render blocking when:
-A <link rel="stylesheet"> tag that:
-Does not have a disabled attribute. When this attribute is present, the browser does not download the stylesheet.
-Does not have a media attribute that matches the user's device.
-
-
 
 - DOM and CSSOM are independent data structures.
 
-- CSSOM:
-	- Characters -> Tokens -> Nodes -> CSSOM
-	- Cascading rules / style sheet: Children inherit styling rules of parent
-	- CSS rules cascade down
-	- Partial CSS Tree not possible, because rules can be overwritten
-	- Browser blocks page rendering until it receives all of the CSS
-	-> CSS is render blocking
+- CSSOM: Characters -> Tokens -> Nodes -> CSSOM
 
-	- More specific rules are more expensive
-	
-	
-- CSS Blocking Operation:
-	- CSS blocks rendering:
-	-> Rules can be overwritten, so that content can't be rendered until CSSOM is complete
-	- <link rel="stylesheet" href="a.css">: Browser waits on this line, until file is received
-	- Better to add styles in single file
+% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+- CSSOM construction usually very fast
 
-	- JS can change styling of page -> Browser blocks JS until CSS is resolved
-	
-	
-% https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css
-By default, CSS is treated as a render blocking resource, which means that the browser won't render any processed content until the CSSOM is constructed.
-Media types and media queries allow us to mark some CSS resources as non-render blocking.
-The browser downloads all CSS resources, regardless of blocking or non-blocking behavior.
+
+% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
+- If we encounter a CSS style sheet (embedded or linked), start building the CSSOM
+- Turning CSS into the CSSOM is considered to be a “render-blocking” stage just like building the DOM out of our HTML.
+- If it just went ahead and rendered to pixels without waiting for the CSSOM we’d see a flash of unstyled content (ugly!) for a moment while the CSSOM was parsing.
+- browser blocks rendering until it has parsed all CSS
+- Any CSS that is not necessary for the first load can be considered “non-critical”
+
+
+% https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
+- As soon as the parser reaches the line with <link rel="stylesheet" href="style.css">, a request is made to fetch the CSS file, style.css
+- The DOM construction continues, and as soon as the CSS file returns with some content, the CSSOM construction begins
 
 
 
-% https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
-- CSS Stylesheet
-- The CSS bytes are converted into characters, then tokens, then nodes, and finally they are linked into a tree structure known as the "CSS Object Model" (CSSOM):
+% [Cascading, Not incrementally]
+
+- Partial CSS Tree not possible, because rules can be overwritten
+- CSS can not be parsed incrementally due to the cascading nature of CSS
+- Browser needs entire file beforehand (not like with HTML which can be parsed incrementally, e.g. when not the whole file is available)
+- Then CSSOM is constructed
 
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-The CSSOM contains all the styles of the page
 Is not being created incremental: The incremental processing features don't apply to CSS like they do with HTML, because subsequent rules may override previous ones. Cascading
+
+% https://medium.com/jspoint/how-the-browser-renders-a-web-page-dom-cssom-and-rendering-df10531c9969
+- Unlike the DOM tree, CSSOM tree construction is not incremental and must happen in a specific manner.
+- browsers can’t build the CSSOM tree incrementally as it reads the CSS content. The reason for that is, a CSS rule at the end of the file might override a CSS rule written at the top of the file
+
+
+% [Render Blocking]
+
+- Browser blocks page rendering until it receives all of the CSS
+-> CSS is render blocking
+	
+-> Rendering is blocked on CSS
+- Browser needs all of the CSS before putting anything on the screen
+- CSS is truly critical
+
+CSS is a render blocking resource, as rendering of the page can only happen when CSSOM and therefore CSS is available. % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css
+
+- CSS blocks rendering:
+-> Rules can be overwritten, so that content can't be rendered until CSSOM is complete
+
+% https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css
+By default, CSS is treated as a render blocking resource, which means that the browser won't render any processed content until the CSSOM is constructed.
+
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
 Is render blocking: the browser blocks page rendering until it receives and processes all of the CSS
 CSS is render blocking because rules can be overwritten, so the content can't be rendered until the CSSOM is complete.
 
-
-
-% https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
-- CSSOM
-
-
-
 % https://medium.com/jspoint/how-the-browser-renders-a-web-page-dom-cssom-and-rendering-df10531c9969
-- Render blocking CSS
-- Unlike the DOM tree, CSSOM tree construction is not incremental and must happen in a specific manner.
-- browsers can’t build the CSSOM tree incrementally as it reads the CSS content. The reason for that is, a CSS rule at the end of the file might override a CSS rule written at the top of the file
 - CSS is a render-blocking resource
 - Once the browser makes a request to fetch an external stylesheet, the Render Tree construction is halted.
 
 
 
-
-% 2014 Hogan https://designingforperformance.com/
-Chapter 2
-- Request for stylesheet will block parsing -> CSS is render-blocking resource
-- Creation of CSSOM
+% [When finished]
 
 
+- When parsing is finished, At this point DOM and CSSOM are existing
+- Redner Tree is built, out of DOM and CSSOM
 
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-2. Building the CSSOM:
-- Process CSS and build CSSOM tree
-- Similar to DOM
-- Usually very fast
+
+
+
+
+
+
+% [Optimization]
+
+%TODO add this: optimization
+%- You want to get CSS down to the user as quick as possible:
+	%- Inlining styles
+	%- Load not needed styles later
+%- Optimization: use media queries
+%- Better to add styles in single file
+%- FOUC: Flash of Unstyled Content: If unstyled content is visible on the screen
+
+
+% https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css
+%Media types and media queries allow us to mark some CSS resources as non-render blocking.
+
+
+%TODO add this? Lighthouse what is render blocking https://web.dev/render-blocking-resources/
+%Lighthouse flags resources as render blocking when:
+%A <link rel="stylesheet"> tag that:
+%Does not have a disabled attribute. When this attribute is present, the browser does not download the stylesheet.
+%Does not have a media attribute that matches the user's device.
 
 
 
@@ -579,10 +611,16 @@ Chapter 2
 
 % ------------------------------------------------------------
 
+
+
 \paragraph{What happens with JavaScript}
 
 
+% [Introduction, Parser and Render Blocking]
 
+
+% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
+% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
 - When parser is at <script> tag:
 	- Will block rendering of the page
 	- Stop the parser
@@ -590,14 +628,104 @@ Chapter 2
 	- Execute JS
 	- Only then proceed
 
-- Asynchronous pattern:
-	- Not the same as async/defer tag
-	- Will fetch JS asynchronously
-	- Uses IIFE which creates a new script tag in the HTML with attribute async
-	see chapter X how Google Analytics is doing this.
+- DOM construction can't proceed until JavaScript is fetched
+- DOM construction can't proceed until JavaScript is executed
+- Sync script will block the DOM + rendering of your page:
 
 
-% [async and defer]
+Scripts on the other hand, which dont have the attribute async or defer, will block the parsing process.
+This means that excessive scripts can be a significant bottleneck % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+
+The JS can change the DOM % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
+
+% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+- scripts which are not async or defer block parsing -> excessive scripts can be a significant bottleneck
+
+
+% https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
+- Javascript is a powerful tool that can manipulate both the DOM and CSSOM, so to execute Javascript, the browser has to wait for the DOM, then it has to download and parse all the CSS files, get to the CSSOM event and only then finally execute Javascript.
+- When the parser finds a script tag it blocks DOM construction, then waits for the browser to get the file and for the javascript engine to parse the script, this is why Javascript is parser blocking.
+
+- JS Blocking Operation: <script src=""></script>: Will be executed directly when received
+
+
+% https://medium.com/jspoint/how-the-browser-renders-a-web-page-dom-cssom-and-rendering-df10531c9969
+- Parser blocking JS
+- Internal: script elements are parser-blocking. 
+- Every external file requests such as image, stylesheet, pdf, video, etc. do not block DOM construction (parsing) except script (.js) file requests.
+- When the browser encounters a script element, if it an embedded script, then it will execute that script first and then continue parsing the HTML to construct the DOM tree. 
+- So all embedded scripts are parser-blocking
+
+- If the script element is an external script file, the browser will start the download of the external script file off the main thread but it will halt the execution of the main thread until that file is downloaded. That means no more DOM parsing until the script file is downloaded
+- Once the script file is downloaded, the browser will first execute the downloaded script file on the main thread (obviously) and then continue with the DOM parsing. If the browser again finds another script element in HTML, it will perform the same operation
+
+- All normal scripts (embedded or external) are parser-blocking as they halt the construction of DOM. 
+
+
+% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
+- If we encounter a JS block (not designated as async) while building the DOM, wait for CSSOM construction, stop DOM construction and parse/execute the code. The reason for this is because JS execution can modify the DOM and access/modify the CSSOM.
+
+
+% https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
+- you can modify the content and styling of a page using JavaScript
+- you can remove and add elements from the DOM tree, and you may modify the CSSOM properties of an element via JavaScript as well
+- whenever the browser encounters a script tag, the DOM construction is paused
+- The entire DOM construction process is halted until the script finishes executing.
+- This is because JavaScript can alter both the DOM and CSSOM.
+- . Because the browser isn’t sure what this particular JavaScript will do, it takes precautions by halting the entire DOM construction altogether.
+- The DOM construction is halted until the script’s execution is complete
+- If you extract the inline script to an external local file, the behavior is just the same. The DOM construction is still halted
+- If the network is slow, and it takes thousands of milliseconds to fetch app.js, the DOM construction will be halted for the thousands of milliseconds as wel
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+- But script tags without async or defer attribute block rendering and pause the parsing of HTML.
+- Though the browser's preload scanner hastens this process.
+
+
+% https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
+- JavaScript files added to the <head> section of the document are treated as render blocking resources by default.
+- You can remove them from the critical rendering path by placing the <script> tags right before the closing </body> tag instead of the <head> section.
+- In this case, they only begin to download after the entire HTML has been downloaded.
+
+% https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
+- By default, every script is a parser blocker! The DOM construction will always be halted.
+
+
+% 2013 Grigorik
+Chapter 10:
+- Script execution can issue a synchronous doc.write and block DOM parsing and construction
+- DOM construction cannot proceed until JavaScript is executed, and JavaScript execution cannot proceed until CSSOM is available
+
+
+
+
+
+
+
+% [Blocked by CSS]
+
+- JS can change styling of page -> Browser blocks JS until CSS is resolved
+
+% https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
+- So, what happens when the parser encounters a script tag but the CSSOM isn’t ready yet?
+- Well, the answer turns out to be simple: the Javascript execution will be halted until the CSSOM is ready.
+- So, even though the DOM construction stops until an encountered script tag is encountered, that’s not what happens with the CSSOM.
+- With the CSSOM, the JS execution waits. No CSSOM, no JS execution
+
+
+% 2013 Grigorik
+Chapter 10:
+- JavaScript can also block on CSS
+
+
+
+
+
+% [async attribute]
+
+
+% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
+% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
 - Directly use async attribute:
 	- Is a promise that script will not use document.write
 	- Therefore parser can continue
@@ -605,90 +733,94 @@ Chapter 2
 	- Once its available execute it
 
 
-Scripts on the other hand, which dont have the attribute async or defer, will block the parsing process.
-This means that excessive scripts can be a significant bottleneck % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-
-
-The JS can change the DOM % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-
-
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-- scripts which are not async or defer block parsing -> excessive scripts can be a significant bottleneck
-Other Processes:
-- JavaScript Compilation: JavaScript is interpreted, compiled, parsed and executed.
-
-
-% https://web.dev/render-blocking-resources/
-Lighthouse flags resources as render blocking when:
-A <script> tag that:
-Is in the <head> of the document.
-Does not have a defer attribute.
-Does not have an async attribute.
-
-
 % https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
-Javascript is a powerful tool that can manipulate both the DOM and CSSOM, so to execute Javascript, the browser has to wait for the DOM, then it has to download and parse all the CSS files, get to the CSSOM event and only then finally execute Javascript.
-
-When the parser finds a script tag it blocks DOM construction, then waits for the browser to get the file and for the javascript engine to parse the script, this is why Javascript is parser blocking.
-
-There are only two cases when Javascript does not block on CSSOM:
-1. Inlined scripts above the css files ‘<link>’ in the ‘<head>
-2. Async scripts.
 Async scripts don’t block DOM construction and don’t have the need to wait for the CSSOM event
-
-
-
-
-% [JavaScript]
-
-
-- JS Blocking Operation:
-	- <script src=""></script>: Will be executed directly when received
-	- Do i need to run JS before DOM is created?
-	-> Add at end of <body>
-
 - Async:
 	- <script src="" async></script>
 	- Loads script asynchronously to the page
 	- DOM parsing continues
 	
 	
+% https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
+- asynchronous scripts are independent of the DOM.
+- On the other hand, the async attribute informs the browser that a script is completely independent of the page.
+-  It will download in the background as a non-render blocking resource, just like deferred scripts
+- However, unlike deferred scripts, async scripts don’t follow the document order, so they will execute whenever they finish downloading — which can happen at any time
+- The async attribute is recommended for independent third-party scripts, such as ads, trackers, and analytics scripts. For example, Google Analytics recommends adding the async attribute to support asynchronous loading in modern browsers.
+
+% https://medium.com/jspoint/how-the-browser-renders-a-web-page-dom-cssom-and-rendering-df10531c9969
+- async:
+When DOM parser encounters an external script element with async attribute, it will not halt the parsing process while the script file is being downloaded in the background. But once the file is downloaded, the parsing will halt and the script (code) will be executed.
+- All async scripts (AKA asynchronous scripts) do not block parser until they are downloaded. 
+- As soon as an async script is downloaded, it becomes parser-blocking. 
 
 
-% https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript
+% https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
+- If you add the async keyword to the script tag, the DOM construction will not be halted. The DOM construction will be continued, and the script will be executed when it is done downloading and ready.
+
+
+
+- async attribute not applicable on inline scripts %Grigorik slides
+
+
+
+% [defer attribute]
+
+% https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
+-  deferred scripts respect the document order
+- The defer attribute instructs the browser to download the script in the background so it won’t block the rendering of the page
+- The deferred script executes once the DOM is ready but before the DOMContentLoaded event fires
+- Deferred scripts follow the document order, just like nondeferred, default scripts.
+- You can’t add defer to inline scripts; it only works with external scripts that specify the script’s location using the src attribute.
+- The defer attribute is recommended for scripts that need the DOM, but you want to begin to download them before the document loads, without making them a render blocking resource.
+- You should also use defer rather than async if the document order is important — for instance, when consecutive scripts depend on each other.
 
 
 % https://medium.com/jspoint/how-the-browser-renders-a-web-page-dom-cssom-and-rendering-df10531c9969
-- Parser blocking JS
-- Internal: script elements are parser-blocking. Every external file requests such as image, stylesheet, pdf, video, etc. do not block DOM construction (parsing) except script (.js) file requests.
-- When the browser encounters a script element, if it an embedded script, then it will execute that script first and then continue parsing the HTML to construct the DOM tree. So all embedded scripts are parser-blocking
-
-- External:
-- If the script element is an external script file, the browser will start the download of the external script file off the main thread but it will halt the execution of the main thread until that file is downloaded. That means no more DOM parsing until the script file is downloaded
-- Once the script file is downloaded, the browser will first execute the downloaded script file on the main thread (obviously) and then continue with the DOM parsing. If the browser again finds another script element in HTML, it will perform the same operation
-
-- async:
-When DOM parser encounters an external script element with async attribute, it will not halt the parsing process while the script file is being downloaded in the background. But once the file is downloaded, the parsing will halt and the script (code) will be executed.
-
-
 - defer:
 We also have a magical defer attribute for the script element which works similar to the async attribute but unlike the async attribute, the script doesn’t execute even when the file is fully downloaded. All defer scripts are executed once the parser has parsed all HTML which means the DOM tree is fully constructed. Unlike async scripts, all defer scripts are executed in the order they appear in the HTML document (or DOM tree).
-
-
-All normal scripts (embedded or external) are parser-blocking as they halt the construction of DOM. All async scripts (AKA asynchronous scripts) do not block parser until they are downloaded. As soon as an async script is downloaded, it becomes parser-blocking. However, all defer scripts (AKA deferred scripts) are non-parser-blocking script as they do not block the parser and execute after the DOM tree is fully constructed.
-
+- However, all defer scripts (AKA deferred scripts) are non-parser-blocking script as they do not block the parser and execute after the DOM tree is fully constructed.
 
 
 
-% 2014 Hogan https://designingforperformance.com/
-Chapter 2
-- JS blocks DOM construction unsless its declared async or defer
+
+
+
+% [More stuff]
+
+%TODO add this?
+% https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+%- Though the browser's preload scanner hastens this process.
+
+% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
+% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
+%- Asynchronous pattern:
+	%- Not the same as async/defer tag
+	%- Will fetch JS asynchronously
+	%- Uses IIFE which creates a new script tag in the HTML with attribute async
+	%see chapter X how Google Analytics is doing this.
+
+
+%TODO add this? https://web.dev/render-blocking-resources/
+%Lighthouse flags resources as render blocking when:
+%A <script> tag that:
+%Is in the <head> of the document.
+%Does not have a defer attribute.
+%Does not have an async attribute.
+
+
+%TODO add this? resource hints
+% https://blog.logrocket.com/using-resource-hints-to-optimize-performance/
+
+
 
 
 
 
 
 % ------------------------------------------------------------
+
+
 
 
 \paragraph{Building the Render Tree}
@@ -699,6 +831,7 @@ HTML and CSS are both render blocking, as they prohibit the rendering of the ren
 - DOM + CSSOM: Content and styles
 - Only captures visible content
 - e...g when in CSS Display: none -> Children also skipped, because style cascades down
+- The hidden element will be present in the DOM but not the render tree
 
 % https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
 - The DOM and CSSOM trees are combined to form the render tree.
@@ -712,6 +845,12 @@ Render:
 - Create render tree out of DOM and CSSOM, aka computed style tree
 - Tree is used to compute layout
 - The render tree holds all the visible nodes with content and computed styles
+
+
+
+% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
+Render Tree:
+- First, the browser removes all non-visible elements. This includes elements such as <head>, <script>, and <meta>, as well as HTML elements that have the hidden attribute
 
 
 
@@ -773,6 +912,11 @@ Render:
 - Layout computes the exact position and size of each object.
 
 
+% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
+- Layout is where the browser figures out where elements go and how much space they take up.
+- When calculating layout, the browser has to start at the top of the render tree and move downward, since each element’s positioning, width, and height is calculated based off of the positioning of its parent nodes
+
+
 
 
 % ------------------------------------------------------------
@@ -792,171 +936,122 @@ Render:
 - Onload, the entire screen is painted. After that, only impacted areas of the screen will be repainted, as browsers are optimized to repaint the minimum area required
 
 
+% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
+- Paint: It’s important to remember that some CSS properties can have a larger impact on the page weight than others (for example, a radial-gradient is much more complex to paint than a simple color).
+
+
+% https://gtmetrix.com/blog/how-to-eliminate-render-blocking-resources/
+- Above the fold: “Above-the-Fold” refers to the area that the visitor normally sees on a website before scrolling down to see the rest of the content. 
+
+
+
 % ------------------------------------------------------------
 
+%TODO add this ?
 
-\paragraph{What else?}
-
-Additional infos here
-
-
-Finally, all this happens in the loop with ideally 60 frames per second
-
+% [Continuos Loop, 60 frames per second]
 
 % [Compositing ?]
 
 
-
-
-% [Conclusion, Optimizations]
-
-% 2013 Grigorik
-Chapter 10:
-- Script execution can issue a synchronous doc.write and block DOM parsing and construction
-- JavaScript can also block on CSS
-- DOM construction cannot proceed until JavaScript is executed, and JavaScript execution cannot proceed until CSSOM is available
--> styles at the top, scripts at the bottom best practice
-- Different browsers implement different logic for when, and in which order, the individual resource requests are dispatched. As a result, the performance of the application will vary from browser to browser.
-
-
-% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
-% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
-- Optimize the critical rendering path!
-
-
-% 2014 Hogan https://designingforperformance.com/
-- Optimizations of CRP:
-- media types and queries on css resources, which makes them non-blocking
-- Load JS efficient
-- Priotize requests for above the fold
-- etc. % Do i need to explain this ??
-
-Chapter 4:
-
-CSS and JavaScript Loading:
-- Rules:
-- Load CSS in head
-- CSS blocks rendering
-
-- Load JS at bottom of the page
-- Load Async
-- JS blocks DOM construction, because browser knows that content from script tag may change Render Tree
-- async tag will execute script once its ready, but order is not berücksichtigt
-- Anything that loads late and changes UI can cause layout shifts
-- 3rd party scripts: Need additional DNS lookup, should not be single point of failure
-
-
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-- Optimizing for CRP
-
-
-% https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
-- Optimizing
-
-
-% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
-% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
--  HTML is parsed incrementally
-- Rendering is blocked on CSS...
-- Optimize the critical rendering path!
-
-- DOM construction can't proceed until JavaScript is fetched
-- DOM construction can't proceed until JavaScript is executed
-- Sync script will block the DOM + rendering of your page:
-
-- Async all the things! nice image about async attribute
-
-
-- Optimizing DOM:
-	- Minify HTML
-	- Compression
-	- Cache in Browser
-
-
-- Unblocking CSS:
-	- Media queries: for responsive design
-	-> Move media queries to separate file
-	- <link rel="stylesheet" href="style-print.css" media="print">
-	-> Will not block rendering
-
-
-- Optimizing JS:
-	- Minify, compress, cache
-	- JS is parser blocking
-	- Script tag blocks DOM construction
-	- For external JS, browser waits until JS is fetched and executed
-	- CSS blocks rendering and JS execution
-
-	- Load and execute script after page is loaded
-	- Page is loaded: Browser fires onload event
-	- Async attribute:
-		- <script src="a.js" async></script>
-		- Does not block CRP (DOM construction, CSSOM)
-
-	- async attribute not applicable on inline scripts
-	- Inline script blocks CSSOM unless included before CSS request
-
-
-- General Strategies:
-	- Minify, compress, cache (HTML, CSS, JS)
-
-	- Minimize use of render blocking resources (CSS):
-		- Media queries
-		- Inline CSS
-
-	- Minimize use of parser blocking resources (JS):
-		- Defer JS execution
-		- async attribute
-
-
-	-> Minimize Bytes
-	-> Reduce critical resources
-	-> Shorten CRP length
-
-
-
-
-
-% ------------------------------
-
-% [Conclusion CRP]
-
-Time it takes for first render is captured in metric TIme to first render, see section X.
-
-
-
-% https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp
-
-
-
-
-% --------------------------------------------------------------------------------------------
-
-
-
-
+% ------------------------------------------------------------
 
 
 \subsection{Conclusion Technical Background}
 
-% Connection to Optimisation
 
 % We could see that performance Metrics are directly derived from this process
-
 % Metrics will be discussed next
-
 % After that, i will talk about how to actually measure the metrics
 
 
 
+
+
+%TODO add ?
+% [Optimizations]
+
+% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
+% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
+%- Optimize the critical rendering path!
+%-> styles at the top, scripts at the bottom best practice
+% - Different browsers implement different logic for when, and in which order, the individual resource requests are dispatched. As a result, the performance of the application will vary from browser to browser. 2013 Grigorik ch 10
+
+
+
+% 2014 Hogan https://designingforperformance.com/
+%- Optimizations of CRP:
+%- media types and queries on css resources, which makes them non-blocking
+%- Load JS efficient
+%- Priotize requests for above the fold
+%- etc. % Do i need to explain this ??
+%Chapter 4:
+%CSS and JavaScript Loading:
+%- Rules:
+%- Load CSS in head
+%- CSS blocks rendering
+%- Load JS at bottom of the page
+%- Load Async
+%- JS blocks DOM construction, because browser knows that content from script tag may change Render Tree
+%- async tag will execute script once its ready, but order is not berücksichtigt
+%- Anything that loads late and changes UI can cause layout shifts
+%- 3rd party scripts: Need additional DNS lookup, should not be single point of failure
+
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
+%- Optimizing for CRP
+
+
+% https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
+%- Optimizing
+
+
+
+% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
+% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
+%- Async all the things! nice image about async attribute
+%- Optimizing DOM:
+	%- Minify HTML
+	%- Compression
+	%- Cache in Browser
+%- Unblocking CSS:
+	%- Media queries: for responsive design
+	%-> Move media queries to separate file
+	%- <link rel="stylesheet" href="style-print.css" media="print">
+	%-> Will not block rendering
+%- Optimizing JS:
+	%- Minify, compress, cache
+	%- JS is parser blocking
+	%- Script tag blocks DOM construction
+	%- For external JS, browser waits until JS is fetched and executed
+	%- CSS blocks rendering and JS execution
+	%- Load and execute script after page is loaded
+	%- Page is loaded: Browser fires onload event
+	%- Async attribute:
+		%- <script src="a.js" async></script>
+		%- Does not block CRP (DOM construction, CSSOM)
+	%- Inline script blocks CSSOM unless included before CSS request
+%- General Strategies:
+	%- Minify, compress, cache (HTML, CSS, JS)
+%	- Minimize use of render blocking resources (CSS):
+	%	- Media queries
+		%- Inline CSS
+%	- Minimize use of parser blocking resources (JS):
+	%	- Defer JS execution
+		%- async attribute
+%	-> Minimize Bytes
+	%-> Reduce critical resources
+	%-> Shorten CRP length
+	
+	
 % 2013 Grigorik
-- Browser optimizations...
+%- Browser optimizations...
 
 % 2016 Witt code talks
-- tools available:
-- Profiling: GTMetrix, WebPageTest, PageSpeed Insigths
-- Inlining and Optimization: Critical, PostCSS, processhtml
-- Minification and Compression: Goole Closure, tinyPng, Uglifycss and cssmin
+%- tools available:
+%- Profiling: GTMetrix, WebPageTest, PageSpeed Insigths
+%- Inlining and Optimization: Critical, PostCSS, processhtml
+%- Minification and Compression: Goole Closure, tinyPng, Uglifycss and cssmin
 
 
 
