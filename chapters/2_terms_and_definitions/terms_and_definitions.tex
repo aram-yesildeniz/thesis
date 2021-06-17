@@ -518,7 +518,7 @@ When the browser encounters a script tag such as
 \end{lstlisting}
 
 it will stop its current task of parsing, fetch immediately the resource and execute its content, and only then proceed with the creation of the DOM. % cite % Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
-
+See image X.
 
 JS can manipulate and query the DOM tree and directly change the HTML file.
 As the HTML file is the input stream for the parser,  the parser stops until the JS is downloaded and executed. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
@@ -647,33 +647,12 @@ As inline scripts do not contain a src attribute, as the source of the script is
 \paragraph{Building the Render Tree}
 
 
-As already described, HTML and CSS are both render blocking, as they prohibit the rendering of the render tree.
+As already described above, HTML and CSS are both render blocking, as they prohibit the rendering of the page.
+Rendering can happen once the \textit{Render Tree} is available.
+The render tree is the combination of the DOM and CSSOM and captures all visible content with its styles which will be displayed on the screen.
+If an element has a CSS property such as \verb|display: none;| it will not occur in the render tree. % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
 
-- DOM + CSSOM: Content and styles
-- Only captures visible content
-- e...g when in CSS Display: none -> Children also skipped, because style cascades down
-- The hidden element will be present in the DOM but not the render tree
-
-% https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
-- The DOM and CSSOM trees are combined to form the render tree.
-- Render tree contains only the nodes required to render the page.
-
-
-
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-Render:
-- Build Render Tree
-- Create render tree out of DOM and CSSOM, aka computed style tree
-- Tree is used to compute layout
-- The render tree holds all the visible nodes with content and computed styles
-
-
-
-% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
-Render Tree:
-- First, the browser removes all non-visible elements. This includes elements such as <head>, <script>, and <meta>, as well as HTML elements that have the hidden attribute
-
-
+The computed render tree is then used to layout the content to the page, which is described in the next paragraph.
 
 
 %TODO add this ? Check again when chapter about WPT metrics is done
@@ -690,53 +669,19 @@ Render Tree:
 \paragraph{Layout}
 
 
-
-
 % [Introduction]
 
-- Position of the elements on the page
-- Calculating positions and dimensions
+In the layout process, the position and size of the nodes from the render tree are calculated.
+New layout calculations or reflows are triggered as soon as the screen area changes, e.g. by device rotation or window resizing, or on modifications of the DOM and render tree. % cite How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+
+Once the layout is resolved, the browser continues with painting pixels on the screen.
 
 
-
-% [Viewport]
-
-- Layout viewport size
-- <meta name="viewport" content="width=device-width">
-- Default width: 980px, used when meta tag is not set
-- Layout triggered by device orientation, window resize, adding or removing from DOM tree, etc.
-	
-
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-4. Layout:
-- Run layout on render tree
-- Compute geometry of each node
-- Exact size and location of each object
-- Subsequent changes are called reflow, e.g. when image is received later without specify its size
-
-
-
+%TODO add viewport? The projection area is dependent and defined by the viewport
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-- Layout determines the size and location of everything on the page. Once layout is determined, pixels are painted to the screen.
--  After the render tree is complete, layout occurs, defining the location and size of all the render tree elements
-- Layout is dependent on the size of screen. The layout step determines where and how the elements are positioned on the page, determining the width and height of each element, and where they are in relation to each other.
-- This width of the device impacts layout
-- The viewport meta tag defines the width of the layout viewport, impacting the layout.
-- Without it, the browser uses the default viewport width, which on by-default full screen browsers is generally 960px. On by-default full screen browsers, like your phone's browser, by setting <meta name="viewport" content="width=device-width"
-- Layout happens every time a device is rotated or browser is otherwise resized.
-- Layout performance is impacted by the DOM -- the greater the number of nodes, the longer layout takes.
-- Any time the render tree is modified, such as by added nodes, altered content, or updated box model styles on a node, layout occurs
-
-
-% https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
-- Layout computes the exact position and size of each object.
-
-
-% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
-- Layout is where the browser figures out where elements go and how much space they take up.
-- When calculating layout, the browser has to start at the top of the render tree and move downward, since each element’s positioning, width, and height is calculated based off of the positioning of its parent nodes
-
+%- The viewport meta tag defines the width of the layout viewport, impacting the layout.
+%- Without it, the browser uses the default viewport width, which on by-default full screen browsers is generally 960px. On by-default full screen browsers, like your phone's browser, by setting <meta name="viewport" content="width=device-width"
 
 
 
@@ -745,28 +690,32 @@ Render Tree:
 
 \paragraph{Paint}
 
+Finally, the browser can paint the content on the screen.
+If some content changes, browsers are optimized to only repaint areas on the screen affected.  %cite  https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
+
+
+
+%TODO add metrics ?
 % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-- Paint nodes on screen
--> First Meaningful Paint
-- Time to Interactive
+%-> First Meaningful Paint
+%- Time to Interactive
 
 
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-- Once layout is determined, pixels are painted to the screen.
-- The last step is painting the pixels to the screen. Once the render tree is created and layout occurs, the pixels can be painted to the screen
-- Onload, the entire screen is painted. After that, only impacted areas of the screen will be repainted, as browsers are optimized to repaint the minimum area required
-
-
-% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
-- Paint: It’s important to remember that some CSS properties can have a larger impact on the page weight than others (for example, a radial-gradient is much more complex to paint than a simple color).
-
-
+%TODO add above the fold?
 % https://gtmetrix.com/blog/how-to-eliminate-render-blocking-resources/
-- Above the fold: “Above-the-Fold” refers to the area that the visitor normally sees on a website before scrolling down to see the rest of the content. 
+%- Above the fold: “Above-the-Fold” refers to the area that the visitor normally sees on a website before scrolling down to see the rest of the content. 
+
+
+
+%TODO add performance question?
+% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
+%- Paint: It’s important to remember that some CSS properties can have a larger impact on the page weight than others (for example, a radial-gradient is much more complex to paint than a simple color).
+
 
 
 
 % ------------------------------------------------------------
+
 
 %TODO add this ?
 
@@ -780,12 +729,12 @@ Render Tree:
 
 \subsection{Conclusion Technical Background}
 
+[tbd]
+
 
 % We could see that performance Metrics are directly derived from this process
 % Metrics will be discussed next
 % After that, i will talk about how to actually measure the metrics
-
-
 
 
 
@@ -916,6 +865,8 @@ Render Tree:
 
 % ---------------------------------------------------------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------------------------------------------------------
+% ---------------------------------------------------------------------------------------------------------------------------------------
+% ---------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -924,44 +875,37 @@ Render Tree:
 
 
 % [Introduction]
-- synthetic monitoring
-- RUM
-- other methods briefly described
 
+At this point we have a understanding of how web sites are being loaded into the browser and displayed to the user.
+Some of the steps are more important for performance than others.
+In this section, I will describe how to measure the performance of a web site.
 
-\begin{itemize}
-\item Explanation and comparison of synthetic and real-user monitoring with concrete examples
-\item Short overview of other measuring methods such as log analysis or surveys
-\end{itemize}
-
-
-
-% About measuring web performance
 % Why web performance? As we saw its important for business
 
+Multiple methods exists.
+The prominent ones are synthetic monitoring and real user monitoring.
+They will be discussed below.
+
+Some other methods are mentioned in the last section.
+
+After discussing measurement methods, I can finally discuss the metrics we want to measure.
 
 
 
 
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
-synthetic:
-- lab environment: geography, network, device, browser, etc.
-- control variables to identify performance issues. this does not reflect real world and real user experience
-- automated
-- simulate user paths
-- traffic is generated artificial and is not by real users
- - can also be used for live system monitoring
- - fairly easy to implement, inexpensive
 
-RUM:
-- measure from real users machine
-- part of page tagging (same technique with including some JS)
-- measures actual use cases
+% ---------------
+
 
 
 
 % 2013 Grigorik https://hpbn.co/primer-on-web-performance/
 - Synthetic and Real-User Performance Measurement
+
+
+
+
+
 
 
 
@@ -1022,17 +966,54 @@ Ch 6 Measuring and Iterating on Performance
 
 \subsection{Synthetic Monitoring}
 
-\begin{itemize}
-    \item What is it
-    \item How does it work
-    \item Application, real life scenario
-    \item Examples:
-    \begin{itemize}
-        \item WebPageTest
-        \item Google Lighthouse
-        \item Other solutions
-    \end{itemize}
-\end{itemize}
+\subsubsection{Introduction}
+
+- What is it
+- How does it work
+
+
+
+% [Transition]
+
+- Application, real life scenario
+
+
+
+\subsubsection{WebPageTest}
+
+%TODO will be discussed in related work ??
+
+
+\subsubsection{Google Lighthouse and other tools}
+
+
+
+
+
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+synthetic:
+- lab environment: geography, network, device, browser, etc.
+- control variables to identify performance issues. this does not reflect real world and real user experience
+- automated
+- simulate user paths
+- traffic is generated artificial and is not by real users
+ - can also be used for live system monitoring
+ - fairly easy to implement, inexpensive
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1053,20 +1034,57 @@ Ch 6 Measuring and Iterating on Performance
 
 \subsection{Real-User Monitoring}
 
-\begin{itemize}
-    \item What is it
-    \item How does it work
-    \item Application, real life scenario
-    \item Examples:
-    \begin{itemize}
-        \item Google Analyitcs
-        \item CrUX
-        \item SpeedKit
-        \item Other solutions
-    \end{itemize}
-\end{itemize}
 
-% boomerang Akamai
+\subsubsection{Introduction}
+
+
+- What is it
+- How does it work
+- Application, real life scenario
+
+
+% [Transition]
+
+- Application, real life scenario
+
+
+
+
+\subsubsection{Google Analytics}
+
+%TODO will be discussed in related work ??
+
+
+\subsubsection{CrUX and other tools}
+
+- SpeedKit ?
+- Boomerang Akamai
+
+
+
+
+
+
+
+
+
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+RUM:
+- measure from real users machine
+- part of page tagging (same technique with including some JS)
+- measures actual use cases
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1092,6 +1110,11 @@ log files
 - RUM which will be covered in chapter X
 - CrUX
 - Surveys
+
+
+
+
+
 
 
 
@@ -1147,6 +1170,9 @@ log files
 
 
 % ===== START: HERE I WILL LIST ALL METRICS =====
+
+
+%TODO what about drawing something like a map of metrics? I can underlay the metrics on the map with Web Vitals, CRP, Navigation etc.
 
 Check out glossary: https://developer.mozilla.org/en-US/docs/Glossary
 
