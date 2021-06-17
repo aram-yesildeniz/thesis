@@ -507,7 +507,7 @@ Before I describe this process, I will discuss how JavaScript is being handled.
 \paragraph{What happens with JavaScript}
 
 
-% [Introduction]
+% [Introduction, Parser and Render Blocking]
 
 JavaScript (JS) resources add functionality and interactivity to a web site.
 When the browser encounters a script tag such as
@@ -517,147 +517,89 @@ When the browser encounters a script tag such as
 <script src="myScript.js"></script>
 \end{lstlisting}
 
-it will stop its current task of parsing, fetch immediately the resource and execute its content, and only then proceed. % cite % Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
+it will stop its current task of parsing, fetch immediately the resource and execute its content, and only then proceed with the creation of the DOM. % cite % Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
 
 
+JS can manipulate and query the DOM tree and directly change the HTML file.
+As the HTML file is the input stream for the parser,  the parser stops until the JS is downloaded and executed. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
+Hence JS is parser blocking.
+JS fetching and execution stops the parsing of the HTML and the construction of the DOM.
+Only after the script finished execution, HTML parsing will continue.
 
-% [Parser and Render Blocking]
-
-JS can change and modify the DOM. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-Therefore, the creation of the DOM and parsing of the HTML is on hold until the JS is downloaded and executed.
-JS is parser blocking, as it stops the construction of the DOM, the parsing of the HTML.
-
-Implicitly, because JS execution blocks DOM creation, and HTML processing is render blocking, JS is also render blocking. % cite Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
-
-This is the case for both external referenced JS and an inline script.
+Implicitly, because JS execution blocks DOM creation, and HTML processing itself is render blocking, JS is also render blocking. % cite Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
 
 
-% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
-- If we encounter a JS block (not designated as async) while building the DOM, wait for CSSOM construction, stop DOM construction and parse/execute the code. The reason for this is because JS execution can modify the DOM and access/modify the CSSOM.
+The behaviour is the same for an external references JS file and a script directly added within in the HTML.
 
 
-% https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
-- you can modify the content and styling of a page using JavaScript
-- you can remove and add elements from the DOM tree, and you may modify the CSSOM properties of an element via JavaScript as well
-- whenever the browser encounters a script tag, the DOM construction is paused
-- The entire DOM construction process is halted until the script finishes executing.
-- This is because JavaScript can alter both the DOM and CSSOM.
-- . Because the browser isn’t sure what this particular JavaScript will do, it takes precautions by halting the entire DOM construction altogether.
-- The DOM construction is halted until the script’s execution is complete
-- If you extract the inline script to an external local file, the behavior is just the same. The DOM construction is still halted
-% - If the network is slow, and it takes thousands of milliseconds to fetch app.js, the DOM construction will be halted for the thousands of milliseconds as well
-
-% https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-- But script tags without async or defer attribute block rendering and pause the parsing of HTML.
-- Though the browser's preload scanner hastens this process.
-
-
-% https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
-- JavaScript files added to the <head> section of the document are treated as render blocking resources by default.
-- You can remove them from the critical rendering path by placing the <script> tags right before the closing </body> tag instead of the <head> section.
-- In this case, they only begin to download after the entire HTML has been downloaded.
-
-% https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
-- By default, every script is a parser blocker! The DOM construction will always be halted.
-
-
-% 2013 Grigorik
-Chapter 10:
-- Script execution can issue a synchronous doc.write and block DOM parsing and construction
-- DOM construction cannot proceed until JavaScript is executed, and JavaScript execution cannot proceed until CSSOM is available
-
-
-
-% from SO
-Imagine an HTML page has two <script src="..."> elements. The parser sees the first one. It has to stop* parsing while it fetches and then executes the javascript, because it might contain document.write() method calls that fundamentally change how the subsequent markup is to be parsed. Fetching resources over the internet is comparatively much slower than the other things the browser does, so it sits waiting with nothing to do. Eventually the JS arrive, executes and the parser can move on. It then sees the second <script src="..."> tag and has to go through the whole process of waiting for the resource to load again. It's a sequential process, and that's parser blocking.
-
-
+%TODO add this?
 
 % This means that excessive scripts can be a significant bottleneck % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 
+% https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
+% - If the network is slow, and it takes thousands of milliseconds to fetch app.js, the DOM construction will be halted for the thousands of milliseconds as well
+
+% https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
+%- You can remove them from the critical rendering path by placing the <script> tags right before the closing </body> tag instead of the <head> section.
+%-In this case, they only begin to download after the entire HTML has been downloaded.
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+%- Though the browser's preload scanner hastens this process.
 
 
 % [Blocked by CSS]
 
-While JS blocks the parsing of the HTML to the DOM, JS execution itself is blocked by the creation of the CSSOM, because JS can manipulate the styling of the page.
+As JS can also manipulate the styling of the page, its execution is blocked until the CSSOM is available.
+This means that the execution of the JS is on hold until the CSSOM is ready.
+To summarize, while JS blocks the parsing of the HTML to the DOM, JS execution itself is blocked by the creation of the CSSOM.
+CSSOM blocks JS, and JS blocks DOM construction. %cite 2013 Grigorik ch 10
 
-% https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
-- So, what happens when the parser encounters a script tag but the CSSOM isn’t ready yet?
-- Well, the answer turns out to be simple: the Javascript execution will be halted until the CSSOM is ready.
-- So, even though the DOM construction stops until an encountered script tag is encountered, that’s not what happens with the CSSOM.
-- With the CSSOM, the JS execution waits. No CSSOM, no JS execution
-
-
-% 2013 Grigorik
-Chapter 10:
-- JavaScript can also block on CSS
-
-
-% https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
-- Javascript is a powerful tool that can manipulate both the DOM and CSSOM, so to execute Javascript, the browser has to wait for the DOM, then it has to download and parse all the CSS files, get to the CSSOM event and only then finally execute Javascript.
+Several attributes on the script tag can change the behaviour of the browser.
+\textit{Async} and \textit{defer} are options to counter the blocking nature of the script tag.
+They will be discussed now.\\
 
 
 
 % [async attribute]
 
+With the async (asynchronous) attribute, the browser downloads the JS in the background while continuing with the parsing of the HTML.
+The parsing is not blocked and the browser can continue with his task. 
+As soon as the JS is downloaded and available,  it is parser blocking: the browser stops the parsing and executes the JS.%cite https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script
 
-% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
-% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
-- Directly use async attribute:
-	- Is a promise that script will not use document.write
-	- Therefore parser can continue
-	- Download JS while continue with DOM parsing
-	- Once its available execute it
+The order of all the async scripts within the document is not maintained any more.
+Whenever a script is downloaded and available, it will be executed.
+It does not matter if an async script was included at the top or bottom of the HTML document. % cite https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
 
 
-% https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
-Async scripts don’t block DOM construction and don’t have the need to wait for the CSSOM event
-- Async:
-	- <script src="" async></script>
-	- Loads script asynchronously to the page
-	- DOM parsing continues
-	
-	
+
 % https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
-- asynchronous scripts are independent of the DOM.
-- On the other hand, the async attribute informs the browser that a script is completely independent of the page.
--  It will download in the background as a non-render blocking resource, just like deferred scripts
-- However, unlike deferred scripts, async scripts don’t follow the document order, so they will execute whenever they finish downloading — which can happen at any time
-- The async attribute is recommended for independent third-party scripts, such as ads, trackers, and analytics scripts. For example, Google Analytics recommends adding the async attribute to support asynchronous loading in modern browsers.
-
-% https://medium.com/jspoint/how-the-browser-renders-a-web-page-dom-cssom-and-rendering-df10531c9969
-- async:
-When DOM parser encounters an external script element with async attribute, it will not halt the parsing process while the script file is being downloaded in the background. But once the file is downloaded, the parsing will halt and the script (code) will be executed.
-- All async scripts (AKA asynchronous scripts) do not block parser until they are downloaded. 
-- As soon as an async script is downloaded, it becomes parser-blocking. 
-
-
-% https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
-- If you add the async keyword to the script tag, the DOM construction will not be halted. The DOM construction will be continued, and the script will be executed when it is done downloading and ready.
-
-
-
-- async attribute not applicable on inline scripts %Grigorik slides
-
+%- The async attribute is recommended for independent third-party scripts, such as ads, trackers, and analytics scripts. For example, Google Analytics recommends adding the async attribute to support asynchronous loading in modern browsers.
 
 
 % [defer attribute]
 
+Like with async, scripts with the defer attribute enable the browser to download the script in parallel while continuing with the parsing of the HTML.
+Contrary to async, defer scripts will only be executed after the parsing of the page is complete and the DOM tree is fully constructed,  and the order of the scripts will be maintained.  %cite  https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
+
+
+%TODO add this nice graphic and cut out last rows https://html.spec.whatwg.org/multipage/scripting.html#attr-script-async
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{scripts.png}
+\caption{Scripts}
+\label{img:latency}
+\end{center}
+\end{figure}
+
+
+The async and defer attributes not applicable on inline scripts.
+From the standard, "scripts may specify defer or async, but must not specify either unless the src attribute is present. " % \footnote https://html.spec.whatwg.org/multipage/scripting.html#attr-script-async
+As inline scripts do not contain a src attribute, as the source of the script is within the script tags, the async and defer attributes are not applicable.
+
+
 % https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
--  deferred scripts respect the document order
-- The defer attribute instructs the browser to download the script in the background so it won’t block the rendering of the page
-- The deferred script executes once the DOM is ready but before the DOMContentLoaded event fires
-- Deferred scripts follow the document order, just like nondeferred, default scripts.
-- You can’t add defer to inline scripts; it only works with external scripts that specify the script’s location using the src attribute.
-- The defer attribute is recommended for scripts that need the DOM, but you want to begin to download them before the document loads, without making them a render blocking resource.
-- You should also use defer rather than async if the document order is important — for instance, when consecutive scripts depend on each other.
-
-
-% https://medium.com/jspoint/how-the-browser-renders-a-web-page-dom-cssom-and-rendering-df10531c9969
-- defer:
-We also have a magical defer attribute for the script element which works similar to the async attribute but unlike the async attribute, the script doesn’t execute even when the file is fully downloaded. All defer scripts are executed once the parser has parsed all HTML which means the DOM tree is fully constructed. Unlike async scripts, all defer scripts are executed in the order they appear in the HTML document (or DOM tree).
-- However, all defer scripts (AKA deferred scripts) are non-parser-blocking script as they do not block the parser and execute after the DOM tree is fully constructed.
-
+%- The defer attribute is recommended for scripts that need the DOM, but you want to begin to download them before the document loads, without making them a render blocking resource.
+%- You should also use defer rather than async if the document order is important — for instance, when consecutive scripts depend on each other.
 
 
 
@@ -669,7 +611,7 @@ We also have a magical defer attribute for the script element which works simila
 
 % [More stuff]
 
-%TODO add this?
+%TODO add this? preload scanner
 % https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 %- Though the browser's preload scanner hastens this process.
 
@@ -692,8 +634,6 @@ We also have a magical defer attribute for the script element which works simila
 
 %TODO add this? resource hints
 % https://blog.logrocket.com/using-resource-hints-to-optimize-performance/
-
-
 
 
 
