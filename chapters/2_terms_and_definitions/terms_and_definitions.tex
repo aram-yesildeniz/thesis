@@ -899,22 +899,12 @@ After discussing measurement methods, I can finally discuss the metrics we want 
 
 
 
-% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
-- Synthetic and Real-User Performance Measurement
 
 
 
 
 
 
-
-
-% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-- Log file
-- Synthetic: will be discussed in chapter X
-- RUM which will be covered in chapter X
-- CrUX
-- Surveys
 
 
 % 2016 Kaur: Tools for Measuring the Performance of Websites
@@ -926,13 +916,7 @@ After discussing measurement methods, I can finally discuss the metrics we want 
 
 
 
-% 2009 Croll
 
-
-% 2013 Meenan
-
-
-% 2013 Grigorik
 
 
 
@@ -972,6 +956,19 @@ Ch 6 Measuring and Iterating on Performance
 - How does it work
 
 
+% [Controlled Environment]
+
+
+
+% [Automation]
+
+
+
+% [Not Real Users]
+
+
+
+
 
 % [Transition]
 
@@ -989,6 +986,9 @@ Ch 6 Measuring and Iterating on Performance
 
 
 
+% ------------------------------
+
+
 
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
@@ -998,6 +998,7 @@ synthetic:
 - automated
 - simulate user paths
 - traffic is generated artificial and is not by real users
+- it isn't reflective of the actual experience of users
  - can also be used for live system monitoring
  - fairly easy to implement, inexpensive
 
@@ -1005,13 +1006,70 @@ synthetic:
 
 
 
+% 2009 Croll
+Synthetic monitoring:
+- Alert you when your site is unreachable or unacceptably slow
+- Identifyperformanceissuesspecifictoaparticularsegmentofyourvisitors,such as those using a certain web browser or a specific operating system
+- Baseline your performance and availability around the world
+- Compare your performance to that of your competitors
 
 
 
 
+% 2013 Meenan
+- You may choose specific pages to measure and geographic locations from which to measure, and then the test machines load the pages periodically from the various locations and the performance is reported
+- The results are usually quite consistent and provide a great baseline for identifying variations
+- the measurements are not representative of actual user
+- Limiting factors: page selection, browser cache, machine configuration, browsers, connectivity
+- The impact of connectivity cannot be understated
 
 
 
+% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
+- RUM and synthetic testing are complementary approaches to help you identify regressions and real-world bottlenecks in the performance and the user experience of your applications.
+
+
+- Broadly speaking, synthetic testing refers to any process with a controlled measurement environment: a local build process running through a performance suite, load testing against staging infrastructure, or a set of geo-distributed monitoring servers that periodically perform a set of scripted actions and log the outcomes. 
+- Each and every one of these tests may test a different piece of the infrastructure (e.g., application server throughput, database performance, DNS timing, and so on), and serves as a stable baseline to help detect regressions or narrow in on a specific component of the system
+- When configured well, synthetic testing provides a controlled and reproducible performance testing environment, which makes it a great fit for identifying and fixing performance regressions before they reach the user
+
+- However, synthetic testing is not sufficient to identify all performance bottlenecks.
+- Specifically, the problem is that the gathered measurements are not representative of the wide diversity of the real-world factors that will determine the final user experience with the application.
+
+
+- Real world factors not covered by synthetic testing:
+- Scenario and page selection: replicating real user navigation patterns is hard.
+- Browser cache: performance may vary widely based on the state of the user’s cache.
+- Intermediaries: performance may vary based on intermediate proxies and caches.
+- Diversity of hardware: wide range of CPU, GPU, and memory performance.
+- Diversity of browsers: wide range of browser versions, both old and new.
+- Connectivity: continuously changing bandwidth and latency of real connections.
+
+
+
+% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- approximate user-perceived performance
+- facilitates detailed measurements for individual pages and even user journeys
+- Tools like WebPagetest or Google Lighthouse are server applications that load websites just like clients do, but they record detailed logs and even a video of every page load
+- Running scripted tests periodically can provide useful information on deployment health, for example because increased load times may indicate that the Web server is under pressure or because a before-after comparison might uncover a problem with the most recent deployment
+- It is even possible to monitor and compare performance of competing websites
+- meticulous logs of what happened during the page load
+- waterfall diagram contains timing information on when the individual resources were requested, from which domain and over what kind of connection each of them was served, and how long transmission took
+- Modern tooling also tells you when the browser was actually doing useful work (e.g. rendering) and when it was idle and waiting for loads to finish
+- video analysis can be used to compute user-centric performance metrics like the Speed Index or the First Meaningful Paint
+
+
+- Even though extremely valuable for alerting and health monitoring, synthetic tests are barely suitable for approximating page load times observed by actual users, even when results are averaged over several runs to improve measurement accuracy. 
+- First, synthetic test results are often subject to substantial fluctuations, because typical offerings schedule tests dynamically over a set of servers and provide little control over the assigned server or even the amount of resources per execution. 
+- But as another inherent problem to the approach per se, synthetic tests are executed on servers that do not correspond well to the kind of hardware used by typical website visitors (namely desktop or mobile devices). Covering all relevant variations quickly becomes complex and expensive due to the sheer number of different browsers, connection profiles, operating systems, screen sizes, etc. that occur in the wild. 
+- Synthetic tests can therefore paint an unrealistic picture in terms of client performance as well as the way that ads, tracking, or other third-party libraries behave
+
+- synthetic tests are extremely useful for performance tuning as they provide detailed logging and user-perceived performance measurements through video analysis
+- they are also subject to an inherent issue that is already given away in the name: They are synthetic and therefore not representative for actual user data
+- it is impossible to directly connect business KPIs with Web performance by just using synthetic testing, because synthetic test clients do not participate in the actual business (i.e. in conversions)
+
+- delivers detailed information on user-perceived performance through waterfall diagrams and even video analysis
+- do not cover how website performance and user behavior are connected
 
 
 
@@ -1043,6 +1101,15 @@ synthetic:
 - Application, real life scenario
 
 
+
+
+
+% [Page Tagging]
+
+
+
+
+
 % [Transition]
 
 - Application, real life scenario
@@ -1063,23 +1130,83 @@ synthetic:
 
 
 
-
+% ----------------------------------
 
 
 
 
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
-RUM:
+- RUM is generally best suited for understanding long-term trends
 - measure from real users machine
 - part of page tagging (same technique with including some JS)
-- measures actual use cases
+- In real user monitoring, the browsers of real users report back performance metrics experienced
+- measures actual use cases: This is particularly important for large sites or complex apps, where the functionality or content is constantly changing, and where the population accessing the application may differ greatly in life experiences from those creating it.
+- RUM captures the performance of actual users regardless of device, browser, network or geographic location
 
 
 
 
 
 
+
+
+% 2009 Croll
+- watching actual user interactions with the site
+
+
+
+% 2013 Meenan
+- eporting the actual performance experienced by end users as they browse a site
+- When a page is instrumented using JavaScript to measure performance, JavaScript’s first chance to execute is at the point where the HTML has been downloaded from the server and the browser has begun executing the code
+- That leaves the approximately 20 percent of the time spent on loading the page outside of the measurement capabilities of in-page code
+- getting a reliable start time for measurements from the real world has been the biggest barrier to using RUM
+- Unlike the results from synthetic testing, data from real users is noisy, and averages tend not to work well at all.
+
+
+
+% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
+- capture actual performance of our application as experienced by the user
+
+- APIs to measure real users (will be discussed in metrics chapter):
+- Navigation Timing
+- Resource TIming
+- User TIming
+
+- The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application
+
+
+
+
+
+% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- take performance measurements from within the client devices of actual users
+- collect information on the client side and send it to the backend for further analysis
+- Typically collected information does not only include various timers to capture network and rendering performance, but also info on what the users clicked and how they engaged with the website
+- To also capture details about the user’s device and browser or on the referring website over which the user arrived, the user agent string and other data artifacts are collected along with the values obtained from the Navigation and Performance Timing APIs
+- By connecting measurements of the same users over time, the analysis scope can be widened from single page impressions (PIs) to entire user sessions
+- Since detailed information on devices and browsers is available, it is possible to discover browser-device combinations for which technical performance is below average or user groups that convert significantly more often than the rest.
+- It is even possible to explore where and when exactly customers drop out of the checkout procedure
+- Monitoring actual user data is therefore critical for not only understanding, but also for optimizing business performance
+
+- First, data needs to be collected in the browser in such a way that the rendering process is not obstructed. 
+- At the same time, the tracking data needs to be sent without consuming network resources while the page is still being loaded. 
+- Once the data has been written to storage in the backend, it needs to be post-processed and aggregated, so that further analyses can be executed efficiently over days or weeks worth of data. 
+- Finally, everything has to be wired up with a dashboarding solution to make insights easily accessible
+- Data regulations such as the GDPR or the CCPA add another practical challenge as they make a user opt-in obligatory: Before data can be collected, the website provider might be legally required to ask for the customer’s consent
+
+- Real-user monitoring is critical to understanding the business impact of page speed, because it connects technical performance (e.g. load timers) with business metrics (e.g. conversions or bounces)
+
+
+CrUX:
+- technical approach to understanding how users experience a website, because it is based on numerical measurements taken by the browser
+- CrUX relies on timers that correlate with when content is displayed (e.g. First or Largest Contentful Paint) or with how fast a website reacts (e.g. First Input Delay)
+- CrUX is based on opt-in performance tracking data collected by Chrome users. It is therefore available without a prior setup
+-  Seeing that the Google search rank of a website is partly determined on its basis, the Google CrUX report should further be considered SEO-critical
+- But even though CrUX data provides insights on perceived website performance, it does not provide a comprehensive overview, because measurements are only taken for Chrome users and reports therefore do not reflect performance experienced by users of Firefox, Safari, and other non-Google browsers
+- It is consequently not possible to view performance by different browser vendors at all.
+- Since the standard CrUX report is scoped to origin level, it also cannot be used to analyze performance for specific website sections and timeframes, or just for individual sub-pages such as product pages
+- This level of detail is only provided by PageSpeed Insights and the search console, both of which provide page-level granularity for the performance summaries
 
 
 
@@ -1093,6 +1220,7 @@ RUM:
 
 % ----------------------------------------------------------------------------------------------
 % ----------------------------------------------------------------------------------------------
+
 
 
 
@@ -1105,15 +1233,25 @@ log files
 
 
 % 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-- Log file
-- Synthetic: will be discussed in chapter X
-- RUM which will be covered in chapter X
-- CrUX
-- Surveys
+
+Log analysis:
+- concerned with technical performance in the backend
+- generates insights from the data that is already available from the application server, proxy, or content delivery network (CDN)
+- TTFB
+- Server logs typically only reflect the time it took to send the first response, not until the client actually started receiving it
+- Analyzing logs from application servers, CDNs, or proxies is a reasonable first step to discover potential bottlenecks, but it only covers the server side and does not provide any information on client-side processing in general or rendering performance in particular
 
 
-
-
+Surveys:
+- directly ask the users for their opinions
+- direct approach to understanding whether or not users are satisfied with website performance: Just ask them for their opinion
+- online surveys or by offering some sort of price or chance to win a competition in exchange for the users opinions. 
+- Other options include actual interviews or monitoring users in a lab setting to find out how they react while surfing on the website.
+- they only cover a small sample of the user base and therefore may be subject to a certain selection bias
+- user perception can be highly inaccurate
+- Getting reliable info from user surveys is therefore no trivial task
+- some forms of surveys (e.g. lab experiments) can be relatively expensive to conduct in comparison to some of the fully automated alternatives for collecting information
+- are great for collecting qualitative feedback on the user experience, but are not suitable for gathering quantitative measurements
 
 
 
@@ -1166,6 +1304,21 @@ log files
 - should be collected and measured in a consistent manner
 - analyzed in a format that can be consumed and understood by non-technical stakeholders
 
+
+
+
+% 2013 Grigork
+"there is no one single metric that holds true for every application, which means that we must carefully define custom metrics in each case"
+
+The real benefit of Navigation Timing is that it exposes a lot of previously inaccessible data, such as DNS and TCP connect times, with high precision (microsecond timestamps), via a standardized performance.timing object in each browser. Hence, the data gathering process is very simple: load the page, grab the timing object from the user’s browser, and beacon it back to your analytics servers! By capturing this data, we can observe real-world performance of our applications as seen by real users, on real hardware, and across a wide variety of different networks.
+
+- Finally, in addition to Navigation Timing, the W3C Performance Group also standardized two other APIs: User Timing and Resource Timing. Whereas Navigation Timing provides performance timers for root documents only, Resource Timing provides similar performance data for each resource on the page, allowing us to gather the full performance profile of the page. Similarly, User Timing provides a simple JavaScript API to mark and measure application-specific performance metrics with the help of the same high-resolution timers
+
+
+
+% 2013 Meenan
+- First, it is important to understand that no single number will answer that question. Even if you have defined exactly what you are trying to measure on your Web site, performance will vary widely across your user base and across the different pages on your site
+- Nothing beats application-specific knowledge and measurements
 
 
 
@@ -1222,25 +1375,65 @@ Time to First Byte: % https://developer.mozilla.org/en-US/docs/Glossary/time_to_
 - It’s a good indicator of how quickly the backend of your site is able to process and send back content
 
 
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+TTFB describes how long the requesting party has to wait from sending the first request packet until receiving the first response data packet
 
 
 
 
 
 
-First Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_paint
+
+First Paint, Time to First Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_paint
+
+
+% 2013 Meenan
+- can tell you the first point in time when the user sees something other than a blank white screen
+- doesn’t necessarily mean the user sees anything useful
+
+
 
 
 First Contentful Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_contentful_paint
 
 
+
+
 First Meaningful Paint: % https://developer.mozilla.org/en-US/docs/Glossary/first_meaningful_paint
+
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+The First Meaningful Paint is another user-centric metric and represents the point in time at which the largest visual change takes place; the underlying assumption here obviously is that the biggest visual change is relevant to the user, for example because a hero image or a navigation bar appear
+
+
+
 
 
 Largest Contentful Paint: % https://wicg.github.io/largest-contentful-paint/
 
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- approximation of the First Meaningful Paint that can be captured in the browser
+
+
+
+
+
 
 Speed Index: % https://developer.mozilla.org/en-US/docs/Glossary/Speed_index
+
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+The Speed Index revolves around visual completeness and represents the average time it takes for website elements to become visible. It works well for websites with a static layout, but is unreliable for websites with moving elements like carousels or videos. Computing the Speed Index for this kind of website requires a custom timer or event to demarcate the point in time at which visual completion is reached
+
+% 2013 Meenan
+- best effort for representing the user experience in a single number
+
+
+
+Above-the-fold time % 2013 Meenan
+- point in time when the last visual change is made to the visible part of the page
+- available only in lab environments where the visual progress of a page loading can be recorded
+
+
+
 
 
 Time to Interactive: % https://developer.mozilla.org/en-US/docs/Glossary/Time_to_interactive
@@ -1257,7 +1450,19 @@ Time to Interactive: % https://developer.mozilla.org/en-US/docs/Glossary/Time_to
 
 
 
-% ======== APIs ========
+% ======== Specifications and APIs ========
+
+
+
+% 2013 Meenan
+- In 2010, the browser vendors got together under the W3C banner and formed the Web Performance Working Group15 to standardize the interfaces and work toward improving the state of Web-performance measurement and APIs in the browsers
+- In late 2010 the group released the Navigation Timing specification
+- The largest benefit of navigation timing is that it exposes a lot of timings that lead up to the HTML loading --> This is this famous image
+- In addition to providing a good start time, it exposes information about any redirects, DNS lookup times, time to connect to the server, and how long it takes the Web server to respond to the request, for every user and for every page the user visits
+- The measurement points are exposed to the DOM (Document Object Model) through the performance object and make it trivial to calculate load times (or arbitrary intervals, really) from JavaScript.
+- Clock issue -> High Resolution Time specification
+
+
 
 % Measuring Performance https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
 Performance APIs:
@@ -1287,9 +1492,22 @@ Performance API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_A
 Navigation Timing API % https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API
 Navigation Timing API Level 2 % https://www.w3.org/TR/navigation-timing-2/
 
+
+
+
+
+
 Performance Timeline API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_Timeline
 
+
+
+
+
 Performance Entry API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
+
+
+
+
 
 PerformanceNavigationTiming % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
 
@@ -1297,11 +1515,27 @@ PerformanceNavigationTiming % https://developer.mozilla.org/en-US/docs/Web/API/P
 
 User Timing API % https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API
 
+% 2013 Meenan
+- provides a simple way of marking points in time using performance. mark(“label”) and a standard way of querying all of the custom measurements later
+
+
+
+
 Resource Timing API % https://developer.mozilla.org/en-US/docs/Web/API/Resource_Timing_API
+
+% 2013 Meenan
+- exposes timing information about every network request the browser had to make to load a page and what triggered each request (whether stylesheet, script, or image)
+
 
 
 
 Performance Observer API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
+
+
+
+High resolution Time specification
+
+
 
 
 
@@ -1610,6 +1844,15 @@ p. 74 Page View, first useful web analytics metric
 
 \paragraph{Web Vitals}
 
+
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+a set of browser-based metrics for capturing user-perceived performance. Google heralds the Web Vitals as the gold standard for website performance across a number of services (e.g. PageSpeed Insights, Search Console, TestMySite) and publishes them in the Chrome User Experience Report (CrUX) [7] database. The core metrics will further be used for ranking search results starting in June [6] and even non-AMP pages will be admitted to the Top Stories [4] feature in Search on mobile — given they exhibit top-of-the-line performance according to the Core Web Vitals. Website performance according to the Web Vitals will therefore be critically important for SEO in the upcoming years.
+
+
+
+
+
+
 % Walton user-centric
 % Walton https://web.dev/vitals/
 % Walton user centric metrics
@@ -1705,6 +1948,8 @@ p. 74 Page View, first useful web analytics metric
 
 
 % Web Vitals and SEO
+
+
 % 2021 Meenan vimeo 38:50
 
 
@@ -1719,6 +1964,7 @@ p. 74 Page View, first useful web analytics metric
 
 % Better not use own chapter for WPT Metrics: Once i have written down all metrics and categorised them, i can describe here which tools expose what. WPT would be the biggest example for a synthetic monitoring tool
 
+%TODO move this to WPT chapter in related work
 \subsection{WebPageTest Metrics}
 
 % https://docs.webpagetest.org/getting-started/
@@ -1835,7 +2081,7 @@ p. 74 Page View, first useful web analytics metric
 
 %----------------------------------------------------------------
 
-
+%TODO move this to GA chapter in related work
 \subsection{Google Analytics Site Speed Metrics}
 
 
