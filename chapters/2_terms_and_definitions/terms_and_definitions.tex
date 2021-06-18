@@ -894,53 +894,6 @@ After discussing measurement methods, I can finally discuss the metrics we want 
 
 
 
-% ---------------
-
-
-
-
-
-
-
-
-
-
-
-
-% 2016 Kaur: Tools for Measuring the Performance of Websites
-- Pingdom
-- GTMetrix
-- Website Grader
-- Site Speed checker
-
-
-
-
-
-
-
-
-
-% 2014 Hogan https://designingforperformance.com/
-Ch 6 Measuring and Iterating on Performance
-
-- Browser Tools
-- Synthetic Testing
-- Real User Monitoring
-- Changes over Time
-
-
-
-
-% 2015 Cito
-
-
-% 2016 Viscomi Synthetic Versus RUM
-
-
-% Eggplant whitepaper
-
-
 
 
 % ----------------------------------------------------------------------------------------------
@@ -950,137 +903,89 @@ Ch 6 Measuring and Iterating on Performance
 
 \subsection{Synthetic Monitoring}
 
-\subsubsection{Introduction}
 
-- What is it
-- How does it work
+\subsubsection{Synthetic}
+
+\paragraph{Laboratorial Environment}
+
+As the name already suggests, synthetic monitoring is a measurement method performed in an artificial, laboratory-like, synthetic environment.
+Test agents simulate real users and are configured to run a browser, load the web site under observation while capturing performance data.
+Synthetic monitoring does not take real user traffic into account. % cite 2015 cito
+
+Performance data can be captured using common performance APIs as described in section X.
+Additionally, through video recording and analysis,  user centric metrics such as Speed Index can be computed (see section X.) % cite 2021 Wolle 
+
+In synthetic monitoring, many possible configurations and variables of the test agent (client) are under control, such as the location (geography), network conditions, device type, browser version, and so on. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+Hence, the tester has control over many variables that impact performance.
+
+The controlled environment makes it possible to capture performance data for a specific set up of configurations, such as the test agents location or browser version, which may help to identify issues regarding certain user segments. % cite 2009 Croll
+
+Apart from defining the "infrastructure" configuration, the tester can also define artificial user journeys to simulate real user behaviour. % cite 2021 Wolle
+
+A characteristic of the controlled environment is that measured data and test results are rather consistent with low variability and can therefore provide a performance base line for the web site under observation and facilitate performance tuning.% cite 2013 Meenan
 
 
-% [Controlled Environment]
+\paragraph{Not Real Users}
+
+Synthetic monitoring does not capture data of real users as the web sites traffic is generated artificially.
+Real user behaviour is approximated through simulation by for example predefining user paths.
+The measured performance data does not necessarily reflect actual real user experience and the tester should not assume that "synthetic results are like real-user metrics". %cite 2016 Viscomi
+
+Capturing the wide variety and diversity of real-world users such as which pages they visits,, the general configuration of the users machine such as the CPU, GPU and memory performance, what data stores the browser cache and which browser version is being used, the screen size, the operating system, and the network connection to name a few, is difficult to represent in synthetic monitoring. % cite 2013 Meenan, 2013 Grigorik
+The selected test configuration in synthetic monitoring only reflects one special use case and can only approximate what a user with a similar set up may experience. % cite 2016 Viscomi
+In short, synthetic monitoring test results "are synthetic and therefore not representative for actual user data".  % cite 2021 Wolle
 
 
 
-% [Automation]
+\subsubsection{Monitoring}
+
+
+Synthetic monitoring can be automated and used to monitor a systems performance in real time while generating up to date reports for the systems maintainer. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+Monitoring enables to check the availability of the web site around the globe, %cite 2009 Croll
+to identify performance issues before real users are aware of them. % cite 2013 Grigorik https://hpbn.co/primer-on-web-performance/
+and is in general helpful for continuous "health checks" of the running system. %cite  2021 Wolle 
+
+As any web site can be tested synthetically, it is possible to compare performance data across multiple competitors. % cite 2009 Croll
 
 
 
-% [Not Real Users]
+% [Tools]
 
-
+Many synthetic monitoring tools exists (For a list of tools, see for example 2016 Kaur or some online resources here).
+WebPageTest is one of them and will be discussed in section X.
 
 
 
 % [Transition]
 
-- Application, real life scenario
+Coming back to e-commerce context, as discussed in section X.  a online shops performance correlates with the revenue.
+Synthetic monitoring allows to capture performance metrics independent of real user behaviour.
+Real user behaviour is not measured in synthetic monitoring.
+As only real users are capable of generating revenue, synthetic monitoring can not identify correlations between user satisfaction and performance (as described in section X.).%cite  2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+
+In order to do this, RUM is needed.
+Real-User Monitoring (RUM) enables to capture data of each individual real user .
+RUM will be discussed next.
 
 
 
-\subsubsection{WebPageTest}
-
-%TODO will be discussed in related work ??
-
-
-\subsubsection{Google Lighthouse and other tools}
+%TODO cut out google lighthouse completely ?
+%- Google Lighthouse
 
 
-
-
-% ------------------------------
+%TODO add waterfall ?
+% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+%- waterfall diagram contains timing information on when the individual resources were requested, from which domain and over what kind of connection each of them was served, and how long transmission took
 
 
 
-
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
-synthetic:
-- lab environment: geography, network, device, browser, etc.
-- control variables to identify performance issues. this does not reflect real world and real user experience
-- automated
-- simulate user paths
-- traffic is generated artificial and is not by real users
-- it isn't reflective of the actual experience of users
- - can also be used for live system monitoring
- - fairly easy to implement, inexpensive
-
-
-
-
-
-% 2009 Croll
-Synthetic monitoring:
-- Alert you when your site is unreachable or unacceptably slow
-- Identifyperformanceissuesspecifictoaparticularsegmentofyourvisitors,such as those using a certain web browser or a specific operating system
-- Baseline your performance and availability around the world
-- Compare your performance to that of your competitors
-
-
-
-
-% 2013 Meenan
-- You may choose specific pages to measure and geographic locations from which to measure, and then the test machines load the pages periodically from the various locations and the performance is reported
-- The results are usually quite consistent and provide a great baseline for identifying variations
-- the measurements are not representative of actual user
-- Limiting factors: page selection, browser cache, machine configuration, browsers, connectivity
-- The impact of connectivity cannot be understated
-
-
-
-% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
-- RUM and synthetic testing are complementary approaches to help you identify regressions and real-world bottlenecks in the performance and the user experience of your applications.
-
-
-- Broadly speaking, synthetic testing refers to any process with a controlled measurement environment: a local build process running through a performance suite, load testing against staging infrastructure, or a set of geo-distributed monitoring servers that periodically perform a set of scripted actions and log the outcomes. 
-- Each and every one of these tests may test a different piece of the infrastructure (e.g., application server throughput, database performance, DNS timing, and so on), and serves as a stable baseline to help detect regressions or narrow in on a specific component of the system
-- When configured well, synthetic testing provides a controlled and reproducible performance testing environment, which makes it a great fit for identifying and fixing performance regressions before they reach the user
-
-- However, synthetic testing is not sufficient to identify all performance bottlenecks.
-- Specifically, the problem is that the gathered measurements are not representative of the wide diversity of the real-world factors that will determine the final user experience with the application.
-
-
-- Real world factors not covered by synthetic testing:
-- Scenario and page selection: replicating real user navigation patterns is hard.
-- Browser cache: performance may vary widely based on the state of the user’s cache.
-- Intermediaries: performance may vary based on intermediate proxies and caches.
-- Diversity of hardware: wide range of CPU, GPU, and memory performance.
-- Diversity of browsers: wide range of browser versions, both old and new.
-- Connectivity: continuously changing bandwidth and latency of real connections.
+% 2016 Viscomi
+%- synthetic tools are deliberately designed to focus on the performance of a web page under strict conditions that are otherwise highly volatile in real-user performance
 
 
 
 % 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-- approximate user-perceived performance
-- facilitates detailed measurements for individual pages and even user journeys
-- Tools like WebPagetest or Google Lighthouse are server applications that load websites just like clients do, but they record detailed logs and even a video of every page load
-- Running scripted tests periodically can provide useful information on deployment health, for example because increased load times may indicate that the Web server is under pressure or because a before-after comparison might uncover a problem with the most recent deployment
-- It is even possible to monitor and compare performance of competing websites
-- meticulous logs of what happened during the page load
-- waterfall diagram contains timing information on when the individual resources were requested, from which domain and over what kind of connection each of them was served, and how long transmission took
-- Modern tooling also tells you when the browser was actually doing useful work (e.g. rendering) and when it was idle and waiting for loads to finish
-- video analysis can be used to compute user-centric performance metrics like the Speed Index or the First Meaningful Paint
-
-
-- Even though extremely valuable for alerting and health monitoring, synthetic tests are barely suitable for approximating page load times observed by actual users, even when results are averaged over several runs to improve measurement accuracy. 
-- First, synthetic test results are often subject to substantial fluctuations, because typical offerings schedule tests dynamically over a set of servers and provide little control over the assigned server or even the amount of resources per execution. 
-- But as another inherent problem to the approach per se, synthetic tests are executed on servers that do not correspond well to the kind of hardware used by typical website visitors (namely desktop or mobile devices). Covering all relevant variations quickly becomes complex and expensive due to the sheer number of different browsers, connection profiles, operating systems, screen sizes, etc. that occur in the wild. 
-- Synthetic tests can therefore paint an unrealistic picture in terms of client performance as well as the way that ads, tracking, or other third-party libraries behave
-
-- synthetic tests are extremely useful for performance tuning as they provide detailed logging and user-perceived performance measurements through video analysis
-- they are also subject to an inherent issue that is already given away in the name: They are synthetic and therefore not representative for actual user data
-- it is impossible to directly connect business KPIs with Web performance by just using synthetic testing, because synthetic test clients do not participate in the actual business (i.e. in conversions)
-
-- delivers detailed information on user-perceived performance through waterfall diagrams and even video analysis
-- do not cover how website performance and user behavior are connected
-
-
-
-
-
-
-
-
-
-
-
+%- Modern tooling also tells you when the browser was actually doing useful work (e.g. rendering) and when it was idle and waiting for loads to finish
 
 
 
@@ -1148,6 +1053,13 @@ Synthetic monitoring:
 
 
 
+% Eggplant whitepaper
+- In order to collect and send back timings, RUM needs a small snippet of JavaScript on every page. If the visitor can’t load the page for some reason, perhaps because a server is misbehaving or DNS isn’t working, the JavaScript snippet won’t run and timings won’t be captured
+- how your site’s performance affects their behavior.
+- Combining this timing information with business and other analytics metrics can help us to understand the effect of performance on our visitors’ behavior. For example, do visitors buy less when they have slow experiences?
+
+
+
 
 
 
@@ -1176,6 +1088,33 @@ Synthetic monitoring:
 - The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application
 
 
+
+
+
+% 2015 Cito
+- Real-User Monitoring (RUM) tracks web page performance from the browser, measuring the performance as experienced by the end users
+- we obtain data on real users when they access the application
+- It gathers the user experience across all active users, ge- ographies, and devices, thus allowing not only for (near) real-time metrics, but also further statistics on usage to correlate performance degradation
+- RUM is usually implemented through a small JavaScript tag that imports an external script to the page: This allows either an external service handling the monitoring or an internal monitoring appliance to measure metrics from the moment a request was initiated to the final loading of the whole page
+- The code in the snippet activates a ping-back of the measured data to the desired monitoring server where the performance data is finally stored.
+- Additionally, RUM can also capture device information, operating system, browser information and geographic origin
+- Real-User Monitoring leverages browser APIs to collect data specific to each end-user transaction, thus no additional resources are needed aside from storage and initial implementation of the client-side code.
+- RUM can detect many more micro-outages in comparison to Synthetic Monitoring
+
+- However, since real-user monitoring is passive, measurements are only made when end users interact with the service, thus a lack of visibility into the root causes of availability loss prevents Real-User Monitoring from being an effective method for monitoring for availability
+
+
+
+
+
+% 2016 Viscomi
+- Measures performance of real users
+- Highvariability,unrestricted
+- Continuous data collection
+- measures the actual performance real users are experiencing in the wild
+- The unbridled variations in browsers and bandwidth are all accounted for in the reporting so that each and every user’s unique environment is represented
+- monitoring because data tends to be continuously recorded and streamed to a dashboard
+- By monitoring performance, developers are able to get instant notification when page speed takes an unexpected turn; a decline in speed could theoretically page an engineer immediately if necessary. This is especially useful for mission-critical applications for which performance is just as important as availability
 
 
 
@@ -1219,6 +1158,21 @@ CrUX:
 
 
 % ----------------------------------------------------------------------------------------------
+
+
+
+
+
+% RUM and Synthetic
+
+% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
+- RUM and synthetic testing are complementary approaches to help you identify regressions and real-world bottlenecks in the performance and the user experience of your applications.
+
+
+
+
+
+
 % ----------------------------------------------------------------------------------------------
 
 
