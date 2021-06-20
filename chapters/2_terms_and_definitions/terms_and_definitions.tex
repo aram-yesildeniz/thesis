@@ -1000,65 +1000,30 @@ RUM will be discussed next.
 \subsection{Real-User Monitoring}
 
 
-\subsubsection{Real Users}
+\subsubsection{Measurements with Real Users}
 
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
-- measure from real users machine
-- RUM captures the performance of actual users regardless of device, browser, network or geographic location
-- measures actual use cases, if website content changes, e.g. new campaign, new use cases can directly be measured
-
-
-
-% 2013 Meenan
-- reporting the actual performance experienced by end users as they browse a site
-- Unlike the results from synthetic testing, data from real users is noisy, and averages tend not to work well at all.
-
-
-
-% 2015 Cito
-- measuring the performance as experienced by the end users
-- we obtain data on real users when they access the application
-- It gathers the user experience across all active users, geographies, and devices
-- RUM can also capture device information, operating system, browser information and geographic origin
-- RUM can detect many more micro-outages in comparison to Synthetic Monitoring
-- RUM is passive, measurements are only made when end users interact with the service, thus a lack of visibility into the root causes of availability loss prevents Real-User Monitoring from being an effective method for monitoring for availability
-
-
-
-% 2016 Viscomi
-- Measures performance of real users
-- measures the actual performance real users are experiencing in the wild
-- The unbridled variations in browsers and bandwidth are all accounted for in the reporting so that each and every user’s unique environment is represented
-
-
-
-
-% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-- take performance measurements from within the client devices of actual users
-- Since detailed information on devices and browsers is available, it is possible to discover browser-device combinations for which technical performance is below average or user groups that convert significantly more often than the rest
+As the name suggests, Real-User Monitoring (RUM) is about collecting and measuring data from real users visiting the web site.
+As opposed to synthetic monitoring, where web site traffic is generated artificially and performance experience from real users is only approximated, RUM data relies on real user traffic and captures data directly from each users browser. 
+RUM measures the performance as experienced by the users. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
 
 
 
 
 \subsubsection{Page Tagging}
 
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
-- part of page tagging (same technique with including some JS)
-- Beaconing: In real user monitoring, the browsers of real users report back performance metrics experienced
+% [Page Tagging]
 
+As already described in section X. Page Tagging is technique to instrument the users browser in order to collect data and report it back to an analytics server.
+RUM is based on page tagging, in terms of that it relies on a JS code snippet which will be loaded into the users browser.
+This JS code collects data and sends it back to an analytics service as soon as the user interacts with the system.
+If the user blocks JS, or the script can not be downloaded due to other reasons,  RUM will not work.
 
-% Eggplant whitepaper
-- In order to collect and send back timings, RUM needs a small snippet of JavaScript on every page. 
-- If the visitor can’t load the page for some reason, perhaps because a server is misbehaving or DNS isn’t working, the JavaScript snippet won’t run and timings won’t be captured
-
-
-
-% 2013 Meenan
-- When a page is instrumented using JavaScript to measure performance, JavaScript’s first chance to execute is at the point where the HTML has been downloaded from the server and the browser has begun executing the code
-- That leaves the approximately 20 percent of the time spent on loading the page outside of the measurement capabilities of in-page code
-- getting a reliable start time for measurements from the real world has been the biggest barrier to using RUM
-
-
+%TODO where to put this? Question of which Data
+% [Data]
+%Which data and metrics RUM can collect and measure is discussed in greater detail in section X.
+%A part from metrics exposed by Web APIs or own implementations
+%RUM can also gather data about the users device, operatins system or geographic location. %cite 2015 Cito
+%The performance data and timings are exposed through a variety of APIs which the JS tracking code has access to.
 
 % 2013 Grigorik https://hpbn.co/primer-on-web-performance/
 - APIs to measure real users (will be discussed in metrics chapter):
@@ -1067,21 +1032,27 @@ RUM will be discussed next.
 - User TIming
 - The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application
 
-
-
-
-% 2015 Cito
-- Real-User Monitoring (RUM) tracks web page performance from the browser
-- RUM is usually implemented through a small JavaScript tag that imports an external script to the page
-- allows either an external service handling the monitoring or an internal monitoring appliance to measure metrics from the moment a request was initiated to the final loading of the whole page
-- The code in the snippet activates a ping-back of the measured data to the desired monitoring server where the performance data is finally stored.
+% Cito
 - Real-User Monitoring leverages browser APIs to collect data specific to each end-user transaction
-- No additional resources are needed aside from storage and initial implementation of the client-side code
 
+
+As RUM relies on the JS code, the very first opportunity to measure data is when this JS code has been downloaded and executed.
+Anything what happens before is not visible for the tracking script.
+Meenan states that approximately 20 \% of the loading process lies outside of the measurement scope and "getting a reliable start time for measurements from the real world has been the biggest barrier to using RUM".% cite 2013 Meenan
+
+
+% [Diversity]
+
+RUM is independent of the users set up or environment and collects data for all active users:
+Regardless of the device, the browser,the network condition or the geographical location of the user, as long as the measurement (or tracking) script is downloaded into the users browser, RUM collects data.% cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+Hence, RUM data represents each users experience. % cite 2016 Viscomi
+
+Through the diversity of users and the unique environment of each user,  RUM data tends to be more diverse and heterogeneous than data collected by synthetic monitoring. % cite 2013 Meenan
 
 
 
 % 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- Since detailed information on devices and browsers is available, it is possible to discover browser-device combinations for which technical performance is below average or user groups that convert significantly more often than the rest
 - collect information on the client side and send it to the backend for further analysis
 - Typically collected information does not only include various timers to capture network and rendering performance,
 - To also capture details about the user’s device and browser or on the referring website over which the user arrived, the user agent string and other data artifacts are collected along with the values obtained from the Navigation and Performance Timing APIs
@@ -1094,6 +1065,10 @@ RUM will be discussed next.
 
 
 \subsubsection{Measure User Behaviour and Business Value}
+
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+- if website content changes, e.g. new campaign, new use cases can directly be measured
 
 
 % Eggplant whitepaper
@@ -1215,6 +1190,9 @@ Finally go into detail about those metrics.
 %TODO add some comparison table?
 
 
+%2015 Cito
+- RUM is passive, measurements are only made when end users interact with the service, thus a lack of visibility into the root causes of availability loss prevents Real-User Monitoring from being an effective method for monitoring for availability
+
 
 % ----------------------------------------------------------------------------------------------
 
@@ -1262,6 +1240,10 @@ There are some other methods such as crux or even surveys
 
 Metrics play a critical part as they capture the performance
 I will discuss metrics now.
+
+
+Whic DATA is collected exactly?
+Many metrics exist...
 
 
 
