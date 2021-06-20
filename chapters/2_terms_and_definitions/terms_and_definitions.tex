@@ -1018,27 +1018,18 @@ RUM is based on page tagging, in terms of that it relies on a JS code snippet wh
 This JS code collects data and sends it back to an analytics service as soon as the user interacts with the system.
 If the user blocks JS, or the script can not be downloaded due to other reasons,  RUM will not work.
 
-%TODO where to put this? Question of which Data
-% [Data]
-%Which data and metrics RUM can collect and measure is discussed in greater detail in section X.
-%A part from metrics exposed by Web APIs or own implementations
-%RUM can also gather data about the users device, operatins system or geographic location. %cite 2015 Cito
-%The performance data and timings are exposed through a variety of APIs which the JS tracking code has access to.
-
-% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
-- APIs to measure real users (will be discussed in metrics chapter):
-- Navigation Timing
-- Resource TIming
-- User TIming
-- The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application
-
-% Cito
-- Real-User Monitoring leverages browser APIs to collect data specific to each end-user transaction
-
+% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- Once the data has been written to storage in the backend, it needs to be post-processed and aggregated, so that further analyses can be executed efficiently over days or weeks worth of data. 
+- Finally, everything has to be wired up with a dashboarding solution to make insights easily accessible
+- Data regulations such as the GDPR or the CCPA add another practical challenge as they make a user opt-in obligatory: Before data can be collected, the website provider might be legally required to ask for the customer’s consent
 
 As RUM relies on the JS code, the very first opportunity to measure data is when this JS code has been downloaded and executed.
 Anything what happens before is not visible for the tracking script.
 Meenan states that approximately 20 \% of the loading process lies outside of the measurement scope and "getting a reliable start time for measurements from the real world has been the biggest barrier to using RUM".% cite 2013 Meenan
+
+% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+At the same time: - Data needs to be collected in the browser in such a way that the rendering process is not obstructed. 
+
 
 
 % [Diversity]
@@ -1048,19 +1039,6 @@ Regardless of the device, the browser,the network condition or the geographical 
 Hence, RUM data represents each users experience. % cite 2016 Viscomi
 
 Through the diversity of users and the unique environment of each user,  RUM data tends to be more diverse and heterogeneous than data collected by synthetic monitoring. % cite 2013 Meenan
-
-
-
-% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-- Since detailed information on devices and browsers is available, it is possible to discover browser-device combinations for which technical performance is below average or user groups that convert significantly more often than the rest
-- collect information on the client side and send it to the backend for further analysis
-- Typically collected information does not only include various timers to capture network and rendering performance,
-- To also capture details about the user’s device and browser or on the referring website over which the user arrived, the user agent string and other data artifacts are collected along with the values obtained from the Navigation and Performance Timing APIs
-- First, data needs to be collected in the browser in such a way that the rendering process is not obstructed. 
-- Once the data has been written to storage in the backend, it needs to be post-processed and aggregated, so that further analyses can be executed efficiently over days or weeks worth of data. 
-- Finally, everything has to be wired up with a dashboarding solution to make insights easily accessible
-- Data regulations such as the GDPR or the CCPA add another practical challenge as they make a user opt-in obligatory: Before data can be collected, the website provider might be legally required to ask for the customer’s consent
-
 
 
 
@@ -1103,18 +1081,33 @@ Through the diversity of users and the unique environment of each user,  RUM dat
 
 
 
-
-
-Transition here to metrics ?
-
-
-
-
-
+%TODO where to put this? Question of which Data
 % [APIs and Metrics]
 
 With JS we can access APIs and they expose metrics.
 But there are many other metics, also user specific stuff.
+
+% [Data]
+%Which data and metrics RUM can collect and measure is discussed in greater detail in section X.
+%A part from metrics exposed by Web APIs or own implementations
+%RUM can also gather data about the users device, operatins system or geographic location. %cite 2015 Cito
+%The performance data and timings are exposed through a variety of APIs which the JS tracking code has access to.
+
+% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
+- APIs to measure real users (will be discussed in metrics chapter):
+- Navigation Timing
+- Resource TIming
+- User TIming
+- The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application
+
+% Cito
+- Real-User Monitoring leverages browser APIs to collect data specific to each end-user transaction
+
+% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- Collected information includes various timers to capture network and rendering performance
+- To also capture details about the user’s device and browser or on the referring website over which the user arrived, the user agent string and other data artifacts are collected along with the values obtained from the Navigation and Performance Timing APIs
+
+
 
 
 
@@ -1131,23 +1124,8 @@ Google Analytics will be discussed in greater detail in section X.
 %Boomerang Akamai
 
 
-% [Transition]
 
-Finally go into detail about those metrics.
-
-
-
-
-
-% ----------------------------------
-
-
-
-
-
-
-
-
+% ----------------------------------------------------------------------------------------------
 
 
 
@@ -1173,25 +1151,6 @@ Finally go into detail about those metrics.
 % https://web.dev/chrome-ux-report/
 
 
-
-
-% ----------------------------------------------------------------------------------------------
-
-
-
-
-
-% RUM and Synthetic Comparison, Conclusion
-
-% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
-- RUM and synthetic testing are complementary approaches to help you identify regressions and real-world bottlenecks in the performance and the user experience of your applications.
-
-
-%TODO add some comparison table?
-
-
-%2015 Cito
-- RUM is passive, measurements are only made when end users interact with the service, thus a lack of visibility into the root causes of availability loss prevents Real-User Monitoring from being an effective method for monitoring for availability
 
 
 % ----------------------------------------------------------------------------------------------
@@ -1230,13 +1189,35 @@ Surveys:
 
 
 
+% ----------------------------------------------------------------------------------------------
+
+
 
 
 \subsection{Measurement Methods Conclusion}
 
+
+
+%TODO add some comparison table?
+% RUM and Synthetic Comparison, Conclusion
+
+% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
+- RUM and synthetic testing are complementary approaches to help you identify regressions and real-world bottlenecks in the performance and the user experience of your applications.
+
+
+
+%2015 Cito
+- RUM is passive, measurements are only made when end users interact with the service, thus a lack of visibility into the root causes of availability loss prevents Real-User Monitoring from being an effective method for monitoring for availability
+
+
+
+
+
 synthetic is useful for X and not for..
 RUM is useful for X and not for..
 There are some other methods such as crux or even surveys
+
+
 
 Metrics play a critical part as they capture the performance
 I will discuss metrics now.
