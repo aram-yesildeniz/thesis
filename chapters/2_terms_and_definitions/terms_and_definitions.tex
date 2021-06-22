@@ -41,6 +41,9 @@
 - Brief technical introduction
 - It is important to understand how things work, because Metrics and also how to measure them are derived from those processes
 
+In order to understand web performance metrics and the methods to measure them, it is crucial to have a basic understanding of the technical aspect of loading a website into a browser.
+This process includes establishing a connection between a client and a server, which will be discussed in section X, and the task of the browser to transform the received data from the server into a readable ready-to-use website, which will be discussed in section X.
+Always with performance in mind.
 
 % [3 Entities: FE, BE, Network]
 It is possible to divide the website loading process into three entities which play a role.
@@ -55,12 +58,17 @@ Network is what connects clients and servers, FE and BE, infrastructure element 
 - Section X is about Front end: how browser works, crp, 
 - How to optimise websites is not part of this thesis
 
+In this section, i will also say which metrics are describing the underlying process.
+So this section links directly to the metrics section.
+But all metrics are collected in the metrics section.
+
 
 
 % --------------------------------------------------------------------------------------------
 % --------------------------------------------------------------------------------------------
 
 
+%TODO choose title. Maybe "Establishment of Connection?"
 \subsection{The Network Realm}
 
 Starting from hardware, ISP, routers, switches etc and the cables connecting them is part of the network.
@@ -102,7 +110,7 @@ Latency is "the time from the source sending a packet to the destination receivi
 Latency is measured in seconds and can be the time spent for one-way, or more common, how long it takes for the transmitted data package for the round-trip time (RTT), from source to destination and back.
 In other words, latency "describes the amount of delay on a network or Internet connection". % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
 
-For the very first request when establishing a connection, latency is longer due to DNS lookup, TCP and TLS handshakes.
+For the very first request when establishing a connection, latency is longer due to protocols such as DNS lookup, TCP and TLS handshakes.
 Those will be discussed in section X. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
 
 
@@ -129,15 +137,17 @@ Or as Belshe states it, "[reducing] cross-atlantic RTTs from 150ms to 100ms [...
 
 This obersvations can be explained with the many short, small connections and requests are made when browsing websites and the contrary underlying structure of the communication protocols, which are "optimized for long-lived connections and bulk data transfers. " %cite 2013 Grigorik ch 10
 
-But just simply decreasing the latency is not straightforward: The speed of data transfer is already at a 2/3 of light, but the physical constraint is the limiting factor, e.g. there is a minimum distance between London and New York which can not be optimized. % cite 2013 Grigorik Ch 1
+But just simply decreasing the latency is not straightforward: The speed of data transfer is already at a 2/3 of light, but the physical constraint is the limiting factor, e.g. there is a minimum distance between London and New York which can not be further "optimized". % cite 2013 Grigorik Ch 1
 
 
-% [Other Aspects]
+% [Mobile]
 
 Another aspect of latency is that for wireless connections and therefore mobile devices, latency is even higher, "making networking optimization a critical priority for the mobile web." % cite 2013 Grigork Ch 1
 
 This is due to the infrastructure of mobile nets, latency is high for mobile users. cf.  Why are mobile latencies so high? in Grigorik % cite https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
 
+
+% [Transition]
 
 As latency is a important factor, what happens on the front end is still important.
 And again for this thesis metrics measuring performance in the front end are the focus.
@@ -145,7 +155,8 @@ And again for this thesis metrics measuring performance in the front end are the
 Before i will discuss what happens in the browser once the website data arrived, i will briefly describe the preceding steps of establishing a connection between the browser (client) and the server.
 
 
-% TODO add this ?
+
+%TODO add this ?
 
 % Use other techniques such as CDNs, caching, pre-fetching, etc % 2013 Grigorik
 % CDN: Help against this issue. Put stuff close to client % 2013 Grigorik
@@ -172,9 +183,6 @@ How the browser transfers the HTML into an interactive website is part of the ne
 "To start, it is important to recognize that every HTTP request is composed of a number of separate stages (Figure 10-3): DNS resolution, TCP connection handshake, TLS negotiation (if required), dispatch of the HTTP request, followed by content download." % cite Grigorik 2013
 
 
-% [This famous image]
-% https://www.w3.org/TR/navigation-timing/
-
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{timing_overview.png}
@@ -182,9 +190,7 @@ How the browser transfers the HTML into an interactive website is part of the ne
 \label{img:timing_overview}
 \end{center}
 \end{figure}
-%TODO the red boxes seem to be wrong: Network is maybe only from DNS to Request ..? or even request is coming from the browser
-% choose another word? Maybe navigation process...
-
+%TODO change image: remove network and BE boxes? remove white space around image
 
 
 %TODO add this ?
@@ -198,7 +204,6 @@ How the browser transfers the HTML into an interactive website is part of the ne
 % ----------------------------------
 
 
-% [DNS]
 \paragraph{DNS Lookup}
 
 When the requested resource can not be loaded from the browsers cache, the first step to establish a connection is a DNS Lookup (or DNS Resolution).
@@ -214,7 +219,6 @@ Can be considered a performance metric, see section X.
 % ----------------------------------
 
 
-% [TCP]
 \paragraph{TCP Handshake}
 
 Once a connection between a client and a server is established, the TCP 3-way-Handshake comes into play.
@@ -228,17 +232,14 @@ Slow-Start is an algorithm that determines the maximum bandwidth that can be use
 Slow start prevents that the full capacity of the network is being used from the beginning, which in performance terms adds again more round trips and latency. %cite 2013 Grigorik
 
 
-%TODO
+%TODO once i know which metric add it here
 A performance metric reflecting the time spent for establishing a TCP connection is X, see section X.
-
 For a detailed discussion cf "Building Blocks of TCP" in 2013 Grigorik % cite https://hpbn.co/building-blocks-of-tcp/
-
 
 
 % ----------------------------------
 
 
-% [TLS]
 \paragraph{TLS Negotiation}
 
 TLS is another protocol which has the goal to establish a secure connection in terms of data encryption.
@@ -247,7 +248,7 @@ For encryption,  a cipher to be used needs to be established, which will be shar
 
 TLS again adds more round trips which is bad for performance.
 
-%TODO
+%TODO once i know which metric add it here
 A performance metric reflecting the time spent for a TLS negotiating is blabla in section X.
 
 for a detailed discussion see Transport Layer Security (TLS) in 2013 Grigorik % https://hpbn.co/transport-layer-security-tls/
@@ -256,11 +257,10 @@ for a detailed discussion see Transport Layer Security (TLS) in 2013 Grigorik % 
 % ----------------------------------
 
 
-% [HTTP Request and Response]
 \paragraph{HTTP Request and Response}
 
 Now that a secure connection is established, the client fetches the first resources via HTTP GET request.
-Most often, the server will respond by sending back the index.html file, which then can be used by the browser to build the web site. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+Most often, the server will respond by sending back the index.html file, which then can be used by the browser to build the website. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 
 The time when this first response containing the first byte for building the web site is reflected in the metric TTFB which is discussed in section X.
 
@@ -285,83 +285,77 @@ How this exactly happens, is explained in the next section.
 
 
 
-% ----------------------------------
-
-
-% [Optimization and Performance]
-%TODO
-% maybe move each optimization trick to his corresponding section ?
-% Should I even explain this ??
-
-
-% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
-% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
-- Optimize your networking stack!
-
-
-
-% 2014 Hogan https://designingforperformance.com/
-Chapter 2 The Basics of Page Speed - How Browsers Render Content:
-- Browsers try to parallelize requests for content
-- Requests: Optimizing size and amount of requests has big impact on performance, e.g. get all images in one requests using Sprites
-
-Page Weight is somewhat important:
-- Sum of all file sizes
-- Averages in httparchive, which i also used in one approach % https://httparchive.org/reports/state-of-the-web?start=latest
-
-Other Impacts on Page Speed
-- "environmental factors"
-- Geography, CDNs
-- Network
-- Browser
-
-
-% 2016 Witt code talks
-- Possible Improvements:
-- HTTP2
-- Avoid redirects
-- Caching headers
-- CDNs
-- Single Page Apps
-
-
-
-
 
 % --------------------------------------------------------------------------------------------
 % --------------------------------------------------------------------------------------------
+
 
 
 \subsection{Front End: Critical Rendering Path}
 
 This section explains what happens after the first bytes of the web sites arrived in the browser.
-The following processes are typically called the Critical Rendering Path (CRP).
+The following processes are typically subsumed under the term \textit{Critical Rendering Path} (CRP).
 The CRP is the last part of the navigation process as seen in image X.
+
+
+% [Critical]
+
+The CRP is the minimum steps that the browser has to take from the moment it receives the first byte of HTML to the moment that it renders pixels on the screen for the first time.
+
+The rendering is critical as it is the very first render, the first visible content the user will see on the screen.
+The resources that are needed for the first render of the page delay the first render of the page are considered to be critical.
+Without the critical resources, the browser can not display content on the screen.
+An example of a critical resource is the first HTML file the browser receives, as without it, nothing is visible on the screen.
+Non-critical resources on the other hand will not stop the browser from displaying the first content on the screen. % cite https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
+
+
+% https://gtmetrix.com/blog/how-to-eliminate-render-blocking-resources/
+%- Non-critical resources are those that provide contributions to secondary/tertiary functionality or styling for the content on your page, e.g., a calendar widget on the sidebar below-the-fold.
+
+
+% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
+%- Any CSS that is not necessary for the first load can be considered “non-critical”
+
 
 
 % [CRP Steps]
 
 There are a sequence of steps the browser goes through to render the page.
 The basic idea is to convert HTML, CSS and JS to actual pixels on the screen.
-In short, the task of the CRP is to build a render tree, who then can be layout for the desired screen and pixels can be painted on it, see image X.
 
+Image X visualizes the flow of the CRP:
 Once the HTML is received, the browser starts with parsing the HTML and translate it into the DOM.
-The HTML references CSS and JS files.
-
-The browser will request those external resources when he sees them.
-
-
-
-When the The content of the CSS files will be parsed to the CSSOM.
-JS needs also to be executed.
-Render Tree: Once DOM and CSSOM are available, the Render Tree is being created.
-Layout: When the Render Tree is available, Layout is happening.
-Paint: Finally, pixels can be printed on the screen.
+The content of the CSS files will be parsed to the CSSOM.
+JavaScript needs to be fetched and executed.
+Once DOM and CSSOM are available, the Render Tree is being created.
+When the Render Tree is available, Layout is happening.
+Finally, pixels can be printed on the screen.
 % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
 
+In the following, the individual steps will be discussed in more detail.
 
 
-Some requests are blocking, which means the parsing of the rest of the HTML is halted until the imported asset is handled. The browser continues to parse the HTML making requests and building the DOM, until it gets to the end, at which point it constructs the CSS object model. With the DOM and CSSOM complete, the browser builds the render tree, computing the styles for all the visible content. After the render tree is complete, layout occurs, defining the location and size of all the render tree elements. Once complete, the page is rendered, or 'painted' on the screen.
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{crp.png}
+\caption{Critical Rendering Path}
+\label{img:crp}
+\end{center}
+\end{figure}
+
+
+
+
+% [Single Thread]
+%TODO do i need this ?
+% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+%- This is somewhat the bottleneck or the technical state of the browser
+%- Browser is single threaded
+%- Still: Enable smooth interaction: scrolling, responsive to touch, etc.
+%- Render time is key
+%- Goal: Main thread can complete all the work and still is available to handle user interaction
+%-> Improvement: Understand single thread concept of browser and minimize main threads responsibilities
+%-> Should lead to: rendering is fast and smooth and responses to interactions are immediate
 
 
 
@@ -373,358 +367,304 @@ Some requests are blocking, which means the parsing of the rest of the HTML is h
 \end{center}
 \end{figure}
 
-The individual steps are discussed below.
-
-
-
-
-% [Single Thread]
-%TODO do i need this ?
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-- This is somewhat the bottleneck or the technical state of the browser
-- Browser is single threaded
-- Still: Enable smooth interaction: scrolling, responsive to touch, etc.
-- Render time is key
-- Goal: Main thread can complete all the work and still is available to handle user interaction
--> Improvement: Understand single thread concept of browser and minimize main threads responsibilities
--> Should lead to: rendering is fast and smooth and responses to interactions are immediate
-
-
-
-% ------------------------------------------------------------
-
 
 \paragraph{From HTML to DOM}
 
-% [Introduction]
+% [Introduction, Standard]
 
-The goal is to convert the content of the received HTML file into a Document Object Model, or DOM.
-DOM is a tree structure and internal representation of the HTML for the browser. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-DOM is specified in the living standard. % footnote https://dom.spec.whatwg.org/
-The Parsing of the HTML into the DOM is defined in the HTML standard % footnote https://html.spec.whatwg.org/multipage/parsing.html#parsing
-"The DOM tree captures the properties and relationships of the document markup, but it doesn't tell us how the element will look when rendered. 
-That’s the responsibility of the CSSOM."
+Once the browser received the first bytes of the HTML file, it starts to parse it into the \textit{Document Object Model} (DOM).
+The DOM construction is the first step the browser performs when receiving data.
+The DOM is a tree structure and internal representation of the HTML for the browser. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+The general parsing process consists of translating from bytes to characters, to tokens, to nodes and finally to the object model.% cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
+The specification of the DOM is maintained by the WHATWG living standard. % footnote https://dom.spec.whatwg.org/
 
-Browser will begin parsing as soon as data is being received. %cite How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-
-That means the DOM is created incrementally which is beneficial for performance.
+% The Parsing of the HTML into the DOM is defined in the HTML standard % footnote https://html.spec.whatwg.org/multipage/parsing.html#parsing
 
 
-The general process is translating Bytes -> characters -> tokens -> nodes -> object model. % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
+% [Render Blocking]
+
+The DOM tree contains information about the content of the document, but not its style.
+The styling is defined in the CSS.
+Once HTML and CSS are transmitted and processed by the browser, the \textit{Render Tree} can be created, which reflects the actual information and its styling the browser can display.
+Within this context, it is possible to categorise resources into render blocking and non-render blocking.
+A render blocking resource is a resource that prevents the browser from rendering content to the screen.
+HTML and CSS are render blocking resources, as the parsing process of those files blocks the browser of displaying the page to the screen.% cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css
+
+% CSS parsing and render tree construction will be discussed below.
 
 
+% [Incrementally]
 
-% [External Resources]
-
-At some point, the process will encounter a linked and external resource, such as a Cascading Style Sheer or JavaScript.
-The question is if the fetched resources will block the ongoing parsing of the HTML process.
-
-Browser requests non-blocking resources and continues parsing % cite How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+As soon as the first data packages of HTML arrive at the browser, the parsing process starts. %cite How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+The DOM is created incrementally,  this means that the browser can begin to process the HTML before all of its content is transmitted over the network.
 
 
+% [Resources]
 
-% https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-When the parser finds non-blocking resources, such as an image, the browser will request those resources and continue parsing.
-Parsing can also continue when a CSS file is encountered,
-But script tags without async or defer attribute block rendering and pause the parsing of HTML.
-Though the browser's preload scanner hastens this process.
-
+Usually, within the HTML, external resources are linked which are necessary for the website to be complete, such as CSS or JavaScript.
+While parsing the HTML incrementally, eventually a reference to such an external resource will be encountered.
+How the external resources CSS and JavaScript are being handled by the browser is discussed below.
 
 
-% https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
-as the parser finds any links for CSS or Javascript, it immediatelly sends a request for them, after that it also sends requests for all the other assets found in the rest of the page
-The sequence is: Build DOM, build CSSOM, Run JS
-
-
-
-
-
-% [CSS]
-
-
-A CSS is does not block parsing. % cite How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-
-Creation of CSSOM happens after DOM is completed. % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-CSSOM will be discussed in next paragraph.
-
-
-Optimization: use media queries
-
-
-% https://web.dev/render-blocking-resources/
-Lighthouse flags resources as render blocking when:
-A <link rel="stylesheet"> tag that:
-Does not have a disabled attribute. When this attribute is present, the browser does not download the stylesheet.
-Does not have a media attribute that matches the user's device.
-
-
-
-
-% [JS]
-
-
-Scripts on the other hand, which dont have the attribute async or defer, will block the parsing process.
-This means that excessive scripts can be a significant bottleneck % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-
-
-The JS can change the DOM % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-
+%TODO add this?
 
 % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-- scripts which are not async or defer block parsing -> excessive scripts can be a significant bottleneck
-Other Processes:
-- JavaScript Compilation: JavaScript is interpreted, compiled, parsed and executed.
+%- DOM is also exposed, and can be manipulated through various APIs in JavaScript 
+%Optimisation: Preload scanner:
+%- This process occupies main thread while browser is building DOM Tree
+%- parse through the content available and request high priority resources like CSS, JavaScript, and web fonts.
+%- will retrieve resources in the background so that by the time the main HTML parser reaches requested assets, they may possibly already be in flight, or have been downloaded
 
-
-
-% https://web.dev/render-blocking-resources/
-Lighthouse flags resources as render blocking when:
-A <script> tag that:
-Is in the <head> of the document.
-Does not have a defer attribute.
-Does not have an async attribute.
-
-
-
-
-
-% https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
-Javascript is a powerful tool that can manipulate both the DOM and CSSOM, so to execute Javascript, the browser has to wait for the DOM, then it has to download and parse all the CSS files, get to the CSSOM event and only then finally execute Javascript.
-
-When the parser finds a script tag it blocks DOM construction, then waits for the browser to get the file and for the javascript engine to parse the script, this is why Javascript is parser blocking.
-
-There are only two cases when Javascript does not block on CSSOM:
-1. Inlined scripts above the css files ‘<link>’ in the ‘<head>
-2. Async scripts.
-Async scripts don’t block DOM construction and don’t have the need to wait for the CSSOM event
-
-
-
-
-% [Some more Infos]
-
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-- DOM is also exposed, and can be manipulated through various APIs in JavaScript
-Optimisation: Preload scanner:
-- This process occupies main thread while browser is building DOM Tree
-- parse through the content available and request high priority resources like CSS, JavaScript, and web fonts.
-- will retrieve resources in the background so that by the time the main HTML parser reaches requested assets, they may possibly already be in flight, or have been downloaded
-
-
-
-% ---------------
-
-
-% https://medium.com/jspoint/how-the-browser-renders-a-web-page-dom-cssom-and-rendering-df10531c9969
-As we have learned that DOM tree generation is incremental which means as the browser reads HTML, it will add DOM elements to the DOM tree
-
-
-
-
-
-
-% 2014 Hogan https://designingforperformance.com/
-Chapter 2
-- CRP:
-- Creation of DOM Tree out of HTML
 
 
 
 % ------------------------------------------------------------
+
 
 \paragraph{From CSS to CSSOM}
 
-Is defined here % footnote https://drafts.csswg.org/cssom/
+
+% [Introduction]
+
+The CSS resource contains all information about the styling of the page.
+As with the HTML,CSS is converted from bytes to characters, to tokens, to nodes, and finally to the \textit{CSS Object Model} (CSSOM). % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
+CSSOM construction is usually very fast . % cite % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+CSSOM is standardized here % footnote https://drafts.csswg.org/cssom/
+
+% The DOM and and CSSOM are separated structures and not yet connected.
+% The Render Tree reflects the combination of the two models and will be discussed below.
+% Creation of CSSOM happens after DOM is completed. % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
 
 
 
-- DOM and CSSOM are independent data structures.
+% [Cascading, Not incrementally]
 
-- CSSOM:
-	- Characters -> Tokens -> Nodes -> CSSOM
-	- Cascading rules / style sheet: Children inherit styling rules of parent
-	- CSS rules cascade down
-	- Partial CSS Tree not possible, because rules can be overwritten
-	- Browser blocks page rendering until it receives all of the CSS
-	-> CSS is render blocking
+As opposed to the HTML parsing process, CSS can not be translated to the CSSOM incrementally.
+Cause it the cascading nature of style sheets, which has the potential that the styling rules defined at the top of the file may be overridden by rules defined at the very end of the CSS file.
+A partial CSSOM is therefore not possible.
+Hence the browser needs the entire CSS file before he can create the CSSOM.
+%cite  https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
 
-	- More specific rules are more expensive
-	
-	
-- CSS Blocking Operation:
-	- CSS blocks rendering:
-	-> Rules can be overwritten, so that content can't be rendered until CSSOM is complete
-	- <link rel="stylesheet" href="a.css">: Browser waits on this line, until file is received
-	- Better to add styles in single file
 
-	- JS can change styling of page -> Browser blocks JS until CSS is resolved
-	
-	
+% [Not Parser Blocking]
+
+As soon as the parser encounters a reference to an external style sheet such as
+
+%TODO add caption={} ?
+\begin{lstlisting}[language=html, numbers=none]
+<link rel="stylesheet" href="styles.css">
+\end{lstlisting}
+
+it requests the resource and continues with parsing the HTML.
+CSS is not a parser blocking resource.
+When the CSS arrived at the browser, the CSSOM construction starts.
+%cite  https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
+
+
+%TODO add FOUC ?
+
+% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
+% - If it just went ahead and rendered to pixels without waiting for the CSSOM we’d see a flash of unstyled content (ugly!) for a moment while the CSSOM was parsing.
+
+
+
+% [Render Blocking]
+
+While CSSOM creation is not parser blocking, it is render blocking.
+The browser blocks the page rendering until it received and parsed all of the CSS.
+Rendering content to the screen is only possible when CSSOM and therefore CSS is available. % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css
+
+
+% [When finished]
+
+Once the DOM and CSSOM are created, they can be merged together into the render tree, which will be layout and painted to the screen.
+Before I describe this process, I will discuss how JavaScript is being handled.
+
+
+% [Optimization]
+
+%TODO add this: optimization
+%- You want to get CSS down to the user as quick as possible:
+	%- Inlining styles
+	%- Load not needed styles later
+%- Optimization: use media queries
+%- Better to add styles in single file
+%- FOUC: Flash of Unstyled Content: If unstyled content is visible on the screen
+
+
 % https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css
-By default, CSS is treated as a render blocking resource, which means that the browser won't render any processed content until the CSSOM is constructed.
-Media types and media queries allow us to mark some CSS resources as non-render blocking.
-The browser downloads all CSS resources, regardless of blocking or non-blocking behavior.
+%Media types and media queries allow us to mark some CSS resources as non-render blocking.
 
 
-
-% https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
-- CSS Stylesheet
-- The CSS bytes are converted into characters, then tokens, then nodes, and finally they are linked into a tree structure known as the "CSS Object Model" (CSSOM):
-
-
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-The CSSOM contains all the styles of the page
-Is not being created incremental: The incremental processing features don't apply to CSS like they do with HTML, because subsequent rules may override previous ones. Cascading
-Is render blocking: the browser blocks page rendering until it receives and processes all of the CSS
-CSS is render blocking because rules can be overwritten, so the content can't be rendered until the CSSOM is complete.
-
-
-
-% https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
-- CSSOM
-
-
-
-% https://medium.com/jspoint/how-the-browser-renders-a-web-page-dom-cssom-and-rendering-df10531c9969
-- Render blocking CSS
-- Unlike the DOM tree, CSSOM tree construction is not incremental and must happen in a specific manner.
-- browsers can’t build the CSSOM tree incrementally as it reads the CSS content. The reason for that is, a CSS rule at the end of the file might override a CSS rule written at the top of the file
-- CSS is a render-blocking resource
-- Once the browser makes a request to fetch an external stylesheet, the Render Tree construction is halted.
-
-
-
-
-% 2014 Hogan https://designingforperformance.com/
-Chapter 2
-- Request for stylesheet will block parsing -> CSS is render-blocking resource
-- Creation of CSSOM
-
-
-
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-2. Building the CSSOM:
-- Process CSS and build CSSOM tree
-- Similar to DOM
-- Usually very fast
-
-
-
-
-
+%TODO add this? Lighthouse what is render blocking https://web.dev/render-blocking-resources/
+%Lighthouse flags resources as render blocking when:
+%A <link rel="stylesheet"> tag that:
+%Does not have a disabled attribute. When this attribute is present, the browser does not download the stylesheet.
+%Does not have a media attribute that matches the user's device.
 
 
 
 
 
 % ------------------------------------------------------------
+
+
 
 \paragraph{What happens with JavaScript}
 
 
-% [JavaScript]
+% [Introduction, Parser and Render Blocking]
+
+JavaScript (JS) resources add functionality and interactivity to a web site.
+When the browser encounters a script tag such as
+
+%TODO add caption={} ?
+\begin{lstlisting}[language=html, numbers=none]
+<script src="myScript.js"></script>
+\end{lstlisting}
+
+it will stop its current task of parsing, fetch immediately the resource and execute its content, and only then proceed with the creation of the DOM. % cite % Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
+See image X.
+
+JS can manipulate and query the DOM tree and directly change the HTML file.
+As the HTML file is the input stream for the parser,  the parser stops until the JS is downloaded and executed. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
+Hence JS is parser blocking.
+JS fetching and execution stops the parsing of the HTML and the construction of the DOM.
+Only after the script finished execution, HTML parsing will continue.
+
+Implicitly, because JS execution blocks DOM creation, and HTML processing itself is render blocking, JS is also render blocking. % cite Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
 
 
-- JS Blocking Operation:
-	- <script src=""></script>: Will be executed directly when received
-	- Do i need to run JS before DOM is created?
-	-> Add at end of <body>
-
-- Async:
-	- <script src="" async></script>
-	- Loads script asynchronously to the page
-	- DOM parsing continues
-	
-	
-	
+The behaviour is the same for an external references JS file and a script directly added within in the HTML.
 
 
+%TODO add this?
+
+% This means that excessive scripts can be a significant bottleneck % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+
+% https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
+% - If the network is slow, and it takes thousands of milliseconds to fetch app.js, the DOM construction will be halted for the thousands of milliseconds as well
+
+% https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
+%- You can remove them from the critical rendering path by placing the <script> tags right before the closing </body> tag instead of the <head> section.
+%-In this case, they only begin to download after the entire HTML has been downloaded.
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+%- Though the browser's preload scanner hastens this process.
 
 
+% [Blocked by CSS]
 
-% https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript
+As JS can also manipulate the styling of the page, its execution is blocked until the CSSOM is available.
+This means that the execution of the JS is on hold until the CSSOM is ready.
+To summarize, while JS blocks the parsing of the HTML to the DOM, JS execution itself is blocked by the creation of the CSSOM.
+CSSOM blocks JS, and JS blocks DOM construction. %cite 2013 Grigorik ch 10
 
-
-% https://medium.com/jspoint/how-the-browser-renders-a-web-page-dom-cssom-and-rendering-df10531c9969
-- Parser blocking JS
-- Internal: script elements are parser-blocking. Every external file requests such as image, stylesheet, pdf, video, etc. do not block DOM construction (parsing) except script (.js) file requests.
-- When the browser encounters a script element, if it an embedded script, then it will execute that script first and then continue parsing the HTML to construct the DOM tree. So all embedded scripts are parser-blocking
-
-- External:
-- If the script element is an external script file, the browser will start the download of the external script file off the main thread but it will halt the execution of the main thread until that file is downloaded. That means no more DOM parsing until the script file is downloaded
-- Once the script file is downloaded, the browser will first execute the downloaded script file on the main thread (obviously) and then continue with the DOM parsing. If the browser again finds another script element in HTML, it will perform the same operation
-
-- async:
-When DOM parser encounters an external script element with async attribute, it will not halt the parsing process while the script file is being downloaded in the background. But once the file is downloaded, the parsing will halt and the script (code) will be executed.
-
-
-- defer:
-We also have a magical defer attribute for the script element which works similar to the async attribute but unlike the async attribute, the script doesn’t execute even when the file is fully downloaded. All defer scripts are executed once the parser has parsed all HTML which means the DOM tree is fully constructed. Unlike async scripts, all defer scripts are executed in the order they appear in the HTML document (or DOM tree).
-
-
-All normal scripts (embedded or external) are parser-blocking as they halt the construction of DOM. All async scripts (AKA asynchronous scripts) do not block parser until they are downloaded. As soon as an async script is downloaded, it becomes parser-blocking. However, all defer scripts (AKA deferred scripts) are non-parser-blocking script as they do not block the parser and execute after the DOM tree is fully constructed.
+Several attributes on the script tag can change the behaviour of the browser.
+\textit{Async} and \textit{defer} are options to counter the blocking nature of the script tag.
+They will be discussed now.\\
 
 
 
+% [async attribute]
 
-% 2014 Hogan https://designingforperformance.com/
-Chapter 2
-- JS blocks DOM construction unsless its declared async or defer
+With the async (asynchronous) attribute, the browser downloads the JS in the background while continuing with the parsing of the HTML.
+The parsing is not blocked and the browser can continue with his task. 
+As soon as the JS is downloaded and available,  it is parser blocking: the browser stops the parsing and executes the JS.%cite https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script
+
+The order of all the async scripts within the document is not maintained any more.
+Whenever a script is downloaded and available, it will be executed.
+It does not matter if an async script was included at the top or bottom of the HTML document. % cite https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
+
+
+
+% https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
+%- The async attribute is recommended for independent third-party scripts, such as ads, trackers, and analytics scripts. For example, Google Analytics recommends adding the async attribute to support asynchronous loading in modern browsers.
+
+
+% [defer attribute]
+
+Like with async, scripts with the defer attribute enable the browser to download the script in parallel while continuing with the parsing of the HTML.
+Contrary to async, defer scripts will only be executed after the parsing of the page is complete and the DOM tree is fully constructed,  and the order of the scripts will be maintained.  %cite  https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
+
+
+%TODO add this nice graphic and cut out last rows https://html.spec.whatwg.org/multipage/scripting.html#attr-script-async
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{scripts.png}
+\caption{Scripts}
+\label{img:latency}
+\end{center}
+\end{figure}
+
+
+The async and defer attributes not applicable on inline scripts.
+From the standard, "scripts may specify defer or async, but must not specify either unless the src attribute is present. " % \footnote https://html.spec.whatwg.org/multipage/scripting.html#attr-script-async
+As inline scripts do not contain a src attribute, as the source of the script is within the script tags, the async and defer attributes are not applicable.
+
+
+% https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
+%- The defer attribute is recommended for scripts that need the DOM, but you want to begin to download them before the document loads, without making them a render blocking resource.
+%- You should also use defer rather than async if the document order is important — for instance, when consecutive scripts depend on each other.
+
+
+
+% [Transition]
+
+
+
+
+
+% [More stuff]
+
+%TODO add this? preload scanner
+% https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+%- Though the browser's preload scanner hastens this process.
+
+% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
+% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
+%- Asynchronous pattern:
+	%- Not the same as async/defer tag
+	%- Will fetch JS asynchronously
+	%- Uses IIFE which creates a new script tag in the HTML with attribute async
+	%see chapter X how Google Analytics is doing this.
+
+
+%TODO add this? https://web.dev/render-blocking-resources/
+%Lighthouse flags resources as render blocking when:
+%A <script> tag that:
+%Is in the <head> of the document.
+%Does not have a defer attribute.
+%Does not have an async attribute.
+
+
+%TODO add this? resource hints
+% https://blog.logrocket.com/using-resource-hints-to-optimize-performance/
 
 
 
 
 
 % ------------------------------------------------------------
+
 
 
 
 \paragraph{Building the Render Tree}
 
 
-HTML and CSS are both render blocking, as they prohibit the rendering of the render tree.
+As already described above, HTML and CSS are both render blocking, as they prohibit the rendering of the page.
+Rendering can happen once the \textit{Render Tree} is available.
+The render tree is the combination of the DOM and CSSOM and captures all visible content with its styles which will be displayed on the screen.
+If an element has a CSS property such as \verb|display: none;| it will not occur in the render tree. % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
+
+The computed render tree is then used to layout the content to the page, which is described in the next paragraph.
 
 
-- Render Tree:
-	- DOM + CSSOM: Content and styles
-	- Only captures visible content
-	- Display: none -> Children also skipped, because style cascades down
-	
-	
-% https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
-- The DOM and CSSOM trees are combined to form the render tree.
-- Render tree contains only the nodes required to render the page.
-- Layout computes the exact position and size of each object.
-- The last step is paint, which takes in the final render tree and renders the pixels to the screen.
-
-
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-Render:
-- Build Render Tree
-- Create render tree out of DOM and CSSOM
-
-
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-- Render Tree
-
-
-% https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
-- Render Tree
-
-
-
-
-% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
-% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
-- CRP:
-- Render Tree: With DOM and CSSOM
-
-
-
+%TODO add this ? Check again when chapter about WPT metrics is done
 % 2014 Hogan https://designingforperformance.com/
-Chapter 2
-- Creation of Render Tree by combining DOM and CSSOM
-- Start Render Metric
+%Chapter 2
+%- Start Render Metric in WPT
 
 
 
@@ -735,42 +675,19 @@ Chapter 2
 \paragraph{Layout}
 
 
-% [Layout]
+% [Introduction]
 
-- Layout:
-	- Position of the elements on the page
-	- Calculating positions and dimensions
-	- Layout viewport size
-	- <meta name="viewport" content="width=device-width">
-	- Default width: 980px, used when meta tag is not set
+In the layout process, the position and size of the nodes from the render tree are calculated.
+New layout calculations or reflows are triggered as soon as the screen area changes, e.g. by device rotation or window resizing, or on modifications of the DOM and render tree. % cite How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 
-	- Layout triggered by device orientation, window resize, adding or removing from DOM tree, etc.
-	
+Once the layout is resolved, the browser continues with painting pixels on the screen.
 
-% How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-4. Layout:
-- Run layout on render tree
-- Compute geometry of each node
-- Exact size and location of each object
-- Subsequent changes are called reflow, e.g. when image is received later without specify its size
 
+%TODO add viewport? The projection area is dependent and defined by the viewport
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-- Layout
-
-
-% https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
-- Layout
-
-
-% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
-% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
-- Layout
-
-
-
-% https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
-
+%- The viewport meta tag defines the width of the layout viewport, impacting the layout.
+%- Without it, the browser uses the default viewport width, which on by-default full screen browsers is generally 960px. On by-default full screen browsers, like your phone's browser, by setting <meta name="viewport" content="width=device-width"
 
 
 
@@ -779,32 +696,26 @@ Chapter 2
 
 \paragraph{Paint}
 
+Finally, the browser can paint the content on the screen.
+If some content changes, browsers are optimized to only repaint areas on the screen affected.  %cite  https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
 
-% [Paint]
 
 
+%TODO add metrics ?
 % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-5. Paint:
-- Paint nodes on screen
--> First Meaningful Paint
-- Time to Interactive
+%-> First Meaningful Paint
+%- Time to Interactive
 
 
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-- Paint
+%TODO add above the fold?
+% https://gtmetrix.com/blog/how-to-eliminate-render-blocking-resources/
+%- Above the fold: “Above-the-Fold” refers to the area that the visitor normally sees on a website before scrolling down to see the rest of the content. 
 
 
 
-% https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
-- Paint
-
-
-% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
-% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
-- Paint
-
-
-% https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
+%TODO add performance question?
+% https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
+%- Paint: It’s important to remember that some CSS properties can have a larger impact on the page weight than others (for example, a radial-gradient is much more complex to paint than a simple color).
 
 
 
@@ -812,166 +723,140 @@ Chapter 2
 % ------------------------------------------------------------
 
 
-\paragraph{What else?}
+%TODO add this ?
 
-Additional infos here
-
-
+% [Continuos Loop, 60 frames per second]
 
 % [Compositing ?]
 
 
-
-
-% [Conclusion, Optimizations]
-
-% 2013 Grigorik
-Chapter 10:
-- Script execution can issue a synchronous doc.write and block DOM parsing and construction
-- JavaScript can also block on CSS
-- DOM construction cannot proceed until JavaScript is executed, and JavaScript execution cannot proceed until CSSOM is available
--> styles at the top, scripts at the bottom best practice
-- Different browsers implement different logic for when, and in which order, the individual resource requests are dispatched. As a result, the performance of the application will vary from browser to browser.
-
-
-% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
-% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
-- Optimize the critical rendering path!
-
-
-% 2014 Hogan https://designingforperformance.com/
-- Optimizations of CRP:
-- media types and queries on css resources, which makes them non-blocking
-- Load JS efficient
-- Priotize requests for above the fold
-- etc. % Do i need to explain this ??
-
-Chapter 4:
-
-CSS and JavaScript Loading:
-- Rules:
-- Load CSS in head
-- CSS blocks rendering
-
-- Load JS at bottom of the page
-- Load Async
-- JS blocks DOM construction, because browser knows that content from script tag may change Render Tree
-- async tag will execute script once its ready, but order is not berücksichtigt
-- Anything that loads late and changes UI can cause layout shifts
-- 3rd party scripts: Need additional DNS lookup, should not be single point of failure
-
-
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-- Optimizing for CRP
-
-
-% https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
-- Optimizing
-
-
-% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
-% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
--  HTML is parsed incrementally
-- Rendering is blocked on CSS...
-- Optimize the critical rendering path!
-
-- DOM construction can't proceed until JavaScript is fetched
-- DOM construction can't proceed until JavaScript is executed
-- Sync script will block the DOM + rendering of your page:
-
-- Async all the things! nice image about async attribute
-
-
-- Optimizing DOM:
-	- Minify HTML
-	- Compression
-	- Cache in Browser
-
-
-- Unblocking CSS:
-	- Media queries: for responsive design
-	-> Move media queries to separate file
-	- <link rel="stylesheet" href="style-print.css" media="print">
-	-> Will not block rendering
-
-
-- Optimizing JS:
-	- Minify, compress, cache
-	- JS is parser blocking
-	- Script tag blocks DOM construction
-	- For external JS, browser waits until JS is fetched and executed
-	- CSS blocks rendering and JS execution
-
-	- Load and execute script after page is loaded
-	- Page is loaded: Browser fires onload event
-	- Async attribute:
-		- <script src="a.js" async></script>
-		- Does not block CRP (DOM construction, CSSOM)
-
-	- async attribute not applicable on inline scripts
-	- Inline script blocks CSSOM unless included before CSS request
-
-
-- General Strategies:
-	- Minify, compress, cache (HTML, CSS, JS)
-
-	- Minimize use of render blocking resources (CSS):
-		- Media queries
-		- Inline CSS
-
-	- Minimize use of parser blocking resources (JS):
-		- Defer JS execution
-		- async attribute
-
-
-	-> Minimize Bytes
-	-> Reduce critical resources
-	-> Shorten CRP length
-
-
-
-
-
-% ------------------------------
-
-% [Conclusion CRP]
-
-Time it takes for first render is captured in metric TIme to first render, see section X.
-
-
-
-% https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp
-
-
-
-
-% --------------------------------------------------------------------------------------------
-
-
-
-
+% ------------------------------------------------------------
 
 
 \subsection{Conclusion Technical Background}
 
-% Connection to Optimisation
+[tbd]
+
 
 % We could see that performance Metrics are directly derived from this process
-
 % Metrics will be discussed next
-
 % After that, i will talk about how to actually measure the metrics
 
 
 
+%TODO add ?
+% [Optimizations]
+
+% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
+% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
+%- Optimize the critical rendering path!
+%-> styles at the top, scripts at the bottom best practice
+% - Different browsers implement different logic for when, and in which order, the individual resource requests are dispatched. As a result, the performance of the application will vary from browser to browser. 2013 Grigorik ch 10
+
+
+
+% 2014 Hogan https://designingforperformance.com/
+%- Optimizations of CRP:
+%- media types and queries on css resources, which makes them non-blocking
+%- Load JS efficient
+%- Priotize requests for above the fold
+%- etc. % Do i need to explain this ??
+%Chapter 4:
+%CSS and JavaScript Loading:
+%- Rules:
+%- Load CSS in head
+%- CSS blocks rendering
+%- Load JS at bottom of the page
+%- Load Async
+%- JS blocks DOM construction, because browser knows that content from script tag may change Render Tree
+%- async tag will execute script once its ready, but order is not berücksichtigt
+%- Anything that loads late and changes UI can cause layout shifts
+%- 3rd party scripts: Need additional DNS lookup, should not be single point of failure
+
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
+%- Optimizing for CRP
+
+
+% https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
+%- Optimizing
+
+
+
+% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
+% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
+%- Async all the things! nice image about async attribute
+%- Optimizing DOM:
+	%- Minify HTML
+	%- Compression
+	%- Cache in Browser
+%- Unblocking CSS:
+	%- Media queries: for responsive design
+	%-> Move media queries to separate file
+	%- <link rel="stylesheet" href="style-print.css" media="print">
+	%-> Will not block rendering
+%- Optimizing JS:
+	%- Minify, compress, cache
+	%- JS is parser blocking
+	%- Script tag blocks DOM construction
+	%- For external JS, browser waits until JS is fetched and executed
+	%- CSS blocks rendering and JS execution
+	%- Load and execute script after page is loaded
+	%- Page is loaded: Browser fires onload event
+	%- Async attribute:
+		%- <script src="a.js" async></script>
+		%- Does not block CRP (DOM construction, CSSOM)
+	%- Inline script blocks CSSOM unless included before CSS request
+%- General Strategies:
+	%- Minify, compress, cache (HTML, CSS, JS)
+%	- Minimize use of render blocking resources (CSS):
+	%	- Media queries
+		%- Inline CSS
+%	- Minimize use of parser blocking resources (JS):
+	%	- Defer JS execution
+		%- async attribute
+%	-> Minimize Bytes
+	%-> Reduce critical resources
+	%-> Shorten CRP length
+	
+	
 % 2013 Grigorik
-- Browser optimizations...
+%- Browser optimizations...
 
 % 2016 Witt code talks
-- tools available:
-- Profiling: GTMetrix, WebPageTest, PageSpeed Insigths
-- Inlining and Optimization: Critical, PostCSS, processhtml
-- Minification and Compression: Goole Closure, tinyPng, Uglifycss and cssmin
+%- tools available:
+%- Profiling: GTMetrix, WebPageTest, PageSpeed Insigths
+%- Inlining and Optimization: Critical, PostCSS, processhtml
+%- Minification and Compression: Goole Closure, tinyPng, Uglifycss and cssmin
+
+
+
+
+% 2014 Hogan https://designingforperformance.com/
+% Chapter 2 The Basics of Page Speed - How Browsers Render Content:
+%- Browsers try to parallelize requests for content
+%- Requests: Optimizing size and amount of requests has big impact on performance, e.g. get all images in one requests using Sprites
+
+%Page Weight is somewhat important:
+%- Sum of all file sizes
+%- Averages in httparchive, which i also used in one approach % https://httparchive.org/reports/state-of-the-web?start=latest
+
+%Other Impacts on Page Speed
+%- "environmental factors"
+%- Geography, CDNs
+%- Network
+%- Browser
+
+
+% 2016 Witt code talks
+%- Possible Improvements:
+%- HTTP2
+%- Avoid redirects
+%- Caching headers
+%- CDNs
+%- Single Page Apps
+
+
 
 
 
@@ -986,101 +871,35 @@ Time it takes for first render is captured in metric TIme to first render, see s
 
 % ---------------------------------------------------------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------------------------------------------------------
+% ---------------------------------------------------------------------------------------------------------------------------------------
+% ---------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 
 \section{Measurement Methods}
 
+%TODO add some more info for Roter Faden, why is this here? whats all about ?
+% i could also motivate here that i will use both methods in my experiment thats why i need to explain them here
 
 % [Introduction]
-- synthetic monitoring
-- RUM
-- other methods briefly described
 
+At this point we have a understanding of how web sites are being loaded into the browser and displayed to the user.
+Some of the steps are more important for performance than others.
+In this section, I will describe how to measure the performance of a web site.
 
-\begin{itemize}
-\item Explanation and comparison of synthetic and real-user monitoring with concrete examples
-\item Short overview of other measuring methods such as log analysis or surveys
-\end{itemize}
-
-
-
-% About measuring web performance
 % Why web performance? As we saw its important for business
 
+Multiple methods exists.
+The prominent ones are synthetic monitoring and real user monitoring.
+They will be discussed below.
+
+Some other methods are mentioned in the last section.
+
+After discussing measurement methods, I can finally discuss the metrics we want to measure.
 
 
 
-
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
-synthetic:
-- lab environment: geography, network, device, browser, etc.
-- control variables to identify performance issues. this does not reflect real world and real user experience
-- automated
-- simulate user paths
-- traffic is generated artificial and is not by real users
- - can also be used for live system monitoring
- - fairly easy to implement, inexpensive
-
-RUM:
-- measure from real users machine
-- part of page tagging (same technique with including some JS)
-- measures actual use cases
-
-
-
-% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
-- Synthetic and Real-User Performance Measurement
-
-
-
-% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-- Log file
-- Synthetic: will be discussed in chapter X
-- RUM which will be covered in chapter X
-- CrUX
-- Surveys
-
-
-% 2016 Kaur: Tools for Measuring the Performance of Websites
-- Pingdom
-- GTMetrix
-- Website Grader
-- Site Speed checker
-
-
-
-
-% 2009 Croll
-
-
-% 2013 Meenan
-
-
-% 2013 Grigorik
-
-
-
-
-% 2014 Hogan https://designingforperformance.com/
-Ch 6 Measuring and Iterating on Performance
-
-- Browser Tools
-- Synthetic Testing
-- Real User Monitoring
-- Changes over Time
-
-
-
-
-% 2015 Cito
-
-
-% 2016 Viscomi Synthetic Versus RUM
-
-
-% Eggplant whitepaper
 
 
 
@@ -1092,26 +911,88 @@ Ch 6 Measuring and Iterating on Performance
 
 \subsection{Synthetic Monitoring}
 
-\begin{itemize}
-    \item What is it
-    \item How does it work
-    \item Application, real life scenario
-    \item Examples:
-    \begin{itemize}
-        \item WebPageTest
-        \item Google Lighthouse
-        \item Other solutions
-    \end{itemize}
-\end{itemize}
+
+\subsubsection{Synthetic}
+
+\paragraph{Laboratorial Environment}
+
+As the name already suggests, synthetic monitoring is a measurement method performed in an artificial, laboratory-like, synthetic environment.
+Test agents simulate real users and are configured to run a browser, load the web site under observation while capturing performance data.
+Synthetic monitoring does not take real user traffic into account. % cite 2015 cito
+
+Performance data can be captured using common performance APIs as described in section X.
+Additionally, through video recording and analysis,  user centric metrics such as Speed Index can be computed (see section X.) % cite 2021 Wolle 
+
+In synthetic monitoring, many possible configurations and variables of the test agent (client) are under control, such as the location (geography), network conditions, device type, browser version, and so on. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+Hence, the tester has control over many variables that impact performance.
+
+The controlled environment makes it possible to capture performance data for a specific set up of configurations, such as the test agents location or browser version, which may help to identify issues regarding certain user segments.  For example., a test could check the performance of all users using Firefox in macOS in Germany. % cite 2009 Croll
+
+Apart from defining the "infrastructure" configuration, the tester can also define artificial user journeys to simulate real user behaviour. % cite 2021 Wolle
+
+A characteristic of the controlled environment is that measured data and test results are rather consistent with low variability and can therefore provide a performance base line for the web site under observation and facilitate performance tuning.% cite 2013 Meenan
+
+
+\paragraph{Synthetic Monitoring is Not Real Users}
+
+Synthetic monitoring does not capture data of real users as the web sites traffic is generated artificially.
+Real user behaviour is approximated through simulation by for example predefining user paths.
+The measured performance data does not necessarily reflect actual real user experience and the tester should not assume that "synthetic results are like real-user metrics". %cite 2016 Viscomi
+
+Capturing the wide variety and diversity of real-world users such as which pages they visits,, the general configuration of the users machine such as the CPU, GPU and memory performance, what data stores the browser cache and which browser version is being used, the screen size, the operating system, and the network connection to name a few, is difficult to represent in synthetic monitoring. % cite 2013 Meenan, 2013 Grigorik
+The selected test configuration in synthetic monitoring only reflects one special use case and can only approximate what a user with a similar set up may experience. % cite 2016 Viscomi
+In short, synthetic monitoring test results "are synthetic and therefore not representative for actual user data".  % cite 2021 Wolle
 
 
 
+\subsubsection{Monitoring}
+
+
+Synthetic monitoring can be automated and used to monitor a systems performance in real time while generating up to date reports for the systems maintainer. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+Monitoring enables to check the availability of the web site around the globe, %cite 2009 Croll
+to identify performance issues before real users are aware of them. % cite 2013 Grigorik https://hpbn.co/primer-on-web-performance/
+and is in general helpful for continuous "health checks" of the running system. %cite  2021 Wolle 
+
+As any web site can be tested synthetically, it is possible to compare performance data across multiple competitors. % cite 2009 Croll
+
+
+%TODO this does not really fit here
+% [Tools]
+
+Many synthetic monitoring tools exists (For a list of tools, see for example 2016 Kaur or some online resources here).
+WebPageTest is one of them and will be discussed in section X.
+
+
+% [Transition]
+
+Coming back to e-commerce context, as discussed in section X.  a online shops performance correlates with the revenue.
+Synthetic monitoring allows to capture performance metrics independent of real user behaviour.
+Real user behaviour is not measured in synthetic monitoring.
+As only real users are capable of generating revenue, synthetic monitoring can not identify correlations between user satisfaction and performance (as described in section X.).%cite  2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+
+In order to do this, RUM is needed.
+Real-User Monitoring (RUM) enables to capture data of each individual real user .
+RUM will be discussed next.
 
 
 
+%TODO cut out google lighthouse completely ?
+%- Google Lighthouse
+
+
+%TODO add waterfall ?
+% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+%- waterfall diagram contains timing information on when the individual resources were requested, from which domain and over what kind of connection each of them was served, and how long transmission took
 
 
 
+% 2016 Viscomi
+%- synthetic tools are deliberately designed to focus on the performance of a web page under strict conditions that are otherwise highly volatile in real-user performance
+
+
+
+% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+%- Modern tooling also tells you when the browser was actually doing useful work (e.g. rendering) and when it was idle and waiting for loads to finish
 
 
 
@@ -1123,45 +1004,208 @@ Ch 6 Measuring and Iterating on Performance
 
 \subsection{Real-User Monitoring}
 
-\begin{itemize}
-    \item What is it
-    \item How does it work
-    \item Application, real life scenario
-    \item Examples:
-    \begin{itemize}
-        \item Google Analyitcs
-        \item CrUX
-        \item SpeedKit
-        \item Other solutions
-    \end{itemize}
-\end{itemize}
 
-% boomerang Akamai
+\subsubsection{Measurements with Real Users}
+
+As the name suggests, Real-User Monitoring (RUM) is about collecting and measuring data from real users visiting the web site.
+As opposed to synthetic monitoring, where web site traffic is generated artificially and performance experience from real users is only approximated, RUM data relies on real user traffic and captures data directly from each users browser. 
+RUM measures the performance as experienced by the users. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
 
 
+
+
+\subsubsection{Page Tagging}
+
+% [Page Tagging]
+
+As already described in section X. Page Tagging is technique to instrument the users browser in order to collect data and report it back to an analytics server.
+RUM is based on page tagging, in terms of that it relies on a JS code snippet which will be loaded into the users browser.
+This JS code collects data and sends it back to an analytics service as soon as the user interacts with the system.
+If the user blocks JS, or the script can not be downloaded due to other reasons,  RUM will not work.
+Once the data arrives at an analytics service, is has to be stored and an interface for the analyst has to be provided in order that he can query and the data and get insights, for example by providing a dashboard. %cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+
+As RUM relies on the JS code, the very first opportunity to measure data is when this JS code has been downloaded and executed.
+Anything what happens before is not visible for the tracking script.
+Meenan states that approximately 20 \% of the loading process lies outside of the measurement scope and "getting a reliable start time for measurements from the real world has been the biggest barrier to using RUM".% cite 2013 Meenan
+
+Another facet of RUM is that ideally the measuring of data has as little as possible impact on the web sites rendering process and that network capacity should not be occupied by RUM scripts and clock resources of the CRP (see section X.) % cite  2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+If RUM as a page tagging technique is slowing down the web site under observation is one research question of this thesis.
+The evaluation of the controlled experiment tackling this questions states that RUM...., as discussed in great detail in section X. %TODO add conclusion of evaluation here
+
+
+% [Diversity]
+
+RUM is independent of the users set up or environment and collects data for all active users:
+Regardless of the device, the browser,the network condition or the geographical location of the user, as long as the measurement (or tracking) script is downloaded into the users browser, RUM collects data.% cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+Hence, RUM data represents each individual user experience. % cite 2016 Viscomi
+
+Through the diversity of users and the unique environment of each user,  RUM data tends to be more diverse and heterogeneous than data collected by synthetic monitoring. % cite 2013 Meenan
+
+
+
+\subsubsection{Measure User Behaviour}
+
+%TODO here i need to introduce maybe in e-commerce again? Or what is the roter faden? like funnel analysis all this stuff reference it here?
+
+As discussed in section X, a web sites performance and user satisfaction are directly correlated.
+A critical part of RUM is to not only capture performance metrics, but also measure user behaviour, for example how the user interacted with the web site and where he clicked. %cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+In e-commerce context, user behaviour questions of interest are for example if a new campaign changes user behaviour or where users leave the check out process. %cite 2021 wolle and % https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+
+RUM enables to combine performance metrics with user behaviour and business related data and can lead o answers of questions such as if and how the performance of the web site affects the user behaviour, for example if users buy more or less depending on the web sites speed.% cite Eggplant whitepaper
+
+
+% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- By connecting measurements of the same users over time, the analysis scope can be widened from single page impressions (PIs) to entire user sessions
+- Monitoring actual user data is therefore critical for not only understanding, but also for optimizing business performance
+- Real-user monitoring is critical to understanding the business impact of page speed, because it connects technical performance (e.g. load timers) with business metrics (e.g. conversions or bounces)
+
+
+
+
+% [Tools]
+
+Multiple RUM tools and JS libraries exists, such as Boomerang by Akamai.
+The main player Google Analytics will be discussed in greater detail in section X.
+
+
+%SpeedKit ?
 
 
 
 
 % ----------------------------------------------------------------------------------------------
+
+
+
+\subsubsection{Chrome User Experience Report (CrUX)}
+
+
+% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- technical approach to understanding how users experience a website, because it is based on numerical measurements taken by the browser
+- CrUX relies on timers that correlate with when content is displayed (e.g. First or Largest Contentful Paint) or with how fast a website reacts (e.g. First Input Delay)
+- CrUX is based on opt-in performance tracking data collected by Chrome users. It is therefore available without a prior setup
+-  Seeing that the Google search rank of a website is partly determined on its basis, the Google CrUX report should further be considered SEO-critical
+- But even though CrUX data provides insights on perceived website performance, it does not provide a comprehensive overview, because measurements are only taken for Chrome users and reports therefore do not reflect performance experienced by users of Firefox, Safari, and other non-Google browsers
+- It is consequently not possible to view performance by different browser vendors at all.
+- Since the standard CrUX report is scoped to origin level, it also cannot be used to analyze performance for specific website sections and timeframes, or just for individual sub-pages such as product pages
+- This level of detail is only provided by PageSpeed Insights and the search console, both of which provide page-level granularity for the performance summaries
+
+
+
+% https://developers.google.com/web/tools/chrome-user-experience-report
+
+
+
+% https://web.dev/chrome-ux-report/
+
+
+
+
 % ----------------------------------------------------------------------------------------------
 
 
 
-\subsection{Other methods}
+%TODO even add this ?
+\subsection{Log Files and Surveys}
 
-Reports such as CruX or http archive
 surveys
 log files
 
 
 
 % 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-- Log file
-- Synthetic: will be discussed in chapter X
-- RUM which will be covered in chapter X
-- CrUX
-- Surveys
+
+Log analysis:
+- concerned with technical performance in the backend
+- generates insights from the data that is already available from the application server, proxy, or content delivery network (CDN)
+- TTFB
+- Server logs typically only reflect the time it took to send the first response, not until the client actually started receiving it
+- Analyzing logs from application servers, CDNs, or proxies is a reasonable first step to discover potential bottlenecks, but it only covers the server side and does not provide any information on client-side processing in general or rendering performance in particular
+
+
+Surveys:
+- directly ask the users for their opinions
+- direct approach to understanding whether or not users are satisfied with website performance: Just ask them for their opinion
+- online surveys or by offering some sort of price or chance to win a competition in exchange for the users opinions. 
+- Other options include actual interviews or monitoring users in a lab setting to find out how they react while surfing on the website.
+- they only cover a small sample of the user base and therefore may be subject to a certain selection bias
+- user perception can be highly inaccurate
+- Getting reliable info from user surveys is therefore no trivial task
+- some forms of surveys (e.g. lab experiments) can be relatively expensive to conduct in comparison to some of the fully automated alternatives for collecting information
+- are great for collecting qualitative feedback on the user experience, but are not suitable for gathering quantitative measurements
+
+
+
+% ----------------------------------------------------------------------------------------------
+
+
+
+
+\subsection{Measurement Methods Conclusion}
+
+
+
+%TODO add some comparison table?
+% RUM and Synthetic Comparison, Conclusion
+
+% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
+- RUM and synthetic testing are complementary approaches to help you identify regressions and real-world bottlenecks in the performance and the user experience of your applications.
+
+
+
+%2015 Cito
+- RUM is passive, measurements are only made when end users interact with the service, thus a lack of visibility into the root causes of availability loss prevents Real-User Monitoring from being an effective method for monitoring for availability
+
+ 
+
+
+synthetic is useful for X and not for..
+RUM is useful for X and not for..
+There are some other methods such as crux or even surveys
+
+
+
+Metrics play a critical part as they capture the performance
+I will discuss metrics now.
+
+
+Whic DATA is collected exactly?
+Many metrics exist...
+
+
+
+
+
+% [Metrics]
+
+With JS we can access APIs and they expose metrics.
+But there are many other metics, also user specific stuff.
+
+% [Data]
+%Which data and metrics RUM can collect and measure is discussed in greater detail in section X.
+%A part from metrics exposed by Web APIs or own implementations
+%RUM can also gather data about the users device, operatins system or geographic location. %cite 2015 Cito
+%The performance data and timings are exposed through a variety of APIs which the JS tracking code has access to.
+
+% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
+- APIs to measure real users (will be discussed in metrics chapter):
+- Navigation Timing
+- Resource TIming
+- User TIming
+- The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application
+
+% Cito
+- Real-User Monitoring leverages browser APIs to collect data specific to each end-user transaction
+
+% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- Collected information includes various timers to capture network and rendering performance
+- To also capture details about the user’s device and browser or on the referring website over which the user arrived, the user agent string and other data artifacts are collected along with the values obtained from the Navigation and Performance Timing APIs
+
+
+% [RUM Data]
+conversion rates etc.
+
+
 
 
 
@@ -1170,6 +1214,8 @@ log files
 % ---------------------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------------------
+
+
 
 
 
@@ -1212,7 +1258,25 @@ log files
 
 
 
+% 2013 Grigork
+"there is no one single metric that holds true for every application, which means that we must carefully define custom metrics in each case"
+
+The real benefit of Navigation Timing is that it exposes a lot of previously inaccessible data, such as DNS and TCP connect times, with high precision (microsecond timestamps), via a standardized performance.timing object in each browser. Hence, the data gathering process is very simple: load the page, grab the timing object from the user’s browser, and beacon it back to your analytics servers! By capturing this data, we can observe real-world performance of our applications as seen by real users, on real hardware, and across a wide variety of different networks.
+
+- Finally, in addition to Navigation Timing, the W3C Performance Group also standardized two other APIs: User Timing and Resource Timing. Whereas Navigation Timing provides performance timers for root documents only, Resource Timing provides similar performance data for each resource on the page, allowing us to gather the full performance profile of the page. Similarly, User Timing provides a simple JavaScript API to mark and measure application-specific performance metrics with the help of the same high-resolution timers
+
+
+
+% 2013 Meenan
+- First, it is important to understand that no single number will answer that question. Even if you have defined exactly what you are trying to measure on your Web site, performance will vary widely across your user base and across the different pages on your site
+- Nothing beats application-specific knowledge and measurements
+
+
+
 % ===== START: HERE I WILL LIST ALL METRICS =====
+
+
+%TODO what about drawing something like a map of metrics? I can underlay the metrics on the map with Web Vitals, CRP, Navigation etc.
 
 Check out glossary: https://developer.mozilla.org/en-US/docs/Glossary
 
@@ -1262,25 +1326,65 @@ Time to First Byte: % https://developer.mozilla.org/en-US/docs/Glossary/time_to_
 - It’s a good indicator of how quickly the backend of your site is able to process and send back content
 
 
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+TTFB describes how long the requesting party has to wait from sending the first request packet until receiving the first response data packet
 
 
 
 
 
 
-First Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_paint
+
+First Paint, Time to First Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_paint
+
+
+% 2013 Meenan
+- can tell you the first point in time when the user sees something other than a blank white screen
+- doesn’t necessarily mean the user sees anything useful
+
+
 
 
 First Contentful Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_contentful_paint
 
 
+
+
 First Meaningful Paint: % https://developer.mozilla.org/en-US/docs/Glossary/first_meaningful_paint
+
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+The First Meaningful Paint is another user-centric metric and represents the point in time at which the largest visual change takes place; the underlying assumption here obviously is that the biggest visual change is relevant to the user, for example because a hero image or a navigation bar appear
+
+
+
 
 
 Largest Contentful Paint: % https://wicg.github.io/largest-contentful-paint/
 
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- approximation of the First Meaningful Paint that can be captured in the browser
+
+
+
+
+
 
 Speed Index: % https://developer.mozilla.org/en-US/docs/Glossary/Speed_index
+
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+The Speed Index revolves around visual completeness and represents the average time it takes for website elements to become visible. It works well for websites with a static layout, but is unreliable for websites with moving elements like carousels or videos. Computing the Speed Index for this kind of website requires a custom timer or event to demarcate the point in time at which visual completion is reached
+
+% 2013 Meenan
+- best effort for representing the user experience in a single number
+
+
+
+Above-the-fold time % 2013 Meenan
+- point in time when the last visual change is made to the visible part of the page
+- available only in lab environments where the visual progress of a page loading can be recorded
+
+
+
 
 
 Time to Interactive: % https://developer.mozilla.org/en-US/docs/Glossary/Time_to_interactive
@@ -1297,7 +1401,19 @@ Time to Interactive: % https://developer.mozilla.org/en-US/docs/Glossary/Time_to
 
 
 
-% ======== APIs ========
+% ======== Specifications and APIs ========
+
+
+
+% 2013 Meenan
+- In 2010, the browser vendors got together under the W3C banner and formed the Web Performance Working Group15 to standardize the interfaces and work toward improving the state of Web-performance measurement and APIs in the browsers
+- In late 2010 the group released the Navigation Timing specification
+- The largest benefit of navigation timing is that it exposes a lot of timings that lead up to the HTML loading --> This is this famous image
+- In addition to providing a good start time, it exposes information about any redirects, DNS lookup times, time to connect to the server, and how long it takes the Web server to respond to the request, for every user and for every page the user visits
+- The measurement points are exposed to the DOM (Document Object Model) through the performance object and make it trivial to calculate load times (or arbitrary intervals, really) from JavaScript.
+- Clock issue -> High Resolution Time specification
+
+
 
 % Measuring Performance https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
 Performance APIs:
@@ -1327,9 +1443,22 @@ Performance API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_A
 Navigation Timing API % https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API
 Navigation Timing API Level 2 % https://www.w3.org/TR/navigation-timing-2/
 
+
+
+
+
+
 Performance Timeline API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_Timeline
 
+
+
+
+
 Performance Entry API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
+
+
+
+
 
 PerformanceNavigationTiming % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
 
@@ -1337,11 +1466,27 @@ PerformanceNavigationTiming % https://developer.mozilla.org/en-US/docs/Web/API/P
 
 User Timing API % https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API
 
+% 2013 Meenan
+- provides a simple way of marking points in time using performance. mark(“label”) and a standard way of querying all of the custom measurements later
+
+
+
+
 Resource Timing API % https://developer.mozilla.org/en-US/docs/Web/API/Resource_Timing_API
+
+% 2013 Meenan
+- exposes timing information about every network request the browser had to make to load a page and what triggered each request (whether stylesheet, script, or image)
+
 
 
 
 Performance Observer API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
+
+
+
+High resolution Time specification
+
+
 
 
 
@@ -1650,6 +1795,15 @@ p. 74 Page View, first useful web analytics metric
 
 \paragraph{Web Vitals}
 
+
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+a set of browser-based metrics for capturing user-perceived performance. Google heralds the Web Vitals as the gold standard for website performance across a number of services (e.g. PageSpeed Insights, Search Console, TestMySite) and publishes them in the Chrome User Experience Report (CrUX) [7] database. The core metrics will further be used for ranking search results starting in June [6] and even non-AMP pages will be admitted to the Top Stories [4] feature in Search on mobile — given they exhibit top-of-the-line performance according to the Core Web Vitals. Website performance according to the Web Vitals will therefore be critically important for SEO in the upcoming years.
+
+
+
+
+
+
 % Walton user-centric
 % Walton https://web.dev/vitals/
 % Walton user centric metrics
@@ -1745,6 +1899,8 @@ p. 74 Page View, first useful web analytics metric
 
 
 % Web Vitals and SEO
+
+
 % 2021 Meenan vimeo 38:50
 
 
@@ -1759,6 +1915,7 @@ p. 74 Page View, first useful web analytics metric
 
 % Better not use own chapter for WPT Metrics: Once i have written down all metrics and categorised them, i can describe here which tools expose what. WPT would be the biggest example for a synthetic monitoring tool
 
+%TODO move this to WPT chapter in related work
 \subsection{WebPageTest Metrics}
 
 % https://docs.webpagetest.org/getting-started/
@@ -1875,7 +2032,7 @@ p. 74 Page View, first useful web analytics metric
 
 %----------------------------------------------------------------
 
-
+%TODO move this to GA chapter in related work
 \subsection{Google Analytics Site Speed Metrics}
 
 
