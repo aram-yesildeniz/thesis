@@ -91,6 +91,158 @@
 
 
 
+
+
+
+% Better not use own chapter for WPT Metrics: Once i have written down all metrics and categorised them, i can describe here which tools expose what. WPT would be the biggest example for a synthetic monitoring tool
+
+%WPT specific metrics which are not in the metrics chapter
+
+\subsection{Metrics}
+
+% https://docs.webpagetest.org/getting-started/
+
+\begin{itemize}
+\item Metrics Categories:
+	\begin{itemize}
+	\item High Level Metrics:
+		\begin{itemize}
+		\item Document Complete
+		\item Fully Loaded
+		\item Load Time
+		\item First Byte
+		\item Start Render
+		\item Requests
+		\item Bytes In (Page Size)
+		\end{itemize}
+	\item Page-level Metrics:
+		\begin{itemize}
+		\item Technical Page Metrics:
+			\begin{itemize}
+			\item -> APIs, GA Site Speed Metrics
+			\item TTFB
+			\item loadTime
+			\item docTime
+			\item ...
+			\end{itemize}
+		\item Visual Metrics:
+			\begin{itemize}
+			\item SpeedIndex
+			\item firstPaint
+			\item firstContentfulPaint
+			\item firstMeaningfulPaint
+			\item ...
+			\end{itemize}
+		\item Javascript and CPU timings
+		\item Page Information
+		\item Browser State
+		\item Lighthouse Summary Metrics
+		\item Optimization Checks/Grades
+		\item Instrumented Metrics
+		\item Test Information
+		\item Misc
+		\end{itemize}
+	\item Request-level metrics:
+		\begin{itemize}
+		\item Request Details
+		\item Request Timings
+		\item Request Stats
+		\item Headers
+		\item Protocol Information
+		\item Javascript/CPU details
+		\item Optimization Checks
+		\item Misc	
+		\end{itemize}
+	\end{itemize}
+	
+\item Optimization Grades:
+	\begin{itemize}
+	\item Keep-alive Enabled
+	\item Compress Text
+	\item Compress Images
+	\item Cache Static Content
+	\item Use of CDN
+	\end{itemize}
+\item First View and Repeat View
+\end{itemize}
+
+% Taken from WPT book p. 34, ...
+% https://www.webpagetest.org/forums/showthread.php?tid=10315
+% https://www.webpagetest.org/forums/showthread.php?tid=13266
+% https://www.webpagetest.org/forums/showthread.php?tid=332
+% https://www.webpagetest.org/forums/showthread.php?tid=10732
+% https://www.webpagetest.org/forums/showthread.php?tid=12846
+
+
+
+% Move those definitions to chapter above?
+% Here i could only describe which metrics are available in WPT
+
+\begin{center}
+	\small
+	\begin{longtable}{ p{0.4\linewidth} | p{0.6\linewidth} }
+	Name & Description \\ 
+	\hline
+	Successful Tests & Amount of tests who completed successfully  \\
+	
+	Document Complete & The time from the initial request until the browser fires load event. Also known as the document complete time. This is the time at which the Document Object Model (DOM) has been created and all images have been downloaded and displayed. For most traditional web pages, the load time is a suitable metric for representing how long a user must wait until the page becomes usable. This is the default performance metric on WebPageTest. Also known as Load Time (?). Around this time, the page's script is hard at work in the load-event handler firing off more requests for secondary content. The incomplete nature of this metric is why Fully Loaded was added to the table of metrics from the previous section. window.onload (?). The point where the browser onLoad event fires. The equivalent Navigation Timing event is loadEventStart. Document Complete Time: Amount of time that has elapsed from the initial page request until the browser fires the load event. This is the time at which the Document Object Model (DOM) has been created and all images have been downloaded and displayed. \\
+	
+	Fully Loaded & The time from the initial request until WebPageTest determines that the page has finished loading content. The page might have waited for the load event to defer loading secondary content. The time it takes to load the secondary content is accounted for in the Fully Loaded Time. The time (in ms) the page took to be fully loaded — e.g., 2 seconds of no network activity after Document Complete. This will usually include any activity that is triggered by javascript after the main page loads. The point after onLoad where network activity has stopped for 2 seconds. Specific to WebPageTest and not provided by Performance API. Fully loaded waits for 2 seconds of no network activity (and no outstanding requests) after onLoad and then calls it done (only measures to the last activity, doesn't include the 2 seconds of silence in the measurement). Fully Loaded is a measure based on the network activity and is the point after onload when there was no activity for 2 seconds. \\
+	
+	First Byte & Time until the server responds with the first byte of the response.  \\
+	
+	Start Render & Time until the browser paints content to the screen. The time for the browser to display the first pixel of content (paint) on the screen. Time until the browser paints content to the screen. WebPageTest's own metric, determined by programmatically watching for visual changes to the page. Same as First Render? \\
+	
+	Bytes In (Doc) & Total size of the Document Complete Requests' response bodies in bytes.  \\
+	
+	Requests (Doc) & Number of HTTP requests before the load event, not including the initial request. \\
+	
+	Load Event Start & Time in ms since navigation started until window.onload event was triggered (from W3C Navigation Timing). \\
+	
+	Speed Index	& See Speed Index  \\
+	
+	Last Visual Change & Time in ms until the last visual changed occured. Last change is a completely visual measurement and is the last point in the test when something visually changed on the screen. It could be something as simple as an animated gif or ad even that didn't really cause much CPU work but changed some pixels on the screen. It is only captured when video is recorded because it depends on the video capture to measure it. \\
+	
+	Visually Complete & Time in ms when page was visually completed. Is measured from a video capture of the viewport loading and is the point when the visible part of the page first reached 100\% "completeness" compared to the end state of the test. \\
+	\caption{Your caption here} % needs to go inside longtable environment
+	\label{tab:myfirstlongtable}
+	\end{longtable}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 % ---------------------------------------------
 % ---------------------------------------------
 
@@ -119,7 +271,7 @@ Real User Measurement (RUM) with Google Analytics
 \subsection{The Tracking Script}
 
 \begin{itemize}
-\item Show code example
+\item Show multiple code examples
 \item Explain whats going on: script tag, create script element etc.
 \item Maybe also show Hotjar example to see that they are similar
 \end{itemize}
@@ -130,6 +282,116 @@ Real User Measurement (RUM) with Google Analytics
 % https://developers.google.com/analytics/devguides/collection/analyticsjs
 - this async pattern is used so that all browsers will load it async
 - we can just use async attribute for newer browsers...
+
+
+
+
+% Compare how GA script is included into web site with some other analytics services examples
+% Some other real life examples of RUM here? To demonstrate async... boomeraing readme for example has nice explanation
+
+
+
+
+
+
+
+\subsection{Site Speed Metrics}
+
+
+Show with analytics.js that it is indeed those navigation timing api calculations.
+
+Ec = function (a)...
+
+% 2013 Girgorik: "Google Analytics automatically gathers Navigation Timing data when the analytics tracker is installed." ch. primer on web performance
+
+
+
+GA does not really provide any UX metrics! The site speed metrics are all from navigation timing api which are measurements from the browser.
+
+GA Site Speed Metrics (description from \url{https://support.google.com/analytics/answer/2383341?hl=en&ref_topic=1282106})
+
+\url{https://stackoverflow.com/questions/18972615/how-do-the-metrics-of-google-analytics-site-speed-map-to-the-w3c-navigation-timi}
+
+\begin{center}
+\small
+
+	\begin{tabular}{ p{0.4\linewidth} | p{0.6\linewidth} }
+	Name & Description  \\ 
+	\hline
+	Page Load Sample & The number of pageviews that were sampled to calculate the average page-load time.  \\
+	
+	Speed Metrics Sample & The sample set (or count) of pageviews used to calculate the averages of site speed metrics. This metric is used in all site speed average calculations, including avgDomainLookupTime, avgPageDownloadTime, avgRedirectionTime, avgServerConnectionTime, and avgServerResponseTime.  \\
+	
+	DOM Latency Metrics Sample & Sample set (or count) of pageviews used to calculate the averages for site speed DOM metrics. This metric is used to calculate ga:avgDomContentLoadedTime and ga:avgDomInteractiveTime.  \\
+
+	Page Load Time (sec) & The average amount of time (in seconds) it takes that page to load, from initiation of the pageview (e.g., click on a page link) to load completion in the browser.  \\
+	
+	Domain Lookup Time (sec) & The average amount of time spent in DNS lookup for the page.  \\
+	
+	Page Download Time (sec) & The time to download your page.  \\
+	
+	Redirection Time (sec) & The time spent in redirection before fetching the page. If there are no redirects, the value for this metric is expected to be 0.  \\
+	
+	Server Connection Time (sec) & The time needed for the user to connect to your server.  \\
+
+	Server Response Time (sec) & The time for your server to respond to a user request, including the network time from the user's location to your server.  \\
+	
+	Document Interactive Time (sec) & The average time (in seconds) that the browser takes to parse the document (DOMInteractive), including the network time from the user's location to your server. At this time, the user can interact with the Document Object Model even though it is not fully loaded.  \\
+
+	Document Content Loaded Time (sec) & The average time (in seconds) that the browser takes to parse the document and execute deferred and parser-inserted scripts (DOMContentLoaded), including the network time from the user's location to your server. Parsing of the document is finished, the Document Object Model is ready, but referenced style sheets, images, and subframes may not be finished loading. This event is often the starting point for javascript framework execution, e.g., JQuery's onready() callback, etc.  \\
+	\end{tabular}
+\end{center}
+
+
+%----------------------------------------------------------------
+
+
+
+\subsection{Comparison GA and WPT Metrics}
+
+
+\begin{sidewaysfigure}
+
+\begin{center}
+	\begin{tabular}{ l | l | l }
+	Navigation Timing API & WPT & GA \\ 
+	\hline
+	loadEventStart - navigationStart & Document Complete, Load Event Start & pageLoadTime \\
+	domainLookupEnd - domainLookupStart & DNS lookup, dns\textunderscore ms & domainLookupTime \\
+	connectEnd - connectStart & connect\textunderscore ms & serverConnectionTime \\
+	responseStart - requestStart & .. & serverResponseTime \\
+	responseEnd - responseStart & .. & pageDownloadTime \\
+	fetchStart - navigationStart & .. & redirectionTime \\
+	domInteractive - navigationStart & .. & domInteractiveTime \\
+	domContentLoadedEventStart - navigationStart & domContentLoadedEventStart & domContentLoadedTime \\
+	\end{tabular}
+\end{center}
+
+
+\end{sidewaysfigure}
+
+
+
+
+\begin{itemize}
+\item We can show that above relations are true with experiments
+\item Load test page on a specific day only once and save timings exposed by performance.timing object (from console)
+\item Calculate differences corresponding to the table
+\item Get GA data for that day and save it
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

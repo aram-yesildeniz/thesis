@@ -368,7 +368,7 @@ In the following, the individual steps will be discussed in more detail.
 \end{figure}
 
 
-\paragraph{From HTML to DOM}
+\paragraph{DOM Construction from HTML}
 
 % [Introduction, Standard]
 
@@ -421,7 +421,7 @@ How the external resources CSS and JavaScript are being handled by the browser i
 % ------------------------------------------------------------
 
 
-\paragraph{From CSS to CSSOM}
+\paragraph{CSSOM Construction from CSS}
 
 
 % [Introduction]
@@ -510,7 +510,7 @@ Before I describe this process, I will discuss how JavaScript is being handled.
 
 
 
-\paragraph{What happens with JavaScript}
+\paragraph{JavaScript in the CRP}
 
 
 % [Introduction, Parser and Render Blocking]
@@ -912,7 +912,7 @@ After discussing measurement methods, I can finally discuss the metrics we want 
 \subsection{Synthetic Monitoring}
 
 
-\subsubsection{Synthetic}
+\subsubsection{The "Synthetic" Aspect in Synthetic Monitoring}
 
 \paragraph{Laboratorial Environment}
 
@@ -945,7 +945,7 @@ In short, synthetic monitoring test results "are synthetic and therefore not rep
 
 
 
-\subsubsection{Monitoring}
+\subsubsection{The "Monitoring" Aspect in Synthetic Monitoring}
 
 
 Synthetic monitoring can be automated and used to monitor a systems performance in real time while generating up to date reports for the systems maintainer. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
@@ -1014,21 +1014,21 @@ RUM measures the performance as experienced by the users. % cite https://develop
 
 
 
-\subsubsection{Page Tagging}
+\subsubsection{The Page Tagging Technique in RUM}
 
 % [Page Tagging]
 
 As already described in section X. Page Tagging is technique to instrument the users browser in order to collect data and report it back to an analytics server.
-RUM is based on page tagging, in terms of that it relies on a JS code snippet which will be loaded into the users browser.
-This JS code collects data and sends it back to an analytics service as soon as the user interacts with the system.
+RUM is based on page tagging, in terms of that it relies on a JS code snippet (tracking or code) which will be loaded into the users browser.
+Once this JS code is loaded and executed in the browser, it collects data and sends it back to an analytics service.
 If the user blocks JS, or the script can not be downloaded due to other reasons,  RUM will not work.
-Once the data arrives at an analytics service, is has to be stored and an interface for the analyst has to be provided in order that he can query and the data and get insights, for example by providing a dashboard. %cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+Once the data arrives at an analytics service, is has to be stored and an interface for the analyst has to be provided in order that he can query the data and get insights, for example by providing a dashboard. %cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 
 As RUM relies on the JS code, the very first opportunity to measure data is when this JS code has been downloaded and executed.
-Anything what happens before is not visible for the tracking script.
-Meenan states that approximately 20 \% of the loading process lies outside of the measurement scope and "getting a reliable start time for measurements from the real world has been the biggest barrier to using RUM".% cite 2013 Meenan
+Anything what happens before this step is not visible for the tracking script.
+Meenan states that approximately 20 \% of the loading process lies outside of the RUM measurement scope and "getting a reliable start time for measurements from the real world has been the biggest barrier to using RUM".% cite 2013 Meenan
 
-Another facet of RUM is that ideally the measuring of data has as little as possible impact on the web sites rendering process and that network capacity should not be occupied by RUM scripts and clock resources of the CRP (see section X.) % cite  2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+Another facet of RUM is that ideally the measuring of data has as little as possible impact on the web sites rendering process and that network capacity should not be occupied by RUM scripts and block resources of the CRP (see section X.) % cite  2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 If RUM as a page tagging technique is slowing down the web site under observation is one research question of this thesis.
 The evaluation of the controlled experiment tackling this questions states that RUM...., as discussed in great detail in section X. %TODO add conclusion of evaluation here
 
@@ -1036,39 +1036,68 @@ The evaluation of the controlled experiment tackling this questions states that 
 % [Diversity]
 
 RUM is independent of the users set up or environment and collects data for all active users:
-Regardless of the device, the browser,the network condition or the geographical location of the user, as long as the measurement (or tracking) script is downloaded into the users browser, RUM collects data.% cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+Regardless of the device, the browser,the network condition or the geographical location of the user, as long as the measurement script is downloaded into the users browser, RUM collects data.% cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
 Hence, RUM data represents each individual user experience. % cite 2016 Viscomi
 
 Through the diversity of users and the unique environment of each user,  RUM data tends to be more diverse and heterogeneous than data collected by synthetic monitoring. % cite 2013 Meenan
 
 
 
-\subsubsection{Measure User Behaviour}
+\subsubsection{Measure Real User Behaviour}
 
 %TODO here i need to introduce maybe in e-commerce again? Or what is the roter faden? like funnel analysis all this stuff reference it here?
 
+% [E-Commerce Background]
+
 As discussed in section X, a web sites performance and user satisfaction are directly correlated.
-A critical part of RUM is to not only capture performance metrics, but also measure user behaviour, for example how the user interacted with the web site and where he clicked. %cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-In e-commerce context, user behaviour questions of interest are for example if a new campaign changes user behaviour or where users leave the check out process. %cite 2021 wolle and % https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+A critical part of RUM is to not only capture performance metrics, but also measure user behaviour, for example how the user interacts with the web site and where he clicks. %cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+In an e-commerce context, user behaviour questions of interest are for example if a new campaign changes user behaviour as expected or where users leave the check out process. %cite 2021 wolle and % https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
 
-RUM enables to combine performance metrics with user behaviour and business related data and can lead o answers of questions such as if and how the performance of the web site affects the user behaviour, for example if users buy more or less depending on the web sites speed.% cite Eggplant whitepaper
-
-
-% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-- By connecting measurements of the same users over time, the analysis scope can be widened from single page impressions (PIs) to entire user sessions
-- Monitoring actual user data is therefore critical for not only understanding, but also for optimizing business performance
-- Real-user monitoring is critical to understanding the business impact of page speed, because it connects technical performance (e.g. load timers) with business metrics (e.g. conversions or bounces)
-
-
+RUM enables the combination of performance metrics with user behaviour and business metrics (see section X.) and can answer questions such as if and how the performance of the web site affects the user behaviour, for example if users buy more or less depending on the web sites speed.% cite Eggplant whitepaper
+Thus RUM is not only important for understanding user behaviour, but also for optimizing the web site and to increase revenue.
+With techniques such as cookies (see section X.), it is also possible to track user behaviour not only for one page load but over a series of web site visits, leading to even more detailed insights about the visitor. %cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 
 
 % [Tools]
 
-Multiple RUM tools and JS libraries exists, such as Boomerang by Akamai.
+Multiple RUM tools and JS libraries exists, such as Boomerang by Akamai. \footnote{\url{https://github.com/akamai/boomerang} [23.06.2021]}
 The main player Google Analytics will be discussed in greater detail in section X.
 
 
 %SpeedKit ?
+
+
+%TODO add this here?
+% [Performance Data]
+
+%Which data and metrics RUM can collect and measure is discussed in greater detail in section X.
+%A part from metrics exposed by Web APIs or own implementations
+%RUM can also gather data about the users device, operatins system or geographic location. %cite 2015 Cito
+%The performance data and timings are exposed through a variety of APIs which the JS tracking code has access to.
+
+% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
+- APIs to measure real users (will be discussed in metrics chapter):
+- Navigation Timing
+- Resource TIming
+- User TIming
+- The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application
+
+% Cito
+- Real-User Monitoring leverages browser APIs to collect data specific to each end-user transaction
+
+% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- Collected information includes various timers to capture network and rendering performance
+- To also capture details about the user’s device and browser or on the referring website over which the user arrived, the user agent string and other data artifacts are collected along with the values obtained from the Navigation and Performance Timing APIs
+
+
+% [Business Data]
+conversion rates etc.
+
+
+
+
+
+
 
 
 
@@ -1080,24 +1109,16 @@ The main player Google Analytics will be discussed in greater detail in section 
 \subsubsection{Chrome User Experience Report (CrUX)}
 
 
-% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-- technical approach to understanding how users experience a website, because it is based on numerical measurements taken by the browser
-- CrUX relies on timers that correlate with when content is displayed (e.g. First or Largest Contentful Paint) or with how fast a website reacts (e.g. First Input Delay)
-- CrUX is based on opt-in performance tracking data collected by Chrome users. It is therefore available without a prior setup
--  Seeing that the Google search rank of a website is partly determined on its basis, the Google CrUX report should further be considered SEO-critical
-- But even though CrUX data provides insights on perceived website performance, it does not provide a comprehensive overview, because measurements are only taken for Chrome users and reports therefore do not reflect performance experienced by users of Firefox, Safari, and other non-Google browsers
-- It is consequently not possible to view performance by different browser vendors at all.
-- Since the standard CrUX report is scoped to origin level, it also cannot be used to analyze performance for specific website sections and timeframes, or just for individual sub-pages such as product pages
-- This level of detail is only provided by PageSpeed Insights and the search console, both of which provide page-level granularity for the performance summaries
+The Chrome User Experience Report (CrUX) is a RUM method implemented by Google which collects real user data of Chrome users.
+As soon as the Chrome user gives his consent, data collection can start and does not need any more set up.
+
+The CrUX only captures data from Chrome users and is therefore not an exhaustive sample of the web users population, as data by users browsing the web with for example Firefox or Safari is not collected.
+% cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+
+The collected data is available via Googles PageSpeed Insights, the CrUX Dashboard or the BigQuery and CrUX API. % cite https://developers.google.com/web/tools/chrome-user-experience-report
 
 
-
-% https://developers.google.com/web/tools/chrome-user-experience-report
-
-
-
-% https://web.dev/chrome-ux-report/
-
+%TODO add here which metrics it collects?
 
 
 
@@ -1108,9 +1129,7 @@ The main player Google Analytics will be discussed in greater detail in section 
 %TODO even add this ?
 \subsection{Log Files and Surveys}
 
-surveys
-log files
-
+Other RUM methods are surveys and log file analysis.
 
 
 % 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
@@ -1136,85 +1155,48 @@ Surveys:
 
 
 
-% ----------------------------------------------------------------------------------------------
 
+% ----------------------------------------------------------------------------------------------
 
 
 
 \subsection{Measurement Methods Conclusion}
 
 
+Multiple methods to measure performance of a web site exist.
+Two main complementary techniques exist, Synthetic Monitoring and Real-User Monitoring.
+
+Synthetic Monitoring measures a web sites performance in a controlled environment using test agents and is especially useful to find a performance base line of the web site and for continuous monitoring and health checks.
+Performance as end users may experience it can only be approximated it is not captured by synthetic monitoring.
+
+RUM collects data from each user visiting the web site and reports it back to an analytics server.
+RUM is especially useful when combining multiple metrics together such as performance and business metrics in order to analyse user behaviour.
+On the other hand, when no user is visiting the web site, RUM is not collecting any data.
+
+Other performance measurement methods such as CrUX and surveys provide browser specific or quality data and complement the analysts tool box.
+
 
 %TODO add some comparison table?
-% RUM and Synthetic Comparison, Conclusion
-
-% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
-- RUM and synthetic testing are complementary approaches to help you identify regressions and real-world bottlenecks in the performance and the user experience of your applications.
 
 
+% [Metrics, Transition]
 
-%2015 Cito
-- RUM is passive, measurements are only made when end users interact with the service, thus a lack of visibility into the root causes of availability loss prevents Real-User Monitoring from being an effective method for monitoring for availability
+Metrics are critical in order to map performance to some sort of value or number.
+Through metrics, performance is quantifiable to some extent and therefore comparable.
 
- 
+As already described, measurement methods such as synthetic monitoring or RUM can measure metrics such as "performance" or "business" metrics.
+What are does metrics exactly?
+What do they reflect?
+How can they be measured?
 
-
-synthetic is useful for X and not for..
-RUM is useful for X and not for..
-There are some other methods such as crux or even surveys
-
-
-
-Metrics play a critical part as they capture the performance
-I will discuss metrics now.
-
-
-Whic DATA is collected exactly?
-Many metrics exist...
+Those questions will be addressed in the next section.
 
 
 
 
 
-% [Metrics]
-
-With JS we can access APIs and they expose metrics.
-But there are many other metics, also user specific stuff.
-
-% [Data]
-%Which data and metrics RUM can collect and measure is discussed in greater detail in section X.
-%A part from metrics exposed by Web APIs or own implementations
-%RUM can also gather data about the users device, operatins system or geographic location. %cite 2015 Cito
-%The performance data and timings are exposed through a variety of APIs which the JS tracking code has access to.
-
-% 2013 Grigorik https://hpbn.co/primer-on-web-performance/
-- APIs to measure real users (will be discussed in metrics chapter):
-- Navigation Timing
-- Resource TIming
-- User TIming
-- The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application
-
-% Cito
-- Real-User Monitoring leverages browser APIs to collect data specific to each end-user transaction
-
-% 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-- Collected information includes various timers to capture network and rendering performance
-- To also capture details about the user’s device and browser or on the referring website over which the user arrived, the user agent string and other data artifacts are collected along with the values obtained from the Navigation and Performance Timing APIs
-
-
-% [RUM Data]
-conversion rates etc.
-
-
-
-
-
-
-% ---------------------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------------------
-
+% --------------------------------------------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1222,31 +1204,8 @@ conversion rates etc.
 \section{Metrics}
 
 
-% taxonomy ?
-
-% Navigation Events: Exposed by Navigation Timing API: navigationStart, domContentLoaded, etc.
-% = Navigation Timings
-% Resource Timings ?
-%  navigation timing measures the main document's timings whereas the resource timing provides the times for all the assets or resources called in by that main document and the resources' requested resources.
-
-
-
-
-% First list all metrics -> get overview
-% Then think about possible categories
-
-% Structure of this chapter ??
-
-% APIs
-% Web Vitals and Core Web Vitals
-
-% own / user specific metrics, e.g. time to first tweet for twitter (meenan 2021)
-
-
-% https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance
-
-
-
+Metrics jungle, difficulty of taxonomy
+Performance vs UX
 
 % https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
 - Compare to competitors
@@ -1257,28 +1216,251 @@ conversion rates etc.
 
 
 
+% 2014 Singal: Types of metrics
+
+% 2015 Bekavac:
+% - Metrics for describing visits: entry page, landing page, exit page, visit duration, referrer, ctr
+% - Visitors: new visitors, returning visitor, repeat visitor, visits per visitor, recency, frequency
+% - Visitor engagement: page exit ratio, bounce rate, page views per visitor
+% - Conversion metrics: conversion, conversion rate
+
+% 2019 Enghardt
+
+% 2019 Hussaina:
+% Key metrics: visitors, page views, referrers, bounce rate, keywords and phrases
+
+
+
+
+
+
+
+
+\subsection{Business Metrics}
+
+
+
+
+
+
+
+
+% --------------------------------------------------------------------------------------------------------------------------------------------
+
+
+\subsection{Performance Metrics}
+
+
+
+
+
+\subsubsection{Performance Timings Metrics}
+
+
+
+% table
+
+
+
+
+
+% APIs
+
+
+% [Navigation]
+
+
+- The real benefit of Navigation Timing is that it exposes a lot of previously inaccessible data, such as DNS and TCP connect times, with high precision (microsecond timestamps), via a standardized performance.timing object in each browser.
+- Hence, the data gathering process is very simple: load the page, grab the timing object from the user’s browser, and beacon it back to your analytics servers!
+- By capturing this data, we can observe real-world performance of our applications as seen by real users, on real hardware, and across a wide variety of different networks.
+- Navigation Timing provides performance timers for root documents only
+
+
+
+% Navigation Events: Exposed by Navigation Timing API: navigationStart, domContentLoaded, etc.
+
+
+
+% [Resource]
+
+%  navigation timing measures the main document's timings whereas the resource timing provides the times for all the assets or resources called in by that main document and the resources' requested resources.
+
 
 % 2013 Grigork
-"there is no one single metric that holds true for every application, which means that we must carefully define custom metrics in each case"
+- Resource Timing provides similar performance data for each resource on the page, allowing us to gather the full performance profile of the page.
 
-The real benefit of Navigation Timing is that it exposes a lot of previously inaccessible data, such as DNS and TCP connect times, with high precision (microsecond timestamps), via a standardized performance.timing object in each browser. Hence, the data gathering process is very simple: load the page, grab the timing object from the user’s browser, and beacon it back to your analytics servers! By capturing this data, we can observe real-world performance of our applications as seen by real users, on real hardware, and across a wide variety of different networks.
 
-- Finally, in addition to Navigation Timing, the W3C Performance Group also standardized two other APIs: User Timing and Resource Timing. Whereas Navigation Timing provides performance timers for root documents only, Resource Timing provides similar performance data for each resource on the page, allowing us to gather the full performance profile of the page. Similarly, User Timing provides a simple JavaScript API to mark and measure application-specific performance metrics with the help of the same high-resolution timers
 
+% [User Timing]
+
+
+% 2013 Grigork
+- Similarly, User Timing provides a simple JavaScript API to mark and measure application-specific performance metrics with the help of the same high-resolution timers
+
+
+
+
+
+
+
+
+
+
+
+% 2013 Meenan
+- In 2010, the browser vendors got together under the W3C banner and formed the Web Performance Working Group to standardize the interfaces and work toward improving the state of Web-performance measurement and APIs in the browsers
+- In late 2010 the group released the Navigation Timing specification
+- The largest benefit of navigation timing is that it exposes a lot of timings that lead up to the HTML loading --> This is this famous image
+- In addition to providing a good start time, it exposes information about any redirects, DNS lookup times, time to connect to the server, and how long it takes the Web server to respond to the request, for every user and for every page the user visits
+- The measurement points are exposed to the DOM (Document Object Model) through the performance object and make it trivial to calculate load times (or arbitrary intervals, really) from JavaScript.
+- Clock issue -> High Resolution Time specification
+
+
+
+% Measuring Performance https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
+Performance APIs:
+- Many Web APIs available % https://developer.mozilla.org/en-US/docs/Web/API
+- Performance API is one API within Web APIs collection: Includes other APIs
+- Navigation Timing API: Famous image: Exposes metrics related to navigation events
+
+Tools and metrics:
+- 2 categories: Tools for measuring (reporting) and tools for improving
+- Reporting:
+- PageSpeedInsights
+- WebPageTest
+- Network:
+- Network Panel in DevTools
+
+
+% https://siusin.github.io/perf-timing-primer/
+
+% https://w3c.github.io/perf-timing-primer/
+
+
+Performance API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_API
+- Includes Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.  ??
+
+
+
+Navigation Timing API % https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API
+Navigation Timing API Level 2 % https://www.w3.org/TR/navigation-timing-2/
+
+
+Performance Timeline API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_Timeline
+
+
+Performance Entry API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
+
+
+PerformanceNavigationTiming % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
+
+
+User Timing API % https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API
+
+% 2013 Meenan
+- provides a simple way of marking points in time using performance. mark(“label”) and a standard way of querying all of the custom measurements later
+
+
+Resource Timing API % https://developer.mozilla.org/en-US/docs/Web/API/Resource_Timing_API
+
+% 2013 Meenan
+- exposes timing information about every network request the browser had to make to load a page and what triggered each request (whether stylesheet, script, or image)
+
+
+
+
+Performance Observer API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
+
+
+
+High resolution Time specification
+
+
+
+
+Paint Timing 1
+
+
+
+%TODO sort this
+User Timing API
+Navigation Timing API: Level 1 (performance.timing), Level 2 (PerformanceNavigationTiming) ?
+Network Information API
+Resource Timing API
+Paint Timing API
+High Resolution Time API
+Performance Timeline API
+Performance Observer API
+Long Tasks API
+Element Timing API
+Event Timing API
+Server Timing API
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsubsection{User Perceived Performance Metrics}
+
+
+% https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance
+
+
+
+% Web Vitals and Core Web Vitals
+
+
+
+
+\subsubsection{Custom Metrics}
 
 
 % 2013 Meenan
 - First, it is important to understand that no single number will answer that question. Even if you have defined exactly what you are trying to measure on your Web site, performance will vary widely across your user base and across the different pages on your site
 - Nothing beats application-specific knowledge and measurements
 
+% 2021 Meenan
+- own / user specific metrics, e.g. time to first tweet for twitter 
+
+
+% 2013 Grigork
+- "there is no one single metric that holds true for every application, which means that we must carefully define custom metrics in each case"
+-  "Custom and application-specific metrics are the key to establishing a sound performance strategy"
+
+
+
+
+\subsection{The Metrics Taxonomy, Map}
+
+
+% what about drawing something like a map of metrics? I can underlay the metrics on the map with Web Vitals, CRP, Navigation etc.
+
+
+
+
+
+
 
 
 % ===== START: HERE I WILL LIST ALL METRICS =====
 
 
-%TODO what about drawing something like a map of metrics? I can underlay the metrics on the map with Web Vitals, CRP, Navigation etc.
 
-Check out glossary: https://developer.mozilla.org/en-US/docs/Glossary
+% https://developer.mozilla.org/en-US/docs/Glossary
 
 
 
@@ -1301,10 +1483,12 @@ Receiving / Download Time ?? % https://developer.mozilla.org/en-US/docs/Web/Perf
 
 
 onload Event: % https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onload
+% Defined by the HTML specification:
+
 
 
 DOMContentLoaded Event % https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
-
+% Defined by the HTML specification
 
 
 
@@ -1336,6 +1520,7 @@ TTFB describes how long the requesting party has to wait from sending the first 
 
 
 First Paint, Time to First Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_paint
+% Defined by the Paint Timing API 
 
 
 % 2013 Meenan
@@ -1346,7 +1531,7 @@ First Paint, Time to First Paint: % https://developer.mozilla.org/en-US/docs/Glo
 
 
 First Contentful Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_contentful_paint
-
+% Defined by the Paint Timing API 
 
 
 
@@ -1401,144 +1586,7 @@ Time to Interactive: % https://developer.mozilla.org/en-US/docs/Glossary/Time_to
 
 
 
-% ======== Specifications and APIs ========
 
-
-
-% 2013 Meenan
-- In 2010, the browser vendors got together under the W3C banner and formed the Web Performance Working Group15 to standardize the interfaces and work toward improving the state of Web-performance measurement and APIs in the browsers
-- In late 2010 the group released the Navigation Timing specification
-- The largest benefit of navigation timing is that it exposes a lot of timings that lead up to the HTML loading --> This is this famous image
-- In addition to providing a good start time, it exposes information about any redirects, DNS lookup times, time to connect to the server, and how long it takes the Web server to respond to the request, for every user and for every page the user visits
-- The measurement points are exposed to the DOM (Document Object Model) through the performance object and make it trivial to calculate load times (or arbitrary intervals, really) from JavaScript.
-- Clock issue -> High Resolution Time specification
-
-
-
-% Measuring Performance https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-Performance APIs:
-- Many Web APIs available % https://developer.mozilla.org/en-US/docs/Web/API
-- Performance API is one API within Web APIs collection: Includes other APIs
-- Navigation Timing API: Famous image: Exposes metrics related to navigation events
-
-Tools and metrics:
-- 2 categories: Tools for measuring (reporting) and tools for improving
-- Reporting:
-- PageSpeedInsights
-- WebPageTest
-- Network:
-- Network Panel in DevTools
-
-
-% https://siusin.github.io/perf-timing-primer/
-
-% https://w3c.github.io/perf-timing-primer/
-
-
-Performance API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_API
-- Includes Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.  ??
-
-
-
-Navigation Timing API % https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API
-Navigation Timing API Level 2 % https://www.w3.org/TR/navigation-timing-2/
-
-
-
-
-
-
-Performance Timeline API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_Timeline
-
-
-
-
-
-Performance Entry API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
-
-
-
-
-
-PerformanceNavigationTiming % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
-
-
-
-User Timing API % https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API
-
-% 2013 Meenan
-- provides a simple way of marking points in time using performance. mark(“label”) and a standard way of querying all of the custom measurements later
-
-
-
-
-Resource Timing API % https://developer.mozilla.org/en-US/docs/Web/API/Resource_Timing_API
-
-% 2013 Meenan
-- exposes timing information about every network request the browser had to make to load a page and what triggered each request (whether stylesheet, script, or image)
-
-
-
-
-Performance Observer API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
-
-
-
-High resolution Time specification
-
-
-
-
-
-
-%TODO sort this
-User Timing API
-Navigation Timing API: Level 1 (performance.timing), Level 2 (PerformanceNavigationTiming) ?
-Network Information API
-Resource Timing API
-Paint Timing API
-High Resolution Time API
-Performance Timeline API
-Performance Observer API
-Long Tasks API
-Element Timing API
-Event Timing API
-Server Timing API
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsection{Introduction}
-
-\begin{itemize}
-\item Metrics jungle, difficulty of taxonomy
-\item Performance vs UX
-\end{itemize}
-
-% 2014 Singal: Types of metrics
-
-% 2015 Bekavac:
-% - Metrics for describing visits: entry page, landing page, exit page, visit duration, referrer, ctr
-% - Visitors: new visitors, returning visitor, repeat visitor, visits per visitor, recency, frequency
-% - Visitor engagement: page exit ratio, bounce rate, page views per visitor
-% - Conversion metrics: conversion, conversion rate
-
-% 2019 Enghardt
-
-% 2019 Hussaina:
-% Key metrics: visitors, page views, referrers, bounce rate, keywords and phrases
 
 
 
@@ -1546,75 +1594,70 @@ Server Timing API
 
 
 \subsection{"Non-Performance" metrics}
-% business related metrics
 
-\begin{itemize}
-\item User engagement: session length, bounce rate, etc.
-\item Business KPIs: Cart size, conversion rate, etc.
-\item QA metadata: Page views, JS errors, etc.
-\end{itemize}
+
+
+User engagement: session length, bounce rate, etc.
+Business KPIs: Cart size, conversion rate, etc.
+QA metadata: Page views, JS errors, etc.
 
 
 
 % 2004 Peterson
-\begin{itemize}
-\item Hit
-\item Click-Through
-\item Page View
-\item Visit
-\item Visitor / Unique Visitor
-\item Referrer
-\item Conversion Rate
-\item Abandonment Rate
-\item Attrition
-\item Loyalty, Frequency and Recency
-\item Measuring Reach: ...
-\item Measuring Acquisition: ...
-\item Measuring Conversion: ...
-\item Measuring Retention: ...
-\end{itemize}
+Hit
+Click-Through
+ Page View
+ Visit
+ Visitor / Unique Visitor
+ Referrer
+ Conversion Rate
+ Abandonment Rate
+ Attrition
+ Loyalty, Frequency and Recency
+ Measuring Reach: ...
+ Measuring Acquisition: ...
+ Measuring Conversion: ...
+ Measuring Retention: ...
 
 
 % 2004 Phippen
-\begin{itemize}
-\item Basic metrics (see table): basic metrics are meaningless
-\item Advanced metrics: Customer lifecycle analysis, customer behaviour analysis
-\end{itemize}
+ Basic metrics (see table): basic metrics are meaningless
+ Advanced metrics: Customer lifecycle analysis, customer behaviour analysis
 
 
 % 2007 Burby
-\begin{itemize}
-\item Types: Counts, Rations, KPIs
-\item Definitions for all terms, like Page view, unique visitor, etc.
-\end{itemize}
+
+ Types: Counts, Rations, KPIs
+ Definitions for all terms, like Page view, unique visitor, etc.
+
 
 
 
 
 % 2008 Reese
-\begin{itemize}
-\item Importance of setting goals
-\item Conversion Rate
-\item Kennzahlen für Websites nach Typ: ROI-Ebene, Online-Shop, ...
-\end{itemize}
+
+ Importance of setting goals
+ Conversion Rate
+ Kennzahlen für Websites nach Typ: ROI-Ebene, Online-Shop, ...
+
 
 
 
 
 
 % 2009 Croll
-\begin{itemize}
-\item Conversion Rates, pages that visitors abandon most
-\item Click throughs
-\item UGC (User generated content)
-\item Subscriptions, Signups
-\item Referring URL
-\item Visitor Motivaton, VOC: Voice of the Customer
-\item Ad and campaign effectiveness
-\item Findability and Search Effectiveness
-\item Trouble Ticketing and Escalation
-\item Loyalty: Ratio of new to returning visitors; average time between visits; time since last login; rate of attrition or disengagement
-\end{itemize}
+
+ Conversion Rates, pages that visitors abandon most
+ Click throughs
+ UGC (User generated content)
+ Subscriptions, Signups
+ Referring URL
+ Visitor Motivaton, VOC: Voice of the Customer
+ Ad and campaign effectiveness
+ Findability and Search Effectiveness
+ Trouble Ticketing and Escalation
+ Loyalty: Ratio of new to returning visitors; average time between visits; time since last login; rate of attrition or disengagement
+
 
 p.15 "whether your business benefited in some way from their visits."
 
@@ -1629,30 +1672,30 @@ p. 74 Page View, first useful web analytics metric
 
 % 2009 Jansen
 % "Metrics: statistical data collected from a Website such as number of unique visitors, most popular pages, etc."
-\begin{itemize}
-\item 4 categories: site usage, referrers, site content analysis, quality assurance
-\item 8 fundamental metrics
-\item Site usage:
-	\begin{itemize}
-	\item Demographics and System Statistics
-	\item Internal Search Information
-	\item Visit Length
-	\item Visitor Type
-	\end{itemize}
-\item Referrers:
-	\begin{itemize}
-	\item Referrering URL and Keyword Analysis
-	\end{itemize}
-\item Site content analysis:
-	\begin{itemize}
-	\item Top Pages
-	\item Visitor Path
-	\end{itemize}
-\item Quality assurance:
-	\begin{itemize}
-	\item Errors
-	\end{itemize}
-\end{itemize}
+
+ 4 categories: site usage, referrers, site content analysis, quality assurance
+ 8 fundamental metrics
+ Site usage:
+	
+	 Demographics and System Statistics
+	 Internal Search Information
+	 Visit Length
+	 Visitor Type
+	
+ Referrers:
+	
+	 Referrering URL and Keyword Analysis
+	
+ Site content analysis:
+	
+	 Top Pages
+	 Visitor Path
+	
+ Quality assurance:
+	
+	 Errors
+	
+
 
 
 
@@ -1661,56 +1704,56 @@ p. 74 Page View, first useful web analytics metric
 
 
 % Kessler 2012
-\begin{itemize}
-\item Erfolg messen und bewerten
-\item Traffic:
-	\begin{itemize}
-	\item Page Impression / Page View
-	\item Visit
-	\item Visitor / Unique visitor
-	\end{itemize}
-\item Bounce rate
-\item Conversion rate
-\item CTR: Click-through-rate
-\item Session length
-\end{itemize}
+
+ Erfolg messen und bewerten
+ Traffic:
+	
+	 Page Impression / Page View
+	 Visit
+	 Visitor / Unique visitor
+	
+ Bounce rate
+ Conversion rate
+ CTR: Click-through-rate
+ Session length
+
 
 
 
 % 2012 Kumar
-\begin{itemize}
-\item Good metrics should be: Uncomplex, Relevant, Timely, Instantly Useful
-\item Basic metrics: Visits, bounce rate, page views, pages/visits, avg time, \% new visits
-\item Guidance Performance Indicator (GPI) metric
-\end{itemize}
+
+ Good metrics should be: Uncomplex, Relevant, Timely, Instantly Useful
+ Basic metrics: Visits, bounce rate, page views, pages/visits, avg time, \% new visits
+ Guidance Performance Indicator (GPI) metric
+
 
 
 % 2015 Zheng
-\begin{itemize}
-\item Visit count: page view, visit, unique visitor
-\item Visit duration: time on page, time on site.
-\item Bounce rate and exit rate.
-\end{itemize}
+
+ Visit count: page view, visit, unique visitor
+ Visit duration: time on page, time on site.
+ Bounce rate and exit rate.
+
 
 
 
 % 2016 Kollewe
-\begin{itemize}
-\item Besucheranalyse: Wie viele Besucher?, Anzahl Besucher mit Mobilgerät, Demographische Daten (Geschlecht, Altersgruppe)
-\item Seitenanalyse: Was machen die Besucher im Shop?, Zielseite / Startseite: Erste Seite, die ein Besucher angeschaut hat, Ausstiegseite
-\item E-Commerce-Analyse: Transkations-daten aus Shop, Funnel-Analyse
-\end{itemize}
+
+ Besucheranalyse: Wie viele Besucher?, Anzahl Besucher mit Mobilgerät, Demographische Daten (Geschlecht, Altersgruppe)
+ Seitenanalyse: Was machen die Besucher im Shop?, Zielseite / Startseite: Erste Seite, die ein Besucher angeschaut hat, Ausstiegseite
+ E-Commerce-Analyse: Transkations-daten aus Shop, Funnel-Analyse
+
 
 
 % 2017 Hassler
-\begin{itemize}
-\item Types: Anzahl, Relations, Werte
-\item Content: Where, Who, How, What
-\item Hits
-\item Page Views
-\item Visits / Sessions
-\item Visitor / Unique Visitor
-\end{itemize}
+
+ Types: Anzahl, Relations, Werte
+ Content: Where, Who, How, What
+ Hits
+ Page Views
+ Visits / Sessions
+ Visitor / Unique Visitor
+
 
 
 
@@ -1729,11 +1772,11 @@ p. 74 Page View, first useful web analytics metric
 
 \subsection{Performance Metrics}
 
-\begin{itemize}
-\item Introduction to the Web Performance Working Group
-\item Overview of Browser APIs and the data they expose: High Resolution Time API, Navigation Timing API, etc.
-\item If possible make one deep dive into one API: What exactly gets measured? Maybe check out html standard, v8 or chromium implementation, etc.
-\end{itemize}
+
+ Introduction to the Web Performance Working Group
+ Overview of Browser APIs and the data they expose: High Resolution Time API, Navigation Timing API, etc.
+ If possible make one deep dive into one API: What exactly gets measured? Maybe check out html standard, v8 or chromium implementation, etc.
+
 
 % 2013 Wang:
 % - PLT as central metric
@@ -1746,30 +1789,30 @@ p. 74 Page View, first useful web analytics metric
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
 
 
-\begin{itemize}
-		\item Web Performance Working Group
-		\item User Timing API
-		\item Navigation Timing API: Level 1 (performance.timing), Level 2 (PerformanceNavigationTiming) ?
-		\item Network Information API
-		\item Resource Timing API
-		\item Paint Timing API
-		\item High Resolution Time API
-		\item Performance Timeline API
-		\item Performance Observer API
-		\item Long Tasks API
-		\item Element Timing API
-		\item Event Timing API
-		\item Server Timing API
-\end{itemize}
+
+		 Web Performance Working Group
+		 User Timing API
+		 Navigation Timing API: Level 1 (performance.timing), Level 2 (PerformanceNavigationTiming) ?
+		 Network Information API
+		 Resource Timing API
+		 Paint Timing API
+		 High Resolution Time API
+		 Performance Timeline API
+		 Performance Observer API
+		 Long Tasks API
+		 Element Timing API
+		 Event Timing API
+		 Server Timing API
+
 
 
 
 \paragraph{Navigation Timing API}
 
-\begin{itemize}
-\item Show image of navigation timings
-\item Explain one or two events directly with specification: navigationStart, domInteractive, etc.
-\end{itemize}
+
+ Show image of navigation timings
+ Explain one or two events directly with specification: navigationStart, domInteractive, etc.
+
 
 % 2013 Meenan
 % 2013 Grigorik
@@ -1808,60 +1851,60 @@ a set of browser-based metrics for capturing user-perceived performance. Google 
 % Walton https://web.dev/vitals/
 % Walton user centric metrics
 
-\begin{itemize}
-\item Key questions: Is is usable, is it delightful, ...
-\item Types of metrics
-\item important metrics
-\item custom metrics
-\end{itemize}
+
+ Key questions: Is is usable, is it delightful, ...
+ Types of metrics
+ important metrics
+ custom metrics
+
 
 % 2017 Panicker, Walton
 
-\begin{itemize}
-\item Core Web Vitals: First Input Delay, Cumulative Layout Shift, Largest Contentful Paint
-\item First Paint, First Contentful Paint: Is it happening? PerformanceObserver
-\item First Meaningful Paint, Hero Element: Is it useful? 
-\item Time To Interactive: Is it usable? Use Polyfill
-\item Long Tasks: Is it delightful? PerformanceObserver
-\item Total Blocking Time
-\item Time To First Byte
-\end{itemize}
+
+ Core Web Vitals: First Input Delay, Cumulative Layout Shift, Largest Contentful Paint
+ First Paint, First Contentful Paint: Is it happening? PerformanceObserver
+ First Meaningful Paint, Hero Element: Is it useful? 
+ Time To Interactive: Is it usable? Use Polyfill
+ Long Tasks: Is it delightful? PerformanceObserver
+ Total Blocking Time
+ Time To First Byte
+
 
 
 \subparagraph{Core Web Vitals}
 
 % Introduction
 % 2020 Sullivan
-\begin{itemize}
-\item Most important metrics, Apply to all websites, Measures real user experience, Measurement support for Lab and Field, Concise and clear
-\item LCP: Progressive loading. FCP may become a core web vital
-\item FID: Interactivity during load
-\item CLS: Visual stability
-\item Future goals: Better support for Single Page Apps, Input responsiveness, Scrolling and animations
-\item Areas of user experience beyond performance: Security, Privacy, Accessibility
-\end{itemize}
+
+ Most important metrics, Apply to all websites, Measures real user experience, Measurement support for Lab and Field, Concise and clear
+ LCP: Progressive loading. FCP may become a core web vital
+ FID: Interactivity during load
+ CLS: Visual stability
+ Future goals: Better support for Single Page Apps, Input responsiveness, Scrolling and animations
+ Areas of user experience beyond performance: Security, Privacy, Accessibility
+
 
 % LCP https://web.dev/lcp/
-\begin{itemize}
-\item Introduction, what is it
-\item How to measure
-\item How to improve
-\end{itemize}
+
+ Introduction, what is it
+ How to measure
+ How to improve
+
 
 % FID https://web.dev/fid/
-\begin{itemize}
-\item Introduction, what is it
-\item How to measure
-\item How to improve
-\end{itemize}
+
+ Introduction, what is it
+ How to measure
+ How to improve
+
 
 % CLS https://web.dev/cls/
 % TODO new stuff https://blog.webpagetest.org/posts/understanding-the-new-cumulative-layout-shift/?utm_medium=email&_hsmi=121601471&_hsenc=p2ANqtz-9IsSdXActEE6lw4BrDZNa4eFqzQZjgabLHbq7aS-c2KkhqLGNtkIaGfQYD4VqZe9_6ZYFlTmlCgB87THSfsnVM1fl7NiixtrJqAsVO6DPUjeJIo6c&utm_content=121601471&utm_source=hs_email
-\begin{itemize}
-\item Introduction, what is it
-\item How to measure
-\item How to improve
-\end{itemize}
+
+ Introduction, what is it
+ How to measure
+ How to improve
+
 
 
 % Tool support
@@ -1882,9 +1925,9 @@ a set of browser-based metrics for capturing user-perceived performance. Google 
 % - first paint, fcp, fmp, visually complete, speed index
 
 
-\begin{itemize}
-\item Visually complete ?
-\end{itemize}
+
+ Visually complete ?
+
 
 % 2018 Netravali:
 % Page load time, TTFP, Above the fold time, Speed Index, User perceived PLT, TTI
@@ -1902,235 +1945,6 @@ a set of browser-based metrics for capturing user-perceived performance. Google 
 
 
 % 2021 Meenan vimeo 38:50
-
-
-
-
-
-%----------------------------------------------------------------
-
-
-% Chapter title: Tools / Tool Support ?
-% I could also move this to related work if i explain here WPT in detail
-
-% Better not use own chapter for WPT Metrics: Once i have written down all metrics and categorised them, i can describe here which tools expose what. WPT would be the biggest example for a synthetic monitoring tool
-
-%TODO move this to WPT chapter in related work
-\subsection{WebPageTest Metrics}
-
-% https://docs.webpagetest.org/getting-started/
-
-
-\begin{itemize}
-\item Metrics Categories:
-	\begin{itemize}
-	\item High Level Metrics:
-		\begin{itemize}
-		\item Document Complete
-		\item Fully Loaded
-		\item Load Time
-		\item First Byte
-		\item Start Render
-		\item Requests
-		\item Bytes In (Page Size)
-		\end{itemize}
-	\item Page-level Metrics:
-		\begin{itemize}
-		\item Technical Page Metrics:
-			\begin{itemize}
-			\item -> APIs, GA Site Speed Metrics
-			\item TTFB
-			\item loadTime
-			\item docTime
-			\item ...
-			\end{itemize}
-		\item Visual Metrics:
-			\begin{itemize}
-			\item SpeedIndex
-			\item firstPaint
-			\item firstContentfulPaint
-			\item firstMeaningfulPaint
-			\item ...
-			\end{itemize}
-		\item Javascript and CPU timings
-		\item Page Information
-		\item Browser State
-		\item Lighthouse Summary Metrics
-		\item Optimization Checks/Grades
-		\item Instrumented Metrics
-		\item Test Information
-		\item Misc
-		\end{itemize}
-	\item Request-level metrics:
-		\begin{itemize}
-		\item Request Details
-		\item Request Timings
-		\item Request Stats
-		\item Headers
-		\item Protocol Information
-		\item Javascript/CPU details
-		\item Optimization Checks
-		\item Misc	
-		\end{itemize}
-	\end{itemize}
-	
-\item Optimization Grades:
-	\begin{itemize}
-	\item Keep-alive Enabled
-	\item Compress Text
-	\item Compress Images
-	\item Cache Static Content
-	\item Use of CDN
-	\end{itemize}
-\item First View and Repeat View
-\end{itemize}
-
-% Taken from WPT book p. 34, ...
-% https://www.webpagetest.org/forums/showthread.php?tid=10315
-% https://www.webpagetest.org/forums/showthread.php?tid=13266
-% https://www.webpagetest.org/forums/showthread.php?tid=332
-% https://www.webpagetest.org/forums/showthread.php?tid=10732
-% https://www.webpagetest.org/forums/showthread.php?tid=12846
-
-
-
-% Move those definitions to chapter above?
-% Here i could only describe which metrics are available in WPT
-
-\begin{center}
-	\small
-	\begin{longtable}{ p{0.4\linewidth} | p{0.6\linewidth} }
-	Name & Description \\ 
-	\hline
-	Successful Tests & Amount of tests who completed successfully  \\
-	
-	Document Complete & The time from the initial request until the browser fires load event. Also known as the document complete time. This is the time at which the Document Object Model (DOM) has been created and all images have been downloaded and displayed. For most traditional web pages, the load time is a suitable metric for representing how long a user must wait until the page becomes usable. This is the default performance metric on WebPageTest. Also known as Load Time (?). Around this time, the page's script is hard at work in the load-event handler firing off more requests for secondary content. The incomplete nature of this metric is why Fully Loaded was added to the table of metrics from the previous section. window.onload (?). The point where the browser onLoad event fires. The equivalent Navigation Timing event is loadEventStart. Document Complete Time: Amount of time that has elapsed from the initial page request until the browser fires the load event. This is the time at which the Document Object Model (DOM) has been created and all images have been downloaded and displayed. \\
-	
-	Fully Loaded & The time from the initial request until WebPageTest determines that the page has finished loading content. The page might have waited for the load event to defer loading secondary content. The time it takes to load the secondary content is accounted for in the Fully Loaded Time. The time (in ms) the page took to be fully loaded — e.g., 2 seconds of no network activity after Document Complete. This will usually include any activity that is triggered by javascript after the main page loads. The point after onLoad where network activity has stopped for 2 seconds. Specific to WebPageTest and not provided by Performance API. Fully loaded waits for 2 seconds of no network activity (and no outstanding requests) after onLoad and then calls it done (only measures to the last activity, doesn't include the 2 seconds of silence in the measurement). Fully Loaded is a measure based on the network activity and is the point after onload when there was no activity for 2 seconds. \\
-	
-	First Byte & Time until the server responds with the first byte of the response.  \\
-	
-	Start Render & Time until the browser paints content to the screen. The time for the browser to display the first pixel of content (paint) on the screen. Time until the browser paints content to the screen. WebPageTest's own metric, determined by programmatically watching for visual changes to the page. Same as First Render? \\
-	
-	Bytes In (Doc) & Total size of the Document Complete Requests' response bodies in bytes.  \\
-	
-	Requests (Doc) & Number of HTTP requests before the load event, not including the initial request. \\
-	
-	Load Event Start & Time in ms since navigation started until window.onload event was triggered (from W3C Navigation Timing). \\
-	
-	Speed Index	& See Speed Index  \\
-	
-	Last Visual Change & Time in ms until the last visual changed occured. Last change is a completely visual measurement and is the last point in the test when something visually changed on the screen. It could be something as simple as an animated gif or ad even that didn't really cause much CPU work but changed some pixels on the screen. It is only captured when video is recorded because it depends on the video capture to measure it. \\
-	
-	Visually Complete & Time in ms when page was visually completed. Is measured from a video capture of the viewport loading and is the point when the visible part of the page first reached 100\% "completeness" compared to the end state of the test. \\
-	\caption{Your caption here} % needs to go inside longtable environment
-	\label{tab:myfirstlongtable}
-	\end{longtable}
-\end{center}
-
-
-
-%----------------------------------------------------------------
-
-%TODO move this to GA chapter in related work
-\subsection{Google Analytics Site Speed Metrics}
-
-
-Show with analytics.js that it is indeed those navigation timing api calculations.
-
-Ec = function (a)...
-
-% 2013 Girgorik: "Google Analytics automatically gathers Navigation Timing data when the analytics tracker is installed." ch. primer on web performance
-
-
-
-GA does not really provide any UX metrics! The site speed metrics are all from navigation timing api which are measurements from the browser.
-
-GA Site Speed Metrics (description from \url{https://support.google.com/analytics/answer/2383341?hl=en&ref_topic=1282106})
-
-\url{https://stackoverflow.com/questions/18972615/how-do-the-metrics-of-google-analytics-site-speed-map-to-the-w3c-navigation-timi}
-
-\begin{center}
-\small
-
-	\begin{tabular}{ p{0.4\linewidth} | p{0.6\linewidth} }
-	Name & Description  \\ 
-	\hline
-	Page Load Sample & The number of pageviews that were sampled to calculate the average page-load time.  \\
-	
-	Speed Metrics Sample & The sample set (or count) of pageviews used to calculate the averages of site speed metrics. This metric is used in all site speed average calculations, including avgDomainLookupTime, avgPageDownloadTime, avgRedirectionTime, avgServerConnectionTime, and avgServerResponseTime.  \\
-	
-	DOM Latency Metrics Sample & Sample set (or count) of pageviews used to calculate the averages for site speed DOM metrics. This metric is used to calculate ga:avgDomContentLoadedTime and ga:avgDomInteractiveTime.  \\
-
-	Page Load Time (sec) & The average amount of time (in seconds) it takes that page to load, from initiation of the pageview (e.g., click on a page link) to load completion in the browser.  \\
-	
-	Domain Lookup Time (sec) & The average amount of time spent in DNS lookup for the page.  \\
-	
-	Page Download Time (sec) & The time to download your page.  \\
-	
-	Redirection Time (sec) & The time spent in redirection before fetching the page. If there are no redirects, the value for this metric is expected to be 0.  \\
-	
-	Server Connection Time (sec) & The time needed for the user to connect to your server.  \\
-
-	Server Response Time (sec) & The time for your server to respond to a user request, including the network time from the user's location to your server.  \\
-	
-	Document Interactive Time (sec) & The average time (in seconds) that the browser takes to parse the document (DOMInteractive), including the network time from the user's location to your server. At this time, the user can interact with the Document Object Model even though it is not fully loaded.  \\
-
-	Document Content Loaded Time (sec) & The average time (in seconds) that the browser takes to parse the document and execute deferred and parser-inserted scripts (DOMContentLoaded), including the network time from the user's location to your server. Parsing of the document is finished, the Document Object Model is ready, but referenced style sheets, images, and subframes may not be finished loading. This event is often the starting point for javascript framework execution, e.g., JQuery's onready() callback, etc.  \\
-	\end{tabular}
-\end{center}
-
-
-%----------------------------------------------------------------
-
-
-
-\subsection{Comparison}
-
-
-\begin{sidewaysfigure}
-
-\begin{center}
-	\begin{tabular}{ l | l | l }
-	Navigation Timing API & WPT & GA \\ 
-	\hline
-	loadEventStart - navigationStart & Document Complete, Load Event Start & pageLoadTime \\
-	domainLookupEnd - domainLookupStart & DNS lookup, dns\textunderscore ms & domainLookupTime \\
-	connectEnd - connectStart & connect\textunderscore ms & serverConnectionTime \\
-	responseStart - requestStart & .. & serverResponseTime \\
-	responseEnd - responseStart & .. & pageDownloadTime \\
-	fetchStart - navigationStart & .. & redirectionTime \\
-	domInteractive - navigationStart & .. & domInteractiveTime \\
-	domContentLoadedEventStart - navigationStart & domContentLoadedEventStart & domContentLoadedTime \\
-	\end{tabular}
-\end{center}
-
-
-\end{sidewaysfigure}
-
-
-
-
-\begin{itemize}
-\item We can show this with experiments
-\item Load test page on a specific day only once and save timings exposed by performance.timing object (from console)
-\item Calculate differences corresponding to the table
-\item Get GA data for that day and save it
-\item 
-\end{itemize}
-
-
-
-
-
-
-% New Section: Custom Metrics ??
-
-% 2013 Grigorik: "Custom and application-specific metrics are the key to establishing a sound performance strategy"
-
-
-
-
 
 
 
