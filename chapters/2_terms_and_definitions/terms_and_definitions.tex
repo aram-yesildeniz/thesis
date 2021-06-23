@@ -1204,8 +1204,12 @@ Those questions will be addressed in the next section.
 \section{Metrics}
 
 
-Metrics jungle, difficulty of taxonomy
-Performance vs UX
+Introduction: Metrics jungle, difficulty of taxonomy
+Business Metrics
+Performance UX and custom Metrics
+Metrics Taxonomy
+
+
 
 % https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
 - Compare to competitors
@@ -1236,9 +1240,135 @@ Performance vs UX
 
 
 
-\subsection{Business Metrics}
+\subsection{Business or "Non-Performance" Metrics}
 
 
+User engagement: session length, bounce rate, etc.
+Business KPIs: Cart size, conversion rate, etc.
+QA metadata: Page views, JS errors, etc.
+
+
+
+% 2004 Peterson
+Hit
+Click-Through
+ Page View
+ Visit
+ Visitor / Unique Visitor
+ Referrer
+ Conversion Rate
+ Abandonment Rate
+ Attrition
+ Loyalty, Frequency and Recency
+ Measuring Reach: ...
+ Measuring Acquisition: ...
+ Measuring Conversion: ...
+ Measuring Retention: ...
+
+
+% 2004 Phippen
+ Basic metrics (see table): basic metrics are meaningless
+ Advanced metrics: Customer lifecycle analysis, customer behaviour analysis
+
+
+% 2007 Burby
+ Types: Counts, Rations, KPIs
+ Definitions for all terms, like Page view, unique visitor, etc.
+
+
+
+% 2008 Reese
+ Importance of setting goals
+ Conversion Rate
+ Kennzahlen für Websites nach Typ: ROI-Ebene, Online-Shop, ...
+
+
+% 2009 Croll
+ Conversion Rates, pages that visitors abandon most
+ Click throughs
+ UGC (User generated content)
+ Subscriptions, Signups
+ Referring URL
+ Visitor Motivaton, VOC: Voice of the Customer
+ Ad and campaign effectiveness
+ Findability and Search Effectiveness
+ Trouble Ticketing and Escalation
+ Loyalty: Ratio of new to returning visitors; average time between visits; time since last login; rate of attrition or disengagement
+
+
+p.15 "whether your business benefited in some way from their visits."
+
+The percentage of visitors that your site converts to contributors, buyers, or users is the most important metric you can track -> Conversion Rate
+
+p. 74 Page View, first useful web analytics metric
+
+
+
+% 2009 Jansen
+% "Metrics: statistical data collected from a Website such as number of unique visitors, most popular pages, etc."
+ 4 categories: site usage, referrers, site content analysis, quality assurance
+ 8 fundamental metrics
+ Site usage:
+	 Demographics and System Statistics
+	 Internal Search Information
+	 Visit Length
+	 Visitor Type	
+ Referrers:
+	 Referrering URL and Keyword Analysis	
+ Site content analysis:
+	 Top Pages
+	 Visitor Path
+ Quality assurance:
+	 Errors
+	
+
+
+% 2009 Waisberg
+- GA basic metrics: Visits, Bounce Rate, Page views,pages per visit, avg time on site, percentage new visits
+
+
+% Kessler 2012
+ Erfolg messen und bewerten
+ Traffic:
+	 Page Impression / Page View
+	 Visit
+	 Visitor / Unique visitor
+	
+ Bounce rate
+ Conversion rate
+ CTR: Click-through-rate
+ Session length
+
+
+% 2012 Kumar
+ Good metrics should be: Uncomplex, Relevant, Timely, Instantly Useful
+ Basic metrics: Visits, bounce rate, page views, pages/visits, avg time, \% new visits
+ Guidance Performance Indicator (GPI) metric
+
+
+% 2015 Zheng
+ Visit count: page view, visit, unique visitor
+ Visit duration: time on page, time on site.
+ Bounce rate and exit rate.
+
+
+% 2016 Kollewe
+ Besucheranalyse: Wie viele Besucher?, Anzahl Besucher mit Mobilgerät, Demographische Daten (Geschlecht, Altersgruppe)
+ Seitenanalyse: Was machen die Besucher im Shop?, Zielseite / Startseite: Erste Seite, die ein Besucher angeschaut hat, Ausstiegseite
+ E-Commerce-Analyse: Transkations-daten aus Shop, Funnel-Analyse
+
+
+% 2017 Hassler
+ Types: Anzahl, Relations, Werte
+ Content: Where, Who, How, What
+ Hits
+ Page Views
+ Visits / Sessions
+ Visitor / Unique Visitor
+
+
+
+% 2020 Heinemann 4.1.4
 
 
 
@@ -1251,20 +1381,70 @@ Performance vs UX
 \subsection{Performance Metrics}
 
 
+Time Metrics from APIs
+UX Metrics
+Custom Metrics
 
+
+
+
+
+% -----------------------------------------------------------------------
 
 
 \subsubsection{Performance Timings Metrics}
 
+ Introduction to the Web Performance Working Group
+ Overview of Browser APIs and the data they expose: High Resolution Time API, Navigation Timing API, etc.
+ If possible make one deep dive into one API: What exactly gets measured? Maybe check out html standard, v8 or chromium implementation, etc.
 
 
-% table
+% 2013 Wang:
+% - PLT as central metric
 
 
 
 
 
-% APIs
+
+
+
+% Measuring Real User Performance in the Browser youtube
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
+
+
+
+		 Web Performance Working Group
+		 User Timing API
+		 Navigation Timing API: Level 1 (performance.timing), Level 2 (PerformanceNavigationTiming) ?
+		 Network Information API
+		 Resource Timing API
+		 Paint Timing API
+		 High Resolution Time API
+		 Performance Timeline API
+		 Performance Observer API
+		 Long Tasks API
+		 Element Timing API
+		 Event Timing API
+		 Server Timing API
+
+
+
+\paragraph{Navigation Timing API}
+ Show image of navigation timings
+ Explain one or two events directly with specification: navigationStart, domInteractive, etc.
+
+% 2013 Meenan
+% 2013 Grigorik
+
+
+% User Timing:
+% 2013 Girgorik
+
+% Resource TIming
+% 2013 Girgorik: "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application"
+
 
 
 % [Navigation]
@@ -1404,13 +1584,7 @@ Server Timing API
 
 
 
-
-
-
-
-
-
-
+% -----------------------------------------------------------------------
 
 
 
@@ -1422,413 +1596,6 @@ Server Timing API
 
 
 % Web Vitals and Core Web Vitals
-
-
-
-
-\subsubsection{Custom Metrics}
-
-
-% 2013 Meenan
-- First, it is important to understand that no single number will answer that question. Even if you have defined exactly what you are trying to measure on your Web site, performance will vary widely across your user base and across the different pages on your site
-- Nothing beats application-specific knowledge and measurements
-
-% 2021 Meenan
-- own / user specific metrics, e.g. time to first tweet for twitter 
-
-
-% 2013 Grigork
-- "there is no one single metric that holds true for every application, which means that we must carefully define custom metrics in each case"
--  "Custom and application-specific metrics are the key to establishing a sound performance strategy"
-
-
-
-
-\subsection{The Metrics Taxonomy, Map}
-
-
-% what about drawing something like a map of metrics? I can underlay the metrics on the map with Web Vitals, CRP, Navigation etc.
-
-
-
-
-
-
-
-
-% ===== START: HERE I WILL LIST ALL METRICS =====
-
-
-
-% https://developer.mozilla.org/en-US/docs/Glossary
-
-
-
-DNS resolution / DNS lookup time % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-= GAs Avg. Domain Lookup Time (sec) % https://metriclabs.com.au/glossary/analytics-metrics/avg-domain-lookup-time-sec/
-
-
-Connecting / TCP Handshake time % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-
-
-TLS Handshake time % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-
-
-Waiting / Server Response Time ?? % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-
-
-Receiving / Download Time ?? % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-
-
-
-
-onload Event: % https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onload
-% Defined by the HTML specification:
-
-
-
-DOMContentLoaded Event % https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
-% Defined by the HTML specification
-
-
-
-Page Load Time: % https://hpbn.co/primer-on-web-performance/
-- Has been the de facto metric of the web performance world
-- Increasingly insufficient performance benchmark: we are no longer building pages, we are building dynamic and interactive web applications
-
-
-
-
-Start Render % https://designingforperformance.com/basics-of-page-speed/
-- tells you how many seconds it took for the browser to begin rendering content
-
-
-Time to First Byte: % https://developer.mozilla.org/en-US/docs/Glossary/time_to_first_byte
-
-% 2014 Hogan
-- First byte that the browser receives
-- It’s a good indicator of how quickly the backend of your site is able to process and send back content
-
-
-% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-TTFB describes how long the requesting party has to wait from sending the first request packet until receiving the first response data packet
-
-
-
-
-
-
-
-First Paint, Time to First Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_paint
-% Defined by the Paint Timing API 
-
-
-% 2013 Meenan
-- can tell you the first point in time when the user sees something other than a blank white screen
-- doesn’t necessarily mean the user sees anything useful
-
-
-
-
-First Contentful Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_contentful_paint
-% Defined by the Paint Timing API 
-
-
-
-First Meaningful Paint: % https://developer.mozilla.org/en-US/docs/Glossary/first_meaningful_paint
-
-% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-The First Meaningful Paint is another user-centric metric and represents the point in time at which the largest visual change takes place; the underlying assumption here obviously is that the biggest visual change is relevant to the user, for example because a hero image or a navigation bar appear
-
-
-
-
-
-Largest Contentful Paint: % https://wicg.github.io/largest-contentful-paint/
-
-% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-- approximation of the First Meaningful Paint that can be captured in the browser
-
-
-
-
-
-
-Speed Index: % https://developer.mozilla.org/en-US/docs/Glossary/Speed_index
-
-% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-The Speed Index revolves around visual completeness and represents the average time it takes for website elements to become visible. It works well for websites with a static layout, but is unreliable for websites with moving elements like carousels or videos. Computing the Speed Index for this kind of website requires a custom timer or event to demarcate the point in time at which visual completion is reached
-
-% 2013 Meenan
-- best effort for representing the user experience in a single number
-
-
-
-Above-the-fold time % 2013 Meenan
-- point in time when the last visual change is made to the visible part of the page
-- available only in lab environments where the visual progress of a page loading can be recorded
-
-
-
-
-
-Time to Interactive: % https://developer.mozilla.org/en-US/docs/Glossary/Time_to_interactive
-
-
-
-
-
-
-% ===== END: HERE I WILL LIST ALL METRICS =====
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsection{"Non-Performance" metrics}
-
-
-
-User engagement: session length, bounce rate, etc.
-Business KPIs: Cart size, conversion rate, etc.
-QA metadata: Page views, JS errors, etc.
-
-
-
-% 2004 Peterson
-Hit
-Click-Through
- Page View
- Visit
- Visitor / Unique Visitor
- Referrer
- Conversion Rate
- Abandonment Rate
- Attrition
- Loyalty, Frequency and Recency
- Measuring Reach: ...
- Measuring Acquisition: ...
- Measuring Conversion: ...
- Measuring Retention: ...
-
-
-% 2004 Phippen
- Basic metrics (see table): basic metrics are meaningless
- Advanced metrics: Customer lifecycle analysis, customer behaviour analysis
-
-
-% 2007 Burby
-
- Types: Counts, Rations, KPIs
- Definitions for all terms, like Page view, unique visitor, etc.
-
-
-
-
-
-% 2008 Reese
-
- Importance of setting goals
- Conversion Rate
- Kennzahlen für Websites nach Typ: ROI-Ebene, Online-Shop, ...
-
-
-
-
-
-
-% 2009 Croll
-
- Conversion Rates, pages that visitors abandon most
- Click throughs
- UGC (User generated content)
- Subscriptions, Signups
- Referring URL
- Visitor Motivaton, VOC: Voice of the Customer
- Ad and campaign effectiveness
- Findability and Search Effectiveness
- Trouble Ticketing and Escalation
- Loyalty: Ratio of new to returning visitors; average time between visits; time since last login; rate of attrition or disengagement
-
-
-p.15 "whether your business benefited in some way from their visits."
-
-The percentage of visitors that your site converts to contributors, buyers, or users is the most important metric you can track -> Conversion Rate
-
-p. 74 Page View, first useful web analytics metric
-
-
-
-
-
-
-% 2009 Jansen
-% "Metrics: statistical data collected from a Website such as number of unique visitors, most popular pages, etc."
-
- 4 categories: site usage, referrers, site content analysis, quality assurance
- 8 fundamental metrics
- Site usage:
-	
-	 Demographics and System Statistics
-	 Internal Search Information
-	 Visit Length
-	 Visitor Type
-	
- Referrers:
-	
-	 Referrering URL and Keyword Analysis
-	
- Site content analysis:
-	
-	 Top Pages
-	 Visitor Path
-	
- Quality assurance:
-	
-	 Errors
-	
-
-
-
-
-% 2009 Waisberg
-- GA basic metrics: Visits, Bounce Rate, Page views,pages per visit, avg time on site, percentage new visits
-
-
-% Kessler 2012
-
- Erfolg messen und bewerten
- Traffic:
-	
-	 Page Impression / Page View
-	 Visit
-	 Visitor / Unique visitor
-	
- Bounce rate
- Conversion rate
- CTR: Click-through-rate
- Session length
-
-
-
-
-% 2012 Kumar
-
- Good metrics should be: Uncomplex, Relevant, Timely, Instantly Useful
- Basic metrics: Visits, bounce rate, page views, pages/visits, avg time, \% new visits
- Guidance Performance Indicator (GPI) metric
-
-
-
-% 2015 Zheng
-
- Visit count: page view, visit, unique visitor
- Visit duration: time on page, time on site.
- Bounce rate and exit rate.
-
-
-
-
-% 2016 Kollewe
-
- Besucheranalyse: Wie viele Besucher?, Anzahl Besucher mit Mobilgerät, Demographische Daten (Geschlecht, Altersgruppe)
- Seitenanalyse: Was machen die Besucher im Shop?, Zielseite / Startseite: Erste Seite, die ein Besucher angeschaut hat, Ausstiegseite
- E-Commerce-Analyse: Transkations-daten aus Shop, Funnel-Analyse
-
-
-
-% 2017 Hassler
-
- Types: Anzahl, Relations, Werte
- Content: Where, Who, How, What
- Hits
- Page Views
- Visits / Sessions
- Visitor / Unique Visitor
-
-
-
-
-
-
-
-% 2020 Heinemann 4.1.4
-
-
-
-
-
-% ------------------------------------------------------------------------------------------------
-
-
-
-\subsection{Performance Metrics}
-
-
- Introduction to the Web Performance Working Group
- Overview of Browser APIs and the data they expose: High Resolution Time API, Navigation Timing API, etc.
- If possible make one deep dive into one API: What exactly gets measured? Maybe check out html standard, v8 or chromium implementation, etc.
-
-
-% 2013 Wang:
-% - PLT as central metric
-
-
-\subsubsection{Standards and APIs, Browser metrics, standards}
-
-% Measuring Real User Performance in the Browser youtube
-
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
-
-
-
-		 Web Performance Working Group
-		 User Timing API
-		 Navigation Timing API: Level 1 (performance.timing), Level 2 (PerformanceNavigationTiming) ?
-		 Network Information API
-		 Resource Timing API
-		 Paint Timing API
-		 High Resolution Time API
-		 Performance Timeline API
-		 Performance Observer API
-		 Long Tasks API
-		 Element Timing API
-		 Event Timing API
-		 Server Timing API
-
-
-
-
-\paragraph{Navigation Timing API}
-
-
- Show image of navigation timings
- Explain one or two events directly with specification: navigationStart, domInteractive, etc.
-
-
-% 2013 Meenan
-% 2013 Grigorik
-
-
-% User Timing:
-% 2013 Girgorik
-
-% Resource TIming
-% 2013 Girgorik: "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application"
-
-
-
-
-
-
 
 
 
@@ -1945,6 +1712,176 @@ a set of browser-based metrics for capturing user-perceived performance. Google 
 
 
 % 2021 Meenan vimeo 38:50
+
+
+
+
+
+
+% -----------------------------------------------------------------------
+
+
+\subsubsection{Custom Metrics}
+
+
+% 2013 Meenan
+- First, it is important to understand that no single number will answer that question. Even if you have defined exactly what you are trying to measure on your Web site, performance will vary widely across your user base and across the different pages on your site
+- Nothing beats application-specific knowledge and measurements
+
+% 2021 Meenan
+- own / user specific metrics, e.g. time to first tweet for twitter 
+
+
+% 2013 Grigork
+- "there is no one single metric that holds true for every application, which means that we must carefully define custom metrics in each case"
+-  "Custom and application-specific metrics are the key to establishing a sound performance strategy"
+
+
+
+
+
+% -----------------------------------------------------------------------
+% -----------------------------------------------------------------------
+
+
+
+
+\subsection{The Metrics Taxonomy, Map}
+
+
+% what about drawing something like a map of metrics? I can underlay the metrics on the map with Web Vitals, CRP, Navigation etc.
+
+
+
+
+
+
+
+
+% ===== START: HERE I WILL LIST ALL METRICS =====
+
+
+
+% https://developer.mozilla.org/en-US/docs/Glossary
+
+
+
+DNS resolution / DNS lookup time % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+= GAs Avg. Domain Lookup Time (sec) % https://metriclabs.com.au/glossary/analytics-metrics/avg-domain-lookup-time-sec/
+
+
+Connecting / TCP Handshake time % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+
+
+TLS Handshake time % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+
+
+Waiting / Server Response Time ?? % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+
+
+Receiving / Download Time ?? % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+
+
+
+
+onload Event: % https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onload
+% Defined by the HTML specification:
+
+
+
+DOMContentLoaded Event % https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
+% Defined by the HTML specification
+
+
+
+Page Load Time: % https://hpbn.co/primer-on-web-performance/
+- Has been the de facto metric of the web performance world
+- Increasingly insufficient performance benchmark: we are no longer building pages, we are building dynamic and interactive web applications
+
+
+
+
+Start Render % https://designingforperformance.com/basics-of-page-speed/
+- tells you how many seconds it took for the browser to begin rendering content
+
+
+Time to First Byte: % https://developer.mozilla.org/en-US/docs/Glossary/time_to_first_byte
+
+% 2014 Hogan
+- First byte that the browser receives
+- It’s a good indicator of how quickly the backend of your site is able to process and send back content
+
+
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+TTFB describes how long the requesting party has to wait from sending the first request packet until receiving the first response data packet
+
+
+
+
+
+
+
+First Paint, Time to First Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_paint
+% Defined by the Paint Timing API 
+
+
+% 2013 Meenan
+- can tell you the first point in time when the user sees something other than a blank white screen
+- doesn’t necessarily mean the user sees anything useful
+
+
+
+
+First Contentful Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_contentful_paint
+% Defined by the Paint Timing API 
+
+
+
+First Meaningful Paint: % https://developer.mozilla.org/en-US/docs/Glossary/first_meaningful_paint
+
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+The First Meaningful Paint is another user-centric metric and represents the point in time at which the largest visual change takes place; the underlying assumption here obviously is that the biggest visual change is relevant to the user, for example because a hero image or a navigation bar appear
+
+
+
+
+
+Largest Contentful Paint: % https://wicg.github.io/largest-contentful-paint/
+
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- approximation of the First Meaningful Paint that can be captured in the browser
+
+
+
+
+Speed Index: % https://developer.mozilla.org/en-US/docs/Glossary/Speed_index
+
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+The Speed Index revolves around visual completeness and represents the average time it takes for website elements to become visible. It works well for websites with a static layout, but is unreliable for websites with moving elements like carousels or videos. Computing the Speed Index for this kind of website requires a custom timer or event to demarcate the point in time at which visual completion is reached
+
+% 2013 Meenan
+- best effort for representing the user experience in a single number
+
+
+
+Above-the-fold time % 2013 Meenan
+- point in time when the last visual change is made to the visible part of the page
+- available only in lab environments where the visual progress of a page loading can be recorded
+
+
+
+
+
+Time to Interactive: % https://developer.mozilla.org/en-US/docs/Glossary/Time_to_interactive
+
+
+
+
+
+
+% ===== END: HERE I WILL LIST ALL METRICS =====
+
+
 
 
 
