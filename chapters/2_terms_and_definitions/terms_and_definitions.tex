@@ -1211,6 +1211,12 @@ Those questions will be addressed in the next section.
 
 
 %TODO roter faden: motivate with context web analytics, web performance, user satisfaction etc
+
+%TODO ideally come up with a nice table which abstracts and summarizes everything about metrics:
+% e.g. measured by: browser, server. Technical stuff is measured in browser, everything else not in browser
+% technical, UX, ...
+
+
 % Data vs Metric ?
 
 Introduction: What are metrics, Different kind of metrics
@@ -1278,7 +1284,11 @@ The main question here is how to categorize those metrics.
 Best is: numerical values, Relations, non-numerical values
 
 
-% [Possible Categories]
+\subsubsection{Possible Categorizations of Web Analytics Metrics}
+
+
+Semantic categorization
+Orthogonal: "number" categorization: Count, ratio, ...
 
 
 % Wolle https://www.youtube.com/watch?v=avPcOFzUa1Q&ab_channel=WolframWingerath
@@ -1444,10 +1454,10 @@ After that, i will take a look at metrics which are specifically for performance
 \subsubsection{Counts and Numerical Values}
 
 
-Describe how many
-Over time
-Averages
-Segmentation
+Counts describe how many
+Can be measured Over time: last hour, month, from to, etc.
+Averages are possible
+Compare with Segmentation
 
 
 %TODO maybe put this in table
@@ -1576,6 +1586,7 @@ Can not be reflected as number
 %TODO find some more examples here
 
 \paragraph{Demographics}
+age, gender, browser, geography, ...
 
 \paragraph{Referrer}
 % 2004 Peterson
@@ -1620,6 +1631,8 @@ This will be discussed.
 
 
 % --------------------------------------------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 \subsection{Performance Metrics}
@@ -1648,8 +1661,10 @@ Custom Metrics
 
 \subsubsection{Page Weight}
 
-Page weight has an impact on performance
-More resources and bytes means more downloads and waiting time
+- the size of the web site
+- Page weight has an impact on performance
+- Page consists of resources
+- More resources and bytes means more downloads and waiting time
 
 
 % HTTP Archive
@@ -1681,118 +1696,109 @@ More resources and bytes means more downloads and waiting time
 - Other Requests
 
 
-
-
-
-
-
 % -----------------------------------------------------------------------
 
 
 \subsubsection{Performance Timings Metrics}
 
- Introduction to the Web Performance Working Group
- Overview of Browser APIs and the data they expose: High Resolution Time API, Navigation Timing API, etc.
- If possible make one deep dive into one API: What exactly gets measured? Maybe check out html standard, v8 or chromium implementation, etc.
 
+\paragraph{Web Standards}
 
-% 2013 Wang:
-% - PLT as central metric
+% https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards
+- One last significant data point to share is that in 1994, TimBL founded the World Wide Web Consortium (W3C), an organization that brings together representatives from many different technology companies to work together on the creation of web technology specifications
 
-
-
-
-
-
-
-
-% Measuring Real User Performance in the Browser youtube
-
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
+Web Standards:
+- technologies we use to build web sites
+- standards exist as long technical documents called specifications
+- detail exactly how the technology should work
+-  to be used by software engineers to implement these technologies (usually in web browsers)
+- For example, the HTML Living Standard describes exactly how HTML (all the HTML elements, and their associated APIs, and other surrounding technologies) should be implemented.
+- Others  WHATWG (who maintain the living standards for the HTML language), ECMA
 
 
 
-		 Web Performance Working Group
-		 User Timing API
-		 Navigation Timing API: Level 1 (performance.timing), Level 2 (PerformanceNavigationTiming) ?
-		 Network Information API
-		 Resource Timing API
-		 Paint Timing API
-		 High Resolution Time API
-		 Performance Timeline API
-		 Performance Observer API
-		 Long Tasks API
-		 Element Timing API
-		 Event Timing API
-		 Server Timing API
+\paragraph{W3C}
 
 
+What is W3C
 
-\paragraph{Navigation Timing API}
- Show image of navigation timings
- Explain one or two events directly with specification: navigationStart, domInteractive, etc.
+% https://www.w3.org/standards/faq
+W3C publishes documents that define Web technologies. These documents follow a process designed to promote consensus, fairness, public accountability, and quality. At the end of this process, W3C publishes Recommendations, which are considered Web standards.
 
-% 2013 Meenan
-% 2013 Grigorik
-
-
-% User Timing:
-% 2013 Girgorik
-
-% Resource TIming
-% 2013 Girgorik: "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application"
+e.g.DOM,  HTML, SVG, ...
 
 
+Recommendations:
 
-% [Navigation]
+% https://www.w3.org/2020/Process-20200915/#rec-track
+- Recommendation track:
+Publication of the First Public Working Draft.
+Publication of zero or more revised Working Drafts.
+Publication of one or more Candidate Recommendations.
+Publication of a Proposed Recommendation.
+Publication as a W3C Recommendation.
 
-
-- The real benefit of Navigation Timing is that it exposes a lot of previously inaccessible data, such as DNS and TCP connect times, with high precision (microsecond timestamps), via a standardized performance.timing object in each browser.
-- Hence, the data gathering process is very simple: load the page, grab the timing object from the user’s browser, and beacon it back to your analytics servers!
-- By capturing this data, we can observe real-world performance of our applications as seen by real users, on real hardware, and across a wide variety of different networks.
-- Navigation Timing provides performance timers for root documents only
-
-
-
-% Navigation Events: Exposed by Navigation Timing API: navigationStart, domContentLoaded, etc.
-
+- From Idea to concrete API which browser maintainers implement
 
 
-% [Resource]
+\paragraph{Web Performance Working Group}
 
-%  navigation timing measures the main document's timings whereas the resource timing provides the times for all the assets or resources called in by that main document and the resources' requested resources.
-
-
-% 2013 Grigork
-- Resource Timing provides similar performance data for each resource on the page, allowing us to gather the full performance profile of the page.
-
-
-
-% [User Timing]
-
-
-% 2013 Grigork
-- Similarly, User Timing provides a simple JavaScript API to mark and measure application-specific performance metrics with the help of the same high-resolution timers
-
-
-
-
-
-
-
-
-
+Multiple groups exists which are responsible for a specific topic.
+Performance working group is responsible for performance.
 
 
 % 2013 Meenan
 - In 2010, the browser vendors got together under the W3C banner and formed the Web Performance Working Group to standardize the interfaces and work toward improving the state of Web-performance measurement and APIs in the browsers
-- In late 2010 the group released the Navigation Timing specification
-- The largest benefit of navigation timing is that it exposes a lot of timings that lead up to the HTML loading --> This is this famous image
-- In addition to providing a good start time, it exposes information about any redirects, DNS lookup times, time to connect to the server, and how long it takes the Web server to respond to the request, for every user and for every page the user visits
-- The measurement points are exposed to the DOM (Document Object Model) through the performance object and make it trivial to calculate load times (or arbitrary intervals, really) from JavaScript.
 - Clock issue -> High Resolution Time specification
 
 
+% https://www.w3.org/2021/02/webperf.html
+- Working Groups push new recommendations and invent them
+Web Performance Working Group is responsible:
+- Measurement
+- Scheduling
+- Adaptation
+-> Important is Measurement
+
+
+Normative Specifications:
+- High Resolution Time
+- Performance Timeline
+- Resource Timing
+- Navigation Timing
+- User Timing
+- Page Visibility
+- Long Task
+- Paint Timing
+- Server Timing
+
+others, not important for metrics:
+- Beacon
+- Cooperative Scheduling of Background Tasks
+- Device Memory
+- Reporting
+- Network Error Logging
+
+
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
+
+
+%TODO where are they from ?
+
+Network Information API?
+Element Timing API ?
+Event Timing API ?
+
+Performance Timeline API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_Timeline
+Performance Entry API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
+PerformanceNavigationTiming % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
+Performance Observer API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
+
+
+
+
+%TODO what is this performance api ?
 
 % Measuring Performance https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
 Performance APIs:
@@ -1800,45 +1806,112 @@ Performance APIs:
 - Performance API is one API within Web APIs collection: Includes other APIs
 - Navigation Timing API: Famous image: Exposes metrics related to navigation events
 
-Tools and metrics:
-- 2 categories: Tools for measuring (reporting) and tools for improving
-- Reporting:
-- PageSpeedInsights
-- WebPageTest
-- Network:
-- Network Panel in DevTools
+
+Performance API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_API
+-> Includes Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.  ??
+
+
+
 
 
 % https://siusin.github.io/perf-timing-primer/
 
+
+
+
 % https://w3c.github.io/perf-timing-primer/
 
 
-Performance API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_API
-- Includes Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.  ??
+
+- If possible make one deep dive into one specification: What exactly gets measured? Maybe check out html standard, v8 or chromium implementation, etc.
 
 
 
-Navigation Timing API % https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API
-Navigation Timing API Level 2 % https://www.w3.org/TR/navigation-timing-2/
 
 
-Performance Timeline API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_Timeline
 
 
-Performance Entry API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
+
+%TODO find the notes for this Measuring Real User Performance in the Browser youtube
 
 
-PerformanceNavigationTiming % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
+
+% -----------------------------------
 
 
-User Timing API % https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API
+
+
+Now i will take a closer look at Navigation, Resource and User Timing and which metrics are derived from there.
+
+% 2013 Girgorik: "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application"
+
+
+
+
+\paragraph{Navigation Timing}
+
+
+Version 1 and 2
+
+
+% https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API
+
+
+% https://www.w3.org/TR/navigation-timing-2/
+
+
+
+% 2013 Grigorik
+- navigation timing measures the main document's timings
+- The real benefit of Navigation Timing is that it exposes a lot of previously inaccessible data, such as DNS and TCP connect times, with high precision (microsecond timestamps), via a standardized performance.timing object in each browser.
+- Hence, the data gathering process is very simple: load the page, grab the timing object from the user’s browser, and beacon it back to your analytics servers!
+- By capturing this data, we can observe real-world performance of our applications as seen by real users, on real hardware, and across a wide variety of different networks.
+- Navigation Timing provides performance timers for root documents only
+
+
+Navigation Events: Exposed by Navigation Timing API: navigationStart, domContentLoaded, etc.
+
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
+
+
 
 % 2013 Meenan
-- provides a simple way of marking points in time using performance. mark(“label”) and a standard way of querying all of the custom measurements later
+- In late 2010 the group released the Navigation Timing specification
+- The largest benefit of navigation timing is that it exposes a lot of timings that lead up to the HTML loading --> This is this famous image
+- In addition to providing a good start time, it exposes information about any redirects, DNS lookup times, time to connect to the server, and how long it takes the Web server to respond to the request, for every user and for every page the user visits
+- The measurement points are exposed to the DOM (Document Object Model) through the performance object and make it trivial to calculate load times (or arbitrary intervals, really) from JavaScript.
 
 
-Resource Timing API % https://developer.mozilla.org/en-US/docs/Web/API/Resource_Timing_API
+% 2013 Wang:
+- PLT as central metric
+
+
+% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+
+
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+
+
+
+% -------------------
+
+
+\paragraph{Resource Timing}
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
+
+
+% https://developer.mozilla.org/en-US/docs/Web/API/Resource_Timing_API
+
+
+
+% 2013 Grigork
+- Resource Timing provides similar performance data for each resource on the page, allowing us to gather the full performance profile of the page.
+- resource timing provides the times for all the assets or resources called in by that main document and the resources' requested resources.
+
+
 
 % 2013 Meenan
 - exposes timing information about every network request the browser had to make to load a page and what triggered each request (whether stylesheet, script, or image)
@@ -1846,46 +1919,42 @@ Resource Timing API % https://developer.mozilla.org/en-US/docs/Web/API/Resource_
 
 
 
-Performance Observer API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
+% -------------------
 
 
+\paragraph{User Timing}
 
-High resolution Time specification
-
-
-
-
-Paint Timing 1
+% 2013 Girgorik
+- Similarly, User Timing provides a simple JavaScript API to mark and measure application-specific performance metrics with the help of the same high-resolution timers
 
 
+% https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API
 
-%TODO sort this
-User Timing API
-Navigation Timing API: Level 1 (performance.timing), Level 2 (PerformanceNavigationTiming) ?
-Network Information API
-Resource Timing API
-Paint Timing API
-High Resolution Time API
-Performance Timeline API
-Performance Observer API
-Long Tasks API
-Element Timing API
-Event Timing API
-Server Timing API
+
+% 2013 Meenan
+- provides a simple way of marking points in time using performance. mark(“label”) and a standard way of querying all of the custom measurements later
 
 
 
 
+% -------------------
 
+
+% [Conclusion]
+
+Provide here a table with all important recommendations and the metrics they expose.
 
 
 
 
 % -----------------------------------------------------------------------
+% -----------------------------------------------------------------------
 
 
 
-\subsubsection{User Perceived Performance Metrics}
+
+
+\subsubsection{UX / User Perceived, Visual Performance Metrics}
 
 
 % https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance
@@ -1895,9 +1964,6 @@ Server Timing API
 % Web Vitals and Core Web Vitals
 
 
-
-
-\subsubsection{Google metrics? User-centric / UX / visual}
 
 
 \paragraph{Web Vitals}
@@ -1930,7 +1996,7 @@ a set of browser-based metrics for capturing user-perceived performance. Google 
 
 
 
-\subparagraph{Core Web Vitals}
+\paragraph{Core Web Vitals}
 
 % Introduction
 % 2020 Sullivan
@@ -1948,6 +2014,12 @@ a set of browser-based metrics for capturing user-perceived performance. Google 
  Introduction, what is it
  How to measure
  How to improve
+ 
+ 
+ Google had some issues with capturing LCP in chrome, see twitter
+ Because of this they needed to release a new chrome version
+ CruX also has 2 different lcps now (?)
+ use this story to show that this stuff is far from trivial
 
 
 % FID https://web.dev/fid/
@@ -1978,7 +2050,7 @@ a set of browser-based metrics for capturing user-perceived performance. Google 
 
 
 
-\paragraph{Others}
+\paragraph{Other UX Metrics}
 
 % Measuring Real User Performance in the Browser youtube:
 % - first paint, fcp, fmp, visually complete, speed index
@@ -2013,6 +2085,9 @@ a set of browser-based metrics for capturing user-perceived performance. Google 
 % -----------------------------------------------------------------------
 
 
+
+
+
 \subsubsection{Custom Metrics}
 
 
@@ -2027,6 +2102,8 @@ a set of browser-based metrics for capturing user-perceived performance. Google 
 % 2013 Grigork
 - "there is no one single metric that holds true for every application, which means that we must carefully define custom metrics in each case"
 -  "Custom and application-specific metrics are the key to establishing a sound performance strategy"
+
+
 
 
 
