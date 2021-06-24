@@ -372,15 +372,6 @@ In the following, the individual steps will be discussed in more detail.
 
 
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.7\textwidth]{crp.png}
-\caption{Critical Rendering Path}
-\label{img:crp}
-\end{center}
-\end{figure}
-
-
 \paragraph{DOM Construction from HTML}
 
 % [Introduction, Standard]
@@ -893,6 +884,8 @@ If some content changes, browsers are optimized to only repaint areas on the scr
 \section{Measurement Methods}
 
 %TODO add some more info for Roter Faden, why is this here? whats all about ?
+% start with web analyitcs and web performance context
+% as described in section web analytics, measurement is important... will be described here
 % i could also motivate here that i will use both methods in my experiment thats why i need to explain them here
 
 % [Introduction]
@@ -927,7 +920,7 @@ After discussing measurement methods, I can finally discuss the metrics we want 
 
 \subsubsection{The "Synthetic" Aspect in Synthetic Monitoring}
 
-\paragraph{Laboratorial Environment}
+%\paragraph{Laboratorial Environment}
 
 As the name already suggests, synthetic monitoring is a measurement method performed in an artificial, laboratory-like, synthetic environment.
 Test agents simulate real users and are configured to run a browser, load the web site under observation while capturing performance data.
@@ -1018,7 +1011,7 @@ RUM will be discussed next.
 \subsection{Real-User Monitoring}
 
 
-\subsubsection{Measurements with Real Users}
+%\subsubsection{Measurements with Real Users}
 
 As the name suggests, Real-User Monitoring (RUM) is about collecting and measuring data from real users visiting the web site.
 As opposed to synthetic monitoring, where web site traffic is generated artificially and performance experience from real users is only approximated, RUM data relies on real user traffic and captures data directly from each users browser. 
@@ -1216,11 +1209,12 @@ Those questions will be addressed in the next section.
 
 \section{Metrics}
 
-%TODO find some more literatur about introduction to metrics
 
+%TODO roter faden: motivate with context web analytics, web performance, user satisfaction etc
+% Data vs Metric ?
 
 Introduction: What are metrics, Different kind of metrics
-Business Metrics
+General, web analytics (Business) Metrics and then take a look at performance metrics
 Page weight, Performance, UX and custom Metrics
 Metrics Taxonomy
 
@@ -1234,13 +1228,26 @@ numbers can be compared: over time, after change, with competitor, etc.
 - Compare to competitors
 - Compare different versions of your app
 
+% 2009 Jansen
+- use these metrics to analyze Web traffic and improve a Website to meet better the expectations of the site’s traffic
+
+% 2014 Singal:
+"Metrics serve as the basic information for analyzing Web traffic and helps in improving a Website to meet its goals"
+
 
 % [Relevance]
 
 - Measure what is important for you
+tailored, best would be to have custom metrics, see section X.
 
 % https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
 - Metrics should be relevant to your users, site, and business goals
+
+% 2009 Croll p 7
+- each business has its own definitions of success
+- p.15 "whether your business benefited in some way from their visits."
+- search engine vs e-commerce website example
+
 
 
 % [Usable]
@@ -1249,28 +1256,24 @@ numbers can be compared: over time, after change, with competitor, etc.
 - should be collected and measured in a consistent manner
 - analyzed in a format that can be consumed and understood by non-technical stakeholders
 
-% 2012 Kumar
+% 2009 Waisberg 2012 Kumar
  Good metrics should be: Uncomplex, Relevant, Timely, Instantly Useful
  
- 
-
-% 2014 Singal:
-"Metrics serve as the basic information for analyzing Web traffic and helps in improving a Website to meet its goals"
-
 
 % 2019 Enghardt
 "metrics as well as experiments have to realistically reflect possible performance improvements for actual users"
-"they need to be reproducible"
-- network-centric, browser-centric, and user-centric metrics
-- Typical Web metrics include load times, object sizes, number of objects, and page sizes
 
 
 
 
+%TODO connection to KPIs?
+% 2015 Bekavac
 
-\subsection{Business or "Non-Performance" Metrics}
 
 
+\subsection{Business or "Non-Performance", general web analytics Metrics}
+
+Unlimited metrics, also when thinking about custom metrics.
 The main question here is how to categorize those metrics.
 Best is: numerical values, Relations, non-numerical values
 
@@ -1278,27 +1281,56 @@ Best is: numerical values, Relations, non-numerical values
 % [Possible Categories]
 
 
-User engagement: session length, bounce rate, etc.
-Business KPIs: Cart size, conversion rate, etc.
-QA metadata: Page views, JS errors, etc.
+% Wolle https://www.youtube.com/watch?v=avPcOFzUa1Q&ab_channel=WolframWingerath
+- User Engagement:
+	- Session Length
+	- Time on site
+	- First user interaction
+	- Bounce rate
 
+- Business KPIs:
+	- Cart size
+	- Transactions
+	- Conversion Rate
+	- Revenue
 
-% Customer Life Cycle and Pyramid
-
+- QA Metadata:
+	- Page views and sessions
+	- Browser distribution
+	- JavaScript errors
+	- Caching insights
+	
+	
+	
 % 2004 Peterson
-Pyramid Model
-Metrics categorised by customer life cycle: Reach, Acquisition, Conversion, Retention
+- Argument with Customer Life Cycle
+
+ Measuring Reach:
+ - Overall Traffic Volumes
+ - Number of Visits
+- Number of New Visitors
+- Percentage of New Visitors
+-...
+
+ Measuring Acquisition:
+- Percent New Visitors
+- Average Number of Visits per Visitor
+- Average Number of Page Views per Visit
+- Average Pages Viewed per Visitor
+-...
+ 
+ Measuring Conversion:
+ - Conversion Rates
+- Abandonment Rates
+- ... 
+ 
+ 
+ Measuring Retention:
+ - Number of Returning Visitors
+ - ...
+ 
 
 
-% 2008 Reese
-- Pyramidenmodell 
-
-
-
-
-
-
-% Counts, Ratios and KPIs
 
 % 2007 Burby
 - WAA
@@ -1308,17 +1340,7 @@ Metrics categorised by customer life cycle: Reach, Acquisition, Conversion, Rete
 - KPIs: count or ration infused by business strategy
 
 
-
-
-% Counts, Relations, Non-Numerical Values
-
-% 2017 Hassler
- Types: Anzahl, Relations, Werte
-
-
-% Other Categories
-
-% 2009 Jansen
+% 2009 Jansen p.30
  4 categories: site usage, referrers, site content analysis, quality assurance
  8 fundamental metrics
  Site usage:
@@ -1333,268 +1355,30 @@ Metrics categorised by customer life cycle: Reach, Acquisition, Conversion, Rete
 	 Visitor Path
  Quality assurance:
 	 Errors
-
-
-
-
-
-
-
-% ---------------------------------------------------------------
-
-
-\subsubsection{Numerical Values}
-
-
-Describe how many
-Over time
-Averages
-Segmentation
-
-
-
-
-\paragraph{Hits}
-
-% 2004 Peterson
-
-
-
-
-
-Visits
-Sessions
-
-
-\paragraph{Page Views}
-
-% 2004 Peterson
-
-
-Session Length
-New Visitors
-Cart Size
-JS Errors
-Unique Visitors
-Referrer
-Repeat Visitors
-Return Visitors
-Single Page Visits
-Single Page View Visits
-Referrer
-Time between Visits
-Conversions
-Time on Page
-Demographics
-
-
-
-
-
-\subsubsection{Ratios}
-
-Combining numerical values
-As Ratio or Percentage
-
-
-Bounce Rate
-Conversion Rate
-
-
-\paragraph{Click Through Rate (CTR)}
-
-% 2004 Peterson
-
-
-
-Page Views per Visitor
-Abandonment Rate
-New Visitors Percentage
-Visits per Visitor
-Page Exit Ratio
-
-
-
-
-
-
-
-
-
-\subsubsection{Non-Numerical Values}
-
-Can not be reflected as number
-
-
-Demographics
-Referrer
-...
-
-
-
-
-% 2004 Peterson
-
-Page View
-Visit
-Visitor / Unique Visitor
-Referrer
-Conversion Rate
-Abandonment Rate
-Attrition
-Loyalty, Frequency and Recency
-
- - Customer Life Cycle:
-
- Measuring Reach:
- - Overall Traffic Volumes
- - Number of Visits
-- Number of New Visitors
-- Percentage of New Visitors
-- Entry Pages and Contents
-- Error Pages
-- Interested Visitor Share
-- Impressions Served
-- Open Rates 
-
- Measuring Acquisition:
-- Percent New Visitors
-- Average Number of Visits per Visitor
-- Average Number of Page Views per Visit
-- Average Pages Viewed per Visitor
-- Page “Stick” and “Slip”
-- Cost per Visitor
-- Ratio of New Visitors to All Visitors
-- Heavy User Share
-- Top Pages and Content Requested By New Visitors
-- Content “Focus”
-- Percent of Visits Under 90 Seconds
-- Average Time Spent on Site
-- Responses and Respondents
-- Cost-per-Acquisition / Cost-per-Click
-- Referring Domains 
- - ...
- 
- 
- Measuring Conversion:
- - Conversion Rates
-- Abandonment Rates
-- ... 
- 
- 
- Measuring Retention:
- - Number of Returning Visitors
- - ...
- 
-
-% 2004 Phippen
- Advanced metrics:
- Customer lifecycle analysis: cost per acquisition, churn
- customer behaviour analysis
- 
-
-
-% 2007 Burby
-- WAA
-- 3 Types of web analytics metrics:
-- Counts: single number
-- Rations: Count divided by count
-- KPIs: count or ration infused by business strategy
-
-Counts:
-- Page Views
-- Visits/Sessions
-- Unique Visitor
-- New Visitor
-- Repeat Visitor
-- Return Visitor
-- Visit Duration
-- Click-through
-- Single-Page Visits
-- Single Page View Visits (Bounces)
-
-
-Ratios:
-- Click-through Rate/Ratio
-- Page Views per Visit
-- Page Exit Ratio
-- Bounce Rate 
- 
- 
-
-
+	 
+	 
 % 2009 Croll
- Conversion Rates, pages that visitors abandon most
- Click throughs
- UGC (User generated content)
- Subscriptions, Signups
- Referring URL
- Visitor Motivaton, VOC: Voice of the Customer
- Ad and campaign effectiveness
- Findability and Search Effectiveness
- Trouble Ticketing and Escalation
- Loyalty: Ratio of new to returning visitors; average time between visits; time since last login; rate of attrition or disengagement
+All metrics answer one of the Big 4 Question:
+- What did they do?
+- How did they do it?
+- Why did they do it?
+- Could they do it?
 
-
-p.15 "whether your business benefited in some way from their visits."
-
-The percentage of visitors that your site converts to contributors, buyers, or users is the most important metric you can track -> Conversion Rate
-
-p. 74 Page View, first useful web analytics metric
+- Very user centric
 
 
 
-
-	
-
-
-% 2009 Waisberg
-- GA basic metrics: Visits, Bounce Rate, Page views,pages per visit, avg time on site, percentage new visits
-
-
-% Kessler 2012
- Erfolg messen und bewerten
- Traffic:
-	 Page Impression / Page View
-	 Visit
-	 Visitor / Unique visitor
-	
- Bounce rate
- Conversion rate
- CTR: Click-through-rate
- Session length
-
-
-% 2012 Kumar
- Basic metrics: Visits, bounce rate, page views, pages/visits, avg time, \% new visits
- Guidance Performance Indicator (GPI) metric
- 
- 
- 
-% 2015 Bekavac:
+% 2015 Bekavac
 - Metrics for describing visits: entry page, landing page, exit page, visit duration, referrer, ctr
-- Visitors: new visitors, returning visitor, repeat visitor, visits per visitor, recency, frequency
-- Visitor engagement: page exit ratio, bounce rate, page views per visitor
+- For describing Visitors: new visitors, returning visitor, repeat visitor, visits per visitor, recency, frequency
+- For describing Visitor engagement: page exit ratio, bounce rate, page views per visitor
 - Conversion metrics: conversion, conversion rate
 
 
-% 2015 Zheng
- Visit count: page view, visit, unique visitor
- Visit duration: time on page, time on site.
- Bounce rate and exit rate.
-
-
-% 2016 Kollewe
- Besucheranalyse: Wie viele Besucher?, Anzahl Besucher mit Mobilgerät, Demographische Daten (Geschlecht, Altersgruppe)
- Seitenanalyse: Was machen die Besucher im Shop?, Zielseite / Startseite: Erste Seite, die ein Besucher angeschaut hat, Ausstiegseite
- E-Commerce-Analyse: Transkations-daten aus Shop, Funnel-Analyse
-
 
 % 2017 Hassler
-- Arbitrary number of metrics available
-
-- Types: Counts,Relations, Values
-
+ Types: Anzahl, Relations, Werte
+ 
 Counts:
 - Absolut value
 - visitors
@@ -1609,27 +1393,229 @@ Relations:
 
 Values:
 - Referrer
-- Search term
+- Search term 
+ 
 
-Contexts:
-- Source: Where
-- Visitor: Who
-- Visitor Engangement: How
-- Content: What
-
-
-
-
-
+I will use this categorization to list some metrics.
 
 
 
 % 2020 Heinemann 4.1.4
+Metrics Categories for E-Shop:
+- Attraction
+- Acquisition
+- Retention
+- Umsatzleistung
+- Warenleistung
+- Ergebnisleitung
 
 
 
 
 
+
+
+
+% [Conclusion]
+
+We have seen that multiple categorizations of metrics exists.
+I will now use possible categorization: Counts, Ratios, Values
+For each category, i will list some metrics and explain them or even put it in table.
+This list is not complete.
+
+After that, i will take a look at metrics which are specifically for performance.
+
+
+
+% Customer Life Cycle and Pyramid
+% 2004 Peterson
+%Pyramid Model described the data itself and not metrics
+%Metrics categorised by customer life cycle: Reach, Acquisition, Conversion, Retention
+
+% 2008 Reese
+%- Pyramidenmodell 
+
+
+
+
+% ---------------------------------------------------------------
+
+
+\subsubsection{Counts and Numerical Values}
+
+
+Describe how many
+Over time
+Averages
+Segmentation
+
+
+%TODO maybe put this in table
+
+
+\paragraph{Hits}
+% 2004 Peterson
+% 2017 Hassler
+
+
+\paragraph{Visits}
+% 2004 Peterson
+% 2009 Waisberg
+% 2017 Hassler
+
+\paragraph{Sessions}
+% 2007 Burby
+
+
+\paragraph{Session Length}
+% 2007 Burby
+
+
+\paragraph{Page Views}
+% 2004 Peterson
+% 2007 Burby
+
+% 2009 Croll
+p. 74 Page View, first useful web analytics metric
+
+% 2009 Waisberg
+
+% 2015 Zheng
+
+% 2017 Hassler
+
+
+\paragraph{Single Page Visits}
+% 2007 Burby
+
+\paragraph{New Visitors}
+% 2004 Peterson
+% 2007 Burby
+
+\paragraph{Unique Visitors}
+% 2004 Peterson
+% 2007 Burby
+% 2017 Hassler
+
+\paragraph{Repeat Visitors}
+% 2007 Burby
+
+\paragraph{Return Visitor}
+% 2007 Burby
+
+\paragraph{Time on Page}
+\paragraph{Time between Visits}
+
+\paragraph{JS Errors}
+
+\paragraph{Cart Size}
+% 2009 Croll p 24 in site effectiveness
+
+
+\paragraph{Conversions}
+
+
+many more
+
+% ---------------------------------------------------------------------------------
+
+
+
+
+\subsubsection{Ratios}
+
+Combining numerical values
+As Ratio or Percentage
+
+\paragraph{Bounce Rate}
+% 2007 Burby
+% 2009 Waisberg
+
+\paragraph{Conversion Rate}
+% 2004 Peterson
+
+% 2009 Croll
+- The percentage of visitors that your site converts to contributors, buyers, or users is the most important metric you can track
+
+\paragraph{Abandonment Rate}
+% 2004 Peterson
+% 2009 Croll
+
+\paragraph{Page Views per Visitor}
+% 2007 Burby
+% 2009 Waisberg
+
+\paragraph{New Visitors Percentage}
+% 2009 Waisberg
+
+
+\paragraph{Visits per Visitor}
+
+\paragraph{Page Exit Ratio}
+% 2007 Burby
+
+
+\paragraph{Click Through Rate (CTR)}
+% 2004 Peterson
+% 2007 Burby
+% 2009 Croll
+
+
+many more
+
+
+% ---------------------------------------------------------------------------------
+
+
+
+
+\subsubsection{Non-Numerical Values}
+
+Can not be reflected as number
+
+%TODO find some more examples here
+
+\paragraph{Demographics}
+
+\paragraph{Referrer}
+% 2004 Peterson
+% 2009 Croll
+
+
+many more
+
+
+
+
+
+
+% [Transition]
+
+List is not complete.
+Now we move to performance specific metrics.
+As performance is directly connected to time, most of those performance metrics are measuring a timestamp.
+Some are also displaying a score. 
+This will be discussed.
+
+
+
+
+% Kessler 2012 -> dont have this digital...
+% Erfolg messen und bewerten
+ %Traffic:
+%	 Page Impression / Page View
+%	 Visit
+%	 Visitor / Unique visitor
+% Bounce rate
+ %Conversion rate
+ %CTR: Click-through-rate
+ %Session length
+ 
+ 
+ % 2016 Kollewe -> nicht digital
+% Besucheranalyse: Wie viele Besucher?, Anzahl Besucher mit Mobilgerät, Demographische Daten (Geschlecht, Altersgruppe)
+% Seitenanalyse: Was machen die Besucher im Shop?, Zielseite / Startseite: Erste Seite, die ein Besucher angeschaut hat, Ausstiegseite
+% E-Commerce-Analyse: Transkations-daten aus Shop, Funnel-Analyse
 
 
 
@@ -1638,16 +1624,21 @@ Contexts:
 
 \subsection{Performance Metrics}
 
-Page Weight
-Time Metrics from APIs
-UX Metrics
-Custom Metrics
 
+% [Categories]
+
+As with general web analytics metrics, there are multiple ways to categorize performance metrics.
 
 % 2019 Enghardt
-"metrics as well as experiments have to realistically reflect possible performance improvements for actual users"
-"they need to be reproducible"
 - network-centric, browser-centric, and user-centric metrics
+
+For me most intuitive is
+
+Metrics regarding Page Weight
+Timing Metrics, how long each step from the CRP took
+UX Metrics, try to reflect how users experience performance, visual metrics
+Custom Metrics
+
 
 
 
