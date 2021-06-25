@@ -1310,10 +1310,12 @@ Orthogonal: "number" categorization: Count, ratio, ...
 	- JavaScript errors
 	- Caching insights
 	
+-> Semantic, about the meaning of metrics
+- 
 	
 	
 % 2004 Peterson
-- Argument with Customer Life Cycle
+- Argument with Customer Life Cycle: Retention - Awareness - Conversion
 
  Measuring Reach:
  - Overall Traffic Volumes
@@ -1339,7 +1341,8 @@ Orthogonal: "number" categorization: Count, ratio, ...
  - Number of Returning Visitors
  - ...
  
-
+-> customer-related, customer-centric
+- Marketing
 
 
 % 2007 Burby
@@ -1348,6 +1351,9 @@ Orthogonal: "number" categorization: Count, ratio, ...
 - Counts: single number
 - Rations: Count divided by count
 - KPIs: count or ration infused by business strategy
+
+- Counts and ratios are categories for number types
+- KPIs bring the dimension of business, give semantic meaning to numbers
 
 
 % 2009 Jansen p.30
@@ -1419,7 +1425,7 @@ Metrics Categories for E-Shop:
 - Warenleistung
 - Ergebnisleitung
 
-
+- also customer life cycle
 
 
 
@@ -1461,6 +1467,32 @@ Compare with Segmentation
 
 
 %TODO maybe put this in table
+% background color for titles
+
+\begin{center}
+	\small
+	\begin{longtable}{ | p{0.3\linewidth} | p{0.7\linewidth} | }
+	
+	\multicolumn{2}{|c|}{Counts} \\
+	\hline
+	Hits & blablabla \\
+	\hline
+	Visits & blabla \\
+	\hline
+	\multicolumn{2}{|c|}{Ratios} \\
+	\hline
+	Conversion Rate & blbla \\
+	
+	\caption{Your caption here} % needs to go inside longtable environment
+	\label{tab:businessmetrics}
+	\end{longtable}
+\end{center}
+
+
+
+
+
+
 
 
 \paragraph{Hits}
@@ -1647,7 +1679,7 @@ As with general web analytics metrics, there are multiple ways to categorize per
 
 For me most intuitive is
 
-Metrics regarding Page Weight
+Metrics regarding Page Weight and size of the web site
 Timing Metrics, how long each step from the CRP took
 UX Metrics, try to reflect how users experience performance, visual metrics
 Custom Metrics
@@ -1705,7 +1737,7 @@ Custom Metrics
 \paragraph{Web Standards}
 
 % https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards
-- One last significant data point to share is that in 1994, TimBL founded the World Wide Web Consortium (W3C), an organization that brings together representatives from many different technology companies to work together on the creation of web technology specifications
+- in 1994, TimBL founded the World Wide Web Consortium (W3C), an organization that brings together representatives from many different technology companies to work together on the creation of web technology specifications
 
 Web Standards:
 - technologies we use to build web sites
@@ -1743,14 +1775,19 @@ Publication as a W3C Recommendation.
 
 \paragraph{Web Performance Working Group}
 
+
+% [Introduction]
+
 Multiple groups exists which are responsible for a specific topic.
 Performance working group is responsible for performance.
-
 
 % 2013 Meenan
 - In 2010, the browser vendors got together under the W3C banner and formed the Web Performance Working Group to standardize the interfaces and work toward improving the state of Web-performance measurement and APIs in the browsers
 - Clock issue -> High Resolution Time specification
 
+% Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
+- WebPerf Working Group (founded 2010)
+- "Provide methods to measure aspects of application performance of user agent features and APIs"
 
 % https://www.w3.org/2021/02/webperf.html
 - Working Groups push new recommendations and invent them
@@ -1760,6 +1797,8 @@ Web Performance Working Group is responsible:
 - Adaptation
 -> Important is Measurement
 
+
+% [Specs]
 
 Normative Specifications:
 - High Resolution Time
@@ -1781,7 +1820,45 @@ others, not important for metrics:
 
 
 
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
+
+
+
+% https://w3c.github.io/perf-timing-primer/
+- APIs used to create waterfall charts
+
+Resource Timing:
+- set of attributes for each loaded resource
+- resources usually refer to HTML documents, XHR objects, links (such as a stylesheet) or SVG elements
+- access a set of critical network timing attributes for each resource on the page
+- performance.getEntriesByType("resource"): array of Resource Timing Objects for each requested resource
+- The PerformanceResourceTiming interface extends the PerformanceEntry interface in the Performance Timeline
+- Each of these timestamps is in microseconds, which are provided by the window.performance.now() method in the High Resolution Time specification.
+
+
+
+Performance Timeline:
+- unified interface to obtain various performance metrics
+- The Performance Timeline API uses PerformanceEntry.entryType to describe the type of the interface represented by this PerformanceEntry object, which represents performance measurements
+
+
+High-Resolution Time:
+
+
+
+Navigation Timing:
+
+
+
+User Timing:
+
+
+
+
+
+
+
+
+
 
 
 %TODO where are they from ?
@@ -1812,52 +1889,147 @@ Performance API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_A
 
 
 
-
-
-% https://siusin.github.io/perf-timing-primer/
-
-
-
-
-% https://w3c.github.io/perf-timing-primer/
-
-
-
-- If possible make one deep dive into one specification: What exactly gets measured? Maybe check out html standard, v8 or chromium implementation, etc.
-
-
-
-
-
-
-
-
-%TODO find the notes for this Measuring Real User Performance in the Browser youtube
+Now i will take a closer look at Navigation, Resource and User Timing and which metrics are derived from there.
 
 
 
 % -----------------------------------
 
 
+\paragraph{High Resolution Time}
 
 
-Now i will take a closer look at Navigation, Resource and User Timing and which metrics are derived from there.
+Level 1 and 2.
 
-% 2013 Girgorik: "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application"
+First of all we need a precise concise representation of time.
+
+% 2013 Meenan
+- Clock issue -> High Resolution Time specification
 
 
+% Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
+- High Resolution Time API:
+	- DOMHighResTimeStamp
+	- Non-Decreasing
+	- Earlier: Date object
+	- Start time: navigation start
+	- Get time with: performance.now()
+	
+	
+	
+% https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp
+
+
+
+
+
+% -----------------------------------
+
+%TODO move this down ?
+Is this performance timeline ?
+
+\paragraph{Performance Object}
+
+
+% Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
+=> Window.performance returns Performance object
+=> Performance object exposes:
+	- High Resolution Time API
+	- Navigation Timing API
+	- Resource Timing API
+	- Performance Timeline API
+	- User Timing API
+
+
+
+
+% -----------------------------------
 
 
 \paragraph{Navigation Timing}
 
+- If possible make one deep dive into one specification: What exactly gets measured? Maybe check out html standard, v8 or chromium implementation, etc.
+- Version 1 and 2
 
-Version 1 and 2
+
+
+% [Level 1]
+
+
+% https://www.w3.org/TR/navigation-timing/
+- This specification defines an interface for web applications to access timing information related to navigation and elements.
+- complete client-side latency measurements
+- PerformanceTiming Interface: ....
+- PerformanceNavigation interface
+- Both are collected in Performance Interface
+- Performance Interface is accessible through window.performance
+
+- time is measured in milliseconds since midnight of January 1, 1970 (UTC).
+- Navigation Timing 2 specification allows access to timing information related to navigation using sub-milliseconds resolution instead
+
+
+% https://www.w3.org/TR/navigation-timing-2/
+- kept for backwards compatibility
+- PerformanceTiming Interface
+
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
+- Navigation timings are metrics measuring a browser's document navigation events
+- measures the main document's timings
+- read only
+- deprecated in favour of the Performance Entry API -> level 2
+- supported in all browsers
+
+- PerformanceTiming API (this is the same as PerformanceTiming Interface) %https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming
+- Navigation process
+
+- Metrics which are calculated from this:
+- time to first byte
+- page load time
+- dns lookup
+- whether the connection is secure.
+
+
+
+% [Level 2]
+
+% https://www.w3.org/TR/navigation-timing-2/
+- Replaces first version of Navigation Timing
+- See summary of improvements
+- Builds on top of Resource Timing 2
+- specification defines the PerformanceNavigationTiming interface
+- Uses high resolution time 2
+- Processing Model (image with all attributes defined by PerformanceNavigationTiming interface)
+
+
+
+% https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
+PerformanceNavigationTiming Interface: 
+- extends PerformanceEntry Interface
+- extends PerformanceResourceTiming Interface
+
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
+- measuring the performance of the main page, generally the HTML file via which all the other assets are requested
+
+PerformanceEntry API:
+- provides for marking and measuring times along the navigation and resource loading process
+- You can also create marks
+- performance.getEntriesByType('navigation') -> get navigation timings
+- performance.getEntriesByType('resource') -> get resource timings
+
+
+
+% https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
+- The PerformanceEntry object encapsulates a single performance metric that is part of the performance timeline
+
+
 
 
 % https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API
 
 
-% https://www.w3.org/TR/navigation-timing-2/
+
 
 
 
@@ -1872,9 +2044,6 @@ Version 1 and 2
 Navigation Events: Exposed by Navigation Timing API: navigationStart, domContentLoaded, etc.
 
 
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
-
-
 
 % 2013 Meenan
 - In late 2010 the group released the Navigation Timing specification
@@ -1883,8 +2052,130 @@ Navigation Events: Exposed by Navigation Timing API: navigationStart, domContent
 - The measurement points are exposed to the DOM (Document Object Model) through the performance object and make it trivial to calculate load times (or arbitrary intervals, really) from JavaScript.
 
 
+
+% Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
+- Navigation Timing API:
+	- Page loading cycle
+	- Exposes different time points
+	- Actual loading of the page
+	- De facto standard
+
+	- window.performance.timing
+	
+	- window.performance.navigation -> redirectCount
+	- window.performance.navigation.type:
+		- 0: navigate
+		- 1: reload
+		- 2: back / forward
+
+	- Navigation start
+	- Redirect
+	- Cache
+	- DNS
+	- TCP
+	- Request
+	- Response
+	- Processing
+	- Load Event Start
+	- Load Event End
+
+	- e.g. call in onLoad handler (timestamps are set)
+
+	- Part of performance timeline
+
+	- Before Navigation Timing?:
+		- beforeUnload, unload, cookies, ...
+
+
+
+
+
+
+
+
+% [Metrics]
+
+% TTFB
+
+% https://developer.mozilla.org/en-US/docs/Glossary/time_to_first_byte
+TTFB = responseStart - navigationStart
+
+
+
+% PLT
+
+% https://developer.mozilla.org/en-US/docs/Glossary/Page_load_time
+pageloadtime = time.loadEventStart - time.navigationStart;
+
 % 2013 Wang:
 - PLT as central metric
+
+
+
+% DNS Lookup time
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#dns_lookup_time
+dns  = time.domainLookupEnd - time.domainLookupStart;
+
+
+
+% TCP
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#tcp
+tcp  = time.connectEnd - time.connectStart;
+
+
+
+% SSL
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#ssl_negotiation
+ssl = time.requestStart - time.secureConnectionStart;
+
+
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#compression
+- compression savings percentage
+
+
+
+
+% Request Time
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#request_time
+request = timing.responseStart - timing.requestStart
+
+
+
+
+% Load Event Duration
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#load_event_duration
+load = timing.loadEventEnd - timing.loadEventStart 
+
+
+
+
+% DOM Content Loaded Event
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#domcontentloaded_event
+DOMContentLoaded = timing.domContentLoadedEventEnd - timing.domContentLoadedEventStart
+
+
+
+% Duration
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#duration
+duration = PerformanceNavigationTiming.loadEventEnd - PerformanceEntry.startTime
+
+
+
+
+
+
+
+
+
+
 
 
 % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
@@ -1894,16 +2185,30 @@ Navigation Events: Exposed by Navigation Timing API: navigationStart, domContent
 
 
 
-
 % -------------------
 
 
 \paragraph{Resource Timing}
 
+
+% https://www.w3.org/TR/resource-timing-2/
+
+
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
+- resource timing measures timing for individual resources, the assets called in by the main page, and any assets that those resources request
+- Many of the measurements are similar to navigation timing
+
+
+% https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming
+- retrieval and analysis of detailed network timing data regarding the loading of an application's resources
+- determine, for example, the length of time it takes to fetch a specific resource like request, svg, image, script
+
 
 
 % https://developer.mozilla.org/en-US/docs/Web/API/Resource_Timing_API
+
+
+% https://developer.mozilla.org/en-US/docs/Web/API/Resource_Timing_API/Using_the_Resource_Timing_API
 
 
 
@@ -1916,6 +2221,39 @@ Navigation Events: Exposed by Navigation Timing API: navigationStart, domContent
 % 2013 Meenan
 - exposes timing information about every network request the browser had to make to load a page and what triggered each request (whether stylesheet, script, or image)
 
+
+% Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
+- Resource Timing API:
+	- Similar to Navigation Timing API
+	- Measuring all resources on the page
+	- Inspiration: DevTools Waterfall diagram
+
+	- List of all resources fetched
+
+	- Set of timestamps for every single resource fetched
+	- getEntriesByType("resource")
+
+	- Buffer: only stores first 150 entries
+
+	- Data:
+		- Convert to JSON
+		- Compressing
+		- HTTP Archive: on average 103 HTTP resources per page -> 45 KB data per page load
+
+	- Timing-Allow-Origin:
+		- HTTP Header
+		- Cross domain: Any domain that is not the domain where the page is loaded from
+		-> Considered as "cross-origin-domain" by browser
+		- By default: Resource Timing hides all details for cross origin domains
+		- For privacy reasons
+		-> Set in HTTP Response header timing-allow-origin
+
+	- Blocking Time:
+		- How long the browser is waiting for an open connection
+		- Limited number of open connections
+
+	- Cache Hits:
+		- Check if resource loaded from cache or other server
 
 
 
@@ -1935,15 +2273,59 @@ Navigation Events: Exposed by Navigation Timing API: navigationStart, domContent
 - provides a simple way of marking points in time using performance. mark(“label”) and a standard way of querying all of the custom measurements later
 
 
+% Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
+- User Timing API:
+	- Not a browser API
+	- Measure events and durations
+	- Keep track of marks (timestamps)
+	- Mark: timestamp
+	- Measure: delta between two timestamps
+	- performance.mark
+	- Performance.measure
+	-> Puts data in Performance Timeline / DevTools
+
+	-> Create your own timestamps and measures.
+	-> Also visible in WebPageTest
+
 
 
 % -------------------
 
 
-% [Conclusion]
+\paragraph{Performance Timeline}
+
+Version 1 and 2
+
+
+% [Level 2]
+
+PerformanceObserver
+
+
+% Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
+- Performance Timeline API:
+	- window.performance.getEntries()
+	- getEntriesByType(), getEntriesByName()
+	- Capturing different performance metrics
+	- Browser APIs can add data to this timeline
+
+	- performance.getEntries(): List of events that happened on that page
+
+
+
+
+% ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+\paragraph{Conclusion}
+
 
 Provide here a table with all important recommendations and the metrics they expose.
 
+
+% 2013 Girgorik: "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application"
 
 
 
