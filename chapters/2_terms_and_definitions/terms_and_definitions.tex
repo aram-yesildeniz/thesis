@@ -1642,6 +1642,10 @@ This will be discussed.
 
 
 
+%TODO should i show how to actual measure those metrics, like visits, hits, conversion rate etc ?
+
+
+
 
 % Kessler 2012 -> dont have this digital...
 % Erfolg messen und bewerten
@@ -1760,7 +1764,8 @@ W3C publishes documents that define Web technologies. These documents follow a p
 e.g.DOM,  HTML, SVG, ...
 
 
-Recommendations:
+
+% [Recommendation Process]
 
 % https://www.w3.org/2020/Process-20200915/#rec-track
 - Recommendation track:
@@ -1771,6 +1776,15 @@ Publication of a Proposed Recommendation.
 Publication as a W3C Recommendation.
 
 - From Idea to concrete API which browser maintainers implement
+
+% maturity levels https://www.w3.org/2015/Process-20150901/#maturity-levels
+- Working Draft (WD)
+- Candidate Recommendation (CR)
+- Proposed Recommendation
+- W3C Recommendation (REC)
+
+
+
 
 
 \paragraph{Web Performance Working Group}
@@ -1798,6 +1812,10 @@ Web Performance Working Group is responsible:
 -> Important is Measurement
 
 
+% https://w3c.github.io/perf-timing-primer/
+- APIs used to create waterfall charts
+
+
 % [Specs]
 
 Normative Specifications:
@@ -1809,7 +1827,14 @@ Normative Specifications:
 - Page Visibility
 - Long Task
 - Paint Timing
-- Server Timing
+
+
+Server Timing:
+% https://www.w3.org/TR/server-timing/
+
+% https://w3c.github.io/perf-timing-primer/#dfn-time-origin
+- attempt to address the concern about lacking insight into how or why certain stages of the request-response cycle have taken as much time as they have
+
 
 others, not important for metrics:
 - Beacon
@@ -1819,77 +1844,25 @@ others, not important for metrics:
 - Network Error Logging
 
 
+% and some unofficial drafts
+% Network Information API (not official w3c) https://wicg.github.io/netinfo/
+% Element Timing API (not official w3c) https://wicg.github.io/element-timing/
+% Event Timing API (not official w3c) https://wicg.github.io/event-timing/
 
 
+% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+- Navigation and Resource Timing (as well as other related APIs) store performance entries in a performance entry buffer
+- they store performance metrics for pages and resources into a list accessible by JavaScript
+- methods exist in the window.performance namespace
+-  getEntriesByType method
+- Any time you've seen a waterfall chart, you're looking at a visual representation of the data these APIs provide
 
-
-% https://w3c.github.io/perf-timing-primer/
-- APIs used to create waterfall charts
-
-Resource Timing:
-- set of attributes for each loaded resource
-- resources usually refer to HTML documents, XHR objects, links (such as a stylesheet) or SVG elements
-- access a set of critical network timing attributes for each resource on the page
-- performance.getEntriesByType("resource"): array of Resource Timing Objects for each requested resource
-- The PerformanceResourceTiming interface extends the PerformanceEntry interface in the Performance Timeline
-- Each of these timestamps is in microseconds, which are provided by the window.performance.now() method in the High Resolution Time specification.
-
-
-
-Performance Timeline:
-- unified interface to obtain various performance metrics
-- The Performance Timeline API uses PerformanceEntry.entryType to describe the type of the interface represented by this PerformanceEntry object, which represents performance measurements
-
-
-High-Resolution Time:
-
-
-
-Navigation Timing:
-
-
-
-User Timing:
-
-
-
-
-
-
-
-
-
-
-
-%TODO where are they from ?
-
-Network Information API?
-Element Timing API ?
-Event Timing API ?
-
-Performance Timeline API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_Timeline
-Performance Entry API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
-PerformanceNavigationTiming % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
-Performance Observer API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
-
-
-
-
-%TODO what is this performance api ?
-
-% Measuring Performance https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-Performance APIs:
-- Many Web APIs available % https://developer.mozilla.org/en-US/docs/Web/API
-- Performance API is one API within Web APIs collection: Includes other APIs
-- Navigation Timing API: Famous image: Exposes metrics related to navigation events
-
-
-Performance API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_API
--> Includes Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.  ??
 
 
 
 Now i will take a closer look at Navigation, Resource and User Timing and which metrics are derived from there.
+
+
 
 
 
@@ -1899,25 +1872,84 @@ Now i will take a closer look at Navigation, Resource and User Timing and which 
 \paragraph{High Resolution Time}
 
 
-Level 1 and 2.
+% [Date/Clock Issue]
 
-First of all we need a precise concise representation of time.
+
+% https://www.w3.org/TR/hr-time-3/
+- Old: Date from ECAMScript: Date object as a time value representing time in milliseconds since 01 January, 1970 UTC
+-  DOMTimeStamp is defined similarly
+- definitions of time are subject to both clock skew and adjustment of the system clock
+- The value of time may not always be monotonically increasing and subsequent values may either decrease or remain the same.
+- resolve issues by providing monotonically increasing time values with sub-millisecond resolution
 
 % 2013 Meenan
 - Clock issue -> High Resolution Time specification
 
+% Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
+- Non-Decreasing
+- Earlier: Date object
+
+% https://w3c.github.io/perf-timing-primer/
+- sub-millisecond resolution
+- provide a monotonic, uniformly increasing timestamp suitable for interval measurements
+
+
+% https://developers.google.com/web/updates/2012/08/When-milliseconds-are-not-enough-performance-now
+- performance.now() is a measurement of floating point milliseconds since that particular page started to load
+-> the performance.timing.navigationStart timeStamp to be specific
+- number stays relative to the page because you'll be comparing two or more measurements against eachother
+
+
+% [Time Origin]
+
+% https://www.w3.org/TR/hr-time-3/
+
+
+
+
+% [DOMHighResTimeStamp]
+
+% https://www.w3.org/TR/hr-time-3/
+-  used to store a time value in milliseconds, measured relative from the time origin, shared monotonic clock, or a time value that represents a duration between two DOMHighResTimeStamps
+
 
 % Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
-- High Resolution Time API:
-	- DOMHighResTimeStamp
-	- Non-Decreasing
-	- Earlier: Date object
-	- Start time: navigation start
-	- Get time with: performance.now()
-	
+- Start time: navigation start
+- Get time with: performance.now()
 	
 	
 % https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp
+- value of a DOMHighResTimeStamp is a double-precision floating-point number which describes the number of milliseconds (accurate to within 5 microseconds if the device supports it) elapsed between two points in time
+
+
+
+% [Performance Interface]
+
+% https://www.w3.org/TR/hr-time-3/
+- now()
+- timeOrigin
+
+% Measuring Performance https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
+Performance API includes:
+- Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.
+
+
+% https://developer.mozilla.org/en-US/docs/Web/API/Performance
+- provides access to performance-related information for the current page
+- part of the High Resolution Time API, but is enhanced by the Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API
+- can be obtained by calling the window.performance
+
+
+% https://developer.mozilla.org/en-US/docs/Web/API/Performance_API
+Performance API 
+-> Includes Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.
+
+
+% https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Using_the_Performance_API
+- Performance: base interface for these standards
+- methods and properties are extended by different standards
+
+
 
 
 
@@ -1939,6 +1971,9 @@ Is this performance timeline ?
 	- Resource Timing API
 	- Performance Timeline API
 	- User Timing API
+	
+	
+
 
 
 
@@ -1950,6 +1985,12 @@ Is this performance timeline ?
 
 - If possible make one deep dive into one specification: What exactly gets measured? Maybe check out html standard, v8 or chromium implementation, etc.
 - Version 1 and 2
+
+
+% https://w3c.github.io/perf-timing-primer/
+Navigation Timing:
+- access the complete timing information for navigation of a document
+- Navigation is about how user agents convert the requested HTML, CSS, and JavaScript into rendered pixels, which is one of the most critical steps for users to navigate a document
 
 
 
@@ -2019,17 +2060,17 @@ PerformanceEntry API:
 - performance.getEntriesByType('resource') -> get resource timings
 
 
-
 % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
 - The PerformanceEntry object encapsulates a single performance metric that is part of the performance timeline
+
+
+PerformanceNavigationTiming % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
+
 
 
 
 
 % https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API
-
-
-
 
 
 
@@ -2085,6 +2126,46 @@ Navigation Events: Exposed by Navigation Timing API: navigationStart, domContent
 
 	- Before Navigation Timing?:
 		- beforeUnload, unload, cookies, ...
+		
+		
+		
+		
+		
+% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+DNS lookup:
+- domainLookupStart marks when a DNS lookup starts.
+- domainLookupEnd marks when a DNS lookup ends.
+
+Connection negotiation:
+- connectStart marks when the client opens a connection to the server.
+- secureConnectionStart marks when the client begins TLS negotiation.
+- connectEnd marks when connection negotiation ends (including TLS time).
+
+Requests and responses:
+- fetchStart marks when the browser starts to fetch a resource. This is distinct from a request in that it doesn't mark when the browser makes a network request for a resource, but rather when it begins checking caches (e.g., HTTP and service worker caches) to see if a network request is even necessary.
+- workerStart marks when a request is being fetched from a service worker within a fetch event handler (if applicable). This will be always be 0 if a service worker isn't installed for the current page.
+- requestStart is when the browser issues the network request.
+- responseStart is when the first byte of the response arrives.
+- responseEnd is when the last byte of the response arrives.
+
+
+Document unloading:
+- unloadEventStart and unloadEventEnd 
+
+Redirects:
+- redirectStart and redirectEnd 
+
+Document processing:
+- domInteractive, domContentLoadedEventStart, domContentLoadedEventEnd, and domComplete
+
+Loading:
+- loadEventStart and loadEventEnd
+
+Document and resource size:
+- transferSize is the total size of the resource including HTTP headers.
+- encodedBodySize is the compressed size of the resource excluding HTTP headers.
+- decodedBodySize is the decompressed size of the resource (again, excluding HTTP headers).
+
 
 
 
@@ -2118,6 +2199,16 @@ pageloadtime = time.loadEventStart - time.navigationStart;
 dns  = time.domainLookupEnd - time.domainLookupStart;
 
 
+% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+domainLookupStart marks when a DNS lookup starts.
+domainLookupEnd marks when a DNS lookup ends.
+var pageNav = performance.getEntriesByType("navigation")[0];
+var dnsTime = pageNav.domainLookupEnd - pageNav.domainLookupStart;
+
+- both domainLookupStart and domainLookupEnd (and others) can be 0 for a resource served by a third party if that host doesn't set a proper Timing-Allow-Origin response heade
+
+
+
 
 % TCP
 
@@ -2126,16 +2217,22 @@ tcp  = time.connectEnd - time.connectStart;
 
 
 
-% SSL
+% TLS / SSL
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#ssl_negotiation
 ssl = time.requestStart - time.secureConnectionStart;
 
-
-
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#compression
 - compression savings percentage
 
+% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+- connection phase consists of three metrics
+- connectStart marks when the client opens a connection to the server.
+- secureConnectionStart marks when the client begins TLS negotiation.
+- connectEnd marks when connection negotiation ends (including TLS time).
+
+- var connectionTime = pageNav.connectEnd - pageNav.connectStart;
+- tlsTime = pageNav.connectEnd - pageNav.secureConnectionStart;
 
 
 
@@ -2172,12 +2269,6 @@ duration = PerformanceNavigationTiming.loadEventEnd - PerformanceEntry.startTime
 
 
 
-
-
-
-
-
-
 % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
 
 
@@ -2192,6 +2283,19 @@ duration = PerformanceNavigationTiming.loadEventEnd - PerformanceEntry.startTime
 
 
 % https://www.w3.org/TR/resource-timing-2/
+
+
+
+
+% https://w3c.github.io/perf-timing-primer/
+Resource Timing:
+- set of attributes for each loaded resource
+- resources usually refer to HTML documents, XHR objects, links (such as a stylesheet) or SVG elements
+- access a set of critical network timing attributes for each resource on the page
+- performance.getEntriesByType("resource"): array of Resource Timing Objects for each requested resource
+- The PerformanceResourceTiming interface extends the PerformanceEntry interface in the Performance Timeline
+- Each of these timestamps is in microseconds, which are provided by the window.performance.now() method in the High Resolution Time specification.
+
 
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
@@ -2262,6 +2366,14 @@ duration = PerformanceNavigationTiming.loadEventEnd - PerformanceEntry.startTime
 
 \paragraph{User Timing}
 
+% https://w3c.github.io/perf-timing-primer/
+User Timing:
+-  obtain the high precision performance characteristics of an individual task which is important to you
+- unique marks
+- PerformanceMeasure interface: calculate the elapsed time between two marks
+
+
+
 % 2013 Girgorik
 - Similarly, User Timing provides a simple JavaScript API to mark and measure application-specific performance metrics with the help of the same high-resolution timers
 
@@ -2294,12 +2406,73 @@ duration = PerformanceNavigationTiming.loadEventEnd - PerformanceEntry.startTime
 
 \paragraph{Performance Timeline}
 
+
+% https://w3c.github.io/perf-timing-primer/
+Performance Timeline:
+-  Performance Timeline APIs was introduced in 2011
+- unified interface to obtain various performance metrics
+- The Performance Timeline API uses PerformanceEntry.entryType to describe the type of the interface represented by this PerformanceEntry object, which represents performance measurements
+
+- PerformanceEntry object represents performance measurements
+- PerformanceEntry object:
+	- name
+	- entryType
+	- startTime
+	- duration
+	
+	
+	
+Performance Timeline API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_Timeline
+Performance Entry API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
+
+
+
+% [Performance Entry]
+
+% https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
+- PerformanceEntry object encapsulates a single performance metric that is part of the performance timeline
+- A performance entry can be directly created by making a performance mark or measure
+
+Always of type:
+- PerformanceMark
+- PerformanceMeasure
+- PerformanceFrameTiming
+- PerformanceNavigationTiming
+- PerformanceResourceTiming
+- PerformancePaintTiming
+
+Properties:
+- name
+- entryType
+- startTime
+- duration
+
+	
+	
+
 Version 1 and 2
+
+- store and retrieve performance metric data
+- does not cover individual performance metric interfaces
+
+
+- defines PerformanceEntry.entryType to describes the type of the interface represented by this PerformanceEntry object
+- PerformanceEntry object represents performance measurements
+
+
+Types values:
+- mark (User Timing)
+- measure (User Timing)
+- navigation (Navigation Timing)
+- resource (Resource Timing)
+- longtask
 
 
 % [Level 2]
 
 PerformanceObserver
+
+Performance Observer API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
 
 
 % Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
