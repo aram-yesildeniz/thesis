@@ -1673,6 +1673,8 @@ This will be discussed.
 
 \subsection{Performance Metrics}
 
+%TODO come up with some good introduction once outline of section is clear
+
 
 % [Categories]
 
@@ -1697,6 +1699,7 @@ Custom Metrics
 
 \subsubsection{Page Weight}
 
+- naive approach to measure web site, make it quantifiable
 - the size of the web site
 - Page weight has an impact on performance
 - Page consists of resources
@@ -1704,7 +1707,7 @@ Custom Metrics
 
 
 % HTTP Archive
-- Generally for all resources: Bytes and Requests
+- Generally for all resources / assets: Bytes and Requests
 - Total Size: Number of bytes sent over the network, which may be compressed
 
 - Total Kilobytes
@@ -1730,6 +1733,10 @@ Custom Metrics
 
 - Other Bytes
 - Other Requests
+
+
+In approach section, i used this data to come up with a median web site.
+In this section are also some numbers available.
 
 
 % -----------------------------------------------------------------------
@@ -1812,8 +1819,15 @@ Web Performance Working Group is responsible:
 -> Important is Measurement
 
 
+%TODO where to put this info on waterfall?
 % https://w3c.github.io/perf-timing-primer/
 - APIs used to create waterfall charts
+- Waterfall we can see in more detail in WPT section ?
+
+% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+- Any time you've seen a waterfall chart, you're looking at a visual representation of the data these APIs provide
+
+
 
 
 % [Specs]
@@ -1850,18 +1864,10 @@ others, not important for metrics:
 % Event Timing API (not official w3c) https://wicg.github.io/event-timing/
 
 
-% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-- Navigation and Resource Timing (as well as other related APIs) store performance entries in a performance entry buffer
-- they store performance metrics for pages and resources into a list accessible by JavaScript
-- methods exist in the window.performance namespace
--  getEntriesByType method
-- Any time you've seen a waterfall chart, you're looking at a visual representation of the data these APIs provide
-
-
 
 
 Now i will take a closer look at Navigation, Resource and User Timing and which metrics are derived from there.
-
+But start with time.
 
 
 
@@ -1870,6 +1876,14 @@ Now i will take a closer look at Navigation, Resource and User Timing and which 
 
 
 \paragraph{High Resolution Time}
+
+%TODO what do i really need from this section`?
+% there are no metrics directly coming from this
+
+"Level 2" is older but already recommendation from date % https://www.w3.org/TR/hr-time-2/
+Newest spec from date is working draft % https://www.w3.org/TR/hr-time-3/
+
+Is the basis for other specs
 
 
 % [Date/Clock Issue]
@@ -1888,6 +1902,7 @@ Now i will take a closer look at Navigation, Resource and User Timing and which 
 % Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
 - Non-Decreasing
 - Earlier: Date object
+-> Its relative to start of navigation instead of 1. January 1970 UTC as JS Date Object
 
 % https://w3c.github.io/perf-timing-primer/
 - sub-millisecond resolution
@@ -1900,27 +1915,17 @@ Now i will take a closer look at Navigation, Resource and User Timing and which 
 - number stays relative to the page because you'll be comparing two or more measurements against eachother
 
 
-% [Time Origin]
-
-% https://www.w3.org/TR/hr-time-3/
-
-
-
-
 % [DOMHighResTimeStamp]
 
 % https://www.w3.org/TR/hr-time-3/
+- type definition
 -  used to store a time value in milliseconds, measured relative from the time origin, shared monotonic clock, or a time value that represents a duration between two DOMHighResTimeStamps
-
-
-% Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
-- Start time: navigation start
-- Get time with: performance.now()
-	
 	
 % https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp
-- value of a DOMHighResTimeStamp is a double-precision floating-point number which describes the number of milliseconds (accurate to within 5 microseconds if the device supports it) elapsed between two points in time
-
+- type
+- double
+-  store a time value in milliseconds,  accurate to 5 microseconds
+- describe a discrete point in time or a time interval
 
 
 % [Performance Interface]
@@ -1929,148 +1934,38 @@ Now i will take a closer look at Navigation, Resource and User Timing and which 
 - now()
 - timeOrigin
 
-% Measuring Performance https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-Performance API includes:
-- Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.
 
 
-% https://developer.mozilla.org/en-US/docs/Web/API/Performance
-- provides access to performance-related information for the current page
-- part of the High Resolution Time API, but is enhanced by the Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API
-- can be obtained by calling the window.performance
-
-
-% https://developer.mozilla.org/en-US/docs/Web/API/Performance_API
-Performance API 
--> Includes Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.
-
-
-% https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Using_the_Performance_API
-- Performance: base interface for these standards
-- methods and properties are extended by different standards
-
-
-
-
+%TODO add this ?
+% [Time Origin]
+% https://www.w3.org/TR/hr-time-3/
 
 
 
 % -----------------------------------
 
-%TODO move this down ?
-Is this performance timeline ?
-
-\paragraph{Performance Object}
-
-
-% Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
-=> Window.performance returns Performance object
-=> Performance object exposes:
-	- High Resolution Time API
-	- Navigation Timing API
-	- Resource Timing API
-	- Performance Timeline API
-	- User Timing API
-	
-	
-
-
-
-
-
-% -----------------------------------
 
 
 \paragraph{Navigation Timing}
 
-- If possible make one deep dive into one specification: What exactly gets measured? Maybe check out html standard, v8 or chromium implementation, etc.
-- Version 1 and 2
 
+% [Introduction]
 
 % https://w3c.github.io/perf-timing-primer/
-Navigation Timing:
 - access the complete timing information for navigation of a document
 - Navigation is about how user agents convert the requested HTML, CSS, and JavaScript into rendered pixels, which is one of the most critical steps for users to navigate a document
 
 
-
-% [Level 1]
-
-
 % https://www.w3.org/TR/navigation-timing/
-- This specification defines an interface for web applications to access timing information related to navigation and elements.
 - complete client-side latency measurements
-- PerformanceTiming Interface: ....
-- PerformanceNavigation interface
-- Both are collected in Performance Interface
-- Performance Interface is accessible through window.performance
-
-- time is measured in milliseconds since midnight of January 1, 1970 (UTC).
-- Navigation Timing 2 specification allows access to timing information related to navigation using sub-milliseconds resolution instead
-
-
-% https://www.w3.org/TR/navigation-timing-2/
-- kept for backwards compatibility
-- PerformanceTiming Interface
 
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
 - Navigation timings are metrics measuring a browser's document navigation events
 - measures the main document's timings
 - read only
-- deprecated in favour of the Performance Entry API -> level 2
 - supported in all browsers
-
-- PerformanceTiming API (this is the same as PerformanceTiming Interface) %https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming
-- Navigation process
-
-- Metrics which are calculated from this:
-- time to first byte
-- page load time
-- dns lookup
-- whether the connection is secure.
-
-
-
-% [Level 2]
-
-% https://www.w3.org/TR/navigation-timing-2/
-- Replaces first version of Navigation Timing
-- See summary of improvements
-- Builds on top of Resource Timing 2
-- specification defines the PerformanceNavigationTiming interface
-- Uses high resolution time 2
-- Processing Model (image with all attributes defined by PerformanceNavigationTiming interface)
-
-
-
-% https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
-PerformanceNavigationTiming Interface: 
-- extends PerformanceEntry Interface
-- extends PerformanceResourceTiming Interface
-
-
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
 - measuring the performance of the main page, generally the HTML file via which all the other assets are requested
-
-PerformanceEntry API:
-- provides for marking and measuring times along the navigation and resource loading process
-- You can also create marks
-- performance.getEntriesByType('navigation') -> get navigation timings
-- performance.getEntriesByType('resource') -> get resource timings
-
-
-% https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
-- The PerformanceEntry object encapsulates a single performance metric that is part of the performance timeline
-
-
-PerformanceNavigationTiming % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
-
-
-
-
-
-% https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API
 
 
 
@@ -2082,65 +1977,261 @@ PerformanceNavigationTiming % https://developer.mozilla.org/en-US/docs/Web/API/P
 - Navigation Timing provides performance timers for root documents only
 
 
-Navigation Events: Exposed by Navigation Timing API: navigationStart, domContentLoaded, etc.
-
-
-
 % 2013 Meenan
-- In late 2010 the group released the Navigation Timing specification
 - The largest benefit of navigation timing is that it exposes a lot of timings that lead up to the HTML loading --> This is this famous image
 - In addition to providing a good start time, it exposes information about any redirects, DNS lookup times, time to connect to the server, and how long it takes the Web server to respond to the request, for every user and for every page the user visits
 - The measurement points are exposed to the DOM (Document Object Model) through the performance object and make it trivial to calculate load times (or arbitrary intervals, really) from JavaScript.
 
 
 
-% Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
-- Navigation Timing API:
-	- Page loading cycle
-	- Exposes different time points
-	- Actual loading of the page
-	- De facto standard
+% [Level 1 vs Level 2]
 
-	- window.performance.timing
-	
-	- window.performance.navigation -> redirectCount
-	- window.performance.navigation.type:
-		- 0: navigate
-		- 1: reload
-		- 2: back / forward
+% https://www.w3.org/TR/navigation-timing/
+- Level 1 PerformanceTiming and PerformanceNavigation Interface, Both are collected in Performance Interface, Performance Interface is accessible through window.performance
+- Level 1: time is measured in milliseconds since midnight of January 1, 1970 (UTC).
+- Level 2: Navigation Timing 2 specification allows access to timing information related to navigation using sub-milliseconds resolution instead
 
-	- Navigation start
-	- Redirect
-	- Cache
-	- DNS
-	- TCP
-	- Request
-	- Response
-	- Processing
-	- Load Event Start
-	- Load Event End
 
-	- e.g. call in onLoad handler (timestamps are set)
+% https://www.w3.org/TR/navigation-timing-2/
+- Level 1 kept for backwards compatibility
+- Level 2 is working draft from march 2021 and replaces first version of Navigation Timing
+- See summary of improvements for differences between level 1 and 2
+- Level 2 is Builds on top of Resource Timing 2 and uses high resolution time 2
 
-	- Part of performance timeline
 
-	- Before Navigation Timing?:
-		- beforeUnload, unload, cookies, ...
-		
-		
-		
-		
-		
+% [PerformanceNavigationTiming Interface]
+
+% https://www.w3.org/TR/navigation-timing-2/
+- level 2 specification defines the PerformanceNavigationTiming interface
+- we will see later in X which attributes are available
+
+
+% https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
+PerformanceNavigationTiming Interface: 
+- extends PerformanceEntry Interface from performance timeline. see attributes section for details
+- extends PerformanceResourceTiming Interface from resource timing
+
+
+- window.performance.getEntriesByType("navigation")
+
+
+
+% ---------------------------------------------
+
+
+
+\paragraph{Resource Timing}
+
+
+
+% [Introduction]
+
+
+% https://www.w3.org/TR/resource-timing-1/
+- Level 1 is candidate recommendation from march 2017
+
+% https://www.w3.org/TR/resource-timing-2/
+- Level 2 is working draft from april 2021
+- access the complete timing information for resources in a document.
+- Navigation Timing 2 extends this specification to provide additional timing information associated with a navigation.
+- mechanisms to provide complete client-side latency measurements within applications
+
+
+% https://w3c.github.io/perf-timing-primer/
+- set of attributes for each loaded resource
+- access a set of critical network timing attributes for each resource on the page
+- resources usually refer to HTML documents, XHR objects, links (such as a stylesheet) or SVG elements
+
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
+- resource timing measures timing for individual resources, the assets called in by the main page, and any assets that those resources request
+- Many of the measurements are similar to navigation timing
+
+
+% https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming
+- retrieval and analysis of detailed network timing data regarding the loading of an application's resources
+- determine, for example, the length of time it takes to fetch a specific resource like request, svg, image, script
+
+
+% 2013 Grigork
+- Resource Timing provides similar performance data for each resource on the page, allowing us to gather the full performance profile of the page.
+- resource timing provides the times for all the assets or resources called in by that main document and the resources' requested resources.
+
+
+% 2013 Meenan
+- exposes timing information about every network request the browser had to make to load a page and what triggered each request (whether stylesheet, script, or image)
+
+
+
+
+% [PerformanceResourceTiming Interface]
+
+
+% https://www.w3.org/TR/resource-timing-2/
+- PerformanceResourceTiming interface 
+
+
+% https://w3c.github.io/perf-timing-primer/
+- performance.getEntriesByType("resource"): array of Resource Timing Objects for each requested resource
+- The PerformanceResourceTiming interface extends the PerformanceEntry interface in the Performance Timeline
+- Each of these timestamps is in microseconds, which are provided by the window.performance.now() method in the High Resolution Time specification.
+
+
+
+
+
+% ---------------------------------------------
+
+
+
+\paragraph{Attributes from Navigation and Resource Timing}
+
+
+As both specs are tightly coupled, e.g. resource timings is in the middle of navigation timing, i will cover them both here together.
+I will go through all exposed attributes and explain them.
+Then i will show one example of how a vendor is implementing this.
+
+Then i will show which metrics are directly calculated from those attributes.
+
+
+%  [All Timestamps from Navigation and Resource Timing]
+
+
+- We can see that this is the same as explained in CRP
+
+exposed as DOMHighResTimeStamp
+
+
+from PerformanceEntry Interface:
+name
+entryType
+startTime
+duration
+
+
+
+%TODO add image here
+
+
+%TODO put this stuff in table with explanations
+
+\begin{center}
+	\small
+	\begin{longtable}{ | p{0.3\linewidth} | p{0.7\linewidth} | }
+	\hline
+	origin.. (navigationStart) & ... \\
+	\hline
+	unloadEventStart & ... \\
+	\hline
+	unloadEventEnd & ... \\
+	\hline
+	domInteractive & ... \\
+	\hline
+	domContentLoadedEventStart & ... \\
+	\hline
+	domContentLoadedEventEnd & ... \\
+	\hline
+	domComplete & ... \\
+	\hline
+	loadEventStart & ... \\
+	\hline
+	loadEventEnd & ... \\
+	\hline
+	type & ... \\
+	\hline
+	redirectCount & ... \\
+	\caption{Navigation Timing Level 2 Attributes in PerformanveNavigationTiming Interface} % needs to go inside longtable environment
+	\label{tab:navigationtiming}
+	\end{longtable}
+\end{center}
+
+% Navigation Timing 2
+
+(navigationStart)
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+unloadEventStart;
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+unloadEventEnd;
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+
+domInteractive;
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+domContentLoadedEventStart;
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+domContentLoadedEventEnd;
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+
+domComplete;
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+loadEventStart;
+loadEventEnd;
+type;
+redirectCount;
+
+
+
+
+% From Resource Timing 2
+
+
+\begin{center}
+	\small
+	\begin{longtable}{ | p{0.3\linewidth} | p{0.7\linewidth} | }
+	\hline
+	initiatorType & ... \\
+	\hline
+	nextHopProtocol & ... \\
+	\hline
+	workerStart & ... \\
+	\hline
+	redirectStart & ... \\
+	\hline
+	redirectEnd & ... \\
+	\hline
+	fetchStart & ... \\
+	\hline
+	domainLookupStart & ... \\
+	\hline
+	domainLookupEnd & ... \\
+	\hline
+	connectStart & ... \\
+	\hline
+	connectEnd & ... \\
+	\hline
+	secureConnectionStart & ... \\
+	\hline
+	requestStart & ... \\
+	\hline
+	responseStart & ... \\
+	\hline
+	responseEnd & ... \\
+	\hline
+	transferSize & ... \\
+	\hline
+	encodedBodySize & ... \\
+	\hline
+	decodedBodySize & ... \\
+	\caption{Navigation Timing Level 2 Attributes in PerformanveNavigationTiming Interface} % needs to go inside longtable environment
+	\label{tab:navigationtiming}
+	\end{longtable}
+\end{center}
+
+
+
+
+% https://developer.mozilla.org/en-US/docs/Web/API/Resource_Timing_API
+- good explanations of the attributes
+
+
+
 % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-DNS lookup:
-- domainLookupStart marks when a DNS lookup starts.
-- domainLookupEnd marks when a DNS lookup ends.
-
-Connection negotiation:
-- connectStart marks when the client opens a connection to the server.
-- secureConnectionStart marks when the client begins TLS negotiation.
-- connectEnd marks when connection negotiation ends (including TLS time).
-
 Requests and responses:
 - fetchStart marks when the browser starts to fetch a resource. This is distinct from a request in that it doesn't mark when the browser makes a network request for a resource, but rather when it begins checking caches (e.g., HTTP and service worker caches) to see if a network request is even necessary.
 - workerStart marks when a request is being fetched from a service worker within a fetch event handler (if applicable). This will be always be 0 if a service worker isn't installed for the current page.
@@ -2149,32 +2240,28 @@ Requests and responses:
 - responseEnd is when the last byte of the response arrives.
 
 
-Document unloading:
-- unloadEventStart and unloadEventEnd 
 
-Redirects:
-- redirectStart and redirectEnd 
 
-Document processing:
-- domInteractive, domContentLoadedEventStart, domContentLoadedEventEnd, and domComplete
 
-Loading:
-- loadEventStart and loadEventEnd
+% [Implementation Example Chrome]
 
-Document and resource size:
-- transferSize is the total size of the resource including HTTP headers.
-- encodedBodySize is the compressed size of the resource excluding HTTP headers.
-- decodedBodySize is the decompressed size of the resource (again, excluding HTTP headers).
+
+lets see how chromium is capturing domContentLoaded
 
 
 
 
 
+% [Metrics calculated by Specs we covered so far]
 
 
+%TODO check if navigation 1 or 2 is used, because navigationStart is not in level 2
+% -> there is a substitution for navigationStart in level 2
+% Also maybe different calculations exist for the same metrc! check this again
+% Basically i need to check how the different vendors / parties interpret the metric, e.g. how WPT calculates TTFB and GA
+% There are no official definitions of the metrics!
 
 
-% [Metrics]
 
 % TTFB
 
@@ -2182,11 +2269,20 @@ Document and resource size:
 TTFB = responseStart - navigationStart
 
 
+% Latency
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+responseStart – fetchStart
+
+
+
 
 % PLT
 
 % https://developer.mozilla.org/en-US/docs/Glossary/Page_load_time
 pageloadtime = time.loadEventStart - time.navigationStart;
+
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
 
 % 2013 Wang:
 - PLT as central metric
@@ -2198,7 +2294,6 @@ pageloadtime = time.loadEventStart - time.navigationStart;
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#dns_lookup_time
 dns  = time.domainLookupEnd - time.domainLookupStart;
 
-
 % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
 domainLookupStart marks when a DNS lookup starts.
 domainLookupEnd marks when a DNS lookup ends.
@@ -2207,17 +2302,18 @@ var dnsTime = pageNav.domainLookupEnd - pageNav.domainLookupStart;
 
 - both domainLookupStart and domainLookupEnd (and others) can be 0 for a resource served by a third party if that host doesn't set a proper Timing-Allow-Origin response heade
 
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 
 
-
-% TCP
+% TCP / TCP Handshake Time / Server Connect Time
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#tcp
 tcp  = time.connectEnd - time.connectStart;
 
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 
 
-% TLS / SSL
+% TLS / SSL / TLS Handshake Time
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#ssl_negotiation
 ssl = time.requestStart - time.secureConnectionStart;
@@ -2236,19 +2332,29 @@ ssl = time.requestStart - time.secureConnectionStart;
 
 
 
-% Request Time
+% Request Time. / Server Response Time
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#request_time
 request = timing.responseStart - timing.requestStart
 
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+
+% Transfer/Page Download Time = responseEnd - responseStart
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 
 
 
 % Load Event Duration
+% Is this onLoad ?
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#load_event_duration
 load = timing.loadEventEnd - timing.loadEventStart 
 
+
+% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+Loading:
+- loadEventStart and loadEventEnd
 
 
 
@@ -2259,109 +2365,78 @@ DOMContentLoaded = timing.domContentLoadedEventEnd - timing.domContentLoadedEven
 
 
 
+% Other DOM Events
+% What are those metrics ?
+
+
+% DOM Interactive Time
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+
+% DOM Content Load Time
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+% DOM Processing to Interactive
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+
+% DOM Interactive to Complete
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+
+% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+Document processing:
+- domInteractive, domContentLoadedEventStart, domContentLoadedEventEnd, and domComplete
+
+
+% Onload
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+
 % Duration
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#duration
 duration = PerformanceNavigationTiming.loadEventEnd - PerformanceEntry.startTime
 
-
-
-
-
+% Redirects
 
 % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-
-
-% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-
-
-
-% -------------------
-
-
-\paragraph{Resource Timing}
-
-
-% https://www.w3.org/TR/resource-timing-2/
+Redirects:
+- redirectStart and redirectEnd 
 
 
 
+% Unloading
 
-% https://w3c.github.io/perf-timing-primer/
-Resource Timing:
-- set of attributes for each loaded resource
-- resources usually refer to HTML documents, XHR objects, links (such as a stylesheet) or SVG elements
-- access a set of critical network timing attributes for each resource on the page
-- performance.getEntriesByType("resource"): array of Resource Timing Objects for each requested resource
-- The PerformanceResourceTiming interface extends the PerformanceEntry interface in the Performance Timeline
-- Each of these timestamps is in microseconds, which are provided by the window.performance.now() method in the High Resolution Time specification.
+% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+Document unloading:
+- unloadEventStart and unloadEventEnd 
 
 
+% Sizes
 
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
-- resource timing measures timing for individual resources, the assets called in by the main page, and any assets that those resources request
-- Many of the measurements are similar to navigation timing
-
-
-% https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming
-- retrieval and analysis of detailed network timing data regarding the loading of an application's resources
-- determine, for example, the length of time it takes to fetch a specific resource like request, svg, image, script
+% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+Document and resource size:
+- transferSize is the total size of the resource including HTTP headers.
+- encodedBodySize is the compressed size of the resource excluding HTTP headers.
+- decodedBodySize is the decompressed size of the resource (again, excluding HTTP headers).
 
 
 
-% https://developer.mozilla.org/en-US/docs/Web/API/Resource_Timing_API
-
-
-% https://developer.mozilla.org/en-US/docs/Web/API/Resource_Timing_API/Using_the_Resource_Timing_API
 
 
 
-% 2013 Grigork
-- Resource Timing provides similar performance data for each resource on the page, allowing us to gather the full performance profile of the page.
-- resource timing provides the times for all the assets or resources called in by that main document and the resources' requested resources.
 
 
 
-% 2013 Meenan
-- exposes timing information about every network request the browser had to make to load a page and what triggered each request (whether stylesheet, script, or image)
 
 
-% Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
-- Resource Timing API:
-	- Similar to Navigation Timing API
-	- Measuring all resources on the page
-	- Inspiration: DevTools Waterfall diagram
-
-	- List of all resources fetched
-
-	- Set of timestamps for every single resource fetched
-	- getEntriesByType("resource")
-
-	- Buffer: only stores first 150 entries
-
-	- Data:
-		- Convert to JSON
-		- Compressing
-		- HTTP Archive: on average 103 HTTP resources per page -> 45 KB data per page load
-
-	- Timing-Allow-Origin:
-		- HTTP Header
-		- Cross domain: Any domain that is not the domain where the page is loaded from
-		-> Considered as "cross-origin-domain" by browser
-		- By default: Resource Timing hides all details for cross origin domains
-		- For privacy reasons
-		-> Set in HTTP Response header timing-allow-origin
-
-	- Blocking Time:
-		- How long the browser is waiting for an open connection
-		- Limited number of open connections
-
-	- Cache Hits:
-		- Check if resource loaded from cache or other server
+% ------------------------------------------------
 
 
 
-% -------------------
+Some other specs here.
+Check if they are also used for calculating metrics.
 
 
 \paragraph{User Timing}
@@ -2405,6 +2480,11 @@ User Timing:
 
 
 \paragraph{Performance Timeline}
+
+
+Access all different data from other APIs.
+
+
 
 
 % https://w3c.github.io/perf-timing-primer/
@@ -2483,6 +2563,56 @@ Performance Observer API % https://developer.mozilla.org/en-US/docs/Web/API/Perf
 	- Browser APIs can add data to this timeline
 
 	- performance.getEntries(): List of events that happened on that page
+	
+	
+
+% Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
+=> Window.performance returns Performance object
+=> Performance object exposes:
+	- High Resolution Time API
+	- Navigation Timing API
+	- Resource Timing API
+	- Performance Timeline API
+	- User Timing API
+	
+
+% Measuring Performance https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
+Performance API includes:
+- Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.
+
+
+% https://developer.mozilla.org/en-US/docs/Web/API/Performance
+- provides access to performance-related information for the current page
+- part of the High Resolution Time API, but is enhanced by the Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API
+- can be obtained by calling the window.performance
+
+
+% https://developer.mozilla.org/en-US/docs/Web/API/Performance_API
+Performance API 
+-> Includes Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.
+
+
+% https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Using_the_Performance_API
+- Performance: base interface for these standards
+- methods and properties are extended by different standards
+
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
+PerformanceEntry API:
+- provides for marking and measuring times along the navigation and resource loading process
+- You can also create marks
+- performance.getEntriesByType('navigation') -> get navigation timings
+- performance.getEntriesByType('resource') -> get resource timings
+
+
+% https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
+- The PerformanceEntry object encapsulates a single performance metric that is part of the performance timeline
+
+
+
+
+
+
 
 
 
