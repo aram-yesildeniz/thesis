@@ -2525,11 +2525,6 @@ I will show how those metrics are being calculated.
 
 
 
-
-
-
-
-
 %Unloading
 % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
 %Document unloading:
@@ -2552,25 +2547,26 @@ I will show how those metrics are being calculated.
 
 
 
-Some other specs here.
-Check if they are also used for calculating metrics.
+W3C also has more specifications which are interesting for performance.
+User Timing can be used for custom metrics.
+Performance Timeline defines an API which subsumes all relevant specifications.
 
 
 \paragraph{User Timing}
 
+
+% https://www.w3.org/TR/user-timing-3/
+- level 3
+- working draft from March 2021
+- give developers access to high precision timestamps
+- PerformanceMark and PerformanceMeasure interfaces
+- mark timestamps and measure time between marks
+
+
 % https://w3c.github.io/perf-timing-primer/
-User Timing:
 -  obtain the high precision performance characteristics of an individual task which is important to you
 - unique marks
 - PerformanceMeasure interface: calculate the elapsed time between two marks
-
-
-
-% 2013 Girgorik
-- Similarly, User Timing provides a simple JavaScript API to mark and measure application-specific performance metrics with the help of the same high-resolution timers
-
-
-% https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API
 
 
 % 2013 Meenan
@@ -2578,18 +2574,7 @@ User Timing:
 
 
 % Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
-- User Timing API:
-	- Not a browser API
-	- Measure events and durations
-	- Keep track of marks (timestamps)
-	- Mark: timestamp
-	- Measure: delta between two timestamps
-	- performance.mark
-	- Performance.measure
-	-> Puts data in Performance Timeline / DevTools
-
-	-> Create your own timestamps and measures.
-	-> Also visible in WebPageTest
+-> Puts data in Performance Timeline / DevTools
 
 
 
@@ -2601,6 +2586,14 @@ User Timing:
 
 Access all different data from other APIs.
 
+% https://www.w3.org/TR/performance-timeline-2/
+- level 2
+- working draft from October 2019
+- extends the High Resolution Time specification
+- providing methods to store and retrieve high resolution performance metric data.
+- Performance Timeline  defined by Navigation timing, resource timing, user timing and other interfaces
+- get Entries, by Type, by Name
+- The PerformanceObserver interface can be used to observe the Performance Timeline to be notified of new performance metrics as they are recorded.
 
 
 
@@ -2730,7 +2723,9 @@ PerformanceEntry API:
 
 
 
+Paint Timing ??
 
+% https://www.w3.org/TR/paint-timing/
 
 
 
