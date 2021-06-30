@@ -16,6 +16,10 @@
 \end{itemize}
 
 
+
+
+% [Outline]
+
 - Technical Background:
 	- Network
 	- Front End: Navigation and CRP
@@ -36,6 +40,9 @@
 
 
 % 2004 Phippen
+
+
+
 
 
 
@@ -939,7 +946,7 @@ Apart from defining the "infrastructure" configuration, the tester can also defi
 A characteristic of the controlled environment is that measured data and test results are rather consistent with low variability and can therefore provide a performance base line for the web site under observation and facilitate performance tuning.% cite 2013 Meenan
 
 
-\paragraph{Synthetic Monitoring is Not Real Users}
+\paragraph{Synthetic Monitoring is not about Real Users}
 
 Synthetic monitoring does not capture data of real users as the web sites traffic is generated artificially.
 Real user behaviour is approximated through simulation by for example predefining user paths.
@@ -1039,7 +1046,7 @@ If RUM as a page tagging technique is slowing down the web site under observatio
 The evaluation of the controlled experiment tackling this questions states that RUM...., as discussed in great detail in section X. %TODO add conclusion of evaluation here
 
 
-% [Diversity]
+% [Diversity of Users and Data]
 
 RUM is independent of the users set up or environment and collects data for all active users:
 Regardless of the device, the browser,the network condition or the geographical location of the user, as long as the measurement script is downloaded into the users browser, RUM collects data.% cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
@@ -1457,8 +1464,11 @@ After that, i will take a look at metrics which are specifically for performance
 % ---------------------------------------------------------------
 
 
-\subsubsection{Counts and Numerical Values}
+\subsubsection{Incomplete Web Analyitcs Metrics Collection}
 
+use counts, rations and non-numerical values
+
+% [Counts]
 
 Counts describe how many
 Can be measured Over time: last hour, month, from to, etc.
@@ -1466,22 +1476,83 @@ Averages are possible
 Compare with Segmentation
 
 
-%TODO maybe put this in table
+% [Ratios]
+
+Combining numerical values
+As Ratio or Percentage
+
+
+% [Non-Numerical Values]
+
+Can not be reflected as number
+
+
+
 % background color for titles
 
 \begin{center}
 	\small
 	\begin{longtable}{ | p{0.3\linewidth} | p{0.7\linewidth} | }
 	
+	\hline
 	\multicolumn{2}{|c|}{Counts} \\
 	\hline
 	Hits & blablabla \\
 	\hline
 	Visits & blabla \\
 	\hline
+	Sessions & blabla \\
+	\hline
+	Session Length & blabla \\
+	\hline
+	Page Views & blabla \\
+	\hline
+	Single Page Visits & blabla \\
+	\hline
+	New / Unique / Repeat / Return Visitors & blabla \\
+	\hline
+	Time on Page & blabla \\
+	\hline
+	Time between Visits & ... \\
+	\hline
+	JS Errors & ... \\
+	\hline
+	Cart Size & ... \\
+	\hline
+	Conversions & ... \\
+	\hline
+	... & ... \\
+
+	\hline
 	\multicolumn{2}{|c|}{Ratios} \\
 	\hline
-	Conversion Rate & blbla \\
+	Conversion Rate & ... \\
+	\hline
+	Bounce Rate & ... \\
+	\hline
+	Abandonment Rate & ... \\
+	\hline
+	Page Views per Visitor & ... \\
+	\hline
+	New Visitors Percentage & ... \\
+	\hline
+	Visits per Visitor & ... \\
+	\hline
+	Page Exit Ratio & ... \\
+	\hline
+	Click Through Rate (CTR) & ... \\
+	\hline
+	... & ... \\	
+	
+	\hline
+	\multicolumn{2}{|c|}{Non-Numerical Values} \\
+	\hline
+	Demographics & ... \\	
+	\hline
+	Referrer & ... \\	
+	\hline
+	... & ... \\
+	\hline
 	
 	\caption{Your caption here} % needs to go inside longtable environment
 	\label{tab:businessmetrics}
@@ -1489,36 +1560,30 @@ Compare with Segmentation
 \end{center}
 
 
-
-
-
-
-
-
-\paragraph{Hits}
+%\paragraph{Hits}
 % 2004 Peterson
 % 2017 Hassler
 
 
-\paragraph{Visits}
+%\paragraph{Visits}
 % 2004 Peterson
 % 2009 Waisberg
 % 2017 Hassler
 
-\paragraph{Sessions}
+%\paragraph{Sessions}
 % 2007 Burby
 
 
-\paragraph{Session Length}
+%\paragraph{Session Length}
 % 2007 Burby
 
 
-\paragraph{Page Views}
+%\paragraph{Page Views}
 % 2004 Peterson
 % 2007 Burby
 
 % 2009 Croll
-p. 74 Page View, first useful web analytics metric
+%p. 74 Page View, first useful web analytics metric
 
 % 2009 Waisberg
 
@@ -1527,109 +1592,88 @@ p. 74 Page View, first useful web analytics metric
 % 2017 Hassler
 
 
-\paragraph{Single Page Visits}
+%\paragraph{Single Page Visits}
 % 2007 Burby
 
-\paragraph{New Visitors}
+%\paragraph{New Visitors}
 % 2004 Peterson
 % 2007 Burby
 
-\paragraph{Unique Visitors}
+%\paragraph{Unique Visitors}
 % 2004 Peterson
 % 2007 Burby
 % 2017 Hassler
 
-\paragraph{Repeat Visitors}
+%\paragraph{Repeat Visitors}
 % 2007 Burby
 
-\paragraph{Return Visitor}
+%\paragraph{Return Visitor}
 % 2007 Burby
 
-\paragraph{Time on Page}
-\paragraph{Time between Visits}
+%\paragraph{Time on Page}
+%\paragraph{Time between Visits}
 
-\paragraph{JS Errors}
+%\paragraph{JS Errors}
 
-\paragraph{Cart Size}
+%\paragraph{Cart Size}
 % 2009 Croll p 24 in site effectiveness
 
-
-\paragraph{Conversions}
-
-
-many more
-
-% ---------------------------------------------------------------------------------
-
-
-
-
-\subsubsection{Ratios}
-
-Combining numerical values
-As Ratio or Percentage
-
-\paragraph{Bounce Rate}
-% 2007 Burby
-% 2009 Waisberg
-
-\paragraph{Conversion Rate}
-% 2004 Peterson
-
-% 2009 Croll
-- The percentage of visitors that your site converts to contributors, buyers, or users is the most important metric you can track
-
-\paragraph{Abandonment Rate}
-% 2004 Peterson
-% 2009 Croll
-
-\paragraph{Page Views per Visitor}
-% 2007 Burby
-% 2009 Waisberg
-
-\paragraph{New Visitors Percentage}
-% 2009 Waisberg
-
-
-\paragraph{Visits per Visitor}
-
-\paragraph{Page Exit Ratio}
-% 2007 Burby
-
-
-\paragraph{Click Through Rate (CTR)}
-% 2004 Peterson
-% 2007 Burby
-% 2009 Croll
-
-
-many more
+%\paragraph{Conversions}
 
 
 % ---------------------------------------------------------------------------------
 
 
+%\paragraph{Bounce Rate}
+% 2007 Burby
+% 2009 Waisberg
+
+%\paragraph{Conversion Rate}
+% 2004 Peterson
+
+% 2009 Croll
+%- The percentage of visitors that your site converts to contributors, buyers, or users is the most important metric you can track
+
+%\paragraph{Abandonment Rate}
+% 2004 Peterson
+% 2009 Croll
+
+%\paragraph{Page Views per Visitor}
+% 2007 Burby
+% 2009 Waisberg
+
+%\paragraph{New Visitors Percentage}
+% 2009 Waisberg
 
 
-\subsubsection{Non-Numerical Values}
+%\paragraph{Visits per Visitor}
 
-Can not be reflected as number
+%\paragraph{Page Exit Ratio}
+% 2007 Burby
+
+
+%\paragraph{Click Through Rate (CTR)}
+% 2004 Peterson
+% 2007 Burby
+% 2009 Croll
+
+
+
+% ---------------------------------------------------------------------------------
+
 
 %TODO find some more examples here
 
-\paragraph{Demographics}
-age, gender, browser, geography, ...
+%\paragraph{Demographics}
+%age, gender, browser, geography, ...
 
-\paragraph{Referrer}
+%\paragraph{Referrer}
 % 2004 Peterson
 % 2009 Croll
 
 
-many more
 
-
-
-
+% --------------------------------------
 
 
 % [Transition]
@@ -2109,87 +2153,31 @@ startTime
 duration
 
 
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1\textwidth]{timestamp_diagram.png}
+\caption{Timestamps from Navigation and Resource Timing}
+\label{img:latency}
+\end{center}
+\end{figure}
+% cite https://www.w3.org/TR/navigation-timing-2/
 
-%TODO add image here
 
-
-%TODO put this stuff in table with explanations
 
 \begin{center}
 	\small
 	\begin{longtable}{ | p{0.3\linewidth} | p{0.7\linewidth} | }
 	\hline
-	origin.. (navigationStart) & ... \\
+	\multicolumn{2}{|c|}{Navigation Timing} \\
+	\hline
+	origin.. (startTime, navigationStart) & ... \\
 	\hline
 	unloadEventStart & ... \\
 	\hline
 	unloadEventEnd & ... \\
+
 	\hline
-	domInteractive & ... \\
-	\hline
-	domContentLoadedEventStart & ... \\
-	\hline
-	domContentLoadedEventEnd & ... \\
-	\hline
-	domComplete & ... \\
-	\hline
-	loadEventStart & ... \\
-	\hline
-	loadEventEnd & ... \\
-	\hline
-	type & ... \\
-	\hline
-	redirectCount & ... \\
-	\caption{Navigation Timing Level 2 Attributes in PerformanveNavigationTiming Interface} % needs to go inside longtable environment
-	\label{tab:navigationtiming}
-	\end{longtable}
-\end{center}
-
-% Navigation Timing 2
-
-(navigationStart)
-% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-
-unloadEventStart;
-% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-
-unloadEventEnd;
-% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-
-
-domInteractive;
-% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-
-domContentLoadedEventStart;
-% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-
-domContentLoadedEventEnd;
-% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-
-
-domComplete;
-% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-
-loadEventStart;
-loadEventEnd;
-type;
-redirectCount;
-
-
-
-
-% From Resource Timing 2
-
-
-\begin{center}
-	\small
-	\begin{longtable}{ | p{0.3\linewidth} | p{0.7\linewidth} | }
-	\hline
-	initiatorType & ... \\
-	\hline
-	nextHopProtocol & ... \\
-	\hline
-	workerStart & ... \\
+	\multicolumn{2}{|c|}{Resource Timing} \\
 	\hline
 	redirectStart & ... \\
 	\hline
@@ -2213,15 +2201,89 @@ redirectCount;
 	\hline
 	responseEnd & ... \\
 	\hline
+	
+	\multicolumn{2}{|c|}{Navigation Timing continued} \\
+	\hline
+	domInteractive & ... \\
+	\hline
+	domContentLoadedEventStart & ... \\
+	\hline
+	domContentLoadedEventEnd & ... \\
+	\hline
+	domComplete & ... \\
+	\hline
+	loadEventStart & Same as window.onload \\
+	\hline
+	loadEventEnd & ... \\
+	
+	\hline
+	\multicolumn{2}{|c|}{Extended from PerformanceEntry Interface (cite navigation timing 2 spec)} \\
+	\hline
+	name & Address of the current document \\
+	\hline
+	entryType & "navigation" \\
+	\hline
+	startTime & Time value of 0 \\
+	\hline
+	duration & loadEventStart - startTime \\
+
+	\hline
+	\multicolumn{2}{|c|}{Navigation Timings Outside of Timeline} \\
+	\hline
+	type & ... \\
+	\hline
+	redirectCount & ... \\
+
+	\hline
+	\multicolumn{2}{|c|}{Resource Timings Outside of Timeline} \\
+	\hline
+	initiatorType & ... \\
+	\hline
+	nextHopProtocol & ... \\
+	\hline
+	workerStart & ... \\
+	\hline
 	transferSize & ... \\
 	\hline
 	encodedBodySize & ... \\
 	\hline
 	decodedBodySize & ... \\
-	\caption{Navigation Timing Level 2 Attributes in PerformanveNavigationTiming Interface} % needs to go inside longtable environment
+	\hline
+	
+	\caption{Navigation and Resource Timing Level 2 Attributes} % needs to go inside longtable environment
 	\label{tab:navigationtiming}
 	\end{longtable}
 \end{center}
+
+% Navigation Timing 2
+
+%(navigationStart)
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+%unloadEventStart;
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+%unloadEventEnd;
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+
+%domInteractive;
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+%domContentLoadedEventStart;
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+%domContentLoadedEventEnd;
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+
+%domComplete;
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+%loadEventStart;
+%loadEventEnd;
+%type;
+%redirectCount;
 
 
 
@@ -2250,123 +2312,148 @@ lets see how chromium is capturing domContentLoaded
 
 
 
-
+% ---------------------------------
 
 % [Metrics calculated by Specs we covered so far]
 
+Directly from those timestamps many metrics are calculated.
+Sometimes different vendors give a different name to the same metric.
+For many metrics there are no official definitions and the values diverge depending on the implementation.
+I will show how those metrics are being calculated.
 
-%TODO check if navigation 1 or 2 is used, because navigationStart is not in level 2
-% -> there is a substitution for navigationStart in level 2
+
+% [Navigation Level 1 vs Level 2]
+
+- navigationStart is not in level 2
+- navigationStart is the same as startTime in level 2
+- Difference is that navigationStart is a EPOCH time stamp. The timings have to be calculated as differences to this timestamp
+- navigationStart just starts with 0, which makes all the other timestamps easier to read
+- many still use level 1 and navigationStart
+
+
+%TODO add this ?
+% [Calculations]
 % Also maybe different calculations exist for the same metrc! check this again
 % Basically i need to check how the different vendors / parties interpret the metric, e.g. how WPT calculates TTFB and GA
 % There are no official definitions of the metrics!
 
 
+\begin{center}
+	\small
+	\begin{longtable}{ | p{0.3\linewidth} | p{0.7\linewidth} | }
+	\hline
+	Time to First Byte (TTFB) & responseStart - navigationStart \\
+	\hline
+	Page Load Time (PLT) & loadEventStart - navigationStart \\
+	\hline
+	DNS Lookup Time & domainLookupEnd - domainLookupStart \\
+	\hline
+	TCP Handshake / Server Connect Time & connectEnd - connectStart \\
+	\hline
+	TLS Handshake Time & requestStart - secureConnectionStart \\
+	\hline
+	Request / Server Response Time & responseStart - requestStart \\
+	\hline
+	DOM Content Loaded & domContentLoadedEventEnd - domContentLoadedEventStart \\
+	\hline
+	Page Download Time & responseEnd - responseStart \\
+	\hline
+	Latency & responseStart – fetchStart \\
+	\hline
+	DOM Interactive & \\
+	\hline
+	DOM Complete & \\
+	\hline
+	Redirect & \\
+	\hline
+	\caption{Metrics} % needs to go inside longtable environment
+	\label{tab:navigationtiming_metrics}
+	\end{longtable}
+\end{center}
+
+
+
+%TODO check out onload vs fully laoded vs page load time
+% https://gtmetrix.com/blog/browser-timings/
+% The loadEventStart attribute MUST return a DOMHighResTimeStamp with a time value equal to the time immediately before the load event of the current document is fired
+
 
 % TTFB
-
 % https://developer.mozilla.org/en-US/docs/Glossary/time_to_first_byte
-TTFB = responseStart - navigationStart
-
-
-% Latency
-% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-responseStart – fetchStart
-
+%TTFB = responseStart - navigationStart
 
 
 
 % PLT
-
 % https://developer.mozilla.org/en-US/docs/Glossary/Page_load_time
-pageloadtime = time.loadEventStart - time.navigationStart;
-
+%pageloadtime = time.loadEventStart - time.navigationStart;
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 
-
 % 2013 Wang:
-- PLT as central metric
+%- PLT as central metric
+
+
+
+%Latency
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+%responseStart – fetchStart
 
 
 
 % DNS Lookup time
-
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#dns_lookup_time
-dns  = time.domainLookupEnd - time.domainLookupStart;
+%dns  = time.domainLookupEnd - time.domainLookupStart;
 
 % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-domainLookupStart marks when a DNS lookup starts.
-domainLookupEnd marks when a DNS lookup ends.
-var pageNav = performance.getEntriesByType("navigation")[0];
-var dnsTime = pageNav.domainLookupEnd - pageNav.domainLookupStart;
+%domainLookupStart marks when a DNS lookup starts.
+%domainLookupEnd marks when a DNS lookup ends.
+%var pageNav = performance.getEntriesByType("navigation")[0];
+%var dnsTime = pageNav.domainLookupEnd - pageNav.domainLookupStart;
 
-- both domainLookupStart and domainLookupEnd (and others) can be 0 for a resource served by a third party if that host doesn't set a proper Timing-Allow-Origin response heade
+%- both domainLookupStart and domainLookupEnd (and others) can be 0 for a resource served by a third party if that host doesn't set a proper Timing-Allow-Origin response heade
 
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
 
 
 % TCP / TCP Handshake Time / Server Connect Time
-
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#tcp
-tcp  = time.connectEnd - time.connectStart;
+%tcp  = time.connectEnd - time.connectStart;
 
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
 
 
 % TLS / SSL / TLS Handshake Time
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#ssl_negotiation
-ssl = time.requestStart - time.secureConnectionStart;
+%ssl = time.requestStart - time.secureConnectionStart;
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#compression
-- compression savings percentage
+%- compression savings percentage
 
 % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-- connection phase consists of three metrics
-- connectStart marks when the client opens a connection to the server.
-- secureConnectionStart marks when the client begins TLS negotiation.
-- connectEnd marks when connection negotiation ends (including TLS time).
+%- connection phase consists of three metrics
+%- connectStart marks when the client opens a connection to the server.
+%- secureConnectionStart marks when the client begins TLS negotiation.
+%- connectEnd marks when connection negotiation ends (including TLS time).
 
-- var connectionTime = pageNav.connectEnd - pageNav.connectStart;
-- tlsTime = pageNav.connectEnd - pageNav.secureConnectionStart;
+%- var connectionTime = pageNav.connectEnd - pageNav.connectStart;
+%- tlsTime = pageNav.connectEnd - pageNav.secureConnectionStart;
 
 
 
 % Request Time. / Server Response Time
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#request_time
-request = timing.responseStart - timing.requestStart
+%request = timing.responseStart - timing.requestStart
 
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 
 
-% Transfer/Page Download Time = responseEnd - responseStart
+%Transfer/Page Download Time = responseEnd - responseStart
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 
-
-
-% Load Event Duration
-% Is this onLoad ?
-
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#load_event_duration
-load = timing.loadEventEnd - timing.loadEventStart 
-
-
-% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-Loading:
-- loadEventStart and loadEventEnd
-
-
-
-% DOM Content Loaded Event
-
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#domcontentloaded_event
-DOMContentLoaded = timing.domContentLoadedEventEnd - timing.domContentLoadedEventStart
-
-
-
-% Other DOM Events
-% What are those metrics ?
 
 
 % DOM Interactive Time
@@ -2384,47 +2471,77 @@ DOMContentLoaded = timing.domContentLoadedEventEnd - timing.domContentLoadedEven
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 
 
+%Redirects
 % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-Document processing:
-- domInteractive, domContentLoadedEventStart, domContentLoadedEventEnd, and domComplete
+%Redirects:
+- %redirectStart and redirectEnd 
 
 
-% Onload
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1\textwidth]{timestamp_diagram_blank.png}
+\caption{Metrics Overview}
+\label{img:latency}
+\end{center}
+\end{figure}
+
+
+
+%TODO add this ?
+
+%Load Event Duration
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#load_event_duration
+%load = timing.loadEventEnd - timing.loadEventStart 
+
+
+%Duration
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#duration
+%duration = PerformanceNavigationTiming.loadEventEnd - PerformanceEntry.startTime
+% -> duration from performanceentry interface is from loadEventStart - start Time
+
+
+
+%Loading
+% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+%- loadEventStart and loadEventEnd
+
+
+%DOM Content Loaded Event
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#domcontentloaded_event
+%DOMContentLoaded = timing.domContentLoadedEventEnd - timing.domContentLoadedEventStart
+
+
+
+
+
+%Document processing
+% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+%- domInteractive, domContentLoadedEventStart, domContentLoadedEventEnd, and domComplete
+
+
+%Onload
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 
 
-% Duration
 
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#duration
-duration = PerformanceNavigationTiming.loadEventEnd - PerformanceEntry.startTime
 
-% Redirects
 
+
+
+
+%Unloading
 % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-Redirects:
-- redirectStart and redirectEnd 
+%Document unloading:
+%- unloadEventStart and unloadEventEnd 
 
 
-
-% Unloading
-
+%Sizes
 % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-Document unloading:
-- unloadEventStart and unloadEventEnd 
-
-
-% Sizes
-
-% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-Document and resource size:
-- transferSize is the total size of the resource including HTTP headers.
-- encodedBodySize is the compressed size of the resource excluding HTTP headers.
-- decodedBodySize is the decompressed size of the resource (again, excluding HTTP headers).
-
-
-
-
-
+%Document and resource size:
+%- transferSize is the total size of the resource including HTTP headers.
+%- encodedBodySize is the compressed size of the resource excluding HTTP headers.
+%- decodedBodySize is the decompressed size of the resource (again, excluding HTTP headers).
 
 
 
