@@ -1189,7 +1189,14 @@ On the other hand, when no user is visiting the web site, RUM is not collecting 
 Other performance measurement methods such as CrUX and surveys provide browser specific or quality data and complement the analysts tool box.
 
 
-%TODO add some comparison table?
+%TODO fill in
+\begin{center}
+\begin{tabular}{ | c | c | }
+ Synthetic Monitoring & RUM \\
+ \hline
+ summary & summary
+\end{tabular}
+\end{center}
 
 
 % [Metrics, Transition]
@@ -1497,21 +1504,21 @@ Can not be reflected as number
 	\hline
 	\multicolumn{2}{|c|}{Counts} \\
 	\hline
-	Hits & blablabla \\
+	Hits & explain here... \\
 	\hline
-	Visits & blabla \\
+	Visits & ... \\
 	\hline
-	Sessions & blabla \\
+	Sessions & ... \\
 	\hline
-	Session Length & blabla \\
+	Session Length & ... \\
 	\hline
-	Page Views & blabla \\
+	Page Views & ... \\
 	\hline
-	Single Page Visits & blabla \\
+	Single Page Visits & ... \\
 	\hline
-	New / Unique / Repeat / Return Visitors & blabla \\
+	New / Unique / Repeat / Return Visitors & ... \\
 	\hline
-	Time on Page & blabla \\
+	Time on Page & ... \\
 	\hline
 	Time between Visits & ... \\
 	\hline
@@ -2255,6 +2262,7 @@ duration
 	\end{longtable}
 \end{center}
 
+
 % Navigation Timing 2
 
 %(navigationStart)
@@ -2305,14 +2313,14 @@ Requests and responses:
 
 
 
+%TODO add this when there is time...
 % [Implementation Example Chrome]
-
-
-lets see how chromium is capturing domContentLoaded
+% lets see how chromium is capturing domContentLoaded
 
 
 
 % ---------------------------------
+
 
 % [Metrics calculated by Specs we covered so far]
 
@@ -2320,6 +2328,16 @@ Directly from those timestamps many metrics are calculated.
 Sometimes different vendors give a different name to the same metric.
 For many metrics there are no official definitions and the values diverge depending on the implementation.
 I will show how those metrics are being calculated.
+
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1\textwidth]{timestamp_diagram_blank.png}
+\caption{Metrics Overview}
+\label{img:latency}
+\end{center}
+\end{figure}
+
 
 
 % [Navigation Level 1 vs Level 2]
@@ -2478,13 +2496,6 @@ I will show how those metrics are being calculated.
 
 
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=1\textwidth]{timestamp_diagram_blank.png}
-\caption{Metrics Overview}
-\label{img:latency}
-\end{center}
-\end{figure}
 
 
 
@@ -2594,142 +2605,91 @@ Access all different data from other APIs.
 - providing methods to store and retrieve high resolution performance metric data.
 - Performance Timeline  defined by Navigation timing, resource timing, user timing and other interfaces
 - get Entries, by Type, by Name
-- The PerformanceObserver interface can be used to observe the Performance Timeline to be notified of new performance metrics as they are recorded.
+- Example entryType values defined by other specifications include: "mark" and "measure" [USER-TIMING-2], "navigation" [NAVIGATION-TIMING-2], "resource" [RESOURCE-TIMING-2], and "longtask"
 
+- The PerformanceObserver interface can be used to observe the Performance Timeline to be notified of new performance metrics as they are recorded.
 
 
 % https://w3c.github.io/perf-timing-primer/
 - unified interface to obtain various performance metrics
-- The Performance Timeline API uses PerformanceEntry.entryType to describe the type of the interface represented by this PerformanceEntry object, which represents performance measurements
-
-- PerformanceEntry object represents performance measurements
-- PerformanceEntry object:
-	- name
-	- entryType
-	- startTime
-	- duration
 	
 	
-	
-Performance Timeline API % https://developer.mozilla.org/en-US/docs/Web/API/Performance_Timeline
-Performance Entry API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
-
-
-
-% [Performance Entry]
-
-% https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
-- PerformanceEntry object encapsulates a single performance metric that is part of the performance timeline
-- A performance entry can be directly created by making a performance mark or measure
-
-Always of type:
-- PerformanceMark
-- PerformanceMeasure
-- PerformanceFrameTiming
-- PerformanceNavigationTiming
-- PerformanceResourceTiming
-- PerformancePaintTiming
-
-Properties:
-- name
-- entryType
-- startTime
-- duration
-
-	
-	
-
-Version 1 and 2
-
-- store and retrieve performance metric data
-- does not cover individual performance metric interfaces
-
-
-- defines PerformanceEntry.entryType to describes the type of the interface represented by this PerformanceEntry object
-- PerformanceEntry object represents performance measurements
-
-
-Types values:
-- mark (User Timing)
-- measure (User Timing)
-- navigation (Navigation Timing)
-- resource (Resource Timing)
-- longtask
-
-
-% [Level 2]
-
-PerformanceObserver
-
-Performance Observer API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
-
-
-% Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
-- Performance Timeline API:
-	- window.performance.getEntries()
-	- getEntriesByType(), getEntriesByName()
-	- Capturing different performance metrics
-	- Browser APIs can add data to this timeline
-
-	- performance.getEntries(): List of events that happened on that page
-	
-	
-
-% Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
-=> Window.performance returns Performance object
-=> Performance object exposes:
-	- High Resolution Time API
-	- Navigation Timing API
-	- Resource Timing API
-	- Performance Timeline API
-	- User Timing API
-	
-
-% Measuring Performance https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-Performance API includes:
-- Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.
-
-
-% https://developer.mozilla.org/en-US/docs/Web/API/Performance
-- provides access to performance-related information for the current page
-- part of the High Resolution Time API, but is enhanced by the Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API
-- can be obtained by calling the window.performance
-
-
-% https://developer.mozilla.org/en-US/docs/Web/API/Performance_API
-Performance API 
--> Includes Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API.
-
-
-% https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Using_the_Performance_API
-- Performance: base interface for these standards
-- methods and properties are extended by different standards
+% https://developer.mozilla.org/en-US/docs/Web/API/Performance_Timeline
+- PerformanceEntry interface encapsulates a single performance entry: a single data point or metric in the performance timeline
 
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
-PerformanceEntry API:
-- provides for marking and measuring times along the navigation and resource loading process
-- You can also create marks
 - performance.getEntriesByType('navigation') -> get navigation timings
 - performance.getEntriesByType('resource') -> get resource timings
 
 
+%TODO add screenshot of console log performance.getEntriesByType('navigation') ?
+
+
+%TODO add this ? is not so important...
+% [Performance Entry]
+
 % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
-- The PerformanceEntry object encapsulates a single performance metric that is part of the performance timeline
+%- A performance entry can be directly created by making a performance mark or measure
+
+%Always of type:
+%- PerformanceMark
+%- PerformanceMeasure
+%- PerformanceFrameTiming
+%- PerformanceNavigationTiming
+%- PerformanceResourceTiming
+%- PerformancePaintTiming
+
+%Properties:
+%- name
+%- entryType
+%- startTime
+%- duration
+
+
+% Performance Observer API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
 
 
 
 
 
 
-Paint Timing ??
+% ----------------------------
+
+
+\paragraph{Paint Timing}
+
+
 
 % https://www.w3.org/TR/paint-timing/
+-  First Public Working Draft, 7 September 2017
+-  capture a series of key moments (First Paint, First Contentful Paint
+- metrics mark the points, immediately after navigation, when the browser renders pixels to the screen
+- answers the question: is it happening? -> We will see later that Google Web Vitals use same question
+
+Paint or Render: "the browser has performed a "paint" (or "render") when it has converted the render tree to pixels on the screen. "
+
+FP: "the time when the browser first rendered after navigation. This excludes the default background paint, but includes non-default background paint. This is the first key moment developers care about in page load – when the browser has started to render the page"
+FCP: "time when the browser first rendered any text, image (including background images), non-white canvas or SVG. This includes text with pending webfonts. This is the first time users could start consuming page content"
+
+
+\begin{center}
+\small
+	\begin{tabular}{ p{0.4\linewidth} | p{0.6\linewidth} }
+	\hline
+	First Paint & "Marks the point when the browser renders anything that is visually different from what was on the screen prior to navigation"  \\ 
+	\hline
+	First Contentful Paint & "The point when the browser renders the first bit of content from the DOM, which may be text, an image, SVG, or even a canvas element" \\  
+	\hline
+	\end{tabular}
+\end{center}
+
+
 
 
 
 use this as transition to web vitals
-
+There are more metrics which try to capture user experienced or perceived performance, which are calculated by visuals etc.
 
 
 
@@ -2741,16 +2701,14 @@ use this as transition to web vitals
 \paragraph{Conclusion}
 
 
-Provide here a table with all important recommendations and the metrics they expose.
-
-
 % 2013 Girgorik: "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application"
 
 
+The idea of paint timing has been continued with the following metrics.
+
 
 % -----------------------------------------------------------------------
 % -----------------------------------------------------------------------
-
 
 
 
