@@ -1255,6 +1255,11 @@ numbers can be compared: over time, after change, with competitor, etc.
 "Metrics serve as the basic information for analyzing Web traffic and helps in improving a Website to meet its goals"
 
 
+% https://web.dev/user-centric-performance-metrics/
+- So when talking about performance, it's important to be precise and to refer to performance in terms of objective criteria that can be quantitatively measured. These criteria are known as metrics.
+
+
+
 % [Relevance]
 
 - Measure what is important for you
@@ -1291,7 +1296,7 @@ tailored, best would be to have custom metrics, see section X.
 
 
 
-\subsection{Business or "Non-Performance", general web analytics Metrics}
+\subsection{Web Analytics, Business or "Non-Performance" Metrics}
 
 Unlimited metrics, also when thinking about custom metrics.
 The main question here is how to categorize those metrics.
@@ -1471,7 +1476,7 @@ After that, i will take a look at metrics which are specifically for performance
 % ---------------------------------------------------------------
 
 
-\subsubsection{Incomplete Web Analyitcs Metrics Collection}
+\subsubsection{Web Analyitcs Metrics Examples}
 
 use counts, rations and non-numerical values
 
@@ -1754,7 +1759,7 @@ Custom Metrics
 - the size of the web site
 - Page weight has an impact on performance
 - Page consists of resources
-- More resources and bytes means more downloads and waiting time
+- More resources and bytes means more requests, downloads and waiting time
 
 
 % HTTP Archive
@@ -1868,15 +1873,6 @@ Web Performance Working Group is responsible:
 - Scheduling
 - Adaptation
 -> Important is Measurement
-
-
-%TODO where to put this info on waterfall?
-% https://w3c.github.io/perf-timing-primer/
-- APIs used to create waterfall charts
-- Waterfall we can see in more detail in WPT section ?
-
-% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-- Any time you've seen a waterfall chart, you're looking at a visual representation of the data these APIs provide
 
 
 
@@ -2130,6 +2126,17 @@ PerformanceNavigationTiming Interface:
 
 
 
+% [Waterfall]
+
+% https://w3c.github.io/perf-timing-primer/
+- APIs used to create waterfall charts
+- Waterfall we can see in more detail in WPT section ?
+
+% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+- Any time you've seen a waterfall chart, you're looking at a visual representation of the data these APIs provide
+
+
+
 
 % ---------------------------------------------
 
@@ -2360,7 +2367,7 @@ I will show how those metrics are being calculated.
 	\small
 	\begin{longtable}{ | p{0.3\linewidth} | p{0.7\linewidth} | }
 	\hline
-	Time to First Byte (TTFB) & responseStart - navigationStart \\
+	Time to First Byte (TTFB) & $responseStart - navigationStart$: blablablabalb \\
 	\hline
 	Page Load Time (PLT) & loadEventStart - navigationStart \\
 	\hline
@@ -2390,19 +2397,51 @@ I will show how those metrics are being calculated.
 \end{center}
 
 
+% https://developer.mozilla.org/en-US/docs/Glossary
+
+
+
 
 %TODO check out onload vs fully laoded vs page load time
+
+
 % https://gtmetrix.com/blog/browser-timings/
+
+
 % The loadEventStart attribute MUST return a DOMHighResTimeStamp with a time value equal to the time immediately before the load event of the current document is fired
+
+% Onload 
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+% https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onload
+% onload Event 
+% Defined by the HTML specification:
+
+
+
 
 
 % TTFB
+
 % https://developer.mozilla.org/en-US/docs/Glossary/time_to_first_byte
 %TTFB = responseStart - navigationStart
+
+% https://developer.mozilla.org/en-US/docs/Glossary/time_to_first_byte
+
+% 2014 Hogan
+- First byte that the browser receives
+- It’s a good indicator of how quickly the backend of your site is able to process and send back content
+
+
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+TTFB describes how long the requesting party has to wait from sending the first request packet until receiving the first response data packet
+
+
 
 
 
 % PLT
+
 % https://developer.mozilla.org/en-US/docs/Glossary/Page_load_time
 %pageloadtime = time.loadEventStart - time.navigationStart;
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
@@ -2410,17 +2449,31 @@ I will show how those metrics are being calculated.
 % 2013 Wang:
 %- PLT as central metric
 
+% 2018 Netravali
+
+% https://hpbn.co/primer-on-web-performance/
+- Has been the de facto metric of the web performance world
+- Increasingly insufficient performance benchmark: we are no longer building pages, we are building dynamic and interactive web applications
+
+% 2019 Enghardt
 
 
-%Latency
+
+
+
+
+
+% Latency
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 %responseStart – fetchStart
+
 
 
 
 % DNS Lookup time
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#dns_lookup_time
 %dns  = time.domainLookupEnd - time.domainLookupStart;
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
 
 % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
 %domainLookupStart marks when a DNS lookup starts.
@@ -2439,6 +2492,8 @@ I will show how those metrics are being calculated.
 %tcp  = time.connectEnd - time.connectStart;
 
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
 
 
 
@@ -2460,6 +2515,10 @@ I will show how those metrics are being calculated.
 %- tlsTime = pageNav.connectEnd - pageNav.secureConnectionStart;
 
 
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+
+
+
 
 % Request Time. / Server Response Time
 
@@ -2468,9 +2527,20 @@ I will show how those metrics are being calculated.
 
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
 
-%Transfer/Page Download Time = responseEnd - responseStart
+
+
+
+
+
+% Transfer/Page Download Time = responseEnd - responseStart
+
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+% Receiving / Download Time ??
 
 
 
@@ -2478,8 +2548,19 @@ I will show how those metrics are being calculated.
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 
 
+
 % DOM Content Load Time
+
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+% https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
+
+% Defined by the HTML specification
+
+% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#domcontentloaded_event
+% DOMContentLoaded = timing.domContentLoadedEventEnd - timing.domContentLoadedEventStart
+
+
 
 % DOM Processing to Interactive
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
@@ -2489,10 +2570,9 @@ I will show how those metrics are being calculated.
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 
 
-%Redirects
+% Redirects
 % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-%Redirects:
-- %redirectStart and redirectEnd 
+% redirectStart and redirectEnd 
 
 
 
@@ -2518,21 +2598,10 @@ I will show how those metrics are being calculated.
 %- loadEventStart and loadEventEnd
 
 
-%DOM Content Loaded Event
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#domcontentloaded_event
-%DOMContentLoaded = timing.domContentLoadedEventEnd - timing.domContentLoadedEventStart
-
-
-
-
 
 %Document processing
 % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
 %- domInteractive, domContentLoadedEventStart, domContentLoadedEventEnd, and domComplete
-
-
-%Onload
-% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 
 
 
@@ -2623,7 +2692,13 @@ Access all different data from other APIs.
 - performance.getEntriesByType('resource') -> get resource timings
 
 
-%TODO add screenshot of console log performance.getEntriesByType('navigation') ?
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.4\textwidth]{navigation_console.png}
+\caption{Navigation Timings}
+\label{img:navigation_console}
+\end{center}
+\end{figure}
 
 
 %TODO add this ? is not so important...
@@ -2650,7 +2725,27 @@ Access all different data from other APIs.
 % Performance Observer API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
 
 
+% ----------------------------
 
+
+\paragraph{Long Tasks}
+
+% https://w3c.github.io/longtasks/
+
+
+% https://www.youtube.com/watch?v=6Ljq-Jn-EgU&ab_channel=GoogleChromeDevelopers
+- Long Tasks: Is it delightful? PerformanceObserver
+
+
+% ----------------------------
+
+
+\paragraph{Server Timing}
+
+
+%TODO add this ?
+
+% https://w3c.github.io/server-timing/
 
 
 
@@ -2673,6 +2768,9 @@ FP: "the time when the browser first rendered after navigation. This excludes th
 FCP: "time when the browser first rendered any text, image (including background images), non-white canvas or SVG. This includes text with pending webfonts. This is the first time users could start consuming page content"
 
 
+From the browser perspective.
+For user perspective, start render is the metric.
+
 \begin{center}
 \small
 	\begin{tabular}{ p{0.4\linewidth} | p{0.6\linewidth} }
@@ -2687,9 +2785,25 @@ FCP: "time when the browser first rendered any text, image (including background
 
 
 
+First Paint, Time to First Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_paint
+
+
+% 2013 Meenan
+- can tell you the first point in time when the user sees something other than a blank white screen
+- doesn’t necessarily mean the user sees anything useful
+
+
+First Contentful Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_contentful_paint
+
+
+% 2018 Netravali
+% TTFP
+
 
 use this as transition to web vitals
 There are more metrics which try to capture user experienced or perceived performance, which are calculated by visuals etc.
+
+
 
 
 
@@ -2697,14 +2811,28 @@ There are more metrics which try to capture user experienced or perceived perfor
 
 
 
-
 \paragraph{Conclusion}
 
 
-% 2013 Girgorik: "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application"
+The W3C provides recommendations and drafts which expose interesting timing data in the browser. %leveraging
+The High Resolution Time recommendation enables exact, stable and reliable time measures.
+The Navigation and Resource Timing specifications expose all relevant time stamps on the document, or any resource respectively, loading process.
+The User Timing spec makes it possible for analysts and developers to mark and measure custom time stamps and expose them directly to the Performance Timeline.
+The Performance Timeline subsumes all exposed timing measures and is the go to place to fetch performance data.
+
+Or as Grigorik states it, "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application" % cite 2013 Girgorik
 
 
-The idea of paint timing has been continued with the following metrics.
+% [Transition]
+
+Multiple metrics are directly derived from those timing attributes, such as TTFB or Page Load Time.
+Those metrics cover only the technical aspect of performance, that is they reflect performance as time or how long it took for a specific task to finish.
+Those technical timing metrics may give an idea about the loading process of the web site, but they do not reflect how a user is experiencing the performance.
+
+The Paint Timing specification goes into the direction of capturing user perceived performance by exposing the time when the first visual content has been displayed to the user.
+
+This idea of user centric metrics has been followed by many such as Google, which introduces Web Vitals.
+Web Vitals are discussed in the next section, but before I will explain some other user centric metrics such as Speed Index.
 
 
 % -----------------------------------------------------------------------
@@ -2712,135 +2840,358 @@ The idea of paint timing has been continued with the following metrics.
 
 
 
+\subsubsection{User-Centric Performance Metrics}
 
-\subsubsection{UX / User Perceived, Visual Performance Metrics}
+
+% [Introduction]
 
 
 % https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance
+- Perceived performance
+- how fast a web site feels to a user
+- perception can be different that actual load times
+- more difficult to measure that loading times
 
 
 
-% Web Vitals and Core Web Vitals
+
+First I will describe TTI, TBT and Speed Index, and then move on to Web Vitals.
 
 
 
+% ------------------------
 
-\paragraph{Web Vitals}
 
+\paragraph{Start Render}
+
+
+
+% https://designingforperformance.com/basics-of-page-speed/
+- tells you how many seconds it took for the browser to begin rendering content
+
+
+
+% ------------------------
+
+
+\paragraph{Time to Interactive}
+
+% https://developer.mozilla.org/en-US/docs/Glossary/Time_to_interactive
+
+
+
+% 2018 Netravali
+%- TTI
+
+
+% https://www.youtube.com/watch?v=6Ljq-Jn-EgU&ab_channel=GoogleChromeDevelopers
+- Time To Interactive: Is it usable? Use Polyfill
+
+
+
+% ------------------------
+
+
+\paragraph{Total Blocking Time}
+
+% https://web.dev/tbt/
+
+
+% https://www.youtube.com/watch?v=6Ljq-Jn-EgU&ab_channel=GoogleChromeDevelopers
+- Total Blocking Time
+
+
+
+% ------------------------
+
+
+
+\paragraph{First Meaningful Paint}
+
+
+% https://web.dev/first-meaningful-paint/
+- in seconds
+-
+
+Replaced by LCP.
+
+how to measure lab and field
+
+
+% https://www.youtube.com/watch?v=6Ljq-Jn-EgU&ab_channel=GoogleChromeDevelopers
+- First Meaningful Paint, Hero Element: Is it useful? 
+
+
+
+% https://developer.mozilla.org/en-US/docs/Glossary/first_meaningful_paint
 
 % https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-a set of browser-based metrics for capturing user-perceived performance. Google heralds the Web Vitals as the gold standard for website performance across a number of services (e.g. PageSpeed Insights, Search Console, TestMySite) and publishes them in the Chrome User Experience Report (CrUX) [7] database. The core metrics will further be used for ranking search results starting in June [6] and even non-AMP pages will be admitted to the Top Stories [4] feature in Search on mobile — given they exhibit top-of-the-line performance according to the Core Web Vitals. Website performance according to the Web Vitals will therefore be critically important for SEO in the upcoming years.
+The First Meaningful Paint is another user-centric metric and represents the point in time at which the largest visual change takes place; the underlying assumption here obviously is that the biggest visual change is relevant to the user, for example because a hero image or a navigation bar appear
+
+
+% ------------------------
+
+
+%TODO add this ?
+\paragraph{Above the Fold Time}
+
+% 2013 Meenan
+Above-the-fold time 
+- point in time when the last visual change is made to the visible part of the page
+- available only in lab environments where the visual progress of a page loading can be recorded
+
+
+% 2018 Netravali
+%- Above the fold time
+
+
+% ------------------------
 
 
 
-% Walton user-centric
-% Walton https://web.dev/vitals/
-% Walton user centric metrics
+\paragraph{Speed Index}
 
-
- Key questions: Is is usable, is it delightful, ...
- Types of metrics
- important metrics
- custom metrics
-
-
-% 2017 Panicker, Walton
- Core Web Vitals: First Input Delay, Cumulative Layout Shift, Largest Contentful Paint
- First Paint, First Contentful Paint: Is it happening? PerformanceObserver
- First Meaningful Paint, Hero Element: Is it useful? 
- Time To Interactive: Is it usable? Use Polyfill
- Long Tasks: Is it delightful? PerformanceObserver
- Total Blocking Time
- Time To First Byte
-
-
-
-\paragraph{Core Web Vitals}
-
-% Introduction
-% 2020 Sullivan
-
- Most important metrics, Apply to all websites, Measures real user experience, Measurement support for Lab and Field, Concise and clear
- LCP: Progressive loading. FCP may become a core web vital
- FID: Interactivity during load
- CLS: Visual stability
- Future goals: Better support for Single Page Apps, Input responsiveness, Scrolling and animations
- Areas of user experience beyond performance: Security, Privacy, Accessibility
-
-
-% LCP https://web.dev/lcp/
-
- Introduction, what is it
- How to measure
- How to improve
- 
- 
- Google had some issues with capturing LCP in chrome, see twitter
- Because of this they needed to release a new chrome version
- CruX also has 2 different lcps now (?)
- use this story to show that this stuff is far from trivial
-
-
-% FID https://web.dev/fid/
-
- Introduction, what is it
- How to measure
- How to improve
-
-
-% CLS https://web.dev/cls/
-% TODO new stuff https://blog.webpagetest.org/posts/understanding-the-new-cumulative-layout-shift/?utm_medium=email&_hsmi=121601471&_hsenc=p2ANqtz-9IsSdXActEE6lw4BrDZNa4eFqzQZjgabLHbq7aS-c2KkhqLGNtkIaGfQYD4VqZe9_6ZYFlTmlCgB87THSfsnVM1fl7NiixtrJqAsVO6DPUjeJIo6c&utm_content=121601471&utm_source=hs_email
-
- Introduction, what is it
- How to measure
- How to improve
-
-
-
-% Tool support
-% Osmani: Tools to measure
-% Walton user-centric: How to measure in Lab and Field
-% Philip Walton. Best practices for measuring Web Vitals in the field
-
-
-% Science background
-% 2020 Sagoo: Science: Thresholds, impact on business
-% McQuade: thresholds
-
-
-
-\paragraph{Other UX Metrics}
-
-% Measuring Real User Performance in the Browser youtube:
-% - first paint, fcp, fmp, visually complete, speed index
-
-
-
- Visually complete ?
-
-
-% 2018 Netravali:
-% Page load time, TTFP, Above the fold time, Speed Index, User perceived PLT, TTI
 
 % https://docs.webpagetest.org/metrics/speedindex/
-\subparagraph{Speed Index}
+
+
+% https://developer.mozilla.org/en-US/docs/Glossary/Speed_index
 
 
 
+% 2013 Meenan
+- best effort for representing the user experience in a single number
 
-% 2021 Meenan vimeo
 
-
-% Web Vitals and SEO
+% 2018 Netravali
 
 
 % 2021 Meenan vimeo 38:50
 
 
 
+% Measuring Real User Performance in the Browser
+- How much of the screen is visually available at different points of time
+- At what point of time is the page complete
 
 
 
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+The Speed Index revolves around visual completeness and represents the average time it takes for website elements to become visible. It works well for websites with a static layout, but is unreliable for websites with moving elements like carousels or videos. Computing the Speed Index for this kind of website requires a custom timer or event to demarcate the point in time at which visual completion is reached
+
+
+% ------------------------
+
+
+
+\paragraph{Web Vitals}
+
+
+% [Introduction]
+
+
+% https://web.dev/vitals/
+- "Web Vitals is an initiative by Google to provide unified guidance for quality signals that are essential to delivering a great user experience on the web."
+- Core Web Vitals: Metrics that matter the most
+ - evolving: definitions and thresholds may change with greater frequency
+
+
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- a set of browser-based metrics for capturing user-perceived performance.
+- Google heralds the Web Vitals as the gold standard for website performance
+- publishes them in the Chrome User Experience Report (CrUX)
+
+
+
+% [Types of Metrics]
+
+% https://web.dev/user-centric-performance-metrics/
+- Perceived load speed
+- Load responsiveness
+- Runtime responsiveness
+- Visual stability
+- Smoothness
+
+
+
+% [SEO]
+
+
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- The core metrics will further be used for ranking search results 
+- Website performance according to the Web Vitals will therefore be critically important for SEO in the upcoming years.
+
+
+
+% [Key Questions]
+
+ 
+ \begin{center}
+\small
+	\begin{tabular}{ | p{0.3\linewidth} | p{0.7\linewidth} | }
+	\hline
+	Is it happening? & 	Did the navigation start successfully? Has the server responded? \\
+	\hline
+	Is it useful? & Has enough content rendered that users can engage with it? \\
+	\hline
+	Is it usable? & Can users interact with the page, or is it busy? \\
+	\hline
+	Is it delightful? & Are the interactions smooth and natural, free of lag and jank? \\
+	\hline
+	\end{tabular}
+\end{center}
+ % cite https://web.dev/user-centric-performance-metrics/
+
+
+
+
+
+% [Core Web Vitals]
+
+
+% https://web.dev/vitals/
+- apply to all web pages
+- available in all google tools
+- each core web vital  represents a distinct facet of the user experience: loading, interactivity, and visual stability
+- each is measurable in the field
+- rather stable in definition and thresholds
+- Collected by Crux, Pagespeed insights and search console
+- measure with library % https://github.com/GoogleChrome/web-vitals
+
+
+
+
+% https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
+- Future goals: Better support for Single Page Apps, Input responsiveness, Scrolling and animations
+- Areas of user experience beyond performance: Security, Privacy, Accessibility
+
+ 
+The core web vitals LCP CLS and FID are now being discussed. 
+
+
+%TODO add this ?
+% [Tools to measure]
+% Osmani: Tools to measure
+% Philip Walton. Best practices for measuring Web Vitals in the field
+
+
+% ----------------------------------------
+
+
+
+\paragraph{Largest Contentful Paint}
+
+% LCP https://web.dev/lcp/
+
+
+% https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
+- LCP: Progressive loading. FCP may become a core web vital
+
+
+
+% https://wicg.github.io/largest-contentful-paint/
+
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+- approximation of the First Meaningful Paint that can be captured in the browser
+
+
+
+
+
+
+
+
+% [Measuring]
+ 
+- Google had some issues with capturing LCP in chrome, see twitter
+- Because of this they needed to release a new chrome version
+- CruX also has 2 different lcps now (?)
+- use this story to show that this stuff is far from trivial
+
+
+
+% --------------------------
+
+
+\paragraph{First Input Delay}
+
+% FID https://web.dev/fid/
+
+
+% https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
+- FID: Interactivity during load
+
+
+% [Measuring]
+
+
+
+% --------------------------
+
+
+\paragraph{Cumulative Layout Shift}
+
+% CLS https://web.dev/cls/
+
+
+% https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
+- CLS: Visual stability
+
+
+% [Measuring]
+
+
+% New Measurement https://blog.webpagetest.org/posts/understanding-the-new-cumulative-layout-shift/?utm_medium=email&_hsmi=121601471&_hsenc=p2ANqtz-9IsSdXActEE6lw4BrDZNa4eFqzQZjgabLHbq7aS-c2KkhqLGNtkIaGfQYD4VqZe9_6ZYFlTmlCgB87THSfsnVM1fl7NiixtrJqAsVO6DPUjeJIo6c&utm_content=121601471&utm_source=hs_email
+
+
+% --------------------------
+
+
+\paragraph{Thresholds and Benchmarks for Core Web Vitals}
+
+
+
+
+% https://blog.chromium.org/2020/05/the-science-behind-web-vitals.html
+
+
+
+% https://web.dev/defining-core-web-vitals-thresholds/
+
+
+
+% [LCP]
+
+
+
+
+
+
+
+% [FID]
+
+
+
+
+
+
+% [CLS]
+
+
+
+
+
+
+
+
+
+%TODO add this?
+%- User perceived PLT
+
+
+
+
+% -----------------------------------------------------------------------
 % -----------------------------------------------------------------------
 
 
@@ -2863,140 +3214,49 @@ a set of browser-based metrics for capturing user-perceived performance. Google 
 -  "Custom and application-specific metrics are the key to establishing a sound performance strategy"
 
 
-
+% https://web.dev/custom-metrics/
+- Universal metrics offer a good baseline, but in many cases you need to measure more than just these metrics in order to capture the full experience for your particular site.
+- Custom metrics allow you to measure aspects of your site's experience that may only apply to your site
 
 
 
 
 % -----------------------------------------------------------------------
+
+
+\subsubsection{Conclusion and link to Research Question}
+
+
+\paragraph{Observer Effect}
+
+% youtube
+Avoiding the Observer Effect
+
+- How to measure performance without affecting performance?
+- JS is single threaded
+- Unless browser is idle, anything you do in JS will slow down some other JS
+-> Do only cheap stuff
+- Don't slow down load time:
+	- Load measurement code outside the critical path
+	- Use Iframe Loader Technique
+	- Load measurement code after onload event (-> can not measure things that happen before onload)
+
+- Do as little as possible in event handlers
+- Do more expensive processing via requestIdleCallback that runs when browser is idle
+
+
+
+% https://web.dev/custom-metrics/
+The first rule of effective performance measurement is to make sure your performance measurement techniques aren't causing performance issues themselves.
+
+
+
+Before tackling this question with an experiment, I will discuss one synthetic monitoring tool WPT and one RUM tool GA which I will then use in the approach.
+Also some research in this field will be discussed.
+
+
+
 % -----------------------------------------------------------------------
-
-
-
-
-% ===== START: HERE I WILL LIST ALL METRICS =====
-
-
-
-% https://developer.mozilla.org/en-US/docs/Glossary
-
-
-
-DNS resolution / DNS lookup time % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-= GAs Avg. Domain Lookup Time (sec) % https://metriclabs.com.au/glossary/analytics-metrics/avg-domain-lookup-time-sec/
-
-
-Connecting / TCP Handshake time % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-
-
-TLS Handshake time % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-
-
-Waiting / Server Response Time ?? % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-
-
-Receiving / Download Time ?? % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-
-
-
-
-onload Event: % https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onload
-% Defined by the HTML specification:
-
-
-
-DOMContentLoaded Event % https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
-% Defined by the HTML specification
-
-
-
-Page Load Time: % https://hpbn.co/primer-on-web-performance/
-- Has been the de facto metric of the web performance world
-- Increasingly insufficient performance benchmark: we are no longer building pages, we are building dynamic and interactive web applications
-% 2019 Enghardt
-
-
-
-Start Render % https://designingforperformance.com/basics-of-page-speed/
-- tells you how many seconds it took for the browser to begin rendering content
-
-
-Time to First Byte: % https://developer.mozilla.org/en-US/docs/Glossary/time_to_first_byte
-
-% 2014 Hogan
-- First byte that the browser receives
-- It’s a good indicator of how quickly the backend of your site is able to process and send back content
-
-
-% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-TTFB describes how long the requesting party has to wait from sending the first request packet until receiving the first response data packet
-
-
-
-
-
-
-
-First Paint, Time to First Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_paint
-% Defined by the Paint Timing API 
-
-
-% 2013 Meenan
-- can tell you the first point in time when the user sees something other than a blank white screen
-- doesn’t necessarily mean the user sees anything useful
-
-
-
-
-First Contentful Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_contentful_paint
-% Defined by the Paint Timing API 
-
-
-
-First Meaningful Paint: % https://developer.mozilla.org/en-US/docs/Glossary/first_meaningful_paint
-
-% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-The First Meaningful Paint is another user-centric metric and represents the point in time at which the largest visual change takes place; the underlying assumption here obviously is that the biggest visual change is relevant to the user, for example because a hero image or a navigation bar appear
-
-
-
-
-
-Largest Contentful Paint: % https://wicg.github.io/largest-contentful-paint/
-
-% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-- approximation of the First Meaningful Paint that can be captured in the browser
-
-
-
-
-Speed Index: % https://developer.mozilla.org/en-US/docs/Glossary/Speed_index
-
-% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-The Speed Index revolves around visual completeness and represents the average time it takes for website elements to become visible. It works well for websites with a static layout, but is unreliable for websites with moving elements like carousels or videos. Computing the Speed Index for this kind of website requires a custom timer or event to demarcate the point in time at which visual completion is reached
-
-% 2013 Meenan
-- best effort for representing the user experience in a single number
-
-
-
-Above-the-fold time % 2013 Meenan
-- point in time when the last visual change is made to the visible part of the page
-- available only in lab environments where the visual progress of a page loading can be recorded
-
-
-
-
-
-Time to Interactive: % https://developer.mozilla.org/en-US/docs/Glossary/Time_to_interactive
-
-
-
-
-
-
-% ===== END: HERE I WILL LIST ALL METRICS =====
-
 
 
 
