@@ -1199,6 +1199,12 @@ Other performance measurement methods such as CrUX and surveys provide browser s
 \end{center}
 
 
+% https://support.speedcurve.com/en/articles/74068-synthetic-vs-real-user-monitoring-rum
+
+
+
+
+
 % [Metrics, Transition]
 
 Metrics are critical in order to map performance to some sort of value or number.
@@ -1230,8 +1236,6 @@ Those questions will be addressed in the next section.
 % e.g. measured by: browser, server. Technical stuff is measured in browser, everything else not in browser
 % technical, UX, ...
 
-
-% Data vs Metric ?
 
 Introduction: What are metrics, Different kind of metrics
 General, web analytics (Business) Metrics and then take a look at performance metrics
@@ -1287,6 +1291,18 @@ tailored, best would be to have custom metrics, see section X.
 
 % 2019 Enghardt
 "metrics as well as experiments have to realistically reflect possible performance improvements for actual users"
+
+
+
+
+
+% https://speedcurve.com/blog/rendering-metrics/
+- Metrics quantify behavior
+- we're trying to capture the behavior of a website in terms of speed and construction
+- statistics about how the site is built such as number of HTTP requests, size of stylesheets, and DOM depth
+- Speed is tracked by time-based metrics that capture when things happen during the user's experience with the website: start render, DOM interactive, page load, etc. 
+
+
 
 
 
@@ -2415,8 +2431,14 @@ I will show how those metrics are being calculated.
 
 % https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onload
 % onload Event 
-% Defined by the HTML specification:
+% Defined by the HTML specification
 
+
+% https://www.stevesouders.com/blog/2013/05/13/moving-beyond-window-onload/
+
+
+% https://speedcurve.com/blog/rendering-metrics/
+- In the old days, the main time-based performance metric was window.onload.
 
 
 
@@ -2823,6 +2845,28 @@ The Performance Timeline subsumes all exposed timing measures and is the go to p
 Or as Grigorik states it, "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application" % cite 2013 Girgorik
 
 
+
+\begin{center}
+\small
+	\begin{tabular}{ p{0.4\linewidth} | p{0.6\linewidth} }
+	\hline
+	Navigation Timing & summary  \\ 
+	\hline
+	Resource Timing & summary  \\  
+	\hline
+	User Timing & summary  \\  
+	\hline
+	Performance Timeline & summary  \\  
+	\hline
+	Long Tasks & summary  \\  
+	\hline
+	Paint Timing & summary  \\  
+	\hline
+	\end{tabular}
+\end{center}
+
+
+
 % [Transition]
 
 Multiple metrics are directly derived from those timing attributes, such as TTFB or Page Load Time.
@@ -2855,6 +2899,10 @@ Web Vitals are discussed in the next section, but before I will explain some oth
 
 
 
+
+
+
+
 First I will describe TTI, TBT and Speed Index, and then move on to Web Vitals.
 
 
@@ -2868,6 +2916,9 @@ First I will describe TTI, TBT and Speed Index, and then move on to Web Vitals.
 
 % https://designingforperformance.com/basics-of-page-speed/
 - tells you how many seconds it took for the browser to begin rendering content
+
+
+% https://blog.dareboost.com/en/2019/09/first-contentful-paint-fcp/
 
 
 
@@ -3046,6 +3097,23 @@ The Speed Index revolves around visual completeness and represents the average t
 
 
 
+
+
+
+
+
+% https://speedcurve.com/blog/rendering-metrics/
+
+
+
+
+
+
+
+
+
+
+
 % [Core Web Vitals]
 
 
@@ -3218,6 +3286,9 @@ The core web vitals LCP CLS and FID are now being discussed.
 - Universal metrics offer a good baseline, but in many cases you need to measure more than just these metrics in order to capture the full experience for your particular site.
 - Custom metrics allow you to measure aspects of your site's experience that may only apply to your site
 
+
+
+% https://speedcurve.com/blog/user-timing-and-custom-metrics/
 
 
 
