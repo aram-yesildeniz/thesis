@@ -4,73 +4,83 @@
 
 [tbd]
 
-\begin{itemize}
-	\item Last chapter...
-	\item This chapter: In this chapter, I will cover measurement methods and discuss common performance metrics.
-	\begin{itemize}
-		\item This chapter should cover all relevant terms and definitions within web performance measurement
-		\item How terms can be structured / taxonomy
-		\item Ambiguity of definitions
-	\end{itemize}
-	\item In the next chapter...
-\end{itemize}
+
+[Last chapter]
+
+
+
+[This chapter]
+
+% In this chapter, I will cover measurement methods and discuss common performance metrics
+% - This chapter should cover all relevant terms and definitions within web performance measurement
+% How terms can be structured / taxonomy
+% Ambiguity of definitions
 
 
 
 
-% [Outline]
-
-- Technical Background:
-	- Network
-	- Front End: Navigation and CRP
-	
-- Metrics
-
-- Measuring Methods
-
-
-
-% https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-- Compare to competitors
-- Compare different versions of your app
-- Metrics should be relevant to your users, site, and business goals
-- should be collected and measured in a consistent manner
-- analyzed in a format that can be consumed and understood by non-technical stakeholders
-
-
-
-% 2004 Phippen
+[Relevance of this chapter for research question, Roter Faden]
 
 
 
 
 
+[Next chapter]
 
-% TODO
-% IF possible use more cool tables
+
+
+
+
+[Outline of this chapter]
+
+%- Technical Background
+%	   - Network
+%	   - Front End: Navigation and CRP
+
+%- Measuring Methods	
+
+%- Metrics
+
+
+
 
 
 % ---------------------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------------------
 
 
-%TODO find better title
-\section{How Websites are being loaded}
+\section{Technical Background of the Website Loading Process}
+
 
 % [Introduction]
-- Brief technical introduction
-- It is important to understand how things work, because Metrics and also how to measure them are derived from those processes
 
-In order to understand web performance metrics and the methods to measure them, it is crucial to have a basic understanding of the technical aspect of loading a website into a browser.
+In order to understand web performance metrics and the methods to measure them, it is crucial to have a basic understanding of the technical aspect of the loading of a website into the browser.
 This process includes establishing a connection between a client and a server, which will be discussed in section X, and the task of the browser to transform the received data from the server into a readable ready-to-use website, which will be discussed in section X.
-Always with performance in mind.
+%Always with performance in mind.
+
 
 % [3 Entities: FE, BE, Network]
-It is possible to divide the website loading process into three entities which play a role.
-In his code talk 2016, Witt identifies three main areas or bottlenecks where bad performance is being produced: In the Frontend, the Backend, and on the network layer.  % cite 2016 Witt or just say this ??
-The Front End is everyhting the user sees on the screen, client, UI, browser, sends requests to a back end, etc.
-The Back End is the logic, servier, also data base, handles requests and sends responses to a front end
+
+It is possible to divide the website loading process into three entities.
+In his code talk 2016, Witt identifies three main areas of the website loading process: The Front End, the Back End, and the Network.  % cite 2016 Witt or just say this ??
+The Front End is everything the user sees on the screen, client, UI, browser, sends requests to a back end, etc.
+The Back End is the logic, server, also data base, handles requests and sends responses to a front end
 Network is what connects clients and servers, FE and BE, infrastructure element composed of routers, cables, wireless connections etc.
+
+The main steps can be divided into networking, that is, establishing a connection with DNS etc., backend processing, e.g. data base queries etc., and the rendering in the front end, as seen in image X.
+The last part of this process is when browser receives finally the HTML / Document. 
+How the browser transfers the HTML into an interactive website is part of the next section.
+
+
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{timing_overview_blanco2.png}
+\caption{Timing Overview}
+\label{img:timing_overview}
+\end{center}
+\end{figure}
+%TODO change image: make it clean
 
 
 - BE is not discussed (server time, data base, etc.)
@@ -78,20 +88,29 @@ Network is what connects clients and servers, FE and BE, infrastructure element 
 - Section X is about Front end: how browser works, crp, 
 - How to optimise websites is not part of this thesis
 
-In this section, i will also say which metrics are describing the underlying process.
-So this section links directly to the metrics section.
-But all metrics are collected in the metrics section.
 
+
+
+% [Performance]
+
+Focus and perspective is performance, like in overall thesis.
+Also when explaining the technical background, I will keep the aspect of performance in mind.
+
+Once I discussed the processes in the network and the front end, I will move on to the question of how to measure the performance of those processes, and which metrics are available to quantify the performance.
+
+
+%TODO should I talk about metrics already in this section ?
 
 
 % --------------------------------------------------------------------------------------------
 % --------------------------------------------------------------------------------------------
 
 
-%TODO choose title. Maybe "Establishment of Connection?"
-\subsection{The Network Realm}
+\subsection{The Website Loading Process in the Network}
 
-Starting from hardware, ISP, routers, switches etc and the cables connecting them is part of the network.
+[tbd]
+
+The network is... Starting from hardware, ISP, routers, switches etc and the cables connecting them.
 But also communication protocols such as the Internet protocol suite.
 
 Regarding performance, latency and bandwidth come into mind, and we will see that latency has a bigger impact on performance than bandwidth in section X.
@@ -112,13 +131,10 @@ The important thing to say here is that Latency is bottleneck for performance, a
 
 Bandwidth is the "maximum throughput of a logical or physical communication path". %cite 2013 Grigorik
 In other words, bandwidth describes the amount of data which can be sent in parallel from one node in a network to another. 
-
 Physical communication paths are most likely cables such as metal wires or fiber-optic cables, where fiber-optic cables have less signal loss, and lower lifetime maintenance costs.
 With methods such as wavelength-division multiplexing (WDM), it is possible to transmit up to 70 Tbit/s over a fiber-optic connection.  %cite 2013 Grigorik
-
 This high technology stuff is only used in the backbone infrastructure, e.g. for connecting Europe with America.
 For the end user, bandwidth is much lower, and the average was in late 2015 just 5.1 Mbps %cite 2013 Grigorik
-
 A high bandwidth is useful for bulk or large data transfer such as streaming of video or audio.
 But for loading a website,or any browser activity that depends on many requests that fetch data from many different locations around the globe, the performance bottleneck is latency. % cite 2013 Grigorik
 
@@ -126,10 +142,8 @@ But for loading a website,or any browser activity that depends on many requests 
 % [Latency]
 
 Latency is "the time from the source sending a packet to the destination receiving it".  % cite 2013 Grigorik
-
 Latency is measured in seconds and can be the time spent for one-way, or more common, how long it takes for the transmitted data package for the round-trip time (RTT), from source to destination and back.
 In other words, latency "describes the amount of delay on a network or Internet connection". % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-
 For the very first request when establishing a connection, latency is longer due to protocols such as DNS lookup, TCP and TLS handshakes.
 Those will be discussed in section X. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
 
@@ -152,18 +166,15 @@ He and compared the performance of the two experiments using the Page Load Time 
 
 We can see that the impact of bandwidth is trivial: if the available bandwidth is doubled, e.g. from 5 to 10 Mbps, there is no change in performance load time.
 For Latency on the other hand, the picture is different: If the latency can be decreased by half, e.g. from 120 ms to 60 ms, the page load time also sinkt um die hälfte.
-
 Or as Belshe states it, "[reducing] cross-atlantic RTTs from 150ms to 100ms [...] would have a larger effect on the speed of the internet than increasing a user's bandwidth from 3.9Mbps to 10Mbps or even 1Gbps." % cite https://docs.google.com/a/chromium.org/viewer?a=v&pid=sites&srcid=Y2hyb21pdW0ub3JnfGRldnxneDoxMzcyOWI1N2I4YzI3NzE2
 
-This obersvations can be explained with the many short, small connections and requests are made when browsing websites and the contrary underlying structure of the communication protocols, which are "optimized for long-lived connections and bulk data transfers. " %cite 2013 Grigorik ch 10
-
+This observations can be explained with the many short, small connections and requests are made when browsing websites and the contrary underlying structure of the communication protocols, which are "optimized for long-lived connections and bulk data transfers. " %cite 2013 Grigorik ch 10
 But just simply decreasing the latency is not straightforward: The speed of data transfer is already at a 2/3 of light, but the physical constraint is the limiting factor, e.g. there is a minimum distance between London and New York which can not be further "optimized". % cite 2013 Grigorik Ch 1
 
 
 % [Mobile]
 
 Another aspect of latency is that for wireless connections and therefore mobile devices, latency is even higher, "making networking optimization a critical priority for the mobile web." % cite 2013 Grigork Ch 1
-
 This is due to the infrastructure of mobile nets, latency is high for mobile users. cf.  Why are mobile latencies so high? in Grigorik % cite https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
 
 
@@ -172,15 +183,14 @@ This is due to the infrastructure of mobile nets, latency is high for mobile use
 As latency is a important factor, what happens on the front end is still important.
 And again for this thesis metrics measuring performance in the front end are the focus.
 
-Before i will discuss what happens in the browser once the website data arrived, i will briefly describe the preceding steps of establishing a connection between the browser (client) and the server.
+Before i will discuss what happens in the browser once the website data arrived, i will briefly describe the preceding steps of establishing a connection between the browser (client) and the server, which can be considered to be still a part of the network.
+
 
 
 
 %TODO add this ?
-
 % Use other techniques such as CDNs, caching, pre-fetching, etc % 2013 Grigorik
 % CDN: Help against this issue. Put stuff close to client % 2013 Grigorik
-
 % Some direct implications for performance measurement ?
 % Understanding Latency https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
 % Network throttling: Emulate download speed, upload speed, and minimum latency
@@ -190,27 +200,13 @@ Before i will discuss what happens in the browser once the website data arrived,
 % --------------------------------------------------------------------------------------------
 
 
+\subsubsection{Network Navigation Steps}
 
-\subsubsection{Navigation Process}
+[tbd]
 
-I will explain briefly the general navigation process: It begins when the user is submitting a URL in the browser and ends when he received website data.
-
-The main steps can be divided into networking, that is, establishing a connection with DNS etc., backend processing, e.g. data base queries etc., and the rendering in the front end, as seen in image X.
-The last part of this process is when browser receives finally the HTML / Document. 
-How the browser transfers the HTML into an interactive website is part of the next section.
-
+I will explain briefly the main navigation steps: It begins when the user is submitting a URL in the browser and ends when he received website data.
 
 "To start, it is important to recognize that every HTTP request is composed of a number of separate stages (Figure 10-3): DNS resolution, TCP connection handshake, TLS negotiation (if required), dispatch of the HTTP request, followed by content download." % cite Grigorik 2013
-
-
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.8\textwidth]{timing_overview.png}
-\caption{Timing Overview}
-\label{img:timing_overview}
-\end{center}
-\end{figure}
-%TODO change image: remove network and BE boxes? remove white space around image
 
 
 %TODO add this ?
@@ -311,7 +307,7 @@ How this exactly happens, is explained in the next section.
 
 
 
-\subsection{Front End: Critical Rendering Path}
+\subsection{The Website Loading Process in the Frontend: Critical Rendering Path}
 
 This section explains what happens after the first bytes of the web sites arrived in the browser.
 The following processes are typically subsumed under the term \textit{Critical Rendering Path} (CRP).
@@ -362,7 +358,6 @@ In the following, the individual steps will be discussed in more detail.
 \label{img:crp}
 \end{center}
 \end{figure}
-
 
 
 
@@ -599,7 +594,6 @@ Like with async, scripts with the defer attribute enable the browser to download
 Contrary to async, defer scripts will only be executed after the parsing of the page is complete and the DOM tree is fully constructed,  and the order of the scripts will be maintained.  %cite  https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
 
 
-%TODO add this nice graphic and cut out last rows https://html.spec.whatwg.org/multipage/scripting.html#attr-script-async
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{scripts.png}
@@ -610,8 +604,8 @@ Contrary to async, defer scripts will only be executed after the parsing of the 
 
 
 The async and defer attributes not applicable on inline scripts.
-From the standard, "scripts may specify defer or async, but must not specify either unless the src attribute is present. " % \footnote https://html.spec.whatwg.org/multipage/scripting.html#attr-script-async
-As inline scripts do not contain a src attribute, as the source of the script is within the script tags, the async and defer attributes are not applicable.
+The HTML standard states that  "scripts may specify defer or async, but must not specify either unless the src attribute is present. " % \footnote https://html.spec.whatwg.org/multipage/scripting.html#attr-script-async
+As inline scripts do not contain a src attribute, as the source of the script is within the script tags and not external, the async and defer attributes are not applicable.
 
 
 % https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
@@ -620,7 +614,7 @@ As inline scripts do not contain a src attribute, as the source of the script is
 
 
 
-% [Transition]
+% [Transition] ??
 
 
 
@@ -669,7 +663,7 @@ Rendering can happen once the \textit{Render Tree} is available.
 The render tree is the combination of the DOM and CSSOM and captures all visible content with its styles which will be displayed on the screen.
 If an element has a CSS property such as \verb|display: none;| it will not occur in the render tree. % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
 
-The computed render tree is then used to layout the content to the page, which is described in the next paragraph.
+The computed render tree is then used to layout the content to the page.
 
 
 %TODO add this ? Check again when chapter about WPT metrics is done
@@ -685,8 +679,6 @@ The computed render tree is then used to layout the content to the page, which i
 
 \paragraph{Layout}
 
-
-% [Introduction]
 
 In the layout process, the position and size of the nodes from the render tree are calculated.
 New layout calculations or reflows are triggered as soon as the screen area changes, e.g. by device rotation or window resizing, or on modifications of the DOM and render tree. % cite How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
@@ -723,7 +715,6 @@ If some content changes, browsers are optimized to only repaint areas on the scr
 %- Above the fold: “Above-the-Fold” refers to the area that the visitor normally sees on a website before scrolling down to see the rest of the content. 
 
 
-
 %TODO add performance question?
 % https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
 %- Paint: It’s important to remember that some CSS properties can have a larger impact on the page weight than others (for example, a radial-gradient is much more complex to paint than a simple color).
@@ -744,14 +735,14 @@ If some content changes, browsers are optimized to only repaint areas on the scr
 % ------------------------------------------------------------
 
 
-\subsection{Conclusion Technical Background}
+\subsection{Technical Background Conclusion}
 
 [tbd]
 
 
-% We could see that performance Metrics are directly derived from this process
-% Metrics will be discussed next
-% After that, i will talk about how to actually measure the metrics
+% We could see that performance Metrics are directly derived from this process ??
+% Measurement methods will be discussed next
+% After that, i will talk about which metrics are available to capture performance data
 
 
 
@@ -784,15 +775,11 @@ If some content changes, browsers are optimized to only repaint areas on the scr
 %- Anything that loads late and changes UI can cause layout shifts
 %- 3rd party scripts: Need additional DNS lookup, should not be single point of failure
 
-
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
 %- Optimizing for CRP
 
-
 % https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
 %- Optimizing
-
-
 
 % Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
 % And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
@@ -840,9 +827,6 @@ If some content changes, browsers are optimized to only repaint areas on the scr
 %- Inlining and Optimization: Critical, PostCSS, processhtml
 %- Minification and Compression: Goole Closure, tinyPng, Uglifycss and cssmin
 
-
-
-
 % 2014 Hogan https://designingforperformance.com/
 % Chapter 2 The Basics of Page Speed - How Browsers Render Content:
 %- Browsers try to parallelize requests for content
@@ -868,9 +852,6 @@ If some content changes, browsers are optimized to only repaint areas on the scr
 %- Single Page Apps
 
 
-
-
-
 %TODO add this ??
 % [JavaScript Parsing]
 % https://medium.com/reloading/javascript-start-up-performance-69200f43b201
@@ -886,32 +867,36 @@ If some content changes, browsers are optimized to only repaint areas on the scr
 % ---------------------------------------------------------------------------------------------------------------------------------------
 
 
-
-
 \section{Measurement Methods}
 
-%TODO add some more info for Roter Faden, why is this here? whats all about ?
-% start with web analyitcs and web performance context
-% as described in section web analytics, measurement is important... will be described here
-% i could also motivate here that i will use both methods in my experiment thats why i need to explain them here
+
+[tbd]
+
 
 % [Introduction]
 
-At this point we have a understanding of how web sites are being loaded into the browser and displayed to the user.
+Last section: At this point we have an understanding of how web sites are being loaded into the browser and displayed to the user.
 Some of the steps are more important for performance than others.
-In this section, I will describe how to measure the performance of a web site.
+In this section, I will describe how to measure the performance of a website.
 
-% Why web performance? As we saw its important for business
 
-Multiple methods exists.
+[Link to Research Question]
+
+% add some more info for Roter Faden, why is this here? whats all about ?
+% start with web analyitcs and web performance context
+% as described in section web analytics, measurement is important...
+% i could also motivate here that i will use both methods in my experiment thats why i need to explain them here
+
+
+% [Methods]
+
+Multiple methods for measuring website performance exist.
 The prominent ones are synthetic monitoring and real user monitoring.
 They will be discussed below.
 
 Some other methods are mentioned in the last section.
 
 After discussing measurement methods, I can finally discuss the metrics we want to measure.
-
-
 
 
 
@@ -927,7 +912,6 @@ After discussing measurement methods, I can finally discuss the metrics we want 
 
 \subsubsection{The "Synthetic" Aspect in Synthetic Monitoring}
 
-%\paragraph{Laboratorial Environment}
 
 As the name already suggests, synthetic monitoring is a measurement method performed in an artificial, laboratory-like, synthetic environment.
 Test agents simulate real users and are configured to run a browser, load the web site under observation while capturing performance data.
@@ -969,7 +953,6 @@ and is in general helpful for continuous "health checks" of the running system. 
 As any web site can be tested synthetically, it is possible to compare performance data across multiple competitors. % cite 2009 Croll
 
 
-%TODO this does not really fit here
 % [Tools]
 
 Many synthetic monitoring tools exists (For a list of tools, see for example 2016 Kaur or some online resources here).
@@ -998,10 +981,8 @@ RUM will be discussed next.
 %- waterfall diagram contains timing information on when the individual resources were requested, from which domain and over what kind of connection each of them was served, and how long transmission took
 
 
-
 % 2016 Viscomi
 %- synthetic tools are deliberately designed to focus on the performance of a web page under strict conditions that are otherwise highly volatile in real-user performance
-
 
 
 % 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
@@ -1056,7 +1037,7 @@ Through the diversity of users and the unique environment of each user,  RUM dat
 
 
 
-\subsubsection{Measure Real User Behaviour}
+\subsubsection{RUM Measures Behaviour of Real Users}
 
 %TODO here i need to introduce maybe in e-commerce again? Or what is the roter faden? like funnel analysis all this stuff reference it here?
 
@@ -1076,8 +1057,9 @@ With techniques such as cookies (see section X.), it is also possible to track u
 Multiple RUM tools and JS libraries exists, such as Boomerang by Akamai. \footnote{\url{https://github.com/akamai/boomerang} [23.06.2021]}
 The main player Google Analytics will be discussed in greater detail in section X.
 
+% SpeedKit ?
 
-%SpeedKit ?
+
 
 
 %TODO add this here?
@@ -1089,26 +1071,23 @@ The main player Google Analytics will be discussed in greater detail in section 
 %The performance data and timings are exposed through a variety of APIs which the JS tracking code has access to.
 
 % 2013 Grigorik https://hpbn.co/primer-on-web-performance/
-- APIs to measure real users (will be discussed in metrics chapter):
-- Navigation Timing
-- Resource TIming
-- User TIming
-- The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application
+%- APIs to measure real users (will be discussed in metrics chapter):
+%- Navigation Timing
+%- Resource TIming
+%- User TIming
+%- The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application
 
 % Cito
-- Real-User Monitoring leverages browser APIs to collect data specific to each end-user transaction
+%- Real-User Monitoring leverages browser APIs to collect data specific to each end-user transaction
 
 % 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-- Collected information includes various timers to capture network and rendering performance
-- To also capture details about the user’s device and browser or on the referring website over which the user arrived, the user agent string and other data artifacts are collected along with the values obtained from the Navigation and Performance Timing APIs
+%- Collected information includes various timers to capture network and rendering performance
+%- To also capture details about the user’s device and browser or on the referring website over which the user arrived, the user agent string and other data artifacts are collected along with the values obtained from the Navigation and Performance Timing APIs
 
 
 % [Business Data]
-conversion rates etc.
 
-
-
-
+%conversion rates etc.
 
 
 
@@ -1138,34 +1117,32 @@ The collected data is available via Googles PageSpeed Insights, the CrUX Dashboa
 % ----------------------------------------------------------------------------------------------
 
 
-
-%TODO even add this ?
 \subsection{Log Files and Surveys}
+
+[tbd]
 
 Other RUM methods are surveys and log file analysis.
 
-
 % 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 
-Log analysis:
-- concerned with technical performance in the backend
-- generates insights from the data that is already available from the application server, proxy, or content delivery network (CDN)
-- TTFB
-- Server logs typically only reflect the time it took to send the first response, not until the client actually started receiving it
-- Analyzing logs from application servers, CDNs, or proxies is a reasonable first step to discover potential bottlenecks, but it only covers the server side and does not provide any information on client-side processing in general or rendering performance in particular
+%Log analysis:
+%- concerned with technical performance in the backend
+%- generates insights from the data that is already available from the application server, proxy, or content delivery network (CDN)
+%- TTFB
+%- Server logs typically only reflect the time it took to send the first response, not until the client actually started receiving it
+%- Analyzing logs from application servers, CDNs, or proxies is a reasonable first step to discover potential bottlenecks, but it only covers the server side and does not provide any information on client-side processing in general or rendering performance in particular
 
 
-Surveys:
-- directly ask the users for their opinions
-- direct approach to understanding whether or not users are satisfied with website performance: Just ask them for their opinion
-- online surveys or by offering some sort of price or chance to win a competition in exchange for the users opinions. 
-- Other options include actual interviews or monitoring users in a lab setting to find out how they react while surfing on the website.
-- they only cover a small sample of the user base and therefore may be subject to a certain selection bias
-- user perception can be highly inaccurate
-- Getting reliable info from user surveys is therefore no trivial task
-- some forms of surveys (e.g. lab experiments) can be relatively expensive to conduct in comparison to some of the fully automated alternatives for collecting information
-- are great for collecting qualitative feedback on the user experience, but are not suitable for gathering quantitative measurements
-
+%Surveys:
+%- directly ask the users for their opinions
+%- direct approach to understanding whether or not users are satisfied with website performance: Just ask them for their opinion
+%- online surveys or by offering some sort of price or chance to win a competition in exchange for the users opinions. 
+%- Other options include actual interviews or monitoring users in a lab setting to find out how they react while surfing on the website.
+%- they only cover a small sample of the user base and therefore may be subject to a certain selection bias
+%- user perception can be highly inaccurate
+%- Getting reliable info from user surveys is therefore no trivial task
+%- some forms of surveys (e.g. lab experiments) can be relatively expensive to conduct in comparison to some of the fully automated alternatives for collecting information
+%- are great for collecting qualitative feedback on the user experience, but are not suitable for gathering quantitative measurements
 
 
 
@@ -1191,17 +1168,17 @@ Other performance measurement methods such as CrUX and surveys provide browser s
 
 %TODO fill in
 \begin{center}
-\begin{tabular}{ | c | c | }
- Synthetic Monitoring & RUM \\
- \hline
- summary & summary
+\begin{tabular}{  c | c  }
+Synthetic Monitoring & RUM \\
+\hline
+summary & summary \\
+\hline
+summary & summary \\
 \end{tabular}
 \end{center}
 
 
-% https://support.speedcurve.com/en/articles/74068-synthetic-vs-real-user-monitoring-rum
-
-
+%TODO check out https://support.speedcurve.com/en/articles/74068-synthetic-vs-real-user-monitoring-rum
 
 
 
@@ -1230,17 +1207,20 @@ Those questions will be addressed in the next section.
 \section{Metrics}
 
 
-%TODO roter faden: motivate with context web analytics, web performance, user satisfaction etc
-
-%TODO ideally come up with a nice table which abstracts and summarizes everything about metrics:
-% e.g. measured by: browser, server. Technical stuff is measured in browser, everything else not in browser
-% technical, UX, ...
+[tbd]
 
 
 Introduction: What are metrics, Different kind of metrics
-General, web analytics (Business) Metrics and then take a look at performance metrics
-Page weight, Performance, UX and custom Metrics
-Metrics Taxonomy
+Business Metrics or metrics not directly correlated to performance or site speed.
+Performance metrics: Page weight, Timings, UX and custom Metrics
+Summary / Metrics Taxonomy
+
+
+[Link to Research Question]
+
+% roter faden: motivate with context web analytics, web performance, user satisfaction etc
+
+
 
 
 % [Quantifiable]
@@ -1261,6 +1241,12 @@ numbers can be compared: over time, after change, with competitor, etc.
 
 % https://web.dev/user-centric-performance-metrics/
 - So when talking about performance, it's important to be precise and to refer to performance in terms of objective criteria that can be quantitatively measured. These criteria are known as metrics.
+
+% https://speedcurve.com/blog/rendering-metrics/
+- Metrics quantify behavior
+- we're trying to capture the behavior of a website in terms of speed and construction
+- statistics about how the site is built such as number of HTTP requests, size of stylesheets, and DOM depth
+- Speed is tracked by time-based metrics that capture when things happen during the user's experience with the website: start render, DOM interactive, page load, etc. 
 
 
 
@@ -1293,16 +1279,12 @@ tailored, best would be to have custom metrics, see section X.
 "metrics as well as experiments have to realistically reflect possible performance improvements for actual users"
 
 
-
-
-
-% https://speedcurve.com/blog/rendering-metrics/
-- Metrics quantify behavior
-- we're trying to capture the behavior of a website in terms of speed and construction
-- statistics about how the site is built such as number of HTTP requests, size of stylesheets, and DOM depth
-- Speed is tracked by time-based metrics that capture when things happen during the user's experience with the website: start render, DOM interactive, page load, etc. 
-
-
+% https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
+- Compare to competitors
+- Compare different versions of your app
+- Metrics should be relevant to your users, site, and business goals
+- should be collected and measured in a consistent manner
+- analyzed in a format that can be consumed and understood by non-technical stakeholders
 
 
 
@@ -1312,14 +1294,26 @@ tailored, best would be to have custom metrics, see section X.
 
 
 
-\subsection{Web Analytics, Business or "Non-Performance" Metrics}
+% ------------------------------------
+
+
+
+\subsection{Business or "Non-Performance" Metrics}
+
+
+[tbd]
 
 Unlimited metrics, also when thinking about custom metrics.
 The main question here is how to categorize those metrics.
-Best is: numerical values, Relations, non-numerical values
+One approach is: numerical values, Relations, non-numerical values
 
 
-\subsubsection{Possible Categorizations of Web Analytics Metrics}
+
+
+% ------------------------------------
+
+
+\subsubsection{Possible Categorizations of Business Metrics}
 
 
 Semantic categorization
@@ -1464,6 +1458,8 @@ Metrics Categories for E-Shop:
 
 
 
+%TODO add?
+% 2004 Phippen
 
 
 
@@ -1477,7 +1473,7 @@ This list is not complete.
 After that, i will take a look at metrics which are specifically for performance.
 
 
-
+%TODO add ?
 % Customer Life Cycle and Pyramid
 % 2004 Peterson
 %Pyramid Model described the data itself and not metrics
@@ -1492,9 +1488,11 @@ After that, i will take a look at metrics which are specifically for performance
 % ---------------------------------------------------------------
 
 
-\subsubsection{Web Analyitcs Metrics Examples}
+\subsubsection{Business Metrics Examples}
 
-use counts, rations and non-numerical values
+
+Categorization used: counts, rations and non-numerical values.
+
 
 % [Counts]
 
@@ -1506,24 +1504,21 @@ Compare with Segmentation
 
 % [Ratios]
 
-Combining numerical values
+Ratios are a combination of numerical values.
 As Ratio or Percentage
 
 
 % [Non-Numerical Values]
 
-Can not be reflected as number
+Non-Numerical Values can not be reflected as number.
 
-
-
-% background color for titles
 
 \begin{center}
 	\small
 	\begin{longtable}{ | p{0.3\linewidth} | p{0.7\linewidth} | }
 	
 	\hline
-	\multicolumn{2}{|c|}{Counts} \\
+	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Counts} \\
 	\hline
 	Hits & explain here... \\
 	\hline
@@ -1552,7 +1547,7 @@ Can not be reflected as number
 	... & ... \\
 
 	\hline
-	\multicolumn{2}{|c|}{Ratios} \\
+	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Ratios} \\
 	\hline
 	Conversion Rate & ... \\
 	\hline
@@ -1573,7 +1568,7 @@ Can not be reflected as number
 	... & ... \\	
 	
 	\hline
-	\multicolumn{2}{|c|}{Non-Numerical Values} \\
+	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Non-Numerical Values} \\
 	\hline
 	Demographics & ... \\	
 	\hline
@@ -1582,7 +1577,7 @@ Can not be reflected as number
 	... & ... \\
 	\hline
 	
-	\caption{Your caption here} % needs to go inside longtable environment
+	\caption{Business Metrics Examples} % needs to go inside longtable environment
 	\label{tab:businessmetrics}
 	\end{longtable}
 \end{center}
@@ -1649,7 +1644,7 @@ Can not be reflected as number
 %\paragraph{Conversions}
 
 
-% ---------------------------------------------------------------------------------
+% -------------- RATIOS --------------
 
 
 %\paragraph{Bounce Rate}
@@ -1687,7 +1682,7 @@ Can not be reflected as number
 
 
 
-% ---------------------------------------------------------------------------------
+% % -------------- NON_NUMERICAL_VALUES --------------
 
 
 %TODO find some more examples here
@@ -1718,7 +1713,6 @@ This will be discussed.
 
 
 
-
 % Kessler 2012 -> dont have this digital...
 % Erfolg messen und bewerten
  %Traffic:
@@ -1745,7 +1739,16 @@ This will be discussed.
 
 \subsection{Performance Metrics}
 
-%TODO come up with some good introduction once outline of section is clear
+
+[tbd]
+
+
+Business metrics was about...
+Performance metrics is about...
+
+No official definitions
+Still there are informal standard
+Implementation can vary between tools who measure metrics
 
 
 % [Categories]
@@ -1771,41 +1774,31 @@ Custom Metrics
 
 \subsubsection{Page Weight}
 
-- naive approach to measure web site, make it quantifiable
-- the size of the web site
+
+- one approach of making the website quantifiable
+- measure the size of the web site
 - Page weight has an impact on performance
 - Page consists of resources
 - More resources and bytes means more requests, downloads and waiting time
 
 
 % HTTP Archive
-- Generally for all resources / assets: Bytes and Requests
+- Website consists of resources
+- Measure bytes of each resource
+- Measure how many requests are needed to fetch all resources
 - Total Size: Number of bytes sent over the network, which may be compressed
 
-- Total Kilobytes
-- Total Requests
+Bytes and Requests of following resources:
 
-- HTML Bytes
-- HTML Requests
-
-- CSS Bytes
-- CSS Requests
-
-- JavaScript Bytes
-- JavaScript Requests
-
-- Font Bytes
-- Font Requests
-
-- Image Bytes
-- Image Requests
-
-- Video Bytes
-- Video Requests
-
-- Other Bytes
-- Other Requests
-
+\begin{center}
+\begin{tabular}{| c | c | c | c | }
+\hline
+HTML & CSS  & JS & Fonts \\
+\hline
+Images & Videos & Others & Total \\
+\hline
+\end{tabular}
+\end{center}
 
 In approach section, i used this data to come up with a median web site.
 In this section are also some numbers available.
@@ -2196,7 +2189,7 @@ duration
 
 \begin{center}
 	\small
-	\begin{longtable}{ | p{0.3\linewidth} | p{0.7\linewidth} | }
+	\begin{longtable}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
 	\hline
 	\multicolumn{2}{|c|}{Navigation Timing} \\
 	\hline
@@ -2381,25 +2374,25 @@ I will show how those metrics are being calculated.
 
 \begin{center}
 	\small
-	\begin{longtable}{ | p{0.3\linewidth} | p{0.7\linewidth} | }
+	\begin{longtable}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
 	\hline
 	Time to First Byte (TTFB) & $responseStart - navigationStart$: blablablabalb \\
 	\hline
-	Page Load Time (PLT) & loadEventStart - navigationStart \\
+	Page Load Time (PLT) & $loadEventStart - navigationStart$ \\
 	\hline
-	DNS Lookup Time & domainLookupEnd - domainLookupStart \\
+	DNS Lookup Time & $domainLookupEnd - domainLookupStart$ \\
 	\hline
-	TCP Handshake / Server Connect Time & connectEnd - connectStart \\
+	TCP Handshake / Server Connect Time & $connectEnd - connectStart$ \\
 	\hline
-	TLS Handshake Time & requestStart - secureConnectionStart \\
+	TLS Handshake Time & $requestStart - secureConnectionStart$ \\
 	\hline
-	Request / Server Response Time & responseStart - requestStart \\
+	Request / Server Response Time & $responseStart - requestStart$ \\
 	\hline
-	DOM Content Loaded & domContentLoadedEventEnd - domContentLoadedEventStart \\
+	DOM Content Loaded & $domContentLoadedEventEnd - domContentLoadedEventStart$ \\
 	\hline
-	Page Download Time & responseEnd - responseStart \\
+	Page Download Time & $responseEnd - responseStart$ \\
 	\hline
-	Latency & responseStart – fetchStart \\
+	Latency & $responseStart - fetchStart$ \\
 	\hline
 	DOM Interactive & \\
 	\hline
@@ -2795,7 +2788,7 @@ For user perspective, start render is the metric.
 
 \begin{center}
 \small
-	\begin{tabular}{ p{0.4\linewidth} | p{0.6\linewidth} }
+	\begin{tabular}{ p{0.3\linewidth} | p{0.6\linewidth} }
 	\hline
 	First Paint & "Marks the point when the browser renders anything that is visually different from what was on the screen prior to navigation"  \\ 
 	\hline
@@ -2846,9 +2839,11 @@ Or as Grigorik states it, "The combination of Navigation, Resource, and User tim
 
 
 
+
+
 \begin{center}
 \small
-	\begin{tabular}{ p{0.4\linewidth} | p{0.6\linewidth} }
+	\begin{tabular}{ p{0.3\linewidth} | p{0.6\linewidth} }
 	\hline
 	Navigation Timing & summary  \\ 
 	\hline
@@ -2983,7 +2978,6 @@ The First Meaningful Paint is another user-centric metric and represents the poi
 % ------------------------
 
 
-%TODO add this ?
 \paragraph{Above the Fold Time}
 
 % 2013 Meenan
@@ -3079,36 +3073,19 @@ The Speed Index revolves around visual completeness and represents the average t
  
  \begin{center}
 \small
-	\begin{tabular}{ | p{0.3\linewidth} | p{0.7\linewidth} | }
+	\begin{tabular}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
 	\hline
-	Is it happening? & 	Did the navigation start successfully? Has the server responded? \\
+	\textit{Is it happening?} & 	Did the navigation start successfully? Has the server responded? \\
 	\hline
-	Is it useful? & Has enough content rendered that users can engage with it? \\
+	\textit{Is it useful?} & Has enough content rendered that users can engage with it? \\
 	\hline
-	Is it usable? & Can users interact with the page, or is it busy? \\
+	\textit{Is it usable?} & Can users interact with the page, or is it busy? \\
 	\hline
-	Is it delightful? & Are the interactions smooth and natural, free of lag and jank? \\
+	\textit{Is it delightful?} & Are the interactions smooth and natural, free of lag and jank? \\
 	\hline
 	\end{tabular}
 \end{center}
  % cite https://web.dev/user-centric-performance-metrics/
-
-
-
-
-
-
-
-
-
-
-% https://speedcurve.com/blog/rendering-metrics/
-
-
-
-
-
-
 
 
 
@@ -3149,15 +3126,20 @@ The core web vitals LCP CLS and FID are now being discussed.
 
 \paragraph{Largest Contentful Paint}
 
+
+
 % LCP https://web.dev/lcp/
 
 
 % https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
-- LCP: Progressive loading. FCP may become a core web vital
+- LCP: Progressive loading.
+- FCP may become a core web vital
 
 
 
 % https://wicg.github.io/largest-contentful-paint/
+
+
 
 % https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 - approximation of the First Meaningful Paint that can be captured in the browser
@@ -3264,10 +3246,10 @@ The core web vitals LCP CLS and FID are now being discussed.
 
 
 
-
-
 \subsubsection{Custom Metrics}
 
+
+[tbd]
 
 % 2013 Meenan
 - First, it is important to understand that no single number will answer that question. Even if you have defined exactly what you are trying to measure on your Web site, performance will vary widely across your user base and across the different pages on your site
@@ -3295,12 +3277,25 @@ The core web vitals LCP CLS and FID are now being discussed.
 % -----------------------------------------------------------------------
 
 
-\subsubsection{Conclusion and link to Research Question}
+\subsubsection{Metrics Conclusion}
+
+
+[tbd]
+
+%TODO ideally come up with a nice table which abstracts and summarizes everything about metrics:
+% e.g. measured by: browser, server. Technical stuff is measured in browser, everything else not in browser
+% technical, UX, ...
+
+[summary table]
+
+
+
+[Link to Research Question]
 
 
 \paragraph{Observer Effect}
 
-% youtube
+% https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
 Avoiding the Observer Effect
 
 - How to measure performance without affecting performance?
@@ -3324,11 +3319,6 @@ The first rule of effective performance measurement is to make sure your perform
 
 Before tackling this question with an experiment, I will discuss one synthetic monitoring tool WPT and one RUM tool GA which I will then use in the approach.
 Also some research in this field will be discussed.
-
-
-
-% -----------------------------------------------------------------------
-
 
 
 
