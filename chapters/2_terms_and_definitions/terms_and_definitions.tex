@@ -19,7 +19,7 @@
 
 
 
-[Relevance of this chapter for research question, Roter Faden]
+[Relevance of this chapter for research question]
 
 
 
@@ -229,7 +229,9 @@ Must be done for each unknown URL, e.g. when linked images within a website are 
 The mapping of URL to IP can be cached by browser, which makes repeated views faster. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 
 Avg. time is 20 and 120 ms % https://www.keycdn.com/support/reduce-dns-lookups
-Can be considered a performance metric, see section X.
+
+%Metric?
+%Can be considered a performance metric, see section X.
 
 
 % ----------------------------------
@@ -247,10 +249,12 @@ Many algorithms and techniques to get optimal data transfer and also avoid conge
 Slow-Start is an algorithm that determines the maximum bandwidth that can be used by gradually increasing the amount of data sent.
 Slow start prevents that the full capacity of the network is being used from the beginning, which in performance terms adds again more round trips and latency. %cite 2013 Grigorik
 
-
-%TODO once i know which metric add it here
-A performance metric reflecting the time spent for establishing a TCP connection is X, see section X.
 For a detailed discussion cf "Building Blocks of TCP" in 2013 Grigorik % cite https://hpbn.co/building-blocks-of-tcp/
+
+%TODO once i know which metric add it here ?
+%A performance metric reflecting the time spent for establishing a TCP connection is X, see section X.
+
+
 
 
 % ----------------------------------
@@ -264,10 +268,10 @@ For encryption,  a cipher to be used needs to be established, which will be shar
 
 TLS again adds more round trips which is bad for performance.
 
-%TODO once i know which metric add it here
-A performance metric reflecting the time spent for a TLS negotiating is blabla in section X.
-
 for a detailed discussion see Transport Layer Security (TLS) in 2013 Grigorik % https://hpbn.co/transport-layer-security-tls/
+
+%TODO once i know which metric add it here?
+%A performance metric reflecting the time spent for a TLS negotiating is blabla in section X.
 
 
 % ----------------------------------
@@ -739,6 +743,14 @@ If some content changes, browsers are optimized to only repaint areas on the scr
 
 [tbd]
 
+Network, BE and FE.
+Network: Latency and Bandwidth, Navigation steps
+FE: CRP
+
+[Link to next section]
+Why was this section important for research question?
+How is it connected to measurement methods and metrics?
+
 
 % We could see that performance Metrics are directly derived from this process ??
 % Measurement methods will be discussed next
@@ -901,8 +913,6 @@ After discussing measurement methods, I can finally discuss the metrics we want 
 
 
 
-
-% ----------------------------------------------------------------------------------------------
 % ----------------------------------------------------------------------------------------------
 
 
@@ -1210,86 +1220,77 @@ Those questions will be addressed in the next section.
 [tbd]
 
 
-Introduction: What are metrics, Different kind of metrics
-Business Metrics or metrics not directly correlated to performance or site speed.
-Performance metrics: Page weight, Timings, UX and custom Metrics
-Summary / Metrics Taxonomy
-
-
-[Link to Research Question]
+[Link to Research Question] \\
 
 % roter faden: motivate with context web analytics, web performance, user satisfaction etc
 
 
 
+% [Quantification and Analysis]
 
-% [Quantifiable]
+Through metrics, performance is quantifiable, as metrics reflect performance in numbers.
+Once performance is mapped to numbers, they can be compared with each other, for example over time, after a change in the measured application,  or with numbers of a competitor. % cite https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
+Through their performance quantification, metrics facilitate the analysis of website traffic.
+Specific metric values can be used as a target for goal achievement and are therefore a critical instrument for improving websites. % cite 2009 Jansen
+Ideally, metrics are precise and serve as objective criteria for the evaluation of the measured website. % cite https://web.dev/user-centric-performance-metrics/
 
-reflect in numbers
-numbers can be compared: over time, after change, with competitor, etc.
-
-% https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-- Compare to competitors
-- Compare different versions of your app
-
-% 2009 Jansen
-- use these metrics to analyze Web traffic and improve a Website to meet better the expectations of the site’s traffic
-
-% 2014 Singal:
-"Metrics serve as the basic information for analyzing Web traffic and helps in improving a Website to meet its goals"
-
-
-% https://web.dev/user-centric-performance-metrics/
-- So when talking about performance, it's important to be precise and to refer to performance in terms of objective criteria that can be quantitatively measured. These criteria are known as metrics.
 
 % https://speedcurve.com/blog/rendering-metrics/
-- Metrics quantify behavior
-- we're trying to capture the behavior of a website in terms of speed and construction
-- statistics about how the site is built such as number of HTTP requests, size of stylesheets, and DOM depth
-- Speed is tracked by time-based metrics that capture when things happen during the user's experience with the website: start render, DOM interactive, page load, etc. 
+-% Metrics quantify behavior
+%- we're trying to capture the behavior of a website in terms of speed and construction
+%- statistics about how the site is built such as number of HTTP requests, size of stylesheets, and DOM depth
+%- Speed is tracked by time-based metrics that capture when things happen during the user's experience with the website: start render, DOM interactive, page load, etc. 
 
 
 
 % [Relevance]
 
-- Measure what is important for you
-tailored, best would be to have custom metrics, see section X.
+The relevance of metrics is crucial.
+Just as each website is unique and has a different purpose, so should metrics be which quantify the website.
+It is important to measure what is important and relevant for the users and reaching business goals, while "each business has its own definitions of success". % cite 2009 Croll p 7,  https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
+Hence, metrics are ideally tailored and custom to the website.
 
-% https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-- Metrics should be relevant to your users, site, and business goals
 
 % 2009 Croll p 7
-- each business has its own definitions of success
-- p.15 "whether your business benefited in some way from their visits."
-- search engine vs e-commerce website example
+%- p.15 "whether your business benefited in some way from their visits."
+%- search engine vs e-commerce website example
 
 
 
 % [Usable]
 
+Metrics are only helpful when they are useful.
+This implicates consistency, understandable
+
+Good metrics are un-complex, relevant, timely, and instantly useful. % cite 2012 Kumar
+
 % https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
 - should be collected and measured in a consistent manner
 - analyzed in a format that can be consumed and understood by non-technical stakeholders
 
-% 2009 Waisberg 2012 Kumar
- Good metrics should be: Uncomplex, Relevant, Timely, Instantly Useful
- 
+
 
 % 2019 Enghardt
 "metrics as well as experiments have to realistically reflect possible performance improvements for actual users"
 
 
-% https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-- Compare to competitors
-- Compare different versions of your app
-- Metrics should be relevant to your users, site, and business goals
-- should be collected and measured in a consistent manner
-- analyzed in a format that can be consumed and understood by non-technical stakeholders
+
+
+[Section Outline]
+
+%Business Metrics or metrics not directly correlated to performance or site speed.
+%Performance metrics:
+%    - Page weight
+%     - Timings
+%    - UX
+%     - Custom Metrics
+%Summary / Metrics Taxonomy
 
 
 
+%TODO add this ?
+% [Metrics and KPIs]
 
-%TODO connection to KPIs?
 % 2015 Bekavac
 
 
@@ -1515,7 +1516,7 @@ Non-Numerical Values can not be reflected as number.
 
 \begin{center}
 	\small
-	\begin{longtable}{ | p{0.3\linewidth} | p{0.7\linewidth} | }
+	\begin{longtable}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
 	
 	\hline
 	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Counts} \\
@@ -2191,16 +2192,28 @@ duration
 	\small
 	\begin{longtable}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
 	\hline
-	\multicolumn{2}{|c|}{Navigation Timing} \\
+	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Navigation Timing} \\
 	\hline
 	origin.. (startTime, navigationStart) & ... \\
 	\hline
 	unloadEventStart & ... \\
 	\hline
 	unloadEventEnd & ... \\
+	\hline
+	domInteractive & ... \\
+	\hline
+	domContentLoadedEventStart & ... \\
+	\hline
+	domContentLoadedEventEnd & ... \\
+	\hline
+	domComplete & ... \\
+	\hline
+	loadEventStart & Same as window.onload \\
+	\hline
+	loadEventEnd & ... \\
 
 	\hline
-	\multicolumn{2}{|c|}{Resource Timing} \\
+	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Resource Timing} \\
 	\hline
 	redirectStart & ... \\
 	\hline
@@ -2223,24 +2236,9 @@ duration
 	responseStart & ... \\
 	\hline
 	responseEnd & ... \\
+
 	\hline
-	
-	\multicolumn{2}{|c|}{Navigation Timing continued} \\
-	\hline
-	domInteractive & ... \\
-	\hline
-	domContentLoadedEventStart & ... \\
-	\hline
-	domContentLoadedEventEnd & ... \\
-	\hline
-	domComplete & ... \\
-	\hline
-	loadEventStart & Same as window.onload \\
-	\hline
-	loadEventEnd & ... \\
-	
-	\hline
-	\multicolumn{2}{|c|}{Extended from PerformanceEntry Interface (cite navigation timing 2 spec)} \\
+	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Extended from PerformanceEntry Interface (cite navigation timing 2 spec)} \\
 	\hline
 	name & Address of the current document \\
 	\hline
@@ -2251,14 +2249,14 @@ duration
 	duration & loadEventStart - startTime \\
 
 	\hline
-	\multicolumn{2}{|c|}{Navigation Timings Outside of Timeline} \\
+	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Navigation Timings Outside of Timeline} \\
 	\hline
 	type & ... \\
 	\hline
 	redirectCount & ... \\
 
 	\hline
-	\multicolumn{2}{|c|}{Resource Timings Outside of Timeline} \\
+	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Resource Timings Outside of Timeline} \\
 	\hline
 	initiatorType & ... \\
 	\hline
@@ -2338,7 +2336,8 @@ Requests and responses:
 % ---------------------------------
 
 
-% [Metrics calculated by Specs we covered so far]
+\paragraph{Metrics calculated with Navigation and Resource Timing}
+
 
 Directly from those timestamps many metrics are calculated.
 Sometimes different vendors give a different name to the same metric.
@@ -2882,8 +2881,13 @@ Web Vitals are discussed in the next section, but before I will explain some oth
 \subsubsection{User-Centric Performance Metrics}
 
 
+[tbd]
+
+
 % [Introduction]
 
+Last section was about performance timings which are available through the web apis.
+They are timestamps and do not tell a lot about how the user perceives the performance.
 
 % https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance
 - Perceived performance
@@ -2894,11 +2898,8 @@ Web Vitals are discussed in the next section, but before I will explain some oth
 
 
 
-
-
-
-
-First I will describe TTI, TBT and Speed Index, and then move on to Web Vitals.
+I will describe established user-centric performance metrics, such as TTI, TBT and Speed Index.
+Then I will discuss Web Vitals.
 
 
 
@@ -2910,7 +2911,7 @@ First I will describe TTI, TBT and Speed Index, and then move on to Web Vitals.
 
 
 % https://designingforperformance.com/basics-of-page-speed/
-- tells you how many seconds it took for the browser to begin rendering content
+%- tells you how many seconds it took for the browser to begin rendering content
 
 
 % https://blog.dareboost.com/en/2019/09/first-contentful-paint-fcp/
@@ -2931,7 +2932,7 @@ First I will describe TTI, TBT and Speed Index, and then move on to Web Vitals.
 
 
 % https://www.youtube.com/watch?v=6Ljq-Jn-EgU&ab_channel=GoogleChromeDevelopers
-- Time To Interactive: Is it usable? Use Polyfill
+%- Time To Interactive: Is it usable? Use Polyfill
 
 
 
@@ -2944,7 +2945,7 @@ First I will describe TTI, TBT and Speed Index, and then move on to Web Vitals.
 
 
 % https://www.youtube.com/watch?v=6Ljq-Jn-EgU&ab_channel=GoogleChromeDevelopers
-- Total Blocking Time
+%- Total Blocking Time
 
 
 
@@ -2956,23 +2957,23 @@ First I will describe TTI, TBT and Speed Index, and then move on to Web Vitals.
 
 
 % https://web.dev/first-meaningful-paint/
-- in seconds
--
+%- in seconds
 
-Replaced by LCP.
 
-how to measure lab and field
+%Replaced by LCP.
+
+%how to measure lab and field
 
 
 % https://www.youtube.com/watch?v=6Ljq-Jn-EgU&ab_channel=GoogleChromeDevelopers
-- First Meaningful Paint, Hero Element: Is it useful? 
+%- First Meaningful Paint, Hero Element: Is it useful? 
 
 
 
 % https://developer.mozilla.org/en-US/docs/Glossary/first_meaningful_paint
 
 % https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-The First Meaningful Paint is another user-centric metric and represents the point in time at which the largest visual change takes place; the underlying assumption here obviously is that the biggest visual change is relevant to the user, for example because a hero image or a navigation bar appear
+%The First Meaningful Paint is another user-centric metric and represents the point in time at which the largest visual change takes place; the underlying assumption here obviously is that the biggest visual change is relevant to the user, for example because a hero image or a navigation bar appear
 
 
 % ------------------------
@@ -2981,9 +2982,8 @@ The First Meaningful Paint is another user-centric metric and represents the poi
 \paragraph{Above the Fold Time}
 
 % 2013 Meenan
-Above-the-fold time 
-- point in time when the last visual change is made to the visible part of the page
-- available only in lab environments where the visual progress of a page loading can be recorded
+%- point in time when the last visual change is made to the visible part of the page
+%- available only in lab environments where the visual progress of a page loading can be recorded
 
 
 % 2018 Netravali
@@ -3005,7 +3005,7 @@ Above-the-fold time
 
 
 % 2013 Meenan
-- best effort for representing the user experience in a single number
+%- best effort for representing the user experience in a single number
 
 
 % 2018 Netravali
@@ -3016,13 +3016,12 @@ Above-the-fold time
 
 
 % Measuring Real User Performance in the Browser
-- How much of the screen is visually available at different points of time
-- At what point of time is the page complete
-
+%- How much of the screen is visually available at different points of time
+%- At what point of time is the page complete
 
 
 % https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-The Speed Index revolves around visual completeness and represents the average time it takes for website elements to become visible. It works well for websites with a static layout, but is unreliable for websites with moving elements like carousels or videos. Computing the Speed Index for this kind of website requires a custom timer or event to demarcate the point in time at which visual completion is reached
+%The Speed Index revolves around visual completeness and represents the average time it takes for website elements to become visible. It works well for websites with a static layout, but is unreliable for websites with moving elements like carousels or videos. Computing the Speed Index for this kind of website requires a custom timer or event to demarcate the point in time at which visual completion is reached
 
 
 % ------------------------
@@ -3071,7 +3070,7 @@ The Speed Index revolves around visual completeness and represents the average t
 % [Key Questions]
 
  
- \begin{center}
+\begin{center}
 \small
 	\begin{tabular}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
 	\hline
@@ -3132,8 +3131,8 @@ The core web vitals LCP CLS and FID are now being discussed.
 
 
 % https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
-- LCP: Progressive loading.
-- FCP may become a core web vital
+%- LCP: Progressive loading.
+%- FCP may become a core web vital
 
 
 
@@ -3142,21 +3141,17 @@ The core web vitals LCP CLS and FID are now being discussed.
 
 
 % https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-- approximation of the First Meaningful Paint that can be captured in the browser
-
-
-
-
+%- approximation of the First Meaningful Paint that can be captured in the browser
 
 
 
 
 % [Measuring]
  
-- Google had some issues with capturing LCP in chrome, see twitter
-- Because of this they needed to release a new chrome version
-- CruX also has 2 different lcps now (?)
-- use this story to show that this stuff is far from trivial
+%- Google had some issues with capturing LCP in chrome, see twitter
+%- Because of this they needed to release a new chrome version
+%- CruX also has 2 different lcps now (?)
+%- use this story to show that this stuff is far from trivial
 
 
 
@@ -3169,7 +3164,7 @@ The core web vitals LCP CLS and FID are now being discussed.
 
 
 % https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
-- FID: Interactivity during load
+%- FID: Interactivity during load
 
 
 % [Measuring]
@@ -3185,7 +3180,7 @@ The core web vitals LCP CLS and FID are now being discussed.
 
 
 % https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
-- CLS: Visual stability
+%- CLS: Visual stability
 
 
 % [Measuring]
@@ -3198,8 +3193,6 @@ The core web vitals LCP CLS and FID are now being discussed.
 
 
 \paragraph{Thresholds and Benchmarks for Core Web Vitals}
-
-
 
 
 % https://blog.chromium.org/2020/05/the-science-behind-web-vitals.html
@@ -3252,21 +3245,21 @@ The core web vitals LCP CLS and FID are now being discussed.
 [tbd]
 
 % 2013 Meenan
-- First, it is important to understand that no single number will answer that question. Even if you have defined exactly what you are trying to measure on your Web site, performance will vary widely across your user base and across the different pages on your site
-- Nothing beats application-specific knowledge and measurements
+%- First, it is important to understand that no single number will answer that question. Even if you have defined exactly what you are trying to measure on your Web site, performance will vary widely across your user base and across the different pages on your site
+%- Nothing beats application-specific knowledge and measurements
 
 % 2021 Meenan
-- own / user specific metrics, e.g. time to first tweet for twitter 
+%- own / user specific metrics, e.g. time to first tweet for twitter 
 
 
 % 2013 Grigork
-- "there is no one single metric that holds true for every application, which means that we must carefully define custom metrics in each case"
--  "Custom and application-specific metrics are the key to establishing a sound performance strategy"
+%- "there is no one single metric that holds true for every application, which means that we must carefully define custom metrics in each case"
+%-  "Custom and application-specific metrics are the key to establishing a sound performance strategy"
 
 
 % https://web.dev/custom-metrics/
-- Universal metrics offer a good baseline, but in many cases you need to measure more than just these metrics in order to capture the full experience for your particular site.
-- Custom metrics allow you to measure aspects of your site's experience that may only apply to your site
+%- Universal metrics offer a good baseline, but in many cases you need to measure more than just these metrics in order to capture the full experience for your particular site.
+%- Custom metrics allow you to measure aspects of your site's experience that may only apply to your site
 
 
 
