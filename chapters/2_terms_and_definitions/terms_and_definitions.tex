@@ -1131,7 +1131,7 @@ The collected data is available via Googles PageSpeed Insights, the CrUX Dashboa
 
 [tbd]
 
-Other RUM methods are surveys and log file analysis.
+Other methods are surveys and log file analysis.
 
 % 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 
@@ -1236,7 +1236,7 @@ Ideally, metrics are precise and serve as objective criteria for the evaluation 
 
 
 % https://speedcurve.com/blog/rendering-metrics/
--% Metrics quantify behavior
+%- Metrics quantify behavior
 %- we're trying to capture the behavior of a website in terms of speed and construction
 %- statistics about how the site is built such as number of HTTP requests, size of stylesheets, and DOM depth
 %- Speed is tracked by time-based metrics that capture when things happen during the user's experience with the website: start render, DOM interactive, page load, etc. 
@@ -1256,24 +1256,11 @@ Hence, metrics are ideally tailored and custom to the website.
 %- search engine vs e-commerce website example
 
 
-
 % [Usable]
 
 Metrics are only helpful when they are useful.
-This implicates consistency, understandable
-
-Good metrics are un-complex, relevant, timely, and instantly useful. % cite 2012 Kumar
-
-% https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-- should be collected and measured in a consistent manner
-- analyzed in a format that can be consumed and understood by non-technical stakeholders
-
-
-
-% 2019 Enghardt
-"metrics as well as experiments have to realistically reflect possible performance improvements for actual users"
-
-
+That implies that the collection and measurement of metrics should be consistent and their representation should be unser-friendly and understandable. % cite https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
+Kumar states that ideally, good metrics are uncomplex, relevant, timely, and instantly useful.  \\% cite 2012 Kumar
 
 
 [Section Outline]
@@ -1289,6 +1276,10 @@ Good metrics are un-complex, relevant, timely, and instantly useful. % cite 2012
 
 
 %TODO add this ?
+
+% 2019 Enghardt
+%"metrics as well as experiments have to realistically reflect possible performance improvements for actual users"
+
 % [Metrics and KPIs]
 
 % 2015 Bekavac
@@ -1304,6 +1295,7 @@ Good metrics are un-complex, relevant, timely, and instantly useful. % cite 2012
 
 [tbd]
 
+Quick explanation about the term business metrics.
 Unlimited metrics, also when thinking about custom metrics.
 The main question here is how to categorize those metrics.
 One approach is: numerical values, Relations, non-numerical values
@@ -1317,161 +1309,97 @@ One approach is: numerical values, Relations, non-numerical values
 \subsubsection{Possible Categorizations of Business Metrics}
 
 
-Semantic categorization
-Orthogonal: "number" categorization: Count, ratio, ...
+Categories help to better grasp and comprehend metrics, and they can provide structure and order.
+Following are some examples of business metrics categorizations as they are presented in literature.
 
 
-% Wolle https://www.youtube.com/watch?v=avPcOFzUa1Q&ab_channel=WolframWingerath
-- User Engagement:
-	- Session Length
-	- Time on site
-	- First user interaction
-	- Bounce rate
+Peterson arguments from a marketing perspective and categorizes the metrics according to the customer life cycle, which includes the phases reach, acquisition, conversion, and retention. % cite 2004 Peterson
 
-- Business KPIs:
-	- Cart size
-	- Transactions
-	- Conversion Rate
-	- Revenue
+Metrics for measuring \textit{Reach} are for example number or percentage of new visitor.
+\textit{Acquisition} contains metrics such as average number of visits per visitor or average pages viewed per visitor.
+The category \textit{Conversion} includes metrics such as conversion or abandonment rates.
+And the last category \textit{Retention} includes metrics such as the number of returning visitors.
+This proposed categorization is highly customer-related and customer-centric and from a marketers perspective. 
 
-- QA Metadata:
-	- Page views and sessions
-	- Browser distribution
-	- JavaScript errors
-	- Caching insights
-	
--> Semantic, about the meaning of metrics
-- 
-	
-	
-% 2004 Peterson
-- Argument with Customer Life Cycle: Retention - Awareness - Conversion
+%Reach:  - Overall Traffic Volumes,  Number of Visits
+% Measuring Acquisition: - Percent New Visitors, - Average Number of Page Views per Visit
+  
+The Web Analytics Association defines three types and accordingly categories of metrics: \textit{Counts}, \textit{Ratios} and \textit{KPIs},% cite 2007 Burby
+Where counts are metrics which are single numbers like the number of visits, ratios consist of counts divided by other counts, such as page views per visit.
+KPIs are counts or ratios with a specific meaning and importance for the specific business.
 
- Measuring Reach:
- - Overall Traffic Volumes
- - Number of Visits
-- Number of New Visitors
-- Percentage of New Visitors
--...
+Jansen defines four categories for web analytics metrics: % cite 2009 Jansen p.30
+\textit{Site Usage}, which encompasses metrics such as demographics and system statistics, but also visitor length and type,
+\textit{Referrers}, that are metrics describing the referring URL,
+\textit{Site Content Analysis}, which includes metrics such as top pages or visitor paths, and
+\textit{Quality Assurance} with metrics reflecting errors or other quality aspects of the measured system.
 
- Measuring Acquisition:
-- Percent New Visitors
-- Average Number of Visits per Visitor
-- Average Number of Page Views per Visit
-- Average Pages Viewed per Visitor
--...
- 
- Measuring Conversion:
- - Conversion Rates
-- Abandonment Rates
-- ... 
- 
- 
- Measuring Retention:
- - Number of Returning Visitors
- - ...
- 
--> customer-related, customer-centric
-- Marketing
-
-
-% 2007 Burby
-- WAA
-- 3 Types of web analytics metrics:
-- Counts: single number
-- Rations: Count divided by count
-- KPIs: count or ration infused by business strategy
-
-- Counts and ratios are categories for number types
-- KPIs bring the dimension of business, give semantic meaning to numbers
-
-
-% 2009 Jansen p.30
- 4 categories: site usage, referrers, site content analysis, quality assurance
- 8 fundamental metrics
- Site usage:
-	 Demographics and System Statistics
-	 Internal Search Information
-	 Visit Length
-	 Visitor Type	
- Referrers:
-	 Referrering URL and Keyword Analysis	
- Site content analysis:
-	 Top Pages
-	 Visitor Path
- Quality assurance:
-	 Errors
+% Site usage: Internal Search Information
+% Referrers: keyword Analysis	
 	 
-	 
-% 2009 Croll
-All metrics answer one of the Big 4 Question:
-- What did they do?
-- How did they do it?
-- Why did they do it?
-- Could they do it?
+Croll arguments that all metrics answer at least one of four user-centric questions: \textit{What did they do?}, \textit{How did they do it?,} \textit{Why did they do it?}, and \textit{Could they do it?}. % cite 2009 Croll
+Accordingly, the metrics are categorised by the question they answer.
 
-- Very user centric
+Bekavac organizes the metric according to what they describe: \textit{Visits}, such as entry or exit page,
+\textit{Visitors}, such as the metrics capturing new or returning visitors,
+metrics such as page exit ratio or bounce rate which describe \textit{Visitor Engagement},
+and metrics describing \textit{Conversions} as the conversion rate. % cite 2015 Bekavac
 
+%visits: entry page, landing page, exit page, visit duration, referrer, ctr
+%- For describing Visitors: repeat visitor, visits per visitor, recency, frequency
+%- For describing Visitor engagement: page exit ratio, bounce rate
 
+Hassler proposes a classification which is close and similar to the WAA proposed categorisation.
+The metrics are ordered by their type: % cite 2017 Hassler
+\textit{Counts} are absolute values like visitors or total sales,
+\textit{Relations} put counts into relation for example as percentages, such as page views per visitor,
+and \textit{Values} include non-numerical metrics such as referrer or search term.
 
-% 2015 Bekavac
-- Metrics for describing visits: entry page, landing page, exit page, visit duration, referrer, ctr
-- For describing Visitors: new visitors, returning visitor, repeat visitor, visits per visitor, recency, frequency
-- For describing Visitor engagement: page exit ratio, bounce rate, page views per visitor
-- Conversion metrics: conversion, conversion rate
+Gessert et al.  propose a semantic categorization of metrics, they structure the metrics according to their meaning and their domain membership.
+The categories are \textit{Performance}, which includes performance metrics such as Time to First Byte or First Input Delay (see section X.), \textit{User Engagement} metrics such as the session length or the bounce rate, \textit{Business KPIs} such as the cart size or the amount of transaction, but also conversion rates and revenue, and \textit{QA Metadata} which subsumes technical metrics like JS errors or the browser distribution.% cite 2020 Wolle https://www.youtube.com/watch?v=avPcOFzUa1Q&ab_channel=WolframWingerath
 
-
-
-% 2017 Hassler
- Types: Anzahl, Relations, Werte
- 
-Counts:
-- Absolut value
-- visitors
-- sales total
-etc
-
-Relations:
-- Put aboslute metrics in relation
-- As Relation or Percentage
-- Most important type
-- Page Views per Visitor
-
-Values:
-- Referrer
-- Search term 
- 
-
-I will use this categorization to list some metrics.
-
-
-
-% 2020 Heinemann 4.1.4
-Metrics Categories for E-Shop:
-- Attraction
-- Acquisition
-- Retention
-- Umsatzleistung
-- Warenleistung
-- Ergebnisleitung
-
-- also customer life cycle
-
+%- User Engagement: Session Length, First user interaction
+% QA Metadata: Page views and sessions, Caching insights
 
 
 %TODO add?
 % 2004 Phippen
+% 2020 Heinemann 4.1.4
+%Metrics Categories for E-Shop:
+%- Attraction
+%- Acquisition
+%- Retention
+%- Umsatzleistung
+%- Warenleistung
+%- Ergebnisleitung
+
+%- also customer life cycle
+
+
+\begin{center}
+\begin{tabular}{  c | c  }
+Value-Driven & \{Counts, Ratios, KPIs\},  \\
+ & \{Counts, Relations, Values\} \\
+\hline
+Semantic-Driven & \{Performance, User Engagement, Business KPIs, QA Metadata\},  \\
+& \{Site Usage, Referres, Site Content Analysis, Quality Assurance\} \\
+\hline
+Marketing-Driven & \{Reach, Acquisition, Conversion, Retention\}, \\
+& \{Visits, Visitors, Visitor Engagement, Conversions\} \\
+\end{tabular}
+\end{center}
 
 
 
 % [Conclusion]
 
-We have seen that multiple categorizations of metrics exists.
-I will now use possible categorization: Counts, Ratios, Values
-For each category, i will list some metrics and explain them or even put it in table.
-This list is not complete.
+As described above, multiple categorizations of metrics are proposed in literature.
+While some authors group the metrics by their type of value, e.g. if they count something or represent a ratio, others use a more semantic approach and group the metrics by their meaning, with some extreme examples by authors which group only through a marketing perspective.
+% Orthogonal to semantic: "number" categorization: Count, ratio, ...
 
-After that, i will take a look at metrics which are specifically for performance.
+In the following, I will list some metrics and provide brief explanations, following the categorization of counts,ratios and values.
+After that, i will take a look at metrics which are specific for performance.
+
 
 
 %TODO add ?
@@ -1492,7 +1420,12 @@ After that, i will take a look at metrics which are specifically for performance
 \subsubsection{Business Metrics Examples}
 
 
-Categorization used: counts, rations and non-numerical values.
+Table X provides web analytics metrics which are not directly concerned with performance.
+The categories used to structure the metrics are Counts, 
+
+Ratios
+
+and Non-Numerical Values, 
 
 
 % [Counts]
