@@ -1703,19 +1703,20 @@ Custom Metrics
 
 \subsubsection{Page Weight}
 
+[tbd]
 
-- one approach of making the website quantifiable
-- measure the size of the web site
-- Page weight has an impact on performance
-- Page consists of resources
-- More resources and bytes means more requests, downloads and waiting time
+%- one approach of making the website quantifiable
+%- measure the size of the web site
+%- Page weight has an impact on performance
+%- Page consists of resources
+%- More resources and bytes means more requests, downloads and waiting time
 
 
 % HTTP Archive
-- Website consists of resources
-- Measure bytes of each resource
-- Measure how many requests are needed to fetch all resources
-- Total Size: Number of bytes sent over the network, which may be compressed
+%- Website consists of resources
+%- Measure bytes of each resource
+%- Measure how many requests are needed to fetch all resources
+%- Total Size: Number of bytes sent over the network, which may be compressed
 
 Bytes and Requests of following resources:
 
@@ -1742,47 +1743,47 @@ In this section are also some numbers available.
 \paragraph{Web Standards}
 
 % https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards
-- in 1994, TimBL founded the World Wide Web Consortium (W3C), an organization that brings together representatives from many different technology companies to work together on the creation of web technology specifications
+%- in 1994, TimBL founded the World Wide Web Consortium (W3C), an organization that brings together representatives from many different technology companies to work together on the creation of web technology specifications
 
-Web Standards:
-- technologies we use to build web sites
-- standards exist as long technical documents called specifications
-- detail exactly how the technology should work
--  to be used by software engineers to implement these technologies (usually in web browsers)
-- For example, the HTML Living Standard describes exactly how HTML (all the HTML elements, and their associated APIs, and other surrounding technologies) should be implemented.
-- Others  WHATWG (who maintain the living standards for the HTML language), ECMA
+[Web Standards]
+%- technologies we use to build web sites
+%- standards exist as long technical documents called specifications
+%- detail exactly how the technology should work
+%-  to be used by software engineers to implement these technologies (usually in web browsers)
+%- For example, the HTML Living Standard describes exactly how HTML (all the HTML elements, and their associated APIs, and other surrounding technologies) should be implemented.
+%- Others  WHATWG (who maintain the living standards for the HTML language), ECMA
 
 
 
 \paragraph{W3C}
 
 
-What is W3C
+[What is W3C]
 
 % https://www.w3.org/standards/faq
-W3C publishes documents that define Web technologies. These documents follow a process designed to promote consensus, fairness, public accountability, and quality. At the end of this process, W3C publishes Recommendations, which are considered Web standards.
+%W3C publishes documents that define Web technologies. These documents follow a process designed to promote consensus, fairness, public accountability, and quality. At the end of this process, W3C publishes Recommendations, which are considered Web standards.
 
-e.g.DOM,  HTML, SVG, ...
+%e.g.DOM,  HTML, SVG, ...
 
 
 
-% [Recommendation Process]
+[Recommendation Process]
 
 % https://www.w3.org/2020/Process-20200915/#rec-track
-- Recommendation track:
-Publication of the First Public Working Draft.
-Publication of zero or more revised Working Drafts.
-Publication of one or more Candidate Recommendations.
-Publication of a Proposed Recommendation.
-Publication as a W3C Recommendation.
+%- Recommendation track:
+%Publication of the First Public Working Draft.
+%Publication of zero or more revised Working Drafts.
+%Publication of one or more Candidate Recommendations.
+%Publication of a Proposed Recommendation.
+%Publication as a W3C Recommendation.
 
-- From Idea to concrete API which browser maintainers implement
+%- From Idea to concrete API which browser maintainers implement
 
 % maturity levels https://www.w3.org/2015/Process-20150901/#maturity-levels
-- Working Draft (WD)
-- Candidate Recommendation (CR)
-- Proposed Recommendation
-- W3C Recommendation (REC)
+%- Working Draft (WD)
+%- Candidate Recommendation (CR)
+%- Proposed Recommendation
+%- W3C Recommendation (REC)
 
 
 
@@ -1790,57 +1791,58 @@ Publication as a W3C Recommendation.
 
 \paragraph{Web Performance Working Group}
 
+[tbd]
 
 % [Introduction]
 
-Multiple groups exists which are responsible for a specific topic.
-Performance working group is responsible for performance.
+%Multiple groups exists which are responsible for a specific topic.
+%Performance working group is responsible for performance.
 
 % 2013 Meenan
-- In 2010, the browser vendors got together under the W3C banner and formed the Web Performance Working Group to standardize the interfaces and work toward improving the state of Web-performance measurement and APIs in the browsers
-- Clock issue -> High Resolution Time specification
+%- In 2010, the browser vendors got together under the W3C banner and formed the Web Performance Working Group to standardize the interfaces and work toward improving the state of Web-performance measurement and APIs in the browsers
+%- Clock issue -> High Resolution Time specification
 
 % Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
-- WebPerf Working Group (founded 2010)
-- "Provide methods to measure aspects of application performance of user agent features and APIs"
+%- WebPerf Working Group (founded 2010)
+%- "Provide methods to measure aspects of application performance of user agent features and APIs"
 
 % https://www.w3.org/2021/02/webperf.html
-- Working Groups push new recommendations and invent them
-Web Performance Working Group is responsible:
-- Measurement
-- Scheduling
-- Adaptation
--> Important is Measurement
+%- Working Groups push new recommendations and invent them
+%Web Performance Working Group is responsible:
+%- Measurement
+%- Scheduling
+%- Adaptation
+%-> Important is Measurement
 
 
 
 
 % [Specs]
 
-Normative Specifications:
-- High Resolution Time
-- Performance Timeline
-- Resource Timing
-- Navigation Timing
-- User Timing
-- Page Visibility
-- Long Task
-- Paint Timing
+%Normative Specifications:
+%- High Resolution Time
+%- Performance Timeline
+%- Resource Timing
+%- Navigation Timing
+%- User Timing
+%- Page Visibility
+%- Long Task
+%- Paint Timing
 
 
-Server Timing:
+%Server Timing:
 % https://www.w3.org/TR/server-timing/
 
 % https://w3c.github.io/perf-timing-primer/#dfn-time-origin
-- attempt to address the concern about lacking insight into how or why certain stages of the request-response cycle have taken as much time as they have
+%- attempt to address the concern about lacking insight into how or why certain stages of the request-response cycle have taken as much time as they have
 
 
-others, not important for metrics:
-- Beacon
-- Cooperative Scheduling of Background Tasks
-- Device Memory
-- Reporting
-- Network Error Logging
+%others, not important for metrics:
+%- Beacon
+%- Cooperative Scheduling of Background Tasks
+%- Device Memory
+%- Reporting
+%- Network Error Logging
 
 
 % and some unofficial drafts
@@ -1851,8 +1853,8 @@ others, not important for metrics:
 
 
 
-Now i will take a closer look at Navigation, Resource and User Timing and which metrics are derived from there.
-But start with time.
+%Now i will take a closer look at Navigation, Resource and User Timing and which metrics are derived from there.
+%But start with time.
 
 
 
@@ -1865,59 +1867,59 @@ But start with time.
 %TODO what do i really need from this section`?
 % there are no metrics directly coming from this
 
-"Level 2" is older but already recommendation from date % https://www.w3.org/TR/hr-time-2/
-Newest spec from date is working draft % https://www.w3.org/TR/hr-time-3/
+%"Level 2" is older but already recommendation from date % https://www.w3.org/TR/hr-time-2/
+%Newest spec from date is working draft % https://www.w3.org/TR/hr-time-3/
 
-Is the basis for other specs
+%Is the basis for other specs
 
 
 % [Date/Clock Issue]
 
 
 % https://www.w3.org/TR/hr-time-3/
-- Old: Date from ECAMScript: Date object as a time value representing time in milliseconds since 01 January, 1970 UTC
--  DOMTimeStamp is defined similarly
-- definitions of time are subject to both clock skew and adjustment of the system clock
-- The value of time may not always be monotonically increasing and subsequent values may either decrease or remain the same.
-- resolve issues by providing monotonically increasing time values with sub-millisecond resolution
+%- Old: Date from ECAMScript: Date object as a time value representing time in milliseconds since 01 January, 1970 UTC
+%-  DOMTimeStamp is defined similarly
+%- definitions of time are subject to both clock skew and adjustment of the system clock
+%- The value of time may not always be monotonically increasing and subsequent values may either decrease or remain the same.
+%- resolve issues by providing monotonically increasing time values with sub-millisecond resolution
 
 % 2013 Meenan
-- Clock issue -> High Resolution Time specification
+%- Clock issue -> High Resolution Time specification
 
 % Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
-- Non-Decreasing
-- Earlier: Date object
--> Its relative to start of navigation instead of 1. January 1970 UTC as JS Date Object
+%- Non-Decreasing
+%- Earlier: Date object
+%-> Its relative to start of navigation instead of 1. January 1970 UTC as JS Date Object
 
 % https://w3c.github.io/perf-timing-primer/
-- sub-millisecond resolution
-- provide a monotonic, uniformly increasing timestamp suitable for interval measurements
+%- sub-millisecond resolution
+%- provide a monotonic, uniformly increasing timestamp suitable for interval measurements
 
 
 % https://developers.google.com/web/updates/2012/08/When-milliseconds-are-not-enough-performance-now
-- performance.now() is a measurement of floating point milliseconds since that particular page started to load
--> the performance.timing.navigationStart timeStamp to be specific
-- number stays relative to the page because you'll be comparing two or more measurements against eachother
+%- performance.now() is a measurement of floating point milliseconds since that particular page started to load
+%-> the performance.timing.navigationStart timeStamp to be specific
+%- number stays relative to the page because you'll be comparing two or more measurements against eachother
 
 
 % [DOMHighResTimeStamp]
 
 % https://www.w3.org/TR/hr-time-3/
-- type definition
--  used to store a time value in milliseconds, measured relative from the time origin, shared monotonic clock, or a time value that represents a duration between two DOMHighResTimeStamps
+%- type definition
+%-  used to store a time value in milliseconds, measured relative from the time origin, shared monotonic clock, or a time value that represents a duration between two DOMHighResTimeStamps
 	
 % https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp
-- type
-- double
--  store a time value in milliseconds,  accurate to 5 microseconds
-- describe a discrete point in time or a time interval
+%- type
+%- double
+%-  store a time value in milliseconds,  accurate to 5 microseconds
+%- describe a discrete point in time or a time interval
 
 
 % [Performance Interface]
 
 % https://www.w3.org/TR/hr-time-3/
-- now()
-- timeOrigin
+%- now()
+%- timeOrigin
 
 
 
@@ -1937,67 +1939,67 @@ Is the basis for other specs
 % [Introduction]
 
 % https://w3c.github.io/perf-timing-primer/
-- access the complete timing information for navigation of a document
-- Navigation is about how user agents convert the requested HTML, CSS, and JavaScript into rendered pixels, which is one of the most critical steps for users to navigate a document
+%- access the complete timing information for navigation of a document
+%- Navigation is about how user agents convert the requested HTML, CSS, and JavaScript into rendered pixels, which is one of the most critical steps for users to navigate a document
 
 
 % https://www.w3.org/TR/navigation-timing/
-- complete client-side latency measurements
+%- complete client-side latency measurements
 
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
-- Navigation timings are metrics measuring a browser's document navigation events
-- measures the main document's timings
-- read only
-- supported in all browsers
-- measuring the performance of the main page, generally the HTML file via which all the other assets are requested
+%- Navigation timings are metrics measuring a browser's document navigation events
+%- measures the main document's timings
+%- read only
+%- supported in all browsers
+%- measuring the performance of the main page, generally the HTML file via which all the other assets are requested
 
 
 
 % 2013 Grigorik
-- navigation timing measures the main document's timings
-- The real benefit of Navigation Timing is that it exposes a lot of previously inaccessible data, such as DNS and TCP connect times, with high precision (microsecond timestamps), via a standardized performance.timing object in each browser.
-- Hence, the data gathering process is very simple: load the page, grab the timing object from the user’s browser, and beacon it back to your analytics servers!
-- By capturing this data, we can observe real-world performance of our applications as seen by real users, on real hardware, and across a wide variety of different networks.
-- Navigation Timing provides performance timers for root documents only
+%- navigation timing measures the main document's timings
+%- The real benefit of Navigation Timing is that it exposes a lot of previously inaccessible data, such as DNS and TCP connect times, with high precision (microsecond timestamps), via a standardized performance.timing object in each browser.
+%- Hence, the data gathering process is very simple: load the page, grab the timing object from the user’s browser, and beacon it back to your analytics servers!
+%- By capturing this data, we can observe real-world performance of our applications as seen by real users, on real hardware, and across a wide variety of different networks.
+%- Navigation Timing provides performance timers for root documents only
 
 
 % 2013 Meenan
-- The largest benefit of navigation timing is that it exposes a lot of timings that lead up to the HTML loading --> This is this famous image
-- In addition to providing a good start time, it exposes information about any redirects, DNS lookup times, time to connect to the server, and how long it takes the Web server to respond to the request, for every user and for every page the user visits
-- The measurement points are exposed to the DOM (Document Object Model) through the performance object and make it trivial to calculate load times (or arbitrary intervals, really) from JavaScript.
+%- The largest benefit of navigation timing is that it exposes a lot of timings that lead up to the HTML loading --> This is this famous image
+%- In addition to providing a good start time, it exposes information about any redirects, DNS lookup times, time to connect to the server, and how long it takes the Web server to respond to the request, for every user and for every page the user visits
+%- The measurement points are exposed to the DOM (Document Object Model) through the performance object and make it trivial to calculate load times (or arbitrary intervals, really) from JavaScript.
 
 
 
 % [Level 1 vs Level 2]
 
 % https://www.w3.org/TR/navigation-timing/
-- Level 1 PerformanceTiming and PerformanceNavigation Interface, Both are collected in Performance Interface, Performance Interface is accessible through window.performance
-- Level 1: time is measured in milliseconds since midnight of January 1, 1970 (UTC).
-- Level 2: Navigation Timing 2 specification allows access to timing information related to navigation using sub-milliseconds resolution instead
+%- Level 1 PerformanceTiming and PerformanceNavigation Interface, Both are collected in Performance Interface, Performance Interface is accessible through window.performance
+%- Level 1: time is measured in milliseconds since midnight of January 1, 1970 (UTC).
+%- Level 2: Navigation Timing 2 specification allows access to timing information related to navigation using sub-milliseconds resolution instead
 
 
 % https://www.w3.org/TR/navigation-timing-2/
-- Level 1 kept for backwards compatibility
-- Level 2 is working draft from march 2021 and replaces first version of Navigation Timing
-- See summary of improvements for differences between level 1 and 2
-- Level 2 is Builds on top of Resource Timing 2 and uses high resolution time 2
+%- Level 1 kept for backwards compatibility
+%- Level 2 is working draft from march 2021 and replaces first version of Navigation Timing
+%- See summary of improvements for differences between level 1 and 2
+%- Level 2 is Builds on top of Resource Timing 2 and uses high resolution time 2
 
 
 % [PerformanceNavigationTiming Interface]
 
 % https://www.w3.org/TR/navigation-timing-2/
-- level 2 specification defines the PerformanceNavigationTiming interface
-- we will see later in X which attributes are available
+%- level 2 specification defines the PerformanceNavigationTiming interface
+%- we will see later in X which attributes are available
 
 
 % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
-PerformanceNavigationTiming Interface: 
-- extends PerformanceEntry Interface from performance timeline. see attributes section for details
-- extends PerformanceResourceTiming Interface from resource timing
+%PerformanceNavigationTiming Interface: 
+%- extends PerformanceEntry Interface from performance timeline. see attributes section for details
+%- extends PerformanceResourceTiming Interface from resource timing
 
 
-- window.performance.getEntriesByType("navigation")
+%- window.performance.getEntriesByType("navigation")
 
 
 
@@ -2013,38 +2015,38 @@ PerformanceNavigationTiming Interface:
 
 
 % https://www.w3.org/TR/resource-timing-1/
-- Level 1 is candidate recommendation from march 2017
+%- Level 1 is candidate recommendation from march 2017
 
 % https://www.w3.org/TR/resource-timing-2/
-- Level 2 is working draft from april 2021
-- access the complete timing information for resources in a document.
-- Navigation Timing 2 extends this specification to provide additional timing information associated with a navigation.
-- mechanisms to provide complete client-side latency measurements within applications
+%- Level 2 is working draft from april 2021
+%- access the complete timing information for resources in a document.
+%- Navigation Timing 2 extends this specification to provide additional timing information associated with a navigation.
+%- mechanisms to provide complete client-side latency measurements within applications
 
 
 % https://w3c.github.io/perf-timing-primer/
-- set of attributes for each loaded resource
-- access a set of critical network timing attributes for each resource on the page
-- resources usually refer to HTML documents, XHR objects, links (such as a stylesheet) or SVG elements
+%- set of attributes for each loaded resource
+%- access a set of critical network timing attributes for each resource on the page
+%- resources usually refer to HTML documents, XHR objects, links (such as a stylesheet) or SVG elements
 
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
-- resource timing measures timing for individual resources, the assets called in by the main page, and any assets that those resources request
-- Many of the measurements are similar to navigation timing
+%- resource timing measures timing for individual resources, the assets called in by the main page, and any assets that those resources request
+%- Many of the measurements are similar to navigation timing
 
 
 % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming
-- retrieval and analysis of detailed network timing data regarding the loading of an application's resources
-- determine, for example, the length of time it takes to fetch a specific resource like request, svg, image, script
+%- retrieval and analysis of detailed network timing data regarding the loading of an application's resources
+%- determine, for example, the length of time it takes to fetch a specific resource like request, svg, image, script
 
 
 % 2013 Grigork
-- Resource Timing provides similar performance data for each resource on the page, allowing us to gather the full performance profile of the page.
-- resource timing provides the times for all the assets or resources called in by that main document and the resources' requested resources.
+%- Resource Timing provides similar performance data for each resource on the page, allowing us to gather the full performance profile of the page.
+%- resource timing provides the times for all the assets or resources called in by that main document and the resources' requested resources.
 
 
 % 2013 Meenan
-- exposes timing information about every network request the browser had to make to load a page and what triggered each request (whether stylesheet, script, or image)
+%- exposes timing information about every network request the browser had to make to load a page and what triggered each request (whether stylesheet, script, or image)
 
 
 
@@ -2053,13 +2055,13 @@ PerformanceNavigationTiming Interface:
 
 
 % https://www.w3.org/TR/resource-timing-2/
-- PerformanceResourceTiming interface 
+%- PerformanceResourceTiming interface 
 
 
 % https://w3c.github.io/perf-timing-primer/
-- performance.getEntriesByType("resource"): array of Resource Timing Objects for each requested resource
-- The PerformanceResourceTiming interface extends the PerformanceEntry interface in the Performance Timeline
-- Each of these timestamps is in microseconds, which are provided by the window.performance.now() method in the High Resolution Time specification.
+%- performance.getEntriesByType("resource"): array of Resource Timing Objects for each requested resource
+%- The PerformanceResourceTiming interface extends the PerformanceEntry interface in the Performance Timeline
+%- Each of these timestamps is in microseconds, which are provided by the window.performance.now() method in the High Resolution Time specification.
 
 
 
@@ -2067,11 +2069,11 @@ PerformanceNavigationTiming Interface:
 % [Waterfall]
 
 % https://w3c.github.io/perf-timing-primer/
-- APIs used to create waterfall charts
-- Waterfall we can see in more detail in WPT section ?
+%- APIs used to create waterfall charts
+%- Waterfall we can see in more detail in WPT section ?
 
 % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-- Any time you've seen a waterfall chart, you're looking at a visual representation of the data these APIs provide
+%- Any time you've seen a waterfall chart, you're looking at a visual representation of the data these APIs provide
 
 
 
@@ -2083,26 +2085,26 @@ PerformanceNavigationTiming Interface:
 \paragraph{Attributes from Navigation and Resource Timing}
 
 
-As both specs are tightly coupled, e.g. resource timings is in the middle of navigation timing, i will cover them both here together.
-I will go through all exposed attributes and explain them.
-Then i will show one example of how a vendor is implementing this.
+%As both specs are tightly coupled, e.g. resource timings is in the middle of navigation timing, i will cover them both here together.
+%I will go through all exposed attributes and explain them.
+%Then i will show one example of how a vendor is implementing this.
 
-Then i will show which metrics are directly calculated from those attributes.
+%Then i will show which metrics are directly calculated from those attributes.
 
 
 %  [All Timestamps from Navigation and Resource Timing]
 
 
-- We can see that this is the same as explained in CRP
+%- We can see that this is the same as explained in CRP
 
-exposed as DOMHighResTimeStamp
+%exposed as DOMHighResTimeStamp
 
 
-from PerformanceEntry Interface:
-name
-entryType
-startTime
-duration
+%from PerformanceEntry Interface:
+%name
+%entryType
+%startTime
+%duration
 
 
 \begin{figure}[h!]
@@ -2239,17 +2241,17 @@ duration
 
 
 % https://developer.mozilla.org/en-US/docs/Web/API/Resource_Timing_API
-- good explanations of the attributes
+%- good explanations of the attributes
 
 
 
 % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-Requests and responses:
-- fetchStart marks when the browser starts to fetch a resource. This is distinct from a request in that it doesn't mark when the browser makes a network request for a resource, but rather when it begins checking caches (e.g., HTTP and service worker caches) to see if a network request is even necessary.
-- workerStart marks when a request is being fetched from a service worker within a fetch event handler (if applicable). This will be always be 0 if a service worker isn't installed for the current page.
-- requestStart is when the browser issues the network request.
-- responseStart is when the first byte of the response arrives.
-- responseEnd is when the last byte of the response arrives.
+%Requests and responses:
+%- fetchStart marks when the browser starts to fetch a resource. This is distinct from a request in that it doesn't mark when the browser makes a network request for a resource, but rather when it begins checking caches (e.g., HTTP and service worker caches) to see if a network request is even necessary.
+%- workerStart marks when a request is being fetched from a service worker within a fetch event handler (if applicable). This will be always be 0 if a service worker isn't installed for the current page.
+%- requestStart is when the browser issues the network request.
+%- responseStart is when the first byte of the response arrives.
+%- responseEnd is when the last byte of the response arrives.
 
 
 
@@ -2267,10 +2269,10 @@ Requests and responses:
 \paragraph{Metrics calculated with Navigation and Resource Timing}
 
 
-Directly from those timestamps many metrics are calculated.
-Sometimes different vendors give a different name to the same metric.
-For many metrics there are no official definitions and the values diverge depending on the implementation.
-I will show how those metrics are being calculated.
+%Directly from those timestamps many metrics are calculated.
+%Sometimes different vendors give a different name to the same metric.
+%For many metrics there are no official definitions and the values diverge depending on the implementation.
+%I will show how those metrics are being calculated.
 
 
 \begin{figure}[h!]
@@ -2285,11 +2287,11 @@ I will show how those metrics are being calculated.
 
 % [Navigation Level 1 vs Level 2]
 
-- navigationStart is not in level 2
-- navigationStart is the same as startTime in level 2
-- Difference is that navigationStart is a EPOCH time stamp. The timings have to be calculated as differences to this timestamp
-- navigationStart just starts with 0, which makes all the other timestamps easier to read
-- many still use level 1 and navigationStart
+%- navigationStart is not in level 2
+%- navigationStart is the same as startTime in level 2
+%- Difference is that navigationStart is a EPOCH time stamp. The timings have to be calculated as differences to this timestamp
+%- navigationStart just starts with 0, which makes all the other timestamps easier to read
+%- many still use level 1 and navigationStart
 
 
 %TODO add this ?
@@ -2358,7 +2360,7 @@ I will show how those metrics are being calculated.
 
 
 % https://speedcurve.com/blog/rendering-metrics/
-- In the old days, the main time-based performance metric was window.onload.
+%- In the old days, the main time-based performance metric was window.onload.
 
 
 
@@ -2371,12 +2373,12 @@ I will show how those metrics are being calculated.
 % https://developer.mozilla.org/en-US/docs/Glossary/time_to_first_byte
 
 % 2014 Hogan
-- First byte that the browser receives
-- It’s a good indicator of how quickly the backend of your site is able to process and send back content
+%- First byte that the browser receives
+%- It’s a good indicator of how quickly the backend of your site is able to process and send back content
 
 
 % https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-TTFB describes how long the requesting party has to wait from sending the first request packet until receiving the first response data packet
+%TTFB describes how long the requesting party has to wait from sending the first request packet until receiving the first response data packet
 
 
 
@@ -2394,8 +2396,8 @@ TTFB describes how long the requesting party has to wait from sending the first 
 % 2018 Netravali
 
 % https://hpbn.co/primer-on-web-performance/
-- Has been the de facto metric of the web performance world
-- Increasingly insufficient performance benchmark: we are no longer building pages, we are building dynamic and interactive web applications
+%- Has been the de facto metric of the web performance world
+%- Increasingly insufficient performance benchmark: we are no longer building pages, we are building dynamic and interactive web applications
 
 % 2019 Enghardt
 
@@ -2592,11 +2594,11 @@ Performance Timeline defines an API which subsumes all relevant specifications.
 
 
 % 2013 Meenan
-- provides a simple way of marking points in time using performance. mark(“label”) and a standard way of querying all of the custom measurements later
+%- provides a simple way of marking points in time using performance. mark(“label”) and a standard way of querying all of the custom measurements later
 
 
 % Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
--> Puts data in Performance Timeline / DevTools
+%-> Puts data in Performance Timeline / DevTools
 
 
 
@@ -2606,32 +2608,32 @@ Performance Timeline defines an API which subsumes all relevant specifications.
 \paragraph{Performance Timeline}
 
 
-Access all different data from other APIs.
+%Access all different data from other APIs.
 
 % https://www.w3.org/TR/performance-timeline-2/
-- level 1 is recommendation from December 2013 % https://www.w3.org/TR/2013/REC-performance-timeline-20131212/
-- level 2
-- working draft from October 2019
-- extends the High Resolution Time specification
-- providing methods to store and retrieve high resolution performance metric data.
-- Performance Timeline  defined by Navigation timing, resource timing, user timing and other interfaces
-- get Entries, by Type, by Name
-- Example entryType values defined by other specifications include: "mark" and "measure" [USER-TIMING-2], "navigation" [NAVIGATION-TIMING-2], "resource" [RESOURCE-TIMING-2], and "longtask"
+%- level 1 is recommendation from December 2013 % https://www.w3.org/TR/2013/REC-performance-timeline-20131212/
+%- level 2
+%- working draft from October 2019
+%- extends the High Resolution Time specification
+%- providing methods to store and retrieve high resolution performance metric data.
+%- Performance Timeline  defined by Navigation timing, resource timing, user timing and other interfaces
+%- get Entries, by Type, by Name
+%- Example entryType values defined by other specifications include: "mark" and "measure" [USER-TIMING-2], "navigation" [NAVIGATION-TIMING-2], "resource" [RESOURCE-TIMING-2], and "longtask"
 
-- The PerformanceObserver interface can be used to observe the Performance Timeline to be notified of new performance metrics as they are recorded.
+%- The PerformanceObserver interface can be used to observe the Performance Timeline to be notified of new performance metrics as they are recorded.
 
 
 % https://w3c.github.io/perf-timing-primer/
-- unified interface to obtain various performance metrics
+%- unified interface to obtain various performance metrics
 	
 	
 % https://developer.mozilla.org/en-US/docs/Web/API/Performance_Timeline
-- PerformanceEntry interface encapsulates a single performance entry: a single data point or metric in the performance timeline
+%- PerformanceEntry interface encapsulates a single performance entry: a single data point or metric in the performance timeline
 
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
-- performance.getEntriesByType('navigation') -> get navigation timings
-- performance.getEntriesByType('resource') -> get resource timings
+%- performance.getEntriesByType('navigation') -> get navigation timings
+%- performance.getEntriesByType('resource') -> get resource timings
 
 
 \begin{figure}[h!]
@@ -2676,7 +2678,7 @@ Access all different data from other APIs.
 
 
 % https://www.youtube.com/watch?v=6Ljq-Jn-EgU&ab_channel=GoogleChromeDevelopers
-- Long Tasks: Is it delightful? PerformanceObserver
+%- Long Tasks: Is it delightful? PerformanceObserver
 
 
 % ----------------------------
@@ -2699,19 +2701,19 @@ Access all different data from other APIs.
 
 
 % https://www.w3.org/TR/paint-timing/
--  First Public Working Draft, 7 September 2017
--  capture a series of key moments (First Paint, First Contentful Paint
-- metrics mark the points, immediately after navigation, when the browser renders pixels to the screen
-- answers the question: is it happening? -> We will see later that Google Web Vitals use same question
+%-  First Public Working Draft, 7 September 2017
+%-  capture a series of key moments (First Paint, First Contentful Paint
+%- metrics mark the points, immediately after navigation, when the browser renders pixels to the screen
+%- answers the question: is it happening? -> We will see later that Google Web Vitals use same question
 
-Paint or Render: "the browser has performed a "paint" (or "render") when it has converted the render tree to pixels on the screen. "
+%Paint or Render: "the browser has performed a "paint" (or "render") when it has converted the render tree to pixels on the screen. "
 
-FP: "the time when the browser first rendered after navigation. This excludes the default background paint, but includes non-default background paint. This is the first key moment developers care about in page load – when the browser has started to render the page"
-FCP: "time when the browser first rendered any text, image (including background images), non-white canvas or SVG. This includes text with pending webfonts. This is the first time users could start consuming page content"
+%FP: "the time when the browser first rendered after navigation. This excludes the default background paint, but includes non-default background paint. This is the first key moment developers care about in page load – when the browser has started to render the page"
+%FCP: "time when the browser first rendered any text, image (including background images), non-white canvas or SVG. This includes text with pending webfonts. This is the first time users could start consuming page content"
 
 
-From the browser perspective.
-For user perspective, start render is the metric.
+%From the browser perspective.
+%For user perspective, start render is the metric.
 
 \begin{center}
 \small
@@ -2727,23 +2729,23 @@ For user perspective, start render is the metric.
 
 
 
-First Paint, Time to First Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_paint
+%First Paint, Time to First Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_paint
 
 
 % 2013 Meenan
-- can tell you the first point in time when the user sees something other than a blank white screen
-- doesn’t necessarily mean the user sees anything useful
+%- can tell you the first point in time when the user sees something other than a blank white screen
+%- doesn’t necessarily mean the user sees anything useful
 
 
-First Contentful Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_contentful_paint
+%First Contentful Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_contentful_paint
 
 
 % 2018 Netravali
 % TTFP
 
 
-use this as transition to web vitals
-There are more metrics which try to capture user experienced or perceived performance, which are calculated by visuals etc.
+%use this as transition to web vitals
+%There are more metrics which try to capture user experienced or perceived performance, which are calculated by visuals etc.
 
 
 
@@ -2756,13 +2758,13 @@ There are more metrics which try to capture user experienced or perceived perfor
 \paragraph{Conclusion}
 
 
-The W3C provides recommendations and drafts which expose interesting timing data in the browser. %leveraging
-The High Resolution Time recommendation enables exact, stable and reliable time measures.
-The Navigation and Resource Timing specifications expose all relevant time stamps on the document, or any resource respectively, loading process.
-The User Timing spec makes it possible for analysts and developers to mark and measure custom time stamps and expose them directly to the Performance Timeline.
-The Performance Timeline subsumes all exposed timing measures and is the go to place to fetch performance data.
+%The W3C provides recommendations and drafts which expose interesting timing data in the browser. %leveraging
+%The High Resolution Time recommendation enables exact, stable and reliable time measures.
+%The Navigation and Resource Timing specifications expose all relevant time stamps on the document, or any resource respectively, loading process.
+%The User Timing spec makes it possible for analysts and developers to mark and measure custom time stamps and expose them directly to the Performance Timeline.
+%The Performance Timeline subsumes all exposed timing measures and is the go to place to fetch performance data.
 
-Or as Grigorik states it, "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application" % cite 2013 Girgorik
+%Or as Grigorik states it, "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application" % cite 2013 Girgorik
 
 
 
@@ -2791,14 +2793,14 @@ Or as Grigorik states it, "The combination of Navigation, Resource, and User tim
 
 % [Transition]
 
-Multiple metrics are directly derived from those timing attributes, such as TTFB or Page Load Time.
-Those metrics cover only the technical aspect of performance, that is they reflect performance as time or how long it took for a specific task to finish.
-Those technical timing metrics may give an idea about the loading process of the web site, but they do not reflect how a user is experiencing the performance.
+%Multiple metrics are directly derived from those timing attributes, such as TTFB or Page Load Time.
+%Those metrics cover only the technical aspect of performance, that is they reflect performance as time or how long it took for a specific task to finish.
+%Those technical timing metrics may give an idea about the loading process of the web site, but they do not reflect how a user is experiencing the performance.
 
-The Paint Timing specification goes into the direction of capturing user perceived performance by exposing the time when the first visual content has been displayed to the user.
+%The Paint Timing specification goes into the direction of capturing user perceived performance by exposing the time when the first visual content has been displayed to the user.
 
-This idea of user centric metrics has been followed by many such as Google, which introduces Web Vitals.
-Web Vitals are discussed in the next section, but before I will explain some other user centric metrics such as Speed Index.
+%This idea of user centric metrics has been followed by many such as Google, which introduces Web Vitals.
+%Web Vitals are discussed in the next section, but before I will explain some other user centric metrics such as Speed Index.
 
 
 % -----------------------------------------------------------------------
@@ -2814,20 +2816,20 @@ Web Vitals are discussed in the next section, but before I will explain some oth
 
 % [Introduction]
 
-Last section was about performance timings which are available through the web apis.
-They are timestamps and do not tell a lot about how the user perceives the performance.
+%Last section was about performance timings which are available through the web apis.
+%They are timestamps and do not tell a lot about how the user perceives the performance.
 
 % https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance
-- Perceived performance
-- how fast a web site feels to a user
-- perception can be different that actual load times
-- more difficult to measure that loading times
+%- Perceived performance
+%- how fast a web site feels to a user
+%- perception can be different that actual load times
+%- more difficult to measure that loading times
 
 
 
 
-I will describe established user-centric performance metrics, such as TTI, TBT and Speed Index.
-Then I will discuss Web Vitals.
+%I will describe established user-centric performance metrics, such as TTI, TBT and Speed Index.
+%Then I will discuss Web Vitals.
 
 
 
@@ -2909,7 +2911,9 @@ Then I will discuss Web Vitals.
 
 \paragraph{Above the Fold Time}
 
+
 % 2013 Meenan
+
 %- point in time when the last visual change is made to the visible part of the page
 %- available only in lab environments where the visual progress of a page loading can be recorded
 
@@ -2963,26 +2967,26 @@ Then I will discuss Web Vitals.
 
 
 % https://web.dev/vitals/
-- "Web Vitals is an initiative by Google to provide unified guidance for quality signals that are essential to delivering a great user experience on the web."
-- Core Web Vitals: Metrics that matter the most
- - evolving: definitions and thresholds may change with greater frequency
+%- "Web Vitals is an initiative by Google to provide unified guidance for quality signals that are essential to delivering a great user experience on the web."
+%- Core Web Vitals: Metrics that matter the most
+% - evolving: definitions and thresholds may change with greater frequency
 
 
 % https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-- a set of browser-based metrics for capturing user-perceived performance.
-- Google heralds the Web Vitals as the gold standard for website performance
-- publishes them in the Chrome User Experience Report (CrUX)
+%- a set of browser-based metrics for capturing user-perceived performance.
+%- Google heralds the Web Vitals as the gold standard for website performance
+%- publishes them in the Chrome User Experience Report (CrUX)
 
 
 
 % [Types of Metrics]
 
 % https://web.dev/user-centric-performance-metrics/
-- Perceived load speed
-- Load responsiveness
-- Runtime responsiveness
-- Visual stability
-- Smoothness
+%- Perceived load speed
+%- Load responsiveness
+%- Runtime responsiveness
+%- Visual stability
+%- Smoothness
 
 
 
@@ -2990,8 +2994,8 @@ Then I will discuss Web Vitals.
 
 
 % https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-- The core metrics will further be used for ranking search results 
-- Website performance according to the Web Vitals will therefore be critically important for SEO in the upcoming years.
+%- The core metrics will further be used for ranking search results 
+%- Website performance according to the Web Vitals will therefore be critically important for SEO in the upcoming years.
 
 
 
@@ -3022,23 +3026,23 @@ Then I will discuss Web Vitals.
 
 
 % https://web.dev/vitals/
-- apply to all web pages
-- available in all google tools
-- each core web vital  represents a distinct facet of the user experience: loading, interactivity, and visual stability
-- each is measurable in the field
-- rather stable in definition and thresholds
-- Collected by Crux, Pagespeed insights and search console
-- measure with library % https://github.com/GoogleChrome/web-vitals
+%- apply to all web pages
+%- available in all google tools
+%- each core web vital  represents a distinct facet of the user experience: loading, interactivity, and visual stability
+%- each is measurable in the field
+%- rather stable in definition and thresholds
+%- Collected by Crux, Pagespeed insights and search console
+%- measure with library % https://github.com/GoogleChrome/web-vitals
 
 
 
 
 % https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
-- Future goals: Better support for Single Page Apps, Input responsiveness, Scrolling and animations
-- Areas of user experience beyond performance: Security, Privacy, Accessibility
+%- Future goals: Better support for Single Page Apps, Input responsiveness, Scrolling and animations
+%- Areas of user experience beyond performance: Security, Privacy, Accessibility
 
  
-The core web vitals LCP CLS and FID are now being discussed. 
+%The core web vitals LCP CLS and FID are now being discussed. 
 
 
 %TODO add this ?
@@ -3122,6 +3126,8 @@ The core web vitals LCP CLS and FID are now being discussed.
 
 \paragraph{Thresholds and Benchmarks for Core Web Vitals}
 
+
+[tbd]
 
 % https://blog.chromium.org/2020/05/the-science-behind-web-vitals.html
 
@@ -3216,30 +3222,32 @@ The core web vitals LCP CLS and FID are now being discussed.
 
 \paragraph{Observer Effect}
 
+[tbd]
+
 % https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
-Avoiding the Observer Effect
+%Avoiding the Observer Effect
 
-- How to measure performance without affecting performance?
-- JS is single threaded
-- Unless browser is idle, anything you do in JS will slow down some other JS
--> Do only cheap stuff
-- Don't slow down load time:
-	- Load measurement code outside the critical path
-	- Use Iframe Loader Technique
-	- Load measurement code after onload event (-> can not measure things that happen before onload)
+%- How to measure performance without affecting performance?
+%- JS is single threaded
+%- Unless browser is idle, anything you do in JS will slow down some other JS
+%-> Do only cheap stuff
+%- Don't slow down load time:
+%	- Load measurement code outside the critical path
+%	- Use Iframe Loader Technique
+%	- Load measurement code after onload event (-> can not measure things that happen before onload)
 
-- Do as little as possible in event handlers
-- Do more expensive processing via requestIdleCallback that runs when browser is idle
+%- Do as little as possible in event handlers
+%- Do more expensive processing via requestIdleCallback that runs when browser is idle
 
 
 
 % https://web.dev/custom-metrics/
-The first rule of effective performance measurement is to make sure your performance measurement techniques aren't causing performance issues themselves.
+%The first rule of effective performance measurement is to make sure your performance measurement techniques aren't causing performance issues themselves.
 
 
 
-Before tackling this question with an experiment, I will discuss one synthetic monitoring tool WPT and one RUM tool GA which I will then use in the approach.
-Also some research in this field will be discussed.
+%Before tackling this question with an experiment, I will discuss one synthetic monitoring tool WPT and one RUM tool GA which I will then use in the approach.
+%Also some research in this field will be discussed.
 
 
 
