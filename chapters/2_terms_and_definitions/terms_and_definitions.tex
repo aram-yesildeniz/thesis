@@ -931,11 +931,11 @@ Performance data can be captured using common performance APIs as described in s
 Additionally, through video recording and analysis,  user centric metrics such as Speed Index can be computed (see section X.) % cite 2021 Wolle 
 
 In synthetic monitoring, many possible configurations and variables of the test agent (client) are under control, such as the location (geography), network conditions, device type, browser version, and so on. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
-Hence, the tester has control over many variables that impact performance.
+Hence, the tester has control over many variables that impact performance. %and can use this to test impact of variables...
 
-The controlled environment makes it possible to capture performance data for a specific set up of configurations, such as the test agents location or browser version, which may help to identify issues regarding certain user segments.  For example., a test could check the performance of all users using Firefox in macOS in Germany. % cite 2009 Croll
+The controlled environment makes it possible to capture performance data for a specific set up of configurations, such as the test agents location or browser version, which may help to identify issues regarding certain user segments.  For example., a test could check the performance of all users using Firefox running on macOS in Germany. % cite 2009 Croll
 
-Apart from defining the "infrastructure" configuration, the tester can also define artificial user journeys to simulate real user behaviour. % cite 2021 Wolle
+Apart from defining the technical configuration such as browser version or network condition, the tester can also define artificial user journeys to simulate real user behaviour. % cite 2021 Wolle
 
 A characteristic of the controlled environment is that measured data and test results are rather consistent with low variability and can therefore provide a performance base line for the web site under observation and facilitate performance tuning.% cite 2013 Meenan
 
@@ -943,7 +943,7 @@ A characteristic of the controlled environment is that measured data and test re
 \paragraph{Synthetic Monitoring is not about Real Users}
 
 Synthetic monitoring does not capture data of real users as the web sites traffic is generated artificially.
-Real user behaviour is approximated through simulation by for example predefining user paths.
+Real user behaviour is approximated through simulation of users by for example predefining user paths.
 The measured performance data does not necessarily reflect actual real user experience and the tester should not assume that "synthetic results are like real-user metrics". %cite 2016 Viscomi
 
 Capturing the wide variety and diversity of real-world users such as which pages they visits,, the general configuration of the users machine such as the CPU, GPU and memory performance, what data stores the browser cache and which browser version is being used, the screen size, the operating system, and the network connection to name a few, is difficult to represent in synthetic monitoring. % cite 2013 Meenan, 2013 Grigorik
@@ -1017,23 +1017,22 @@ RUM measures the performance as experienced by the users. % cite https://develop
 
 
 
-
 \subsubsection{The Page Tagging Technique in RUM}
 
 % [Page Tagging]
 
-As already described in section X. Page Tagging is technique to instrument the users browser in order to collect data and report it back to an analytics server.
+As already described in section X. Page Tagging is a technique to instrument the users browser in order to collect data and report it back to an analytics server.
 RUM is based on page tagging, in terms of that it relies on a JS code snippet (tracking or code) which will be loaded into the users browser.
 Once this JS code is loaded and executed in the browser, it collects data and sends it back to an analytics service.
 If the user blocks JS, or the script can not be downloaded due to other reasons,  RUM will not work.
 Once the data arrives at an analytics service, is has to be stored and an interface for the analyst has to be provided in order that he can query the data and get insights, for example by providing a dashboard. %cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 
 As RUM relies on the JS code, the very first opportunity to measure data is when this JS code has been downloaded and executed.
-Anything what happens before this step is not visible for the tracking script.
+Anything what happens before this step is not visible for the tracking script and therefore the analyst.
 Meenan states that approximately 20 \% of the loading process lies outside of the RUM measurement scope and "getting a reliable start time for measurements from the real world has been the biggest barrier to using RUM".% cite 2013 Meenan
 
 Another facet of RUM is that ideally the measuring of data has as little as possible impact on the web sites rendering process and that network capacity should not be occupied by RUM scripts and block resources of the CRP (see section X.) % cite  2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-If RUM as a page tagging technique is slowing down the web site under observation is one research question of this thesis.
+If RUM, as a page tagging technique, is slowing down the web site under observation, is one research question of this thesis.
 The evaluation of the controlled experiment tackling this questions states that RUM...., as discussed in great detail in section X. %TODO add conclusion of evaluation here
 
 
@@ -1057,7 +1056,7 @@ As discussed in section X, a web sites performance and user satisfaction are dir
 A critical part of RUM is to not only capture performance metrics, but also measure user behaviour, for example how the user interacts with the web site and where he clicks. %cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 In an e-commerce context, user behaviour questions of interest are for example if a new campaign changes user behaviour as expected or where users leave the check out process. %cite 2021 wolle and % https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
 
-RUM enables the combination of performance metrics with user behaviour and business metrics (see section X.) and can answer questions such as if and how the performance of the web site affects the user behaviour, for example if users buy more or less depending on the web sites speed.% cite Eggplant whitepaper
+RUM facilitates the combination of collected metrics with user behaviour and business KPIs and can answer questions such as if and how the performance of the web site affects the user behaviour, for example if users buy more or less depending on the web sites speed.% cite Eggplant whitepaper
 Thus RUM is not only important for understanding user behaviour, but also for optimizing the web site and to increase revenue.
 With techniques such as cookies (see section X.), it is also possible to track user behaviour not only for one page load but over a series of web site visits, leading to even more detailed insights about the visitor. %cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 
@@ -1069,6 +1068,11 @@ The main player Google Analytics will be discussed in greater detail in section 
 
 % SpeedKit ?
 
+
+% [Transition]
+
+Google collects RUM and browser data of chrome users agreed to do so.
+The data is accessible through the Chrome User Experience Report (CrUX) and will be discussed next.
 
 
 
@@ -1176,20 +1180,21 @@ On the other hand, when no user is visiting the web site, RUM is not collecting 
 Other performance measurement methods such as CrUX and surveys provide browser specific or quality data and complement the analysts tool box.
 
 
-%TODO fill in
 \begin{center}
 \begin{tabular}{  c | c  }
 Synthetic Monitoring & RUM \\
 \hline
-summary & summary \\
 \hline
-summary & summary \\
+Artificial test agents & Real users \\
+\hline
+Controlled configuration & No control over configuration \\
+\hline
+Approximates real user data & Collects real user data \\
+\hline
+For monitoring & Links user behaviour to business KPIs \\
 \end{tabular}
 \end{center}
-
-
-%TODO check out https://support.speedcurve.com/en/articles/74068-synthetic-vs-real-user-monitoring-rum
-
+%TODO caption
 
 
 % [Metrics, Transition]
@@ -1454,31 +1459,29 @@ Non-Numerical Values can not be reflected as number.
 	\hline
 	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Counts} \\
 	\hline
-	Hits & explain here... \\
+	Hits & Represent amount of requests to the server.  \\ % 2004 Peterson
 	\hline
-	Visits & ... \\
+	Visits or Sessions & Count how many users view the website \\ % 2004 Peterson
 	\hline
-	Sessions & ... \\
+	Session Length & How long the session endures \\ % 2007 Burby
 	\hline
-	Session Length & ... \\
+	Page Views & How often a page has been viewed \\ % 2004 Peterson
 	\hline
-	Page Views & ... \\
-	\hline
-	Single Page Visits & ... \\
+	Single Page Visits & Sessions where one page has been viewed \\ % 2007 Burby
 	\hline
 	New / Unique / Repeat / Return Visitors & ... \\
 	\hline
-	Time on Page & ... \\
-	\hline
-	Time between Visits & ... \\
-	\hline
-	JS Errors & ... \\
+%	Time on Page & ... \\
+	%\hline
+%	Time between Visits & ... \\
+%	\hline
+	JS Errors & How many JS errors occured \\
 	\hline
 	Cart Size & ... \\
 	\hline
-	Conversions & ... \\
+	Conversions & ...  (business specific) \\
 	\hline
-	... & ... \\
+	\textit{etc.} &  \\
 
 	\hline
 	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Ratios} \\
@@ -1499,7 +1502,7 @@ Non-Numerical Values can not be reflected as number.
 	\hline
 	Click Through Rate (CTR) & ... \\
 	\hline
-	... & ... \\	
+	\textit{etc.} & \\	
 	
 	\hline
 	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Non-Numerical Values} \\
@@ -1508,7 +1511,7 @@ Non-Numerical Values can not be reflected as number.
 	\hline
 	Referrer & ... \\	
 	\hline
-	... & ... \\
+	\textit{etc.} &  \\
 	\hline
 	
 	\caption{Business Metrics Examples} % needs to go inside longtable environment
@@ -1524,12 +1527,9 @@ Non-Numerical Values can not be reflected as number.
 
 %\paragraph{Visits}
 % 2004 Peterson
+% 2007 Burby
 % 2009 Waisberg
 % 2017 Hassler
-
-%\paragraph{Sessions}
-% 2007 Burby
-
 
 %\paragraph{Session Length}
 % 2007 Burby
@@ -1538,14 +1538,9 @@ Non-Numerical Values can not be reflected as number.
 %\paragraph{Page Views}
 % 2004 Peterson
 % 2007 Burby
-
-% 2009 Croll
-%p. 74 Page View, first useful web analytics metric
-
+% 2009 Croll p. 74 Page View, first useful web analytics metric
 % 2009 Waisberg
-
 % 2015 Zheng
-
 % 2017 Hassler
 
 
@@ -2720,7 +2715,7 @@ For user perspective, start render is the metric.
 
 \begin{center}
 \small
-	\begin{tabular}{ p{0.3\linewidth} | p{0.6\linewidth} }
+	\begin{tabular}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
 	\hline
 	First Paint & "Marks the point when the browser renders anything that is visually different from what was on the screen prior to navigation"  \\ 
 	\hline
