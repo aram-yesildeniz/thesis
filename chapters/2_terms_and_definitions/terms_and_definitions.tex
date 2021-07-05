@@ -1180,6 +1180,7 @@ On the other hand, when no user is visiting the web site, RUM is not collecting 
 Other performance measurement methods such as CrUX and surveys provide browser specific or quality data and complement the analysts tool box.
 
 
+\begin{table}[h!]
 \begin{center}
 \begin{tabular}{  c | c  }
 Synthetic Monitoring & RUM \\
@@ -1193,8 +1194,9 @@ Approximates real user data & Collects real user data \\
 \hline
 For monitoring & Links user behaviour to business KPIs \\
 \end{tabular}
+\caption{Synthetic Monitoring and RUM}
 \end{center}
-%TODO caption
+\end{table}
 
 
 % [Metrics, Transition]
@@ -1380,7 +1382,7 @@ The categories are \textit{Performance}, which includes performance metrics such
 
 %- also customer life cycle
 
-
+\begin{table}[h!]
 \begin{center}
 \begin{tabular}{  c | c  }
 Value-Driven & \{Counts, Ratios, KPIs\},  \\
@@ -1392,7 +1394,9 @@ Semantic-Driven & \{Performance, User Engagement, Business KPIs, QA Metadata\}, 
 Marketing-Driven & \{Reach, Acquisition, Conversion, Retention\}, \\
 & \{Visits, Visitors, Visitor Engagement, Conversions\} \\
 \end{tabular}
+\caption{Business Metrics Categorizations}
 \end{center}
+\end{table}
 
 
 
@@ -2580,17 +2584,17 @@ Performance Timeline defines an API which subsumes all relevant specifications.
 
 
 % https://www.w3.org/TR/user-timing-3/
-- level 3
-- working draft from March 2021
-- give developers access to high precision timestamps
-- PerformanceMark and PerformanceMeasure interfaces
-- mark timestamps and measure time between marks
+%- level 3
+%- working draft from March 2021
+%- give developers access to high precision timestamps
+%- PerformanceMark and PerformanceMeasure interfaces
+%- mark timestamps and measure time between marks
 
 
 % https://w3c.github.io/perf-timing-primer/
--  obtain the high precision performance characteristics of an individual task which is important to you
-- unique marks
-- PerformanceMeasure interface: calculate the elapsed time between two marks
+%-  obtain the high precision performance characteristics of an individual task which is important to you
+%- unique marks
+%- PerformanceMeasure interface: calculate the elapsed time between two marks
 
 
 % 2013 Meenan
