@@ -1242,6 +1242,7 @@ Specific metric values can be used as a target for goal achievement and are ther
 Ideally, metrics are precise and serve as objective criteria for the evaluation of the measured website. % cite https://web.dev/user-centric-performance-metrics/
 
 
+%TODO add this ?
 % https://speedcurve.com/blog/rendering-metrics/
 %- Metrics quantify behavior
 %- we're trying to capture the behavior of a website in terms of speed and construction
@@ -1255,12 +1256,8 @@ Ideally, metrics are precise and serve as objective criteria for the evaluation 
 The relevance of metrics is crucial.
 Just as each website is unique and has a different purpose, so should metrics be which quantify the website.
 It is important to measure what is important and relevant for the users and reaching business goals, while "each business has its own definitions of success". % cite 2009 Croll p 7,  https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-Hence, metrics are ideally tailored and custom to the website.
+Hence, metrics are ideally tailored and custom to the website and they should track if "your business benefited in some way from their [the users] visits." % cite 2009 Croll p 15
 
-
-% 2009 Croll p 7
-%- p.15 "whether your business benefited in some way from their visits."
-%- search engine vs e-commerce website example
 
 
 % [Usable]
@@ -1270,15 +1267,20 @@ That implies that the collection and measurement of metrics should be consistent
 Kumar states that ideally, good metrics are uncomplex, relevant, timely, and instantly useful.  \\% cite 2012 Kumar
 
 
-[Section Outline]
+% [Section Outline]
 
-%Business Metrics or metrics not directly correlated to performance or site speed.
-%Performance metrics:
-%    - Page weight
-%     - Timings
-%    - UX
-%     - Custom Metrics
-%Summary / Metrics Taxonomy
+In the next section, I will describe metrics which are more likely correlated and mapped to business topics, such as conversion or bounce rate.
+I use the term "business" or "non-performance" metrics to draw a line between metrics mainly concerned with a websites performance and metrics reflecting other web analytics aspects.
+Business metrics are not directly responsible to capture performance data such as loading speed of a website.
+
+After discussing non-performance metrics, performance metrics are described.
+This includes metrics concerned about page weight, load timings, and user-perceived performance.
+
+Finally, custom metrics are discussed.
+
+
+%TODO add this ?
+% Summary / Metrics Taxonomy
 
 
 
@@ -1300,12 +1302,13 @@ Kumar states that ideally, good metrics are uncomplex, relevant, timely, and ins
 \subsection{Business or "Non-Performance" Metrics}
 
 
-[tbd]
+As already described, the term business metrics should subsume metrics which are not directly concerned with capturing site speed or user-perceived performance.
+Business, or non-performance metrics, collect data about any aspect of a website which is of interest for the analyst.
+Thus, theoretically an unlimited amount of metrics exist, as also for each specific questions, custom metrics are made up.
 
-Quick explanation about the term business metrics.
-Unlimited metrics, also when thinking about custom metrics.
-The main question here is how to categorize those metrics.
-One approach is: numerical values, Relations, non-numerical values
+In literature, a core corpus of metrics can be found and multiple ideas of structuring and categorizing those metrics exist.
+The different possibilities of categorizations are discussed next.
+Afterwards, one approach of categorization is then used to list a selection of common business metrics.
 
 
 
@@ -1318,7 +1321,6 @@ One approach is: numerical values, Relations, non-numerical values
 
 Categories help to better grasp and comprehend metrics, and they can provide structure and order.
 Following are some examples of business metrics categorizations as they are presented in literature.
-
 
 Peterson arguments from a marketing perspective and categorizes the metrics according to the customer life cycle, which includes the phases reach, acquisition, conversion, and retention. % cite 2004 Peterson
 
@@ -1430,30 +1432,21 @@ After that, i will take a look at metrics which are specific for performance.
 
 
 Table X provides web analytics metrics which are not directly concerned with performance.
-The categories used to structure the metrics are Counts, 
+The categories used to structure the metrics are \textit{Counts}, \textit{Ratios} and \textit{Non-Numerical Values}, like they are already defined by Hassler or WAA in the section above. % cite ?
 
-Ratios
-
-and Non-Numerical Values, 
-
-
+%TODO even add this? already described above
 % [Counts]
-
-Counts describe how many
-Can be measured Over time: last hour, month, from to, etc.
-Averages are possible
-Compare with Segmentation
-
+%Counts hold a value describing how many 
+%Counts can be measured over time: last hour, month, from to, etc.
+%Averages are possible
+%Compare with Segmentation
 
 % [Ratios]
-
-Ratios are a combination of numerical values.
-As Ratio or Percentage
-
+%Ratios are a combination of numerical values.
+%As Ratio or Percentage
 
 % [Non-Numerical Values]
-
-Non-Numerical Values can not be reflected as number.
+%Non-Numerical Values can not be reflected as a number.
 
 
 \begin{center}
@@ -1634,16 +1627,18 @@ Non-Numerical Values can not be reflected as number.
 
 % [Transition]
 
-List is not complete.
-Now we move to performance specific metrics.
-As performance is directly connected to time, most of those performance metrics are measuring a timestamp.
-Some are also displaying a score. 
-This will be discussed.
+The table X provides a selection of common business metrics, following the proposed categorization of counts, ratios and non-numerical values and is not complete.
+In the next section, I will discuss metrics which are designed to directly capture performance related data.
+
+
+%TODO even add this? outline can be made in beginning of next section
+%As performance is directly connected to time, most of those performance metrics are measuring a timestamp.
+%Some are also displaying a score. 
+%This will be discussed.
 
 
 
 %TODO should i show how to actual measure those metrics, like visits, hits, conversion rate etc ?
-
 
 
 % Kessler 2012 -> dont have this digital...
@@ -1672,32 +1667,23 @@ This will be discussed.
 
 \subsection{Performance Metrics}
 
+Business or non-performance metrics track data about a lot of different aspects and topics, for example metrics about how many visitors the website has or what the conversion rate is.
+For measuring performance, for example site speed and how users perceive the performance of the website, a set of special metrics is needed.
+Performance metrics are established to measure various performance aspects of a website and will be discussed in this section.
 
-[tbd]
-
-
-Business metrics was about...
-Performance metrics is about...
-
-No official definitions
-Still there are informal standard
-Implementation can vary between tools who measure metrics
+%TODO add this?
+% No official definitions, lack of definitions (enghardt)
+% Still there are informal standard
+% Implementation can vary between tools who measure metrics
 
 
-% [Categories]
+% [Outline]
 
-As with general web analytics metrics, there are multiple ways to categorize performance metrics.
-
-% 2019 Enghardt
-- network-centric, browser-centric, and user-centric metrics
-
-For me most intuitive is
-
-Metrics regarding Page Weight and size of the web site
-Timing Metrics, how long each step from the CRP took
-UX Metrics, try to reflect how users experience performance, visual metrics
-Custom Metrics
-
+As with business or non-performance metrics, multiple ways exist to structure and categorize performance metrics.
+One way to order performance metrics is to differentiate between performance timing metrics, which measure elapsed time for concrete processes and navigation steps from the CRP, and user-centric performance metrics, which approximate user perceived performance by visual analysis.
+Both classes of metrics will be discussed in the following.
+But before I will talk about metrics regarding page weight and size of the website.
+A characterization of custom metrics concludes the section about performance metrics.
 
 
 
@@ -1707,44 +1693,46 @@ Custom Metrics
 
 \subsubsection{Page Weight}
 
-[tbd]
+A naive approach of quantifying a website is measuring its size and the amount of resources needed to build the website.
+Page weight can be used as a performance metric as the performance of a website depends on the network condition, like download speed and latency.
+The more bytes have to be transmitted over the network, the longer it takes for the website to get constructed and the longer the waiting time for the user.
+Similar for requests, the more requests are needed, more connections need to be established, which takes more time.
 
-%- one approach of making the website quantifiable
-%- measure the size of the web site
-%- Page weight has an impact on performance
-%- Page consists of resources
-%- More resources and bytes means more requests, downloads and waiting time
-
-
-% HTTP Archive
-%- Website consists of resources
-%- Measure bytes of each resource
-%- Measure how many requests are needed to fetch all resources
-%- Total Size: Number of bytes sent over the network, which may be compressed
-
-Bytes and Requests of following resources:
+A website consists of multiple resources, such as HTML files, fonts, script files or images (cf. table X).
+Page weight describes the number of bytes fetched and requests made for each resource type. %compare cite HTTP Archive
 
 \begin{center}
 \begin{tabular}{| c | c | c | c | }
 \hline
 HTML & CSS  & JS & Fonts \\
 \hline
-Images & Videos & Others & Total \\
+Images & Videos & Others & (Total) \\
 \hline
 \end{tabular}
 \end{center}
+%TODO add caption
 
-In approach section, i used this data to come up with a median web site.
-In this section are also some numbers available.
+Page weight is a first assessment for a website regarding performance.
+It is mainly useful for comparison with median values or other websites, but has little to nothing expressiveness and significance for evaluating a websites performance.
+To get more useful insights about a websites performance, other metrics are in need, such as performance timings metrics, which will be discussed in the next section.
+As described in section X,  the idea of page weight is used to construct a test site with a median page weight values.
 
 
 % -----------------------------------------------------------------------
 
 
-\subsubsection{Performance Timings Metrics}
+\subsubsection{Performance Timing Metrics}
+
+Performance timing metrics depict elapsed time within the navigation process and CRP as described in section X.
+They are calculated and derived from a set of standardized Web APIs.
+In the following, I will briefly explain the nature of web standards and recommendations.
+Then, performance relevant specifications and the metrics they expose are discussed.
 
 
 \paragraph{Web Standards}
+
+
+
 
 % https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards
 %- in 1994, TimBL founded the World Wide Web Consortium (W3C), an organization that brings together representatives from many different technology companies to work together on the creation of web technology specifications
@@ -2508,6 +2496,9 @@ In this section are also some numbers available.
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#domcontentloaded_event
 % DOMContentLoaded = timing.domContentLoadedEventEnd - timing.domContentLoadedEventStart
 
+% 2019 Enghardt
+
+
 
 
 % DOM Processing to Interactive
@@ -2752,6 +2743,8 @@ Performance Timeline defines an API which subsumes all relevant specifications.
 %There are more metrics which try to capture user experienced or perceived performance, which are calculated by visuals etc.
 
 
+% 2019 Enghardt: TTFP
+
 
 
 
@@ -2924,6 +2917,9 @@ Performance Timeline defines an API which subsumes all relevant specifications.
 
 % 2018 Netravali
 %- Above the fold time
+
+
+% 2019 Enghardt
 
 
 % ------------------------
