@@ -1723,7 +1723,7 @@ As described in section X,  the idea of page weight is used to construct a test 
 
 \subsubsection{Performance Timing Metrics}
 
-Performance timing metrics depict elapsed time within the navigation process and CRP as described in section X.
+Performance timing metrics depict elapsed time within the website loading process such as navigation and CRP (cf.  section X).
 They are calculated and derived from a set of standardized Web APIs.
 In the following, I will briefly explain the nature of web standards and recommendations.
 Then, performance relevant specifications and the metrics they expose are discussed.
@@ -1731,64 +1731,36 @@ Then, performance relevant specifications and the metrics they expose are discus
 
 \paragraph{Web Standards}
 
+Web Standards are documents describing the technology used to build the WWW. % cite https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards
+Those documents, or specifications, are maintained by different groups and organizations.
+Multiple organizations exist to provide and maintain standards for different areas and technologies of the web.
+Such organisations are for example the WHATWG, which maintains the HTML living standard\footnote{\url{https://whatwg.org/} [11.07.2021]}, or Ecma International, providing the specification for JS.\footnote{\url{https://www.ecma-international.org/} [11.07.2021]}.
 
-
-
-% https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards
-%- in 1994, TimBL founded the World Wide Web Consortium (W3C), an organization that brings together representatives from many different technology companies to work together on the creation of web technology specifications
-
-[Web Standards]
-%- technologies we use to build web sites
-%- standards exist as long technical documents called specifications
-%- detail exactly how the technology should work
-%-  to be used by software engineers to implement these technologies (usually in web browsers)
-%- For example, the HTML Living Standard describes exactly how HTML (all the HTML elements, and their associated APIs, and other surrounding technologies) should be implemented.
-%- Others  WHATWG (who maintain the living standards for the HTML language), ECMA
-
+The World Wide Web Consortium (W3C) is an organization which maintains different standards for the WWW, including specifications for performance measurement\footnote{\url{https://www.w3.org/} [11.07.2021]}, and will be discussed next.
 
 
 \paragraph{W3C}
 
+% [What is W3C]
 
-[What is W3C]
-
-% https://www.w3.org/standards/faq
-%W3C publishes documents that define Web technologies. These documents follow a process designed to promote consensus, fairness, public accountability, and quality. At the end of this process, W3C publishes Recommendations, which are considered Web standards.
-
-%e.g.DOM,  HTML, SVG, ...
+The W3C was founded in 1994 by Tim Berners-Lee, with the goal to bring together "representatives from many different technology companies to work together on the creation of web technology specifications". % cite https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards
+The W3C maintains and publishes documents that describe and define web technologies such as DOM, SVG or CSS. % cite https://www.w3.org/standards/faq
 
 
+% [Recommendation Process]
 
-[Recommendation Process]
-
-% https://www.w3.org/2020/Process-20200915/#rec-track
-%- Recommendation track:
-%Publication of the First Public Working Draft.
-%Publication of zero or more revised Working Drafts.
-%Publication of one or more Candidate Recommendations.
-%Publication of a Proposed Recommendation.
-%Publication as a W3C Recommendation.
-
-%- From Idea to concrete API which browser maintainers implement
-
-% maturity levels https://www.w3.org/2015/Process-20150901/#maturity-levels
-%- Working Draft (WD)
-%- Candidate Recommendation (CR)
-%- Proposed Recommendation
-%- W3C Recommendation (REC)
-
-
+The document creation follows a "recommendation track", which describes the hurdles a document needs to overcome in order to turn from an idea into a final recommendation and web standard to an concrete API which browser vendors implement. %cite  https://www.w3.org/2020/Process-20200915/#rec-track
+The phases in the recommendation track are described by "maturity levels" of the document:
+The document starts as the First Public Working Draft -> Working Draft (WD)-> Candidate Recommendations (CR)-> Proposed Recommendation, and finally the publication as a W3C Recommendation. (REC)  % cite https://www.w3.org/2015/Process-20150901/#maturity-levels
 
 
 
 \paragraph{Web Performance Working Group}
 
-[tbd]
-
 % [Introduction]
 
-%Multiple groups exists which are responsible for a specific topic.
-%Performance working group is responsible for performance.
+Within the W3C, several groups exist, each one concerned with a specific topic within the WWW universe.
+The Web Performance Working Group is one of them and responsible "to provide methods to measure aspects of application performance of user agent features and APIs" \footnote{\url{https://www.w3.org/webperf/} [11.07.2021]}.
 
 % 2013 Meenan
 %- In 2010, the browser vendors got together under the W3C banner and formed the Web Performance Working Group to standardize the interfaces and work toward improving the state of Web-performance measurement and APIs in the browsers
