@@ -1749,9 +1749,9 @@ The W3C maintains and publishes documents that describe and define web technolog
 
 % [Recommendation Process]
 
-The document creation follows a "recommendation track", which describes the hurdles a document needs to overcome in order to turn from an idea into a final recommendation and web standard to an concrete API which browser vendors implement. %cite  https://www.w3.org/2020/Process-20200915/#rec-track
-The phases in the recommendation track are described by "maturity levels" of the document:
-The document starts as the First Public Working Draft -> Working Draft (WD)-> Candidate Recommendations (CR)-> Proposed Recommendation, and finally the publication as a W3C Recommendation. (REC)  % cite https://www.w3.org/2015/Process-20150901/#maturity-levels
+The document, or specification creation, follows a "recommendation track", which describes the hurdles a document needs to overcome in order to turn from an idea into a final recommendation and web standard, which browser vendors implement as concrete APIs. %cite  https://www.w3.org/2020/Process-20200915/#rec-track
+The phases in the recommendation track are described by "maturity levels" of the document and are as follows:
+First Public Working Draft $\,\to\,$ Working Draft (WD) $\,\to\,$ Candidate Recommendations (CR) $\,\to\,$ Proposed Recommendation $\,\to\,$ W3C Recommendation (REC).  % cite https://www.w3.org/2015/Process-20150901/#maturity-levels
 
 
 
@@ -1759,16 +1759,17 @@ The document starts as the First Public Working Draft -> Working Draft (WD)-> Ca
 
 % [Introduction]
 
-Within the W3C, several groups exist, each one concerned with a specific topic within the WWW universe.
-The Web Performance Working Group is one of them and responsible "to provide methods to measure aspects of application performance of user agent features and APIs" \footnote{\url{https://www.w3.org/webperf/} [11.07.2021]}.
+Within the W3C, several groups exist, each one concerned with a specific topic within the WWW universe. % cite https://www.w3.org/groups/wg/
+The Web Performance Working Group, founded in 2010, is a group responsible "to provide methods to measure aspects of application performance of user agent features and APIs" \footnote{\url{https://www.w3.org/webperf/} [11.07.2021]}.
 
-% 2013 Meenan
-%- In 2010, the browser vendors got together under the W3C banner and formed the Web Performance Working Group to standardize the interfaces and work toward improving the state of Web-performance measurement and APIs in the browsers
-%- Clock issue -> High Resolution Time specification
 
-% Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
-%- WebPerf Working Group (founded 2010)
-%- "Provide methods to measure aspects of application performance of user agent features and APIs"
+% [Specs]
+
+The Web Performance Working Group publishes and maintains a variety of documents concerned with performance measurement, such as High Resolution Time, Navigation Timing or Page Visibility. % cite https://www.w3.org/groups/wg/webperf/publications
+The publications important for performance metrics will be discussed next.
+
+
+%TODO add this ?
 
 % https://www.w3.org/2021/02/webperf.html
 %- Working Groups push new recommendations and invent them
@@ -1777,21 +1778,6 @@ The Web Performance Working Group is one of them and responsible "to provide met
 %- Scheduling
 %- Adaptation
 %-> Important is Measurement
-
-
-
-
-% [Specs]
-
-%Normative Specifications:
-%- High Resolution Time
-%- Performance Timeline
-%- Resource Timing
-%- Navigation Timing
-%- User Timing
-%- Page Visibility
-%- Long Task
-%- Paint Timing
 
 
 %Server Timing:
@@ -1813,13 +1799,6 @@ The Web Performance Working Group is one of them and responsible "to provide met
 % Network Information API (not official w3c) https://wicg.github.io/netinfo/
 % Element Timing API (not official w3c) https://wicg.github.io/element-timing/
 % Event Timing API (not official w3c) https://wicg.github.io/event-timing/
-
-
-
-
-%Now i will take a closer look at Navigation, Resource and User Timing and which metrics are derived from there.
-%But start with time.
-
 
 
 
