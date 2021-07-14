@@ -1751,7 +1751,7 @@ The W3C maintains and publishes documents that describe and define web technolog
 
 The document, or specification creation, follows a "recommendation track", which describes the hurdles a document needs to overcome in order to turn from an idea into a final recommendation and web standard, which browser vendors implement as concrete APIs. %cite  https://www.w3.org/2020/Process-20200915/#rec-track
 The phases in the recommendation track are described by "maturity levels" of the document and are as follows:
-First Public Working Draft $\,\to\,$ Working Draft (WD) $\,\to\,$ Candidate Recommendations (CR) $\,\to\,$ Proposed Recommendation $\,\to\,$ W3C Recommendation (REC).  % cite https://www.w3.org/2015/Process-20150901/#maturity-levels
+First Public Working Draft (FPWD) $\,\to\,$ Working Draft (WD) $\,\to\,$ Candidate Recommendations (CR) $\,\to\,$ Proposed Recommendation (PR) $\,\to\,$ W3C Recommendation (REC).  % cite https://www.w3.org/2015/Process-20150901/#maturity-levels
 W3C Recommendations are considered to be web standards. % cite https://www.w3.org/standards/faq
 
 %TODO maybe draw some nice graphic for the recommendation track ?
@@ -2547,8 +2547,8 @@ Additionally, a PerformanceObserver interface is defined, which can be used to m
 
 \paragraph{Long Tasks}
 
-Long Tasks API 1 is a First Public Working Draft from September 2017.
-Toe goal of the API is to detect "long tasks", this are tasks that occupy main thread.
+Long Tasks API 1 has been released as a First Public Working Draft in September 2017.
+The goal of the API is to detect "long tasks", this are tasks that occupy main thread.
 Long tasks are incicators of performance
 
 % https://www.w3.org/TR/longtasks-1/
@@ -2579,7 +2579,7 @@ Server Timing is a Working Draft from June 2021.
 
 \paragraph{Paint Timing}
 
-
+Paint Timing 1 is a First Public Working Draft from September 2017. % https://www.w3.org/TR/paint-timing/
 
 % https://www.w3.org/TR/paint-timing/
 %-  First Public Working Draft, 7 September 2017
@@ -2650,24 +2650,30 @@ Server Timing is a Working Draft from June 2021.
 %Or as Grigorik states it, "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application" % cite 2013 Girgorik
 
 
-
-
+A W3C Recommendation "Navigation Timing" (Level 1) from December 2012 % footnote https://www.w3.org/TR/navigation-timing/
+and "Navigation Timing Level 2", a Working Draft from March 2021. % footnote https://www.w3.org/TR/navigation-timing-2/
+A Candidate Recommendation, Resource Timing Level 1, from March 2017, % https://www.w3.org/TR/resource-timing-1/
+and Resource Timing Level 2, a Working Draft from April 2021.  % https://www.w3.org/TR/resource-timing-2/
 
 \begin{center}
 \small
 	\begin{tabular}{ p{0.3\linewidth} | p{0.6\linewidth} }
 	\hline
-	Navigation Timing & summary  \\ 
+	Navigation Timing & Level 1: REC December 2021, Level 2: WD March 2021. Exposes timing information of the main document. \\ 
 	\hline
-	Resource Timing & summary  \\  
+	Resource Timing & Level 1: CR March 2017, Level 2: WD April 2021. Exposes timing information from requested resources and the resources they request.  \\  
 	\hline
-	User Timing & summary  \\  
+	Navigation and Resource Timing & Used to calculated a variety of metrics \\
 	\hline
-	Performance Timeline & summary  \\  
+	User Timing & Level 2: REC February 2019.  Level 3: WD July 2021. Mark and measure custom timestamps.  \\  
 	\hline
-	Long Tasks & summary  \\  
+	Performance Timeline & REC December 2013,  Level 2: WD June 2021.  Subsumes gathered performance data from other specifications. \\  
 	\hline
-	Paint Timing & summary  \\  
+	Long Tasks & API 1: FPWD  September 2017  \\  
+	\hline
+	Server Timing & WD June 2021\\
+	\hline
+	Paint Timing & FPWD September 2017  \\  
 	\hline
 	\end{tabular}
 \end{center}
