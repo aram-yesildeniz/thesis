@@ -1253,8 +1253,8 @@ Ideally, metrics are precise and serve as objective criteria for the evaluation 
 
 % [Relevance]
 
-The relevance of metrics is crucial.
-Just as each website is unique and has a different purpose, so should metrics be which quantify the website.
+The selection of metrics and accordingly their relevance for the website is crucial.
+Just as each website is unique and serves a different purpose, so should metrics be, which quantify the website.
 It is important to measure what is important and relevant for the users and reaching business goals, while "each business has its own definitions of success". % cite 2009 Croll p 7,  https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
 Hence, metrics are ideally tailored and custom to the website and they should track if "your business benefited in some way from their [the users] visits." % cite 2009 Croll p 15
 
@@ -1732,7 +1732,7 @@ Then, performance relevant specifications and the metrics they expose are discus
 \paragraph{Web Standards}
 
 Web Standards are documents describing the technology used to build the WWW. % cite https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards
-Those documents, or specifications, are maintained by different groups and organizations.
+Those documents, also called specifications, are maintained by different groups and organizations.
 Multiple organizations exist to provide and maintain standards for different areas and technologies of the web.
 Such organisations are for example the WHATWG, which maintains the HTML living standard\footnote{\url{https://whatwg.org/} [11.07.2021]}, or Ecma International, providing the specification for JS.\footnote{\url{https://www.ecma-international.org/} [11.07.2021]}.
 
@@ -1752,7 +1752,7 @@ The W3C maintains and publishes documents that describe and define web technolog
 The document, or specification creation, follows a "recommendation track", which describes the hurdles a document needs to overcome in order to turn from an idea into a final recommendation and web standard, which browser vendors implement as concrete APIs. %cite  https://www.w3.org/2020/Process-20200915/#rec-track
 The phases in the recommendation track are described by "maturity levels" of the document and are as follows:
 First Public Working Draft $\,\to\,$ Working Draft (WD) $\,\to\,$ Candidate Recommendations (CR) $\,\to\,$ Proposed Recommendation $\,\to\,$ W3C Recommendation (REC).  % cite https://www.w3.org/2015/Process-20150901/#maturity-levels
-
+W3C Recommendations are considered to be web standards. % cite https://www.w3.org/standards/faq
 
 
 \paragraph{Web Performance Working Group}
@@ -1762,11 +1762,10 @@ First Public Working Draft $\,\to\,$ Working Draft (WD) $\,\to\,$ Candidate Reco
 Within the W3C, several groups exist, each one concerned with a specific topic within the WWW universe. % cite https://www.w3.org/groups/wg/
 The Web Performance Working Group, founded in 2010, is a group responsible "to provide methods to measure aspects of application performance of user agent features and APIs" \footnote{\url{https://www.w3.org/webperf/} [11.07.2021]}.
 
-
 % [Specs]
 
 The Web Performance Working Group publishes and maintains a variety of documents concerned with performance measurement, such as High Resolution Time, Navigation Timing or Page Visibility. % cite https://www.w3.org/groups/wg/webperf/publications
-The publications important for performance metrics will be discussed next.
+The released publications especially important for performance metrics are discussed next.
 
 
 %TODO add this ?
@@ -1807,37 +1806,25 @@ The publications important for performance metrics will be discussed next.
 
 \paragraph{High Resolution Time}
 
-%TODO what do i really need from this section`?
-% there are no metrics directly coming from this
-
-%"Level 2" is older but already recommendation from date % https://www.w3.org/TR/hr-time-2/
-%Newest spec from date is working draft % https://www.w3.org/TR/hr-time-3/
-
-%Is the basis for other specs
+Two versions of High Resolution Time exist.
+High Resolution Time Level 2 has the maturity level of a W3C Recommendation and was released in November 2019. % footnote https://www.w3.org/TR/hr-time-2/
+The newer specification, simply High Resolution Time,  is a Working Draft from June 2021.% footnote https://www.w3.org/TR/hr-time-3/
+The High Resolution Time specification does not expose or define performance metrics directly, but serves as a basis for other specifications regarding measuring and capturing time values.
 
 
 % [Date/Clock Issue]
 
+Before High Resolution Time, time values were calculated with ECMAScripts Date object, which represents time in milliseconds since 1 January 1970 UTC. %footnote https://tc39.es/ecma262/#sec-date-objects
+This definition of time is imprecise in terms of clock skew and system clock adjustments.
+It is possible that the time values derived from the Date object are not monotonically increasing, or sometimes even decreasing.
 
-% https://www.w3.org/TR/hr-time-3/
-%- Old: Date from ECAMScript: Date object as a time value representing time in milliseconds since 01 January, 1970 UTC
-%-  DOMTimeStamp is defined similarly
-%- definitions of time are subject to both clock skew and adjustment of the system clock
-%- The value of time may not always be monotonically increasing and subsequent values may either decrease or remain the same.
-%- resolve issues by providing monotonically increasing time values with sub-millisecond resolution
+High Resolution Time solves those issues and provides monotonically increasing time values, a resolution of sub-milliseconds and an start value which is relative to the websites start of the navigation process, instead of the year 1970, which makes it more feasible to understand and calculated time stamps and intervals.
+% cite https://www.w3.org/TR/hr-time-3/
 
-% 2013 Meenan
-%- Clock issue -> High Resolution Time specification
+High Resolution Time defines a Performance interface, which exposes a function $now()$, which returns the current time.
 
-% Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
-%- Non-Decreasing
-%- Earlier: Date object
-%-> Its relative to start of navigation instead of 1. January 1970 UTC as JS Date Object
 
-% https://w3c.github.io/perf-timing-primer/
-%- sub-millisecond resolution
-%- provide a monotonic, uniformly increasing timestamp suitable for interval measurements
-
+%TODO add this ?
 
 % https://developers.google.com/web/updates/2012/08/When-milliseconds-are-not-enough-performance-now
 %- performance.now() is a measurement of floating point milliseconds since that particular page started to load
@@ -1864,9 +1851,6 @@ The publications important for performance metrics will be discussed next.
 %- now()
 %- timeOrigin
 
-
-
-%TODO add this ?
 % [Time Origin]
 % https://www.w3.org/TR/hr-time-3/
 
@@ -1881,69 +1865,56 @@ The publications important for performance metrics will be discussed next.
 
 % [Introduction]
 
-% https://w3c.github.io/perf-timing-primer/
-%- access the complete timing information for navigation of a document
-%- Navigation is about how user agents convert the requested HTML, CSS, and JavaScript into rendered pixels, which is one of the most critical steps for users to navigate a document
-
+Two versions of Navigation Timing exist.
+A W3C Recommendation "Navigation Timing" (Level 1) from December 2012 % footnote https://www.w3.org/TR/navigation-timing/
+and "Navigation Timing Level 2", a Working Draft from March 2021. % footnote https://www.w3.org/TR/navigation-timing-2/
+Level 1, still in use for backwards compatibility, uses the more imprecise time measurement starting from 1 January 1970.
+Level 2 replaces Level 1 and relies on the exact high resolution time as described above.
+A summary of improvements from Level 1 to Level 2 is listed in % https://www.w3.org/TR/navigation-timing-2/#sotd
+% cite  https://www.w3.org/TR/navigation-timing/, https://www.w3.org/TR/navigation-timing-2/
 
 % https://www.w3.org/TR/navigation-timing/
-%- complete client-side latency measurements
+%- Level 1 PerformanceTiming and PerformanceNavigation Interface, Both are collected in Performance Interface, Performance Interface is accessible through window.performance
+
+% https://www.w3.org/TR/navigation-timing-2/
+%- Level 2 is Builds on top of Resource Timing 2
 
 
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
-%- Navigation timings are metrics measuring a browser's document navigation events
-%- measures the main document's timings
-%- read only
-%- supported in all browsers
-%- measuring the performance of the main page, generally the HTML file via which all the other assets are requested
+% [Timing Values]
+
+Navigation Timing exposes time stamps of events which occur during the navigation and loading process of a website.
+All relevant timing information from the document loading process are accessible through Navigation Timing.
+The navigation or loading process depicts the conversion of the received HTML document and other resources to a working website and happens in the browser, as described in section X. % cite https://w3c.github.io/perf-timing-primer/
+
+Navigation Timing only captures time values from the main HTML document.
+Within the main document, requests to other linked resources are made.
+The timing information for those linked resources are gathered and exposed via Resource Timing, as described in section X. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
+
+The exposed timing events are represented in figure X and described in table X.
+Metrics directly calculated with Navigation Timing (and Resource Timing), are listed in table X.
 
 
+% [PerformanceNavigationTiming Interface]
+
+Navigation Timing timestamps are exposed via the PerformanceNavigationTiming interface and can be retrieved via $window.performance.getEntriesByType("navigation")$. % cite https://www.w3.org/TR/navigation-timing-2/
+
+
+%TODO add this ?
 
 % 2013 Grigorik
-%- navigation timing measures the main document's timings
 %- The real benefit of Navigation Timing is that it exposes a lot of previously inaccessible data, such as DNS and TCP connect times, with high precision (microsecond timestamps), via a standardized performance.timing object in each browser.
 %- Hence, the data gathering process is very simple: load the page, grab the timing object from the user’s browser, and beacon it back to your analytics servers!
 %- By capturing this data, we can observe real-world performance of our applications as seen by real users, on real hardware, and across a wide variety of different networks.
-%- Navigation Timing provides performance timers for root documents only
-
 
 % 2013 Meenan
 %- The largest benefit of navigation timing is that it exposes a lot of timings that lead up to the HTML loading --> This is this famous image
 %- In addition to providing a good start time, it exposes information about any redirects, DNS lookup times, time to connect to the server, and how long it takes the Web server to respond to the request, for every user and for every page the user visits
 %- The measurement points are exposed to the DOM (Document Object Model) through the performance object and make it trivial to calculate load times (or arbitrary intervals, really) from JavaScript.
 
-
-
-% [Level 1 vs Level 2]
-
-% https://www.w3.org/TR/navigation-timing/
-%- Level 1 PerformanceTiming and PerformanceNavigation Interface, Both are collected in Performance Interface, Performance Interface is accessible through window.performance
-%- Level 1: time is measured in milliseconds since midnight of January 1, 1970 (UTC).
-%- Level 2: Navigation Timing 2 specification allows access to timing information related to navigation using sub-milliseconds resolution instead
-
-
-% https://www.w3.org/TR/navigation-timing-2/
-%- Level 1 kept for backwards compatibility
-%- Level 2 is working draft from march 2021 and replaces first version of Navigation Timing
-%- See summary of improvements for differences between level 1 and 2
-%- Level 2 is Builds on top of Resource Timing 2 and uses high resolution time 2
-
-
-% [PerformanceNavigationTiming Interface]
-
-% https://www.w3.org/TR/navigation-timing-2/
-%- level 2 specification defines the PerformanceNavigationTiming interface
-%- we will see later in X which attributes are available
-
-
 % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
 %PerformanceNavigationTiming Interface: 
 %- extends PerformanceEntry Interface from performance timeline. see attributes section for details
 %- extends PerformanceResourceTiming Interface from resource timing
-
-
-%- window.performance.getEntriesByType("navigation")
-
 
 
 % ---------------------------------------------
@@ -1953,8 +1924,11 @@ The publications important for performance metrics will be discussed next.
 \paragraph{Resource Timing}
 
 
-
 % [Introduction]
+
+
+
+As described above, Resource Timing exposes timing information for all other resources than the main document.
 
 
 % https://www.w3.org/TR/resource-timing-1/
