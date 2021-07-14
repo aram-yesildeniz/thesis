@@ -1754,6 +1754,8 @@ The phases in the recommendation track are described by "maturity levels" of the
 First Public Working Draft $\,\to\,$ Working Draft (WD) $\,\to\,$ Candidate Recommendations (CR) $\,\to\,$ Proposed Recommendation $\,\to\,$ W3C Recommendation (REC).  % cite https://www.w3.org/2015/Process-20150901/#maturity-levels
 W3C Recommendations are considered to be web standards. % cite https://www.w3.org/standards/faq
 
+%TODO maybe draw some nice graphic for the recommendation track ?
+
 
 \paragraph{Web Performance Working Group}
 
@@ -1896,7 +1898,16 @@ Metrics directly calculated with Navigation Timing (and Resource Timing), are li
 
 % [PerformanceNavigationTiming Interface]
 
-Navigation Timing timestamps are exposed via the PerformanceNavigationTiming interface and can be retrieved via $window.performance.getEntriesByType("navigation")$. % cite https://www.w3.org/TR/navigation-timing-2/
+Navigation Timing timestamps are exposed via the PerformanceNavigationTiming interface and can be retrieved via $window.performance.getEntriesByType("navigation")$, as seen in figure X. % cite https://www.w3.org/TR/navigation-timing-2/
+
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.4\textwidth]{navigation_console.png}
+\caption{Navigation Timings}
+\label{img:navigation_console}
+\end{center}
+\end{figure}
 
 
 %TODO add this ?
@@ -1926,71 +1937,39 @@ Navigation Timing timestamps are exposed via the PerformanceNavigationTiming int
 
 % [Introduction]
 
+Two versions of Resource Timing exist.
+A Candidate Recommendation, Resource Timing Level 1, from March 2017, % https://www.w3.org/TR/resource-timing-1/
+and Resource Timing Level 2, a Working Draft from April 2021.  % https://www.w3.org/TR/resource-timing-2/
 
-
-As described above, Resource Timing exposes timing information for all other resources than the main document.
-
-
-% https://www.w3.org/TR/resource-timing-1/
-%- Level 1 is candidate recommendation from march 2017
-
+As described above, while Navigation Timing exposes timing information for the main document, Resource Timing exposes timing information for all other resources the main document requests, and also resources other resources request.
+Other resources may be CSS, JS, other HTML documents, images, and so on.
 % https://www.w3.org/TR/resource-timing-2/
-%- Level 2 is working draft from april 2021
-%- access the complete timing information for resources in a document.
-%- Navigation Timing 2 extends this specification to provide additional timing information associated with a navigation.
-%- mechanisms to provide complete client-side latency measurements within applications
 
-
-% https://w3c.github.io/perf-timing-primer/
-%- set of attributes for each loaded resource
-%- access a set of critical network timing attributes for each resource on the page
-%- resources usually refer to HTML documents, XHR objects, links (such as a stylesheet) or SVG elements
-
-
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
-%- resource timing measures timing for individual resources, the assets called in by the main page, and any assets that those resources request
-%- Many of the measurements are similar to navigation timing
-
-
-% https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming
-%- retrieval and analysis of detailed network timing data regarding the loading of an application's resources
-%- determine, for example, the length of time it takes to fetch a specific resource like request, svg, image, script
-
-
-% 2013 Grigork
-%- Resource Timing provides similar performance data for each resource on the page, allowing us to gather the full performance profile of the page.
-%- resource timing provides the times for all the assets or resources called in by that main document and the resources' requested resources.
-
-
-% 2013 Meenan
-%- exposes timing information about every network request the browser had to make to load a page and what triggered each request (whether stylesheet, script, or image)
-
-
+The exposed time stamps from Resource Timing are mainly network related timing values (see table X.)
+For example, the time it takes to download a specific resource.
 
 
 % [PerformanceResourceTiming Interface]
 
-
-% https://www.w3.org/TR/resource-timing-2/
-%- PerformanceResourceTiming interface 
-
+The values are exposed by the PerformanceResourceTiming interface and can be retrieved via $performance.getEntriesByType("resource")$.
 
 % https://w3c.github.io/perf-timing-primer/
-%- performance.getEntriesByType("resource"): array of Resource Timing Objects for each requested resource
 %- The PerformanceResourceTiming interface extends the PerformanceEntry interface in the Performance Timeline
 %- Each of these timestamps is in microseconds, which are provided by the window.performance.now() method in the High Resolution Time specification.
 
 
+% [Navigation and Resource Timing]
 
+% https://www.w3.org/TR/resource-timing-2/
+%- Navigation Timing 2 extends this specification to provide additional timing information associated with a navigation.
+%- mechanisms to provide complete client-side latency measurements within applications
 
-% [Waterfall]
+Navigation and Resource Timing go hand in hand.
+With Navigation and Resource Timing, all relevant timing information for all resources of the website are available.
+The Waterfall Chart (see section X.) is a picturesque example of a visualization of the exposed attributes by both specifications.
 
-% https://w3c.github.io/perf-timing-primer/
-%- APIs used to create waterfall charts
-%- Waterfall we can see in more detail in WPT section ?
-
-% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-%- Any time you've seen a waterfall chart, you're looking at a visual representation of the data these APIs provide
+Figure X. depicts the values exposed by Navigation and Resource Timing.
+Those attributes will be discussed next.
 
 
 
@@ -1999,7 +1978,7 @@ As described above, Resource Timing exposes timing information for all other res
 
 
 
-\paragraph{Attributes from Navigation and Resource Timing}
+\paragraph{Navigation and Resource Timing Level 2 Time Values}
 
 
 %As both specs are tightly coupled, e.g. resource timings is in the middle of navigation timing, i will cover them both here together.
@@ -2009,19 +1988,11 @@ As described above, Resource Timing exposes timing information for all other res
 %Then i will show which metrics are directly calculated from those attributes.
 
 
-%  [All Timestamps from Navigation and Resource Timing]
-
-
 %- We can see that this is the same as explained in CRP
 
-%exposed as DOMHighResTimeStamp
 
+What exactly are they? time stamp, event, browser event? Dom event ?
 
-%from PerformanceEntry Interface:
-%name
-%entryType
-%startTime
-%duration
 
 
 \begin{figure}[h!]
@@ -2039,7 +2010,7 @@ As described above, Resource Timing exposes timing information for all other res
 	\small
 	\begin{longtable}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
 	\hline
-	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Navigation Timing} \\
+	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Navigation Timings Level 2} \\
 	\hline
 	origin.. (startTime, navigationStart) & ... \\
 	\hline
@@ -2060,7 +2031,7 @@ As described above, Resource Timing exposes timing information for all other res
 	loadEventEnd & ... \\
 
 	\hline
-	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Resource Timing} \\
+	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Resource Timings Level 2} \\
 	\hline
 	redirectStart & ... \\
 	\hline
@@ -2096,14 +2067,14 @@ As described above, Resource Timing exposes timing information for all other res
 	duration & loadEventStart - startTime \\
 
 	\hline
-	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Navigation Timings Outside of Timeline} \\
+	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Other Navigation Timings} \\
 	\hline
 	type & ... \\
 	\hline
 	redirectCount & ... \\
 
 	\hline
-	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Resource Timings Outside of Timeline} \\
+	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Other Resource Timings} \\
 	\hline
 	initiatorType & ... \\
 	\hline
@@ -2173,9 +2144,21 @@ As described above, Resource Timing exposes timing information for all other res
 
 
 
+%TODO add this ?
+
+%exposed as DOMHighResTimeStamp
+
+%from PerformanceEntry Interface:
+%name
+%entryType
+%startTime
+%duration
+
 
 %TODO add this when there is time...
+
 % [Implementation Example Chrome]
+
 % lets see how chromium is capturing domContentLoaded
 
 
@@ -2183,7 +2166,7 @@ As described above, Resource Timing exposes timing information for all other res
 % ---------------------------------
 
 
-\paragraph{Metrics calculated with Navigation and Resource Timing}
+\paragraph{Metrics calculated with Navigation and Resource Timing Level 2}
 
 
 %Directly from those timestamps many metrics are calculated.
@@ -2212,6 +2195,7 @@ As described above, Resource Timing exposes timing information for all other res
 
 
 %TODO add this ?
+
 % [Calculations]
 % Also maybe different calculations exist for the same metrc! check this again
 % Basically i need to check how the different vendors / parties interpret the metric, e.g. how WPT calculates TTFB and GA
@@ -2488,38 +2472,25 @@ As described above, Resource Timing exposes timing information for all other res
 
 
 % ------------------------------------------------
+% ------------------------------------------------
 
 
 
-W3C also has more specifications which are interesting for performance.
-User Timing can be used for custom metrics.
-Performance Timeline defines an API which subsumes all relevant specifications.
+Apart from Navigation and Resource Timing, the Web Performance Working Group also maintains other performance related specifications.
+Some of them will be briefly discussed next.
 
 
 \paragraph{User Timing}
 
+User Timing Level 2 is a Recommendation from February 2019 and User Timing Level 3 is a Working Draft from July 2021.
+User Timing provides methods to create own, specific and unique high resolution timestamps, to query them and to calculate intervals and the elapsed time between those created timestamps.% cite https://www.w3.org/TR/user-timing-3/
+User Timing simplified and facilitates the usage of custom metrics (see section X.)
 
 % https://www.w3.org/TR/user-timing-3/
-%- level 3
-%- working draft from March 2021
-%- give developers access to high precision timestamps
 %- PerformanceMark and PerformanceMeasure interfaces
-%- mark timestamps and measure time between marks
-
-
-% https://w3c.github.io/perf-timing-primer/
-%-  obtain the high precision performance characteristics of an individual task which is important to you
-%- unique marks
-%- PerformanceMeasure interface: calculate the elapsed time between two marks
-
-
-% 2013 Meenan
-%- provides a simple way of marking points in time using performance. mark(“label”) and a standard way of querying all of the custom measurements later
-
 
 % Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
 %-> Puts data in Performance Timeline / DevTools
-
 
 
 % -------------------
@@ -2527,46 +2498,30 @@ Performance Timeline defines an API which subsumes all relevant specifications.
 
 \paragraph{Performance Timeline}
 
+Performance Timeline is a Recommendation from December 2013 % https://www.w3.org/TR/2013/REC-performance-timeline-20131212/
+and Performance Timeline Level 2 is a Working Draft from June 2021. % https://www.w3.org/TR/performance-timeline-2/
 
-%Access all different data from other APIs.
+In short, the Performance Timeline defines an API and methods which expose all timing values captured by other specifications such as Navigation or Resource Timing.
+Performance Timeline defines an interface to acquire a variety of performance measurements. 
+As already described, in can be used to retrieve Navigation Timings with $performance.getEntriesByType("navigation")$.
 
 % https://www.w3.org/TR/performance-timeline-2/
-%- level 1 is recommendation from December 2013 % https://www.w3.org/TR/2013/REC-performance-timeline-20131212/
-%- level 2
-%- working draft from October 2019
 %- extends the High Resolution Time specification
 %- providing methods to store and retrieve high resolution performance metric data.
 %- Performance Timeline  defined by Navigation timing, resource timing, user timing and other interfaces
 %- get Entries, by Type, by Name
 %- Example entryType values defined by other specifications include: "mark" and "measure" [USER-TIMING-2], "navigation" [NAVIGATION-TIMING-2], "resource" [RESOURCE-TIMING-2], and "longtask"
 
-%- The PerformanceObserver interface can be used to observe the Performance Timeline to be notified of new performance metrics as they are recorded.
+Additionally, a PerformanceObserver interface is defined, which can be used to monitor the Performance Timeline and notify as soon as new measurements and recordings are available.
 
 
-% https://w3c.github.io/perf-timing-primer/
-%- unified interface to obtain various performance metrics
-	
+%TODO add this ? is not so important...
+
+% [Performance Entry]
 	
 % https://developer.mozilla.org/en-US/docs/Web/API/Performance_Timeline
 %- PerformanceEntry interface encapsulates a single performance entry: a single data point or metric in the performance timeline
 
-
-% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
-%- performance.getEntriesByType('navigation') -> get navigation timings
-%- performance.getEntriesByType('resource') -> get resource timings
-
-
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.4\textwidth]{navigation_console.png}
-\caption{Navigation Timings}
-\label{img:navigation_console}
-\end{center}
-\end{figure}
-
-
-%TODO add this ? is not so important...
-% [Performance Entry]
 
 % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
 %- A performance entry can be directly created by making a performance mark or measure
@@ -2586,15 +2541,19 @@ Performance Timeline defines an API which subsumes all relevant specifications.
 %- duration
 
 
-% Performance Observer API % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
-
 
 % ----------------------------
 
 
 \paragraph{Long Tasks}
 
-% https://w3c.github.io/longtasks/
+Long Tasks API 1 is a First Public Working Draft from September 2017.
+Toe goal of the API is to detect "long tasks", this are tasks that occupy main thread.
+Long tasks are incicators of performance
+
+% https://www.w3.org/TR/longtasks-1/
+
+% Editors Draft: https://w3c.github.io/longtasks/
 
 
 % https://www.youtube.com/watch?v=6Ljq-Jn-EgU&ab_channel=GoogleChromeDevelopers
@@ -2606,10 +2565,12 @@ Performance Timeline defines an API which subsumes all relevant specifications.
 
 \paragraph{Server Timing}
 
+Server Timing is a Working Draft from June 2021.
 
-%TODO add this ?
+% https://www.w3.org/TR/server-timing/
 
-% https://w3c.github.io/server-timing/
+
+% Editors Draft: https://w3c.github.io/server-timing/
 
 
 
