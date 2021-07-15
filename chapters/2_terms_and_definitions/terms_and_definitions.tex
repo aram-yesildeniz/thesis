@@ -1822,8 +1822,9 @@ It is possible that the time values derived from the Date object are not monoton
 
 High Resolution Time solves those issues and provides monotonically increasing time values, a resolution of sub-milliseconds and an start value which is relative to the websites start of the navigation process, instead of the year 1970, which makes it more feasible to understand and calculated time stamps and intervals.
 % cite https://www.w3.org/TR/hr-time-3/
+The following described specifications use the precise timing information provided by High Resolution Time.
 
-High Resolution Time defines a Performance interface, which exposes a function $now()$, which returns the current time.
+% High Resolution Time defines a Performance interface, which exposes a function $now()$, which returns the current time.
 
 
 %TODO add this ?
@@ -1900,6 +1901,7 @@ Metrics directly calculated with Navigation Timing (and Resource Timing), are li
 
 Navigation Timing timestamps are exposed via the PerformanceNavigationTiming interface and can be retrieved via $window.performance.getEntriesByType("navigation")$, as seen in figure X. % cite https://www.w3.org/TR/navigation-timing-2/
 
+%TODO add here that values in image are coming from multiple interfaces ?
 
 \begin{figure}[h!]
 \begin{center}
@@ -1951,7 +1953,7 @@ For example, the time it takes to download a specific resource.
 
 % [PerformanceResourceTiming Interface]
 
-The values are exposed by the PerformanceResourceTiming interface and can be retrieved via $performance.getEntriesByType("resource")$.
+The values are exposed by the PerformanceResourceTiming interface and can be retrieved via $window.performance.getEntriesByType("resource")$.
 
 % https://w3c.github.io/perf-timing-primer/
 %- The PerformanceResourceTiming interface extends the PerformanceEntry interface in the Performance Timeline
@@ -1978,20 +1980,41 @@ Those attributes will be discussed next.
 
 
 
-\paragraph{Navigation and Resource Timing Level 2 Time Values}
+\paragraph{Navigation and Resource Timing Attributes}
+
+All timing values, or attributes, relevant for the navigation process and exposed by Navigation and Resource Timing Level 2, are listed in table X and figure X.
+The black coloured time stamps assigned to the blue boxes in figure X. are captured by Navigation Timing.
+The yellow time stamps are exposed by Resource Timing.
+Figure X. does not include all captured values from PerformanceNavigationTiming interface and PerformanceResourceTiming interface, but only those important within the navigation process.
+For document from different origins, the attributes in parenthesis may not be available.% cite https://www.w3.org/TR/navigation-timing-2/#processing-model
+
+Table X gives an short explanation for each time stamp.
+Those time stamps are then used to calculate performance metrics, as described in the next section.
 
 
-%As both specs are tightly coupled, e.g. resource timings is in the middle of navigation timing, i will cover them both here together.
-%I will go through all exposed attributes and explain them.
-%Then i will show one example of how a vendor is implementing this.
 
-%Then i will show which metrics are directly calculated from those attributes.
+%TODO add what we see when calling getEntriesByType ?
+
+% performance.getEntriesByType("navigation"):
+% from PerformanceNavigationTiming interface
+% unloadEventStart
+% unloadEventEnd
+% domInteractive
+% domContentLoadedEventStart
+% domContentLoadedEventEnd
+% domComplete
+% loadEventStart
+% loadEventEnd
+% type
+% redirectCount
+% + all values from PerformanceResourceTiming interface
+% serverTiming is coming from Server Timing, which extends Resource Timing interface with "serverTiming"
+% + all values from PerformanceEntry interface
 
 
-%- We can see that this is the same as explained in CRP
-
-
-What exactly are they? time stamp, event, browser event? Dom event ?
+% performance.getEntriesByType("resource"):
+% all entries from resource timing interface
+% + values from PerformanceEntry interface
 
 
 
@@ -2012,15 +2035,15 @@ What exactly are they? time stamp, event, browser event? Dom event ?
 	\hline
 	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Navigation Timings Level 2} \\
 	\hline
-	origin.. (startTime, navigationStart) & ... \\
+	startTime (= navigationStart) & Start time of the navigation process. Is set to 0.  Navigation Timeline Level 1 exposes "navigationStart" which is set to the "time immediately after the user agent finishes prompting to unload the previous document."\footnote{\url{https://www.w3.org/TR/navigation-timing/)} [15.07.2021]} As many metrics calculations still rely on navigationStart as seen below, it is mentioned here. \\
 	\hline
-	unloadEventStart & ... \\
+	unloadEventStart & Set to 0 if there is no previous document. Otherwise, value is set to time when previous documents unload event gets fired by the browser. \\
 	\hline
-	unloadEventEnd & ... \\
+	unloadEventEnd & Set to 0 if there is no previous document.  . Otherwise, value is set to time when previous documents unload event gets fired by the browser.  \\
 	\hline
-	domInteractive & ... \\
+	domInteractive & "time value equal to the time immediately before the user agent sets the current document readiness of the current document to "interactive"" \\
 	\hline
-	domContentLoadedEventStart & ... \\
+	domContentLoadedEventStart & "time value equal to the time immediately before the user agent fires the DOMContentLoaded event at the current document" \\
 	\hline
 	domContentLoadedEventEnd & ... \\
 	\hline
@@ -2054,41 +2077,7 @@ What exactly are they? time stamp, event, browser event? Dom event ?
 	responseStart & ... \\
 	\hline
 	responseEnd & ... \\
-
-	\hline
-	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Extended from PerformanceEntry Interface (cite navigation timing 2 spec)} \\
-	\hline
-	name & Address of the current document \\
-	\hline
-	entryType & "navigation" \\
-	\hline
-	startTime & Time value of 0 \\
-	\hline
-	duration & loadEventStart - startTime \\
-
-	\hline
-	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Other Navigation Timings} \\
-	\hline
-	type & ... \\
-	\hline
-	redirectCount & ... \\
-
-	\hline
-	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Other Resource Timings} \\
-	\hline
-	initiatorType & ... \\
-	\hline
-	nextHopProtocol & ... \\
-	\hline
-	workerStart & ... \\
-	\hline
-	transferSize & ... \\
-	\hline
-	encodedBodySize & ... \\
-	\hline
-	decodedBodySize & ... \\
-	\hline
-	
+	\hline	
 	\caption{Navigation and Resource Timing Level 2 Attributes} % needs to go inside longtable environment
 	\label{tab:navigationtiming}
 	\end{longtable}
@@ -2168,8 +2157,10 @@ What exactly are they? time stamp, event, browser event? Dom event ?
 
 \paragraph{Metrics calculated with Navigation and Resource Timing Level 2}
 
+The exposed attributes from Navigation and Resource Timing are used to calculate common navigation timing metrics.
+Table X. lists a selection of metrics and how they are being calculated.
+Figure X. shows graphically which intervals the metrics are reflecting.
 
-%Directly from those timestamps many metrics are calculated.
 %Sometimes different vendors give a different name to the same metric.
 %For many metrics there are no official definitions and the values diverge depending on the implementation.
 %I will show how those metrics are being calculated.
@@ -2650,10 +2641,6 @@ Paint Timing 1 is a First Public Working Draft from September 2017. % https://ww
 %Or as Grigorik states it, "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application" % cite 2013 Girgorik
 
 
-A W3C Recommendation "Navigation Timing" (Level 1) from December 2012 % footnote https://www.w3.org/TR/navigation-timing/
-and "Navigation Timing Level 2", a Working Draft from March 2021. % footnote https://www.w3.org/TR/navigation-timing-2/
-A Candidate Recommendation, Resource Timing Level 1, from March 2017, % https://www.w3.org/TR/resource-timing-1/
-and Resource Timing Level 2, a Working Draft from April 2021.  % https://www.w3.org/TR/resource-timing-2/
 
 \begin{center}
 \small
