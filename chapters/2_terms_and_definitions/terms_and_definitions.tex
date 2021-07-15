@@ -1721,9 +1721,9 @@ As described in section X,  the idea of page weight is used to construct a test 
 % -----------------------------------------------------------------------
 
 
-\subsubsection{Performance Timing Metrics}
+\subsubsection{Navigation Timing Metrics}
 
-Performance timing metrics depict elapsed time within the website loading process such as navigation and CRP (cf.  section X).
+Navigation timing metrics depict elapsed time within the website loading process such as navigation and CRP (cf.  section X).
 They are calculated and derived from a set of standardized Web APIs.
 In the following, I will briefly explain the nature of web standards and recommendations.
 Then, performance relevant specifications and the metrics they expose are discussed.
@@ -1903,6 +1903,29 @@ Navigation Timing timestamps are exposed via the PerformanceNavigationTiming int
 
 %TODO add here that values in image are coming from multiple interfaces ?
 
+% performance.getEntriesByType("navigation"):
+% from PerformanceNavigationTiming interface
+% unloadEventStart
+% unloadEventEnd
+% domInteractive
+% domContentLoadedEventStart
+% domContentLoadedEventEnd
+% domComplete
+% loadEventStart
+% loadEventEnd
+% type
+% redirectCount
+% + all values from PerformanceResourceTiming interface
+% serverTiming is coming from Server Timing, which extends Resource Timing interface with "serverTiming"
+% + all values from PerformanceEntry interface
+
+
+% performance.getEntriesByType("resource"):
+% all entries from resource timing interface
+% + values from PerformanceEntry interface
+
+
+
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.4\textwidth]{navigation_console.png}
@@ -1985,38 +2008,9 @@ Those attributes will be discussed next.
 All timing values, or attributes, relevant for the navigation process and exposed by Navigation and Resource Timing Level 2, are listed in table X and figure X.
 The black coloured time stamps assigned to the blue boxes in figure X. are captured by Navigation Timing.
 The yellow time stamps are exposed by Resource Timing.
-Figure X. does not include all captured values from PerformanceNavigationTiming interface and PerformanceResourceTiming interface, but only those important within the navigation process.
-For document from different origins, the attributes in parenthesis may not be available.% cite https://www.w3.org/TR/navigation-timing-2/#processing-model
-
-Table X gives an short explanation for each time stamp.
-Those time stamps are then used to calculate performance metrics, as described in the next section.
-
-
-
-%TODO add what we see when calling getEntriesByType ?
-
-% performance.getEntriesByType("navigation"):
-% from PerformanceNavigationTiming interface
-% unloadEventStart
-% unloadEventEnd
-% domInteractive
-% domContentLoadedEventStart
-% domContentLoadedEventEnd
-% domComplete
-% loadEventStart
-% loadEventEnd
-% type
-% redirectCount
-% + all values from PerformanceResourceTiming interface
-% serverTiming is coming from Server Timing, which extends Resource Timing interface with "serverTiming"
-% + all values from PerformanceEntry interface
-
-
-% performance.getEntriesByType("resource"):
-% all entries from resource timing interface
-% + values from PerformanceEntry interface
-
-
+All attributes are retrievable via $performance.getEntriesByType("navigation")$.\footnote{They are exposed to navigation due to interface inheritance. For more details cf. } %cite navigation timing 2 spec
+Figure X. does not include all defined and available values from the specification definitions, but only those important within the navigation process.
+For documents from different origins, the attributes in parenthesis may not be available.% cite https://www.w3.org/TR/navigation-timing-2/#processing-model
 
 \begin{figure}[h!]
 \begin{center}
@@ -2028,6 +2022,12 @@ Those time stamps are then used to calculate performance metrics, as described i
 % cite https://www.w3.org/TR/navigation-timing-2/
 
 
+Table X gives a short explanation for each time stamp.
+The definitions are taken directly from the W3C specifications or MDN Web Docs, if not stated otherwise.
+These time stamps are used to calculate performance metrics, as described in the next section.
+
+
+%TODO is it ok to copy paste here from specs and MDN ?
 
 \begin{center}
 	\small
@@ -2037,111 +2037,65 @@ Those time stamps are then used to calculate performance metrics, as described i
 	\hline
 	startTime (= navigationStart) & Start time of the navigation process. Is set to 0.  Navigation Timeline Level 1 exposes "navigationStart" which is set to the "time immediately after the user agent finishes prompting to unload the previous document."\footnote{\url{https://www.w3.org/TR/navigation-timing/)} [15.07.2021]} As many metrics calculations still rely on navigationStart as seen below, it is mentioned here. \\
 	\hline
-	unloadEventStart & Set to 0 if there is no previous document. Otherwise, value is set to time when previous documents unload event gets fired by the browser. \\
+	unloadEventStart & Set to 0 if there is no previous document. Otherwise, value is set to time when previous documents unload event gets fired by the user agent. \\
 	\hline
-	unloadEventEnd & Set to 0 if there is no previous document.  . Otherwise, value is set to time when previous documents unload event gets fired by the browser.  \\
+	unloadEventEnd & Set to 0 if there is no previous document.  .Otherwise, value is set to time when previous documents unload event ends. \\
 	\hline
-	domInteractive & "time value equal to the time immediately before the user agent sets the current document readiness of the current document to "interactive"" \\
+	domInteractive & Time value equal to the time immediately before the user agent sets the current document readiness of the current document to "interactive". \\
 	\hline
-	domContentLoadedEventStart & "time value equal to the time immediately before the user agent fires the DOMContentLoaded event at the current document" \\
+	domContentLoadedEventStart & Time value equal to the time immediately before the user agent fires the DOMContentLoaded event at the current document. \\
 	\hline
-	domContentLoadedEventEnd & ... \\
+	domContentLoadedEventEnd & Time value equal to the time immediately after the current document's DOMContentLoaded event completes.  \\
 	\hline
-	domComplete & ... \\
+	domComplete & Time value equal to the time immediately before the user agent sets the current document readiness of the current document to "complete". \\
 	\hline
-	loadEventStart & Same as window.onload \\
+	loadEventStart & Time value equal to the time immediately before the load event (window.onload ??) of the current document is fired.  Returns 0 if event has not been fired.  \\
 	\hline
-	loadEventEnd & ... \\
+	loadEventEnd & Time value equal to the time when the load event of the current document is completed.  Returns 0 if event has not been fired or is not completed. \\
 
 	\hline
 	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Resource Timings Level 2} \\
 	\hline
-	redirectStart & ... \\
+	redirectStart & Start time of the fetch which initiates the redirect. \\
 	\hline
-	redirectEnd & ... \\
+	redirectEnd & Marks timestamp which occurs immediately after receiving the last byte of the response of the last redirect. \\
 	\hline
-	fetchStart & ... \\
+	fetchStart & Represents a timestamp immediately before the browser starts to fetch the resource. \\
 	\hline
-	domainLookupStart & ... \\
+	domainLookupStart & Returns the timestamp immediately before the browser starts the domain name lookup for the resource. \\
 	\hline
-	domainLookupEnd & ... \\
+	domainLookupEnd & Returns the timestamp immediately after the browser finishes the domain name lookup for the resource. \\
 	\hline
-	connectStart & ... \\
+	connectStart & Returns the timestamp immediately before the user agent starts establishing the connection to the server to retrieve the resource. \\
 	\hline
-	connectEnd & ... \\
+	connectEnd & Returns the timestamp immediately after the browser finishes establishing the connection to the server to retrieve the resource.  \\
 	\hline
-	secureConnectionStart & ... \\
+	secureConnectionStart & Returns a timestamp immediately before the browser starts the handshake process to secure the current connection.  \\
 	\hline
-	requestStart & ... \\
+	requestStart & Returns a timestamp of the time immediately before the browser starts requesting the resource from the server, cache, or local resource. \\
 	\hline
-	responseStart & ... \\
+	responseStart & Returns a timestamp immediately after the browser receives the first byte of the response from the server, cache, or local resource. \\
 	\hline
-	responseEnd & ... \\
-	\hline	
+	responseEnd & Returns a timestamp immediately after the browser receives the last byte of the resource or immediately before the transport connection is closed, whichever comes first. \\
+	\hline
 	\caption{Navigation and Resource Timing Level 2 Attributes} % needs to go inside longtable environment
 	\label{tab:navigationtiming}
 	\end{longtable}
 \end{center}
 
+%TODO check: is loadEventStart coming from window.onload or document.onload ?
 
-% Navigation Timing 2
-
-%(navigationStart)
-% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-
-%unloadEventStart;
-% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-
-%unloadEventEnd;
-% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-
-
-%domInteractive;
-% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-
-%domContentLoadedEventStart;
-% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-
-%domContentLoadedEventEnd;
-% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-
-
-%domComplete;
-% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-
-%loadEventStart;
-%loadEventEnd;
-%type;
-%redirectCount;
-
-
-
-
-% https://developer.mozilla.org/en-US/docs/Web/API/Resource_Timing_API
-%- good explanations of the attributes
-
-
-
-% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-%Requests and responses:
-%- fetchStart marks when the browser starts to fetch a resource. This is distinct from a request in that it doesn't mark when the browser makes a network request for a resource, but rather when it begins checking caches (e.g., HTTP and service worker caches) to see if a network request is even necessary.
-%- workerStart marks when a request is being fetched from a service worker within a fetch event handler (if applicable). This will be always be 0 if a service worker isn't installed for the current page.
-%- requestStart is when the browser issues the network request.
-%- responseStart is when the first byte of the response arrives.
-%- responseEnd is when the last byte of the response arrives.
-
-
-
-
-%TODO add this ?
-
-%exposed as DOMHighResTimeStamp
-
+%TODO add values from other interfaces such as duration ?
 %from PerformanceEntry Interface:
 %name
 %entryType
 %startTime
 %duration
+
+%TODO add exposed as DOMHighResTimeStamp ?
+
+
+The document states and events mentioned above, such as DOMContentLoaded, and when they are fired by the user agent, are defined in the HTML standard.
 
 
 %TODO add this when there is time...
@@ -2151,15 +2105,28 @@ Those time stamps are then used to calculate performance metrics, as described i
 % lets see how chromium is capturing domContentLoaded
 
 
+% more infos here (probably level 1)
+% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+% https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+% Requests and responses:
+%- fetchStart marks when the browser starts to fetch a resource. This is distinct from a request in that it doesn't mark when the browser makes a network request for a resource, but rather when it begins checking caches (e.g., HTTP and service worker caches) to see if a network request is even necessary.
+%- workerStart marks when a request is being fetched from a service worker within a fetch event handler (if applicable). This will be always be 0 if a service worker isn't installed for the current page.
+
+
 
 % ---------------------------------
 
 
-\paragraph{Metrics calculated with Navigation and Resource Timing Level 2}
+\paragraph{Metrics calculated with Navigation and Resource Timing}
 
-The exposed attributes from Navigation and Resource Timing are used to calculate common navigation timing metrics.
+The attributes exposed by Navigation and Resource Timing are used to calculate common navigation timing metrics.
 Table X. lists a selection of metrics and how they are being calculated.
 Figure X. shows graphically which intervals the metrics are reflecting.
+
+
+% Where are they coming from ?
+% There are no official definitions of the metrics!
 
 %Sometimes different vendors give a different name to the same metric.
 %For many metrics there are no official definitions and the values diverge depending on the implementation.
@@ -2169,7 +2136,7 @@ Figure X. shows graphically which intervals the metrics are reflecting.
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1\textwidth]{timestamp_diagram_blank.png}
-\caption{Metrics Overview}
+\caption{Navigation Timing Metrics}
 \label{img:latency}
 \end{center}
 \end{figure}
@@ -2190,7 +2157,7 @@ Figure X. shows graphically which intervals the metrics are reflecting.
 % [Calculations]
 % Also maybe different calculations exist for the same metrc! check this again
 % Basically i need to check how the different vendors / parties interpret the metric, e.g. how WPT calculates TTFB and GA
-% There are no official definitions of the metrics!
+
 
 
 \begin{center}
@@ -2475,7 +2442,7 @@ Some of them will be briefly discussed next.
 
 User Timing Level 2 is a Recommendation from February 2019 and User Timing Level 3 is a Working Draft from July 2021.
 User Timing provides methods to create own, specific and unique high resolution timestamps, to query them and to calculate intervals and the elapsed time between those created timestamps.% cite https://www.w3.org/TR/user-timing-3/
-User Timing simplified and facilitates the usage of custom metrics (see section X.)
+User Timing simplifies and facilitates the usage of custom metrics (see section X.)
 
 % https://www.w3.org/TR/user-timing-3/
 %- PerformanceMark and PerformanceMeasure interfaces
@@ -2629,7 +2596,13 @@ Paint Timing 1 is a First Public Working Draft from September 2017. % https://ww
 
 
 
-\paragraph{Conclusion}
+\paragraph{Navigation Timing Metrics Conclusion}
+
+We can measure time for different processes in the document loading process.
+W3C defines specs for this.
+Attributes exposed by those specs are used to calculate metrics.
+
+Metrics are not defined officially and may diverge depending on implementation.
 
 
 %The W3C provides recommendations and drafts which expose interesting timing data in the browser. %leveraging
@@ -2652,7 +2625,13 @@ Paint Timing 1 is a First Public Working Draft from September 2017. % https://ww
 	\hline
 	Navigation and Resource Timing & Used to calculated a variety of metrics \\
 	\hline
-	User Timing & Level 2: REC February 2019.  Level 3: WD July 2021. Mark and measure custom timestamps.  \\  
+	\hline
+	User Timing & 
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item Level 2: REC February 2019
+		\item Level 3: WD July 2021
+		\item Mark and measure custom timestamps
+	\end{itemize} \\  
 	\hline
 	Performance Timeline & REC December 2013,  Level 2: WD June 2021.  Subsumes gathered performance data from other specifications. \\  
 	\hline
@@ -2664,7 +2643,6 @@ Paint Timing 1 is a First Public Working Draft from September 2017. % https://ww
 	\hline
 	\end{tabular}
 \end{center}
-
 
 
 % [Transition]
@@ -2679,8 +2657,14 @@ Paint Timing 1 is a First Public Working Draft from September 2017. % https://ww
 %Web Vitals are discussed in the next section, but before I will explain some other user centric metrics such as Speed Index.
 
 
+
+
+
 % -----------------------------------------------------------------------
 % -----------------------------------------------------------------------
+
+
+
 
 
 
