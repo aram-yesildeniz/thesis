@@ -2463,6 +2463,11 @@ In short, the Performance Timeline defines an API and methods which expose all t
 Performance Timeline defines an interface to acquire a variety of performance measurements. 
 As already described, in can be used to retrieve Navigation Timings with $performance.getEntriesByType("navigation")$.
 
+Additionally, a PerformanceObserver interface is defined, which can be used to monitor the Performance Timeline and notify as soon as new measurements and recordings are available.
+
+
+%TODO add this ? is not so important...
+
 % https://www.w3.org/TR/performance-timeline-2/
 %- extends the High Resolution Time specification
 %- providing methods to store and retrieve high resolution performance metric data.
@@ -2470,10 +2475,6 @@ As already described, in can be used to retrieve Navigation Timings with $perfor
 %- get Entries, by Type, by Name
 %- Example entryType values defined by other specifications include: "mark" and "measure" [USER-TIMING-2], "navigation" [NAVIGATION-TIMING-2], "resource" [RESOURCE-TIMING-2], and "longtask"
 
-Additionally, a PerformanceObserver interface is defined, which can be used to monitor the Performance Timeline and notify as soon as new measurements and recordings are available.
-
-
-%TODO add this ? is not so important...
 
 % [Performance Entry]
 	
@@ -2506,13 +2507,8 @@ Additionally, a PerformanceObserver interface is defined, which can be used to m
 \paragraph{Long Tasks}
 
 Long Tasks API 1 has been released as a First Public Working Draft in September 2017.
-The goal of the API is to detect "long tasks", this are tasks that occupy main thread.
-Long tasks are incicators of performance
-
-% https://www.w3.org/TR/longtasks-1/
-
-% Editors Draft: https://w3c.github.io/longtasks/
-
+The goal of the API is to detect "long tasks", this are tasks that occupy main thread for more than 50ms.
+Long tasks are critical for performance as they block other critical tasks such as user input. % cite  https://www.w3.org/TR/longtasks-1/
 
 % https://www.youtube.com/watch?v=6Ljq-Jn-EgU&ab_channel=GoogleChromeDevelopers
 %- Long Tasks: Is it delightful? PerformanceObserver
@@ -2524,11 +2520,9 @@ Long tasks are incicators of performance
 \paragraph{Server Timing}
 
 Server Timing is a Working Draft from June 2021.
-
-% https://www.w3.org/TR/server-timing/
-
-
-% Editors Draft: https://w3c.github.io/server-timing/
+With specifications such as Navigation and Resource Timing, the user agent has access to a variety of different timings regarding the navigation process.
+Not visible nor available are measurement and timings within the server processing, e.g. database queries.
+Server Timing addresses this problem by enabling a server to transfer and communicate performance related information to the user agent. % cite https://www.w3.org/TR/server-timing/
 
 
 
@@ -2537,58 +2531,36 @@ Server Timing is a Working Draft from June 2021.
 
 \paragraph{Paint Timing}
 
-Paint Timing 1 is a First Public Working Draft from September 2017. % https://www.w3.org/TR/paint-timing/
+Paint Timing 1 has been released as a First Public Working Draft in September 2017.  
+It specifies two "key moments" during the load process: First Paint (FP), and First Contentful Paint (FCP).
+Table X. provides explanations for the key moments as they are defined in the specification. % cite https://www.w3.org/TR/paint-timing/
 
-% https://www.w3.org/TR/paint-timing/
-%-  First Public Working Draft, 7 September 2017
-%-  capture a series of key moments (First Paint, First Contentful Paint
-%- metrics mark the points, immediately after navigation, when the browser renders pixels to the screen
-%- answers the question: is it happening? -> We will see later that Google Web Vitals use same question
-
-%Paint or Render: "the browser has performed a "paint" (or "render") when it has converted the render tree to pixels on the screen. "
-
-%FP: "the time when the browser first rendered after navigation. This excludes the default background paint, but includes non-default background paint. This is the first key moment developers care about in page load – when the browser has started to render the page"
-%FCP: "time when the browser first rendered any text, image (including background images), non-white canvas or SVG. This includes text with pending webfonts. This is the first time users could start consuming page content"
-
-
-%From the browser perspective.
-%For user perspective, start render is the metric.
+The metrics can be retrieved via $performance.getEntriesByType("paint")$.
 
 \begin{center}
 \small
 	\begin{tabular}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
 	\hline
-	First Paint & "Marks the point when the browser renders anything that is visually different from what was on the screen prior to navigation"  \\ 
+	First Paint & Marks the point when the browser renders anything that is visually different from what was on the screen prior to navigation \\ 
 	\hline
-	First Contentful Paint & "The point when the browser renders the first bit of content from the DOM, which may be text, an image, SVG, or even a canvas element" \\  
+	First Contentful Paint & The point when the browser renders the first bit of content from the DOM, which may be text, an image, SVG, or even a canvas element \\  
 	\hline
 	\end{tabular}
 \end{center}
 
 
+FP and FCP indicate when the user sees something different than the default white screen for the first time.
+If the visual change is important or useful for the user is not reflected by FP or FCP. % cite 2013 Meenan
 
 
-%First Paint, Time to First Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_paint
 
+%TODO add more here ?
 
-% 2013 Meenan
-%- can tell you the first point in time when the user sees something other than a blank white screen
-%- doesn’t necessarily mean the user sees anything useful
+% https://developer.mozilla.org/en-US/docs/Glossary/First_paint
+% https://developer.mozilla.org/en-US/docs/Glossary/First_contentful_paint
 
-
-%First Contentful Paint: % https://developer.mozilla.org/en-US/docs/Glossary/First_contentful_paint
-
-
-% 2018 Netravali
-% TTFP
-
-
-%use this as transition to web vitals
-%There are more metrics which try to capture user experienced or perceived performance, which are calculated by visuals etc.
-
-
-% 2019 Enghardt: TTFP
-
+% A user centric metric pendant is Start Render.
+% FP and FCP are visual metrics from a browsers perspective, and not from a users perspective, as they are derived from  and not the actual pixels on the screen.
 
 
 
@@ -2603,6 +2575,8 @@ W3C defines specs for this.
 Attributes exposed by those specs are used to calculate metrics.
 
 Metrics are not defined officially and may diverge depending on implementation.
+
+Table X provides an overview of all discussed specifications, in which maturity level they are available and why they are important.
 
 
 %The W3C provides recommendations and drafts which expose interesting timing data in the browser. %leveraging
@@ -2619,11 +2593,31 @@ Metrics are not defined officially and may diverge depending on implementation.
 \small
 	\begin{tabular}{ p{0.3\linewidth} | p{0.6\linewidth} }
 	\hline
-	Navigation Timing & Level 1: REC December 2021, Level 2: WD March 2021. Exposes timing information of the main document. \\ 
+	High Resolution Time &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item Level 2: REC November 2019
+		\item WD July 2021
+		\item Provides exact, stable and reliable time measures
+	\end{itemize} \\
 	\hline
-	Resource Timing & Level 1: CR March 2017, Level 2: WD April 2021. Exposes timing information from requested resources and the resources they request.  \\  
+	Navigation Timing &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item Level 1: REC December 2021
+		\item Level 2: WD March 2021
+		\item Exposes navigation timing information of the main document
+	\end{itemize} \\
 	\hline
-	Navigation and Resource Timing & Used to calculated a variety of metrics \\
+	Resource Timing &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item Level 1: CR March 2017
+		\item Level 2: WD April 2021
+		\item Exposes timing information from requested resources and the resources they request. 
+	\end{itemize} \\
+	\hline
+	Navigation and Resource Timing &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item Used to calculated a variety of metrics
+	\end{itemize} \\	
 	\hline
 	\hline
 	User Timing & 
@@ -2633,13 +2627,29 @@ Metrics are not defined officially and may diverge depending on implementation.
 		\item Mark and measure custom timestamps
 	\end{itemize} \\  
 	\hline
-	Performance Timeline & REC December 2013,  Level 2: WD June 2021.  Subsumes gathered performance data from other specifications. \\  
+	Performance Timeline &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item REC December 2013
+		\item Level 2: WD June 2021
+		\item Subsumes gathered performance data from other specifications
+	\end{itemize} \\
 	\hline
-	Long Tasks & API 1: FPWD  September 2017  \\  
+	Long Tasks &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item API 1: FPWD  September 2017 
+		\item Identify tasks occupying main thread for more than 50ms
+	\end{itemize} \\	
 	\hline
-	Server Timing & WD June 2021\\
+	Server Timing &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item WD June 2021
+		\item Standard to transmit performance related data from the server to the client
+	\end{itemize} \\	
 	\hline
-	Paint Timing & FPWD September 2017  \\  
+	Paint Timing &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item FPWD September 2017
+	\end{itemize} \\
 	\hline
 	\end{tabular}
 \end{center}
@@ -2662,9 +2672,6 @@ Metrics are not defined officially and may diverge depending on implementation.
 
 % -----------------------------------------------------------------------
 % -----------------------------------------------------------------------
-
-
-
 
 
 
@@ -2705,6 +2712,15 @@ Metrics are not defined officially and may diverge depending on implementation.
 
 
 % https://blog.dareboost.com/en/2019/09/first-contentful-paint-fcp/
+
+
+% 2018 Netravali
+% TTFP
+
+
+% 2019 Enghardt: TTFP
+
+
 
 
 
@@ -2987,7 +3003,7 @@ Metrics are not defined officially and may diverge depending on implementation.
 % --------------------------
 
 
-\paragraph{Thresholds and Benchmarks for Core Web Vitals}
+\paragraph{Excursion: Thresholds and Benchmarks for Core Web Vitals}
 
 
 [tbd]
