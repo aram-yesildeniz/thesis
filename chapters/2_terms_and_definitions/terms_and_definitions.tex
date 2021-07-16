@@ -2154,110 +2154,82 @@ It is therefore possible. due to the lack of metrics standardization and definit
 	\small
 	\begin{longtable}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
 	\hline
-	Time to First Byte (TTFB) & $[responseStart - navigationStart]$ \\
+	Time to First Byte (TTFB)
+	& $[responseStart - navigationStart]$ \\
 	& Indicates when the user agent received the first byte of the websites data. \\
 	& "Time it takes between the start of the request and the start of the response".  \\% cite https://developer.mozilla.org/en-US/docs/Glossary/time_to_first_byte
 	%TODO add more here ?
 	
 	\hline
-	Page Load Time (PLT) &
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm, partopsep=0pt]
-		\item $loadEventStart - navigationStart$
-		\item
-		The MDN Docs define PLT as the "time it takes for a page to load" and it is calculated as stated above. % cite https://developer.mozilla.org/en-US/docs/Glossary/Page_load_time
-		
-		Across multiple authors, PLT is defined as the time from navigation start until the load event\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event} [16.07.2021]} has been fired.
-		The load event is fired when the main document and its linked resources have been loaded.
-		
-		Grigorik states that PLT "has been the de facto metric of the web performance world", but is nowadays inaccurate due to the shift from static websites to dynamic web applications which load resources differently (cf also 2018 Netravali).
-		and % https://www.stevesouders.com/blog/2013/05/13/moving-beyond-window-onload/
-		
+	Page Load Time (PLT)
+	& $[loadEventStart - navigationStart]$ \\
+	& The MDN Docs define PLT as the "time it takes for a page to load" and it is calculated as stated above.  \\ % cite https://developer.mozilla.org/en-US/docs/Glossary/Page_load_time	
+	& Across multiple authors, PLT is defined as the time from navigation start until the load event\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event} [16.07.2021]} has been fired.
+	The load event is fired when the main document and its linked resources have been loaded. \\
+	& Grigorik states that PLT "has been the de facto metric of the web performance world", but is nowadays inaccurate due to the shift from static websites to dynamic web applications which load resources differently (cf also 2018 Netravali) and \\ % https://www.stevesouders.com/blog/2013/05/13/moving-beyond-window-onload/
+			
 		%TODO more here ?
-		
 		% Akamai defines PLT similarly as the elapsed time from navigation start until the "page is completely available for the user to interact with", using also loadEventStart as the point when loading has finished.
 		% cite https://github.com/akamai/boomerang/blob/master/doc/methodology.md, https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-		
 		%Wang et al define PLT as the "time between when the page is requested and when the DOMLoad event is fired", where the DOMLoad event is the load event.\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event} [16.07.2021]}      % cite 2013 Wang
-		
 		% 2019 Enghardt
-		
-
-	\end{itemize} \\	
 	
 	\hline
-	DNS Lookup Time &
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
-		\item $domainLookupEnd - domainLookupStart$
-		\item Time it takes for a DNS lookup. 
+	DNS Lookup Time
+	& $[domainLookupEnd - domainLookupStart]$ \\
+	& Time it takes for a DNS lookup.  \\
 		% cite % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#dns_lookup_time
 		% cite https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-		
-	\end{itemize} \\	
 	
 	\hline
-	TCP Handshake & % / Server Connect Time ?
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
-		\item $connectEnd - connectStart$
-		\item "The time it takes for the TCP handshake." % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#tcp
+	TCP Handshake % / Server Connect Time ?
+	& $[connectEnd - connectStart]$ \\
+	& "The time it takes for the TCP handshake." \\ % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#tcp
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
 	% Also called Connection Time.  % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-	\end{itemize} \\	
 
 	\hline
-	TLS Handshake Time &
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
-		\item Time it takes to secure connection with TLS. MDN Docs defines TLS time with $requestStart - secureConnectionStart$
-		\item Google defines TLS Time as $connectEnd - secureConnectionStart$ % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-	\end{itemize} \\
+	TLS Handshake Time
+	& Time it takes to secure connection with TLS.  \\
+	& MDN Docs defines TLS time with $[requestStart - secureConnectionStart]$ \\
+	& Google defines TLS Time as $[connectEnd - secureConnectionStart]$ \\ % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
 
 	\hline
-	Request Time,  Server Response Time &
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
-		\item $responseStart - requestStart$ 
-		\item How long it takes for the request. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#request_time
-		Also called Server Response Time by Akamai % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-	\end{itemize} \\		
+	Request Time, 
+	& $[responseStart - requestStart]$ \\ 
+	Server Response Time & How long it takes for the request. \\ % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#request_time
+	& Also called Server Response Time by Akamai \\ % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 	
 	\hline
-	DOM Content Loaded, DOM Content Load &
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
-		\item MDN defines DOM Content Loaded as $domContentLoadedEventEnd - domContentLoadedEventStart$, that is the DOMContentLoaded event duration.
+	DOM Content Loaded,DOM Content Load
+	& MDN defines DOM Content Loaded as $domContentLoadedEventEnd - domContentLoadedEventStart$, that is the DOMContentLoaded event duration. \\
 		% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#domcontentloaded_event
 		% https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
-
-		\item Akamai defines a "DOM Content Load" time which represents the time from navigation start until the DOMContentLoaded event has been fired, captured by domContentLoadedEventEnd.
+	& Akamai defines a "DOM Content Load" time which represents the time from navigation start until the DOMContentLoaded event has been fired, captured by domContentLoadedEventEnd. \\
 		% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US		
-	\end{itemize} \\	
 
 	\hline
-	Page Download Time, Receiving Time, Transfer Time &
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
-		\item $responseEnd - responseStart$
-		\item How long it takes to download the page.
-		Also called Transfer time by Akamai or Receiving Time by MDN
-		% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-		% https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-	\end{itemize} \\		
+	Page Download Time,
+	& $[responseEnd - responseStart]$ \\
+	Receiving Time,  & How long it takes to download the page. \\
+	Transfer Time & Also called Transfer time by Akamai or Receiving Time by MDN \\
+	% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+	% https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
 
 	\hline
-	Latency &
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
-		\item $responseStart - fetchStart$ 
-		\item Latency is defined as the elapsed time from when the browser requests the resource until the first byte from it is received.  % cite https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+	Latency
+	& $[responseStart - fetchStart]$ \\ 
+	& Latency is defined as the elapsed time from when the browser requests the resource until the first byte from it is received.  \\ % cite https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 		% cite https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-	\end{itemize} \\		
 
 	\hline
-	DOM Interactive &
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
-		\item $domInteractive - navigationStart$
-		\item When the "browser has completed parsing the entire HTML and constructed the DOM" % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-	\end{itemize} \\
+	DOM Interactive
+	& $[domInteractive - navigationStart]$ \\
+	& When the "browser has completed parsing the entire HTML and constructed the DOM" \\ % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 
 	
-	%TODO add this? maybe check again after WPT done
-	
+%TODO add this? maybe check again after WPT done
 %	\hline
 %	DOM Complete &
 %	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
