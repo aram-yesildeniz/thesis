@@ -2035,7 +2035,7 @@ These time stamps are used to calculate performance metrics, as described in the
 	\hline
 	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Navigation Timings Level 2} \\
 	\hline
-	startTime (= navigationStart) & Start time of the navigation process. Is set to 0.  Navigation Timeline Level 1 exposes "navigationStart" which is set to the "time immediately after the user agent finishes prompting to unload the previous document."\footnote{\url{https://www.w3.org/TR/navigation-timing/)} [15.07.2021]} As many metrics calculations still rely on navigationStart as seen below, it is mentioned here. \\
+	startTime (= navigationStart) & Start time of the navigation process. Is set to 0.  Navigation Timeline Level 1 exposes "navigationStart" which is set to the "time immediately after the user agent finishes prompting to unload the previous document."\footnote{\url{https://www.w3.org/TR/navigation-timing/)} [15.07.2021]} As some metric calculations still rely on navigationStart as seen below, it is mentioned here. \\
 	\hline
 	unloadEventStart & Set to 0 if there is no previous document. Otherwise, value is set to time when previous documents unload event gets fired by the user agent. \\
 	\hline
@@ -2121,35 +2121,20 @@ The document states and events mentioned above, such as DOMContentLoaded, and wh
 \paragraph{Metrics calculated with Navigation and Resource Timing}
 
 The attributes exposed by Navigation and Resource Timing are used to calculate common navigation timing metrics.
-Table X. lists a selection of metrics and how they are being calculated.
-Figure X. shows graphically which intervals the metrics are reflecting.
+Table X. lists a selection of navigation timing metrics and how they are derived from the exposed attributes by Navigation and Resource Timing.
+Figure X. provides a graphical overview of the metrics and which intervals they are reflecting.
 
+As with business metrics (section X.), there is not one source of truth or a set of definitions for navigation timing metrics.
+Still, when going through literature, a common set of navigation timings can be identified.
+Literature sources are for example MDN Glossary %https://developer.mozilla.org/en-US/docs/Glossary
+Google developers guides % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+Other performance specialists blog posts % cite https://gtmetrix.com/blog/browser-timings/
+Research papers % cite % 2013 Wang % 2018 Netravali % 2019 Enghardt
+Or documentation of common RUM tools % cite https://github.com/akamai/boomerang/blob/master/doc/methodology.md
 
-% Where are they coming from ?
-% There are no official definitions of the metrics!
-
-%Sometimes different vendors give a different name to the same metric.
-%For many metrics there are no official definitions and the values diverge depending on the implementation.
-%I will show how those metrics are being calculated.
-
-
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=1\textwidth]{timestamp_diagram_blank.png}
-\caption{Navigation Timing Metrics}
-\label{img:latency}
-\end{center}
-\end{figure}
-
-
-
-% [Navigation Level 1 vs Level 2]
-
-%- navigationStart is not in level 2
-%- navigationStart is the same as startTime in level 2
-%- Difference is that navigationStart is a EPOCH time stamp. The timings have to be calculated as differences to this timestamp
-%- navigationStart just starts with 0, which makes all the other timestamps easier to read
-%- many still use level 1 and navigationStart
+Those sources explain the idea and nature of the metrics.
+How exactly the metrics are implemented and calculated, e.g. which Navigation Timing attributes are used, is the responsibility of the RUM tools vendors and can only be checked directly in the source code.
+It is therefore possible. due to the lack of metrics standardization and definition, that for the same metric, different calculations are being used.
 
 
 %TODO add this ?
@@ -2158,35 +2143,101 @@ Figure X. shows graphically which intervals the metrics are reflecting.
 % Also maybe different calculations exist for the same metrc! check this again
 % Basically i need to check how the different vendors / parties interpret the metric, e.g. how WPT calculates TTFB and GA
 
+%- navigationStart is not in level 2
+%- navigationStart is the same as startTime in level 2
+%- Difference is that navigationStart is a EPOCH time stamp. The timings have to be calculated as differences to this timestamp
+%- navigationStart just starts with 0, which makes all the other timestamps easier to read
+%- many still use level 1 and navigationStart
+
 
 
 \begin{center}
 	\small
 	\begin{longtable}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
 	\hline
-	Time to First Byte (TTFB) & $responseStart - navigationStart$: blablablabalb \\
+	Time to First Byte (TTFB) & 
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item $[responseStart - navigationStart]$
+		\item Blablablabla
+	\end{itemize} \\	
+	
 	\hline
-	Page Load Time (PLT) & $loadEventStart - navigationStart$ \\
+	Page Load Time (PLT) &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item $loadEventStart - navigationStart$
+		\item Blablablabla
+	\end{itemize} \\	
+	
 	\hline
-	DNS Lookup Time & $domainLookupEnd - domainLookupStart$ \\
+	DNS Lookup Time &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item $domainLookupEnd - domainLookupStart$
+		\item Blablablabla
+	\end{itemize} \\	
+	
 	\hline
-	TCP Handshake / Server Connect Time & $connectEnd - connectStart$ \\
+	TCP Handshake / Server Connect Time &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item $connectEnd - connectStart$
+		\item Blablablabla
+	\end{itemize} \\	
+
 	\hline
-	TLS Handshake Time & $requestStart - secureConnectionStart$ \\
+	TLS Handshake Time &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item $requestStart - secureConnectionStart$
+		\item Blablablabla
+	\end{itemize} \\
+
 	\hline
-	Request / Server Response Time & $responseStart - requestStart$ \\
+	Request / Server Response Time &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item $responseStart - requestStart$ 
+		\item Blablablabla
+	\end{itemize} \\		
+	
 	\hline
-	DOM Content Loaded & $domContentLoadedEventEnd - domContentLoadedEventStart$ \\
+	DOM Content Loaded &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item $domContentLoadedEventEnd - domContentLoadedEventStart$
+		\item Blablablabla
+	\end{itemize} \\	
+
 	\hline
-	Page Download Time & $responseEnd - responseStart$ \\
+	Page Download Time &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item $responseEnd - responseStart$
+		\item Blablablabla
+	\end{itemize} \\		
+
 	\hline
-	Latency & $responseStart - fetchStart$ \\
+	Latency &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item $responseStart - fetchStart$ 
+		\item Blablablabla
+	\end{itemize} \\		
+
 	\hline
-	DOM Interactive & \\
+	DOM Interactive &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item 
+		\item Blablablabla
+	\end{itemize} \\
+
 	\hline
-	DOM Complete & \\
+	DOM Complete &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item 
+		\item Blablablabla
+	\end{itemize} \\	
+
 	\hline
-	Redirect & \\
+	Redirect &
+	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
+		\item 
+		\item Blablablabla
+	\end{itemize} \\
+
 	\hline
 	\caption{Metrics} % needs to go inside longtable environment
 	\label{tab:navigationtiming_metrics}
@@ -2248,6 +2299,11 @@ Figure X. shows graphically which intervals the metrics are reflecting.
 % https://developer.mozilla.org/en-US/docs/Glossary/Page_load_time
 %pageloadtime = time.loadEventStart - time.navigationStart;
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+
+
+% Boomerang https://github.com/akamai/boomerang/blob/master/doc/methodology.md
+%"We define Page Load Time (PLT) or Round Trip Time (RTT) as the time taken from the user initiating a navigation to when that page is completely available for the user to interact with"
+
 
 % 2013 Wang:
 %- PLT as central metric
@@ -2424,6 +2480,15 @@ Figure X. shows graphically which intervals the metrics are reflecting.
 %- encodedBodySize is the compressed size of the resource excluding HTTP headers.
 %- decodedBodySize is the decompressed size of the resource (again, excluding HTTP headers).
 
+
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1\textwidth]{timestamp_diagram_blank.png}
+\caption{Navigation Timing Metrics}
+\label{img:latency}
+\end{center}
+\end{figure}
 
 
 
