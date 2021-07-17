@@ -2308,12 +2308,12 @@ It is therefore possible. due to the lack of metrics standardization and definit
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=1\textwidth]{timestamp_diagram_blank.png}
+\includegraphics[width=1\textwidth]{nav_metrics.png}
 \caption{Navigation Timing Metrics}
 \label{img:latency}
 \end{center}
 \end{figure}
-
+%TODO make this nicer, e.g. use same font as text for labels
 
 
 
@@ -2459,16 +2459,17 @@ If the visual change is important or useful for the user is not reflected by FP 
 
 \paragraph{Navigation Timing Metrics Conclusion}
 
-We can measure time for different processes in the document loading process.
-W3C defines specs for this.
-Attributes exposed by those specs are used to calculate metrics.
+[tbd]
 
-Metrics are not defined officially and may diverge depending on implementation.
+We can measure time for different processes in the document loading process.
+W3C and the Performance Working Group especially maintain and define a set of specifications with the task to measure performance related data.
+The attributes exposed by there specifications are used to calculate performance or navigation timing metrics.
+
+As the performance metrics are not officially defined by any authorizes party or institution, their meaning may diverge depending on the implementation.
 
 Table X provides an overview of all discussed specifications, in which maturity level they are available and why they are important.
 
 
-%The W3C provides recommendations and drafts which expose interesting timing data in the browser. %leveraging
 %The High Resolution Time recommendation enables exact, stable and reliable time measures.
 %The Navigation and Resource Timing specifications expose all relevant time stamps on the document, or any resource respectively, loading process.
 %The User Timing spec makes it possible for analysts and developers to mark and measure custom time stamps and expose them directly to the Performance Timeline.
@@ -2477,11 +2478,10 @@ Table X provides an overview of all discussed specifications, in which maturity 
 %Or as Grigorik states it, "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application" % cite 2013 Girgorik
 
 
-
+%TODO get rid of itemize and use multi rows...
 \begin{center}
 \small
 	\begin{tabular}{ p{0.3\linewidth} | p{0.6\linewidth} }
-	\hline
 	High Resolution Time &
 	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
 		\item Level 2: REC November 2019
@@ -2526,7 +2526,7 @@ Table X provides an overview of all discussed specifications, in which maturity 
 	Long Tasks &
 	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
 		\item API 1: FPWD  September 2017 
-		\item Identify tasks occupying main thread for more than 50ms
+		\item Identifies tasks occupying main thread for more than 50ms
 	\end{itemize} \\	
 	\hline
 	Server Timing &
@@ -2538,24 +2538,20 @@ Table X provides an overview of all discussed specifications, in which maturity 
 	Paint Timing &
 	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
 		\item FPWD September 2017
+		\item Exposes the "key moments" First Paint and First Contentful Paint
 	\end{itemize} \\
-	\hline
 	\end{tabular}
 \end{center}
 
 
 % [Transition]
 
-%Multiple metrics are directly derived from those timing attributes, such as TTFB or Page Load Time.
-%Those metrics cover only the technical aspect of performance, that is they reflect performance as time or how long it took for a specific task to finish.
-%Those technical timing metrics may give an idea about the loading process of the web site, but they do not reflect how a user is experiencing the performance.
+Paint Timing already shoots in a direction which tries to measure user perceived performance not just by measuring elapsed time between navigation events, but rather observe visual changes during the websites loading process.
+When navigation timings can help to identify eventual bottlenecks or other technical debts during the loading process, they do not reflect how the actual user is perceiving the performance of the websites loading process.
+As users consume websites mainly with the eyes, visual indicators are relevant and of crucial importance.
 
-%The Paint Timing specification goes into the direction of capturing user perceived performance by exposing the time when the first visual content has been displayed to the user.
-
-%This idea of user centric metrics has been followed by many such as Google, which introduces Web Vitals.
-%Web Vitals are discussed in the next section, but before I will explain some other user centric metrics such as Speed Index.
-
-
+A variety of visual and user-centric performance metrics emerged in the last years, with Google promoting some of them.
+They will be discussed in the next section.
 
 
 
@@ -2572,20 +2568,16 @@ Table X provides an overview of all discussed specifications, in which maturity 
 
 % [Introduction]
 
-%Last section was about performance timings which are available through the web apis.
-%They are timestamps and do not tell a lot about how the user perceives the performance.
+Navigation Timings as described above are directly measured through a variety of Web APIs and are accessible within the browser.
+Metrics concerned with user-perceived performance focus mainly on visual changes of the website and can thereby not be captured directly through Web APIs.
 
-% https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance
-%- Perceived performance
-%- how fast a web site feels to a user
-%- perception can be different that actual load times
-%- more difficult to measure that loading times
+Perceived performance tackles the question how fast a website "feels" to a user.
+As already described in section X. different users feel performance differently, depending on factors such as gender, region or stress level.
+The perceived performance can diverge from actual loading times, and user-centric performance metrics are usually more difficult to measure than navigation timings, as visual or even video analysis is necessary to calculate the metrics. % cite https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance
 
-
-
-
-%I will describe established user-centric performance metrics, such as TTI, TBT and Speed Index.
-%Then I will discuss Web Vitals.
+I will describe user-centric performance metrics which are established among performance monitoring solution vendors.
+With Web Vitals, Google defines their own set of user-centric metrics and moves websites performance into focus.
+They will be discussed below.
 
 
 
