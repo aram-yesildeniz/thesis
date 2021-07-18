@@ -2521,69 +2521,50 @@ Table X provides an overview of all discussed specifications, in which maturity 
 %Or as Grigorik states it, "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application" % cite 2013 Girgorik
 
 
-%TODO get rid of itemize and use multi rows...
 \begin{center}
 \small
 	\begin{tabular}{ p{0.3\linewidth} | p{0.6\linewidth} }
-	High Resolution Time &
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
-		\item Level 2: REC November 2019
-		\item WD July 2021
-		\item Provides exact, stable and reliable time measures
-	\end{itemize} \\
+	High Resolution Time
+	& Level 2: REC November 2019 \\
+	& WD July 2021 \\
+	& Provides exact, stable and reliable time measures \\
 	\hline
-	Navigation Timing &
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
-		\item Level 1: REC December 2021
-		\item Level 2: WD March 2021
-		\item Exposes navigation timing information of the main document
-	\end{itemize} \\
+	Navigation Timing
+	& Level 1: REC December 2021 \\
+	& Level 2: WD March 2021 \\
+	& Exposes navigation timing information of the main document \\
 	\hline
-	Resource Timing &
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
-		\item Level 1: CR March 2017
-		\item Level 2: WD April 2021
-		\item Exposes timing information from requested resources and the resources they request. 
-	\end{itemize} \\
+	Resource Timing
+	& Level 1: CR March 2017 \\
+	& Level 2: WD April 2021 \\
+	& Exposes timing information from requested resources and the resources they request.  \\
 	\hline
-	Navigation and Resource Timing &
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
-		\item Used to calculated a variety of metrics
-	\end{itemize} \\	
+	Navigation and Resource Timing
+	& Used to calculated a variety of metrics \\
 	\hline
 	\hline
-	User Timing & 
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
-		\item Level 2: REC February 2019
-		\item Level 3: WD July 2021
-		\item Mark and measure custom timestamps
-	\end{itemize} \\  
+	User Timing
+	& Level 2: REC February 2019 \\
+	& Level 3: WD July 2021 \\
+	& Mark and measure custom timestamps \\
 	\hline
-	Performance Timeline &
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
-		\item REC December 2013
-		\item Level 2: WD June 2021
-		\item Subsumes gathered performance data from other specifications
-	\end{itemize} \\
+	Performance Timeline
+	& REC December 2013 \\
+	& Level 2: WD June 2021 \\
+	& Subsumes gathered performance data from other specifications \\
 	\hline
-	Long Tasks &
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
-		\item API 1: FPWD  September 2017 
-		\item Identifies tasks occupying main thread for more than 50ms
-		\item Basis for TTI and TBT
-	\end{itemize} \\	
+	Long Tasks
+	& API 1: FPWD  September 2017 \\
+	& Identifies tasks occupying main thread for more than 50ms \\
+	& Basis for TTI and TBT \\
 	\hline
-	Server Timing &
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
-		\item WD June 2021
-		\item Standard to transmit performance related data from the server to the client
-	\end{itemize} \\	
+	Server Timing
+	& WD June 2021 \\
+	& Standard to transmit performance related data from the server to the client \\
 	\hline
-	Paint Timing &
-	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
-		\item FPWD September 2017
-		\item Exposes the "key moments" First Paint and First Contentful Paint
-	\end{itemize} \\
+	Paint Timing
+	& FPWD September 2017 \\
+	& Exposes the "key moments" First Paint and First Contentful Paint \\
 	\end{tabular}
 \end{center}
 
@@ -2697,10 +2678,20 @@ The SI calculation details are covered in % https://docs.webpagetest.org/metrics
 % [Introduction]
 
 
+
+
+
+
 % https://web.dev/vitals/
-%- "Web Vitals is an initiative by Google to provide unified guidance for quality signals that are essential to delivering a great user experience on the web."
-%- Core Web Vitals: Metrics that matter the most
-% - evolving: definitions and thresholds may change with greater frequency
+"Web Vitals is an initiative by Google to provide unified guidance for quality signals that are essential to delivering a great user experience on the web."
+- evolving: definitions and thresholds may change with greater frequency
+
+Google also has tool support to capture web vitals.
+They are not covered here.
+For reference, the official JS library is here % https://github.com/GoogleChrome/web-vitals
+
+
+
 
 
 % https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
@@ -2749,6 +2740,8 @@ The SI calculation details are covered in % https://docs.webpagetest.org/metrics
 \end{center}
  % cite https://web.dev/user-centric-performance-metrics/
 
+each question is a perspective or facet of user experience.
+
 
 % Which metrics are part of web vitals ? https://github.com/GoogleChrome/web-vitals
 % not clear. on the specific pages some metrics are being consireded web vitals without being in the library
@@ -2769,14 +2762,20 @@ The SI calculation details are covered in % https://docs.webpagetest.org/metrics
 %- measure with library % https://github.com/GoogleChrome/web-vitals
 
 
+% [Core Web Vitals]
+
+will be covered in section X.
+
+%- Core Web Vitals: Metrics that matter the most
+
+
 
 
 % https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
 %- Future goals: Better support for Single Page Apps, Input responsiveness, Scrolling and animations
 %- Areas of user experience beyond performance: Security, Privacy, Accessibility
 
- 
-%The core web vitals LCP CLS and FID are now being discussed. 
+
 
 
 %TODO add this ?
