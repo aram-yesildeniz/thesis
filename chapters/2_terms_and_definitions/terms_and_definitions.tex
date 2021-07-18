@@ -1796,6 +1796,10 @@ The released publications especially important for performance metrics are discu
 %- Network Error Logging
 
 
+% -----------------------------------
+
+
+%TODO add Web Incubator CG
 % and some unofficial drafts
 % Network Information API (not official w3c) https://wicg.github.io/netinfo/
 % Element Timing API (not official w3c) https://wicg.github.io/element-timing/
@@ -1803,7 +1807,12 @@ The released publications especially important for performance metrics are discu
 
 
 
+
 % -----------------------------------
+
+
+
+
 
 
 \paragraph{High Resolution Time}
@@ -2399,6 +2408,12 @@ Long Tasks API 1 has been released as a First Public Working Draft in September 
 The goal of the API is to detect "long tasks", this are tasks that occupy main thread for more than 50ms.
 Long tasks are critical for performance as they block other critical tasks such as user input. % cite  https://www.w3.org/TR/longtasks-1/
 
+Long Tasks API is a basis to calculate metrics such as  Time to Interactive (TTI) and Total Blocking Time (TBT). % https://web.dev/custom-metrics/#long-tasks-api
+TTI and TBT will be discussed below.
+
+% https://github.com/WICG/time-to-interactive
+
+
 % https://www.youtube.com/watch?v=6Ljq-Jn-EgU&ab_channel=GoogleChromeDevelopers
 %- Long Tasks: Is it delightful? PerformanceObserver
 
@@ -2424,7 +2439,9 @@ Paint Timing 1 has been released as a First Public Working Draft in September 20
 It specifies two "key moments" during the load process: First Paint (FP), and First Contentful Paint (FCP).
 Table X. provides explanations for the key moments as they are defined in the specification. % cite https://www.w3.org/TR/paint-timing/
 
-The metrics can be retrieved via $performance.getEntriesByType("paint")$.
+The metrics can be retrieved directly in the browser via $performance.getEntriesByType("paint")$.
+Hence, FP and FCP can be collected in RUM.
+Other visual metrics rely mostly on video analysis and need a synthetic monitoring setup, as described in the next section.
 
 \begin{center}
 \small
@@ -2450,6 +2467,27 @@ If the visual change is important or useful for the user is not reflected by FP 
 
 % A user centric metric pendant is Start Render.
 % FP and FCP are visual metrics from a browsers perspective, and not from a users perspective, as they are derived from  and not the actual pixels on the screen.
+
+
+
+% ----------------------------
+
+
+%TODO write this down and add to summary table
+
+\paragraph{Element Timing API and Event Timing API}
+
+Unofficial drafts
+
+% https://wicg.github.io/element-timing/
+
+% https://wicg.github.io/event-timing/
+
+
+% https://web.dev/custom-metrics/
+Element TIming used for LCP
+Event Timing used for FID
+
 
 
 
@@ -2527,6 +2565,7 @@ Table X provides an overview of all discussed specifications, in which maturity 
 	\begin{itemize}[label={}, noitemsep,nolistsep, leftmargin=0cm]
 		\item API 1: FPWD  September 2017 
 		\item Identifies tasks occupying main thread for more than 50ms
+		\item Basis for TTI and TBT
 	\end{itemize} \\	
 	\hline
 	Server Timing &
@@ -2584,25 +2623,20 @@ They will be discussed below.
 % ------------------------
 
 
-\paragraph{Start Render}
+\paragraph{Start Render, Time to First Paint (TTFP)}
 
+The time when the browser rendered the first pixel on the screen visible for the user.
+Is calculated through video analysis instead of browser APIs such as Paint Timing.
+% cite  https://blog.dareboost.com/en/2019/09/first-contentful-paint-fcp/
 
+Defined and exposed for example by the synthetic monitoring solutions of speedcurve or WebPageTest.
+% cite https://support.speedcurve.com/en/articles/74078-what-do-the-different-speedcurve-metrics-represent
+% cite https://docs.webpagetest.org/metrics/page-metrics/
 
-% https://designingforperformance.com/basics-of-page-speed/
-%- tells you how many seconds it took for the browser to begin rendering content
+Netravali et al. use the term Time to First Paint (TTFP) for the very same metric, % cite 2018 Netravali
+whereas for Enghardt et al. , TTFP is the same as FP, which is measured within the browser and not through video analysis. % 2019 Enghardt
 
-
-% https://blog.dareboost.com/en/2019/09/first-contentful-paint-fcp/
-
-
-% 2018 Netravali
-% TTFP
-
-
-% 2019 Enghardt: TTFP
-
-
-
+This example reveals that the definitions of metrics is not clear and different authors use different definitions.
 
 
 % ------------------------
@@ -2610,16 +2644,25 @@ They will be discussed below.
 
 \paragraph{Time to Interactive}
 
-% https://developer.mozilla.org/en-US/docs/Glossary/Time_to_interactive
 
+% https://github.com/WPO-Foundation/webpagetest/blob/master/docs/Metrics/TimeToInteractive.md
+- two versions exist ? WICG and Google
+
+% https://github.com/WICG/time-to-interactive
+- Defined by WICG, indicates when the website becomes interactive.
+
+% https://developer.mozilla.org/en-US/docs/Glossary/Time_to_interactive
+"Time to Interactive (TTI) is a non-standardized web performance 'progress' metric defined as the point in time when the last Long Task finished and was followed by 5 seconds of network and main thread inactivity."
+
+
+% https://web.dev/tti/
+- a little bit different definition by Google
 
 
 % 2018 Netravali
-%- TTI
+% "The standard’s definition of TTI is still in flux"
 
 
-% https://www.youtube.com/watch?v=6Ljq-Jn-EgU&ab_channel=GoogleChromeDevelopers
-%- Time To Interactive: Is it usable? Use Polyfill
 
 
 
@@ -2631,8 +2674,6 @@ They will be discussed below.
 % https://web.dev/tbt/
 
 
-% https://www.youtube.com/watch?v=6Ljq-Jn-EgU&ab_channel=GoogleChromeDevelopers
-%- Total Blocking Time
 
 
 
