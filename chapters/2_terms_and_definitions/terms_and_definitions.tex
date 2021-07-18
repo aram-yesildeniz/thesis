@@ -2630,11 +2630,11 @@ They will be discussed below.
 
 \paragraph{Start Render, Time to First Paint (TTFP)}
 
-The time when the browser rendered the first pixel on the screen visible for the user.
-Is calculated through video analysis instead of browser APIs such as Paint Timing.
+The Start Render time is the time when the browser rendered the first pixel on the screen visible for the user.
+Start Render is calculated through video analysis instead of levering browser APIs such as Paint Timing.
 % cite  https://blog.dareboost.com/en/2019/09/first-contentful-paint-fcp/
 
-Defined and exposed for example by the synthetic monitoring solutions of speedcurve or WebPageTest.
+Start Render is defined and exposed by a variety of synthetic monitoring solutions such as speedcurve or WebPageTest.
 % cite https://support.speedcurve.com/en/articles/74078-what-do-the-different-speedcurve-metrics-represent
 % cite https://docs.webpagetest.org/metrics/page-metrics/
 
@@ -2650,56 +2650,41 @@ This example reveals that the definitions of metrics is not clear and different 
 % ------------------------
 
 
-\paragraph{Above the Fold Time}
+\paragraph{Above the Fold Time (AFT)}
 
+The above-the-fold is the area of the website which is visible to the user without scrolling.
+The AFT metric measures how long it takes the browser to render all pixel within that above the fold area.
+AFT measurement needs to take into consideration visual dynamic areas of the website which are expected to change pixels frequently and static areas where pixel and color changes are not likely to happen. % 2018 Netravali
 
-% 2013 Meenan
+AFT is measurable through synthetic monitoring and requires video recording and analysis. % cite 2013 Meenan
 
-%- point in time when the last visual change is made to the visible part of the page
-%- available only in lab environments where the visual progress of a page loading can be recorded
-
-
-% 2018 Netravali
-%- Above the fold time
-
-
-% 2019 Enghardt
+The AFT is not standardized. % 2019 Enghardt
 
 
 
 % ------------------------
 
 
+\paragraph{Speed Index (SI)}
 
-\paragraph{Speed Index}
+The Speed Index (SI) is a metric invented by the founders of WebPageTest and aims to express user experience in a single number. % cite 2013 Meenan
 
+Like the AFT, the SI reflects the visual completeness of the website.
+Where as AFT only measures the single point in time when the viewport is fully rendered, SI also takes the visual loading progress of the website into consideration and reflects "the average time at which visible parts of the page are displayed". % % 2018 Netravali  https://docs.webpagetest.org/metrics/speedindex/
+SI is not directly measured, but calculated, and expressed in milliseconds. % https://gtmetrix.com/speed-index.html
 
-% https://docs.webpagetest.org/metrics/speedindex/
-
-
-% https://developer.mozilla.org/en-US/docs/Glossary/Speed_index
-
-
-
-% 2013 Meenan
-%- best effort for representing the user experience in a single number
+Like AFT, SI is reliable for static websites and unreliable for websites with dynamic and changing visual content. % https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+The SI calculation details are covered in % https://docs.webpagetest.org/metrics/speedindex/
 
 
-% 2018 Netravali
 
 
 % 2021 Meenan vimeo 38:50
 
 
-
 % Measuring Real User Performance in the Browser
 %- How much of the screen is visually available at different points of time
 %- At what point of time is the page complete
-
-
-% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-%The Speed Index revolves around visual completeness and represents the average time it takes for website elements to become visible. It works well for websites with a static layout, but is unreliable for websites with moving elements like carousels or videos. Computing the Speed Index for this kind of website requires a custom timer or event to demarcate the point in time at which visual completion is reached
-
 
 
 
@@ -2765,6 +2750,9 @@ This example reveals that the definitions of metrics is not clear and different 
  % cite https://web.dev/user-centric-performance-metrics/
 
 
+% Which metrics are part of web vitals ? https://github.com/GoogleChrome/web-vitals
+% not clear. on the specific pages some metrics are being consireded web vitals without being in the library
+
 
 
 
@@ -2814,6 +2802,7 @@ This example reveals that the definitions of metrics is not clear and different 
 
 \paragraph{Time to Interactive, First CPU Idle}
 
+Not a Web Vitla ? % https://github.com/GoogleChrome/web-vitals#api
 
 in essence, TTI indicates when the browser or website is able to respond quickly to user input.
 Technical details diverge of how to measure TTI
@@ -2869,7 +2858,7 @@ Google has 2 metrics:
 
 
 \paragraph{Total Blocking Time}
-
+Not a web vital ?
 % https://web.dev/tbt/
 
 
