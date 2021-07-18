@@ -2408,6 +2408,7 @@ Long Tasks API 1 has been released as a First Public Working Draft in September 
 The goal of the API is to detect "long tasks", this are tasks that occupy main thread for more than 50ms.
 Long tasks are critical for performance as they block other critical tasks such as user input. % cite  https://www.w3.org/TR/longtasks-1/
 
+%TODO
 Long Tasks API is a basis to calculate metrics such as  Time to Interactive (TTI) and Total Blocking Time (TBT). % https://web.dev/custom-metrics/#long-tasks-api
 TTI and TBT will be discussed below.
 
@@ -2458,6 +2459,10 @@ Other visual metrics rely mostly on video analysis and need a synthetic monitori
 FP and FCP indicate when the user sees something different than the default white screen for the first time.
 If the visual change is important or useful for the user is not reflected by FP or FCP. % cite 2013 Meenan
 
+
+%TODO
+Google also defines FCP but uses a different implementation than just using API, to cover edge cases
+% https://web.dev/fcp/#differences-between-the-metric-and-the-api
 
 
 %TODO add more here ?
@@ -2639,69 +2644,7 @@ whereas for Enghardt et al. , TTFP is the same as FP, which is measured within t
 This example reveals that the definitions of metrics is not clear and different authors use different definitions.
 
 
-% ------------------------
 
-
-\paragraph{Time to Interactive}
-
-
-% https://github.com/WPO-Foundation/webpagetest/blob/master/docs/Metrics/TimeToInteractive.md
-- two versions exist ? WICG and Google
-
-% https://github.com/WICG/time-to-interactive
-- Defined by WICG, indicates when the website becomes interactive.
-
-% https://developer.mozilla.org/en-US/docs/Glossary/Time_to_interactive
-"Time to Interactive (TTI) is a non-standardized web performance 'progress' metric defined as the point in time when the last Long Task finished and was followed by 5 seconds of network and main thread inactivity."
-
-
-% https://web.dev/tti/
-- a little bit different definition by Google
-
-
-% 2018 Netravali
-% "The standard’s definition of TTI is still in flux"
-
-
-
-
-
-% ------------------------
-
-
-\paragraph{Total Blocking Time}
-
-% https://web.dev/tbt/
-
-
-
-
-
-% ------------------------
-
-
-
-\paragraph{First Meaningful Paint}
-
-
-% https://web.dev/first-meaningful-paint/
-%- in seconds
-
-
-%Replaced by LCP.
-
-%how to measure lab and field
-
-
-% https://www.youtube.com/watch?v=6Ljq-Jn-EgU&ab_channel=GoogleChromeDevelopers
-%- First Meaningful Paint, Hero Element: Is it useful? 
-
-
-
-% https://developer.mozilla.org/en-US/docs/Glossary/first_meaningful_paint
-
-% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-%The First Meaningful Paint is another user-centric metric and represents the point in time at which the largest visual change takes place; the underlying assumption here obviously is that the biggest visual change is relevant to the user, for example because a hero image or a navigation bar appear
 
 
 % ------------------------
@@ -2721,6 +2664,7 @@ This example reveals that the definitions of metrics is not clear and different 
 
 
 % 2019 Enghardt
+
 
 
 % ------------------------
@@ -2757,11 +2701,12 @@ This example reveals that the definitions of metrics is not clear and different 
 %The Speed Index revolves around visual completeness and represents the average time it takes for website elements to become visible. It works well for websites with a static layout, but is unreliable for websites with moving elements like carousels or videos. Computing the Speed Index for this kind of website requires a custom timer or event to demarcate the point in time at which visual completion is reached
 
 
+
+
 % ------------------------
 
 
-
-\paragraph{Web Vitals}
+\subsubsection{Web Vitals}
 
 
 % [Introduction]
@@ -2852,6 +2797,116 @@ This example reveals that the definitions of metrics is not clear and different 
 % Philip Walton. Best practices for measuring Web Vitals in the field
 
 
+
+% ------------------------
+
+
+\paragraph{First Contentful Paint}
+
+
+% https://web.dev/fcp/
+
+
+
+
+% ------------------------
+
+
+\paragraph{Time to Interactive, First CPU Idle}
+
+
+in essence, TTI indicates when the browser or website is able to respond quickly to user input.
+Technical details diverge of how to measure TTI
+
+As with other metrics, a clear definition is not given and there are some variants and the metrics evolutes.
+
+% https://github.com/WPO-Foundation/webpagetest/blob/master/docs/Metrics/TimeToInteractive.md
+- two variations exist:
+- Time to Consistently Interactive (WICG ) -> is normal TTI. Implementation different between WICG and Google
+- First CPU Idle (First Interactive)
+
+
+% https://developer.mozilla.org/en-US/docs/Glossary/First_interactive
+First CPU Idle is the same as First Interactive
+MDN states that TTI exists in 2 variations: First Interactive, Consistently Interactive
+
+
+% 2018 Netravali
+- "The standard’s definition of TTI is still in flux"
+- definitions uses a starting point, FCP or FMP, network requests and main thread idle
+
+
+
+
+% [WICG]
+
+% https://github.com/WICG/time-to-interactive
+- Defined by WICG, indicates when the website becomes interactive.
+
+
+% https://developer.mozilla.org/en-US/docs/Glossary/Time_to_interactive
+"Time to Interactive (TTI) is a non-standardized web performance 'progress' metric defined as the point in time when the last Long Task finished and was followed by 5 seconds of network and main thread inactivity."
+
+
+% [Google]
+
+web vital
+
+% https://docs.google.com/document/d/1GGiI9-7KeY3TPqS3YT271upUVimo-XiL5mwWorDUD4c/edit
+Google has 2 metrics:
+- Fist CPU idle
+- Time to Interactive
+-> Fist CPU idle is deprecated again % https://web.dev/first-cpu-idle/
+
+
+
+% https://web.dev/tti/
+- a little bit different definition by Google
+
+
+
+% ------------------------
+
+
+\paragraph{Total Blocking Time}
+
+% https://web.dev/tbt/
+
+
+
+
+
+% ------------------------
+
+
+
+\paragraph{First Meaningful Paint}
+
+
+% https://web.dev/first-meaningful-paint/
+%- in seconds
+
+
+%Replaced by LCP.
+
+%how to measure lab and field
+
+
+% https://www.youtube.com/watch?v=6Ljq-Jn-EgU&ab_channel=GoogleChromeDevelopers
+%- First Meaningful Paint, Hero Element: Is it useful? 
+
+
+
+% https://developer.mozilla.org/en-US/docs/Glossary/first_meaningful_paint
+
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+%The First Meaningful Paint is another user-centric metric and represents the point in time at which the largest visual change takes place; the underlying assumption here obviously is that the biggest visual change is relevant to the user, for example because a hero image or a navigation bar appear
+
+
+
+
+% ----------------------------------------
+% Core Web Vitals
 % ----------------------------------------
 
 
