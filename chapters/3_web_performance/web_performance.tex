@@ -2495,56 +2495,26 @@ The SI calculation details are covered in % https://docs.webpagetest.org/metrics
 
 With the Web Vitals initiative, Google joins the web performance metrics discussion.
 Their goal is to "provide unified guidance for quality signals that are essential to delivering a great user experience on the web." % https://web.dev/vitals/
-The "quality signals" mentioned here are user-centric performance metrics.
+And with performance being a factor in Google search rankings, Web Vitals become automatically important for website operators. % https://developers.google.com/web/updates/2018/07/search-ads-speed
 
+% [Evolving]
 
+The set and definitions of Web Vitals metrics are not cut in stone but rather of evolving nature.
+The definitions, calculations, recommended thresholds or even metrics itself may change over time, as the WWW is constantly changing. % https://web.dev/vitals/
+While currenty, Web Vitals are primarily concerned with web performance, other aspects of user experience, such as security, privacy or accessibility, will be incorporated. % https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
 
-% https://web.dev/vitals/
+% [Definition and Key Questions]
 
-%- evolving: definitions and thresholds may change with greater frequency
-
-%Google also has tool support to capture web vitals.
-%They are not covered here.
-%For reference, the official JS library is here % https://github.com/GoogleChrome/web-vitals
-
-
-
-
-
-% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-%- a set of browser-based metrics for capturing user-perceived performance.
-%- Google heralds the Web Vitals as the gold standard for website performance
-%- publishes them in the Chrome User Experience Report (CrUX)
-
-
-
-% [Types of Metrics]
-
-% https://web.dev/user-centric-performance-metrics/
-%- Perceived load speed
-%- Load responsiveness
-%- Runtime responsiveness
-%- Visual stability
-%- Smoothness
-
-
-
-% [SEO]
-
-
-% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-%- The core metrics will further be used for ranking search results 
-%- Website performance according to the Web Vitals will therefore be critically important for SEO in the upcoming years.
-
-
-
-% [Key Questions]
+Web Vitals and their definitions are derived from a set of key questions (table X.).
+The key questions reflect what users may (eventually unconsciously) ask while consuming a website. 
+This user-centric framework guides and sets the agenda for creating and defining Web Vitals metrics.
+Contrary to navigation timing metrics, the Web Vitals focus are users, and each question is a perspective or facet of user experience.
+Web Vitals are "metrics relevant to users". % https://web.dev/user-centric-performance-metrics/
 
  
 \begin{center}
 \small
-	\begin{tabular}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
-	\hline
+	\begin{tabular}{  p{0.3\linewidth} | p{0.6\linewidth}  }
 	\textit{Is it happening?} & 	Did the navigation start successfully? Has the server responded? \\
 	\hline
 	\textit{Is it useful?} & Has enough content rendered that users can engage with it? \\
@@ -2552,53 +2522,99 @@ The "quality signals" mentioned here are user-centric performance metrics.
 	\textit{Is it usable?} & Can users interact with the page, or is it busy? \\
 	\hline
 	\textit{Is it delightful?} & Are the interactions smooth and natural, free of lag and jank? \\
-	\hline
 	\end{tabular}
 \end{center}
  % cite https://web.dev/user-centric-performance-metrics/
 
-%each question is a perspective or facet of user experience.
 
+% [Types of Metrics]
+
+Apart from the key questions, Google identifies different aspects, or types, of performance:
+
+
+\begin{center}
+\small
+	\begin{tabular}{  p{0.3\linewidth} | p{0.6\linewidth}  }
+	\textit{Perceived load speed} & How quickly a page can load and render all of its visual elements to the screen. \\
+	\hline
+	\textit{Load responsiveness} & How quickly a page can load and execute any required JavaScript code in order for components to respond quickly to user interaction. \\
+	\hline
+	\textit{Runtime responsiveness} & After page load, how quickly can the page respond to user interaction. \\
+	\hline
+	\textit{Visual stability} & Do elements on the page shift in ways that users don't expect and potentially interfere with their interactions? \\
+	\hline
+	\textit{Smoothness} & Do transitions and animations render at a consistent frame rate and flow fluidly from one state to the next? \\
+	\end{tabular}
+\end{center}
+%cite  https://web.dev/user-centric-performance-metrics/
+
+Those types guide as an additional frame to organise, structure and integrate Web Vitals. % https://web.dev/user-centric-performance-metrics/
+
+
+% --------------------
+
+\paragraph{Core Web Vitals}
+
+Within the set of Web Vitals, there is a group of metrics that matter the most.
+The Core Web Vitals are structured around the performance aspects loading, interactivity, and visual stability.
+Each of three Core Web Vitals reflects one of those aspects (table X.).
+
+The Core Web Vitals are relevant for all kinds of websites and can be measures or retrieved in all Google tools.
+
+Contrary to the general evolving Web Vitals, Core Web Vitals are rather stable in terms of definitions, but also recommended benchmarks.
+
+% https://web.dev/vitals/
+%- each is measurable in the field
+
+%- Collected by Crux, Pagespeed insights and search console
+
+
+
+%- measure with library % https://github.com/GoogleChrome/web-vitals
+
+\begin{center}
+\small
+	\begin{tabular}{  p{0.3\linewidth} | p{0.6\linewidth}  }
+	\textit{Largest Contentful Paint (LCP)} & Measures loading performance.  \\
+	\hline
+	\textit{First Input Delay (FID)} & Measures interactivity. \\
+	\hline
+	\textit{Cumulative Layout Shift (CLS)} & Measures visual stability.  \\
+	\end{tabular}
+\end{center}
+
+The three Core Web Vitals will be discussed in more detail below.
+
+
+
+% --------------------
+
+
+% [Measurement and Tools]
+
+% https://web.dev/user-centric-performance-metrics/
+Lab and field
+
+
+%Google also has tool support to capture web vitals.
+%They are not covered here.
+%For reference, the official JS library is here % https://github.com/GoogleChrome/web-vitals
+
+
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+%- publishes them in the Chrome User Experience Report (CrUX)
+
+% Osmani: Tools to measure
+% Philip Walton. Best practices for measuring Web Vitals in the field
+
+
+
+
+% [Outline]
 
 % Which metrics are part of web vitals ? https://github.com/GoogleChrome/web-vitals
 % not clear. on the specific pages some metrics are being consireded web vitals without being in the library
 
-
-
-
-% [Core Web Vitals]
-
-
-% https://web.dev/vitals/
-%- apply to all web pages
-%- available in all google tools
-%- each core web vital  represents a distinct facet of the user experience: loading, interactivity, and visual stability
-%- each is measurable in the field
-%- rather stable in definition and thresholds
-%- Collected by Crux, Pagespeed insights and search console
-%- measure with library % https://github.com/GoogleChrome/web-vitals
-
-
-% [Core Web Vitals]
-
-%will be covered in section X.
-
-%- Core Web Vitals: Metrics that matter the most
-
-
-
-
-% https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
-%- Future goals: Better support for Single Page Apps, Input responsiveness, Scrolling and animations
-%- Areas of user experience beyond performance: Security, Privacy, Accessibility
-
-
-
-
-%TODO add this ?
-% [Tools to measure]
-% Osmani: Tools to measure
-% Philip Walton. Best practices for measuring Web Vitals in the field
 
 
 
@@ -2859,6 +2875,9 @@ The "quality signals" mentioned here are user-centric performance metrics.
 % https://web.dev/custom-metrics/
 %- Universal metrics offer a good baseline, but in many cases you need to measure more than just these metrics in order to capture the full experience for your particular site.
 %- Custom metrics allow you to measure aspects of your site's experience that may only apply to your site
+
+
+% https://web.dev/user-centric-performance-metrics/
 
 
 
@@ -3125,6 +3144,9 @@ The "quality signals" mentioned here are user-centric performance metrics.
 
 [summary table]
 
+% Navigation Timings: Coming from CRP, Loading Process, exposed by APIs
+% User Centric: General visual metrics
+% Web Vitals: Coming from key questions and types, measured with..., calculated by
 
 
 [Link to Research Question]
