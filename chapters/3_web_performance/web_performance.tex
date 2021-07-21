@@ -1433,25 +1433,39 @@ Those questions will be addressed in the next section.
 
 
 
-\section{Metrics}
-
+\section{Web Performance Metrics}
 
 [tbd]
-
 
 [Link to Research Question] \\
 
 % roter faden: motivate with context web analytics, web performance, user satisfaction etc
 
 
+% [Performance Metrics]
+
+As discussed in section X., web analytics, or business or non-performance metrics, track data about many different aspects of an online venture, for example, how many visitors the website has, or what the conversion rate is.
+For measuring performance, for example site speed and how users perceive the performance of the website, a set of special metrics is needed.
+Performance metrics are established to measure various performance aspects of a website and will be discussed in this section.
+
 
 % [Quantification and Analysis]
 
-Through metrics, performance is quantifiable, as metrics reflect performance in numbers.
+Through performance metrics, performance is quantifiable, as the metrics reflect performance as numbers.
 Once performance is mapped to numbers, they can be compared with each other, for example over time, after a change in the measured application,  or with numbers of a competitor. % cite https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
 Through their performance quantification, metrics facilitate the analysis of website traffic.
 Specific metric values can be used as a target for goal achievement and are therefore a critical instrument for improving websites. % cite 2009 Jansen
 Ideally, metrics are precise and serve as objective criteria for the evaluation of the measured website. % cite https://web.dev/user-centric-performance-metrics/
+
+
+% [Outline]
+
+As with web analytics metrics, multiple ways exist to structure and categorize performance metrics.
+One way to bring order to performance metrics is to differentiate between performance timing metrics, which measure elapsed time for concrete processes and navigation steps from the CRP, and user-centric performance metrics, which approximate user perceived performance by visual analysis.
+Both classes of metrics will be discussed in the following.
+Beforehand I will discuss page weight, a metric which characterizes the size of a website.
+The benefits of custom metrics and why they are important concludes the section about performance metrics.
+
 
 
 %TODO add this ?
@@ -1460,35 +1474,6 @@ Ideally, metrics are precise and serve as objective criteria for the evaluation 
 %- we're trying to capture the behavior of a website in terms of speed and construction
 %- statistics about how the site is built such as number of HTTP requests, size of stylesheets, and DOM depth
 %- Speed is tracked by time-based metrics that capture when things happen during the user's experience with the website: start render, DOM interactive, page load, etc. 
-
-
-
-% [Relevance]
-
-The selection of metrics and accordingly their relevance for the website is crucial.
-Just as each website is unique and serves a different purpose, so should metrics be, which quantify the website.
-It is important to measure what is important and relevant for the users and reaching business goals, while "each business has its own definitions of success". % cite 2009 Croll p 7,  https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-Hence, metrics are ideally tailored and custom to the website and they should track if "your business benefited in some way from their [the users] visits." % cite 2009 Croll p 15
-
-
-
-% [Usable]
-
-Metrics are only helpful when they are useful.
-That implies that the collection and measurement of metrics should be consistent and their representation should be unser-friendly and understandable. % cite https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-Kumar states that ideally, good metrics are uncomplex, relevant, timely, and instantly useful.  \\% cite 2012 Kumar
-
-
-% [Section Outline]
-
-In the next section, I will describe metrics which are more likely correlated and mapped to business topics, such as conversion or bounce rate.
-I use the term "business" or "non-performance" metrics to draw a line between metrics mainly concerned with a websites performance and metrics reflecting other web analytics aspects.
-Business metrics are not directly responsible to capture performance data such as loading speed of a website.
-
-After discussing non-performance metrics, performance metrics are described.
-This includes metrics concerned about page weight, load timings, and user-perceived performance.
-
-Finally, custom metrics are discussed.
 
 
 %TODO add this ?
@@ -1500,27 +1485,10 @@ Finally, custom metrics are discussed.
 % 2015 Bekavac
 
 
-
-
-% [Performance Metrics]
-
-As discussed in section X., business or non-performance metrics track data about a lot of different aspects and topics, for example metrics about how many visitors the website has or what the conversion rate is.
-For measuring performance, for example site speed and how users perceive the performance of the website, a set of special metrics is needed.
-Performance metrics are established to measure various performance aspects of a website and will be discussed in this section.
-
 %TODO add this?
 % No official definitions, lack of definitions (enghardt)
 % Still there are informal standard
 % Implementation can vary between tools who measure metrics
-
-
-% [Outline]
-
-As with business or non-performance metrics, multiple ways exist to structure and categorize performance metrics.
-One way to order performance metrics is to differentiate between performance timing metrics, which measure elapsed time for concrete processes and navigation steps from the CRP, and user-centric performance metrics, which approximate user perceived performance by visual analysis.
-Both classes of metrics will be discussed in the following.
-But before I will talk about metrics regarding page weight and size of the website.
-A characterization of custom metrics concludes the section about performance metrics.
 
 
 
@@ -1531,8 +1499,8 @@ A characterization of custom metrics concludes the section about performance met
 \subsection{Page Weight}
 
 A naive approach of quantifying a website is measuring its size and the amount of resources needed to build the website.
-Page weight can be used as a performance metric as the performance of a website depends on the network condition, like download speed and latency.
-The more bytes have to be transmitted over the network, the longer it takes for the website to get constructed and the longer the waiting time for the user.
+Page weight can be used as a performance metric as the performance of a website depends on its size, especially in conjunction with the network condition, like download speed and latency.
+The more bytes have to be transmitted over the network, the longer it takes for the website to get constructed and the longer the waiting time for the user is.
 Similar for requests, the more requests are needed, more connections need to be established, which takes more time.
 
 A website consists of multiple resources, such as HTML files, fonts, script files or images (cf. table X).
@@ -1551,7 +1519,7 @@ Images & Videos & Others & (Total) \\
 
 Page weight is a first assessment for a website regarding performance.
 It is mainly useful for comparison with median values or other websites, but has little to nothing expressiveness and significance for evaluating a websites performance.
-To get more useful insights about a websites performance, other metrics are in need, such as performance timings metrics, which will be discussed in the next section.
+To get more useful insights about a websites performance, other metrics are in need, such as navigation timing metrics, which will be discussed in the next section.
 As described in section X,  the idea of page weight is used to construct a test site with a median page weight values.
 
 
@@ -2525,13 +2493,14 @@ The SI calculation details are covered in % https://docs.webpagetest.org/metrics
 
 % [Introduction]
 
-
-
+With the Web Vitals initiative, Google joins the web performance metrics discussion.
+Their goal is to "provide unified guidance for quality signals that are essential to delivering a great user experience on the web." % https://web.dev/vitals/
+The "quality signals" mentioned here are user-centric performance metrics.
 
 
 
 % https://web.dev/vitals/
-%"Web Vitals is an initiative by Google to provide unified guidance for quality signals that are essential to delivering a great user experience on the web."
+
 %- evolving: definitions and thresholds may change with greater frequency
 
 %Google also has tool support to capture web vitals.
