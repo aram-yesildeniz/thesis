@@ -1,6 +1,5 @@
 % Terms and Definitions
-%TODO maybe move stuff from chapter 1 in this chapter
-\chapter{Metrics and Measurement Methods}
+\chapter{Web Performance}
 
 [tbd]
 
@@ -46,10 +45,105 @@
 
 
 % ---------------------------------------------------------------------------------------------------
+
+
+
+
+\section{Introduction}
+\label{chapter:web_performance}
+
+
+%TODO make it clear the difference between web analytics and web performance
+% web performance is also an analysis of the website, but not which users or how they interact with the website
+% is about the website itself, how fast it is and how users perceive this performance
+
+%TODO roter faden: What is web performance in web analytics context ?
+
+
+% [Introduction]
+% This chapter gives only a brief overview of the various aspects of web performance and appropriate sections below cover the topics in more detail.
+
+% [Definitions]
+As already described in chapter \ref{chapter:user_satisfaction}, web performance plays a role that cannot be neglected for user satisfaction and business success.
+The cited studies show that increasing website performance also increases sales, or as Google states it: "Performance plays a major role in the success of any online venture".\footnote{\url{https://web.dev/why-speed-matters/} [03.06.2021]}
+
+The MDN Web Docs identify multiple areas of web performance:\footnote{\url{https://developer.mozilla.org/en-US/docs/Learn/Performance/What_is_web_performance} [03.06.2021]}
+\begin{itemize}
+\item Reducing overall load time
+\item Making the site usable as soon as possible
+\item Smoothness and interactivity
+\item Perceived performance
+\item Performance measurements
+\end{itemize}
+
+%TODO add chapter references
+\paragraph{Reducing load time}
+
+In order to understand how load times emerge, the technical aspect of how websites are being loaded and presented to the user by the browser, needs to be comprehend.
+This question is covered in chapter X.
+%TODO do i really cover this ?
+
+Concrete optimization steps and techniques to reduce load times are not focus of this thesis.
+
+
+\paragraph{Usability and interactivity}
+
+As I will describe in chapter X, there are several metrics available that attempt to reflect areas of performance such as load time, smoothness, and interactivity, and specific metrics are available as well as for differentiating between technical and user-perceived performance.
+
+
+\paragraph{Performance perception}
+
+The perception of performance is generally subjective.
+As already seen in chapter \ref{chapter:user_satisfaction}, there are some quantifiable time intervals that correlate with human psychology regarding the received performance.
+Table \ref{table:perception} contains "unofficial rule of thumb" for delay thresholds \cite{2013Grigorik}.
+
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{| l | l | }
+	\hline
+	Delay & User Perception \\
+	\hline
+	0-100 ms & Instant \\
+	100-300 ms & Small perceptible delay \\
+	300-1000 ms & Machine is working \\
+	> 1 s & Likely mental context switch \\
+	> 10 s & Task is abandoned \\
+	\hline
+	\end{tabular}
+	\label{table:perception}
+	\caption{Rule of thumbs for delay}
+\end{table}
+
+If one interprets the numbers from the table, one can make the statement that it is desirable to keep loading times below one second.
+Thresholds for certain performance metrics and the psychological rationale for setting them are discussed in chapter X. %TODO
+
+
+% TODO add this?
+% https://developer.mozilla.org/en-US/docs/Learn/Performance/why_web_performance
+% financial aspect of downloading data and big websites
+
+
+
+\paragraph{Performance measurements}
+%TODO
+
+There are several methods of measuring performance.
+\textit{Synthetic monitoring }is discussed in chapter X.
+\textit{Real User Monitoring} (RUM) is covered in chapter X.
+
+
+
+
+
+
 % ---------------------------------------------------------------------------------------------------
 
 
-\section{Technical Background of the Website Loading Process}
+
+
+
+\section{The Website Loading Process}
 
 
 % [Introduction]
@@ -520,7 +614,7 @@ Before I describe this process, I will discuss how JavaScript is being handled.
 
 
 
-\paragraph{JavaScript in the CRP}
+\paragraph{JavaScript in the Critical Rendering Path}
 
 
 % [Introduction, Parser and Render Blocking]
@@ -759,6 +853,8 @@ How is it connected to measurement methods and metrics?
 
 
 %TODO add ?
+% give some links and references to optimization
+
 % [Optimizations]
 
 % Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
@@ -875,8 +971,7 @@ How is it connected to measurement methods and metrics?
 
 % ---------------------------------------------------------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 \section{Measurement Methods}
@@ -1001,6 +1096,73 @@ RUM will be discussed next.
 
 
 
+
+% -------------------------------
+
+
+\subsection{WebPageTest}
+
+
+% 2016 Viscomi
+% https://docs.webpagetest.org/
+
+% 2011 Grigorik https://hpbn.co/primer-on-web-performance/
+
+\subsubsection{Overview}
+
+[tbd]
+
+%What is it
+%Why to use it, Who uses it, how to use it
+%Waterfall and Grades
+%See in performance tab for details about grades and optimization techniques
+
+
+
+\subsubsection{Configuration}
+
+[tbd]
+
+% Meenans video as resource
+
+% Caching, repeat view
+% Traffic shaping
+% e.g. capture devtools timeline
+
+
+
+\subsubsection{Private Instances}
+
+[tbd]
+
+% Meenans video as resource
+
+%Architecture
+%AWS
+%Docker localhost
+%Bulk tests
+
+
+%TODO put this on Waterfall somewhere else? Maybe in Terms and Definitions ?
+% [Waterfall: Resource Waterfall and Connection View]
+
+% 2011 Grigorik Analyzing the Resource Waterfall in https://hpbn.co/primer-on-web-performance/
+
+
+% 2014 Hogan ch 2
+%- A waterfall chart such as Figure 2-2 shows you how much time it takes to request the contents of a page, such as CSS, images, or HTML, and how much time it takes to download this content before displaying it in a browser.
+
+% Differnce between conenction view and request view as described in section X.
+
+
+
+
+
+
+
+% [Metrics] discussed below
+
+
 % ----------------------------------------------------------------------------------------------
 % ----------------------------------------------------------------------------------------------
 
@@ -1106,8 +1268,6 @@ The data is accessible through the Chrome User Experience Report (CrUX) and will
 
 
 
-
-
 % ----------------------------------------------------------------------------------------------
 
 
@@ -1125,6 +1285,59 @@ The collected data is available via Googles PageSpeed Insights, the CrUX Dashboa
 
 
 %TODO add here which metrics it collects?
+
+
+
+% --------------------------
+
+
+\subsection{Google Analytics}
+
+[tbd]
+
+
+% Kessler 2012 p. 581
+% marek 2011: glossary
+
+% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
+% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
+% Real User Measurement (RUM) with Google Analytics
+
+
+\subsubsection{The Tracking Script}
+
+[tbd]
+
+
+%Show multiple code examples
+%Explain whats going on: script tag, create script element etc.
+%Maybe also show Hotjar example to see that they are similar
+
+
+% https://developers.google.com/analytics/devguides/collection/analyticsjs
+%- this async pattern is used so that all browsers will load it async
+%- we can just use async attribute for newer browsers...
+
+
+% Compare how GA script is included into web site with some other analytics services examples
+% Some other real life examples of RUM here? To demonstrate async... boomeraing readme for example has nice explanation
+
+
+% https://speedcurve.com/setup/lux/
+% SpeedCurve tracking script position: To add real user monitoring (RUM) to your site, paste this snippet at the top of the <HEAD> tag on your pages.
+
+
+
+% [Examples]
+
+\subsubsection{Real World Examples}
+
+[tbd]
+
+
+
+
+
 
 
 
@@ -1220,7 +1433,6 @@ Those questions will be addressed in the next section.
 
 
 
-
 \section{Metrics}
 
 
@@ -1281,393 +1493,18 @@ Finally, custom metrics are discussed.
 
 %TODO add this ?
 % Summary / Metrics Taxonomy
-
-
-
-%TODO add this ?
-
 % 2019 Enghardt
 %"metrics as well as experiments have to realistically reflect possible performance improvements for actual users"
 
 % [Metrics and KPIs]
-
 % 2015 Bekavac
 
 
 
-% ------------------------------------
 
+% [Performance Metrics]
 
-
-\subsection{Business or "Non-Performance" Metrics}
-
-
-As already described, the term business metrics should subsume metrics which are not directly concerned with capturing site speed or user-perceived performance.
-Business, or non-performance metrics, collect data about any aspect of a website which is of interest for the analyst.
-Thus, theoretically an unlimited amount of metrics exist, as also for each specific questions, custom metrics are made up.
-
-In literature, a core corpus of metrics can be found and multiple ideas of structuring and categorizing those metrics exist.
-The different possibilities of categorizations are discussed next.
-Afterwards, one approach of categorization is then used to list a selection of common business metrics.
-
-
-
-
-% ------------------------------------
-
-
-\subsubsection{Possible Categorizations of Business Metrics}
-
-
-Categories help to better grasp and comprehend metrics, and they can provide structure and order.
-Following are some examples of business metrics categorizations as they are presented in literature.
-
-Peterson arguments from a marketing perspective and categorizes the metrics according to the customer life cycle, which includes the phases reach, acquisition, conversion, and retention. % cite 2004 Peterson
-
-Metrics for measuring \textit{Reach} are for example number or percentage of new visitor.
-\textit{Acquisition} contains metrics such as average number of visits per visitor or average pages viewed per visitor.
-The category \textit{Conversion} includes metrics such as conversion or abandonment rates.
-And the last category \textit{Retention} includes metrics such as the number of returning visitors.
-This proposed categorization is highly customer-related and customer-centric and from a marketers perspective. 
-
-%Reach:  - Overall Traffic Volumes,  Number of Visits
-% Measuring Acquisition: - Percent New Visitors, - Average Number of Page Views per Visit
-  
-The Web Analytics Association defines three types and accordingly categories of metrics: \textit{Counts}, \textit{Ratios} and \textit{KPIs},% cite 2007 Burby
-Where counts are metrics which are single numbers like the number of visits, ratios consist of counts divided by other counts, such as page views per visit.
-KPIs are counts or ratios with a specific meaning and importance for the specific business.
-
-Jansen defines four categories for web analytics metrics: % cite 2009 Jansen p.30
-\textit{Site Usage}, which encompasses metrics such as demographics and system statistics, but also visitor length and type,
-\textit{Referrers}, that are metrics describing the referring URL,
-\textit{Site Content Analysis}, which includes metrics such as top pages or visitor paths, and
-\textit{Quality Assurance} with metrics reflecting errors or other quality aspects of the measured system.
-
-% Site usage: Internal Search Information
-% Referrers: keyword Analysis	
-	 
-Croll arguments that all metrics answer at least one of four user-centric questions: \textit{What did they do?}, \textit{How did they do it?,} \textit{Why did they do it?}, and \textit{Could they do it?}. % cite 2009 Croll
-Accordingly, the metrics are categorised by the question they answer.
-
-Bekavac organizes the metric according to what they describe: \textit{Visits}, such as entry or exit page,
-\textit{Visitors}, such as the metrics capturing new or returning visitors,
-metrics such as page exit ratio or bounce rate which describe \textit{Visitor Engagement},
-and metrics describing \textit{Conversions} as the conversion rate. % cite 2015 Bekavac
-
-%visits: entry page, landing page, exit page, visit duration, referrer, ctr
-%- For describing Visitors: repeat visitor, visits per visitor, recency, frequency
-%- For describing Visitor engagement: page exit ratio, bounce rate
-
-Hassler proposes a classification which is close and similar to the WAA proposed categorisation.
-The metrics are ordered by their type: % cite 2017 Hassler
-\textit{Counts} are absolute values like visitors or total sales,
-\textit{Relations} put counts into relation for example as percentages, such as page views per visitor,
-and \textit{Values} include non-numerical metrics such as referrer or search term.
-
-Gessert et al.  propose a semantic categorization of metrics, they structure the metrics according to their meaning and their domain membership.
-The categories are \textit{Performance}, which includes performance metrics such as Time to First Byte or First Input Delay (see section X.), \textit{User Engagement} metrics such as the session length or the bounce rate, \textit{Business KPIs} such as the cart size or the amount of transaction, but also conversion rates and revenue, and \textit{QA Metadata} which subsumes technical metrics like JS errors or the browser distribution.% cite 2020 Wolle https://www.youtube.com/watch?v=avPcOFzUa1Q&ab_channel=WolframWingerath
-
-%- User Engagement: Session Length, First user interaction
-% QA Metadata: Page views and sessions, Caching insights
-
-
-%TODO add?
-% 2004 Phippen
-% 2020 Heinemann 4.1.4
-%Metrics Categories for E-Shop:
-%- Attraction
-%- Acquisition
-%- Retention
-%- Umsatzleistung
-%- Warenleistung
-%- Ergebnisleitung
-
-%- also customer life cycle
-
-\begin{table}[h!]
-\begin{center}
-\begin{tabular}{  c | c  }
-Value-Driven & \{Counts, Ratios, KPIs\},  \\
- & \{Counts, Relations, Values\} \\
-\hline
-Semantic-Driven & \{Performance, User Engagement, Business KPIs, QA Metadata\},  \\
-& \{Site Usage, Referres, Site Content Analysis, Quality Assurance\} \\
-\hline
-Marketing-Driven & \{Reach, Acquisition, Conversion, Retention\}, \\
-& \{Visits, Visitors, Visitor Engagement, Conversions\} \\
-\end{tabular}
-\caption{Business Metrics Categorizations}
-\end{center}
-\end{table}
-
-
-
-% [Conclusion]
-
-As described above, multiple categorizations of metrics are proposed in literature.
-While some authors group the metrics by their type of value, e.g. if they count something or represent a ratio, others use a more semantic approach and group the metrics by their meaning, with some extreme examples by authors which group only through a marketing perspective.
-% Orthogonal to semantic: "number" categorization: Count, ratio, ...
-
-In the following, I will list some metrics and provide brief explanations, following the categorization of counts,ratios and values.
-After that, i will take a look at metrics which are specific for performance.
-
-
-
-%TODO add ?
-% Customer Life Cycle and Pyramid
-% 2004 Peterson
-%Pyramid Model described the data itself and not metrics
-%Metrics categorised by customer life cycle: Reach, Acquisition, Conversion, Retention
-
-% 2008 Reese
-%- Pyramidenmodell 
-
-
-
-
-% ---------------------------------------------------------------
-
-
-\subsubsection{Business Metrics Examples}
-
-
-Table X provides web analytics metrics which are not directly concerned with performance.
-The categories used to structure the metrics are \textit{Counts}, \textit{Ratios} and \textit{Non-Numerical Values}, like they are already defined by Hassler or WAA in the section above. % cite ?
-
-%TODO even add this? already described above
-% [Counts]
-%Counts hold a value describing how many 
-%Counts can be measured over time: last hour, month, from to, etc.
-%Averages are possible
-%Compare with Segmentation
-
-% [Ratios]
-%Ratios are a combination of numerical values.
-%As Ratio or Percentage
-
-% [Non-Numerical Values]
-%Non-Numerical Values can not be reflected as a number.
-
-
-\begin{center}
-	\small
-	\begin{longtable}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
-	
-	\hline
-	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Counts} \\
-	\hline
-	Hits & Represent amount of requests to the server.  \\ % 2004 Peterson
-	\hline
-	Visits or Sessions & Count how many users view the website \\ % 2004 Peterson
-	\hline
-	Session Length & How long the session endures \\ % 2007 Burby
-	\hline
-	Page Views & How often a page has been viewed \\ % 2004 Peterson
-	\hline
-	Single Page Visits & Sessions where one page has been viewed \\ % 2007 Burby
-	\hline
-	New / Unique / Repeat / Return Visitors & ... \\
-	\hline
-%	Time on Page & ... \\
-	%\hline
-%	Time between Visits & ... \\
-%	\hline
-	JS Errors & How many JS errors occured \\
-	\hline
-	Cart Size & ... \\
-	\hline
-	Conversions & ...  (business specific) \\
-	\hline
-	\textit{etc.} &  \\
-
-	\hline
-	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Ratios} \\
-	\hline
-	Conversion Rate & ... \\
-	\hline
-	Bounce Rate & ... \\
-	\hline
-	Abandonment Rate & ... \\
-	\hline
-	Page Views per Visitor & ... \\
-	\hline
-	New Visitors Percentage & ... \\
-	\hline
-	Visits per Visitor & ... \\
-	\hline
-	Page Exit Ratio & ... \\
-	\hline
-	Click Through Rate (CTR) & ... \\
-	\hline
-	\textit{etc.} & \\	
-	
-	\hline
-	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Non-Numerical Values} \\
-	\hline
-	Demographics & ... \\	
-	\hline
-	Referrer & ... \\	
-	\hline
-	\textit{etc.} &  \\
-	\hline
-	
-	\caption{Business Metrics Examples} % needs to go inside longtable environment
-	\label{tab:businessmetrics}
-	\end{longtable}
-\end{center}
-
-
-%\paragraph{Hits}
-% 2004 Peterson
-% 2017 Hassler
-
-
-%\paragraph{Visits}
-% 2004 Peterson
-% 2007 Burby
-% 2009 Waisberg
-% 2017 Hassler
-
-%\paragraph{Session Length}
-% 2007 Burby
-
-
-%\paragraph{Page Views}
-% 2004 Peterson
-% 2007 Burby
-% 2009 Croll p. 74 Page View, first useful web analytics metric
-% 2009 Waisberg
-% 2015 Zheng
-% 2017 Hassler
-
-
-%\paragraph{Single Page Visits}
-% 2007 Burby
-
-%\paragraph{New Visitors}
-% 2004 Peterson
-% 2007 Burby
-
-%\paragraph{Unique Visitors}
-% 2004 Peterson
-% 2007 Burby
-% 2017 Hassler
-
-%\paragraph{Repeat Visitors}
-% 2007 Burby
-
-%\paragraph{Return Visitor}
-% 2007 Burby
-
-%\paragraph{Time on Page}
-%\paragraph{Time between Visits}
-
-%\paragraph{JS Errors}
-
-%\paragraph{Cart Size}
-% 2009 Croll p 24 in site effectiveness
-
-%\paragraph{Conversions}
-
-
-% -------------- RATIOS --------------
-
-
-%\paragraph{Bounce Rate}
-% 2007 Burby
-% 2009 Waisberg
-
-%\paragraph{Conversion Rate}
-% 2004 Peterson
-
-% 2009 Croll
-%- The percentage of visitors that your site converts to contributors, buyers, or users is the most important metric you can track
-
-%\paragraph{Abandonment Rate}
-% 2004 Peterson
-% 2009 Croll
-
-%\paragraph{Page Views per Visitor}
-% 2007 Burby
-% 2009 Waisberg
-
-%\paragraph{New Visitors Percentage}
-% 2009 Waisberg
-
-
-%\paragraph{Visits per Visitor}
-
-%\paragraph{Page Exit Ratio}
-% 2007 Burby
-
-
-%\paragraph{Click Through Rate (CTR)}
-% 2004 Peterson
-% 2007 Burby
-% 2009 Croll
-
-
-
-% % -------------- NON_NUMERICAL_VALUES --------------
-
-
-%TODO find some more examples here
-
-%\paragraph{Demographics}
-%age, gender, browser, geography, ...
-
-%\paragraph{Referrer}
-% 2004 Peterson
-% 2009 Croll
-
-
-
-% --------------------------------------
-
-
-% [Transition]
-
-The table X provides a selection of common business metrics, following the proposed categorization of counts, ratios and non-numerical values and is not complete.
-In the next section, I will discuss metrics which are designed to directly capture performance related data.
-
-
-%TODO even add this? outline can be made in beginning of next section
-%As performance is directly connected to time, most of those performance metrics are measuring a timestamp.
-%Some are also displaying a score. 
-%This will be discussed.
-
-
-
-%TODO should i show how to actual measure those metrics, like visits, hits, conversion rate etc ?
-
-
-% Kessler 2012 -> dont have this digital...
-% Erfolg messen und bewerten
- %Traffic:
-%	 Page Impression / Page View
-%	 Visit
-%	 Visitor / Unique visitor
-% Bounce rate
- %Conversion rate
- %CTR: Click-through-rate
- %Session length
- 
- 
- % 2016 Kollewe -> nicht digital
-% Besucheranalyse: Wie viele Besucher?, Anzahl Besucher mit Mobilgerät, Demographische Daten (Geschlecht, Altersgruppe)
-% Seitenanalyse: Was machen die Besucher im Shop?, Zielseite / Startseite: Erste Seite, die ein Besucher angeschaut hat, Ausstiegseite
-% E-Commerce-Analyse: Transkations-daten aus Shop, Funnel-Analyse
-
-
-
-% --------------------------------------------------------------------------------------------------------------------------------------------
-% --------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-\subsection{Performance Metrics}
-
-Business or non-performance metrics track data about a lot of different aspects and topics, for example metrics about how many visitors the website has or what the conversion rate is.
+As discussed in section X., business or non-performance metrics track data about a lot of different aspects and topics, for example metrics about how many visitors the website has or what the conversion rate is.
 For measuring performance, for example site speed and how users perceive the performance of the website, a set of special metrics is needed.
 Performance metrics are established to measure various performance aspects of a website and will be discussed in this section.
 
@@ -1691,7 +1528,7 @@ A characterization of custom metrics concludes the section about performance met
 
 
 
-\subsubsection{Page Weight}
+\subsection{Page Weight}
 
 A naive approach of quantifying a website is measuring its size and the amount of resources needed to build the website.
 Page weight can be used as a performance metric as the performance of a website depends on the network condition, like download speed and latency.
@@ -1721,7 +1558,7 @@ As described in section X,  the idea of page weight is used to construct a test 
 % -----------------------------------------------------------------------
 
 
-\subsubsection{Navigation Timing Metrics}
+\subsection{Navigation Timing Metrics}
 
 Navigation timing metrics depict elapsed time within the website loading process such as navigation and CRP (cf.  section X).
 They are calculated and derived from a set of standardized Web APIs.
@@ -1729,7 +1566,7 @@ In the following, I will briefly explain the nature of web standards and recomme
 Then, performance relevant specifications and the metrics they expose are discussed.
 
 
-\paragraph{Web Standards}
+\subsubsection{Web Standards}
 
 Web Standards are documents describing the technology used to build the WWW. % cite https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards
 Those documents, also called specifications, are maintained by different groups and organizations.
@@ -2500,7 +2337,7 @@ Event Timing used for FID
 
 
 
-\paragraph{Navigation Timing Metrics Conclusion}
+\subsubsection{Navigation Timing Metrics Conclusion}
 
 [tbd]
 
@@ -2585,7 +2422,7 @@ They will be discussed in the next section.
 
 
 
-\subsubsection{User-Centric Performance Metrics}
+\subsection{User-Centric Performance Metrics}
 
 
 [tbd]
@@ -2607,6 +2444,17 @@ They will be discussed below.
 
 
 % ------------------------
+
+\subsubsection{Visual Metrics}
+
+[tbd]
+
+
+
+
+
+% ------------------------
+
 
 
 \paragraph{Start Render, Time to First Paint (TTFP)}
@@ -2683,12 +2531,12 @@ The SI calculation details are covered in % https://docs.webpagetest.org/metrics
 
 
 % https://web.dev/vitals/
-"Web Vitals is an initiative by Google to provide unified guidance for quality signals that are essential to delivering a great user experience on the web."
-- evolving: definitions and thresholds may change with greater frequency
+%"Web Vitals is an initiative by Google to provide unified guidance for quality signals that are essential to delivering a great user experience on the web."
+%- evolving: definitions and thresholds may change with greater frequency
 
-Google also has tool support to capture web vitals.
-They are not covered here.
-For reference, the official JS library is here % https://github.com/GoogleChrome/web-vitals
+%Google also has tool support to capture web vitals.
+%They are not covered here.
+%For reference, the official JS library is here % https://github.com/GoogleChrome/web-vitals
 
 
 
@@ -2740,7 +2588,7 @@ For reference, the official JS library is here % https://github.com/GoogleChrome
 \end{center}
  % cite https://web.dev/user-centric-performance-metrics/
 
-each question is a perspective or facet of user experience.
+%each question is a perspective or facet of user experience.
 
 
 % Which metrics are part of web vitals ? https://github.com/GoogleChrome/web-vitals
@@ -2764,7 +2612,7 @@ each question is a perspective or facet of user experience.
 
 % [Core Web Vitals]
 
-will be covered in section X.
+%will be covered in section X.
 
 %- Core Web Vitals: Metrics that matter the most
 
@@ -2801,27 +2649,29 @@ will be covered in section X.
 
 \paragraph{Time to Interactive, First CPU Idle}
 
-Not a Web Vitla ? % https://github.com/GoogleChrome/web-vitals#api
 
-in essence, TTI indicates when the browser or website is able to respond quickly to user input.
-Technical details diverge of how to measure TTI
 
-As with other metrics, a clear definition is not given and there are some variants and the metrics evolutes.
+%Not a Web Vitla ? % https://github.com/GoogleChrome/web-vitals#api
+
+%in essence, TTI indicates when the browser or website is able to respond quickly to user input.
+%Technical details diverge of how to measure TTI
+
+%As with other metrics, a clear definition is not given and there are some variants and the metrics evolutes.
 
 % https://github.com/WPO-Foundation/webpagetest/blob/master/docs/Metrics/TimeToInteractive.md
-- two variations exist:
-- Time to Consistently Interactive (WICG ) -> is normal TTI. Implementation different between WICG and Google
-- First CPU Idle (First Interactive)
+%- two variations exist:
+%- Time to Consistently Interactive (WICG ) -> is normal TTI. Implementation different between WICG and Google
+%- First CPU Idle (First Interactive)
 
 
 % https://developer.mozilla.org/en-US/docs/Glossary/First_interactive
-First CPU Idle is the same as First Interactive
-MDN states that TTI exists in 2 variations: First Interactive, Consistently Interactive
+%First CPU Idle is the same as First Interactive
+%MDN states that TTI exists in 2 variations: First Interactive, Consistently Interactive
 
 
 % 2018 Netravali
-- "The standard’s definition of TTI is still in flux"
-- definitions uses a starting point, FCP or FMP, network requests and main thread idle
+%- "The standard’s definition of TTI is still in flux"
+%- definitions uses a starting point, FCP or FMP, network requests and main thread idle
 
 
 
@@ -2829,27 +2679,27 @@ MDN states that TTI exists in 2 variations: First Interactive, Consistently Inte
 % [WICG]
 
 % https://github.com/WICG/time-to-interactive
-- Defined by WICG, indicates when the website becomes interactive.
+%- Defined by WICG, indicates when the website becomes interactive.
 
 
 % https://developer.mozilla.org/en-US/docs/Glossary/Time_to_interactive
-"Time to Interactive (TTI) is a non-standardized web performance 'progress' metric defined as the point in time when the last Long Task finished and was followed by 5 seconds of network and main thread inactivity."
+%"Time to Interactive (TTI) is a non-standardized web performance 'progress' metric defined as the point in time when the last Long Task finished and was followed by 5 seconds of network and main thread inactivity."
 
 
 % [Google]
 
-web vital
+%web vital
 
 % https://docs.google.com/document/d/1GGiI9-7KeY3TPqS3YT271upUVimo-XiL5mwWorDUD4c/edit
-Google has 2 metrics:
-- Fist CPU idle
-- Time to Interactive
--> Fist CPU idle is deprecated again % https://web.dev/first-cpu-idle/
+%Google has 2 metrics:
+%- Fist CPU idle
+%- Time to Interactive
+% -> Fist CPU idle is deprecated again % https://web.dev/first-cpu-idle/
 
 
 
 % https://web.dev/tti/
-- a little bit different definition by Google
+% - a little bit different definition by Google
 
 
 
@@ -2857,7 +2707,9 @@ Google has 2 metrics:
 
 
 \paragraph{Total Blocking Time}
-Not a web vital ?
+
+% Not a web vital ?
+
 % https://web.dev/tbt/
 
 
@@ -2899,7 +2751,7 @@ Not a web vital ?
 
 
 
-\paragraph{Largest Contentful Paint}
+\paragraph{Core Web Vital: Largest Contentful Paint}
 
 
 
@@ -2934,7 +2786,7 @@ Not a web vital ?
 % --------------------------
 
 
-\paragraph{First Input Delay}
+\paragraph{Core Web Vital: First Input Delay}
 
 % FID https://web.dev/fid/
 
@@ -2950,7 +2802,7 @@ Not a web vital ?
 % --------------------------
 
 
-\paragraph{Cumulative Layout Shift}
+\paragraph{Core Web Vital: Cumulative Layout Shift}
 
 % CLS https://web.dev/cls/
 
@@ -3017,7 +2869,7 @@ Not a web vital ?
 
 
 
-\subsubsection{Custom Metrics}
+\subsection{Custom Metrics}
 
 
 [tbd]
@@ -3047,8 +2899,253 @@ Not a web vital ?
 
 % -----------------------------------------------------------------------
 
+\subsection{WebPageTest and Google Analytics Metrics}
 
-\subsubsection{Metrics Conclusion}
+[tbd]
+
+
+
+
+% ----------------------------------------------------------------
+
+
+\subsubsection{WebPageTest Metrics}
+
+[tbd]
+
+% https://docs.webpagetest.org/getting-started/
+
+
+% [Metrics Categories according to WPT Docs]
+
+% Metrics Categories:
+
+	%  High Level Metrics:
+		%  Document Complete
+		%  Fully Loaded
+		%  Load Time
+		%  First Byte
+		%  Start Render
+		%  Requests
+		%  Bytes In (Page Size)
+
+	%  Page-level Metrics:
+
+		%  Technical Page Metrics:
+			%  -> APIs, GA Site Speed Metrics
+			%  TTFB
+			%  loadTime
+			%  docTime
+			%  ...
+
+		%  Visual Metrics:
+			%  SpeedIndex
+			%  firstPaint
+			%  firstContentfulPaint
+			%  firstMeaningfulPaint
+			%  ...
+
+		%  Javascript and CPU timings
+		%  Page Information
+		%  Browser State
+		%  Lighthouse Summary Metrics
+		%  Optimization Checks/Grades
+		%  Instrumented Metrics
+		%  Test Information
+		%  Misc
+
+	%  Request-level metrics:
+		%  Request Details
+		%  Request Timings
+		%  Request Stats
+		%  Headers
+		%  Protocol Information
+		%  Javascript/CPU details
+		%  Optimization Checks
+		%  Misc	
+
+
+
+	
+%  [Optimization Grades]
+	%  Keep-alive Enabled
+	%  Compress Text
+	%  Compress Images
+	%  Cache Static Content
+	%  Use of CDN
+
+
+% [First View and Repeat View]
+
+
+
+% Taken from WPT book p. 34, ...
+% https://www.webpagetest.org/forums/showthread.php?tid=10315
+% https://www.webpagetest.org/forums/showthread.php?tid=13266
+% https://www.webpagetest.org/forums/showthread.php?tid=332
+% https://www.webpagetest.org/forums/showthread.php?tid=10732
+% https://www.webpagetest.org/forums/showthread.php?tid=12846
+
+
+
+% Move those definitions to chapter above?
+% Here i could only describe which metrics are available in WPT
+
+\begin{center}
+	\small
+	\begin{longtable}{ p{0.3\linewidth} | p{0.6\linewidth} }
+	Name & Description \\ 
+	\hline
+	Successful Tests & Amount of tests who completed successfully  \\
+	
+	Document Complete & ...  \\ % The time from the initial request until the browser fires load event. Also known as the document complete time. This is the time at which the Document Object Model (DOM) has been created and all images have been downloaded and displayed. For most traditional web pages, the load time is a suitable metric for representing how long a user must wait until the page becomes usable. This is the default performance metric on WebPageTest. Also known as Load Time (?). Around this time, the page's script is hard at work in the load-event handler firing off more requests for secondary content. The incomplete nature of this metric is why Fully Loaded was added to the table of metrics from the previous section. window.onload (?). The point where the browser onLoad event fires. The equivalent Navigation Timing event is loadEventStart. Document Complete Time: Amount of time that has elapsed from the initial page request until the browser fires the load event. This is the time at which the Document Object Model (DOM) has been created and all images have been downloaded and displayed. \\
+	
+	Fully Loaded & ...  \\ % The time from the initial request until WebPageTest determines that the page has finished loading content. The page might have waited for the load event to defer loading secondary content. The time it takes to load the secondary content is accounted for in the Fully Loaded Time. The time (in ms) the page took to be fully loaded — e.g., 2 seconds of no network activity after Document Complete. This will usually include any activity that is triggered by javascript after the main page loads. The point after onLoad where network activity has stopped for 2 seconds. Specific to WebPageTest and not provided by Performance API. Fully loaded waits for 2 seconds of no network activity (and no outstanding requests) after onLoad and then calls it done (only measures to the last activity, doesn't include the 2 seconds of silence in the measurement). Fully Loaded is a measure based on the network activity and is the point after onload when there was no activity for 2 seconds. \\
+	
+	First Byte & ...  \\ % Time until the server responds with the first byte of the response.  \\
+	
+	Start Render & ...  \\ % Time until the browser paints content to the screen. The time for the browser to display the first pixel of content (paint) on the screen. Time until the browser paints content to the screen. WebPageTest's own metric, determined by programmatically watching for visual changes to the page. Same as First Render? \\
+	
+	Bytes In (Doc) & ...  \\ % Total size of the Document Complete Requests' response bodies in bytes.  \\
+	
+	Requests (Doc) & ...  \\ % Number of HTTP requests before the load event, not including the initial request. \\
+	
+	Load Event Start & ...  \\ % Time in ms since navigation started until window.onload event was triggered (from W3C Navigation Timing). \\
+	
+	Speed Index	& ...  \\ % See Speed Index  \\
+	
+	Last Visual Change & ...  \\ % Time in ms until the last visual changed occured. Last change is a completely visual measurement and is the last point in the test when something visually changed on the screen. It could be something as simple as an animated gif or ad even that didn't really cause much CPU work but changed some pixels on the screen. It is only captured when video is recorded because it depends on the video capture to measure it. \\
+	
+	Visually Complete & ...  \\ % Time in ms when page was visually completed. Is measured from a video capture of the viewport loading and is the point when the visible part of the page first reached 100\% "completeness" compared to the end state of the test. \\
+	\caption{Your caption here} % needs to go inside longtable environment
+	\label{tab:myfirstlongtable}
+	\end{longtable}
+\end{center}
+
+
+
+
+% https://speedcurve.com/blog/rendering-metrics/
+
+
+
+
+
+% ----------------------------------------------------------------
+
+
+
+\subsubsection{GA Site Speed Metrics}
+
+[tbd]
+
+
+% Default performance metrics captured by analytics.js.
+% Show with analytics.js that it is indeed those navigation timing api calculations.
+% Ec = function (a)...
+
+% 2013 Girgorik: "Google Analytics automatically gathers Navigation Timing data when the analytics tracker is installed." ch. primer on web performance
+
+% GA does not really provide any UX metrics! The site speed metrics are all from navigation timing api which are measurements from the browser.
+% GA Site Speed Metrics (description from \url{https://support.google.com/analytics/answer/2383341?hl=en&ref_topic=1282106})
+% \url{https://stackoverflow.com/questions/18972615/how-do-the-metrics-of-google-analytics-site-speed-map-to-the-w3c-navigation-timi}
+
+
+
+\begin{center}
+\small
+
+	\begin{tabular}{ p{0.3\linewidth} | p{0.6\linewidth} }
+	Name & Description  \\ 
+	\hline
+	Page Load Sample & The number of pageviews that were sampled to calculate the average page-load time.  \\
+	
+	Speed Metrics Sample & The sample set (or count) of pageviews used to calculate the averages of site speed metrics. This metric is used in all site speed average calculations, including avgDomainLookupTime, avgPageDownloadTime, avgRedirectionTime, avgServerConnectionTime, and avgServerResponseTime.  \\
+	
+	DOM Latency Metrics Sample & Sample set (or count) of pageviews used to calculate the averages for site speed DOM metrics. This metric is used to calculate ga:avgDomContentLoadedTime and ga:avgDomInteractiveTime.  \\
+
+	Page Load Time (sec) & The average amount of time (in seconds) it takes that page to load, from initiation of the pageview (e.g., click on a page link) to load completion in the browser.  \\
+	
+	Domain Lookup Time (sec) & The average amount of time spent in DNS lookup for the page.  \\
+	
+	Page Download Time (sec) & The time to download your page.  \\
+	
+	Redirection Time (sec) & The time spent in redirection before fetching the page. If there are no redirects, the value for this metric is expected to be 0.  \\
+	
+	Server Connection Time (sec) & The time needed for the user to connect to your server.  \\
+
+	Server Response Time (sec) & The time for your server to respond to a user request, including the network time from the user's location to your server.  \\
+	
+	Document Interactive Time (sec) & The average time (in seconds) that the browser takes to parse the document (DOMInteractive), including the network time from the user's location to your server. At this time, the user can interact with the Document Object Model even though it is not fully loaded.  \\
+
+	Document Content Loaded Time (sec) & The average time (in seconds) that the browser takes to parse the document and execute deferred and parser-inserted scripts (DOMContentLoaded), including the network time from the user's location to your server. Parsing of the document is finished, the Document Object Model is ready, but referenced style sheets, images, and subframes may not be finished loading. This event is often the starting point for javascript framework execution, e.g., JQuery's onready() callback, etc.  \\
+	\end{tabular}
+\end{center}
+
+
+
+% DNS Resolution = GAs Avg. Domain Lookup Time (sec) % https://metriclabs.com.au/glossary/analytics-metrics/avg-domain-lookup-time-sec/
+
+
+
+
+
+% ----------------------------------------------------------------
+
+
+
+\subsubsection{Comparison GA and WPT Metrics}
+
+[tbd]
+
+% We can show that above relations are true with experiments
+% Load test page on a specific day only once and save timings exposed by performance.timing object (from console)
+% Calculate differences corresponding to the table
+% Get GA data for that day and save it
+
+
+%TODO use graphical comparison ?
+
+
+\begin{sidewaysfigure}
+
+\begin{center}
+	\begin{tabular}{ l | l | l }
+	Navigation Timing API & WPT & GA \\ 
+	\hline
+	loadEventStart - navigationStart & Document Complete, Load Event Start & pageLoadTime \\
+	domainLookupEnd - domainLookupStart & DNS lookup, dns\textunderscore ms & domainLookupTime \\
+	connectEnd - connectStart & connect\textunderscore ms & serverConnectionTime \\
+	responseStart - requestStart & .. & serverResponseTime \\
+	responseEnd - responseStart & .. & pageDownloadTime \\
+	fetchStart - navigationStart & .. & redirectionTime \\
+	domInteractive - navigationStart & .. & domInteractiveTime \\
+	domContentLoadedEventStart - navigationStart & domContentLoadedEventStart & domContentLoadedTime \\
+	\end{tabular}
+\end{center}
+
+
+\end{sidewaysfigure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% -----------------------------------------------------------------------
+
+
+\subsection{Web Performance Metrics Conclusion}
 
 
 [tbd]
