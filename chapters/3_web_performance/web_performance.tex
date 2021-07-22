@@ -2210,7 +2210,7 @@ Additionally, a PerformanceObserver interface is defined, which can be used to m
 \paragraph{Long Tasks}
 
 Long Tasks API 1 has been released as a First Public Working Draft in September 2017.
-The goal of the API is to detect "long tasks", this are tasks that occupy main thread for more than 50ms.
+The goal of the API is to detect "long tasks", this are tasks that occupy the main thread for more than 50ms.
 Long tasks are critical for performance as they block other critical tasks such as user input. % cite  https://www.w3.org/TR/longtasks-1/
 
 %TODO
@@ -2574,7 +2574,7 @@ Afterwards, Core Web Vitals,Web Vitals that matter the most, will be discussed.
 
 \paragraph{First Contentful Paint}
 
-FCP tackles the question \textit{Is it happening?} and is classified as the type \textit{Perceived load speed}.
+First Contentful Paint (FCP) tackles the question \textit{Is it happening?} and is classified as the type \textit{Perceived load speed}.
 This is the same FCP as exposed by Paint Timing (see section X.), and "marks the first point in the page load timeline where the user can see anything on the screen". % https://web.dev/fcp/
 
 Google enhances the Paint Timing specification regarding FCP by only considering pages that are in the foreground all the time,
@@ -2594,7 +2594,7 @@ FCP is measured in seconds and available through synthetic or real-user monitori
 
 \paragraph{First Meaningful Paint}
 
-FMP is "the paint after which the biggest above-the-fold layout change has happened and web fonts have loaded". % https://developer.mozilla.org/en-US/docs/Glossary/first_meaningful_paint
+First Meaningful Paint (FMP) is "the paint after which the biggest above-the-fold layout change has happened and web fonts have loaded". % https://developer.mozilla.org/en-US/docs/Glossary/first_meaningful_paint
 
 Google states that FMP is deprecated, due to "inconsistent results" and the impossibility to measure it in all web browsers. % https://web.dev/first-meaningful-paint/
 The successor, Largest Contentful Paint, is discussed below.
@@ -2613,10 +2613,8 @@ The replacement of FMP nicely illustrates the evolving nature of Web Vitals.
 
 
 
-%Not a Web Vitla ? % https://github.com/GoogleChrome/web-vitals#api
-
-%in essence, TTI indicates when the browser or website is able to respond quickly to user input.
-%Technical details diverge of how to measure TTI
+% in essence, TTI indicates when the browser or website is able to respond quickly to user input.
+% Technical details diverge of how to measure TTI
 
 %As with other metrics, a clear definition is not given and there are some variants and the metrics evolutes.
 
@@ -2670,9 +2668,42 @@ The replacement of FMP nicely illustrates the evolving nature of Web Vitals.
 
 \paragraph{Total Blocking Time}
 
+% [Explanation] 
+
+Total Blocking Time (TBT) captures the aspect of \textit{Load responsiveness} and gives hints to the question \textit{Is it happening?}.
+According to the definition, TBT measures "the total amount of time between First Contentful Paint (FCP) and Time to Interactive (TTI) where the main thread was blocked for long enough to prevent input responsiveness." % https://web.dev/tbt/
+The starting point for the measurement is the point of FCP, as user input is not likely to happen before the UI got rendered.
+The end point of the measurement is the point of TTI.
+
+The blocking of the main thread is characterized through long tasks.
+As described in section X. long tasks are tasks occupying the main thread for more than 50ms and they are defined in and exposed through the Long Tasks API.
+If the user interacts with the website while a long task is running, the browser can only respond to the user when he finished processing the long task.
+Therefore, the user has to wait.
+The blocking time of a long task is the full time of the task minus the defined long task time of 50ms.
+For example, a long task of $180ms$ has a blocking time of $180ms - 50ms = 130ms$.
+The sum of all those times, between FCP and TTI, is the TBT.
+
+
+% [Link to TTI]
+
+
+
+
+
+% [Link to FID]
+
 % https://web.dev/tbt/
+- lab metric
+-  "helps quantify the severity of how non-interactive a page is prior to it becoming reliably interactive"
 
 
+The synthetic monitoring metric TBT is related to RUM-only metric First Input Delay, which will be discussed below.
+
+
+% ------------------------
+
+
+% [Transition]
 
 
 
@@ -2770,6 +2801,9 @@ The three Core Web Vitals will be discussed in more detail below.
 
 
 
+"First Input Delay can only be measured if the user interacts with the page. Synthetic performance tools like Lighthouse don't involve any user interaction, and therefore use Total Blocking Time as a proxy metric."
+
+
 % --------------------------
 
 
@@ -2791,7 +2825,7 @@ The three Core Web Vitals will be discussed in more detail below.
 % --------------------------
 
 
-\paragraph{Excursion: Thresholds and Benchmarks for Core Web Vitals}
+\paragraph{Thresholds and Benchmarks for Core Web Vitals}
 
 
 [tbd]
@@ -2841,12 +2875,17 @@ The three Core Web Vitals will be discussed in more detail below.
 
 % Questions:
 
+
 % Is it happening?
 % FCP
 
+
 % Is it useful?
 
+
 % Is it usable?
+% TBT
+
 
 % Is it delightful?
 
@@ -2855,14 +2894,20 @@ The three Core Web Vitals will be discussed in more detail below.
 
 % Types:
 
+
 % Perceived load speed
 % FCP
 
+
 % Load responsiveness
+% TBT
+
 
 % Runtime responsiveness
 
+
 % Visual stability
+
 
 % Smoothness
 
