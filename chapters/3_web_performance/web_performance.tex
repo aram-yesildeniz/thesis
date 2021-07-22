@@ -2561,7 +2561,6 @@ A custom JS library is available an can be integrated into any website to captur
 %PageSpeedInsigths ?
 
 
-
 % [Outline]
 
 In the following, I will describe common Web Vitals metrics.
@@ -2581,10 +2580,8 @@ Google enhances the Paint Timing specification regarding FCP by only considering
 by measuring FCP also if the page has been loaded from cache, and by exposing FCP for all frames, including cross-origin iframes.
 Implementation details are available within the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getFCP.ts} [22.07.2021]}
 
-FCP is measured in seconds and available through synthetic or real-user monitoring.
+FCP is measured in seconds and retrievable in synthetic and real-user monitoring.
 % https://web.dev/fcp/
-
-
 
 
 
@@ -2609,57 +2606,33 @@ The replacement of FMP nicely illustrates the evolving nature of Web Vitals.
 % ------------------------
 
 
-\paragraph{Time to Interactive, First CPU Idle}
+\paragraph{Time to Interactive and First CPU Idle}
 
-
-
-% in essence, TTI indicates when the browser or website is able to respond quickly to user input.
-% Technical details diverge of how to measure TTI
-
-%As with other metrics, a clear definition is not given and there are some variants and the metrics evolutes.
-
-% https://github.com/WPO-Foundation/webpagetest/blob/master/docs/Metrics/TimeToInteractive.md
-%- two variations exist:
-%- Time to Consistently Interactive (WICG ) -> is normal TTI. Implementation different between WICG and Google
-%- First CPU Idle (First Interactive)
-
-
-% https://developer.mozilla.org/en-US/docs/Glossary/First_interactive
-%First CPU Idle is the same as First Interactive
-%MDN states that TTI exists in 2 variations: First Interactive, Consistently Interactive
-
-
-% 2018 Netravali
-%- "The standard’s definition of TTI is still in flux"
-%- definitions uses a starting point, FCP or FMP, network requests and main thread idle
-
-
-
-
-% [WICG]
-
-% https://github.com/WICG/time-to-interactive
-%- Defined by WICG, indicates when the website becomes interactive.
-
-
-% https://developer.mozilla.org/en-US/docs/Glossary/Time_to_interactive
-%"Time to Interactive (TTI) is a non-standardized web performance 'progress' metric defined as the point in time when the last Long Task finished and was followed by 5 seconds of network and main thread inactivity."
-
-
-% [Google]
-
-%web vital
-
-% https://docs.google.com/document/d/1GGiI9-7KeY3TPqS3YT271upUVimo-XiL5mwWorDUD4c/edit
-%Google has 2 metrics:
-%- Fist CPU idle
-%- Time to Interactive
-% -> Fist CPU idle is deprecated again % https://web.dev/first-cpu-idle/
-
-
+% [Explanation]
 
 % https://web.dev/tti/
-% - a little bit different definition by Google
+Time to Interactive (TTI) is an indicator for \textit{Load responsiveness} and gives insights to the question \textit{Is it usable?}
+TTI measures the "time from when the page starts loading to when its main sub-resources have loaded and it is capable of reliably responding to user input quickly."
+Previously, TTI has been called \textit{Time to Consistently Interactive}. % https://docs.google.com/document/d/1GGiI9-7KeY3TPqS3YT271upUVimo-XiL5mwWorDUD4c/edit
+
+For the calculation of TTI, other metrics and definitions are needed:
+FCP as the starting point and a "quiet window", that is a time interval where no long tasks (as defined by Long Tasks API, see section X.) and not more than two in-flight GET requests occur. %TODO explain in-flight ? https://github.com/WPO-Foundation/webpagetest/blob/master/docs/Metrics/TimeToInteractive.md
+The TTI is then the "end time of the last long task before the quiet window".
+The quiet window time interval is set to 5 seconds, and the starting point of the search of TTI is FCP (for details, cf. X).
+% Hence, TTI is not a real time metric, as at least 5 seconds need to elapse first.
+
+Ideally, the time between FCP and TTI, that is when content is visible, but the website is not interactive, is short.
+To summarize, "TTI measures how long it takes a page to become fully interactive. " % https://web.dev/interactive/
+TTI can be measured through synthetic monitoring, and also RUM.
+The latter is not recommended, as user interaction may affect TTI, leading to unreliable results.
+
+
+% [First CPU Idle]
+
+\textit{First CPU Idle} is a metric closely related to TTI.
+Previously, First CPU Idle was called \textit{First Interactive}. % https://docs.google.com/document/d/1GGiI9-7KeY3TPqS3YT271upUVimo-XiL5mwWorDUD4c/edit
+It indicates when the website is minimally interactive, contrary to TTI, which signals when the website is fully interactive.
+Google dropped First CPU Idle again, as "the difference [to TTI] isn't significant enough to justify maintaining two similar metrics". % https://web.dev/first-cpu-idle/
 
 
 
@@ -2691,6 +2664,7 @@ The sum of all those times, between FCP and TTI, is the TBT.
 
 
 % [Link to FID]
+%TODO
 
 % https://web.dev/tbt/
 - lab metric
@@ -2700,22 +2674,20 @@ The sum of all those times, between FCP and TTI, is the TBT.
 The synthetic monitoring metric TBT is related to RUM-only metric First Input Delay, which will be discussed below.
 
 
+
 % ------------------------
 
 
 % [Transition]
-
-
-
+The Web Vitals metrics described above are metrics types and questions...
+Among those, three most important metrics...
 
 
 
 % ----------------------------------------
-% Core Web Vitals
-% ----------------------------------------
 
 
-\paragraph{Core Web Vitals}
+\subsubsection{Core Web Vitals}
 
 Within the set of Web Vitals, there is a group of metrics that matter the most.
 The Core Web Vitals are structured around the performance aspects loading, interactivity, and visual stability.
@@ -2753,7 +2725,7 @@ The three Core Web Vitals will be discussed in more detail below.
 
 
 
-\paragraph{Core Web Vital: Largest Contentful Paint}
+\paragraph{Largest Contentful Paint}
 
 
 
@@ -2788,7 +2760,7 @@ The three Core Web Vitals will be discussed in more detail below.
 % --------------------------
 
 
-\paragraph{Core Web Vital: First Input Delay}
+\paragraph{First Input Delay}
 
 % FID https://web.dev/fid/
 
@@ -2807,7 +2779,7 @@ The three Core Web Vitals will be discussed in more detail below.
 % --------------------------
 
 
-\paragraph{Core Web Vital: Cumulative Layout Shift}
+\paragraph{Cumulative Layout Shift}
 
 % CLS https://web.dev/cls/
 
@@ -2884,6 +2856,7 @@ The three Core Web Vitals will be discussed in more detail below.
 
 
 % Is it usable?
+% TTI
 % TBT
 
 
@@ -2900,6 +2873,7 @@ The three Core Web Vitals will be discussed in more detail below.
 
 
 % Load responsiveness
+% TTI
 % TBT
 
 
