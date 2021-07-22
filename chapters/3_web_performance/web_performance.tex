@@ -2264,10 +2264,10 @@ Other visual metrics rely mostly on video analysis and need a synthetic monitori
 FP and FCP indicate when the user sees something different than the default white screen for the first time.
 If the visual change is important or useful for the user is not reflected by FP or FCP. % cite 2013 Meenan
 
-
 %TODO
-Google also defines FCP but uses a different implementation than just using API, to cover edge cases
-% https://web.dev/fcp/#differences-between-the-metric-and-the-api
+As described below, FCP is part of Google's Web Vitals.
+For a more fine grained measurement, they enhance the default metric.
+
 
 
 %TODO add more here ?
@@ -2495,27 +2495,28 @@ The SI calculation details are covered in % https://docs.webpagetest.org/metrics
 
 With the Web Vitals initiative, Google joins the web performance metrics discussion.
 Their goal is to "provide unified guidance for quality signals that are essential to delivering a great user experience on the web." % https://web.dev/vitals/
-And with performance being a factor in Google search rankings, Web Vitals become automatically important for website operators. % https://developers.google.com/web/updates/2018/07/search-ads-speed
+The unified guidance consists of the Web Vitals, a set of performance metrics, focussing on how the users experience and perceive performance, contrary to the mere navigation timings as discussed in section X.
+With performance being a factor in Google search rankings, Web Vitals become automatically important for website operators. % https://developers.google.com/web/updates/2018/07/search-ads-speed
 
 % [Evolving]
 
-The set and definitions of Web Vitals metrics are not cut in stone but rather of evolving nature.
-The definitions, calculations, recommended thresholds or even metrics itself may change over time, as the WWW is constantly changing. % https://web.dev/vitals/
-While currenty, Web Vitals are primarily concerned with web performance, other aspects of user experience, such as security, privacy or accessibility, will be incorporated. % https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
+The set and definitions of Web Vitals metrics are not set in stone, but are constantly evolving.
+The definitions, calculations, recommended thresholds, or even the metrics themselves may change over time, always adapted to the rapidly evolving technologies of the WWW and advances in web performance. % https://web.dev/vitals/
+While Web Vitals are currently primarily about web performance, other aspects of usability, such as security, privacy, or accessibility, will be included in the future. % https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
 
 % [Definition and Key Questions]
 
 Web Vitals and their definitions are derived from a set of key questions (table X.).
 The key questions reflect what users may (eventually unconsciously) ask while consuming a website. 
 This user-centric framework guides and sets the agenda for creating and defining Web Vitals metrics.
-Contrary to navigation timing metrics, the Web Vitals focus are users, and each question is a perspective or facet of user experience.
+Contrary to navigation timing metrics, the Web Vitals focus are users and their perception, and each question is a perspective or facet of user experience.
 Web Vitals are "metrics relevant to users". % https://web.dev/user-centric-performance-metrics/
 
  
 \begin{center}
 \small
 	\begin{tabular}{  p{0.3\linewidth} | p{0.6\linewidth}  }
-	\textit{Is it happening?} & 	Did the navigation start successfully? Has the server responded? \\
+	\textit{Is it happening?} & Did the navigation start successfully? Has the server responded? \\
 	\hline
 	\textit{Is it useful?} & Has enough content rendered that users can engage with it? \\
 	\hline
@@ -2529,8 +2530,10 @@ Web Vitals are "metrics relevant to users". % https://web.dev/user-centric-perfo
 
 % [Types of Metrics]
 
-Apart from the key questions, Google identifies different aspects, or types, of performance:
+In addition to the key questions, Google identifies different aspects or types of a website's performance.
+Like the key questions, these types provide a guide and framework to organize, classify, and integrate Web Vitals. % https://web.dev/user-centric-performance-metrics/
 
+%TODO add more here, some interpretation ?
 
 \begin{center}
 \small
@@ -2548,73 +2551,21 @@ Apart from the key questions, Google identifies different aspects, or types, of 
 \end{center}
 %cite  https://web.dev/user-centric-performance-metrics/
 
-Those types guide as an additional frame to organise, structure and integrate Web Vitals. % https://web.dev/user-centric-performance-metrics/
-
-
-% --------------------
-
-\paragraph{Core Web Vitals}
-
-Within the set of Web Vitals, there is a group of metrics that matter the most.
-The Core Web Vitals are structured around the performance aspects loading, interactivity, and visual stability.
-Each of three Core Web Vitals reflects one of those aspects (table X.).
-
-The Core Web Vitals are relevant for all kinds of websites and can be measures or retrieved in all Google tools.
-
-Contrary to the general evolving Web Vitals, Core Web Vitals are rather stable in terms of definitions, but also recommended benchmarks.
-
-% https://web.dev/vitals/
-%- each is measurable in the field
-
-%- Collected by Crux, Pagespeed insights and search console
-
-
-
-%- measure with library % https://github.com/GoogleChrome/web-vitals
-
-\begin{center}
-\small
-	\begin{tabular}{  p{0.3\linewidth} | p{0.6\linewidth}  }
-	\textit{Largest Contentful Paint (LCP)} & Measures loading performance.  \\
-	\hline
-	\textit{First Input Delay (FID)} & Measures interactivity. \\
-	\hline
-	\textit{Cumulative Layout Shift (CLS)} & Measures visual stability.  \\
-	\end{tabular}
-\end{center}
-
-The three Core Web Vitals will be discussed in more detail below.
-
-
-
-% --------------------
-
 
 % [Measurement and Tools]
 
-% https://web.dev/user-centric-performance-metrics/
-Lab and field
+Web Vitals can be measured through synthetic monitoring or RUM. % https://web.dev/user-centric-performance-metrics/
+For example, RUM data is available through CrUX\footnote{\url{https://developers.google.com/web/tools/chrome-user-experience-report} [22.07.2021]}, synthetic data is available through Lighthouse\footnote{\url{https://developers.google.com/web/tools/lighthouse} [22.07.2021]}.
+A custom JS library is available an can be integrated into any website to capture Web Vitals.\footnote{\url{https://github.com/GoogleChrome/web-vitals} [22.07.2021]}
 
-
-%Google also has tool support to capture web vitals.
-%They are not covered here.
-%For reference, the official JS library is here % https://github.com/GoogleChrome/web-vitals
-
-
-% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-%- publishes them in the Chrome User Experience Report (CrUX)
-
-% Osmani: Tools to measure
-% Philip Walton. Best practices for measuring Web Vitals in the field
-
+%PageSpeedInsigths ?
 
 
 
 % [Outline]
 
-% Which metrics are part of web vitals ? https://github.com/GoogleChrome/web-vitals
-% not clear. on the specific pages some metrics are being consireded web vitals without being in the library
-
+In the following, I will describe common Web Vitals metrics.
+Afterwards, Core Web Vitals,Web Vitals that matter the most, will be discussed.
 
 
 
@@ -2623,9 +2574,35 @@ Lab and field
 
 \paragraph{First Contentful Paint}
 
+FCP tackles the question \textit{Is it happening?} and is classified as the type \textit{Perceived load speed}.
+This is the same FCP as exposed by Paint Timing (see section X.), and "marks the first point in the page load timeline where the user can see anything on the screen". % https://web.dev/fcp/
 
+Google enhances the Paint Timing specification regarding FCP by only considering pages that are in the foreground all the time,
+by measuring FCP also if the page has been loaded from cache, and by exposing FCP for all frames, including cross-origin iframes.
+Implementation details are available within the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getFCP.ts} [22.07.2021]}
+
+FCP is measured in seconds and available through synthetic or real-user monitoring.
 % https://web.dev/fcp/
 
+
+
+
+
+
+% ------------------------
+
+
+\paragraph{First Meaningful Paint}
+
+FMP is "the paint after which the biggest above-the-fold layout change has happened and web fonts have loaded". % https://developer.mozilla.org/en-US/docs/Glossary/first_meaningful_paint
+
+Google states that FMP is deprecated, due to "inconsistent results" and the impossibility to measure it in all web browsers. % https://web.dev/first-meaningful-paint/
+The successor, Largest Contentful Paint, is discussed below.
+The replacement of FMP nicely illustrates the evolving nature of Web Vitals.
+
+
+% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+%The First Meaningful Paint is another user-centric metric and represents the point in time at which the largest visual change takes place; the underlying assumption here obviously is that the biggest visual change is relevant to the user, for example because a hero image or a navigation bar appear
 
 
 
@@ -2693,39 +2670,11 @@ Lab and field
 
 \paragraph{Total Blocking Time}
 
-% Not a web vital ?
-
 % https://web.dev/tbt/
 
 
 
 
-
-% ------------------------
-
-
-
-\paragraph{First Meaningful Paint}
-
-
-% https://web.dev/first-meaningful-paint/
-%- in seconds
-
-
-%Replaced by LCP.
-
-%how to measure lab and field
-
-
-% https://www.youtube.com/watch?v=6Ljq-Jn-EgU&ab_channel=GoogleChromeDevelopers
-%- First Meaningful Paint, Hero Element: Is it useful? 
-
-
-
-% https://developer.mozilla.org/en-US/docs/Glossary/first_meaningful_paint
-
-% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-%The First Meaningful Paint is another user-centric metric and represents the point in time at which the largest visual change takes place; the underlying assumption here obviously is that the biggest visual change is relevant to the user, for example because a hero image or a navigation bar appear
 
 
 
@@ -2733,6 +2682,43 @@ Lab and field
 % ----------------------------------------
 % Core Web Vitals
 % ----------------------------------------
+
+
+\paragraph{Core Web Vitals}
+
+Within the set of Web Vitals, there is a group of metrics that matter the most.
+The Core Web Vitals are structured around the performance aspects loading, interactivity, and visual stability.
+Each of three Core Web Vitals reflects one of those aspects (table X.).
+
+The Core Web Vitals are relevant for all kinds of websites and can be measures or retrieved in all Google tools.
+
+Contrary to the general evolving Web Vitals, Core Web Vitals are rather stable in terms of definitions, but also recommended benchmarks.
+
+% https://web.dev/vitals/
+%- each is measurable in the field
+
+%- Collected by Crux, Pagespeed insights and search console
+
+
+
+%- measure with library % https://github.com/GoogleChrome/web-vitals
+
+\begin{center}
+\small
+	\begin{tabular}{  p{0.3\linewidth} | p{0.6\linewidth}  }
+	\textit{Largest Contentful Paint (LCP)} & Measures loading performance.  \\
+	\hline
+	\textit{First Input Delay (FID)} & Measures interactivity. \\
+	\hline
+	\textit{Cumulative Layout Shift (CLS)} & Measures visual stability.  \\
+	\end{tabular}
+\end{center}
+
+The three Core Web Vitals will be discussed in more detail below.
+
+
+
+% --------------------
 
 
 
@@ -2845,6 +2831,40 @@ Lab and field
 
 %TODO add this?
 %- User perceived PLT
+
+
+
+% -----------------------------------------------------------------------
+
+% Conclusion
+
+
+% Questions:
+
+% Is it happening?
+% FCP
+
+% Is it useful?
+
+% Is it usable?
+
+% Is it delightful?
+
+
+
+
+% Types:
+
+% Perceived load speed
+% FCP
+
+% Load responsiveness
+
+% Runtime responsiveness
+
+% Visual stability
+
+% Smoothness
 
 
 
