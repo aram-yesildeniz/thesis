@@ -85,9 +85,10 @@ With the continued advancement in technology, e-commerce can expect a bright fut
 
 \subsubsection{Types}
 
-There are several types in e-commerce and they emerge from the possible combinations between the actors \textit{business}, \textit{consumer} and \textit{government} \cite{2017DosSantos}.
+There are several types in e-commerce and they emerge from the possible combinations between the actors \textit{Business}, \textit{Consumer} and \textit{Government} \cite{2017DosSantos}, as shown in table \ref{table:types_ecommerce}.
 
 \begin{table}[h]
+	\small
 	\centering
 	\begin{tabular}{| c | c | c | c |}
 	\hline
@@ -100,9 +101,13 @@ There are several types in e-commerce and they emerge from the possible combinat
 	Government & \cellcolor{lightgrey} & \cellcolor{lightgrey} & G2G \\
 	\hline
 	\end{tabular}
-	\caption{\label{tab:table-name} Types of e-commerce.}
+	\medskip
+	\caption{Types of e-commerce.}
+	\label{table:types_ecommerce}
 \end{table}
 
+%TODO rewrite this
+While C2C or H2G blabla, for this thesis only B2C is interesting.
 
 \paragraph{B2C}
 Business to Consumer in e-commerce describes basically online shopping, by means of a business offering its services and products to the consumer over the \textit{WWW}.
@@ -690,7 +695,6 @@ The categories are \textit{Performance}, which includes performance metrics such
 %- User Engagement: Session Length, First user interaction
 % QA Metadata: Page views and sessions, Caching insights
 
-
 %TODO add?
 % 2004 Phippen
 % 2020 Heinemann 4.1.4
@@ -704,22 +708,30 @@ The categories are \textit{Performance}, which includes performance metrics such
 
 %- also customer life cycle
 
-\begin{table}[h!]
-\begin{center}
-\begin{tabular}{  c | c  }
-Value-Driven & \{Counts, Ratios, KPIs\},  \\
- & \{Counts, Relations, Values\} \\
-\hline
-Semantic-Driven & \{Performance, User Engagement, Business KPIs, QA Metadata\},  \\
-& \{Site Usage, Referres, Site Content Analysis, Quality Assurance\} \\
-\hline
-Marketing-Driven & \{Reach, Acquisition, Conversion, Retention\}, \\
-& \{Visits, Visitors, Visitor Engagement, Conversions\} \\
-\end{tabular}
-\caption{Business Metrics Categorizations}
-\end{center}
+%TODO \ref{table:business_metrics_categorizations} somewhere...
+\begin{table}[h]
+	% \renewcommand{\arraystretch}{1.5} %TODO decide if spacing is needed
+	\small
+	\centering
+	\begin{tabular}{ | l | l | }
+	\hline
+	Value-Driven
+	& \{Counts, Ratios, KPIs\},  \\
+	& \{Counts, Relations, Values\} \\
+	\hline
+	Semantic-Driven
+	& \{Performance, User Engagement, Business KPIs, QA Metadata\},  \\
+	& \{Site Usage, Referres, Site Content Analysis, Quality Assurance\} \\
+	\hline
+	Marketing-Driven
+	& \{Reach, Acquisition, Conversion, Retention\}, \\
+	& \{Visits, Visitors, Visitor Engagement, Conversions\} \\
+	\hline
+	\end{tabular}
+	\medskip
+	\caption{Possible categorizations of web analytics metrics}
+	\label{table:business_metrics_categorizations}
 \end{table}
-%TODO add more spacing
 
 
 % [Conclusion]
@@ -831,7 +843,7 @@ The categories used to structure the metrics are \textit{Counts}, \textit{Ratios
 	\textit{etc.} &  \\
 	\hline
 	
-	\caption{Business Metrics Examples} % needs to go inside longtable environment
+	\caption{Business Metrics Examples}
 	\label{tab:businessmetrics}
 	\end{longtable}
 \end{center}

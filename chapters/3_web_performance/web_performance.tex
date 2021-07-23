@@ -97,12 +97,12 @@ The perception of performance is generally subjective.
 As already seen in chapter \ref{chapter:user_satisfaction}, there are some quantifiable time intervals that correlate with human psychology regarding the received performance.
 Table \ref{table:perception} contains "unofficial rule of thumb" for delay thresholds \cite{2013Grigorik}.
 
-
 \begin{table}[h]
+	\small
 	\centering
 	\begin{tabular}{| l | l | }
 	\hline
-	Delay & User Perception \\
+	Delay \cellcolor{lightgrey} & User Perception \cellcolor{lightgrey} \\
 	\hline
 	0-100 ms & Instant \\
 	100-300 ms & Small perceptible delay \\
@@ -111,8 +111,9 @@ Table \ref{table:perception} contains "unofficial rule of thumb" for delay thres
 	> 10 s & Task is abandoned \\
 	\hline
 	\end{tabular}
-	\label{table:perception}
+	\medskip
 	\caption{Rule of thumbs for delay}
+	\label{table:perception}
 \end{table}
 
 If one interprets the numbers from the table, one can make the statement that it is desirable to keep loading times below one second.
@@ -1392,25 +1393,26 @@ On the other hand, when no user is visiting the web site, RUM is not collecting 
 
 Other performance measurement methods such as CrUX and surveys provide browser specific or quality data and complement the analysts tool box.
 
-
-\begin{table}[h!]
-\begin{center}
-\begin{tabular}{  c | c  }
-Synthetic Monitoring & RUM \\
-\hline
-\hline
-Artificial test agents & Real users \\
-\hline
-Controlled configuration & No control over configuration \\
-\hline
-Approximates real user data & Collects real user data \\
-\hline
-For monitoring & Links user behaviour to business KPIs \\
-\end{tabular}
-\caption{Synthetic Monitoring and RUM}
-\end{center}
+\begin{table}[h]
+	\small
+	\centering
+	\begin{tabular}{ | c | c | }
+	\hline
+	Synthetic Monitoring \cellcolor{lightgrey} & RUM \cellcolor{lightgrey} \\
+	\hline
+	Artificial test agents & Real users \\
+	\hline
+	Controlled configuration & No control over configuration \\
+	\hline
+	Approximates real user data & Collects real user data \\
+	\hline
+	For monitoring & Links user behaviour to business KPIs \\
+	\hline
+	\end{tabular}
+	\medskip
+	\caption{Comparison of Synthetic Monitoring and RUM}
+	\label{table:synthetic_monitoring_rum_comparison} %TODO ref somewhere
 \end{table}
-
 
 % [Metrics, Transition]
 
@@ -1506,16 +1508,20 @@ Similar for requests, the more requests are needed, more connections need to be 
 A website consists of multiple resources, such as HTML files, fonts, script files or images (cf. table X).
 Page weight describes the number of bytes fetched and requests made for each resource type. %compare cite HTTP Archive
 
-\begin{center}
-\begin{tabular}{| c | c | c | c | }
-\hline
-HTML & CSS  & JS & Fonts \\
-\hline
-Images & Videos & Others & (Total) \\
-\hline
-\end{tabular}
-\end{center}
-%TODO add caption
+\begin{table}[h]
+	\small
+	\centering
+	\begin{tabular}{| c | c | c | c | }
+	\hline
+	HTML & CSS  & JS & Fonts \\
+	\hline
+	Images & Videos & Others & (Total) \\
+	\hline
+	\end{tabular}
+	\medskip
+	\caption{Types of resources of a website}
+	\label{table:website_resources} %TODO ref somewhere...
+\end{table}
 
 Page weight is a first assessment for a website regarding performance.
 It is mainly useful for comparison with median values or other websites, but has little to nothing expressiveness and significance for evaluating a websites performance.
@@ -2249,16 +2255,20 @@ The metrics can be retrieved directly in the browser via $performance.getEntries
 Hence, FP and FCP can be collected in RUM.
 Other visual metrics rely mostly on video analysis and need a synthetic monitoring setup, as described in the next section.
 
-\begin{center}
-\small
+\begin{table}[h]
+	\small
+	\centering
 	\begin{tabular}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
 	\hline
-	First Paint & Marks the point when the browser renders anything that is visually different from what was on the screen prior to navigation \\ 
+	\textit{First Paint (FP)} & Marks the point when the browser renders anything that is visually different from what was on the screen prior to navigation \\ 
 	\hline
-	First Contentful Paint & The point when the browser renders the first bit of content from the DOM, which may be text, an image, SVG, or even a canvas element \\  
+	\textit{First Contentful Paint (FCP)} & The point when the browser renders the first bit of content from the DOM, which may be text, an image, SVG, or even a canvas element \\  
 	\hline
 	\end{tabular}
-\end{center}
+	\medskip
+	\caption{Key Moments specified by Paint Timing}
+	\label{table:paint_timing}
+\end{table}
 
 
 FP and FCP indicate when the user sees something different than the default white screen for the first time.
@@ -2285,19 +2295,29 @@ For a more fine grained measurement, they enhance the default metric.
 
 %TODO write this down and add to summary table
 
-\paragraph{Element Timing API and Event Timing API}
+\paragraph{Element Timing API, Event Timing API, Layout Instability API and Largest Contentful Paint}
 
 Unofficial drafts
 
+
 % https://wicg.github.io/element-timing/
 
+
 % https://wicg.github.io/event-timing/
+
+
+% https://wicg.github.io/layout-instability/
+Editors are from Google
+
+% https://wicg.github.io/largest-contentful-paint/
 
 
 % https://web.dev/custom-metrics/
 Element TIming used for LCP
 Event Timing used for FID
 
+
+Only available in Chromium
 
 
 
@@ -2326,9 +2346,23 @@ Table X provides an overview of all discussed specifications, in which maturity 
 %Or as Grigorik states it, "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application" % cite 2013 Girgorik
 
 
-\begin{center}
-\small
-	\begin{tabular}{ p{0.3\linewidth} | p{0.6\linewidth} }
+
+\begin{table}[h]
+	\small
+	\centering
+	\begin{tabular}{| c | c | c | c |}
+	\end{tabular}
+	\medskip
+	\caption{Types of e-commerce.}
+	\label{table:types_ecommerce}
+\end{table}
+
+
+\begin{table}[h]
+	\small
+	\centering
+	\begin{tabular}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
+	\hline
 	High Resolution Time
 	& Level 2: REC November 2019 \\
 	& WD July 2021 \\
@@ -2370,8 +2404,16 @@ Table X provides an overview of all discussed specifications, in which maturity 
 	Paint Timing
 	& FPWD September 2017 \\
 	& Exposes the "key moments" First Paint and First Contentful Paint \\
+	\hline
+	Element- and Event Timing API & ...  \\
+	Layout Instability API & Used for this... \\
+	Largest Contentful Paint & And this... \\
+	\hline
 	\end{tabular}
-\end{center}
+	\medskip
+	\caption{W3C and WICG Specs sumamry}
+	\label{table:apis_summary} %TODO ref somewhere
+\end{table}
 
 
 % [Transition]
@@ -2512,10 +2554,10 @@ This user-centric framework guides and sets the agenda for creating and defining
 Contrary to navigation timing metrics, the Web Vitals focus are users and their perception, and each question is a perspective or facet of user experience.
 Web Vitals are "metrics relevant to users". % https://web.dev/user-centric-performance-metrics/
 
- 
-\begin{center}
-\small
-	\begin{tabular}{  p{0.3\linewidth} | p{0.6\linewidth}  }
+\begin{table}[h]
+	\small
+	\centering
+	\begin{tabular}{ p{0.3\linewidth} | p{0.6\linewidth} }
 	\textit{Is it happening?} & Did the navigation start successfully? Has the server responded? \\
 	\hline
 	\textit{Is it useful?} & Has enough content rendered that users can engage with it? \\
@@ -2524,7 +2566,10 @@ Web Vitals are "metrics relevant to users". % https://web.dev/user-centric-perfo
 	\hline
 	\textit{Is it delightful?} & Are the interactions smooth and natural, free of lag and jank? \\
 	\end{tabular}
-\end{center}
+	\medskip
+	\caption{Types of e-commerce.}
+	\label{table:types_ecommerce}
+\end{table}
  % cite https://web.dev/user-centric-performance-metrics/
 
 
@@ -2535,9 +2580,10 @@ Like the key questions, these types provide a guide and framework to organize, c
 
 %TODO add more here, some interpretation ?
 
-\begin{center}
-\small
-	\begin{tabular}{  p{0.3\linewidth} | p{0.6\linewidth}  }
+\begin{table}[h]
+	\small
+	\centering
+	\begin{tabular}{ p{0.3\linewidth} | p{0.6\linewidth} }
 	\textit{Perceived load speed} & How quickly a page can load and render all of its visual elements to the screen. \\
 	\hline
 	\textit{Load responsiveness} & How quickly a page can load and execute any required JavaScript code in order for components to respond quickly to user interaction. \\
@@ -2548,8 +2594,15 @@ Like the key questions, these types provide a guide and framework to organize, c
 	\hline
 	\textit{Smoothness} & Do transitions and animations render at a consistent frame rate and flow fluidly from one state to the next? \\
 	\end{tabular}
-\end{center}
+	\medskip
+	\caption{Types of e-commerce.}
+	\label{table:types_ecommerce}
+\end{table}
 %cite  https://web.dev/user-centric-performance-metrics/
+
+
+
+%TODO add RAIL model? https://web.dev/rail/
 
 
 % [Measurement and Tools]
@@ -2700,17 +2753,20 @@ Contrary to the general evolving nature of Web Vitals, Core Web Vitals are rathe
 Core Web Vitals are collected by common Google performance assessment tools such as CrUX or PageSpeed Insights.\footnote{\url{https://developers.google.com/speed/pagespeed/insights/} [23.07.2021]}
 Additionally, Google provides a JS library for Core Web Vitals measurements.\footnote{\url{https://github.com/GoogleChrome/web-vitals} [23.07.2021]}
 
-
-\begin{center}
-\small
-	\begin{tabular}{  p{0.3\linewidth} | p{0.6\linewidth}  }
+\begin{table}[h]
+	\small
+	\centering
+	\begin{tabular}{  p{0.3\linewidth} | p{0.6\linewidth} }
 	\textit{Largest Contentful Paint (LCP)} & Measures loading performance.  \\
 	\hline
 	\textit{First Input Delay (FID)} & Measures interactivity. \\
 	\hline
 	\textit{Cumulative Layout Shift (CLS)} & Measures visual stability.  \\
 	\end{tabular}
-\end{center}
+	\medskip
+	\caption{Types of e-commerce.}
+	\label{table:types_ecommerce}
+\end{table}
 
 The three Core Web Vitals LCP, FID, and CLS will be discussed in more detail below.
 
@@ -2766,7 +2822,6 @@ approximation of the First Meaningful Paint that can be captured in the browser
 
 
 
-
 % [Issues]
  
 %- Google had some issues with capturing LCP in chrome, see twitter
@@ -2782,18 +2837,49 @@ approximation of the First Meaningful Paint that can be captured in the browser
 
 \paragraph{First Input Delay}
 
-% FID https://web.dev/fid/
+% https://web.dev/fid/
+
+First Input Delay (FID) is about \textit{Load responsiveness} and answers the question \textit{Is it usable?}.
+FID gives insights about the responsiveness and interactivity of the website and measures "the time from when a user first interacts with a page (i.e. when they click a link, tap on a button, or use a custom, JavaScript-powered control) to the time when the browser is actually able to begin processing event handlers in response to that interaction."
+FID is about the time it takes for the browser to handle user input.
+This time depends on the tasks of the main thread.
+If the main thread is busy while the user interacts with the page, the browser has to wait until main thread is idle in order to react.
+"FID measures the time from when a user first interacts with a page (i.e. when they click a link, tap on a button, or use a custom, JavaScript-powered control) In technical terms, "FID measures the delta between when an input event is received and when the main thread is next idle.".
+According to this definition, FID is also measured if there is no event listener registered to handle the user input.
+
+Only cosidering first input because...
+Events counting as first input are for example...
 
 
-% https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
-%- FID: Interactivity during load
+
+% [RUM]
+
+Can only be measured in the field as it requires user interaction
+FID is dependent on user input.
+E.g. some users dont interact with the page in the beginning, some interact when main thread is busy, and other when main thread is idle.
+As FID depends on when a user interacts with the page, it is important to analyse the distribution of FID values.
 
 
-% [Measuring]
-
-
+% [Proxy in Synthetic Monitoring]
 
 "First Input Delay can only be measured if the user interacts with the page. Synthetic performance tools like Lighthouse don't involve any user interaction, and therefore use Total Blocking Time as a proxy metric."
+TBT "correlates well with FID "
+
+
+% [API]
+
+Measure with Event Timing API
+
+"Google enhances the Paint Timing specification regarding FCP by only considering pages that are in the foreground all the time,
+by measuring FCP also if the page has been loaded from cache, and by exposing FCP for all frames, including cross-origin iframes.
+Implementation details are available within the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getFCP.ts} [22.07.2021]}"
+
+
+source code is here % https://github.com/GoogleChrome/web-vitals/blob/main/src/getFID.ts
+
+
+
+
 
 
 % --------------------------
@@ -2801,17 +2887,26 @@ approximation of the First Meaningful Paint that can be captured in the browser
 
 \paragraph{Cumulative Layout Shift}
 
-% CLS https://web.dev/cls/
+% https://web.dev/cls/
+
+Cumulative Layout Shift s about \textit{Visual stability} and answers the question \textit{Is it delightful?}.
+...
 
 
-% https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
-%- CLS: Visual stability
 
 
-% [Measuring]
+"Google enhances the Paint Timing specification regarding FCP by only considering pages that are in the foreground all the time,
+by measuring FCP also if the page has been loaded from cache, and by exposing FCP for all frames, including cross-origin iframes.
+Implementation details are available within the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getFCP.ts} [22.07.2021]}"
+% https://github.com/GoogleChrome/web-vitals/blob/main/src/getCLS.ts
+
+% [New CLS]
 
 
-% New Measurement https://blog.webpagetest.org/posts/understanding-the-new-cumulative-layout-shift/?utm_medium=email&_hsmi=121601471&_hsenc=p2ANqtz-9IsSdXActEE6lw4BrDZNa4eFqzQZjgabLHbq7aS-c2KkhqLGNtkIaGfQYD4VqZe9_6ZYFlTmlCgB87THSfsnVM1fl7NiixtrJqAsVO6DPUjeJIo6c&utm_content=121601471&utm_source=hs_email
+% https://web.dev/evolving-cls/
+
+
+% https://blog.webpagetest.org/posts/understanding-the-new-cumulative-layout-shift/?utm_medium=email&_hsmi=121601471&_hsenc=p2ANqtz-9IsSdXActEE6lw4BrDZNa4eFqzQZjgabLHbq7aS-c2KkhqLGNtkIaGfQYD4VqZe9_6ZYFlTmlCgB87THSfsnVM1fl7NiixtrJqAsVO6DPUjeJIo6c&utm_content=121601471&utm_source=hs_email
 
 
 % --------------------------
@@ -2827,6 +2922,7 @@ approximation of the First Meaningful Paint that can be captured in the browser
 
 
 % https://web.dev/defining-core-web-vitals-thresholds/
+
 
 
 
@@ -2862,7 +2958,8 @@ approximation of the First Meaningful Paint that can be captured in the browser
 
 % -----------------------------------------------------------------------
 
-% Conclusion
+% Conclusion: Make some table / matrix with the types and questions and the metrics
+% Also show which metrics are correlated, or which one replaced other ones
 
 
 % Questions:
@@ -2879,10 +2976,11 @@ approximation of the First Meaningful Paint that can be captured in the browser
 % Is it usable?
 % TTI
 % TBT
+% FID
 
 
 % Is it delightful?
-
+% CLS
 
 
 
@@ -2897,12 +2995,14 @@ approximation of the First Meaningful Paint that can be captured in the browser
 % Load responsiveness
 % TTI
 % TBT
+% FID
 
 
 % Runtime responsiveness
 
 
 % Visual stability
+% CLS
 
 
 % Smoothness
@@ -3213,7 +3313,7 @@ approximation of the First Meaningful Paint that can be captured in the browser
 [Link to Research Question]
 
 
-\paragraph{Observer Effect}
+% [Observer Effect]
 
 [tbd]
 
