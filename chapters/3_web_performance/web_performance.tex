@@ -2730,36 +2730,51 @@ The main content is defined as the largest element.
 
 LCP is "the render time of the largest image or text block visible within the viewport, relative to when the page first started loading."
 
-% LCP https://web.dev/lcp/
+elements considered are....
+size is determined as...
+changes to elements size or position will not generate new LCP candidate
+only initial size and position in viewport are considered
+maybe largest element is not most important one...
+
+Exposed as Performance Entry, may change during page load
+
+The search for the LCP and reporting stops when user interacts with page, because user interaction may change UI
+
+in synthetic and RUM and following tools
+% https://web.dev/lcp/
 
 
+% [API]
+
+there is an unofficial specification by WICG % https://wicg.github.io/largest-contentful-paint/
+
+as with FCP, Google enhances the spec and measurement by...
+
+"Google enhances the Paint Timing specification regarding FCP by only considering pages that are in the foreground all the time,
+by measuring FCP also if the page has been loaded from cache, and by exposing FCP for all frames, including cross-origin iframes.
+Implementation details are available within the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getFCP.ts} [22.07.2021]}"
+
+source code is here % https://github.com/GoogleChrome/web-vitals/blob/main/src/getLCP.ts
+% https://web.dev/lcp/
 
 
-
-% https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
-%- LCP: Progressive loading.
-%- FCP may become a core web vital
-
-
-% [Unofficial API]
-
-% https://wicg.github.io/largest-contentful-paint/
-
-
+% https://medium.baqend.com/the-core-web-vital-largest-contentful-paint-just-changed-dramatically-b7bf5b7f17f3
+LCP is measurable in the browser (RUM), opposed to other visual perceived metrics such as speed index or FMP
 
 % https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-%- approximation of the First Meaningful Paint that can be captured in the browser
+approximation of the First Meaningful Paint that can be captured in the browser
 
 
 
 
-% [Measuring]
+% [Issues]
  
 %- Google had some issues with capturing LCP in chrome, see twitter
 %- Because of this they needed to release a new chrome version
 %- CruX also has 2 different lcps now (?)
 %- use this story to show that this stuff is far from trivial
 
+% changelog https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/speed/metrics_changelog/lcp.md
 
 
 % --------------------------
