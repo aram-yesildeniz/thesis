@@ -2632,7 +2632,7 @@ The latter is not recommended, as user interaction may affect TTI, leading to un
 \textit{First CPU Idle} is a metric closely related to TTI.
 Previously, First CPU Idle was called \textit{First Interactive}. % https://docs.google.com/document/d/1GGiI9-7KeY3TPqS3YT271upUVimo-XiL5mwWorDUD4c/edit
 It indicates when the website is minimally interactive, contrary to TTI, which signals when the website is fully interactive.
-Google dropped First CPU Idle again, as "the difference [to TTI] isn't significant enough to justify maintaining two similar metrics". % https://web.dev/first-cpu-idle/
+Google deprecated First CPU Idle, as "the difference [to TTI] isn't significant enough to justify maintaining two similar metrics". % https://web.dev/first-cpu-idle/
 
 
 
@@ -2648,8 +2648,7 @@ According to the definition, TBT measures "the total amount of time between Firs
 The starting point for the measurement is the point of FCP, as user input is not likely to happen before the UI got rendered.
 The end point of the measurement is the point of TTI.
 
-The blocking of the main thread is characterized through long tasks.
-As described in section X. long tasks are tasks occupying the main thread for more than 50ms and they are defined in and exposed through the Long Tasks API.
+The blocking of the main thread is characterized through long tasks, as they are defined in Long Tasks API (cf section X.)
 If the user interacts with the website while a long task is running, the browser can only respond to the user when he finished processing the long task.
 Therefore, the user has to wait.
 The blocking time of a long task is the full time of the task minus the defined long task time of 50ms.
@@ -2659,19 +2658,18 @@ The sum of all those times, between FCP and TTI, is the TBT.
 
 % [Link to TTI]
 
+For some use cases, TBT can adjust and correct TTI, when TTI does not reflect available interactivity realistically:
+As TTI is framed around a quite window of 5 seconds, TTI will likely be the same for (A) three long tasks of 51ms spread over 10 seconds, and (B) one 10 second task.
+(A) is expected to be more interactive, as in between the three long tasks, the main thread is able to react to user input.
+For (B) on the other hand, the main thread is blocked and user interactivity is prohibited.
+For use cases like this, TBT is a good indicator:
+For (A), TBT is 3ms, and for (B), TBT is 9950ms.
+The lower TBT value indicates a better interactivity and user experience.
+
+As with TTI, Google recommends to measure TBT through synthetic monitoring rather than RUM, as user input may affect and disturb measurement results.  \\
 
 
 
-
-% [Link to FID]
-%TODO
-
-% https://web.dev/tbt/
-- lab metric
--  "helps quantify the severity of how non-interactive a page is prior to it becoming reliably interactive"
-
-
-The synthetic monitoring metric TBT is related to RUM-only metric First Input Delay, which will be discussed below.
 
 
 
@@ -2679,8 +2677,9 @@ The synthetic monitoring metric TBT is related to RUM-only metric First Input De
 
 
 % [Transition]
-The Web Vitals metrics described above are metrics types and questions...
-Among those, three most important metrics...
+
+Among the Web Vitals are three metrics that matter the most.
+The \textit{Core Web Vitals} are discussed below.
 
 
 
@@ -2689,22 +2688,18 @@ Among those, three most important metrics...
 
 \subsubsection{Core Web Vitals}
 
-Within the set of Web Vitals, there is a group of metrics that matter the most.
-The Core Web Vitals are structured around the performance aspects loading, interactivity, and visual stability.
+Within the set of Web Vitals, there is a group of metrics that matter the most:
+"Core Web Vitals are the subset of Web Vitals that apply to all web pages, should be measured by all site owners, and will be surfaced across all Google tools." % https://web.dev/vitals/
+The Core Web Vitals are structured around the performance aspects \textit{Loading}, \textit{Interactivity}, and \textit{Visual Stability}.
 Each of three Core Web Vitals reflects one of those aspects (table X.).
 
-The Core Web Vitals are relevant for all kinds of websites and can be measures or retrieved in all Google tools.
-
-Contrary to the general evolving Web Vitals, Core Web Vitals are rather stable in terms of definitions, but also recommended benchmarks.
-
+The Core Web Vitals are relevant for all kinds of websites and can be measured with RUM.
+Contrary to the general evolving nature of Web Vitals, Core Web Vitals are rather stable in terms of definition and recommended benchmarks.
 % https://web.dev/vitals/
-%- each is measurable in the field
 
-%- Collected by Crux, Pagespeed insights and search console
+Core Web Vitals are collected by common Google performance assessment tools such as CrUX or PageSpeed Insights.\footnote{\url{https://developers.google.com/speed/pagespeed/insights/} [23.07.2021]}
+Additionally, Google provides a JS library for Core Web Vitals measurements.\footnote{\url{https://github.com/GoogleChrome/web-vitals} [23.07.2021]}
 
-
-
-%- measure with library % https://github.com/GoogleChrome/web-vitals
 
 \begin{center}
 \small
@@ -2717,8 +2712,7 @@ Contrary to the general evolving Web Vitals, Core Web Vitals are rather stable i
 	\end{tabular}
 \end{center}
 
-The three Core Web Vitals will be discussed in more detail below.
-
+The three Core Web Vitals LCP, FID, and CLS will be discussed in more detail below.
 
 
 % --------------------
@@ -2728,8 +2722,18 @@ The three Core Web Vitals will be discussed in more detail below.
 \paragraph{Largest Contentful Paint}
 
 
+Largest Contentful Paint is about \textit{Perceived load speed} and answers the question \textit{Is it useful?}.
+
+Other approaches: FCP, FMP, SI
+LCP is about when the main content is rendered on the screen.
+The main content is defined as the largest element.
+
+LCP is "the render time of the largest image or text block visible within the viewport, relative to when the page first started loading."
 
 % LCP https://web.dev/lcp/
+
+
+
 
 
 % https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
@@ -2737,6 +2741,7 @@ The three Core Web Vitals will be discussed in more detail below.
 %- FCP may become a core web vital
 
 
+% [Unofficial API]
 
 % https://wicg.github.io/largest-contentful-paint/
 
@@ -2853,6 +2858,7 @@ The three Core Web Vitals will be discussed in more detail below.
 
 
 % Is it useful?
+% LCP
 
 
 % Is it usable?
@@ -2870,6 +2876,7 @@ The three Core Web Vitals will be discussed in more detail below.
 
 % Perceived load speed
 % FCP
+% LCP
 
 
 % Load responsiveness
