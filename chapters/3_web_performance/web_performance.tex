@@ -2295,29 +2295,25 @@ For a more fine grained measurement, they enhance the default metric.
 
 %TODO write this down and add to summary table
 
-\paragraph{Element Timing API, Event Timing API, Layout Instability API and Largest Contentful Paint}
+\paragraph{Web Incubator Community Group}
 
-Unofficial drafts
-
-
-% https://wicg.github.io/element-timing/
-
-
-% https://wicg.github.io/event-timing/
-
-
-% https://wicg.github.io/layout-instability/
-Editors are from Google
-
-% https://wicg.github.io/largest-contentful-paint/
+The Web Incubator Community Group (WICG) is a W3C Community Group and "provides a lightweight venue for proposing and discussing new web platform features." % https://www.w3.org/community/groups/
+The WICG works on and proposes a variety of possible web technologies and standards.\footnote{\url{https://wicg.io/} [24.07.2021]}
+Those specifications are unofficial drafts and not verified by W3C, but may be included in the W3C recommendation track in the future.
+Four out of the proposed "incubations" are mentioned here as they serve as a base for some Web Vitals measurements, as described below.
+Specification details are available on the referenced pages:
+\textit{Element Timing API}\footnote{\url{https://wicg.github.io/element-timing/} [24.07.2021]}, 
+\textit{Event Timing API}\footnote{\url{https://wicg.github.io/event-timing/} [24.07.2021]},
+\textit{Layout Instability API}\footnote{\url{https://wicg.github.io/layout-instability/} [24.07.2021]}, and
+\textit{Largest Contentful Paint}.\footnote{\url{https://wicg.github.io/largest-contentful-paint/} [24.07.2021]}
 
 
 % https://web.dev/custom-metrics/
-Element TIming used for LCP
-Event Timing used for FID
+% Element Timing used for LCP
+% Event Timing used for FID
+%  Editors are from Google, close relation to Core Web Vitals
+% Only available in Chromium
 
-
-Only available in Chromium
 
 
 
@@ -2346,18 +2342,6 @@ Table X provides an overview of all discussed specifications, in which maturity 
 %Or as Grigorik states it, "The combination of Navigation, Resource, and User timing APIs provides all the necessary tools to instrument and conduct real-user performance measurement for every web application" % cite 2013 Girgorik
 
 
-
-\begin{table}[h]
-	\small
-	\centering
-	\begin{tabular}{| c | c | c | c |}
-	\end{tabular}
-	\medskip
-	\caption{Types of e-commerce.}
-	\label{table:types_ecommerce}
-\end{table}
-
-
 \begin{table}[h]
 	\small
 	\centering
@@ -2380,7 +2364,6 @@ Table X provides an overview of all discussed specifications, in which maturity 
 	\hline
 	Navigation and Resource Timing
 	& Used to calculated a variety of metrics \\
-	\hline
 	\hline
 	User Timing
 	& Level 2: REC February 2019 \\
@@ -2405,9 +2388,9 @@ Table X provides an overview of all discussed specifications, in which maturity 
 	& FPWD September 2017 \\
 	& Exposes the "key moments" First Paint and First Contentful Paint \\
 	\hline
-	Element- and Event Timing API & ...  \\
-	Layout Instability API & Used for this... \\
-	Largest Contentful Paint & And this... \\
+	Element- and Event Timing API & WICG proposals (unoffical drafts)  \\
+	Layout Instability API & Basis for FID, LCP \\ %TODO more ?
+	Largest Contentful Paint & \\
 	\hline
 	\end{tabular}
 	\medskip
@@ -2777,48 +2760,25 @@ The three Core Web Vitals LCP, FID, and CLS will be discussed in more detail bel
 
 \paragraph{Largest Contentful Paint}
 
+% [Explanation]
 
 Largest Contentful Paint is about \textit{Perceived load speed} and answers the question \textit{Is it useful?}.
+While other metrics such as FCP or SI indicate when the first paint is rendered on the screen, or how fast the render process is, LCP is a metric utilised to report back when the main content is visible to the user, with the main content defined as the largest element.
+In short, LCP is "the render time of the largest image or text block visible within the viewport, relative to when the page first started loading." % https://web.dev/lcp/
 
-Other approaches: FCP, FMP, SI
-LCP is about when the main content is rendered on the screen.
-The main content is defined as the largest element.
+For finding the largest element, elements taken into consideration are for example images, videos or block-level elements containing text.
+The size of an element is defined as only its area which is visible to the user.
+LCP candidates may change during the loading process and are reported up until the user interacts with the page.
 
-LCP is "the render time of the largest image or text block visible within the viewport, relative to when the page first started loading."
+LCP is defined and exposed through the WICG specifications \textit{Largest Contentful Paint}.
+As with other metrics, which rely on W3C specifications and APIs such as FCP, Google makes minor adjustments, for example only considering pages that have been loaded in the foreground.
+Implementation details are available within the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getLCP.ts} [22.07.2021]}
+The advantage over other visual metrics such as SI is that LCP is retrievable not only in synthetic monitoring but also in RUM.
 
-elements considered are....
-size is determined as...
-changes to elements size or position will not generate new LCP candidate
-only initial size and position in viewport are considered
-maybe largest element is not most important one...
-
-Exposed as Performance Entry, may change during page load
-
-The search for the LCP and reporting stops when user interacts with page, because user interaction may change UI
-
-in synthetic and RUM and following tools
 % https://web.dev/lcp/
 
 
-% [API]
 
-there is an unofficial specification by WICG % https://wicg.github.io/largest-contentful-paint/
-
-as with FCP, Google enhances the spec and measurement by...
-
-"Google enhances the Paint Timing specification regarding FCP by only considering pages that are in the foreground all the time,
-by measuring FCP also if the page has been loaded from cache, and by exposing FCP for all frames, including cross-origin iframes.
-Implementation details are available within the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getFCP.ts} [22.07.2021]}"
-
-source code is here % https://github.com/GoogleChrome/web-vitals/blob/main/src/getLCP.ts
-% https://web.dev/lcp/
-
-
-% https://medium.baqend.com/the-core-web-vital-largest-contentful-paint-just-changed-dramatically-b7bf5b7f17f3
-LCP is measurable in the browser (RUM), opposed to other visual perceived metrics such as speed index or FMP
-
-% https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-approximation of the First Meaningful Paint that can be captured in the browser
 
 
 
@@ -2830,6 +2790,10 @@ approximation of the First Meaningful Paint that can be captured in the browser
 %- use this story to show that this stuff is far from trivial
 
 % changelog https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/speed/metrics_changelog/lcp.md
+
+
+% maybe largest element is not most important one... use custom metrics.
+
 
 
 % --------------------------
