@@ -2774,22 +2774,14 @@ LCP is defined and exposed through the WICG specifications \textit{Largest Conte
 As with other metrics, which rely on W3C specifications and APIs such as FCP, Google makes minor adjustments, for example only considering pages that have been loaded in the foreground.
 Implementation details are available within the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getLCP.ts} [22.07.2021]}
 The advantage over other visual metrics such as SI is that LCP is retrievable not only in synthetic monitoring but also in RUM.
-
-% https://web.dev/lcp/
-
-
-
-
+% cite https://web.dev/lcp/
 
 
 % [Issues]
- 
-%- Google had some issues with capturing LCP in chrome, see twitter
-%- Because of this they needed to release a new chrome version
-%- CruX also has 2 different lcps now (?)
-%- use this story to show that this stuff is far from trivial
 
-% changelog https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/speed/metrics_changelog/lcp.md
+Although Core Web Vitals are intentionally kept rather stable in their definitions, the performance metric initiative by Google is still an evolutionary and work-in-progress movement:
+For example, a change in Google Chromes LCP measurement altered the LCP scores by 20\%. % cite https://medium.baqend.com/the-core-web-vital-largest-contentful-paint-just-changed-dramatically-b7bf5b7f17f3
+Changes and improvements on the definition and implementation of web vitals are not seldom, as seen in Chromiums Web Vitals changelog.\footnote{\url{https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/speed/metrics_changelog/README.md} [24.07.2021]}
 
 
 % maybe largest element is not most important one... use custom metrics.
@@ -2801,48 +2793,34 @@ The advantage over other visual metrics such as SI is that LCP is retrievable no
 
 \paragraph{First Input Delay}
 
-% https://web.dev/fid/
+% [Explanation]
 
 First Input Delay (FID) is about \textit{Load responsiveness} and answers the question \textit{Is it usable?}.
 FID gives insights about the responsiveness and interactivity of the website and measures "the time from when a user first interacts with a page (i.e. when they click a link, tap on a button, or use a custom, JavaScript-powered control) to the time when the browser is actually able to begin processing event handlers in response to that interaction."
+Continuous events such as scrolling or zooming are not counted as first inputs.
+
 FID is about the time it takes for the browser to handle user input.
-This time depends on the tasks of the main thread.
-If the main thread is busy while the user interacts with the page, the browser has to wait until main thread is idle in order to react.
-"FID measures the time from when a user first interacts with a page (i.e. when they click a link, tap on a button, or use a custom, JavaScript-powered control) In technical terms, "FID measures the delta between when an input event is received and when the main thread is next idle.".
-According to this definition, FID is also measured if there is no event listener registered to handle the user input.
+This time depends on the tasks of the main thread:
+If the main thread is busy while the user interacts with the page, the browser has to wait until the main thread is idle and can react.
+In technical terms, "FID measures the delta between when an input event is received and when the main thread is next idle.".
+According to this definition, FID is also measured if there is no event listener registered to handle the user input, as only the main thread and his idle state are taken into the equation.
 
-Only cosidering first input because...
-Events counting as first input are for example...
-
+FID is only considering \textit{first inputs}, as the first input and with it the first impression, are crucial, and they are likely triggered during the websites loading process, where interactivity and performance issues happen more often compared to when the website has already been loaded.
+% https://web.dev/fid/
 
 
 % [RUM]
 
-Can only be measured in the field as it requires user interaction
-FID is dependent on user input.
-E.g. some users dont interact with the page in the beginning, some interact when main thread is busy, and other when main thread is idle.
-As FID depends on when a user interacts with the page, it is important to analyse the distribution of FID values.
-
-
-% [Proxy in Synthetic Monitoring]
-
-"First Input Delay can only be measured if the user interacts with the page. Synthetic performance tools like Lighthouse don't involve any user interaction, and therefore use Total Blocking Time as a proxy metric."
-TBT "correlates well with FID "
+FID can only be measured in the field as it requires real user interaction.
+As FID depends on the point in time when a user interacts with the page, e.g. some users do not interact with the page at all, some interact when the main thread is busy, and others when the main thread is idle, it is important to analyse the distribution of reported FID values.
+In synthetic monitoring, an alternative and proxy metric of FID is TBT, as it "correlates well with FID". % cite https://web.dev/fid/
 
 
 % [API]
 
-Measure with Event Timing API
-
-"Google enhances the Paint Timing specification regarding FCP by only considering pages that are in the foreground all the time,
-by measuring FCP also if the page has been loaded from cache, and by exposing FCP for all frames, including cross-origin iframes.
-Implementation details are available within the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getFCP.ts} [22.07.2021]}"
-
-
-source code is here % https://github.com/GoogleChrome/web-vitals/blob/main/src/getFID.ts
-
-
-
+FID is measurable with the WICG specification \textit{Event Timing API}.
+As with other metrics, which rely on W3C specifications and APIs such as FCP, Google makes minor adjustments, for example only considering pages that have been loaded in the foreground.
+Implementation details are available within the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getFID.ts} [22.07.2021]}
 
 
 
@@ -2971,6 +2949,24 @@ Implementation details are available within the web-vitals library.\footnote{\ur
 
 % Smoothness
 
+
+
+
+\begin{table}[h]
+	\small
+	\centering
+	\begin{tabular}{ | l | l | l | l |}
+	\hline
+	...  & is it x & is it aa & is itasd \\
+	\hline
+	Perceived load speed & ... & ... & ... \\
+	\hline
+	\end{tabular}
+	\medskip
+	\caption{Types of e-commerce.}
+	\label{table:types_ecommerce}
+\end{table}
+% underline core web vitals
 
 
 
