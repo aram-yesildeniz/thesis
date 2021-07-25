@@ -2387,7 +2387,7 @@ Table X provides an overview of all discussed specifications, in which maturity 
 	& FPWD September 2017 \\
 	& Exposes the "key moments" First Paint and First Contentful Paint \\
 	\hline
-	Element- and Event Timing API & WICG proposals (unoffical drafts)  \\
+	Element- and Event Timing API & WICG proposals (unoffical drafts), used for LCP, FID  \\
 	Layout Instability API & Basis for FID, LCP, CLS \\ %TODO more ?
 	Largest Contentful Paint & \\
 	\hline
@@ -2857,37 +2857,32 @@ This change demonstrates once more that web performance metrics are rather of fr
 % --------------------------
 
 
-\paragraph{Thresholds and Benchmarks for Core Web Vitals}
+\paragraph{Core Web Vitals Thresholds}
 
 For each of the Core Web Vitals, Google provides thresholds and recommended targets described as \textit{Good}, \textit{Needs Improvement}, and \textit{Poor}.
 The reasoning behind those thresholds is briefly discussed in this section.
 
 Google considers values as identified by HCI and Human Perception researchers for their threshold definitions.
+Referenced studies are for example
+%TODO cite Galletta, D. F., Henry, R., McCoy, S. & Polak, P. (2004). Web Site Delays: How Tolerant are Users? Journal of the Association for Information Systems, 5(1), 1.
+% Hoxmeier, J. A. & DiCesare, C. (2000). System Response Time and User Satisfaction: An Experimental Study of Browser-based Applications. AMCIS 2000 Proceedings, 347.
+% Oulasvirta, A., Tamminen, S., Roto, V. & Kuorelahti, J. (2005). Interaction in 4-Second Bursts: The Fragmented Nature of Attentional Resources in Mobile HCI. In Proceedings of the SIGCHI conference on Human factors in computing systems (pp. 919–928).
+
 If research is not available, such as for CLS, which is a fairly new metric, Google relies on their own real world studies and evaluations.
-Additionally, Google sets realistic thresholds, values that can be met and achieved by regular websites.
-Thresholds are therefore modelled on available data.
-For example, the best classification, "good", defined as delivering "high quality user experience", is defined in such a way that already 10\% of all websites surpass it.
+The proposed thresholds are realistic in such a way that the values that can be met and achieved by regular websites.
+Thresholds are therefore modelled on available data (for example via CrUX).
+The best possible classification, "good", defined as delivering "high quality user experience", is defined in such a way that 10\% of all websites surpass it.
 With new research, technology and other improvements, the thresholds can be adjusted in the future.
 % https://web.dev/defining-core-web-vitals-thresholds/
 
 
 Figure X shows the thresholds for the three Core Web Vitals LCP, FID, and CLS.
-While LCP and FID are described in milliseconds, CLS is a score.
+While LCP and FID are described in milliseconds, CLS is a calculated score.
+The exact reasoning behind the defined thresholds for the Core Web Vitals is given in % https://web.dev/defining-core-web-vitals-thresholds/
 
 
-% https://blog.chromium.org/2020/05/the-science-behind-web-vitals.html
-
-
-
-% [LCP]
-
-% [FID]
-
-% [CLS]
-
-is a score
-
-
+%TODO put them in one figure and use figure caption
+%TODO always write: taken from url.... !!! for all figures
 \begin{table}[h]
 	\centering
 	\begin{tabular}{ c c c }
@@ -2897,15 +2892,23 @@ is a score
 	\end{tabular}
 	\medskip
 	\caption{Core Web Vitals Thresholds}
-	\label{table:types_ecommerce}
+	\label{table:vitals_thresholds}
 \end{table}
+
+%\begin{figure}[h!]
+%\begin{center}
+%\includegraphics[width=0.5\textwidth]{page_tagging.png}
+%\caption{Page Tagging}
+%\label{img:page_tagging}
+%\end{center}
+%\end{figure}
 
 
 
 
 % [75th percentile]
 
-Classification is based on the 75th percentile value of all page views:
+The classification of a website into one of the three grades is based on the 75th percentile value of all page views:
 For a page to be classified as "good", at least 75\% of page views need to pass the threshold.
 If for example 25\% of the measured page views fall into the "poor" segment,  the other two segments can not reach 75\%, hence the page would be classified to have "poor" performance.
 The reasoning behind the 75th percentile is that it guarantees that a large proportion of users are taken into account, and that the value at the selected percentile should not be too influenced by outliers.
@@ -2922,8 +2925,19 @@ The reasoning behind the 75th percentile is that it guarantees that a large prop
 
 \paragraph{User-Centric Performance Metrics Conclusion}
 
+% [User-Centric vs Navigation Timings]
+
 Try to capture user perceived performance, contrary to navigation timings.
+user experience, how performance feels to the user.
+
+
+% [Visual metrics]
+
 Visual metrics such as ... rely on video analysis
+
+
+% [Web Vitals and Core Web Vitals]
+
 Google Web Vitals to make them prominent
 
 Core Web Vitals are field metrics and measure most important aspects based on loading, interactivity, and visual stability.
@@ -2933,25 +2947,29 @@ Core Web Vitals are field metrics and measure most important aspects based on lo
 
 Framed around questions and types, as seen in table X.
 
+Thresholds...
+
+
+% [Transitioin]
+
+Tailored, best solution, custom metrics, briefly discussed in the next section.
+
 % Conclusion: Make some table / matrix with the types and questions and the metrics
 % Also show which metrics are correlated, or which one replaced other ones
 
 
 % Questions:
 
-
 % Is it happening?
-% FCP
-
+% XX FCP
 
 % Is it useful?
-% LCP
-
+% XX LCP
 
 % Is it usable?
-% TTI
-% TBT
-% FID
+% XX TTI
+% XX TBT
+% XX FID
 
 
 % Is it delightful?
@@ -2963,14 +2981,14 @@ Framed around questions and types, as seen in table X.
 
 
 % Perceived load speed
-% FCP
-% LCP
+% XX FCP 
+% XX LCP
 
 
 % Load responsiveness
-% TTI
-% TBT
-% FID
+% XX TTI
+% XX TBT
+% XX FID
 
 
 % Runtime responsiveness
@@ -2988,15 +3006,23 @@ Framed around questions and types, as seen in table X.
 \begin{table}[h]
 	\small
 	\centering
-	\begin{tabular}{ | l | l | l | l |}
+	\begin{tabular}{ | l | l | l | l | l |}
 	\hline
-	...  & is it x & is it aa & is itasd \\
+	\cellcolor{lightgrey} & Is it happening? & Is it useful? & Is it usable? & Is it delightful? \\
 	\hline
-	Perceived load speed & ... & ... & ... \\
+	Perceived load speed & FCP & \underline{LCP} & & \\
+	\hline
+	Load responsiveness & & & TTI, TBT, \underline{FID} & \\
+	\hline
+	Runtime responsiveness & & & & \\
+	\hline
+	Visual stability & & & & \underline{CLS} \\
+	\hline
+	Smoothness & & & & \\
 	\hline
 	\end{tabular}
 	\medskip
-	\caption{Web Vitals Summary}
+	\caption{Web Vitals and their position in the mental model. Core Web Vitals are underlined.}
 	\label{table:types_ecommerce}
 \end{table}
 % underline core web vitals
@@ -3011,7 +3037,12 @@ Framed around questions and types, as seen in table X.
 \subsection{Custom Metrics}
 
 
-[tbd]
+% [Universal vs Custom]
+
+
+% https://web.dev/user-centric-performance-metrics/
+The performance metrics listed above are good for getting a general understanding of the performance characteristics of most sites on the web. They're also good for having a common set of metrics for sites to compare their performance against their competitors.
+
 
 % 2013 Meenan
 %- First, it is important to understand that no single number will answer that question. Even if you have defined exactly what you are trying to measure on your Web site, performance will vary widely across your user base and across the different pages on your site
@@ -3026,16 +3057,16 @@ Framed around questions and types, as seen in table X.
 %-  "Custom and application-specific metrics are the key to establishing a sound performance strategy"
 
 
+
+% [Using APIs]
+
 % https://web.dev/custom-metrics/
 %- Universal metrics offer a good baseline, but in many cases you need to measure more than just these metrics in order to capture the full experience for your particular site.
 %- Custom metrics allow you to measure aspects of your site's experience that may only apply to your site
+- you need custom code
+- difficult to compare custom metrics with competitor, as they do not have the same metrics
+User Timing API, Long Tasks API, Element Timing API
 
-
-% https://web.dev/user-centric-performance-metrics/
-
-
-
-% https://speedcurve.com/blog/user-timing-and-custom-metrics/
 
 
 
@@ -3247,7 +3278,7 @@ Framed around questions and types, as seen in table X.
 
 
 %TODO use graphical comparison ?
-
+% or get rid of navigation timing column and dont use landscape
 
 \begin{sidewaysfigure}
 
@@ -3295,6 +3326,38 @@ Framed around questions and types, as seen in table X.
 %TODO ideally come up with a nice table which abstracts and summarizes everything about metrics:
 % e.g. measured by: browser, server. Technical stuff is measured in browser, everything else not in browser
 % technical, UX, ...
+
+
+
+% [3.4.1 Page Weight]
+
+
+
+% [3.4.2 Navigation Timing Metrics]
+
+% Web Standards: W3C, Web Performance Working Group
+% Specifications... and their metrics
+% WICG
+
+
+
+
+% [3.4.3 User-Centric Performance Metrics]
+
+% Visual Metircs
+% Web Vitals
+
+
+
+% [3.4.4 Custom Metrics]
+
+
+
+
+% [3.4.5 WebPageTest and Google Analytics Metrics]
+
+
+
 
 [summary table]
 
