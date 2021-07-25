@@ -2417,10 +2417,6 @@ They will be discussed in the next section.
 
 \subsection{User-Centric Performance Metrics}
 
-
-[tbd]
-
-
 % [Introduction]
 
 Navigation Timings as described above are directly measured through a variety of Web APIs and are accessible within the browser.
@@ -2428,7 +2424,7 @@ Metrics concerned with user-perceived performance focus mainly on visual changes
 
 Perceived performance tackles the question how fast a website "feels" to a user.
 As already described in section X. different users feel performance differently, depending on factors such as gender, region or stress level.
-The perceived performance can diverge from actual loading times, and user-centric performance metrics are usually more difficult to measure than navigation timings, as visual or even video analysis is necessary to calculate the metrics. % cite https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance
+The perceived performance can diverge from actual loading times, and user-centric performance metrics are usually more difficult to measure than navigation timings, as visual or video recording analysis is necessary to calculate the metrics. % cite https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance
 
 I will describe user-centric performance metrics which are established among performance monitoring solution vendors.
 With Web Vitals, Google defines their own set of user-centric metrics and moves websites performance into focus.
@@ -2438,12 +2434,14 @@ They will be discussed below.
 
 % ------------------------
 
-\subsubsection{Visual Metrics}
+\subsubsection{Visual Metrics} % korrigiert
 
-[tbd]
+The term "Visual Metrics" is not defined by any specification or web technology association and is used here to subsume metrics that rely on the visual part of the website.
+Visual metrics are based on the video recording of the website loading process and use this recording for further analysis.
+Therefore, they are best suited for synthetic monitoring.
+Visual metrics focus mainly on how fast pixels are rendered into the viewport, the part of the screen visible to the user.
 
-
-
+The three metrics described below appear frequently in synthetic monitoring tools and other web performance literature referenced in their respective sections.
 
 
 % ------------------------
@@ -2467,20 +2465,16 @@ This example reveals that the definitions of metrics is not clear and different 
 
 
 
-
-
 % ------------------------
 
 
 \paragraph{Above the Fold Time (AFT)}
 
 The above-the-fold is the area of the website which is visible to the user without scrolling.
-The AFT metric measures how long it takes the browser to render all pixel within that above the fold area.
+The AFT is a non-standardized metric that measures how long it takes the browser to render all pixel within that above the fold area. % 2019 Enghardt
 AFT measurement needs to take into consideration visual dynamic areas of the website which are expected to change pixels frequently and static areas where pixel and color changes are not likely to happen. % 2018 Netravali
 
 AFT is measurable through synthetic monitoring and requires video recording and analysis. % cite 2013 Meenan
-
-The AFT is not standardized. % 2019 Enghardt
 
 
 
@@ -2498,11 +2492,7 @@ SI is not directly measured, but calculated, and expressed in milliseconds. % ht
 Like AFT, SI is reliable for static websites and unreliable for websites with dynamic and changing visual content. % https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 The SI calculation details are covered in % https://docs.webpagetest.org/metrics/speedindex/
 
-
-
-
 % 2021 Meenan vimeo 38:50
-
 
 % Measuring Real User Performance in the Browser
 %- How much of the screen is visually available at different points of time
@@ -2583,10 +2573,7 @@ Like the key questions, these types provide a guide and framework to organize, c
 \end{table}
 %cite  https://web.dev/user-centric-performance-metrics/
 
-
-
 %TODO add RAIL model? https://web.dev/rail/
-
 
 % [Measurement and Tools]
 
@@ -2620,8 +2607,6 @@ FCP is measured in seconds and retrievable in synthetic and real-user monitoring
 % https://web.dev/fcp/
 
 
-
-
 % ------------------------
 
 
@@ -2633,10 +2618,8 @@ Google states that FMP is deprecated, due to "inconsistent results" and the impo
 The successor, Largest Contentful Paint, is discussed below.
 The replacement of FMP nicely illustrates the evolving nature of Web Vitals.
 
-
 % https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 %The First Meaningful Paint is another user-centric metric and represents the point in time at which the largest visual change takes place; the underlying assumption here obviously is that the biggest visual change is relevant to the user, for example because a hero image or a navigation bar appear
-
 
 
 % ------------------------
@@ -2671,7 +2654,6 @@ It indicates when the website is minimally interactive, contrary to TTI, which s
 Google deprecated First CPU Idle, as "the difference [to TTI] isn't significant enough to justify maintaining two similar metrics". % https://web.dev/first-cpu-idle/
 
 
-
 % ------------------------
 
 
@@ -2703,10 +2685,6 @@ For (A), TBT is 3ms, and for (B), TBT is 9950ms.
 The lower TBT value indicates a better interactivity and user experience.
 
 As with TTI, Google recommends to measure TBT through synthetic monitoring rather than RUM, as user input may affect and disturb measurement results.  \\
-
-
-
-
 
 
 % ------------------------
@@ -2924,85 +2902,30 @@ The reasoning behind the 75th percentile is that it guarantees that a large prop
 
 % -----------------------------------------------------------------------
 
-\paragraph{User-Centric Performance Metrics Conclusion}
+\paragraph{User-Centric Performance Metrics Conclusion} % schon korrigiert
 
 % [User-Centric vs Navigation Timings]
 
-Try to capture user perceived performance, contrary to navigation timings.
-user experience, how performance feels to the user.
-
+User-centric performance metrics aim to capture how users perceive, experience, and feel about performance.
+This is in contrast to navigation timing metrics that rely only on in-browser timings that may have no meaning to the user.
 
 % [Visual metrics]
 
-Visual metrics such as ... rely on video analysis
-
+Visual metrics such as Start Render or Speed Index are one approach to approximate and calculate how users perceive website performance by examining the pixels the browser renders into the viewport.
+They rely on video recording and analysis and work best for synthetic monitoring.
 
 % [Web Vitals and Core Web Vitals]
+With Web Vitals, Google has introduced a set of user-centric performance metrics.
+They are built and modelled around a set of guiding questions and performance types, as seen in table \ref{table:vitals_summary}.
 
-Google Web Vitals to make them prominent
-
-Core Web Vitals are field metrics and measure most important aspects based on loading, interactivity, and visual stability.
-"Each metric measures a different aspect of user experience: LCP measures perceived load speed and marks the point in the page load timeline when the page's main content has likely loaded; FID measures responsiveness and quantifies the experience users feel when trying to first interact with the page; and CLS measures visual stability and quantifies the amount of unexpected layout shift of visible page content."
-
-
-
-Framed around questions and types, as seen in table X.
-
-Thresholds...
+Core Web Vitals are the three most important Web Vitals.
+They reflect the loading performance (LCP), interactivity (FID), and visual stability (CLS) of the website.
+Core Web Vitals can be measured using RUM.
+Google provides a rating system for Core Web Vitals.
+The thresholds for the ratings are derived from HIC and UX research or derived directly from field data.
 
 
-% [Transitioin]
-
-Tailored, best solution, custom metrics, briefly discussed in the next section.
-
-% Conclusion: Make some table / matrix with the types and questions and the metrics
-% Also show which metrics are correlated, or which one replaced other ones
-
-
-% Questions:
-
-% Is it happening?
-% XX FCP
-
-% Is it useful?
-% XX LCP
-
-% Is it usable?
-% XX TTI
-% XX TBT
-% XX FID
-
-
-% Is it delightful?
-% CLS
-
-
-
-% Types:
-
-
-% Perceived load speed
-% XX FCP 
-% XX LCP
-
-
-% Load responsiveness
-% XX TTI
-% XX TBT
-% XX FID
-
-
-% Runtime responsiveness
-
-
-% Visual stability
-% CLS
-
-
-% Smoothness
-
-
-
+%TODO Also show which metrics are correlated, or which one replaced other ones ?
 
 \begin{table}[h]
 	\small
@@ -3024,17 +2947,37 @@ Tailored, best solution, custom metrics, briefly discussed in the next section.
 	\end{tabular}
 	\medskip
 	\caption{Web Vitals and their position in the mental model. Core Web Vitals are underlined.}
-	\label{table:types_ecommerce}
+	\label{table:vitals_summary}
 \end{table}
 
-%TODO add this
-
-% https://web.dev/user-centric-performance-metrics/
-% While this list includes metrics measuring many of the various aspects of performance relevant to users, it does not include everything (e.g. runtime responsiveness and smoothness are not currently covered).
-
-% In some cases, new metrics will be introduced to cover missing areas, but in other cases the best metrics are ones specifically tailored to your site.
+As can be seen in the table, user-centric performance metrics do not yet exist for all questions and types, such as runtime responsiveness or smoothness.
+Google indicates that new metrics are being introduced for some missing areas, but ideally custom metrics should be used in practice that capture the most important data for the business.  % https://web.dev/user-centric-performance-metrics/
+Custom metrics are discussed in the next section.
 
 
+% Questions:
+% Is it happening?
+% XX FCP
+% Is it useful?
+% XX LCP
+% Is it usable?
+% XX TTI
+% XX TBT
+% XX FID
+% Is it delightful?
+% XX CLS
+% Types:
+% Perceived load speed
+% XX FCP 
+% XX LCP
+% Load responsiveness
+% XX TTI
+% XX TBT
+% XX FID
+% Runtime responsiveness
+% Visual stability
+% XX CLS
+% Smoothness
 
 
 % -----------------------------------------------------------------------
