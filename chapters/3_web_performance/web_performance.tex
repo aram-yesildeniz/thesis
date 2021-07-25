@@ -2835,6 +2835,7 @@ Layout shift scores reflect and rate the unexpected movement from visible elemen
 Layout shift scores are calculated through other measures such as \textit{impact fraction} and \textit{distance fraction}, which evaluate the movement of visible elements.
 The rather complex calculations are described in . % cite https://web.dev/cls/
 Finally, the layout shifts during a pages lifespan are summed up together (cumulated), and reported as CLS.
+CLS is a score and not a value representing milliseconds.
 
 CLS relies on the WICG specification \textit{Layout Instability API}.
 As with other metrics, which rely on W3C specifications and APIs such as FCP, Google makes minor adjustments to the specification, for example by only considering pages that have been loaded in the foreground.
@@ -2858,43 +2859,58 @@ This change demonstrates once more that web performance metrics are rather of fr
 
 \paragraph{Thresholds and Benchmarks for Core Web Vitals}
 
+For each of the Core Web Vitals, Google provides thresholds and recommended targets described as \textit{Good}, \textit{Needs Improvement}, and \textit{Poor}.
+The reasoning behind those thresholds is briefly discussed in this section.
+
+Google considers values as identified by HCI and Human Perception researchers for their threshold definitions.
+If research is not available, such as for CLS, which is a fairly new metric, Google relies on their own real world studies and evaluations.
+Additionally, Google sets realistic thresholds, values that can be met and achieved by regular websites.
+Thresholds are therefore modelled on available data.
+For example, the best classification, "good", defined as delivering "high quality user experience", is defined in such a way that already 10\% of all websites surpass it.
+With new research, technology and other improvements, the thresholds can be adjusted in the future.
+% https://web.dev/defining-core-web-vitals-thresholds/
 
 
+Figure X shows the thresholds for the three Core Web Vitals LCP, FID, and CLS.
+While LCP and FID are described in milliseconds, CLS is a score.
 
-[tbd]
 
 % https://blog.chromium.org/2020/05/the-science-behind-web-vitals.html
 
 
 
-% https://web.dev/defining-core-web-vitals-thresholds/
-
-
-
-
 % [LCP]
 
-
-
-
-
-
-
 % [FID]
-
-
-
-
-
 
 % [CLS]
 
 is a score
 
 
-% add image with traffic lights
+\begin{table}[h]
+	\centering
+	\begin{tabular}{ c c c }
+	\includegraphics[width=0.3\textwidth]{lcp} &
+	\includegraphics[width=0.3\textwidth]{fid} &
+	\includegraphics[width=0.3\textwidth]{cls} \\
+	\end{tabular}
+	\medskip
+	\caption{Core Web Vitals Thresholds}
+	\label{table:types_ecommerce}
+\end{table}
 
 
+
+
+% [75th percentile]
+
+Classification is based on the 75th percentile value of all page views:
+For a page to be classified as "good", at least 75\% of page views need to pass the threshold.
+If for example 25\% of the measured page views fall into the "poor" segment,  the other two segments can not reach 75\%, hence the page would be classified to have "poor" performance.
+The reasoning behind the 75th percentile is that it guarantees that a large proportion of users are taken into account, and that the value at the selected percentile should not be too influenced by outliers.
+75\% percentile is a compromise between the two arguments: 3 out of 4 users experience the measured values, and 25 out of 100 samples may be outliers without affecting the result.
+% https://web.dev/defining-core-web-vitals-thresholds/
 
 
 %TODO add this?
@@ -2909,7 +2925,12 @@ is a score
 Try to capture user perceived performance, contrary to navigation timings.
 Visual metrics such as ... rely on video analysis
 Google Web Vitals to make them prominent
-Core Web Vitals
+
+Core Web Vitals are field metrics and measure most important aspects based on loading, interactivity, and visual stability.
+"Each metric measures a different aspect of user experience: LCP measures perceived load speed and marks the point in the page load timeline when the page's main content has likely loaded; FID measures responsiveness and quantifies the experience users feel when trying to first interact with the page; and CLS measures visual stability and quantifies the amount of unexpected layout shift of visible page content."
+
+
+
 Framed around questions and types, as seen in table X.
 
 % Conclusion: Make some table / matrix with the types and questions and the metrics
