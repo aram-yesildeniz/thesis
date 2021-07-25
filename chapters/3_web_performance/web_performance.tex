@@ -2305,8 +2305,7 @@ Specification details are available on the referenced pages:
 \textit{Element Timing API}\footnote{\url{https://wicg.github.io/element-timing/} [24.07.2021]}, 
 \textit{Event Timing API}\footnote{\url{https://wicg.github.io/event-timing/} [24.07.2021]},
 \textit{Layout Instability API}\footnote{\url{https://wicg.github.io/layout-instability/} [24.07.2021]}, and
-\textit{Largest Contentful Paint}.\footnote{\url{https://wicg.github.io/largest-contentful-paint/} [24.07.2021]}
-
+\textit{Largest Contentful Paint}.\footnote{\url{https://wicg.github.io/largest-contentful-paint/} [24.07.2021]}.
 
 % https://web.dev/custom-metrics/
 % Element Timing used for LCP
@@ -2389,7 +2388,7 @@ Table X provides an overview of all discussed specifications, in which maturity 
 	& Exposes the "key moments" First Paint and First Contentful Paint \\
 	\hline
 	Element- and Event Timing API & WICG proposals (unoffical drafts)  \\
-	Layout Instability API & Basis for FID, LCP \\ %TODO more ?
+	Layout Instability API & Basis for FID, LCP, CLS \\ %TODO more ?
 	Largest Contentful Paint & \\
 	\hline
 	\end{tabular}
@@ -2770,10 +2769,10 @@ For finding the largest element, elements taken into consideration are for examp
 The size of an element is defined as only its area which is visible to the user.
 LCP candidates may change during the loading process and are reported up until the user interacts with the page.
 
-LCP is defined and exposed through the WICG specifications \textit{Largest Contentful Paint}.
+LCP is defined and exposed through the WICG specification \textit{Largest Contentful Paint}.
 As with other metrics, which rely on W3C specifications and APIs such as FCP, Google makes minor adjustments, for example only considering pages that have been loaded in the foreground.
 Implementation details are available within the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getLCP.ts} [22.07.2021]}
-The advantage over other visual metrics such as SI is that LCP is retrievable not only in synthetic monitoring but also in RUM.
+The advantage over other visual metrics such as SI is, that LCP is retrievable not only in synthetic monitoring, but also in RUM.
 % cite https://web.dev/lcp/
 
 
@@ -2829,23 +2828,26 @@ Implementation details are available within the web-vitals library.\footnote{\ur
 
 \paragraph{Cumulative Layout Shift}
 
+Cumulative Layout Shift (CLS) is about \textit{Visual stability} and answers the question \textit{Is it delightful?}.
+CLS measures "unexpected movement of page content".
+For this, \textit{Layout shift scores} are calculated.
+Layout shift scores reflect and rate the unexpected movement from visible elements between frames (\textit{layout shifts}).
+Layout shift scores are calculated through other measures such as \textit{impact fraction} and \textit{distance fraction}, which evaluate the movement of visible elements.
+The rather complex calculations are described in . % cite https://web.dev/cls/
+Finally, the layout shifts during a pages lifespan are summed up together (cumulated), and reported as CLS.
+
+CLS relies on the WICG specification \textit{Layout Instability API}.
+As with other metrics, which rely on W3C specifications and APIs such as FCP, Google makes minor adjustments to the specification, for example by only considering pages that have been loaded in the foreground.
+CLS implementation details are available within the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getCLS.ts} [22.07.2021]}
+CLS is retrievable through synthetic or real-user monitoring.
 % https://web.dev/cls/
 
-Cumulative Layout Shift s about \textit{Visual stability} and answers the question \textit{Is it delightful?}.
-...
-
-
-
-
-"Google enhances the Paint Timing specification regarding FCP by only considering pages that are in the foreground all the time,
-by measuring FCP also if the page has been loaded from cache, and by exposing FCP for all frames, including cross-origin iframes.
-Implementation details are available within the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getFCP.ts} [22.07.2021]}"
-% https://github.com/GoogleChrome/web-vitals/blob/main/src/getCLS.ts
 
 % [New CLS]
 
-
-% https://web.dev/evolving-cls/
+As already observed with other metrics and Web Vitals, changes to metric definitions or their implementation are not seldom.
+For CLS, the implementation changed in June 2021. % https://web.dev/evolving-cls/
+This change demonstrates once more that web performance metrics are rather of fragile and work-in-progress nature.
 
 
 % https://blog.webpagetest.org/posts/understanding-the-new-cumulative-layout-shift/?utm_medium=email&_hsmi=121601471&_hsenc=p2ANqtz-9IsSdXActEE6lw4BrDZNa4eFqzQZjgabLHbq7aS-c2KkhqLGNtkIaGfQYD4VqZe9_6ZYFlTmlCgB87THSfsnVM1fl7NiixtrJqAsVO6DPUjeJIo6c&utm_content=121601471&utm_source=hs_email
@@ -2855,6 +2857,8 @@ Implementation details are available within the web-vitals library.\footnote{\ur
 
 
 \paragraph{Thresholds and Benchmarks for Core Web Vitals}
+
+
 
 
 [tbd]
@@ -2885,10 +2889,10 @@ Implementation details are available within the web-vitals library.\footnote{\ur
 
 % [CLS]
 
+is a score
 
 
-
-
+% add image with traffic lights
 
 
 
@@ -2899,6 +2903,14 @@ Implementation details are available within the web-vitals library.\footnote{\ur
 
 
 % -----------------------------------------------------------------------
+
+\paragraph{User-Centric Performance Metrics Conclusion}
+
+Try to capture user perceived performance, contrary to navigation timings.
+Visual metrics such as ... rely on video analysis
+Google Web Vitals to make them prominent
+Core Web Vitals
+Framed around questions and types, as seen in table X.
 
 % Conclusion: Make some table / matrix with the types and questions and the metrics
 % Also show which metrics are correlated, or which one replaced other ones
@@ -2963,7 +2975,7 @@ Implementation details are available within the web-vitals library.\footnote{\ur
 	\hline
 	\end{tabular}
 	\medskip
-	\caption{Types of e-commerce.}
+	\caption{Web Vitals Summary}
 	\label{table:types_ecommerce}
 \end{table}
 % underline core web vitals
