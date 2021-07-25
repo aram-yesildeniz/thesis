@@ -1,5 +1,14 @@
 % Terms and Definitions
 \chapter{Web Performance}
+\label{chapter:web_performance}
+
+%TODO make it clear the difference between web analytics and web performance
+% web performance is also an analysis of the website, but not which users or how they interact with the website
+% is about the website itself, how fast it is and how users perceive this performance
+
+%TODO roter faden: What is web performance in web analytics context ?
+
+
 
 [tbd]
 
@@ -32,6 +41,9 @@
 
 [Outline of this chapter]
 
+% Introduction
+% refernces topics
+
 %- Technical Background
 %	   - Network
 %	   - Front End: Navigation and CRP
@@ -45,57 +57,48 @@
 
 
 % ---------------------------------------------------------------------------------------------------
+% ---------------------------------------------------------------------------------------------------
 
 
 
 
-\section{Introduction}
-\label{chapter:web_performance}
-
-
-%TODO make it clear the difference between web analytics and web performance
-% web performance is also an analysis of the website, but not which users or how they interact with the website
-% is about the website itself, how fast it is and how users perceive this performance
-
-%TODO roter faden: What is web performance in web analytics context ?
+\section{Introduction} % korrigiert
 
 
 % [Introduction]
-% This chapter gives only a brief overview of the various aspects of web performance and appropriate sections below cover the topics in more detail.
 
-% [Definitions]
-As already described in chapter \ref{chapter:user_satisfaction}, web performance plays a role that cannot be neglected for user satisfaction and business success.
-The cited studies show that increasing website performance also increases sales, or as Google states it: "Performance plays a major role in the success of any online venture".\footnote{\url{https://web.dev/why-speed-matters/} [03.06.2021]}
+As described in section \ref{chapter:user_satisfaction}, web performance plays a non-negligible role in user satisfaction and business success.
+The studies cited in the relevant section show that increasing website performance also increases sales, or as Google puts it, "Performance plays a major role in the success of any online venture."\footnote{\url{https://web.dev/why-speed-matters/} [03.06.2021]}
 
-The MDN Web Docs identify multiple areas of web performance:\footnote{\url{https://developer.mozilla.org/en-US/docs/Learn/Performance/What_is_web_performance} [03.06.2021]}
-\begin{itemize}
-\item Reducing overall load time
-\item Making the site usable as soon as possible
-\item Smoothness and interactivity
-\item Perceived performance
-\item Performance measurements
-\end{itemize}
+A good overview of web performance topics and goals is provided by the MDN Web Docs\footnote{\url{https://developer.mozilla.org/en-US/docs/Learn/Performance/What_is_web_performance} [03.06.2021]}, which serve as an outline for this chapter and are briefly described below.
 
-%TODO add chapter references
+%\begin{itemize}
+%\item Reducing overall load time
+%\item Making the site usable as soon as possible
+%\item Smoothness and interactivity
+%\item Perceived performance
+%\item Performance measurements
+%\end{itemize}
+
 \paragraph{Reducing load time}
 
-In order to understand how load times emerge, the technical aspect of how websites are being loaded and presented to the user by the browser, needs to be comprehend.
-This question is covered in chapter X.
-%TODO do i really cover this ?
+To understand how load times occur, the technical aspect of how websites are loaded and presented to the user by the browser must be understood.
+This subject is addressed in section \ref{section:website_loading_process}.
 
-Concrete optimization steps and techniques to reduce load times are not focus of this thesis.
+Concrete optimization steps and techniques to reduce loading times are not the subject of this work.
 
 
 \paragraph{Usability and interactivity}
 
-As I will describe in chapter X, there are several metrics available that attempt to reflect areas of performance such as load time, smoothness, and interactivity, and specific metrics are available as well as for differentiating between technical and user-perceived performance.
+There are several metrics that attempt to reflect areas of performance such as load time, smoothness, and interactivity, and there are specific metrics to distinguish between technical and user-perceived performance.
+Web performance metrics are discussed in section \ref{section:web_performance_metrics}.
 
 
 \paragraph{Performance perception}
 
-The perception of performance is generally subjective.
-As already seen in chapter \ref{chapter:user_satisfaction}, there are some quantifiable time intervals that correlate with human psychology regarding the received performance.
-Table \ref{table:perception} contains "unofficial rule of thumb" for delay thresholds \cite{2013Grigorik}.
+Perceptions of performance are generally subjective.
+As seen earlier in section \ref{chapter:user_satisfaction}, there are some quantifiable time intervals that correlate with human psychology regarding received performance.
+Table \ref{table:perception} provides "unofficial rules of thumb" for delay thresholds \cite{2013Grigorik}.
 
 \begin{table}[h]
 	\small
@@ -116,8 +119,8 @@ Table \ref{table:perception} contains "unofficial rule of thumb" for delay thres
 	\label{table:perception}
 \end{table}
 
-If one interprets the numbers from the table, one can make the statement that it is desirable to keep loading times below one second.
-Thresholds for certain performance metrics and the psychological rationale for setting them are discussed in chapter X. %TODO
+Interpreting the numbers from the table, one can make the statement that it is desirable to keep load times below one second.
+Thresholds for certain performance metrics and the psychological rationale for setting them are briefly discussed in section \ref{subsubsection:core_web_vitals}.
 
 
 % TODO add this?
@@ -125,14 +128,12 @@ Thresholds for certain performance metrics and the psychological rationale for s
 % financial aspect of downloading data and big websites
 
 
-
 \paragraph{Performance measurements}
-%TODO
 
-There are several methods of measuring performance.
-\textit{Synthetic monitoring }is discussed in chapter X.
-\textit{Real User Monitoring} (RUM) is covered in chapter X.
-
+Measuring the performance of a website is an important and non-trivial task.
+Two main methods for measuring the performance of a website exist:
+\textit{Synthetic Monitoring} is discussed in section \ref{subsection:synthetic_monitoring},
+\textit{Real User Monitoring} (RUM) is covered in section \ref{subsection:RUM}.
 
 
 
@@ -141,32 +142,29 @@ There are several methods of measuring performance.
 % ---------------------------------------------------------------------------------------------------
 
 
+\section{The Website Loading Process} % korrigiert
+\label{section:website_loading_process}
 
-
-
-\section{The Website Loading Process}
-
+%TODO add Always with performance in mind ??
 
 % [Introduction]
 
-In order to understand web performance metrics and the methods to measure them, it is crucial to have a basic understanding of the technical aspect of the loading of a website into the browser.
-This process includes establishing a connection between a client and a server, which will be discussed in section X, and the task of the browser to transform the received data from the server into a readable ready-to-use website, which will be discussed in section X.
-%Always with performance in mind.
+To understand web performance metrics and the methods used to measure them, it is critical to have a basic understanding of the technical aspect of loading a web page into the browser. 
+This process involves establishing a connection between a client and a server, which is discussed in section X, and the browser's task of converting the data received from the server into a readable, ready-to-use website, which is discussed in section X.
 
 
 % [3 Entities: FE, BE, Network]
 
-It is possible to divide the website loading process into three entities.
-In his code talk 2016, Witt identifies three main areas of the website loading process: The Front End, the Back End, and the Network.  % cite 2016 Witt or just say this ??
-The Front End is everything the user sees on the screen, client, UI, browser, sends requests to a back end, etc.
-The Back End is the logic, server, also data base, handles requests and sends responses to a front end
-Network is what connects clients and servers, FE and BE, infrastructure element composed of routers, cables, wireless connections etc.
+It is helpful to divide the components of the website loading process into three units: The front-end, the back-end, and the network. % cite 2016 Witt
+The front-end takes care of everything the user sees on the screen, such as rendering the UI.
+The front-end consists of a client (browser) that requests data from the back-end.
+The back-end, usually a web server, processes the client's requests and sends the response back to the front-end.
+The data is transmitted over the network, which connects the front and back ends and consists of network components such as cables, routers, switches, and so on.
 
-The main steps can be divided into networking, that is, establishing a connection with DNS etc., backend processing, e.g. data base queries etc., and the rendering in the front end, as seen in image X.
-The last part of this process is when browser receives finally the HTML / Document. 
-How the browser transfers the HTML into an interactive website is part of the next section.
-
-
+Figure X shows the three entities and their tasks during the website loading process.
+What happens in the network phase is described in Section X.
+The front-end's task of receiving data and transforming it into a website is covered in Section X.
+How the back-end processes requests and creates responses is not part of this work.
 
 \begin{figure}[h!]
 \begin{center}
@@ -178,48 +176,30 @@ How the browser transfers the HTML into an interactive website is part of the ne
 %TODO change image: make it clean
 
 
-- BE is not discussed (server time, data base, etc.)
-- Section X is about Network
-- Section X is about Front end: how browser works, crp, 
-- How to optimise websites is not part of this thesis
-
-
-
-
-% [Performance]
-
-Focus and perspective is performance, like in overall thesis.
-Also when explaining the technical background, I will keep the aspect of performance in mind.
-
-Once I discussed the processes in the network and the front end, I will move on to the question of how to measure the performance of those processes, and which metrics are available to quantify the performance.
-
-
-%TODO should I talk about metrics already in this section ?
-
 
 % --------------------------------------------------------------------------------------------
 % --------------------------------------------------------------------------------------------
 
 
-\subsection{The Website Loading Process in the Network}
+\subsection{The Website Loading Process in the Network} % korrigiert
 
-[tbd]
+The network connects the front-end to the back-end.
+When a client requests resources from a server, data must be transferred over the network.
 
-The network is... Starting from hardware, ISP, routers, switches etc and the cables connecting them.
-But also communication protocols such as the Internet protocol suite.
-
-Regarding performance, latency and bandwidth come into mind, and we will see that latency has a bigger impact on performance than bandwidth in section X.
-
-After discussing this issue, i will continue by describing the process or navigation steps which happen once the user enters a URL into the browser, up until he sees pixels on his screen and can use the website.
+Latency and bandwidth are two important factors in network performance.
+How they affect performance is discussed in Section X.
+Protocols and other mechanisms for establishing a reliable and secure connection between the front-end and the back-end are described in Section X.
+They are described here because they are important to the general understanding of the website loading process and because web performance metrics measure how long they take, as described in Section X. 
 
 
 % --------------------------------------------------------------------------------------------
 
 
 \subsubsection{Latency and Bandwidth}
+\label{subsubsection:latency_bandwidth}
 
-There are two important attributes when discussing network performance: Latency and Bandwidth.
-The important thing to say here is that Latency is bottleneck for performance, and not bandwidth.
+There are two important factors when discussing network performance: latency and bandwidth.
+As examined in the following, latency is the bottleneck of network performance, and not bandwidth.
 
 
 % [Bandwidth]
@@ -297,11 +277,13 @@ Before i will discuss what happens in the browser once the website data arrived,
 
 \subsubsection{Network Navigation Steps}
 
+% Protocols to establish a reliable and secure connection between front-end and back-end
+
 [tbd]
 
 I will explain briefly the main navigation steps: It begins when the user is submitting a URL in the browser and ends when he received website data.
 
-"To start, it is important to recognize that every HTTP request is composed of a number of separate stages (Figure 10-3): DNS resolution, TCP connection handshake, TLS negotiation (if required), dispatch of the HTTP request, followed by content download." % cite Grigorik 2013
+"To start, it is important to recognize that every HTTP request is composed of a number of separate stages [...]: DNS resolution, TCP connection handshake, TLS negotiation (if required), dispatch of the HTTP request, followed by content download." % cite Grigorik 2013
 
 
 %TODO add this ?
@@ -1014,6 +996,7 @@ After discussing measurement methods, I can finally discuss the metrics we want 
 
 
 \subsection{Synthetic Monitoring}
+\label{subsection:synthetic_monitoring}
 
 
 \subsubsection{The "Synthetic" Aspect in Synthetic Monitoring}
@@ -1170,6 +1153,7 @@ RUM will be discussed next.
 
 
 \subsection{Real-User Monitoring}
+\label{subsection:RUM}
 
 
 %\subsubsection{Measurements with Real Users}
@@ -1436,6 +1420,7 @@ Those questions will be addressed in the next section.
 
 
 \section{Web Performance Metrics}
+\label{section:web_performance_metrics}
 
 [tbd]
 
@@ -2701,6 +2686,7 @@ The \textit{Core Web Vitals} are discussed below.
 
 
 \subsubsection{Core Web Vitals}
+\label{subsubsection:core_web_vitals}
 
 Within the set of Web Vitals, there is a group of metrics that matter the most:
 "Core Web Vitals are the subset of Web Vitals that apply to all web pages, should be measured by all site owners, and will be surfaced across all Google tools." % https://web.dev/vitals/
