@@ -669,8 +669,6 @@ Since inline scripts do not contain a src attribute because the source of the sc
 
 HTML, CSS and JS are now processed and the CRP proceeds to build the render tree as described below.
 
-
-
 % [More stuff]
 
 %TODO add this? preload scanner
@@ -702,15 +700,15 @@ HTML, CSS and JS are now processed and the CRP proceeds to build the render tree
 % ------------------------------------------------------------
 
 
-\paragraph{Building the Render Tree}
+\paragraph{Building the Render Tree} % korrigiert
 
 
-As already described above, HTML and CSS are both render blocking, as they prohibit the rendering of the page.
-Rendering can happen once the \textit{Render Tree} is available.
-The render tree is the combination of the DOM and CSSOM and captures all visible content with its styles which will be displayed on the screen.
-If an element has a CSS property such as \verb|display: none;| it will not occur in the render tree. % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
+As described above, both HTML and CSS are rendering blockers because they prevent the page from rendering.
+Rendering can only occur once the render tree is available.
+The render tree is the combination of DOM and CSSOM and captures all visible content with their styles to be displayed on the screen.
+If an element has a CSS property like \verb|display: none;|, it is not displayed in the render tree. % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
 
-The computed render tree is then used to layout the content to the page.
+The calculated render tree is then used for the layout of the content on the page.
 
 
 %TODO add this ? Check again when chapter about WPT metrics is done
@@ -719,18 +717,14 @@ The computed render tree is then used to layout the content to the page.
 %- Start Render Metric in WPT
 
 
-
-
 % ------------------------------------------------------------
 
+\paragraph{Layout} % korrigiert
 
-\paragraph{Layout}
+In the layout process, the position and size of the nodes are calculated from the render tree.
+New layout calculations or re-flows are triggered as soon as the screen area changes, e.g. by rotating the device or resizing the window, or when the DOM and the render tree change. % cite How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 
-
-In the layout process, the position and size of the nodes from the render tree are calculated.
-New layout calculations or reflows are triggered as soon as the screen area changes, e.g. by device rotation or window resizing, or on modifications of the DOM and render tree. % cite How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-
-Once the layout is resolved, the browser continues with painting pixels on the screen.
+Once the layout is resolved, the browser continues painting pixels on the screen.
 
 
 %TODO add viewport? The projection area is dependent and defined by the viewport
@@ -744,51 +738,53 @@ Once the layout is resolved, the browser continues with painting pixels on the s
 % ------------------------------------------------------------
 
 
-\paragraph{Paint}
+\paragraph{Paint} % korrigiert
 
 Finally, the browser can paint the content on the screen.
-If some content changes, browsers are optimized to only repaint areas on the screen affected.  %cite  https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
+When content changes, browsers are optimized to redraw only the affected areas on the screen. % cite  https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
 
 
+%TODO add This ?
 
-%TODO add metrics ?
+% metrics ?
 % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 %-> First Meaningful Paint
 %- Time to Interactive
 
-
-%TODO add above the fold?
+% above the fold?
 % https://gtmetrix.com/blog/how-to-eliminate-render-blocking-resources/
 %- Above the fold: “Above-the-Fold” refers to the area that the visitor normally sees on a website before scrolling down to see the rest of the content. 
 
-
-%TODO add performance question?
+% performance question?
 % https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
 %- Paint: It’s important to remember that some CSS properties can have a larger impact on the page weight than others (for example, a radial-gradient is much more complex to paint than a simple color).
 
 
 
-
 % ------------------------------------------------------------
 
 
-%TODO add this ?
-
+% add this ?
 % [Continuos Loop, 60 frames per second]
-
 % [Compositing ?]
 
 
 % ------------------------------------------------------------
 
-
+%TODO
 \subsection{Technical Background Conclusion}
+
+% metrics ??
 
 [tbd]
 
-Network, BE and FE.
-Network: Latency and Bandwidth, Navigation steps
-FE: CRP
+Can be divided into Network, BE and FE.
+We have seen that in the Network Latency and Bandwidth, and the different Navigation steps.
+In FE, CRP is important with all its steps.
+
+For many steps, aspects, etc. performance metrics exist.
+
+Before those metrics are discussed, we need to observe how we can measure them, bzw. performance.
 
 [Link to next section]
 Why was this section important for research question?
@@ -811,8 +807,6 @@ How is it connected to measurement methods and metrics?
 %- Optimize the critical rendering path!
 %-> styles at the top, scripts at the bottom best practice
 % - Different browsers implement different logic for when, and in which order, the individual resource requests are dispatched. As a result, the performance of the application will vary from browser to browser. 2013 Grigorik ch 10
-
-
 
 % 2014 Hogan https://designingforperformance.com/
 %- Optimizations of CRP:
@@ -874,7 +868,6 @@ How is it connected to measurement methods and metrics?
 	%-> Reduce critical resources
 	%-> Shorten CRP length
 	
-	
 % 2013 Grigorik
 %- Browser optimizations...
 
@@ -899,7 +892,6 @@ How is it connected to measurement methods and metrics?
 %- Network
 %- Browser
 
-
 % 2016 Witt code talks
 %- Possible Improvements:
 %- HTTP2
@@ -908,26 +900,20 @@ How is it connected to measurement methods and metrics?
 %- CDNs
 %- Single Page Apps
 
-
-%TODO add this ??
+% add this ??
 % [JavaScript Parsing]
 % https://medium.com/reloading/javascript-start-up-performance-69200f43b201
 
 
 
+% --------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------------------------------
 
-
-
-% ---------------------------------------------------------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------------------------------------------------------
-
-
-
+%TODO
 \section{Measurement Methods}
 
 
 [tbd]
-
 
 % [Introduction]
 
@@ -960,97 +946,89 @@ After discussing measurement methods, I can finally discuss the metrics we want 
 % ----------------------------------------------------------------------------------------------
 
 
-
 \subsection{Synthetic Monitoring}
 \label{subsection:synthetic_monitoring}
 
 
-\subsubsection{The "Synthetic" Aspect in Synthetic Monitoring}
+\subsubsection{The "Synthetic" Aspect in Synthetic Monitoring} % korrigiert
+
+As the name implies, synthetic monitoring is a measurement method performed in an artificial, laboratory-like, synthetic environment.
+Test agents simulate real users and are configured to run a browser, load the observed website, and collect performance data in the process.
+Synthetic monitoring does not take into account real user traffic. % cite 2015 cito
+
+Performance data can be collected via common performance APIs as described in section X.
+In addition, user-centric metrics such as Speed Index can be calculated through video recording and analysis (see Section X). % cite 2021 Wolle 
+
+Synthetic monitoring controls many possible configurations and variables of the test agent (client), such as location (geography), network conditions, device type, browser version, and so on. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+So the tester has control over many variables that affect performance, and can also change these variables to test how they affect performance.
+
+The controlled environment enables the collection of performance data for a specific configuration, such as the location of the test agent or browser version, which can help identify issues with specific user segments.
+For example, a test could check the performance of all users using Firefox on macOS in Germany. % cite 2009 Croll
+
+In addition to defining the technical configuration, such as browser version or network conditions, the tester can also define artificial user journeys to simulate real user behaviour. % cite 2021 Wolle
+
+A feature of the controlled environment provided by synthetic monitoring is that the measured data and test results are relatively consistent with little variability, providing a performance baseline for the site being monitored and facilitating performance optimization. % cite 2013 Meenan
 
 
-As the name already suggests, synthetic monitoring is a measurement method performed in an artificial, laboratory-like, synthetic environment.
-Test agents simulate real users and are configured to run a browser, load the web site under observation while capturing performance data.
-Synthetic monitoring does not take real user traffic into account. % cite 2015 cito
-
-Performance data can be captured using common performance APIs as described in section X.
-Additionally, through video recording and analysis,  user centric metrics such as Speed Index can be computed (see section X.) % cite 2021 Wolle 
-
-In synthetic monitoring, many possible configurations and variables of the test agent (client) are under control, such as the location (geography), network conditions, device type, browser version, and so on. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
-Hence, the tester has control over many variables that impact performance. %and can use this to test impact of variables...
-
-The controlled environment makes it possible to capture performance data for a specific set up of configurations, such as the test agents location or browser version, which may help to identify issues regarding certain user segments.  For example., a test could check the performance of all users using Firefox running on macOS in Germany. % cite 2009 Croll
-
-Apart from defining the technical configuration such as browser version or network condition, the tester can also define artificial user journeys to simulate real user behaviour. % cite 2021 Wolle
-
-A characteristic of the controlled environment is that measured data and test results are rather consistent with low variability and can therefore provide a performance base line for the web site under observation and facilitate performance tuning.% cite 2013 Meenan
+\paragraph{Synthetic Monitoring is not about Real Users} % korrigiert
 
 
-\paragraph{Synthetic Monitoring is not about Real Users}
+Synthetic monitoring does not collect data from real users, as traffic on the website is generated artificially.
+Real user behaviour is approximated by simulating users, e.g., by prescribing user paths.
+Measured performance data does not necessarily reflect the actual user experience, and the tester should not assume that "synthetic results are like real-user metrics". % cite 2016 Viscomi
 
-Synthetic monitoring does not capture data of real users as the web sites traffic is generated artificially.
-Real user behaviour is approximated through simulation of users by for example predefining user paths.
-The measured performance data does not necessarily reflect actual real user experience and the tester should not assume that "synthetic results are like real-user metrics". %cite 2016 Viscomi
-
-Capturing the wide variety and diversity of real-world users such as which pages they visits,, the general configuration of the users machine such as the CPU, GPU and memory performance, what data stores the browser cache and which browser version is being used, the screen size, the operating system, and the network connection to name a few, is difficult to represent in synthetic monitoring. % cite 2013 Meenan, 2013 Grigorik
-The selected test configuration in synthetic monitoring only reflects one special use case and can only approximate what a user with a similar set up may experience. % cite 2016 Viscomi
+Capturing the wide variety and diversity of real users, such as the pages visited, the user's general configuration such as CPU, GPU, and memory performance, what data is stored in the browser cache and what browser version is used, screen size, operating system, and network connection, to name a few, is difficult to represent in synthetic monitoring. % cite 2013 Meenan, 2013 Grigorik
+The selected test configuration in synthetic monitoring only reflects a specific use case and can only approximate what a user with a similar configuration might experience. % cite 2016 Viscomi
 In short, synthetic monitoring test results "are synthetic and therefore not representative for actual user data".  % cite 2021 Wolle
 
 
+\subsubsection{The "Monitoring" Aspect in Synthetic Monitoring} % korrigiert
 
-\subsubsection{The "Monitoring" Aspect in Synthetic Monitoring}
+Synthetic monitoring can be automated and used to monitor a system's performance in real time and provide up-to-date reports for the system administrator. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+Monitoring makes it possible to check site availability around the globe, % cite 2009 Croll
+detect performance problems before users notice them, % cite 2013 Grigorik https://hpbn.co/primer-on-web-performance/
+and is generally useful for continuous "health checks" of the running system.  % cite 2021 Wolle 
 
-
-Synthetic monitoring can be automated and used to monitor a systems performance in real time while generating up to date reports for the systems maintainer. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
-Monitoring enables to check the availability of the web site around the globe, %cite 2009 Croll
-to identify performance issues before real users are aware of them. % cite 2013 Grigorik https://hpbn.co/primer-on-web-performance/
-and is in general helpful for continuous "health checks" of the running system. %cite  2021 Wolle 
-
-As any web site can be tested synthetically, it is possible to compare performance data across multiple competitors. % cite 2009 Croll
+Since each website can be tested synthetically, it is possible to compare the performance data of several competitors. % cite 2009 Croll
 
 
 % [Tools]
 
-Many synthetic monitoring tools exists (For a list of tools, see for example 2016 Kaur or some online resources here).
-WebPageTest is one of them and will be discussed in section X.
+There are many synthetic monitoring tools (see, for example, Kaur 2016 for a list of tools). %TODO add online sources
+\textit{WebPageTest} is one of them and is discussed in section \ref{subsection:webpagetest}.
 
 
 % [Transition]
 
-Coming back to e-commerce context, as discussed in section X.  a online shops performance correlates with the revenue.
-Synthetic monitoring allows to capture performance metrics independent of real user behaviour.
+As described in Section X, the performance of an online store correlates with sales.
+Synthetic monitoring enables the collection of performance metrics independent of real user behaviour.
 Real user behaviour is not measured in synthetic monitoring.
-As only real users are capable of generating revenue, synthetic monitoring can not identify correlations between user satisfaction and performance (as described in section X.).%cite  2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+Since only real users are able to generate revenue, synthetic monitoring cannot detect correlations between user satisfaction (and revenue) and performance (as described in Section X).% cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 
-In order to do this, RUM is needed.
-Real-User Monitoring (RUM) enables to capture data of each individual real user .
-RUM will be discussed next.
-
+Understanding the correlation between user satisfaction and website performance requires Real-User Monitoring (RUM).
+RUM enables the collection of data from each real user.
+RUM will be covered in section \ref{subsection:RUM}.
 
 
 %TODO cut out google lighthouse completely ?
 %- Google Lighthouse
 
-
-%TODO add waterfall ?
+% add waterfall ?
 % 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 %- waterfall diagram contains timing information on when the individual resources were requested, from which domain and over what kind of connection each of them was served, and how long transmission took
 
-
 % 2016 Viscomi
 %- synthetic tools are deliberately designed to focus on the performance of a web page under strict conditions that are otherwise highly volatile in real-user performance
-
 
 % 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 %- Modern tooling also tells you when the browser was actually doing useful work (e.g. rendering) and when it was idle and waiting for loads to finish
 
 
-
-
-
 % -------------------------------
 
-
+%TODO
 \subsection{WebPageTest}
+\label{subsection:webpagetest}
 
 
 % 2016 Viscomi
@@ -1106,10 +1084,6 @@ RUM will be discussed next.
 
 
 
-
-
-
-
 % [Metrics] discussed below
 
 
@@ -1117,46 +1091,40 @@ RUM will be discussed next.
 % ----------------------------------------------------------------------------------------------
 
 
-
-\subsection{Real-User Monitoring}
+\subsection{Real-User Monitoring} % korrigiert
 \label{subsection:RUM}
 
-
-%\subsubsection{Measurements with Real Users}
-
-As the name suggests, Real-User Monitoring (RUM) is about collecting and measuring data from real users visiting the web site.
-As opposed to synthetic monitoring, where web site traffic is generated artificially and performance experience from real users is only approximated, RUM data relies on real user traffic and captures data directly from each users browser. 
-RUM measures the performance as experienced by the users. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+As the name suggests, Real-User Monitoring (RUM) is about collecting and measuring data from real users who visit the website.
+Unlike synthetic monitoring, which artificially generates website traffic and only approximates the performance experience of real users, RUM data relies on real user traffic and captures data directly from each user's browser. 
+RUM measures performance as experienced by users. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
 
 
-
-\subsubsection{The Page Tagging Technique in RUM}
+\subsubsection{The Page Tagging Technique in RUM} % korrigiert
 
 % [Page Tagging]
 
-As already described in section X. Page Tagging is a technique to instrument the users browser in order to collect data and report it back to an analytics server.
-RUM is based on page tagging, in terms of that it relies on a JS code snippet (tracking or code) which will be loaded into the users browser.
-Once this JS code is loaded and executed in the browser, it collects data and sends it back to an analytics service.
-If the user blocks JS, or the script can not be downloaded due to other reasons,  RUM will not work.
-Once the data arrives at an analytics service, is has to be stored and an interface for the analyst has to be provided in order that he can query the data and get insights, for example by providing a dashboard. %cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+As described in Section X., page tagging is a technique that instruments the user's browser to collect data and report it to an analytics server.
+RUM is based on page tagging, i.e., a JS code snippet ("tracking code") that is loaded into the user's browser.
+Once this tracking code is loaded and executed in the browser, it collects data and sends it back to an analytics service.
+If the user blocks JS or the script cannot be downloaded for other reasons, RUM will not work.
+Once the data arrives at an analytics service, it must be stored and an interface must be provided for the analyst to query the data and gain insights, such as by providing a dashboard.
+% cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 
-As RUM relies on the JS code, the very first opportunity to measure data is when this JS code has been downloaded and executed.
-Anything what happens before this step is not visible for the tracking script and therefore the analyst.
-Meenan states that approximately 20 \% of the loading process lies outside of the RUM measurement scope and "getting a reliable start time for measurements from the real world has been the biggest barrier to using RUM".% cite 2013 Meenan
+Since RUM relies on the JS code, the very first opportunity to measure data is when this JS code has been downloaded and executed.
+Anything that happens before that step is invisible to the tracking script, and therefore invisible to the analyst.
+Meenan notes that about 20\% of the loading process is outside the RUM measurement range and that "getting a reliable start time for measurements from the real world has been the biggest barrier to using RUM". % cite 2013 Meenan
 
-Another facet of RUM is that ideally the measuring of data has as little as possible impact on the web sites rendering process and that network capacity should not be occupied by RUM scripts and block resources of the CRP (see section X.) % cite  2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-If RUM, as a page tagging technique, is slowing down the web site under observation, is one research question of this thesis.
-The evaluation of the controlled experiment tackling this questions states that RUM...., as discussed in great detail in section X. %TODO add conclusion of evaluation here
-
+Another facet of RUM is that the measurement of data should ideally have as little impact as possible on the site rendering process, and network capacity should not be taken up by RUM scripts and block resources of the CRP. % cite  2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+One of the research questions of this paper is whether RUM, as a page marking technique, slows down the observed website.
+The evaluation of the controlled experiment to answer this question shows that RUM...., as described in section X. %TODO add conclusion of evaluation here
 
 % [Diversity of Users and Data]
 
-RUM is independent of the users set up or environment and collects data for all active users:
-Regardless of the device, the browser,the network condition or the geographical location of the user, as long as the measurement script is downloaded into the users browser, RUM collects data.% cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
-Hence, RUM data represents each individual user experience. % cite 2016 Viscomi
+RUM is independent of the user's setup or environment and collects data for all active users:
+Regardless of the user's device, browser, network conditions, or geographic location, RUM collects data as long as the measurement script is loaded into the user's browser.% cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+So the RUM data represents each individual user experience. % cite 2016 Viscomi
 
-Through the diversity of users and the unique environment of each user,  RUM data tends to be more diverse and heterogeneous than data collected by synthetic monitoring. % cite 2013 Meenan
-
+Due to the diversity of users and the unique environment of each user, RUM data tends to be more diverse and heterogeneous than data collected through synthetic monitoring. % cite 2013 Meenan
 
 
 \subsubsection{RUM Measures Behaviour of Real Users}
@@ -1215,8 +1183,6 @@ The data is accessible through the Chrome User Experience Report (CrUX) and will
 % [Business Data]
 
 %conversion rates etc.
-
-
 
 
 % ----------------------------------------------------------------------------------------------
@@ -1380,8 +1346,8 @@ Those questions will be addressed in the next section.
 
 
 
-% --------------------------------------------------------------------------------------------------------------------------------------------
-% --------------------------------------------------------------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------------------
 
 
 
