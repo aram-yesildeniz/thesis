@@ -64,6 +64,7 @@
 
 
 \section{Introduction} % korrigiert
+\label{section:web_performance_introduction}
 
 
 % [Introduction]
@@ -146,25 +147,22 @@ Two main methods for measuring the performance of a website exist:
 \section{The Website Loading Process} % korrigiert
 \label{section:website_loading_process}
 
-%TODO add Always with performance in mind ??
 
 % [Introduction]
 
 To understand web performance metrics and the methods used to measure them, it is critical to have a basic understanding of the technical aspect of loading a web page into the browser. 
-This process involves establishing a connection between a client and a server, which is discussed in section X, and the browser's task of converting the data received from the server into a readable, ready-to-use website, which is discussed in section X.
-
+In general, this process involves establishing a connection between a client and a server, and the browser's task of converting the data received from the server into a readable, ready-to-use website.
 
 % [3 Entities: FE, BE, Network]
 
 It is helpful to divide the components of the website loading process into three units: The front-end, the back-end, and the network. % cite 2016 Witt
-The front-end takes care of everything the user sees on the screen, such as rendering the UI.
-The front-end consists of a client (browser) that requests data from the back-end.
+The front-end takes care of everything the user sees on the screen, such as rendering the UI, and consists of a client (browser) that requests data from the back-end.
 The back-end, usually a web server, processes the client's requests and sends the response back to the front-end.
-The data is transmitted over the network, which connects the front and back ends and consists of network components such as cables, routers, switches, and so on.
+The data is transmitted over the network, which connects the front and back ends and consists of network components such as cables, routers, switches, network protocols, and so on.
 
-Figure X shows the three entities and their tasks during the website loading process.
-What happens in the network phase is described in Section X.
-The front-end's task of receiving data and transforming it into a website is covered in Section X.
+Figure \ref{img:timing_overview} shows the three entities and their tasks during the website loading process.
+What happens in the network phase is described in section \ref{subsection:network_process}.
+The front-end's task of receiving data and transforming it into a website is covered in section \ref{subsection:crp}.
 How the back-end processes requests and creates responses is not part of this work.
 
 \begin{figure}[h!]
@@ -183,14 +181,15 @@ How the back-end processes requests and creates responses is not part of this wo
 
 
 \subsection{The Website Loading Process in the Network} % korrigiert
+\label{subsection:network_process}
 
 The network connects the front-end to the back-end.
 When a client requests resources from a server, data must be transferred over the network.
 
 Latency and bandwidth are two important factors in network performance.
-How they affect performance is discussed in Section X.
-Protocols and other mechanisms for establishing a reliable and secure connection between the front-end and the back-end are described in Section X.
-They are described here because they are important to the general understanding of the website loading process and because web performance metrics measure how long they take, as described in Section X. 
+How they affect performance is discussed in section \ref{subsubsection:latency_bandwidth}.
+The procedure and other mechanisms for establishing a reliable and secure connection between the front-end and the back-end are described in section \ref{subsubsection:network_navigation_steps}.
+Web performance metrics measure, among other things, how long certain steps take during connection establishment, as described in section \ref{subsection:navigation_timing_metrics}.
 
 
 % --------------------------------------------------------------------------------------------
@@ -277,6 +276,7 @@ Before i will discuss what happens in the browser once the website data arrived,
 
 
 \subsubsection{Network Navigation Steps}
+\label{subsubsection:network_navigation_steps}
 
 % Protocols to establish a reliable and secure connection between front-end and back-end
 
@@ -390,6 +390,7 @@ How this exactly happens, is explained in the next section.
 
 
 \subsection{The Website Loading Process in the Frontend: Critical Rendering Path}
+\label{subsection:crp}
 
 This section explains what happens after the first bytes of the web sites arrived in the browser.
 The following processes are typically subsumed under the term \textit{Critical Rendering Path} (CRP).
@@ -1519,6 +1520,7 @@ As described in section X,  the idea of page weight is used to construct a test 
 
 
 \subsection{Navigation Timing Metrics}
+\label{subsection:navigation_timing_metrics}
 
 Navigation timing metrics depict elapsed time within the website loading process such as navigation and CRP (cf.  section X).
 They are calculated and derived from a set of standardized Web APIs.
