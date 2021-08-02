@@ -195,71 +195,70 @@ Web performance metrics measure, among other things, how long certain steps take
 % --------------------------------------------------------------------------------------------
 
 
-\subsubsection{Latency and Bandwidth}
+\subsubsection{Latency and Bandwidth} % korrigiert
 \label{subsubsection:latency_bandwidth}
 
 There are two important factors when discussing network performance: latency and bandwidth.
-As examined in the following, latency is the bottleneck of network performance, and not bandwidth.
+As will be examined below, latency is the bottleneck of network performance, not bandwidth.
 
 
 % [Bandwidth]
 
 Bandwidth is the "maximum throughput of a logical or physical communication path". %cite 2013 Grigorik
-In other words, bandwidth describes the amount of data which can be sent in parallel from one node in a network to another. 
-Physical communication paths are most likely cables such as metal wires or fiber-optic cables, where fiber-optic cables have less signal loss, and lower lifetime maintenance costs.
-With methods such as wavelength-division multiplexing (WDM), it is possible to transmit up to 70 Tbit/s over a fiber-optic connection.  %cite 2013 Grigorik
-This high technology stuff is only used in the backbone infrastructure, e.g. for connecting Europe with America.
-For the end user, bandwidth is much lower, and the average was in late 2015 just 5.1 Mbps %cite 2013 Grigorik
-A high bandwidth is useful for bulk or large data transfer such as streaming of video or audio.
-But for loading a website,or any browser activity that depends on many requests that fetch data from many different locations around the globe, the performance bottleneck is latency. % cite 2013 Grigorik
+In other words, bandwidth describes the amount of data that can be sent in parallel from one node in a network to another. 
+Physical communication paths are usually cables such as metal wires or fiber optic cables, with fiber optic cables having less signal loss and lower lifetime maintenance costs.
+Using methods such as wavelength division multiplexing (WDM), it is possible to transmit up to 70 Tbit/s over a fiber optic link. %cite 2013 Grigorik
+This high technology is only used in the backbone infrastructure, e.g. for the connection between Europe and America.
+For the end user, the bandwidth is much lower, and the average was only 5.1 Mbit/s at the end of 2015. % cite 2013 Grigorik
+High bandwidth is useful for bulk or large-scale data transfers like streaming video or audio.
+But for loading a website or any other browser activity that depends on many requests fetching data from many different locations around the globe, the performance bottleneck is latency. % cite 2013 Grigorik
 
 
 % [Latency]
 
 Latency is "the time from the source sending a packet to the destination receiving it".  % cite 2013 Grigorik
-Latency is measured in seconds and can be the time spent for one-way, or more common, how long it takes for the transmitted data package for the round-trip time (RTT), from source to destination and back.
+Latency is measured in seconds and can be the time it takes to travel a single distance or, more commonly, how long it takes the transmitted data packet to round-trip time (RTT) from source to destination and back.
 In other words, latency "describes the amount of delay on a network or Internet connection". % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-For the very first request when establishing a connection, latency is longer due to protocols such as DNS lookup, TCP and TLS handshakes.
-Those will be discussed in section X. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+For the very first request when establishing a connection, the latency is longer due to protocols such as DNS lookups, TCP and TLS handshakes.
+These are discussed in section \ref{subsubsection:network_navigation_steps}. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
 
 
 % [Experiment]
 
-To get an idea about how the two aspects, bandwidth and latency, impact web performance,  Mike Belshe launched a study. % cite https://docs.google.com/a/chromium.org/viewer?a=v&pid=sites&srcid=Y2hyb21pdW0ub3JnfGRldnxneDoxMzcyOWI1N2I4YzI3NzE2
-Once setup has a fixed latency and bandwidth is variable, and vice versa.
-He and compared the performance of the two experiments using the Page Load Time metric. (cf. X for this metric)
+To get an idea of how the two aspects of bandwidth and latency affect web performance, Mike Belshe conducted a study. % cite https://docs.google.com/a/chromium.org/viewer?a=v&pid=sites&srcid=Y2hyb21pdW0ub3JnfGRldnxneDoxMzcyOWI1N2I4YzI3NzE2
+There are two configurations: One has fixed latency and variable bandwidth, and the other is configured the other way around.
+He then compared the performance of the two configurations using the Page Load Time metric (figure \ref{img:latency}).
 
 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{latency.png}
-\caption{Latency vs Bandwidth}
+\caption{Latency vs Bandwidth, taken from X.} % Grigorik
 \label{img:latency}
 \end{center}
 \end{figure}
 
 
-We can see that the impact of bandwidth is trivial: if the available bandwidth is doubled, e.g. from 5 to 10 Mbps, there is no change in performance load time.
-For Latency on the other hand, the picture is different: If the latency can be decreased by half, e.g. from 120 ms to 60 ms, the page load time also sinkt um die hälfte.
-Or as Belshe states it, "[reducing] cross-atlantic RTTs from 150ms to 100ms [...] would have a larger effect on the speed of the internet than increasing a user's bandwidth from 3.9Mbps to 10Mbps or even 1Gbps." % cite https://docs.google.com/a/chromium.org/viewer?a=v&pid=sites&srcid=Y2hyb21pdW0ub3JnfGRldnxneDoxMzcyOWI1N2I4YzI3NzE2
+We see that the influence of the bandwidth is trivial: if the available bandwidth is doubled, e.g. from 5 to 10 Mbit/s, there is no change in the loading time.
+For latency, on the other hand, the picture is different: If the latency can be reduced by half, e.g. from 120 ms to 60 ms, the page load time also drops by half.
+Or as Belshe puts it, "[reducing] cross-atlantic RTTs from 150ms to 100ms [...] would have a larger effect on the speed of the internet than increasing a user's bandwidth from 3.9Mbps to 10Mbps or even 1Gbps." % cite https://docs.google.com/a/chromium.org/viewer?a=v&pid=sites&srcid=Y2hyb21pdW0ub3JnfGRldnxneDoxMzcyOWI1N2I4YzI3NzE2
 
-This observations can be explained with the many short, small connections and requests are made when browsing websites and the contrary underlying structure of the communication protocols, which are "optimized for long-lived connections and bulk data transfers. " %cite 2013 Grigorik ch 10
-But just simply decreasing the latency is not straightforward: The speed of data transfer is already at a 2/3 of light, but the physical constraint is the limiting factor, e.g. there is a minimum distance between London and New York which can not be further "optimized". % cite 2013 Grigorik Ch 1
+These observations can be explained by the many short, small connections and requests made while browsing websites and the contrary basic structure of the communication protocols, which are "optimized for long-lived connections and bulk data transfers." % cite 2013 Grigorik ch 10
+But simply reducing latency is not easy: the speed of data transmission is already 2/3 the speed of light, but the physical conditions are the limiting factor, e.g. there is a minimum distance between London and New York that cannot be "optimized" further. % cite 2013 Grigorik Ch 1
+%TODO add more here? Why is this here?
 
 
 % [Mobile]
 
-Another aspect of latency is that for wireless connections and therefore mobile devices, latency is even higher, "making networking optimization a critical priority for the mobile web." % cite 2013 Grigork Ch 1
-This is due to the infrastructure of mobile nets, latency is high for mobile users. cf.  Why are mobile latencies so high? in Grigorik % cite https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
+Another aspect of latency is that latency is even higher for wireless connections and thus for mobile devices, "making network optimization a critical priority for the mobile web." % cite 2013 Grigork Ch 1
+Latency is high for mobile users due to mobile network infrastructure (see also "Why are mobile latencies so high?" in Grigorik). % cite https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
 
 
 % [Transition]
 
-As latency is a important factor, what happens on the front end is still important.
-And again for this thesis metrics measuring performance in the front end are the focus.
-
-Before i will discuss what happens in the browser once the website data arrived, i will briefly describe the preceding steps of establishing a connection between the browser (client) and the server, which can be considered to be still a part of the network.
-
+Although latency is an important factor, what happens on the front end is still important.
+At the same time, this thesis focuses on metrics to measure performance on the front end.
+Before going into what happens in the browser once the website data arrives, I will briefly describe the preceding steps of establishing a connection between the browser (client) and the server, which can still be considered part of the network.
 
 
 
@@ -284,7 +283,7 @@ Before i will discuss what happens in the browser once the website data arrived,
 
 I will explain briefly the main navigation steps: It begins when the user is submitting a URL in the browser and ends when he received website data.
 
-"To start, it is important to recognize that every HTTP request is composed of a number of separate stages [...]: DNS resolution, TCP connection handshake, TLS negotiation (if required), dispatch of the HTTP request, followed by content download." % cite Grigorik 2013
+% "To start, it is important to recognize that every HTTP request is composed of a number of separate stages [...]: DNS resolution, TCP connection handshake, TLS negotiation (if required), dispatch of the HTTP request, followed by content download." % cite Grigorik 2013
 
 
 %TODO add this ?
@@ -298,36 +297,35 @@ I will explain briefly the main navigation steps: It begins when the user is sub
 % ----------------------------------
 
 
-\paragraph{DNS Lookup}
+\paragraph{DNS Lookup} % korrigiert
 
-When the requested resource can not be loaded from the browsers cache, the first step to establish a connection is a DNS Lookup (or DNS Resolution).
+If the requested resource cannot be loaded from the browser's cache, the first step in establishing a connection is a DNS (Domain Name System) lookup (or DNS resolution).
 
-This step is about translate URL to IP address.
-Must be done for each unknown URL, e.g. when linked images within a website are from different server, for each unique URL DNS Lookup has to be done.
-The mapping of URL to IP can be cached by browser, which makes repeated views faster. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+This step is about translating the URL into an IP address.
+It must be performed for each unknown URL, for example, if linked images on a website come from different servers, a DNS lookup must be performed for each individual URL.
+The URL to IP mapping can be cached by the browser, which makes repeated calls faster. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 
-Avg. time is 20 and 120 ms % https://www.keycdn.com/support/reduce-dns-lookups
+DNS lookups take between 20 and 120 milliseconds on average. % https://www.keycdn.com/support/reduce-dns-lookups
 
-%Metric?
-%Can be considered a performance metric, see section X.
+% Metric?
+% Can be considered a performance metric, see section X.
 
 
 % ----------------------------------
 
 
-\paragraph{TCP Handshake}
+\paragraph{TCP Handshake} % korrigiert
 
-Once a connection between a client and a server is established, the TCP 3-way-Handshake comes into play.
+The goal of TCP (Transmission Control Protocol) is to establish a reliable connection in an unreliable network.
+TCP  "guarantees that all bytes sent will be identical with bytes received and that they will arrive in the same order to the client." % cite 2013 Grigorik
+The TCP 3-way handshake is a technique for establishing a reliable connection.
+In terms of performance, the handshake adds two more roundtrips, which, as we have seen, is bad for performance because of latency.
 
-The goal of TCP is to establish a reliable connection within an unreliable network.
-TCP  "guaranteed that all bytes sent will be identical with bytes received and that they will arrive in the same order to the client. " %cite 2013 Grigorik
-Regarding performance, the handshake adds two more round trips, which is bad for performance as we have seen because of latency.
+There are many algorithms and techniques for optimal data transmission and avoiding congestion, e.g. Slow-Start.
+Slow-Start is an algorithm that determines the maximum usable bandwidth by gradually increasing the amount of data sent.
+Slow-Start prevents the full capacity of the network from being used from the start, which in turn leads to more round trips and latency. % cite 2013 Grigorik
 
-Many algorithms and techniques to get optimal data transfer and also avoid congestion are existing, such as Slow-Start.
-Slow-Start is an algorithm that determines the maximum bandwidth that can be used by gradually increasing the amount of data sent.
-Slow start prevents that the full capacity of the network is being used from the beginning, which in performance terms adds again more round trips and latency. %cite 2013 Grigorik
-
-For a detailed discussion cf "Building Blocks of TCP" in 2013 Grigorik % cite https://hpbn.co/building-blocks-of-tcp/
+For a detailed discussion of TCP, see "Building Blocks of TCP" in 2013 Grigorik. % cite https://hpbn.co/building-blocks-of-tcp/
 
 %TODO once i know which metric add it here ?
 %A performance metric reflecting the time spent for establishing a TCP connection is X, see section X.
@@ -338,15 +336,14 @@ For a detailed discussion cf "Building Blocks of TCP" in 2013 Grigorik % cite ht
 % ----------------------------------
 
 
-\paragraph{TLS Negotiation}
+\paragraph{TLS Negotiation} % korrigiert
 
-TLS is another protocol which has the goal to establish a secure connection in terms of data encryption.
-Data transmitted over the network has to be encrypted so that aussenstehende can not read or manipulate the data.
-For encryption,  a cipher to be used needs to be established, which will be shared between client and server during the TLS Negotiation. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+TLS (Transport Layer Security) is another protocol whose goal is to establish a secure connection in the sense of data encryption.
+Data that is transmitted over the network must be encrypted so that outsiders cannot read or manipulate the data.
+For encryption, a cipher must be defined that is exchanged between client and server during TLS negotiation. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 
-TLS again adds more round trips which is bad for performance.
-
-for a detailed discussion see Transport Layer Security (TLS) in 2013 Grigorik % https://hpbn.co/transport-layer-security-tls/
+From a performance perspective, TLS in turn means more roundtrips, which has a negative impact on performance.
+For a detailed discussion of TLS, see "Transport Layer Security (TLS)" in 2013 Grigorik. % https://hpbn.co/transport-layer-security-tls/
 
 %TODO once i know which metric add it here?
 %A performance metric reflecting the time spent for a TLS negotiating is blabla in section X.
@@ -355,31 +352,30 @@ for a detailed discussion see Transport Layer Security (TLS) in 2013 Grigorik % 
 % ----------------------------------
 
 
-\paragraph{HTTP Request and Response}
+\paragraph{HTTP Request and Response} % korrigiert
 
-Now that a secure connection is established, the client fetches the first resources via HTTP GET request.
-Most often, the server will respond by sending back the index.html file, which then can be used by the browser to build the website. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+Now that a secure connection has been established, the client fetches the first resources via HTTP GET request.
+In most cases, the server responds by returning the index.html file, which can then be used by the browser to build the website. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 
-The time when this first response containing the first byte for building the web site is reflected in the metric TTFB which is discussed in section X.
+The time taken by this first response, which contains the first byte to build the site, is reflected in the metric TTFB, which is explained in section X.
 
 
 % [Connection vs Request]
 
-Usually, many more resources are requested by the browser to complete the build of the web site.
-As of today, the median value is about 70 requests per web site. % footnote https://httparchive.org/reports/state-of-the-web#reqTotal
+Normally, many more resources are requested from the browser to complete the construction of the website.
+Currently, the average is about 70 requests per website (see section X.). % footnote https://httparchive.org/reports/state-of-the-web#reqTotal
 
-A request is not the same as a connection.
-Once the connection is established via the above described procedures such as DNS lookup, TCP and TLS handshakes, multiple requests can be transmitted over the same connection.
-Usually, the number of requests is much higher than the number of connections to load a website, as the browser persist connections, keep them open for multiple requests.
-Median connections for a web site today is about 13. % footnoe https://httparchive.org/reports/state-of-the-web#tcp
-Modern browsers like Chrome enable up to six open connections in parallel. % cite 2014 Hogan
-
+A request is not the same as a connection:
+Once the connection is established using the methods described above, such as DNS lookup, TCP, and TLS handshakes, multiple requests can be transmitted over the same connection.
+Typically, the number of requests is much higher than the number of connections to load a website because the browser maintains connections to keep them open for multiple requests.
+The average number of connections for a website today is about 13 (see section X.). % footnoe https://httparchive.org/reports/state-of-the-web#tcp
+Modern browsers like Chrome allow up to six connections open in parallel. % cite 2014 Hogan
 
 
 % [Transition to CRP]
 
-At this point, the browser has received the first data about the web site and he can start with rendering the page.
-How this exactly happens, is explained in the next section.
+At this point, the browser has received the first data about the website and it can start rendering the page.
+Exactly how this happens is explained in the next section.
 
 
 
