@@ -2220,27 +2220,26 @@ They are discussed in the next section.
 % -----------------------------------------------------------------------
 % -----------------------------------------------------------------------
 
-\subsection{User-Centric Performance Metrics}
+\subsection{User-Centric Performance Metrics} % korrigiert
 \label{subsection:user_centric_performance_metrics}
 
 % [Introduction]
 
-Navigation Timings as described above are directly measured through a variety of Web APIs and are accessible within the browser.
-Metrics concerned with user-perceived performance focus mainly on visual changes of the website and can thereby not be captured directly through Web APIs.
+The Navigation Timings described in Section \ref{subsection:navigation_timing_metrics} are measured directly via a set of Web APIs and are accessible via the browser.
+Metrics that deal with user-perceived performance focus mainly on visual changes to the website and therefore cannot be captured directly via Web APIs.
 
-Perceived performance tackles the question how fast a website "feels" to a user.
-As already described in section X. different users feel performance differently, depending on factors such as gender, region or stress level.
-The perceived performance can diverge from actual loading times, and user-centric performance metrics are usually more difficult to measure than navigation timings, as visual or video recording analysis is necessary to calculate the metrics. % cite https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance
+Perceived performance deals with how fast a website "feels" to a user.
+As described earlier in Section X., different users perceive performance differently depending on factors such as gender, region, or stress level.
+Perceived performance can differ from actual load times, and user-centric performance metrics are typically more difficult to measure than navigation times because visual analysis or video recordings are required to calculate the metrics. % cite https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance
 
-I will describe user-centric performance metrics which are established among performance monitoring solution vendors.
-With Web Vitals, Google defines their own set of user-centric metrics and moves websites performance into focus.
-They will be discussed below.
-
-
+In Section \ref{subsubsection:visual_metrics}, I describe user-centric performance metrics that have become mainstream among performance monitoring vendors.
+With Web Vitals, Google defines its own set of user-centric metrics and focuses on website performance.
+They are discussed in Section \ref{subsubsection:web_vitals}.
 
 % ------------------------
 
 \subsubsection{Visual Metrics} % korrigiert
+\label{subsubsection:visual_metrics}
 
 The term "Visual Metrics" is not defined by any specification or web technology association and is used here to subsume metrics that rely on the visual part of the website.
 Visual metrics are based on the video recording of the website loading process and use this recording for further analysis.
@@ -2252,86 +2251,76 @@ The three metrics described below appear frequently in synthetic monitoring tool
 
 % ------------------------
 
+\paragraph{Start Render, Time to First Paint (TTFP)} % korrigiert
 
+The Start Render time is the time when the browser made the first pixel on the screen visible to the user.
+The Start Render time is calculated using video analytics instead of using browser APIs such as Paint Timing.
+% cite https://blog.dareboost.com/en/2019/09/first-contentful-paint-fcp/
 
-\paragraph{Start Render, Time to First Paint (TTFP)}
-
-The Start Render time is the time when the browser rendered the first pixel on the screen visible for the user.
-Start Render is calculated through video analysis instead of levering browser APIs such as Paint Timing.
-% cite  https://blog.dareboost.com/en/2019/09/first-contentful-paint-fcp/
-
-Start Render is defined and exposed by a variety of synthetic monitoring solutions such as speedcurve or WebPageTest.
+Start Render is defined and exposed by a number of synthetic monitoring solutions such as speedcurve or WebPageTest.
 % cite https://support.speedcurve.com/en/articles/74078-what-do-the-different-speedcurve-metrics-represent
 % cite https://docs.webpagetest.org/metrics/page-metrics/
 
-Netravali et al. use the term Time to First Paint (TTFP) for the very same metric, % cite 2018 Netravali
-whereas for Enghardt et al. , TTFP is the same as FP, which is measured within the browser and not through video analysis. % 2019 Enghardt
+Netravali et al. use the term Time to First Paint (TTFP) for the same metric, % cite 2018 Netravali
+while for Enghardt et al. TTFP is the same as FP measured within the browser and not by video analysis. % 2019 Enghardt
 
-This example reveals that the definitions of metrics is not clear and different authors use different definitions.
-
-
-
-% ------------------------
-
-
-\paragraph{Above the Fold Time (AFT)}
-
-The above-the-fold is the area of the website which is visible to the user without scrolling.
-The AFT is a non-standardized metric that measures how long it takes the browser to render all pixel within that above the fold area. % 2019 Enghardt
-AFT measurement needs to take into consideration visual dynamic areas of the website which are expected to change pixels frequently and static areas where pixel and color changes are not likely to happen. % 2018 Netravali
-
-AFT is measurable through synthetic monitoring and requires video recording and analysis. % cite 2013 Meenan
-
+This example shows that the definitions of metrics are not clear and different authors use different definitions.
 
 
 % ------------------------
 
+\paragraph{Above the Fold Time (AFT)} % korrigiert
 
-\paragraph{Speed Index (SI)}
+The above-the-fold area is the area of the website that is visible to the user without scrolling.
+Above the Fold Time (AFT) is a non-standard metric that measures how long it takes the browser to render all the pixels in this above-the-fold area. % 2019 Enghardt
+AFT measurement must take into account both visually dynamic areas of the website, where frequent pixel changes are expected, and static areas, where pixel and color changes are not expected. % 2018 Netravali
 
-The Speed Index (SI) is a metric invented by the founders of WebPageTest and aims to express user experience in a single number. % cite 2013 Meenan
+AFT is measurable by synthetic monitoring and requires video recording and analysis. % cite 2013 Meenan
+
+% ------------------------
+
+\paragraph{Speed Index (SI)} % korrigiert
+
+The Speed Index (SI) is a metric developed by the founders of WebPageTest that aims to express user experience in a single number. % cite 2013 Meenan
 
 Like the AFT, the SI reflects the visual completeness of the website.
-Where as AFT only measures the single point in time when the viewport is fully rendered, SI also takes the visual loading progress of the website into consideration and reflects "the average time at which visible parts of the page are displayed". % % 2018 Netravali  https://docs.webpagetest.org/metrics/speedindex/
-SI is not directly measured, but calculated, and expressed in milliseconds. % https://gtmetrix.com/speed-index.html
+While the AFT only measures the time at which the viewport is fully rendered, the SI also takes into account the visual loading progress of the website and reflects "the average time at which visible parts of the page are displayed". % 2018 Netravali  and https://docs.webpagetest.org/metrics/speedindex/
+SI is not measured directly, but calculated and expressed in milliseconds. % https://gtmetrix.com/speed-index.html
 
 Like AFT, SI is reliable for static websites and unreliable for websites with dynamic and changing visual content. % https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-The SI calculation details are covered in % https://docs.webpagetest.org/metrics/speedindex/
+The details of the SI calculation are covered in % https://docs.webpagetest.org/metrics/speedindex/
 
 % 2021 Meenan vimeo 38:50
-
 % Measuring Real User Performance in the Browser
 %- How much of the screen is visually available at different points of time
 %- At what point of time is the page complete
 
-
-
 % ------------------------
 
-
-\subsubsection{Web Vitals}
-
+\subsubsection{Web Vitals} % korrigiert
+\label{subsubsection:web_vitals}
 
 % [Introduction]
 
-With the Web Vitals initiative, Google joins the web performance metrics discussion.
+With the Web Vitals initiative, Google is participating in the discussion about web performance metrics.
 Their goal is to "provide unified guidance for quality signals that are essential to delivering a great user experience on the web." % https://web.dev/vitals/
-The unified guidance consists of the Web Vitals, a set of performance metrics, focussing on how the users experience and perceive performance, contrary to the mere navigation timings as discussed in section X.
-With performance being a factor in Google search rankings, Web Vitals become automatically important for website operators. % https://developers.google.com/web/updates/2018/07/search-ads-speed
+Unified guidance consists of Web Vitals, a set of performance metrics that focus on how users experience and perceive performance, as opposed to just navigation timings, as discussed in Section \ref{subsection:navigation_timing_metrics}.
+Since performance is a factor in Google search rankings, Web Vitals automatically become important to website owners. % https://developers.google.com/web/updates/2018/07/search-ads-speed
 
 % [Evolving]
 
 The set and definitions of Web Vitals metrics are not set in stone, but are constantly evolving.
 The definitions, calculations, recommended thresholds, or even the metrics themselves may change over time, always adapted to the rapidly evolving technologies of the WWW and advances in web performance. % https://web.dev/vitals/
-While Web Vitals are currently primarily about web performance, other aspects of usability, such as security, privacy, or accessibility, will be included in the future. % https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
+While Web Vitals is currently primarily about web performance, other aspects of usability, such as security, privacy, or accessibility, will be included in the future. % https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers
 
 % [Definition and Key Questions]
 
-Web Vitals and their definitions are derived from a set of key questions (table X.).
-The key questions reflect what users may (eventually unconsciously) ask while consuming a website. 
-This user-centric framework guides and sets the agenda for creating and defining Web Vitals metrics.
-Contrary to navigation timing metrics, the Web Vitals focus are users and their perception, and each question is a perspective or facet of user experience.
+Web Vitals and their definitions are derived from a set of key questions (table \ref{table:web_vitals_key_questions}).
+The key questions reflect what users ask (possibly unconsciously) while using a website. 
+This user-centered framework serves as a guide for creating and defining Web Vitals metrics.
+Unlike navigation timing metrics, Web Vitals focus on users and their perceptions, and each question is a perspective or facet of the user experience.
 Web Vitals are "metrics relevant to users". % https://web.dev/user-centric-performance-metrics/
+
 
 \begin{table}[h]
 	\small
@@ -2346,16 +2335,16 @@ Web Vitals are "metrics relevant to users". % https://web.dev/user-centric-perfo
 	\textit{Is it delightful?} & Are the interactions smooth and natural, free of lag and jank? \\
 	\end{tabular}
 	\medskip
-	\caption{Types of e-commerce.}
-	\label{table:types_ecommerce}
+	\caption{Key Questions for defining Web Vitals}
+	\label{table:web_vitals_key_questions}
 \end{table}
  % cite https://web.dev/user-centric-performance-metrics/
 
 
 % [Types of Metrics]
 
-In addition to the key questions, Google identifies different aspects or types of a website's performance.
-Like the key questions, these types provide a guide and framework to organize, classify, and integrate Web Vitals. % https://web.dev/user-centric-performance-metrics/
+In addition to the key questions, Google identifies different aspects or types of website performance (table \ref{table:web_vitals_types}).
+Like the key questions, these types provide a guide and framework for organizing, classifying, and integrating Web Vitals. % https://web.dev/user-centric-performance-metrics/
 
 %TODO add more here, some interpretation ?
 
@@ -2374,55 +2363,48 @@ Like the key questions, these types provide a guide and framework to organize, c
 	\textit{Smoothness} & Do transitions and animations render at a consistent frame rate and flow fluidly from one state to the next? \\
 	\end{tabular}
 	\medskip
-	\caption{Types of e-commerce.}
-	\label{table:types_ecommerce}
+	\caption{Types of Web Vitals Metrics}
+	\label{table:web_vitals_types}
 \end{table}
-%cite  https://web.dev/user-centric-performance-metrics/
+% cite https://web.dev/user-centric-performance-metrics/
 
-%TODO add RAIL model? https://web.dev/rail/
+% add RAIL model? https://web.dev/rail/
 
 % [Measurement and Tools]
 
-Web Vitals can be measured through synthetic monitoring or RUM. % https://web.dev/user-centric-performance-metrics/
+Web Vitals can be measured by synthetic monitoring or RUM. % https://web.dev/user-centric-performance-metrics/
 For example, RUM data is available through CrUX\footnote{\url{https://developers.google.com/web/tools/chrome-user-experience-report} [22.07.2021]}, synthetic data is available through Lighthouse\footnote{\url{https://developers.google.com/web/tools/lighthouse} [22.07.2021]}.
-A custom JS library is available an can be integrated into any website to capture Web Vitals.\footnote{\url{https://github.com/GoogleChrome/web-vitals} [22.07.2021]}
+A custom JS library is available and can be integrated into any website to capture Web Vitals.\footnote{\url{https://github.com/GoogleChrome/web-vitals} [22.07.2021]}
 
-%PageSpeedInsigths ?
-
+% PageSpeedInsigths ?
 
 % [Outline]
 
-In the following, I will describe common Web Vitals metrics.
-Afterwards, Core Web Vitals,Web Vitals that matter the most, will be discussed.
-
-
+In the following, I describe common Web Vitals metrics.
+Section \ref{subsubsection:core_web_vitals} discusses the Core Web Vitals, the most important Web Vitals.
 
 % ------------------------
 
+\paragraph{First Contentful Paint} % korrigiert
 
-\paragraph{First Contentful Paint}
+First Contentful Paint (FCP) deals with question \textit{Is it happening?} and is classified as type \textit{Perceived load speed}.
+This is the same FCP as used by Paint Timing (see Section \ref{subsubsection:w3c_performance_specifications}), and "marks the first point in the page load timeline where the user can see anything on the screen". % https://web.dev/fcp/
 
-First Contentful Paint (FCP) tackles the question \textit{Is it happening?} and is classified as the type \textit{Perceived load speed}.
-This is the same FCP as exposed by Paint Timing (see section X.), and "marks the first point in the page load timeline where the user can see anything on the screen". % https://web.dev/fcp/
+Google extends the Paint Timing specification with respect to FCP by only considering pages that are in the foreground all the time, by measuring FCP even when the page has been loaded from cache, and by exposing FCP for all frames, including cross-origin iframes.
+Implementation details can be found in the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getFCP.ts} [22.07.2021]}
 
-Google enhances the Paint Timing specification regarding FCP by only considering pages that are in the foreground all the time,
-by measuring FCP also if the page has been loaded from cache, and by exposing FCP for all frames, including cross-origin iframes.
-Implementation details are available within the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getFCP.ts} [22.07.2021]}
-
-FCP is measured in seconds and retrievable in synthetic and real-user monitoring.
+FCP is measured in seconds and can be retrieved in synthetic and real-user monitoring.
 % https://web.dev/fcp/
 
-
 % ------------------------
 
-
-\paragraph{First Meaningful Paint}
+\paragraph{First Meaningful Paint} % korrigiert
 
 First Meaningful Paint (FMP) is "the paint after which the biggest above-the-fold layout change has happened and web fonts have loaded". % https://developer.mozilla.org/en-US/docs/Glossary/first_meaningful_paint
 
-Google states that FMP is deprecated, due to "inconsistent results" and the impossibility to measure it in all web browsers. % https://web.dev/first-meaningful-paint/
-The successor, Largest Contentful Paint, is discussed below.
-The replacement of FMP nicely illustrates the evolving nature of Web Vitals.
+Google states that FMP is no longer used due to "inconsistent results" and the inability to measure it in all web browsers. % https://web.dev/first-meaningful-paint/
+FMP's successor, Largest Contentful Paint, is discussed below.
+The replacement of FMP nicely illustrates the evolution of Web Vitals.
 
 % https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 %The First Meaningful Paint is another user-centric metric and represents the point in time at which the largest visual change takes place; the underlying assumption here obviously is that the biggest visual change is relevant to the user, for example because a hero image or a navigation bar appear
@@ -2430,38 +2412,35 @@ The replacement of FMP nicely illustrates the evolving nature of Web Vitals.
 
 % ------------------------
 
-
-\paragraph{Time to Interactive and First CPU Idle}
+\paragraph{Time to Interactive and First CPU Idle} % korrigiert
 
 % [Explanation]
 
 % https://web.dev/tti/
-Time to Interactive (TTI) is an indicator for \textit{Load responsiveness} and gives insights to the question \textit{Is it usable?}
+Time to Interactive (TTI) is an indicator for \textit{Load responsiveness} and gives insights intto the question \textit{Is it usable?}
 TTI measures the "time from when the page starts loading to when its main sub-resources have loaded and it is capable of reliably responding to user input quickly."
-Previously, TTI has been called \textit{Time to Consistently Interactive}. % https://docs.google.com/document/d/1GGiI9-7KeY3TPqS3YT271upUVimo-XiL5mwWorDUD4c/edit
+Previously, TTI was referred to as \textit{Time to Consistently Interactive}. % https://docs.google.com/document/d/1GGiI9-7KeY3TPqS3YT271upUVimo-XiL5mwWorDUD4c/edit
 
-For the calculation of TTI, other metrics and definitions are needed:
-FCP as the starting point and a "quiet window", that is a time interval where no long tasks (as defined by Long Tasks API, see section X.) and not more than two in-flight GET requests occur. %TODO explain in-flight ? https://github.com/WPO-Foundation/webpagetest/blob/master/docs/Metrics/TimeToInteractive.md
+Other metrics and definitions are needed to calculate TTI:
+FCP as a starting point and a "quiet window", i.e. a time interval in which no long tasks (as defined by the API for long tasks, see section \ref{subsubsection:w3c_performance_specifications}) and no more than two in-flight GET requests occur.
+% explain in-flight ? https://github.com/WPO-Foundation/webpagetest/blob/master/docs/Metrics/TimeToInteractive.md
 The TTI is then the "end time of the last long task before the quiet window".
-The quiet window time interval is set to 5 seconds, and the starting point of the search of TTI is FCP (for details, cf. X).
+The time interval for the quiet window is set to 5 seconds, and the starting point for the search for TTI is FCP.
 % Hence, TTI is not a real time metric, as at least 5 seconds need to elapse first.
+To summarize, "TTI measures how long it takes a page to become fully interactive." % https://web.dev/interactive/
 
-Ideally, the time between FCP and TTI, that is when content is visible, but the website is not interactive, is short.
-To summarize, "TTI measures how long it takes a page to become fully interactive. " % https://web.dev/interactive/
-TTI can be measured through synthetic monitoring, and also RUM.
-The latter is not recommended, as user interaction may affect TTI, leading to unreliable results.
-
+Ideally, the time between FCP and TTI, i.e. when the content is visible but the website is not interactive, is short.
+The TTI can be measured by synthetic monitoring and also by RUM.
+The latter is not recommended because user interaction can influence the TTI, leading to unreliable results.
 
 % [First CPU Idle]
 
 \textit{First CPU Idle} is a metric closely related to TTI.
 Previously, First CPU Idle was called \textit{First Interactive}. % https://docs.google.com/document/d/1GGiI9-7KeY3TPqS3YT271upUVimo-XiL5mwWorDUD4c/edit
-It indicates when the website is minimally interactive, contrary to TTI, which signals when the website is fully interactive.
+First CPU Idle indicates when the website is minimally interactive, as opposed to the TTI, which indicates when the website is fully interactive.
 Google deprecated First CPU Idle, as "the difference [to TTI] isn't significant enough to justify maintaining two similar metrics". % https://web.dev/first-cpu-idle/
 
-
 % ------------------------
-
 
 \paragraph{Total Blocking Time}
 
