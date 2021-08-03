@@ -1355,6 +1355,7 @@ Ideally, metrics are precise and serve as objective criteria for evaluating the 
 
 
 % [Outline]
+%TODO check again if all sections are mentioned here
 
 As with web analytics metrics, there are several ways to structure and categorize performance metrics.
 One way to bring order to performance metrics is to distinguish between \textit{Navigation Timing Metrics} (section \ref{subsection:navigation_timing_metrics}), which measure elapsed time for specific processes and navigation steps from the CRP, and \textit{User-Centric Performance Metrics} (section \ref{subsection:user_centric_performance_metrics}), which approximate user-perceived performance through visual analysis.
@@ -1390,16 +1391,16 @@ The benefits of \textit{Custom Metrics} (section \ref{subsection:custom_metrics}
 
 % -----------------------------------------------------------------------
 
-\subsection{Page Weight}
+\subsection{Page Weight} % korrigiert
 \label{subsection:page_weight}
 
-A naive approach of quantifying a website is measuring its size and the amount of resources needed to build the website.
-Page weight can be used as a performance metric as the performance of a website depends on its size, especially in conjunction with the network condition, like download speed and latency.
-The more bytes have to be transmitted over the network, the longer it takes for the website to get constructed and the longer the waiting time for the user is.
-Similar for requests, the more requests are needed, more connections need to be established, which takes more time.
+A naive approach to quantifying a website is to measure its size and the resources required to build it.
+Page weight can be used as a performance measure because the performance of a website depends on its size, especially when combined with network conditions such as download speed and latency.
+The more bytes that need to be transferred over the network, the longer it takes for the website to build, and the longer the wait for the user.
+The situation is similar for requests: the more requests are required, the more connections have to be established, which in turn takes more time.
 
-A website consists of multiple resources, such as HTML files, fonts, script files or images (cf. table X).
-Page weight describes the number of bytes fetched and requests made for each resource type. %compare cite HTTP Archive
+A website consists of several resources, such as HTML files, fonts, script files or images (see table \ref{table:website_resources}).
+The page weight describes the number of bytes and requests retrieved for each resource type. % compare cite HTTP Archive
 
 \begin{table}[h]
 	\small
@@ -1413,70 +1414,72 @@ Page weight describes the number of bytes fetched and requests made for each res
 	\end{tabular}
 	\medskip
 	\caption{Types of resources of a website}
-	\label{table:website_resources} %TODO ref somewhere...
+	\label{table:website_resources}
 \end{table}
 
-Page weight is a first assessment for a website regarding performance.
-It is mainly useful for comparison with median values or other websites, but has little to nothing expressiveness and significance for evaluating a websites performance.
-To get more useful insights about a websites performance, other metrics are in need, such as navigation timing metrics, which will be discussed in the next section.
-As described in section X,  the idea of page weight is used to construct a test site with a median page weight values.
+Page weight is an initial assessment of a website's performance.
+It is mainly useful for comparison with median values of other websites, but has little to no significance and meaning for evaluating the performance of a website.
+To gain more meaningful insights into a website's performance, other metrics are needed, such as navigation timing metrics, which are discussed in the next section.
+As will be described in section X, the idea of page weight is used to create a test page with an average page weight value.
 
 
 % -----------------------------------------------------------------------
 
 
-\subsection{Navigation Timing Metrics}
+\subsection{Navigation Timing Metrics} % korrigiert
 \label{subsection:navigation_timing_metrics}
 
-Navigation timing metrics depict elapsed time within the website loading process such as navigation and CRP (cf.  section X).
-They are calculated and derived from a set of standardized Web APIs.
-In the following, I will briefly explain the nature of web standards and recommendations.
-Then, performance relevant specifications and the metrics they expose are discussed.
+Navigation timing metrics show the elapsed time within the website loading process, such as the network navigation process and CRP (see section \ref{section:website_loading_process}).
+They are computed and derived from a set of standardized Web APIs.
+
+In the following, I will briefly explain the nature of Web standards and recommendations (section \ref{subsubsection:web_standards}).
+I will then discuss performance-related specifications and the metrics they provide (section \ref{subsubsection:w3c_performance_specifications}).
 
 
-\subsubsection{Web Standards}
+% -------------------------
 
-Web Standards are documents describing the technology used to build the WWW. % cite https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards
-Those documents, also called specifications, are maintained by different groups and organizations.
-Multiple organizations exist to provide and maintain standards for different areas and technologies of the web.
-Such organisations are for example the WHATWG, which maintains the HTML living standard\footnote{\url{https://whatwg.org/} [11.07.2021]}, or Ecma International, providing the specification for JS.\footnote{\url{https://www.ecma-international.org/} [11.07.2021]}.
+\subsubsection{Web Standards} % korrigiert
+\label{subsubsection:web_standards}
 
-The World Wide Web Consortium (W3C) is an organization which maintains different standards for the WWW, including specifications for performance measurement\footnote{\url{https://www.w3.org/} [11.07.2021]}, and will be discussed next.
+Web standards are documents that describe the technology used to build the WWW. % cite https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards
+These documents, also called specifications, are maintained by various groups and organizations.
+There are several organizations that create and maintain standards for different areas and technologies of the Web.
+Such organizations include the WHATWG, which maintains the living HTML standard\footnote{\url{https://whatwg.org/} [07/11/2021]}, or Ecma International, which maintains the specification for JS.\footnote{\url{https://www.ecma-international.org/} [11.07.2021]}.
+
+The World Wide Web Consortium (W3C) is an organization that maintains various standards for the WWW, including specifications for performance measurement\footnote{\url{https://www.w3.org/} [11.07.2021]}, which I will discuss below.
 
 
-\paragraph{W3C}
+\paragraph{W3C} % korrigiert
 
 % [What is W3C]
 
-The W3C was founded in 1994 by Tim Berners-Lee, with the goal to bring together "representatives from many different technology companies to work together on the creation of web technology specifications". % cite https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards
-The W3C maintains and publishes documents that describe and define web technologies such as DOM, SVG or CSS. % cite https://www.w3.org/standards/faq
+The W3C was founded in 1994 by Tim Berners-Lee with the goal of bringing together "representatives from many different technology companies to work together on the creation of web technology specifications". % cite https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards
+The W3C manages and publishes documents that describe and define web technologies such as DOM, SVG or CSS. % cite https://www.w3.org/standards/faq
 
 
 % [Recommendation Process]
 
-The document, or specification creation, follows a "recommendation track", which describes the hurdles a document needs to overcome in order to turn from an idea into a final recommendation and web standard, which browser vendors implement as concrete APIs. %cite  https://www.w3.org/2020/Process-20200915/#rec-track
-The phases in the recommendation track are described by "maturity levels" of the document and are as follows:
+The creation of a document or specification follows a "recommendation track" that describes the hurdles a document must overcome to move from an idea to a final recommendation and web standard that browser vendors implement as concrete APIs. % cite  https://www.w3.org/2020/Process-20200915/#rec-track
+The stages of the recommendation process are described by the "maturity levels" of the document and are as follows:
 First Public Working Draft (FPWD) $\,\to\,$ Working Draft (WD) $\,\to\,$ Candidate Recommendations (CR) $\,\to\,$ Proposed Recommendation (PR) $\,\to\,$ W3C Recommendation (REC).  % cite https://www.w3.org/2015/Process-20150901/#maturity-levels
-W3C Recommendations are considered to be web standards. % cite https://www.w3.org/standards/faq
+W3C recommendations are considered web standards. % cite https://www.w3.org/standards/faq
 
 %TODO maybe draw some nice graphic for the recommendation track ?
 
 
-\paragraph{Web Performance Working Group}
+\paragraph{Web Performance Working Group} % korrigiert
 
 % [Introduction]
 
-Within the W3C, several groups exist, each one concerned with a specific topic within the WWW universe. % cite https://www.w3.org/groups/wg/
-The Web Performance Working Group, founded in 2010, is a group responsible "to provide methods to measure aspects of application performance of user agent features and APIs" \footnote{\url{https://www.w3.org/webperf/} [11.07.2021]}.
+Within the W3C there are several groups, each dealing with a specific topic in the WWW universe. % cite https://www.w3.org/groups/wg/
+Founded in 2010, the Web Performance Working Group is a group whose mission is to "provide methods to measure aspects of application performance of user agent features and APIs."\footnote{\url{https://www.w3.org/webperf/} [11.07.2021]}.
 
 % [Specs]
 
-The Web Performance Working Group publishes and maintains a variety of documents concerned with performance measurement, such as High Resolution Time, Navigation Timing or Page Visibility. % cite https://www.w3.org/groups/wg/webperf/publications
-The released publications especially important for performance metrics are discussed next.
+The Web Performance Working Group publishes and maintains a number of documents that address performance measurement, such as High Resolution Time, Navigation Timing, and Page Visibility. % cite https://www.w3.org/groups/wg/webperf/publications
+The published papers that are particularly relevant to performance measurement are discussed below.
 
-
-%TODO add this ?
-
+% add this ?
 % https://www.w3.org/2021/02/webperf.html
 %- Working Groups push new recommendations and invent them
 %Web Performance Working Group is responsible:
@@ -1485,64 +1488,43 @@ The released publications especially important for performance metrics are discu
 %- Adaptation
 %-> Important is Measurement
 
-
-%Server Timing:
-% https://www.w3.org/TR/server-timing/
-
 % https://w3c.github.io/perf-timing-primer/#dfn-time-origin
 %- attempt to address the concern about lacking insight into how or why certain stages of the request-response cycle have taken as much time as they have
 
-
-%others, not important for metrics:
+% others, not important for metrics:
 %- Beacon
 %- Cooperative Scheduling of Background Tasks
 %- Device Memory
 %- Reporting
 %- Network Error Logging
 
-
 % -----------------------------------
 
-
-%TODO add Web Incubator CG
-% and some unofficial drafts
-% Network Information API (not official w3c) https://wicg.github.io/netinfo/
-% Element Timing API (not official w3c) https://wicg.github.io/element-timing/
-% Event Timing API (not official w3c) https://wicg.github.io/event-timing/
+\subsubsection{W3C Performance Specifications}
+\label{subsubsection:w3c_performance_specifications}
 
 
+\paragraph{High Resolution Time} % korrigiert
 
-
-% -----------------------------------
-
-
-
-
-
-
-\paragraph{High Resolution Time}
-
-Two versions of High Resolution Time exist.
+There are two versions of High Resolution Time.
 High Resolution Time Level 2 has the maturity level of a W3C Recommendation and was released in November 2019. % footnote https://www.w3.org/TR/hr-time-2/
-The newer specification, simply High Resolution Time,  is a Working Draft from June 2021.% footnote https://www.w3.org/TR/hr-time-3/
-The High Resolution Time specification does not expose or define performance metrics directly, but serves as a basis for other specifications regarding measuring and capturing time values.
-
+The newer specification, simply High Resolution Time, is a current working draft. % footnote https://www.w3.org/TR/hr-time-3/
+The High Resolution Time specification does not directly define performance metrics, but serves as the basis for other specifications for measuring and recording time values.
 
 % [Date/Clock Issue]
 
-Before High Resolution Time, time values were calculated with ECMAScripts Date object, which represents time in milliseconds since 1 January 1970 UTC. %footnote https://tc39.es/ecma262/#sec-date-objects
-This definition of time is imprecise in terms of clock skew and system clock adjustments.
-It is possible that the time values derived from the Date object are not monotonically increasing, or sometimes even decreasing.
+Prior to High Resolution Time, time values were calculated using the ECMAScripts Date object, which represents time in milliseconds since January 1, 1970 UTC. % footnote https://tc39.es/ecma262/#sec-date-objects
+This time definition is inaccurate with respect to time shifts and system clock adjustments.
+It is possible that the time values derived from the Date object do not increase monotonically or sometimes even decrease.
 
-High Resolution Time solves those issues and provides monotonically increasing time values, a resolution of sub-milliseconds and an start value which is relative to the websites start of the navigation process, instead of the year 1970, which makes it more feasible to understand and calculated time stamps and intervals.
+High Resolution Time solves these problems and provides monotonically increasing time values, sub-millisecond resolution, and a starting value that refers to the beginning of the navigation process on the website instead of the year 1970, making it easier to understand and calculate timestamps and intervals.
 % cite https://www.w3.org/TR/hr-time-3/
-The following described specifications use the precise timing information provided by High Resolution Time.
+The specifications described below use the precise time information provided by High Resolution Time.
 
 % High Resolution Time defines a Performance interface, which exposes a function $now()$, which returns the current time.
 
 
-%TODO add this ?
-
+% add this ?
 % https://developers.google.com/web/updates/2012/08/When-milliseconds-are-not-enough-performance-now
 %- performance.now() is a measurement of floating point milliseconds since that particular page started to load
 %-> the performance.timing.navigationStart timeStamp to be specific
@@ -1575,47 +1557,43 @@ The following described specifications use the precise timing information provid
 
 % -----------------------------------
 
-
-
-\paragraph{Navigation Timing}
-
+\paragraph{Navigation Timing} % korrigiert
 
 % [Introduction]
 
-Two versions of Navigation Timing exist.
-A W3C Recommendation "Navigation Timing" (Level 1) from December 2012 % footnote https://www.w3.org/TR/navigation-timing/
-and "Navigation Timing Level 2", a Working Draft from March 2021. % footnote https://www.w3.org/TR/navigation-timing-2/
-Level 1, still in use for backwards compatibility, uses the more imprecise time measurement starting from 1 January 1970.
-Level 2 replaces Level 1 and relies on the exact high resolution time as described above.
-A summary of improvements from Level 1 to Level 2 is listed in % https://www.w3.org/TR/navigation-timing-2/#sotd
+There are two versions of Navigation Timing.
+A W3C recommendation "Navigation Timing" (Level 1) from December 2012 % footnote https://www.w3.org/TR/navigation-timing/
+and "Navigation Timing Level 2", a current Working Draft. % footnote https://www.w3.org/TR/navigation-timing-2/
+
+Level 1, which is still used for backward compatibility, uses the less accurate time measurement from January 1, 1970.
+Level 2 replaces Level 1 and is based on the accurate high-resolution time measurement as described above.
+A summary of the improvements from Level 1 to Level 2 is given in X. % https://www.w3.org/TR/navigation-timing-2/#sotd
 % cite  https://www.w3.org/TR/navigation-timing/, https://www.w3.org/TR/navigation-timing-2/
+
 
 % https://www.w3.org/TR/navigation-timing/
 %- Level 1 PerformanceTiming and PerformanceNavigation Interface, Both are collected in Performance Interface, Performance Interface is accessible through window.performance
-
 % https://www.w3.org/TR/navigation-timing-2/
 %- Level 2 is Builds on top of Resource Timing 2
 
-
 % [Timing Values]
 
-Navigation Timing exposes time stamps of events which occur during the navigation and loading process of a website.
-All relevant timing information from the document loading process are accessible through Navigation Timing.
-The navigation or loading process depicts the conversion of the received HTML document and other resources to a working website and happens in the browser, as described in section X. % cite https://w3c.github.io/perf-timing-primer/
+Navigation Timing displays timestamps of events that occur during the navigation and loading process of a website.
+All relevant timing information from the document loading process is accessible through Navigation Timing.
+The navigation or loading process represents the conversion of the received HTML document and other resources into a functioning website and takes place in the browser, as described in section \ref{section:website_loading_process}. % cite https://w3c.github.io/perf-timing-primer/
 
-Navigation Timing only captures time values from the main HTML document.
-Within the main document, requests to other linked resources are made.
-The timing information for those linked resources are gathered and exposed via Resource Timing, as described in section X. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
+Navigation Timing captures only time values from the main HTML document.
+Within the main document, requests are made to other linked resources.
+Timing information for these linked resources is captured and presented via Resource Timing, as described in the next paragraph. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
 
-The exposed timing events are represented in figure X and described in table X.
-Metrics directly calculated with Navigation Timing (and Resource Timing), are listed in table X.
-
+The exposed timing events are shown in figure \ref{figure:navigation_resource_timestamps} and described in table \ref{table:navigation_resource_attributes}.
+The metrics calculated directly with Navigation Timing (and Resource Timing) are listed in table \ref{table:navigationtiming_metrics}.
 
 % [PerformanceNavigationTiming Interface]
 
-Navigation Timing timestamps are exposed via the PerformanceNavigationTiming interface and can be retrieved via $window.performance.getEntriesByType("navigation")$, as seen in figure X. % cite https://www.w3.org/TR/navigation-timing-2/
+Navigation Timing timestamps are exposed via the PerformanceNavigationTiming interface and can be retrieved in the browser via $window.performance.getEntriesByType("navigation")$, as seen in figure \ref{figure:navigation_console}. % cite https://www.w3.org/TR/navigation-timing-2/
 
-%TODO add here that values in image are coming from multiple interfaces ?
+% add here that values in image are coming from multiple interfaces ?
 
 % performance.getEntriesByType("navigation"):
 % from PerformanceNavigationTiming interface
@@ -1633,21 +1611,17 @@ Navigation Timing timestamps are exposed via the PerformanceNavigationTiming int
 % serverTiming is coming from Server Timing, which extends Resource Timing interface with "serverTiming"
 % + all values from PerformanceEntry interface
 
-
 % performance.getEntriesByType("resource"):
 % all entries from resource timing interface
 % + values from PerformanceEntry interface
 
-
-
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.4\textwidth]{navigation_console.png}
-\caption{Navigation Timings, taken from Chrome console log}
-\label{img:navigation_console}
+\caption{Navigation Timings, taken from Chrome's console log}
+\label{figure:navigation_console}
 \end{center}
 \end{figure}
-
 
 
 %TODO add this ?
@@ -1667,79 +1641,64 @@ Navigation Timing timestamps are exposed via the PerformanceNavigationTiming int
 %- extends PerformanceEntry Interface from performance timeline. see attributes section for details
 %- extends PerformanceResourceTiming Interface from resource timing
 
-
 % ---------------------------------------------
 
-
-
-\paragraph{Resource Timing}
-
+\paragraph{Resource Timing} % korrigiert
 
 % [Introduction]
 
-Two versions of Resource Timing exist.
+There are two versions of Resource Timing.
 A Candidate Recommendation, Resource Timing Level 1, from March 2017, % https://www.w3.org/TR/resource-timing-1/
-and Resource Timing Level 2, a Working Draft from April 2021.  % https://www.w3.org/TR/resource-timing-2/
+and Resource Timing Level 2, a current Working Draft. % https://www.w3.org/TR/resource-timing-2/
 
-As described above, while Navigation Timing exposes timing information for the main document, Resource Timing exposes timing information for all other resources the main document requests, and also resources other resources request.
-Other resources may be CSS, JS, other HTML documents, images, and so on.
+Navigation Timing outputs timing information for the main document, while Resource Timing outputs timing information for all other resources that the main document requests, and also for resources that request other resources.
+Other resources can be CSS, JS, other HTML documents, images and so on.
 % https://www.w3.org/TR/resource-timing-2/
 
-The exposed time stamps from Resource Timing are mainly network related timing values (see table X.)
-For example, the time it takes to download a specific resource.
-
+The timestamps displayed by Resource Timing are mainly network-related time values (see table \ref{table:navigation_resource_attributes}).
+For example, the time it takes to download a particular resource.
 
 % [PerformanceResourceTiming Interface]
 
-The values are exposed by the PerformanceResourceTiming interface and can be retrieved via $window.performance.getEntriesByType("resource")$.
+The Resource Timing values are provided by the PerformanceResourceTiming interface and can be retrieved in the browser via $window.performance.getEntriesByType("resource")$.
 
 % https://w3c.github.io/perf-timing-primer/
 %- The PerformanceResourceTiming interface extends the PerformanceEntry interface in the Performance Timeline
 %- Each of these timestamps is in microseconds, which are provided by the window.performance.now() method in the High Resolution Time specification.
 
-
 % [Navigation and Resource Timing]
 
-% https://www.w3.org/TR/resource-timing-2/
-%- Navigation Timing 2 extends this specification to provide additional timing information associated with a navigation.
-%- mechanisms to provide complete client-side latency measurements within applications
-
 Navigation and Resource Timing go hand in hand.
-With Navigation and Resource Timing, all relevant timing information for all resources of the website are available.
-The Waterfall Chart (see section X.) is a picturesque example of a visualization of the exposed attributes by both specifications.
-
-Figure X. depicts the values exposed by Navigation and Resource Timing.
-Those attributes will be discussed next.
-
-
+With Navigation and Resource Timing, all relevant timing information is available for all resources on the site.
+The waterfall diagram (see Section X.) is an illustrative example of a visualization of the attributes provided by both specifications.
+The attributes provided by Navigation and Resource Timing are discussed in more detail below.
 
 
 % ---------------------------------------------
 
+\paragraph{Navigation and Resource Timing Attributes} % korrigiert
 
+All time values or attributes relevant to the navigation process and captured by Navigation and Resource Timing Level 2 are listed in Table \ref{table:navigation_resource_attributes} and Figure \ref{figure:navigation_resource_timestamps}.
+The black coloured timestamps associated with the blue boxes in Figure \ref{figure:navigation_resource_timestamps} are captured by Navigation Timing.
+The yellow coloured timestamps are captured by Resource Timing.
+All attributes can be accessed in the browser via $performance.getEntriesByType("navigation")$.
+Figure \ref{figure:navigation_resource_timestamps} does not contain all defined and available values from the specification definitions, but only those visible within the navigation process.
+For documents with different origins, the attributes in parentheses may not be available. % cite https://www.w3.org/TR/navigation-timing-2/#processing-model
 
-\paragraph{Navigation and Resource Timing Attributes}
-
-All timing values, or attributes, relevant for the navigation process and exposed by Navigation and Resource Timing Level 2, are listed in table X and figure X.
-The black coloured time stamps assigned to the blue boxes in figure X. are captured by Navigation Timing.
-The yellow time stamps are exposed by Resource Timing.
-All attributes are retrievable via $performance.getEntriesByType("navigation")$.\footnote{They are exposed to navigation due to interface inheritance. For more details cf. } %cite navigation timing 2 spec
-Figure X. does not include all defined and available values from the specification definitions, but only those important within the navigation process.
-For documents from different origins, the attributes in parenthesis may not be available.% cite https://www.w3.org/TR/navigation-timing-2/#processing-model
 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1\textwidth]{timestamp_diagram.png}
 \caption{Timestamps from Navigation and Resource Timing}
-\label{img:latency}
+\label{figure:navigation_resource_timestamps}
 \end{center}
 \end{figure}
 % cite https://www.w3.org/TR/navigation-timing-2/
 
 
-Table X gives a short explanation for each time stamp.
-The definitions are taken directly from the W3C specifications or MDN Web Docs, if not stated otherwise.
-These time stamps are used to calculate performance metrics, as described in the next section.
+Table \ref{table:navigation_resource_attributes} provides a brief explanation for each timestamp.
+The definitions are taken directly from the W3C specifications or MDN Web Docs, unless otherwise noted.
+These timestamps are used to calculate performance metrics, as described in the next section.
 
 
 %TODO is it ok to copy paste here from specs and MDN ?
@@ -1750,11 +1709,11 @@ These time stamps are used to calculate performance metrics, as described in the
 	\hline
 	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Navigation Timings Level 2} \\
 	\hline
-	startTime (= navigationStart) & Start time of the navigation process. Is set to 0.  Navigation Timeline Level 1 exposes "navigationStart" which is set to the "time immediately after the user agent finishes prompting to unload the previous document."\footnote{\url{https://www.w3.org/TR/navigation-timing/)} [15.07.2021]} As some metric calculations still rely on navigationStart as seen below, it is mentioned here. \\
+	startTime (= navigationStart) & Start time of the navigation process. Is set to 0. Navigation Timing Level 1 exposes "navigationStart" which is set to the "time immediately after the user agent finishes prompting to unload the previous document."\footnote{\url{https://www.w3.org/TR/navigation-timing/)} [15.07.2021]} Since some metric calculations are still based on navigationStart (see below), it is mentioned here. \\
 	\hline
-	unloadEventStart & Set to 0 if there is no previous document. Otherwise, value is set to time when previous documents unload event gets fired by the user agent. \\
+	unloadEventStart & Set to 0 if there is no previous document. Otherwise, the value is set to the time when the event to unload the previous document is triggered by the user agent. \\
 	\hline
-	unloadEventEnd & Set to 0 if there is no previous document.  .Otherwise, value is set to time when previous documents unload event ends. \\
+	unloadEventEnd & Set to 0 if there is no previous document. Otherwise, the value is set to the time when the event to unload the previous documents ends. \\
 	\hline
 	domInteractive & Time value equal to the time immediately before the user agent sets the current document readiness of the current document to "interactive". \\
 	\hline
@@ -1764,7 +1723,7 @@ These time stamps are used to calculate performance metrics, as described in the
 	\hline
 	domComplete & Time value equal to the time immediately before the user agent sets the current document readiness of the current document to "complete". \\
 	\hline
-	loadEventStart & Time value equal to the time immediately before the load event (window.onload ??) of the current document is fired.  Returns 0 if event has not been fired.  \\
+	loadEventStart & Time value equal to the time immediately before the load event of the current document is fired. Returns 0 if the event was not triggered. \\
 	\hline
 	loadEventEnd & Time value equal to the time when the load event of the current document is completed.  Returns 0 if event has not been fired or is not completed. \\
 
@@ -1796,23 +1755,21 @@ These time stamps are used to calculate performance metrics, as described in the
 	responseEnd & Returns a timestamp immediately after the browser receives the last byte of the resource or immediately before the transport connection is closed, whichever comes first. \\
 	\hline
 	\caption{Navigation and Resource Timing Level 2 Attributes} % needs to go inside longtable environment
-	\label{tab:navigationtiming}
+	\label{table:navigation_resource_attributes}
 	\end{longtable}
 \end{center}
 
-%TODO check: is loadEventStart coming from window.onload or document.onload ?
 
-%TODO add values from other interfaces such as duration ?
+The document states and events mentioned above, such as DOMContentLoaded, and their triggering by the user agent are defined in the HTML standard.
+
+
+% add values from other interfaces such as duration ?
 %from PerformanceEntry Interface:
 %name
 %entryType
 %startTime
 %duration
-
-%TODO add exposed as DOMHighResTimeStamp ?
-
-
-The document states and events mentioned above, such as DOMContentLoaded, and when they are fired by the user agent, are defined in the HTML standard.
+% add exposed as DOMHighResTimeStamp ?
 
 
 %TODO add this when there is time...
@@ -1820,7 +1777,6 @@ The document states and events mentioned above, such as DOMContentLoaded, and wh
 % [Implementation Example Chrome]
 
 % lets see how chromium is capturing domContentLoaded
-
 
 % more infos here (probably level 1)
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
@@ -1841,7 +1797,7 @@ The attributes exposed by Navigation and Resource Timing are used to calculate c
 Table X. lists a selection of navigation timing metrics and how they are derived from the exposed attributes by Navigation and Resource Timing.
 Figure X. provides a graphical overview of the metrics and which intervals they are reflecting.
 
-As with business metrics (section X.), there is not one source of truth or a set of definitions for navigation timing metrics.
+As with web analytics metrics (section X.), there is not one source of truth or a set of definitions for navigation timing metrics.
 Still, when going through literature, a common set of navigation timings can be identified.
 Literature sources are for example MDN Glossary %https://developer.mozilla.org/en-US/docs/Glossary
 Google developers guides % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
@@ -1962,7 +1918,7 @@ It is therefore possible. due to the lack of metrics standardization and definit
 
 	\hline
 	\caption{Metrics} % needs to go inside longtable environment
-	\label{tab:navigationtiming_metrics}
+	\label{table:navigationtiming_metrics}
 	\end{longtable}
 \end{center}
 
@@ -2209,9 +2165,13 @@ Specification details are available on the referenced pages:
 % Only available in Chromium
 
 
+% ?? Network Information API (not official w3c) https://wicg.github.io/netinfo/
 
 
-% ------------------------------------------------------------------------------------------------------------------
+
+
+
+% ---------------------------------------------------------------------------------------------
 
 
 
