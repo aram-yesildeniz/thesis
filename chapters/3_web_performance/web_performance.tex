@@ -1127,37 +1127,37 @@ So the RUM data represents each individual user experience. % cite 2016 Viscomi
 Due to the diversity of users and the unique environment of each user, RUM data tends to be more diverse and heterogeneous than data collected through synthetic monitoring. % cite 2013 Meenan
 
 
-\subsubsection{RUM Measures Behaviour of Real Users}
+\subsubsection{RUM Measures Behaviour of Real Users} % korrigiert
 
 %TODO here i need to introduce maybe in e-commerce again? Or what is the roter faden? like funnel analysis all this stuff reference it here?
 
 % [E-Commerce Background]
 
-As discussed in section X, a web sites performance and user satisfaction are directly correlated.
-A critical part of RUM is to not only capture performance metrics, but also measure user behaviour, for example how the user interacts with the web site and where he clicks. %cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-In an e-commerce context, user behaviour questions of interest are for example if a new campaign changes user behaviour as expected or where users leave the check out process. %cite 2021 wolle and % https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+As discussed in section X, website performance and user satisfaction are directly related.
+An important component of RUM is not only the collection of performance metrics, but also the measurement of user behavior, e.g., how the user interacts with the website and where he or she clicks. % cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+In an e-commerce context, user behaviour questions are of interest, such as whether a new campaign changes user behaviour as expected or where users leave the check-out process. % cite 2021 wolle and % https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
 
-RUM facilitates the combination of collected metrics with user behaviour and business KPIs and can answer questions such as if and how the performance of the web site affects the user behaviour, for example if users buy more or less depending on the web sites speed.% cite Eggplant whitepaper
-Thus RUM is not only important for understanding user behaviour, but also for optimizing the web site and to increase revenue.
-With techniques such as cookies (see section X.), it is also possible to track user behaviour not only for one page load but over a series of web site visits, leading to even more detailed insights about the visitor. %cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+RUM enables the combination of collected metrics with user behaviour and business KPIs and can answer questions such as whether and how website performance affects user behaviour, e.g. whether users buy more or less depending on the speed of the website. % cite Eggplant whitepaper
+Thus RUM is not only important to understand user behaviour, but also to optimize the website and increase sales.
+With techniques such as cookies (see section X.), it is also possible to track user behaviour not only for one page visit, but over a series of website visits, resulting in even more detailed insights about the visitor. % cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 
 
 % [Tools]
 
-Multiple RUM tools and JS libraries exists, such as Boomerang by Akamai. \footnote{\url{https://github.com/akamai/boomerang} [23.06.2021]}
-The main player Google Analytics will be discussed in greater detail in section X.
+There are several RUM tools and JS libraries, such as Boomerang from Akamai.\footnote{\url{https://github.com/akamai/boomerang} [23.06.2021]}
+The main player, Google Analytics, is discussed in more detail in section X.
 
 % SpeedKit ?
 
 
 % [Transition]
 
-Google collects RUM and browser data of chrome users agreed to do so.
-The data is accessible through the Chrome User Experience Report (CrUX) and will be discussed next.
+Google collects RUM and browser data from Chrome users who have consented to it.
+The data is accessible via the Chrome User Experience Report (CrUX) and is discussed below.
 
 
 
-%TODO add this here?
+% add this here?
 % [Performance Data]
 
 %Which data and metrics RUM can collect and measure is discussed in greater detail in section X.
@@ -1184,30 +1184,23 @@ The data is accessible through the Chrome User Experience Report (CrUX) and will
 
 %conversion rates etc.
 
+% --------------------------
+
+\subsubsection{Chrome User Experience Report (CrUX)} % korrigiert
+
+The Chrome User Experience Report (CrUX) is a RUM method implemented by Google that collects real user data from Chrome users.
+Once the Chrome user gives consent, data collection can begin and does not need to be set up.
+The CrUX only collects data from Chrome users and is therefore not a complete sample of the Internet user population, as it does not collect data from users who browse the Internet using Firefox or Safari, for example.
+% cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+The collected data is available via Google's PageSpeed Insights, the CrUX Dashboard or the BigQuery and CrUX API. % cite https://developers.google.com/web/tools/chrome-user-experience-report
+
+
+% add here which metrics it collects?
 
 % ----------------------------------------------------------------------------------------------
 
 
-
-\subsubsection{Chrome User Experience Report (CrUX)}
-
-
-The Chrome User Experience Report (CrUX) is a RUM method implemented by Google which collects real user data of Chrome users.
-As soon as the Chrome user gives his consent, data collection can start and does not need any more set up.
-
-The CrUX only captures data from Chrome users and is therefore not an exhaustive sample of the web users population, as data by users browsing the web with for example Firefox or Safari is not collected.
-% cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-
-The collected data is available via Googles PageSpeed Insights, the CrUX Dashboard or the BigQuery and CrUX API. % cite https://developers.google.com/web/tools/chrome-user-experience-report
-
-
-%TODO add here which metrics it collects?
-
-
-
-% --------------------------
-
-
+%TODO
 \subsection{Google Analytics}
 
 [tbd]
@@ -1252,15 +1245,9 @@ The collected data is available via Googles PageSpeed Insights, the CrUX Dashboa
 [tbd]
 
 
-
-
-
-
-
-
 % ----------------------------------------------------------------------------------------------
 
-
+%TODO
 \subsection{Log Files and Surveys}
 
 [tbd]
@@ -1292,22 +1279,18 @@ Other methods are surveys and log file analysis.
 
 % ----------------------------------------------------------------------------------------------
 
+\subsection{Measurement Methods Conclusion} % korrigiert
 
+There are two main complementary techniques to measure the performance of a website: synthetic monitoring and Real-User Monitoring (RUM) (see figure \ref{table:synthetic_monitoring_rum_comparison}).
 
-\subsection{Measurement Methods Conclusion}
+Synthetic monitoring measures the performance of a website in a controlled environment using test agents and is particularly useful for finding a baseline for website performance and for continuous monitoring and health checks.
+Performance as perceived by end users can only be approximated, as it is not captured by synthetic monitoring.
 
+RUM collects data from each user who visits the website and reports it back to an analytics server.
+RUM is particularly useful when multiple metrics are combined, such as performance and business metrics, to analyse user behaviour.
+On the other hand, if no user visits the website, RUM does not collect any data.
 
-Multiple methods to measure performance of a web site exist.
-Two main complementary techniques exist, Synthetic Monitoring and Real-User Monitoring.
-
-Synthetic Monitoring measures a web sites performance in a controlled environment using test agents and is especially useful to find a performance base line of the web site and for continuous monitoring and health checks.
-Performance as end users may experience it can only be approximated it is not captured by synthetic monitoring.
-
-RUM collects data from each user visiting the web site and reports it back to an analytics server.
-RUM is especially useful when combining multiple metrics together such as performance and business metrics in order to analyse user behaviour.
-On the other hand, when no user is visiting the web site, RUM is not collecting any data.
-
-Other performance measurement methods such as CrUX and surveys provide browser specific or quality data and complement the analysts tool box.
+Other performance measurement methods such as CrUX and surveys provide browser-specific or quality data and complement the analysts' toolkit.
 
 \begin{table}[h]
 	\small
@@ -1318,7 +1301,7 @@ Other performance measurement methods such as CrUX and surveys provide browser s
 	\hline
 	Artificial test agents & Real users \\
 	\hline
-	Controlled configuration & No control over configuration \\
+	Controlled configuration & No control over the configuration \\
 	\hline
 	Approximates real user data & Collects real user data \\
 	\hline
@@ -1327,22 +1310,17 @@ Other performance measurement methods such as CrUX and surveys provide browser s
 	\end{tabular}
 	\medskip
 	\caption{Comparison of Synthetic Monitoring and RUM}
-	\label{table:synthetic_monitoring_rum_comparison} %TODO ref somewhere
+	\label{table:synthetic_monitoring_rum_comparison}
 \end{table}
 
 % [Metrics, Transition]
 
-Metrics are critical in order to map performance to some sort of value or number.
-Through metrics, performance is quantifiable to some extent and therefore comparable.
+Measurement methods such as synthetic monitoring or RUM can measure metrics to map website performance or business success to some kind of value or number.
+As discussed in section X, there are a variety of web analytics metrics to measure any business-related aspect of the website, such as conversion or bounce rates.
 
-As already described, measurement methods such as synthetic monitoring or RUM can measure metrics such as "performance" or "business" metrics.
-What are does metrics exactly?
-What do they reflect?
-How can they be measured?
-
-Those questions will be addressed in the next section.
-
-
+Website performance can also be measured using the methods described above.
+There are a variety of web performance metrics.
+What they are, how they have evolved, and what they monitor will be covered in the next section.
 
 
 
@@ -1350,8 +1328,7 @@ Those questions will be addressed in the next section.
 % ----------------------------------------------------------------------------------------------------
 
 
-
-\section{Web Performance Metrics}
+\section{Web Performance Metrics} % korrigiert
 \label{section:web_performance_metrics}
 
 [tbd]
@@ -1363,31 +1340,31 @@ Those questions will be addressed in the next section.
 
 % [Performance Metrics]
 
-As discussed in section X., web analytics, or business or non-performance metrics, track data about many different aspects of an online venture, for example, how many visitors the website has, or what the conversion rate is.
-For measuring performance, for example site speed and how users perceive the performance of the website, a set of special metrics is needed.
-Performance metrics are established to measure various performance aspects of a website and will be discussed in this section.
+As discussed in Section X., web analytics (or business or non-performance) metrics collect data on many different aspects of an online business, such as how many visitors the website has or what the conversion rate is.
+A number of specific metrics are required to measure \textit{performance}, such as the speed of the website and how users perceive the website's performance.
+Performance metrics are created to measure various aspects of a website's performance and are discussed in this section.
 
 
 % [Quantification and Analysis]
 
-Through performance metrics, performance is quantifiable, as the metrics reflect performance as numbers.
-Once performance is mapped to numbers, they can be compared with each other, for example over time, after a change in the measured application,  or with numbers of a competitor. % cite https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-Through their performance quantification, metrics facilitate the analysis of website traffic.
-Specific metric values can be used as a target for goal achievement and are therefore a critical instrument for improving websites. % cite 2009 Jansen
-Ideally, metrics are precise and serve as objective criteria for the evaluation of the measured website. % cite https://web.dev/user-centric-performance-metrics/
+Performance metrics make performance quantifiable because the metrics reflect performance in numbers.
+Once performance is mapped into numbers, they can be compared with each other, e.g., over time, after a change in the measured application, or with a competitor's numbers. % cite https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
+By quantifying performance, metrics facilitate the analysis of website traffic.
+Specific metric values can be used as targets for goal achievement and are therefore an important tool for improving websites. % cite 2009 Jansen
+Ideally, metrics are precise and serve as objective criteria for evaluating the measured website. % cite https://web.dev/user-centric-performance-metrics/
 
 
 % [Outline]
 
-As with web analytics metrics, multiple ways exist to structure and categorize performance metrics.
-One way to bring order to performance metrics is to differentiate between performance timing metrics, which measure elapsed time for concrete processes and navigation steps from the CRP, and user-centric performance metrics, which approximate user perceived performance by visual analysis.
-Both classes of metrics will be discussed in the following.
-Beforehand I will discuss page weight, a metric which characterizes the size of a website.
-The benefits of custom metrics and why they are important concludes the section about performance metrics.
+As with web analytics metrics, there are several ways to structure and categorize performance metrics.
+One way to bring order to performance metrics is to distinguish between \textit{Navigation Timing Metrics} (section \ref{subsection:navigation_timing_metrics}), which measure elapsed time for specific processes and navigation steps from the CRP, and \textit{User-Centric Performance Metrics} (section \ref{subsection:user_centric_performance_metrics}), which approximate user-perceived performance through visual analysis.
+Both classes of metrics are discussed below.
+
+Before that, I'll discuss \textit{Page Weight} (section \ref{subsection:page_weight}), a metric that characterizes the size of a website.
+The benefits of \textit{Custom Metrics} (section \ref{subsection:custom_metrics}) and why they are important will conclude the section on performance metrics.
 
 
-
-%TODO add this ?
+% add this ?
 % https://speedcurve.com/blog/rendering-metrics/
 %- Metrics quantify behavior
 %- we're trying to capture the behavior of a website in terms of speed and construction
@@ -1395,7 +1372,7 @@ The benefits of custom metrics and why they are important concludes the section 
 %- Speed is tracked by time-based metrics that capture when things happen during the user's experience with the website: start render, DOM interactive, page load, etc. 
 
 
-%TODO add this ?
+% add this ?
 % Summary / Metrics Taxonomy
 % 2019 Enghardt
 %"metrics as well as experiments have to realistically reflect possible performance improvements for actual users"
@@ -1404,7 +1381,7 @@ The benefits of custom metrics and why they are important concludes the section 
 % 2015 Bekavac
 
 
-%TODO add this?
+% add this?
 % No official definitions, lack of definitions (enghardt)
 % Still there are informal standard
 % Implementation can vary between tools who measure metrics
@@ -1413,9 +1390,8 @@ The benefits of custom metrics and why they are important concludes the section 
 
 % -----------------------------------------------------------------------
 
-
-
 \subsection{Page Weight}
+\label{subsection:page_weight}
 
 A naive approach of quantifying a website is measuring its size and the amount of resources needed to build the website.
 Page weight can be used as a performance metric as the performance of a website depends on its size, especially in conjunction with the network condition, like download speed and latency.
@@ -2334,6 +2310,7 @@ They will be discussed in the next section.
 
 
 \subsection{User-Centric Performance Metrics}
+\label{subsection:user_centric_performance_metrics}
 
 % [Introduction]
 
@@ -2903,9 +2880,9 @@ Custom metrics are discussed in the next section.
 % -----------------------------------------------------------------------
 
 
-
+%TODO
 \subsection{Custom Metrics}
-
+\label{subsection:custom_metrics}
 
 % [Universal vs Custom]
 
