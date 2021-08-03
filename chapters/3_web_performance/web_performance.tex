@@ -1587,7 +1587,7 @@ Within the main document, requests are made to other linked resources.
 Timing information for these linked resources is captured and presented via Resource Timing, as described in the next paragraph. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
 
 The exposed timing events are shown in figure \ref{figure:navigation_resource_timestamps} and described in table \ref{table:navigation_resource_attributes}.
-The metrics calculated directly with Navigation Timing (and Resource Timing) are listed in table \ref{table:navigationtiming_metrics}.
+The metrics calculated directly with Navigation Timing (and Resource Timing) are listed in table \ref{table:navigation_timing_metrics}.
 
 % [PerformanceNavigationTiming Interface]
 
@@ -1787,39 +1787,34 @@ The document states and events mentioned above, such as DOMContentLoaded, and th
 %- workerStart marks when a request is being fetched from a service worker within a fetch event handler (if applicable). This will be always be 0 if a service worker isn't installed for the current page.
 
 
-
 % ---------------------------------
 
+\paragraph{Metrics calculated with Navigation and Resource Timing} % korrigiert
 
-\paragraph{Metrics calculated with Navigation and Resource Timing}
+The attributes provided by Navigation and Resource Timing are used to compute common metrics for navigation timing.
+Table \ref{table:navigation_timing_metrics} lists a selection of metrics for navigation timing and shows how they are derived from the attributes provided by Navigation and Resource Timing.
+Figure \ref{figure:navigation_timing_metrics} provides a graphical overview of the metrics and the intervals they reflect.
 
-The attributes exposed by Navigation and Resource Timing are used to calculate common navigation timing metrics.
-Table X. lists a selection of navigation timing metrics and how they are derived from the exposed attributes by Navigation and Resource Timing.
-Figure X. provides a graphical overview of the metrics and which intervals they are reflecting.
+As with web analytics metrics, there is no single source of truth or set of definitions for navigation timing metrics.
+However, a review of the literature reveals a common set of navigation timing metrics.
+Literature sources include the MDN Glossary, % https://developer.mozilla.org/en-US/docs/Glossary
+Google developer guides, % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+blog posts by other performance specialists, % cite https://gtmetrix.com/blog/browser-timings/
+research papers, % cite % 2013 Wang % 2018 Netravali % 2019 Enghardt
+or the documentation of common RUM tools. % cite https://github.com/akamai/boomerang/blob/master/doc/methodology.md
 
-As with web analytics metrics (section X.), there is not one source of truth or a set of definitions for navigation timing metrics.
-Still, when going through literature, a common set of navigation timings can be identified.
-Literature sources are for example MDN Glossary %https://developer.mozilla.org/en-US/docs/Glossary
-Google developers guides % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-Other performance specialists blog posts % cite https://gtmetrix.com/blog/browser-timings/
-Research papers % cite % 2013 Wang % 2018 Netravali % 2019 Enghardt
-Or documentation of common RUM tools % cite https://github.com/akamai/boomerang/blob/master/doc/methodology.md
+The sources mentioned above sometimes explain the idea of metrics in a rather informal way.
+How exactly the metrics are implemented and calculated, e.g. which navigation timing attributes are used, is not always clear and is the responsibility of the RUM tool providers and can only be checked directly in the source code.
+Due to the lack of standardization and definition of the metrics, it is therefore possible that different calculations are used for the same metric.
 
-The sources mentioned above explain the idea of the metrics sometimes rather in an informal way.
-How exactly the metrics are implemented and calculated, e.g. which Navigation Timing attributes are used, is not all time the clear and is the responsibility of the RUM tools vendors and can only be checked directly in the source code.
-It is therefore possible. due to the lack of metrics standardization and definition, that for the same metric, different calculations are being used.
-
-
-%TODO add this ?
-
+% add this ?
 %- navigationStart is not in level 2
 %- navigationStart is the same as startTime in level 2
 %- Difference is that navigationStart is a EPOCH time stamp. The timings have to be calculated as differences to this timestamp
 %- navigationStart just starts with 0, which makes all the other timestamps easier to read
 %- many still use level 1 and navigationStart
 
-
-%TODO sort those metrics according to their occurance
+% sort those metrics according to their occurance ? Which occurace ?
 
 \begin{center}
 	\small
@@ -1836,10 +1831,10 @@ It is therefore possible. due to the lack of metrics standardization and definit
 	& $[loadEventStart - navigationStart]$ \\
 	& The MDN Docs define PLT as the "time it takes for a page to load" and it is calculated as stated above.  \\ % cite https://developer.mozilla.org/en-US/docs/Glossary/Page_load_time	
 	& Across multiple authors, PLT is defined as the time from navigation start until the load event\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event} [16.07.2021]} has been fired.
-	The load event is fired when the main document and its linked resources have been loaded. \\
-	& Grigorik states that PLT "has been the de facto metric of the web performance world", but is nowadays inaccurate due to the shift from static websites to dynamic web applications which load resources differently (cf also 2018 Netravali) and \\ % https://www.stevesouders.com/blog/2013/05/13/moving-beyond-window-onload/
+	The load event is fired when the main document and its associated resources have been loaded. \\
+	& Grigorik notes that PLT "has been the de facto metric of the web performance world", but is inaccurate today due to the shift from static websites to dynamic web applications that load resources differently (see also 2018 Netravali) and \\ % https://www.stevesouders.com/blog/2013/05/13/moving-beyond-window-onload/
 			
-		%TODO more here ?
+		% more here ?
 		% Akamai defines PLT similarly as the elapsed time from navigation start until the "page is completely available for the user to interact with", using also loadEventStart as the point when loading has finished.
 		% cite https://github.com/akamai/boomerang/blob/master/doc/methodology.md, https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 		%Wang et al define PLT as the "time between when the page is requested and when the DOMLoad event is fired", where the DOMLoad event is the load event.\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event} [16.07.2021]}      % cite 2013 Wang
@@ -1918,27 +1913,22 @@ It is therefore possible. due to the lack of metrics standardization and definit
 
 	\hline
 	\caption{Metrics} % needs to go inside longtable environment
-	\label{table:navigationtiming_metrics}
+	\label{table:navigation_timing_metrics}
 	\end{longtable}
 \end{center}
 
 
-%TODO add this to PLT ? as it is the same...
+% add this to PLT ? as it is the same...
 % window.onload:
-
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 % Onload = loadEventEnd - loadEventStart -> not the same as PLT
-
 % https://www.stevesouders.com/blog/2013/05/13/moving-beyond-window-onload/
 % when window.onload() is fired
 
 % https://speedcurve.com/blog/rendering-metrics/
 % when window.onload() is fired
 
-
-
-%TODO add this ?
-
+% add this ?
 % DOM Processing to Interactive
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 
@@ -1976,33 +1966,26 @@ It is therefore possible. due to the lack of metrics standardization and definit
 %- decodedBodySize is the decompressed size of the resource (again, excluding HTTP headers).
 
 
-
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1\textwidth]{nav_metrics.png}
 \caption{Navigation Timing Metrics}
-\label{img:latency}
+\label{figure:navigation_timing_metrics}
 \end{center}
 \end{figure}
 %TODO make this nicer, e.g. use same font as text for labels
 
 
-
+Apart from Navigation and Resource Timing, the Web Performance Working Group also maintains other performance-related specifications.
+Some of these are briefly discussed below.
 
 % ------------------------------------------------
-% ------------------------------------------------
 
+\paragraph{User Timing} % korrigiert
 
-
-Apart from Navigation and Resource Timing, the Web Performance Working Group also maintains other performance related specifications.
-Some of them will be briefly discussed next.
-
-
-\paragraph{User Timing}
-
-User Timing Level 2 is a Recommendation from February 2019 and User Timing Level 3 is a Working Draft from July 2021.
-User Timing provides methods to create own, specific and unique high resolution timestamps, to query them and to calculate intervals and the elapsed time between those created timestamps.% cite https://www.w3.org/TR/user-timing-3/
-User Timing simplifies and facilitates the usage of custom metrics (see section X.)
+User Timing Level 2 is a February 2019 Recommendation and User Timing Level 3 is the current Working Draft.
+User Timing provides methods for creating custom, specific, and unique high-resolution timestamps, querying them, and calculating intervals and elapsed time between these created timestamps. % cite https://www.w3.org/TR/user-timing-3/
+User Timing simplifies and facilitates the use of Custom Metrics (see section \ref{subsection:custom_metrics}).
 
 % https://www.w3.org/TR/user-timing-3/
 %- PerformanceMark and PerformanceMeasure interfaces
@@ -2010,24 +1993,20 @@ User Timing simplifies and facilitates the usage of custom metrics (see section 
 % Measuring Real User Performance in the Browser https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
 %-> Puts data in Performance Timeline / DevTools
 
-
 % -------------------
 
+\paragraph{Performance Timeline} % korrigiert
 
-\paragraph{Performance Timeline}
+Performance Timeline is the December 2013 Recommendation % https://www.w3.org/TR/2013/REC-performance-timeline-20131212/
+and Performance Timeline Level 2 is the current working draft. % https://www.w3.org/TR/performance-timeline-2/
 
-Performance Timeline is a Recommendation from December 2013 % https://www.w3.org/TR/2013/REC-performance-timeline-20131212/
-and Performance Timeline Level 2 is a Working Draft from June 2021. % https://www.w3.org/TR/performance-timeline-2/
+In short, the Performance Timeline defines an API and methods that make accessible all timing values captured by other specifications such as Navigation or Resource Timing.
+The Performance Timeline defines an interface for capturing a variety of performance measurements. 
+It can be used to retrieve Navigation Timings using $performance.getEntriesByType("navigation")$.
 
-In short, the Performance Timeline defines an API and methods which expose all timing values captured by other specifications such as Navigation or Resource Timing.
-Performance Timeline defines an interface to acquire a variety of performance measurements. 
-As already described, in can be used to retrieve Navigation Timings with $performance.getEntriesByType("navigation")$.
+In addition, a PerformanceObserver interface is defined that can be used to monitor the Performance Timeline and notify when new measurements and recordings are available.
 
-Additionally, a PerformanceObserver interface is defined, which can be used to monitor the Performance Timeline and notify as soon as new measurements and recordings are available.
-
-
-%TODO add this ? is not so important...
-
+% add this ? is not so important...
 % https://www.w3.org/TR/performance-timeline-2/
 %- extends the High Resolution Time specification
 %- providing methods to store and retrieve high resolution performance metric data.
@@ -2040,7 +2019,6 @@ Additionally, a PerformanceObserver interface is defined, which can be used to m
 	
 % https://developer.mozilla.org/en-US/docs/Web/API/Performance_Timeline
 %- PerformanceEntry interface encapsulates a single performance entry: a single data point or metric in the performance timeline
-
 
 % https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
 %- A performance entry can be directly created by making a performance mark or measure
@@ -2059,23 +2037,22 @@ Additionally, a PerformanceObserver interface is defined, which can be used to m
 %- startTime
 %- duration
 
-
-
 % ----------------------------
 
 
-\paragraph{Long Tasks}
+\paragraph{Long Tasks} % korrigiert
 
-Long Tasks API 1 has been released as a First Public Working Draft in September 2017.
-The goal of the API is to detect "long tasks", this are tasks that occupy the main thread for more than 50ms.
-Long tasks are critical for performance as they block other critical tasks such as user input. % cite  https://www.w3.org/TR/longtasks-1/
+The Long Tasks API 1 was released in September 2017 as a First Public Working Draft.
+The goal of the API is to detect "long tasks", i.e. tasks that take the main thread longer than 50 ms.
+Long tasks are critical to performance because they block other critical tasks such as user input. % cite  https://www.w3.org/TR/longtasks-1/
 
-%TODO
-Long Tasks API is a basis to calculate metrics such as  Time to Interactive (TTI) and Total Blocking Time (TBT). % https://web.dev/custom-metrics/#long-tasks-api
-TTI and TBT will be discussed below.
+The Long Tasks API is used to calculate user-centric metrics (see section \ref{subsection:user_centric_performance_metrics}.
+
+% add this here about metrics ?
+%Long Tasks API is a basis to calculate metrics such as Time to Interactive (TTI) and Total Blocking Time (TBT). % https://web.dev/custom-metrics/#long-tasks-api
+%TTI and TBT will be discussed below.
 
 % https://github.com/WICG/time-to-interactive
-
 
 % https://www.youtube.com/watch?v=6Ljq-Jn-EgU&ab_channel=GoogleChromeDevelopers
 %- Long Tasks: Is it delightful? PerformanceObserver
@@ -2083,28 +2060,24 @@ TTI and TBT will be discussed below.
 
 % ----------------------------
 
+\paragraph{Server Timing} % korrigiert
 
-\paragraph{Server Timing}
-
-Server Timing is a Working Draft from June 2021.
-With specifications such as Navigation and Resource Timing, the user agent has access to a variety of different timings regarding the navigation process.
-Not visible nor available are measurement and timings within the server processing, e.g. database queries.
-Server Timing addresses this problem by enabling a server to transfer and communicate performance related information to the user agent. % cite https://www.w3.org/TR/server-timing/
-
-
+Server Timing is a Working Draft.
+With specifications such as Navigation and Resource Timing, the user agent has access to a variety of different timings related to the navigation process.
+Not visible or available are measurements and timings within server processing, such as database queries.
+Server Timing solves this problem by allowing a server to transmit and communicate performance-related information to the user agent. % cite https://www.w3.org/TR/server-timing/
 
 % ----------------------------
 
+\paragraph{Paint Timing} % korrigiert
 
-\paragraph{Paint Timing}
+Paint Timing 1 was published as a First Public Working Draft in September 2017.  
+It specifies two "key moments" during the loading process: First Paint (FP) and First Contentful Paint (FCP).
+Table \ref{table:paint_timing} provides explanations of the key moments as defined in the specification. % cite https://www.w3.org/TR/paint-timing/
 
-Paint Timing 1 has been released as a First Public Working Draft in September 2017.  
-It specifies two "key moments" during the load process: First Paint (FP), and First Contentful Paint (FCP).
-Table X. provides explanations for the key moments as they are defined in the specification. % cite https://www.w3.org/TR/paint-timing/
-
-The metrics can be retrieved directly in the browser via $performance.getEntriesByType("paint")$.
-Hence, FP and FCP can be collected in RUM.
-Other visual metrics rely mostly on video analysis and need a synthetic monitoring setup, as described in the next section.
+The metrics can be accessed directly in the browser via $performance.getEntriesByType("paint")$.
+Therefore, FP and FCP can be captured in RUM.
+Other visual metrics are mainly based on video analysis and require a synthetic monitoring facility as described in the next section.
 
 \begin{table}[h]
 	\small
@@ -2121,38 +2094,29 @@ Other visual metrics rely mostly on video analysis and need a synthetic monitori
 	\label{table:paint_timing}
 \end{table}
 
+FP and FCP indicate when the user sees something other than the default white screen for the first time.
+Whether the visual change is important or useful to the user is not considered by FP or FCP. % cite 2013 Meenan
+Section \ref{subsection:user_centric_performance_metrics} discusses visual metrics that may be of importance to the user.
 
-FP and FCP indicate when the user sees something different than the default white screen for the first time.
-If the visual change is important or useful for the user is not reflected by FP or FCP. % cite 2013 Meenan
+% add this ??
+% As described below, FCP is part of Google's Web Vitals.
+% For a more fine grained measurement, they enhance the default metric.
 
-%TODO
-As described below, FCP is part of Google's Web Vitals.
-For a more fine grained measurement, they enhance the default metric.
-
-
-
-%TODO add more here ?
-
+% add more here ?
 % https://developer.mozilla.org/en-US/docs/Glossary/First_paint
 % https://developer.mozilla.org/en-US/docs/Glossary/First_contentful_paint
-
 % A user centric metric pendant is Start Render.
 % FP and FCP are visual metrics from a browsers perspective, and not from a users perspective, as they are derived from  and not the actual pixels on the screen.
 
-
-
 % ----------------------------
 
-
-%TODO write this down and add to summary table
-
-\paragraph{Web Incubator Community Group}
+\paragraph{Web Incubator Community Group} % korrigiert
 
 The Web Incubator Community Group (WICG) is a W3C Community Group and "provides a lightweight venue for proposing and discussing new web platform features." % https://www.w3.org/community/groups/
-The WICG works on and proposes a variety of possible web technologies and standards.\footnote{\url{https://wicg.io/} [24.07.2021]}
-Those specifications are unofficial drafts and not verified by W3C, but may be included in the W3C recommendation track in the future.
-Four out of the proposed "incubations" are mentioned here as they serve as a base for some Web Vitals measurements, as described below.
-Specification details are available on the referenced pages:
+The WICG is working on and proposing a number of possible web technologies and standards.\footnote{\url{https://wicg.io/} [24.07.2021]}
+These specifications are unofficial drafts that have not been reviewed by the W3C, but may be included in the W3C Recommendations track in the future.
+Four of the proposed "incubations" are mentioned here because they serve as the basis for some user-centric metrics, as described in Section \ref{subsubsection:core_web_vitals}.
+Details on the specifications can be found on the corresponding pages:
 \textit{Element Timing API}\footnote{\url{https://wicg.github.io/element-timing/} [24.07.2021]}, 
 \textit{Event Timing API}\footnote{\url{https://wicg.github.io/event-timing/} [24.07.2021]},
 \textit{Layout Instability API}\footnote{\url{https://wicg.github.io/layout-instability/} [24.07.2021]}, and
@@ -2164,28 +2128,19 @@ Specification details are available on the referenced pages:
 %  Editors are from Google, close relation to Core Web Vitals
 % Only available in Chromium
 
-
 % ?? Network Information API (not official w3c) https://wicg.github.io/netinfo/
-
-
-
-
 
 % ---------------------------------------------------------------------------------------------
 
+\subsubsection{Navigation Timing Metrics Conclusion} % korrigiert
 
+A variety of measurements and time intervals can be taken during the loading process of a website.
+The W3C and the Performance Working Group maintain and define a set of specifications with the task of measuring performance and navigation timing data.
+The attributes exposed by these specifications are used to calculate performance and navigation timing metrics.
 
-\subsubsection{Navigation Timing Metrics Conclusion}
+Since the performance metrics are not officially defined by any authorized party or institution, their meaning may vary depending on the implementation.
 
-[tbd]
-
-We can measure time for different processes in the document loading process.
-W3C and the Performance Working Group especially maintain and define a set of specifications with the task to measure performance related data.
-The attributes exposed by there specifications are used to calculate performance or navigation timing metrics.
-
-As the performance metrics are not officially defined by any authorizes party or institution, their meaning may diverge depending on the implementation.
-
-Table X provides an overview of all discussed specifications, in which maturity level they are available and why they are important.
+Table \ref{table:apis_summary} provides an overview of all specifications discussed, at what maturity level they are available, and why they are important.
 
 
 %The High Resolution Time recommendation enables exact, stable and reliable time measures.
@@ -2203,71 +2158,67 @@ Table X provides an overview of all discussed specifications, in which maturity 
 	\hline
 	High Resolution Time
 	& Level 2: REC November 2019 \\
-	& WD July 2021 \\
-	& Provides exact, stable and reliable time measures \\
+	& Current WD \\
+	& Provides accurate, stable and reliable time measurements. \\
 	\hline
 	Navigation Timing
 	& Level 1: REC December 2021 \\
-	& Level 2: WD March 2021 \\
-	& Exposes navigation timing information of the main document \\
+	& Level 2: Current WD \\
+	& Exposes information about the navigation timing of the main document. \\
 	\hline
 	Resource Timing
 	& Level 1: CR March 2017 \\
-	& Level 2: WD April 2021 \\
-	& Exposes timing information from requested resources and the resources they request.  \\
+	& Level 2: Current WD \\
+	& Exposes timing information of requested resources and the resources they requested. \\
 	\hline
 	Navigation and Resource Timing
-	& Used to calculated a variety of metrics \\
+	& Used to calculated a variety of metrics. \\
 	\hline
 	User Timing
 	& Level 2: REC February 2019 \\
-	& Level 3: WD July 2021 \\
-	& Mark and measure custom timestamps \\
+	& Level 3: Current WD \\
+	& Mark and measure custom timestamps. \\
 	\hline
 	Performance Timeline
 	& REC December 2013 \\
-	& Level 2: WD June 2021 \\
-	& Subsumes gathered performance data from other specifications \\
+	& Level 2: Current WD \\
+	& Subsumes collected performance data from other specifications. \\
 	\hline
 	Long Tasks
 	& API 1: FPWD  September 2017 \\
-	& Identifies tasks occupying main thread for more than 50ms \\
-	& Basis for TTI and TBT \\
+	& Identifies tasks that occupy the main thread for more than 50ms. \\
+	& Basis for TTI and TBT. \\
 	\hline
 	Server Timing
-	& WD June 2021 \\
-	& Standard to transmit performance related data from the server to the client \\
+	& Current WD \\
+	& Standard for transmitting performance-related data from the server to the client. \\
 	\hline
 	Paint Timing
 	& FPWD September 2017 \\
-	& Exposes the "key moments" First Paint and First Contentful Paint \\
+	& Exposes the "key moments" First Paint and First Contentful Paint. \\
 	\hline
-	Element- and Event Timing API & WICG proposals (unoffical drafts), used for LCP, FID  \\
-	Layout Instability API & Basis for FID, LCP, CLS \\ %TODO more ?
+	Element- and Event Timing API & WICG proposals (unoffical drafts), used for LCP, FID, CLS  \\
+	Layout Instability API & \\ %TODO more ?
 	Largest Contentful Paint & \\
 	\hline
 	\end{tabular}
 	\medskip
-	\caption{W3C and WICG Specs sumamry}
-	\label{table:apis_summary} %TODO ref somewhere
+	\caption{Summary of W3C and WICG Specifications}
+	\label{table:apis_summary}
 \end{table}
 
 
 % [Transition]
 
-Paint Timing already shoots in a direction which tries to measure user perceived performance not just by measuring elapsed time between navigation events, but rather observe visual changes during the websites loading process.
-When navigation timings can help to identify eventual bottlenecks or other technical debts during the loading process, they do not reflect how the actual user is perceiving the performance of the websites loading process.
-As users consume websites mainly with the eyes, visual indicators are relevant and of crucial importance.
+Paint Timing is already moving in a direction that seeks to measure user-perceived performance not just by measuring elapsed time between navigation events, but rather by observing visual changes as the website loads.
+Although navigation times can help identify any bottlenecks or other technical problems during the loading process, they do not reflect how the user actually perceives the performance of the website loading process.
+Since users primarily consume websites with their eyes, visual indicators are relevant and critical.
 
-A variety of visual and user-centric performance metrics emerged in the last years, with Google promoting some of them.
-They will be discussed in the next section.
-
-
+In recent years, a variety of visual and user-centric performance metrics have emerged, some of which Google is promoting.
+They are discussed in the next section.
 
 % -----------------------------------------------------------------------
 % -----------------------------------------------------------------------
-
-
 
 \subsection{User-Centric Performance Metrics}
 \label{subsection:user_centric_performance_metrics}
