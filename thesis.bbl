@@ -40,6 +40,13 @@
   and Networking} 13 (2020), Nr. 2, S. 1449--1452. --
 \newblock ISSN 2233--7857 IJFGCN
 
+\bibitem[Bel]{2010Belshe}
+\textsc{Belshe}, Mike:
+\newblock \emph{More Bandwidth Doesn’t Matter (much)}.
+\newblock
+  \url{https://docs.google.com/a/chromium.org/viewer?a=v&pid=sites&srcid=Y2hyb21pdW0ub3JnfGRldnxneDoxMzcyOWI1N2I4YzI3NzE2},
+  Abruf: 2021-08-03
+
 \bibitem[BGP15]{2015Bekavac}
 \textsc{Bekavac}, Ivan ; \textsc{Garbin~Prani{\v c}evi{\'c}}, Daniela:
 \newblock Web analytics tools and web metrics tools: An overview and
@@ -127,6 +134,12 @@
 \newblock {In: }\emph{Synthesis Lectures on Information Concepts, Retrieval,
   and Services} 1 (2009), Januar, Nr. 1, S. 1--102
 
+\bibitem[Key]{2018KeyCDN}
+\textsc{KeyCDN}:
+\newblock \emph{How to Reduce DNS Lookups}.
+\newblock \url{https://www.keycdn.com/support/reduce-dns-lookups}, Abruf:
+  2021-08-03
+
 \bibitem[KL17]{2016Kohavi}
 \textsc{Kohavi}, Ron ; \textsc{Longbotham}, Roger:
 \newblock Online {Controlled} {Experiments} and {A}/{B} {Testing}.
@@ -169,6 +182,20 @@
 \bibitem[May]{2006Mayer}
 \textsc{Mayer}, Marissa:
 \newblock \emph{Conference Keynote, Web 2.0, 2006}
+
+\bibitem[MDNa]{2021MDNHowBrowsersWork}
+\textsc{MDN}, Contributors:
+\newblock \emph{Populating the page: how browsers work}.
+\newblock
+  \url{https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work},
+  Abruf: 2021-08-03
+
+\bibitem[MDNb]{2021MDNLatency}
+\textsc{MDN}, Contributors:
+\newblock \emph{Understanding latency}.
+\newblock
+  \url{https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency},
+  Abruf: 2021-08-03
 
 \bibitem[Mor18]{2018Morys}
 \textsc{Morys}, André:

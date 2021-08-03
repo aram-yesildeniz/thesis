@@ -3,13 +3,14 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: thesis.aux
 A level-1 auxiliary file: _titlepage.aux
 A level-1 auxiliary file: chapters/1_introduction/introduction.aux
-A level-1 auxiliary file: chapters/2_terms_and_definitions/terms_and_definitions.aux
-A level-1 auxiliary file: chapters/3_related_work/related_work.aux
-A level-1 auxiliary file: chapters/4_approach/approach.aux
-A level-1 auxiliary file: chapters/5_evaluation/evaluation.aux
-A level-1 auxiliary file: chapters/6_future_work/future_work.aux
-A level-1 auxiliary file: chapters/7_conclusion/conclusion.aux
-A level-1 auxiliary file: chapters/8_appendix/appendix.aux
+A level-1 auxiliary file: chapters/2_ecommerce/ecommerce.aux
+A level-1 auxiliary file: chapters/3_web_performance/web_performance.aux
+A level-1 auxiliary file: chapters/4_related_work/related_work.aux
+A level-1 auxiliary file: chapters/5_approach/approach.aux
+A level-1 auxiliary file: chapters/6_evaluation/evaluation.aux
+A level-1 auxiliary file: chapters/7_future_work/future_work.aux
+A level-1 auxiliary file: chapters/8_conclusion/conclusion.aux
+A level-1 auxiliary file: chapters/9_appendix/appendix.aux
 The style file: alphadin.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -17,48 +18,46 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: thesis.bib
-Warning--I didn't find a database entry for "2015Croll"
-Warning--I didn't find a database entry for "2011Marekt"
 Warning--empty year in 2006Mayer
-You've used 37 entries,
+You've used 41 entries,
             4793 wiz_defined-function locations,
-            1141 strings with 13415 characters,
-and the built_in function-call counts, 21909 in all, are:
-= -- 2264
-> -- 586
-< -- 624
-+ -- 712
-- -- 200
-* -- 1416
-:= -- 3705
-add.period$ -- 47
-call.type$ -- 37
-change.case$ -- 182
-chr.to.int$ -- 36
-cite$ -- 38
-duplicate$ -- 636
-empty$ -- 1573
-format.name$ -- 384
-if$ -- 4384
-int.to.chr$ -- 2
+            1158 strings with 13992 characters,
+and the built_in function-call counts, 23574 in all, are:
+= -- 2443
+> -- 618
+< -- 663
++ -- 752
+- -- 208
+* -- 1500
+:= -- 3984
+add.period$ -- 51
+call.type$ -- 41
+change.case$ -- 198
+chr.to.int$ -- 39
+cite$ -- 42
+duplicate$ -- 692
+empty$ -- 1697
+format.name$ -- 408
+if$ -- 4739
+int.to.chr$ -- 3
 int.to.str$ -- 0
-missing$ -- 179
-newline$ -- 212
-num.names$ -- 112
-pop$ -- 304
+missing$ -- 203
+newline$ -- 232
+num.names$ -- 124
+pop$ -- 340
 preamble$ -- 1
-purify$ -- 256
+purify$ -- 280
 quote$ -- 0
-skip$ -- 1200
+skip$ -- 1290
 stack$ -- 0
-substring$ -- 1497
-swap$ -- 147
-text.length$ -- 107
-text.prefix$ -- 18
+substring$ -- 1576
+swap$ -- 159
+text.length$ -- 115
+text.prefix$ -- 22
 top$ -- 0
-type$ -- 345
+type$ -- 385
 warning$ -- 1
-while$ -- 187
-width$ -- 42
-write$ -- 475
-(There were 3 warnings)
+while$ -- 199
+width$ -- 46
+write$ -- 523
+(There was 1 warning)

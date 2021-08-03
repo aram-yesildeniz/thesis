@@ -66,7 +66,6 @@
 \section{Introduction} % korrigiert
 \label{section:web_performance_introduction}
 
-
 % [Introduction]
 
 As described in section \ref{chapter:user_satisfaction}, web performance plays a non-negligible role in user satisfaction and business success.
@@ -137,16 +136,10 @@ Two main methods for measuring the performance of a website exist:
 \textit{Synthetic Monitoring} is discussed in section \ref{subsection:synthetic_monitoring},
 \textit{Real User Monitoring} (RUM) is covered in section \ref{subsection:RUM}.
 
-
-
-
-
 % ---------------------------------------------------------------------------------------------------
-
 
 \section{The Website Loading Process} % korrigiert
 \label{section:website_loading_process}
-
 
 % [Introduction]
 
@@ -155,12 +148,12 @@ In general, this process involves establishing a connection between a client and
 
 % [3 Entities: FE, BE, Network]
 
-It is helpful to divide the components of the website loading process into three units: The front-end, the back-end, and the network. % cite 2016 Witt
+It is helpful to divide the components of the website loading process into three units: The front-end, the back-end, and the network. % cite 2016 Witt ??
 The front-end takes care of everything the user sees on the screen, such as rendering the UI, and consists of a client (browser) that requests data from the back-end.
 The back-end, usually a web server, processes the client's requests and sends the response back to the front-end.
 The data is transmitted over the network, which connects the front and back ends and consists of network components such as cables, routers, switches, network protocols, and so on.
 
-Figure \ref{img:timing_overview} shows the three entities and their tasks during the website loading process.
+Figure \ref{figure:timing_overview} shows the three entities and their tasks during the website loading process.
 What happens in the network phase is described in section \ref{subsection:network_process}.
 The front-end's task of receiving data and transforming it into a website is covered in section \ref{subsection:crp}.
 How the back-end processes requests and creates responses is not part of this work.
@@ -169,7 +162,7 @@ How the back-end processes requests and creates responses is not part of this wo
 \begin{center}
 \includegraphics[width=0.8\textwidth]{timing_overview_blanco2.png}
 \caption{Timing Overview}
-\label{img:timing_overview}
+\label{figure:timing_overview}
 \end{center}
 \end{figure}
 %TODO change image: make it clean
@@ -201,57 +194,54 @@ Web performance metrics measure, among other things, how long certain steps take
 There are two important factors when discussing network performance: latency and bandwidth.
 As will be examined below, latency is the bottleneck of network performance, not bandwidth.
 
-
 % [Bandwidth]
 
-Bandwidth is the "maximum throughput of a logical or physical communication path". %cite 2013 Grigorik
+Bandwidth is the "maximum throughput of a logical or physical communication path" \cite{2013Grigorik}.
 In other words, bandwidth describes the amount of data that can be sent in parallel from one node in a network to another. 
 Physical communication paths are usually cables such as metal wires or fiber optic cables, with fiber optic cables having less signal loss and lower lifetime maintenance costs.
-Using methods such as wavelength division multiplexing (WDM), it is possible to transmit up to 70 Tbit/s over a fiber optic link. %cite 2013 Grigorik
+Using methods such as wavelength division multiplexing (WDM), it is possible to transmit up to 70 Tbit/s over a fiber optic link.
 This high technology is only used in the backbone infrastructure, e.g. for the connection between Europe and America.
-For the end user, the bandwidth is much lower, and the average was only 5.1 Mbit/s at the end of 2015. % cite 2013 Grigorik
+For the end user, the bandwidth is much lower, and the average was only 5.1 Mbit/s at the end of 2015.
 High bandwidth is useful for bulk or large-scale data transfers like streaming video or audio.
-But for loading a website or any other browser activity that depends on many requests fetching data from many different locations around the globe, the performance bottleneck is latency. % cite 2013 Grigorik
-
+But for loading a website or any other browser activity that depends on many requests fetching data from many different locations around the globe, the performance bottleneck is latency \cite{2013Grigorik}.
 
 % [Latency]
 
-Latency is "the time from the source sending a packet to the destination receiving it".  % cite 2013 Grigorik
+Latency is "the time from the source sending a packet to the destination receiving it" \cite{2013Grigorik}.
 Latency is measured in seconds and can be the time it takes to travel a single distance or, more commonly, how long it takes the transmitted data packet to round-trip time (RTT) from source to destination and back.
-In other words, latency "describes the amount of delay on a network or Internet connection". % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-For the very first request when establishing a connection, the latency is longer due to protocols such as DNS lookups, TCP and TLS handshakes.
-These are discussed in section \ref{subsubsection:network_navigation_steps}. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
-
+In other words, latency "describes the amount of delay on a network or Internet connection" \cite{2021MDNLatency}.
+For the very first request when establishing a connection, the latency is longer due to protocols such as DNS lookups, TCP and TLS handshakes \cite{2021MDNLatency}.
+These are discussed in section \ref{subsubsection:network_navigation_steps}.
 
 % [Experiment]
 
-To get an idea of how the two aspects of bandwidth and latency affect web performance, Mike Belshe conducted a study. % cite https://docs.google.com/a/chromium.org/viewer?a=v&pid=sites&srcid=Y2hyb21pdW0ub3JnfGRldnxneDoxMzcyOWI1N2I4YzI3NzE2
-There are two configurations: One has fixed latency and variable bandwidth, and the other is configured the other way around.
-He then compared the performance of the two configurations using the Page Load Time metric (figure \ref{img:latency}).
+To get an idea of how the two aspects of bandwidth and latency affect web performance, Mike Belshe conducted a study \cite{2010Belshe}:
+There are two configurations. One has fixed latency and variable bandwidth, and the other is configured the other way around.
+He then compared the performance of the two configurations using the Page Load Time metric (figure \ref{figure:latency}).
 
 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{latency.png}
-\caption{Latency vs Bandwidth, taken from X.} % Grigorik
-\label{img:latency}
+\caption{Latency vs Bandwidth, taken from \cite{2013Grigorik}}
+\label{figure:latency}
 \end{center}
 \end{figure}
 
 
 We see that the influence of the bandwidth is trivial: if the available bandwidth is doubled, e.g. from 5 to 10 Mbit/s, there is no change in the loading time.
 For latency, on the other hand, the picture is different: If the latency can be reduced by half, e.g. from 120 ms to 60 ms, the page load time also drops by half.
-Or as Belshe puts it, "[reducing] cross-atlantic RTTs from 150ms to 100ms [...] would have a larger effect on the speed of the internet than increasing a user's bandwidth from 3.9Mbps to 10Mbps or even 1Gbps." % cite https://docs.google.com/a/chromium.org/viewer?a=v&pid=sites&srcid=Y2hyb21pdW0ub3JnfGRldnxneDoxMzcyOWI1N2I4YzI3NzE2
+Or as Belshe puts it, "[reducing] cross-atlantic RTTs from 150ms to 100ms [...] would have a larger effect on the speed of the internet than increasing a user's bandwidth from 3.9Mbps to 10Mbps or even 1Gbps" \cite{2010Belshe}.
 
-These observations can be explained by the many short, small connections and requests made while browsing websites and the contrary basic structure of the communication protocols, which are "optimized for long-lived connections and bulk data transfers." % cite 2013 Grigorik ch 10
-But simply reducing latency is not easy: the speed of data transmission is already 2/3 the speed of light, but the physical conditions are the limiting factor, e.g. there is a minimum distance between London and New York that cannot be "optimized" further. % cite 2013 Grigorik Ch 1
+These observations can be explained by the many short, small connections and requests made while browsing websites and the contrary basic structure of the communication protocols, which are "optimized for long-lived connections and bulk data transfers" \cite{2013Grigorik}. % add ch 10 ?
+But simply reducing latency is not easy: the speed of data transmission is already 2/3 the speed of light, but the physical conditions are the limiting factor, e.g. there is a minimum distance between London and New York that cannot be "optimized" further \cite{2013Grigorik}. % add Ch 1 ?
 %TODO add more here? Why is this here?
 
 
 % [Mobile]
 
-Another aspect of latency is that latency is even higher for wireless connections and thus for mobile devices, "making network optimization a critical priority for the mobile web." % cite 2013 Grigork Ch 1
-Latency is high for mobile users due to mobile network infrastructure (see also "Why are mobile latencies so high?" in Grigorik). % cite https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
+Another aspect of latency is that latency is even higher for wireless connections and thus for mobile devices, "making network optimization a critical priority for the mobile web" \cite{2013Grigorik}. % add Ch 1
+Latency is high for mobile users due to mobile network infrastructure (see also "Why are mobile latencies so high?" in \cite{2013Grigorik}).
 
 
 % [Transition]
@@ -259,7 +249,6 @@ Latency is high for mobile users due to mobile network infrastructure (see also 
 Although latency is an important factor, what happens on the front end is still important.
 At the same time, this thesis focuses on metrics to measure performance on the front end.
 Before going into what happens in the browser once the website data arrives, I will briefly describe the preceding steps of establishing a connection between the browser (client) and the server, which can still be considered part of the network.
-
 
 
 %TODO add this ?
@@ -270,10 +259,9 @@ Before going into what happens in the browser once the website data arrives, I w
 % Network throttling: Emulate download speed, upload speed, and minimum latency
 
 
-
 % --------------------------------------------------------------------------------------------
 
-
+%TODO
 \subsubsection{Network Navigation Steps}
 \label{subsubsection:network_navigation_steps}
 
@@ -293,7 +281,6 @@ I will explain briefly the main navigation steps: It begins when the user is sub
 %- Blocking happens when there are too many simultaneous connections to single server over HTTP
 
 
-
 % ----------------------------------
 
 
@@ -303,9 +290,9 @@ If the requested resource cannot be loaded from the browser's cache, the first s
 
 This step is about translating the URL into an IP address.
 It must be performed for each unknown URL, for example, if linked images on a website come from different servers, a DNS lookup must be performed for each individual URL.
-The URL to IP mapping can be cached by the browser, which makes repeated calls faster. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+The URL to IP mapping can be cached by the browser, which makes repeated calls faster \cite{2021MDNHowBrowsersWork}.
 
-DNS lookups take between 20 and 120 milliseconds on average. % https://www.keycdn.com/support/reduce-dns-lookups
+DNS lookups take between 20 and 120 milliseconds on average \cite{2018KeyCDN}.
 
 % Metric?
 % Can be considered a performance metric, see section X.
@@ -317,20 +304,17 @@ DNS lookups take between 20 and 120 milliseconds on average. % https://www.keycd
 \paragraph{TCP Handshake} % korrigiert
 
 The goal of TCP (Transmission Control Protocol) is to establish a reliable connection in an unreliable network.
-TCP  "guarantees that all bytes sent will be identical with bytes received and that they will arrive in the same order to the client." % cite 2013 Grigorik
+TCP  "guarantees that all bytes sent will be identical with bytes received and that they will arrive in the same order to the client" \cite{2013Grigorik}.
 The TCP 3-way handshake is a technique for establishing a reliable connection.
 In terms of performance, the handshake adds two more roundtrips, which, as we have seen, is bad for performance because of latency.
 
 There are many algorithms and techniques for optimal data transmission and avoiding congestion, e.g. Slow-Start.
 Slow-Start is an algorithm that determines the maximum usable bandwidth by gradually increasing the amount of data sent.
-Slow-Start prevents the full capacity of the network from being used from the start, which in turn leads to more round trips and latency. % cite 2013 Grigorik
-
-For a detailed discussion of TCP, see "Building Blocks of TCP" in 2013 Grigorik. % cite https://hpbn.co/building-blocks-of-tcp/
+Slow-Start prevents the full capacity of the network from being used from the start, which in turn leads to more round trips and latency \cite{2013Grigorik}.
+For a detailed discussion of TCP, see "Building Blocks of TCP" in \cite{2013Grigorik}.
 
 %TODO once i know which metric add it here ?
 %A performance metric reflecting the time spent for establishing a TCP connection is X, see section X.
-
-
 
 
 % ----------------------------------
@@ -340,10 +324,10 @@ For a detailed discussion of TCP, see "Building Blocks of TCP" in 2013 Grigorik.
 
 TLS (Transport Layer Security) is another protocol whose goal is to establish a secure connection in the sense of data encryption.
 Data that is transmitted over the network must be encrypted so that outsiders cannot read or manipulate the data.
-For encryption, a cipher must be defined that is exchanged between client and server during TLS negotiation. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+For encryption, a cipher must be defined that is exchanged between client and server during TLS negotiation \cite{2021MDNHowBrowsersWork}.
 
 From a performance perspective, TLS in turn means more roundtrips, which has a negative impact on performance.
-For a detailed discussion of TLS, see "Transport Layer Security (TLS)" in 2013 Grigorik. % https://hpbn.co/transport-layer-security-tls/
+For a detailed discussion of TLS, see "Transport Layer Security (TLS)" in \cite{2013Grigorik}.
 
 %TODO once i know which metric add it here?
 %A performance metric reflecting the time spent for a TLS negotiating is blabla in section X.
@@ -390,7 +374,7 @@ Exactly how this happens is explained in the next section.
 
 This section explains what happens after the first bytes of the website arrive in the browser.
 The following processes are usually subsumed under the term \textit{Critical Rendering Path} (CRP).
-The CRP is the final part of the navigation process, as shown in figure \ref{img:timing_overview}.
+The CRP is the final part of the navigation process, as shown in figure \ref{figure:timing_overview}.
 
 
 % [Critical]
@@ -2742,6 +2726,8 @@ Custom metrics are discussed in the next section.
 
 % [Universal vs Custom]
 
+The website performance metrics described
+
 
 % https://web.dev/user-centric-performance-metrics/
 The performance metrics listed above are good for getting a general understanding of the performance characteristics of most sites on the web. They're also good for having a common set of metrics for sites to compare their performance against their competitors.
@@ -2898,8 +2884,6 @@ User Timing API, Long Tasks API, Element Timing API
 	\label{tab:myfirstlongtable}
 	\end{longtable}
 \end{center}
-
-
 
 
 % https://speedcurve.com/blog/rendering-metrics/
