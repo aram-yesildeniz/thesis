@@ -2442,63 +2442,56 @@ Google deprecated First CPU Idle, as "the difference [to TTI] isn't significant 
 
 % ------------------------
 
-\paragraph{Total Blocking Time}
+\paragraph{Total Blocking Time} % korrigiert
 
 % [Explanation] 
 
-Total Blocking Time (TBT) captures the aspect of \textit{Load responsiveness} and gives hints to the question \textit{Is it happening?}.
-According to the definition, TBT measures "the total amount of time between First Contentful Paint (FCP) and Time to Interactive (TTI) where the main thread was blocked for long enough to prevent input responsiveness." % https://web.dev/tbt/
-The starting point for the measurement is the point of FCP, as user input is not likely to happen before the UI got rendered.
-The end point of the measurement is the point of TTI.
+Total Blocking Time (TBT) captures the aspect of \textit{Load responsiveness} and provides clues to the question \textit{Is it happening?}.
+By definition, TBT measures "the total amount of time between First Contentful Paint (FCP) and Time to Interactive (TTI) where the main thread was blocked for long enough to prevent input responsiveness." % https://web.dev/tbt/
+The starting point of the measurement is the point of the FCP, since user input is unlikely to occur before the user interface is rendered.
+The end point of the measurement is the point of the TTI.
 
-The blocking of the main thread is characterized through long tasks, as they are defined in Long Tasks API (cf section X.)
-If the user interacts with the website while a long task is running, the browser can only respond to the user when he finished processing the long task.
-Therefore, the user has to wait.
-The blocking time of a long task is the full time of the task minus the defined long task time of 50ms.
+Blocking the main thread is characterized by long tasks as defined in the Long Task API (see Section \ref{subsubsection:w3c_performance_specifications}).
+If the user interacts with the website while a long task is running, the browser cannot respond to the user until it finishes processing the long task.
+Therefore, the user must wait.
+The blocking time of a long task is the total time of the task minus the defined long task time of 50 ms.
 For example, a long task of $180ms$ has a blocking time of $180ms - 50ms = 130ms$.
-The sum of all those times, between FCP and TTI, is the TBT.
-
+The sum of all these times, between FCP and TTI, is the TBT.
 
 % [Link to TTI]
 
-For some use cases, TBT can adjust and correct TTI, when TTI does not reflect available interactivity realistically:
-As TTI is framed around a quite window of 5 seconds, TTI will likely be the same for (A) three long tasks of 51ms spread over 10 seconds, and (B) one 10 second task.
-(A) is expected to be more interactive, as in between the three long tasks, the main thread is able to react to user input.
-For (B) on the other hand, the main thread is blocked and user interactivity is prohibited.
-For use cases like this, TBT is a good indicator:
-For (A), TBT is 3ms, and for (B), TBT is 9950ms.
-The lower TBT value indicates a better interactivity and user experience.
+For some use cases, TBT can adjust and correct the TTI if the TTI does not realistically reflect the available interactivity:
+Since the TTI is fixed around a 5-second time window, the TTI is likely to be the same for (A) three long tasks of 51 ms spread over 10 seconds, and (B) one 10-second task.
+(A) is likely to be more interactive because the main thread can respond to user input between the three long tasks.
+In (B), on the other hand, the main thread is blocked and user interactivity is prohibited.
+For such use cases, TBT is a good indicator:
+For (A), TBT is 3ms and for (B) it is 9950ms.
+The lower the TBT value, the better the interactivity and user experience.
 
-As with TTI, Google recommends to measure TBT through synthetic monitoring rather than RUM, as user input may affect and disturb measurement results.  \\
-
-
-% ------------------------
-
+As with TTI, Google recommends measuring TBT by synthetic monitoring and not by RUM, since user input can influence and interfere with the measurement results. \\
 
 % [Transition]
 
-Among the Web Vitals are three metrics that matter the most.
-The \textit{Core Web Vitals} are discussed below.
-
+Among the Web Vitals, there are three metrics that are most important.
+The \textit{Core Web Vitals} will be discussed next.
 
 
 % ----------------------------------------
 
-
-\subsubsection{Core Web Vitals}
+\subsubsection{Core Web Vitals} % korrigiert
 \label{subsubsection:core_web_vitals}
 
-Within the set of Web Vitals, there is a group of metrics that matter the most:
+Within Web Vitals, there is a group of metrics that are most important:
 "Core Web Vitals are the subset of Web Vitals that apply to all web pages, should be measured by all site owners, and will be surfaced across all Google tools." % https://web.dev/vitals/
 The Core Web Vitals are structured around the performance aspects \textit{Loading}, \textit{Interactivity}, and \textit{Visual Stability}.
-Each of three Core Web Vitals reflects one of those aspects (table X.).
+Each of three Core Web Vitals reflects one of those aspects (table \ref{table:core_web_vitals}).
 
-The Core Web Vitals are relevant for all kinds of websites and can be measured with RUM.
-Contrary to the general evolving nature of Web Vitals, Core Web Vitals are rather stable in terms of definition and recommended benchmarks.
+The Core Web Vitals are relevant for all types of websites and can be measured with RUM.
+In contrast to the general development of the Web Vitals, the Core Web Vitals are relatively stable in terms of definition and recommended benchmarks.
 % https://web.dev/vitals/
 
-Core Web Vitals are collected by common Google performance assessment tools such as CrUX or PageSpeed Insights.\footnote{\url{https://developers.google.com/speed/pagespeed/insights/} [23.07.2021]}
-Additionally, Google provides a JS library for Core Web Vitals measurements.\footnote{\url{https://github.com/GoogleChrome/web-vitals} [23.07.2021]}
+Core Web Vitals are captured by common Google performance evaluation tools such as CrUX or PageSpeed Insights,\footnote{\url{https://developers.google.com/speed/pagespeed/insights/} [23.07.2021]}
+and are also made available via the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals} [23.07.2021]}
 
 \begin{table}[h]
 	\small
@@ -2511,140 +2504,122 @@ Additionally, Google provides a JS library for Core Web Vitals measurements.\foo
 	\textit{Cumulative Layout Shift (CLS)} & Measures visual stability.  \\
 	\end{tabular}
 	\medskip
-	\caption{Types of e-commerce.}
-	\label{table:types_ecommerce}
+	\caption{Core Web Vitals}
+	\label{table:core_web_vitals}
 \end{table}
 
-The three Core Web Vitals LCP, FID, and CLS will be discussed in more detail below.
-
+The three Core Web Vitals LCP, FID and CLS are discussed in more detail below.
 
 % --------------------
 
-
-
-\paragraph{Largest Contentful Paint}
+\paragraph{Largest Contentful Paint (LCP)} % korrigiert
 
 % [Explanation]
 
-Largest Contentful Paint is about \textit{Perceived load speed} and answers the question \textit{Is it useful?}.
-While other metrics such as FCP or SI indicate when the first paint is rendered on the screen, or how fast the render process is, LCP is a metric utilised to report back when the main content is visible to the user, with the main content defined as the largest element.
+Largest Contentful Paint (LCP) looks at \textit{Perceived load speed} and answers the question \textit{Is it useful?}.
+While other metrics such as FCP or SI indicate when the first color is rendered on the screen or how fast the rendering process is, LCP is a metric used to report when the main content is visible to the user, where the main content is defined as the largest element.
 In short, LCP is "the render time of the largest image or text block visible within the viewport, relative to when the page first started loading." % https://web.dev/lcp/
 
-For finding the largest element, elements taken into consideration are for example images, videos or block-level elements containing text.
-The size of an element is defined as only its area which is visible to the user.
-LCP candidates may change during the loading process and are reported up until the user interacts with the page.
+To find the largest element, for example, images, videos or block elements with text are considered.
+The size of an element is defined as only the area that is visible to the user.
+LCP candidates can change during the loading process and are reported until the user interacts with the page.
 
-LCP is defined and exposed through the WICG specification \textit{Largest Contentful Paint}.
-As with other metrics, which rely on W3C specifications and APIs such as FCP, Google makes minor adjustments, for example only considering pages that have been loaded in the foreground.
-Implementation details are available within the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getLCP.ts} [22.07.2021]}
-The advantage over other visual metrics such as SI is, that LCP is retrievable not only in synthetic monitoring, but also in RUM.
+LCP is defined and disclosed by the WICG specification \textit{Largest Contentful Paint}.
+As with other metrics that rely on W3C specifications and APIs such as FCP, Google makes minor adjustments and, for example, only considers pages that were loaded in the foreground.
+Implementation details are available in the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getLCP.ts} [22.07.2021]}
+The advantage over other visual metrics such as SI is that LCP is retrievable not only in synthetic monitoring but also in RUM.
 % cite https://web.dev/lcp/
-
 
 % [Issues]
 
-Although Core Web Vitals are intentionally kept rather stable in their definitions, the performance metric initiative by Google is still an evolutionary and work-in-progress movement:
-For example, a change in Google Chromes LCP measurement altered the LCP scores by 20\%. % cite https://medium.baqend.com/the-core-web-vital-largest-contentful-paint-just-changed-dramatically-b7bf5b7f17f3
-Changes and improvements on the definition and implementation of web vitals are not seldom, as seen in Chromiums Web Vitals changelog.\footnote{\url{https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/speed/metrics_changelog/README.md} [24.07.2021]}
-
+Although the Core Web Vitals are intentionally kept fairly stable in their definitions, Google's performance measurement initiative is still an evolutionary process that is not yet complete:
+For example, a change in Google Chrome's LCP measurement changed LCP scores by 20\%. % cite https://medium.baqend.com/the-core-web-vital-largest-contentful-paint-just-changed-dramatically-b7bf5b7f17f3
+Changes and improvements to the definition and implementation of Web Vitals are not uncommon, as can be seen from the Chromium Web Vitals changelog.\footnote{\url{https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/speed/metrics_changelog/README.md} [24.07.2021]}
 
 % maybe largest element is not most important one... use custom metrics.
 
-
-
 % --------------------------
 
-
-\paragraph{First Input Delay}
+\paragraph{First Input Delay (FID)} % korrigiert
 
 % [Explanation]
 
-First Input Delay (FID) is about \textit{Load responsiveness} and answers the question \textit{Is it usable?}.
-FID gives insights about the responsiveness and interactivity of the website and measures "the time from when a user first interacts with a page (i.e. when they click a link, tap on a button, or use a custom, JavaScript-powered control) to the time when the browser is actually able to begin processing event handlers in response to that interaction."
-Continuous events such as scrolling or zooming are not counted as first inputs.
+First Input Delay (FID) has to do with \textit{Load responsiveness} and answers the question \textit{Is it usable?}.
+FID provides information about website responsiveness and interactivity and measures "the time from when a user first interacts with a page (i.e. when they click a link, tap on a button, or use a custom, JavaScript-powered control) to the time when the browser is actually able to begin processing event handlers in response to that interaction."
+Continuous events such as scrolling or zooming are not counted as initial inputs.
 
-FID is about the time it takes for the browser to handle user input.
+FID is about the time it takes for the browser to process user input.
 This time depends on the tasks of the main thread:
-If the main thread is busy while the user interacts with the page, the browser has to wait until the main thread is idle and can react.
-In technical terms, "FID measures the delta between when an input event is received and when the main thread is next idle.".
-According to this definition, FID is also measured if there is no event listener registered to handle the user input, as only the main thread and his idle state are taken into the equation.
+If the main thread is busy while the user is interacting with the page, the browser must wait until the main thread is idle and can respond.
+In technical terms, "FID measures the delta between when an input event is received and when the main thread is next idle".
+By this definition, FID is measured even if no event listener is registered to process the user input, since only the main thread and its idle state are included in the equation.
 
-FID is only considering \textit{first inputs}, as the first input and with it the first impression, are crucial, and they are likely triggered during the websites loading process, where interactivity and performance issues happen more often compared to when the website has already been loaded.
+FID only considers \textit{first input} because first input, and thus first impression, is critical and likely to be triggered during website loading, where interactivity and performance issues are more common than when the website is already loaded.
 % https://web.dev/fid/
-
 
 % [RUM]
 
-FID can only be measured in the field as it requires real user interaction.
-As FID depends on the point in time when a user interacts with the page, e.g. some users do not interact with the page at all, some interact when the main thread is busy, and others when the main thread is idle, it is important to analyse the distribution of reported FID values.
+FID can only be measured in the field because it requires real user interaction.
+Since FID depends on when a user interacts with the page, i.e., some users do not interact with the page at all, some interact when the main thread is busy, and others when the main thread is idle, it is important to analyse the distribution of reported FID values.
 In synthetic monitoring, an alternative and proxy metric of FID is TBT, as it "correlates well with FID". % cite https://web.dev/fid/
-
 
 % [API]
 
 FID is measurable with the WICG specification \textit{Event Timing API}.
-As with other metrics, which rely on W3C specifications and APIs such as FCP, Google makes minor adjustments, for example only considering pages that have been loaded in the foreground.
-Implementation details are available within the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getFID.ts} [22.07.2021]}
-
-
+As with other metrics that rely on W3C specifications and APIs such as FCP, Google makes minor adjustments and, for example, only considers pages that were loaded in the foreground.
+Implementation details are available in the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getFID.ts} [22.07.2021]}
 
 % --------------------------
 
-
-\paragraph{Cumulative Layout Shift}
+\paragraph{Cumulative Layout Shift (CLS)} % korrigiert
 
 Cumulative Layout Shift (CLS) is about \textit{Visual stability} and answers the question \textit{Is it delightful?}.
 CLS measures "unexpected movement of page content".
-For this, \textit{Layout shift scores} are calculated.
-Layout shift scores reflect and rate the unexpected movement from visible elements between frames (\textit{layout shifts}).
-Layout shift scores are calculated through other measures such as \textit{impact fraction} and \textit{distance fraction}, which evaluate the movement of visible elements.
-The rather complex calculations are described in . % cite https://web.dev/cls/
-Finally, the layout shifts during a pages lifespan are summed up together (cumulated), and reported as CLS.
+\textit{Layout shift scores} are calculated for this purpose.
+Layout shift scores reflect and evaluate the unexpected movement of visible elements between frames (\textit{layout shifts}).
+Layout shift scores are calculated by other measures such as \textit{impact fraction} and \textit{distance fraction}, which evaluate the movement of visible elements.
+The rather complex calculations are described in % cite https://web.dev/cls/
+Finally, layout shifts over the lifetime of a page are summed (accumulated) and reported as CLS.
 CLS is a score and not a value representing milliseconds.
 
-CLS relies on the WICG specification \textit{Layout Instability API}.
-As with other metrics, which rely on W3C specifications and APIs such as FCP, Google makes minor adjustments to the specification, for example by only considering pages that have been loaded in the foreground.
-CLS implementation details are available within the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getCLS.ts} [22.07.2021]}
-CLS is retrievable through synthetic or real-user monitoring.
+CLS is based on the WICG specification \textit{Layout Instability API}.
+As with other metrics that rely on W3C specifications and APIs such as FCP, Google makes minor adjustments to the specification, such as only considering pages that were loaded in the foreground.
+Details about the CLS implementation are available in the web-vitals library.\footnote{\url{https://github.com/GoogleChrome/web-vitals/blob/main/src/getCLS.ts} [22.07.2021]}
+CLS is retrievable by synthetic or real-user monitoring.
 % https://web.dev/cls/
-
 
 % [New CLS]
 
-As already observed with other metrics and Web Vitals, changes to metric definitions or their implementation are not seldom.
+As observed with other metrics and Web Vitals, changes to the definitions of metrics or their implementation are not uncommon.
 For CLS, the implementation changed in June 2021. % https://web.dev/evolving-cls/
-This change demonstrates once more that web performance metrics are rather of fragile and work-in-progress nature.
-
+This change shows once again that web performance metrics are rather fragile and still under development.
 
 % https://blog.webpagetest.org/posts/understanding-the-new-cumulative-layout-shift/?utm_medium=email&_hsmi=121601471&_hsenc=p2ANqtz-9IsSdXActEE6lw4BrDZNa4eFqzQZjgabLHbq7aS-c2KkhqLGNtkIaGfQYD4VqZe9_6ZYFlTmlCgB87THSfsnVM1fl7NiixtrJqAsVO6DPUjeJIo6c&utm_content=121601471&utm_source=hs_email
 
 
 % --------------------------
 
+\paragraph{Core Web Vitals Thresholds} % korrigiert
 
-\paragraph{Core Web Vitals Thresholds}
+For each of the Core Web Vitals, Google provides thresholds and recommended goals described as \textit{Good}, \textit{Needs Improvement}, and \textit{Poor}.
+The rationale for these thresholds is briefly explained in this section.
 
-For each of the Core Web Vitals, Google provides thresholds and recommended targets described as \textit{Good}, \textit{Needs Improvement}, and \textit{Poor}.
-The reasoning behind those thresholds is briefly discussed in this section.
-
-Google considers values as identified by HCI and Human Perception researchers for their threshold definitions.
-Referenced studies are for example
+Google considers values determined by researchers in the fields of Human-Computer Interaction and Human Perception for its threshold definitions.
+Referenced studies are for example:
 %TODO cite Galletta, D. F., Henry, R., McCoy, S. & Polak, P. (2004). Web Site Delays: How Tolerant are Users? Journal of the Association for Information Systems, 5(1), 1.
 % Hoxmeier, J. A. & DiCesare, C. (2000). System Response Time and User Satisfaction: An Experimental Study of Browser-based Applications. AMCIS 2000 Proceedings, 347.
 % Oulasvirta, A., Tamminen, S., Roto, V. & Kuorelahti, J. (2005). Interaction in 4-Second Bursts: The Fragmented Nature of Attentional Resources in Mobile HCI. In Proceedings of the SIGCHI conference on Human factors in computing systems (pp. 919–928).
 
-If research is not available, such as for CLS, which is a fairly new metric, Google relies on their own real world studies and evaluations.
-The proposed thresholds are realistic in such a way that the values that can be met and achieved by regular websites.
-Thresholds are therefore modelled on available data (for example via CrUX).
-The best possible classification, "good", defined as delivering "high quality user experience", is defined in such a way that 10\% of all websites surpass it.
-With new research, technology and other improvements, the thresholds can be adjusted in the future.
+When research is not available, such as with CLS, a relatively new metric, Google relies on its own studies and assessments from the field.
+The proposed thresholds are realistic enough to be met and achieved by normal websites.
+The thresholds are therefore based on available data (e.g., from CrUX).
+The best possible rating of "good," defined as "high-quality user experience", is defined as being exceeded by 10\% of all websites.
+With new research, technology, and other improvements, the thresholds may be adjusted in the future.
 % https://web.dev/defining-core-web-vitals-thresholds/
 
-
-Figure X shows the thresholds for the three Core Web Vitals LCP, FID, and CLS.
-While LCP and FID are described in milliseconds, CLS is a calculated score.
-The exact reasoning behind the defined thresholds for the Core Web Vitals is given in % https://web.dev/defining-core-web-vitals-thresholds/
-
+Figure X shows the threshold values for the three Core Web Vitals LCP, FID and CLS.
+While LCP and FID are specified in milliseconds, CLS is a calculated value.
+The exact rationale for the thresholds set for the Core Web Vitals can be found in % https://web.dev/defining-core-web-vitals-thresholds/
 
 %TODO put them in one figure and use figure caption
 %TODO always write: taken from url.... !!! for all figures
@@ -2668,27 +2643,19 @@ The exact reasoning behind the defined thresholds for the Core Web Vitals is giv
 %\end{center}
 %\end{figure}
 
-
-
-
 % [75th percentile]
 
-The classification of a website into one of the three grades is based on the 75th percentile value of all page views:
-For a page to be classified as "good", at least 75\% of page views need to pass the threshold.
-If for example 25\% of the measured page views fall into the "poor" segment,  the other two segments can not reach 75\%, hence the page would be classified to have "poor" performance.
-The reasoning behind the 75th percentile is that it guarantees that a large proportion of users are taken into account, and that the value at the selected percentile should not be too influenced by outliers.
-75\% percentile is a compromise between the two arguments: 3 out of 4 users experience the measured values, and 25 out of 100 samples may be outliers without affecting the result.
+The classification of a website into one of the three classes is based on the 75th percentile value of all page views:
+For a site to be classified as "good," at least 75\% of page views must exceed this threshold.
+For example, if 25\% of the measured page views fall into the "poor" segment, the other two segments cannot reach the 75\%, so the page would be classified as "poor".
+The reason for the 75th percentile is that it guarantees that a large portion of users are taken into account and that the value at the selected percentile is not too influenced by outliers.
+The 75th percentile is a compromise between these two arguments: 3 out of 4 users experience the measured values, and 25 out of 100 samples can be outliers without affecting the result.
 % https://web.dev/defining-core-web-vitals-thresholds/
-
-
-%TODO add this?
-%- User perceived PLT
-
 
 
 % -----------------------------------------------------------------------
 
-\paragraph{User-Centric Performance Metrics Conclusion} % schon korrigiert
+\paragraph{User-Centric Performance Metrics Conclusion} %  korrigiert
 
 % [User-Centric vs Navigation Timings]
 
@@ -2701,6 +2668,7 @@ Visual metrics such as Start Render or Speed Index are one approach to approxima
 They rely on video recording and analysis and work best for synthetic monitoring.
 
 % [Web Vitals and Core Web Vitals]
+
 With Web Vitals, Google has introduced a set of user-centric performance metrics.
 They are built and modelled around a set of guiding questions and performance types, as seen in table \ref{table:vitals_summary}.
 
@@ -2708,8 +2676,7 @@ Core Web Vitals are the three most important Web Vitals.
 They reflect the loading performance (LCP), interactivity (FID), and visual stability (CLS) of the website.
 Core Web Vitals can be measured using RUM.
 Google provides a rating system for Core Web Vitals.
-The thresholds for the ratings are derived from HIC and UX research or derived directly from field data.
-
+The thresholds for the ratings are derived from HIC and Human Perception research or derived directly from field data.
 
 %TODO Also show which metrics are correlated, or which one replaced other ones ?
 
@@ -2736,10 +2703,9 @@ The thresholds for the ratings are derived from HIC and UX research or derived d
 	\label{table:vitals_summary}
 \end{table}
 
-As can be seen in the table, user-centric performance metrics do not yet exist for all questions and types, such as runtime responsiveness or smoothness.
-Google indicates that new metrics are being introduced for some missing areas, but ideally custom metrics should be used in practice that capture the most important data for the business.  % https://web.dev/user-centric-performance-metrics/
+As can be seen in table \ref{table:vitals_summary}, user-centric performance metrics do not yet exist for all questions and types, such as runtime responsiveness or smoothness.
+Google indicates that new metrics are being introduced for some missing areas, but ideally custom metrics should be used in practice that capture the most important data for the business. % https://web.dev/user-centric-performance-metrics/
 Custom metrics are discussed in the next section.
-
 
 % Questions:
 % Is it happening?
@@ -2809,6 +2775,7 @@ User Timing API, Long Tasks API, Element Timing API
 
 % -----------------------------------------------------------------------
 
+%TODO
 \subsection{WebPageTest and Google Analytics Metrics}
 
 [tbd]
@@ -2818,7 +2785,7 @@ User Timing API, Long Tasks API, Element Timing API
 
 % ----------------------------------------------------------------
 
-
+%TODO
 \subsubsection{WebPageTest Metrics}
 
 [tbd]
@@ -2938,13 +2905,9 @@ User Timing API, Long Tasks API, Element Timing API
 % https://speedcurve.com/blog/rendering-metrics/
 
 
-
-
-
 % ----------------------------------------------------------------
 
-
-
+%TODO
 \subsubsection{GA Site Speed Metrics}
 
 [tbd]
@@ -2997,13 +2960,9 @@ User Timing API, Long Tasks API, Element Timing API
 % DNS Resolution = GAs Avg. Domain Lookup Time (sec) % https://metriclabs.com.au/glossary/analytics-metrics/avg-domain-lookup-time-sec/
 
 
-
-
-
 % ----------------------------------------------------------------
 
-
-
+%TODO
 \subsubsection{Comparison GA and WPT Metrics}
 
 [tbd]
@@ -3040,21 +2999,9 @@ User Timing API, Long Tasks API, Element Timing API
 
 
 
+% ----------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-% -----------------------------------------------------------------------
-
-
+%TODO
 \subsection{Web Performance Metrics Conclusion}
 
 
