@@ -1001,105 +1001,80 @@ Before that, a common synthetic monitoring tool, \textit{WebPageTest}, is briefl
 %- Modern tooling also tells you when the browser was actually doing useful work (e.g. rendering) and when it was idle and waiting for loads to finish
 
 
-% -------------------------------
+% --------------------------------------------------------------------------
 
-\subsection{WebPageTest}
+\subsection{WebPageTest} % korrigiert
 \label{subsection:webpagetest}
 
-To tackle the research question, a synthetic monitoring tool has to be used to measure common performance metrics.
-The tool used is WebPageTest (WPT) and will hence briefly discussed here.
+As will be discussed in Section X, I will use a synthetic monitoring tool to measure and compare performance metrics in the context of a controlled experiment, which will help answer the research question.
+There are many synthetic monitoring tools available. 
+The tool used is WebPageTest (WPT) and will therefore be briefly discussed here.
 
 "WebPageTest is a web performance tool providing deep diagnostic information about how a page performs under a variety of conditions." % https://docs.webpagetest.org/
+WPT was made available to the public in 2008 and was acquired by Catchpoint in September 2020\footnote{\url{https://www.catchpoint.com/webpagetest-joins-catchpoint} [04.08.2021]}.
+WPT is open source\footnote{\url{https://github.com/WPO-Foundation/webpagetest} [04.08.2021]} and offered as a free web service\footnote{\url{https://www.webpagetest.org/} [04.08.2021]} and can be used by anyone.
+
+Some of the key features of WPT are that it measures and provides a variety of metrics (see Section X), it facilitates saving and sharing performance test results, it provides waterfall graphs, a breakdown of the website's content, or even film strips and video recordings of the loading process. % 2016 Viscomi
+
+The main goal of WPT is to "provide detailed information to developers about the loading performance of their pages in a realistic end user environment." % 2016 Viscomi
+
+WPT is widely used, "the leading web performance tool in the world today", and an "indispensable power tool in your web performance toolkit". % erstes: 2016 Vicsomi, zweites: 2011 Grigorik https://hpbn.co/primer-on-web-performance/
+
+% add this ??
+% API: 
+% RESTful
+% programatically run tests and fetch results from WebPageTest
+%This will allow integration with an existing web development pipeline, as well as the automation of the whole % process of running a test and reading its results once the test is complete
 
 
-% 2011 Grigorik https://hpbn.co/primer-on-web-performance/
-open source
-free web service
-provides a system for testing the performance
-results are then available through a web interface
-"indispensable power tool in your web performance toolkit"
+\subsubsection{Configuration} % korrigiert
 
+WPT is highly configurable and allows performance testing for almost any desired configuration.
+One of the key configuration options is that testing can be performed from multiple geographic locations, with test sites provided by over fifty companies and individuals. % 2016 VIscomi
 
+Other configurations include, for example, the possible selection of different devices and browsers, e.g., Chrome emulation from an iPad in Taiwan; the setting of Repeat View, which instructs the browser to load the website not only the first time but also the second time, which provides insight into the caching setup of the website; and the throttling of the network, e.g., whether to use DSL or 5G.
 
-% https://github.com/WPO-Foundation/webpagetest
-
-
-% 2016 Viscomi
-public release in 2008.
-
-was acquired in September of 2020 by Catchpoint https://www.catchpoint.com/webpagetest-joins-catchpoint
-
-Problem/SOlution: THey had very fast internet, and needed a way to analyze and share the performance that users experienced in Internet Explorer, on Windows, and in the slow connectivity environments that existed at the time
-core mission has been very consistent: to provide detailed information to developers about the loading performance of their pages in a realistic end user environment.
-test locations provided by over fifty companies and individuals.
-
-It doesn’t require installing anything, all you need is a browser. 
-makes it easy to save and share results
-covers a wide range of performance metrics:
-- It has waterfall charts with the associated request and response headers
-- It has timing metrics including time to first byte, document complete, and fully loaded.
-- breaks down the number of requests and bytes by content type
-- CPU utilization, bandwidth, and main thread timelines
-- focus on filmstrip views and side-by-side videos
-- development of the Speed Index metric
-"WebPageTest is the leading web performance tool in the world today"
-
-
-
-\subsubsection{Architecture}
-
-agent and server
-
-
-
-\subsubsection{Configuration}
+The configuration options give the investigator control over many variables that can affect performance. 
+The settings used for the experiment to answer the research question are explained in Section X.
 
 % 2011 Grigorik https://hpbn.co/primer-on-web-performance/
-multiple locations
-the browser runs within a virtual machine and can be configured and scripted with a variety of connection and browser-oriented settings
+% the browser runs within a virtual machine and can be configured and scripted with a variety of connection and browser-oriented settings
 
 
+\subsubsection{Private Instances} % korrigiert
 
+The public WPT instance is reliable and configurable, but depending on the test location, it can also lead to waiting times because other people are also using it.
+Also, the public WPT instance can only access and thus test and evaluate publicly accessible websites. % 2016 Viscomi
+There are also daily limits on how much testing can be done.
 
-% 2016 VIscomi
-Tools like WebPageTest are considered to be synthetic because of their artificial testing environments. Akin to a clean room in a laboratory, WebPageTest gives its testers granular control over many of the variables that contribute to performance changes, such as geographic location and type of network connection. By making these variables constant, the root causes of poor frontend performance can be more easily identified and measured
-
-
-
-% Meenans video as resource
-
-% Caching, repeat view
-% Traffic shaping
-% e.g. capture devtools timeline
-
-
-
-\subsubsection{Private Instances}
-
-- open source
-- full control
-
-will see in approach how I used private instance
-
-% Meenans video as resource
-
-% AWS
-% Docker localhost
-% Bulk tests
-
-
-
+Private WPT instances help to counteract the problems described.
+Since WPT is open source, it is possible to create and use your own version of WPT.
+Private instances allow unlimited testing and give the tester full control over the infrastructure.
+An additional and only available feature for private instances are bulk tests.
+Bulk tests allow a list of URLs to be passed to WPT for processing.
+In Section X, I describe how this feature can be used to test the same URL multiple times and how private instances are set up and used.
 
 % [Transition]
 
+WPT captures a variety of performance metrics.
+What performance metrics are is described in Section X, and what metrics are available through WPT in Section X.
+The next section discusses another important method for measuring web performance, Real-User monitoring.
 
-% Metrics measured by WPT discussed in section X.
 
+% add this ?
+% [Architecture]
 
+% 2016 Viscomi
+% two types of components: a server and the test agents.
+% server provides the web interface and API; it also queues and schedules the work for the individual test agents.
+% After the agents have completed a test, it recieves the results and displays them.
 
+%The second type of component is the test agents, which actually load the page in a browser and gather metrics as it loads. These test agents might be desktop browsers running on Windows, Safari running on a iOS device, Android devices running Chrome, or remote ones on another WebPageTest instance
+% The test agents poll the server for work, measure the page load, and then when the test completes, upload the measurements and any screenshots it took
 
 % add ??
-% Waterfall and Grades
+% Waterfall
+% Grades
 % See in performance tab for details about grades and optimization techniques
 % Differnce between conenction view and request view as described in section X.
 
@@ -2803,6 +2778,18 @@ One disadvantage of custom metrics is that they are not comparable to any kind o
 \subsubsection{WebPageTest Metrics}
 
 [tbd]
+
+
+% 2016 Viscomi
+covers a wide range of performance metrics:
+- It has waterfall charts with the associated request and response headers
+- It has timing metrics including time to first byte, document complete, and fully loaded.
+- breaks down the number of requests and bytes by content type
+- CPU utilization, bandwidth, and main thread timelines
+- focus on filmstrip views and side-by-side videos
+- development of the Speed Index metric
+
+
 
 % https://docs.webpagetest.org/getting-started/
 
