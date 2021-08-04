@@ -73,13 +73,6 @@ The studies cited in the relevant section show that increasing website performan
 
 A good overview of web performance topics and goals is provided by the MDN Web Docs\footnote{\url{https://developer.mozilla.org/en-US/docs/Learn/Performance/What_is_web_performance} [03.06.2021]}, which serve as an outline for this chapter and are briefly described below.
 
-%\begin{itemize}
-%\item Reducing overall load time
-%\item Making the site usable as soon as possible
-%\item Smoothness and interactivity
-%\item Perceived performance
-%\item Performance measurements
-%\end{itemize}
 
 \paragraph{Reducing load time}
 
@@ -313,7 +306,7 @@ Slow-Start is an algorithm that determines the maximum usable bandwidth by gradu
 Slow-Start prevents the full capacity of the network from being used from the start, which in turn leads to more round trips and latency \cite{2013Grigorik}.
 For a detailed discussion of TCP, see "Building Blocks of TCP" in \cite{2013Grigorik}.
 
-%TODO once i know which metric add it here ?
+% once i know which metric add it here ?
 %A performance metric reflecting the time spent for establishing a TCP connection is X, see section X.
 
 
@@ -329,8 +322,8 @@ For encryption, a cipher must be defined that is exchanged between client and se
 From a performance perspective, TLS in turn means more roundtrips, which has a negative impact on performance.
 For a detailed discussion of TLS, see "Transport Layer Security (TLS)" in \cite{2013Grigorik}.
 
-%TODO once i know which metric add it here?
-%A performance metric reflecting the time spent for a TLS negotiating is blabla in section X.
+% once i know which metric add it here?
+% A performance metric reflecting the time spent for a TLS negotiating is blabla in section X.
 
 
 % ----------------------------------
@@ -416,7 +409,7 @@ The individual steps are described in more detail below.
 
 
 % [Single Thread]
-%TODO do i need this ?
+% do i need this ?
 % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 %- This is somewhat the bottleneck or the technical state of the browser
 %- Browser is single threaded
@@ -467,16 +460,13 @@ When parsing the HTML step by step, a reference to such an external resource wil
 How the external resources CSS and JavaScript are handled by the browser is explained below.
 
 
-%TODO add this?
-
+% add this?
 % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 %- DOM is also exposed, and can be manipulated through various APIs in JavaScript 
 %Optimisation: Preload scanner:
 %- This process occupies main thread while browser is building DOM Tree
 %- parse through the content available and request high priority resources like CSS, JavaScript, and web fonts.
 %- will retrieve resources in the background so that by the time the main HTML parser reaches requested assets, they may possibly already be in flight, or have been downloaded
-
-
 
 
 % ------------------------------------------------------------
@@ -506,12 +496,13 @@ Thus, the browser needs the entire CSS file before it can create the CSSOM. % ci
 
 % [Not Parser Blocking]
 
-As soon as the parser encounters a reference to an external stylesheet such as
+As soon as the parser encounters a reference to an external stylesheet such as in listing \ref{listing:css},
 
-%TODO add caption={} ?
-\begin{lstlisting}[language=html, numbers=none]
+\begin{center}
+\begin{lstlisting}[caption={Link to a CSS file from the main document}, label={listing:css}, language=html, numbers=none]
 <link rel="stylesheet" href="styles.css">
 \end{lstlisting}
+\end{center}
 
 it requests the resource and proceeds to parse the HTML.
 CSS is not a resource that blocks the parser.
@@ -558,18 +549,18 @@ Before describing this process, I'll discuss how JavaScript is handled.
 % ------------------------------------------------------------
 
 
-
 \paragraph{JavaScript in the Critical Rendering Path} % korrigiert
 
 % [Introduction, Parser and Render Blocking]
 
 JavaScript (JS) resources add functionality and interactivity to a website.
-When the browser encounters a script tag like
+When the browser encounters a script tag like in listing \ref{listing:js},
 
-%TODO add caption={} ?
-\begin{lstlisting}[language=html, numbers=none]
+\begin{center}
+\begin{lstlisting}[caption={Link to a JS file from the main document}, label={listing:js}, language=html, numbers=none]
 <script src="myScript.js"></script>
 \end{lstlisting}
+\end{center}
 
 it pauses its current task of parsing, immediately fetches the resource and executes its contents, and only then continues to create the DOM (see figure \ref{figure:script_loading}). % cite % Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
 
@@ -668,7 +659,7 @@ HTML, CSS and JS are now processed and the CRP proceeds to build the render tree
 	%see chapter X how Google Analytics is doing this.
 
 
-%TODO add this? https://web.dev/render-blocking-resources/
+% add this? https://web.dev/render-blocking-resources/
 %Lighthouse flags resources as render blocking when:
 %A <script> tag that:
 %Is in the <head> of the document.
@@ -676,7 +667,7 @@ HTML, CSS and JS are now processed and the CRP proceeds to build the render tree
 %Does not have an async attribute.
 
 
-%TODO add this? resource hints
+% add this? resource hints
 % https://blog.logrocket.com/using-resource-hints-to-optimize-performance/
 
 
@@ -2719,44 +2710,34 @@ Custom metrics are discussed in the next section.
 % -----------------------------------------------------------------------
 % -----------------------------------------------------------------------
 
-
-%TODO
-\subsection{Custom Metrics}
+\subsection{Custom Metrics} % korrigiert
 \label{subsection:custom_metrics}
 
 % [Universal vs Custom]
 
-The website performance metrics described
-
-
-% https://web.dev/user-centric-performance-metrics/
-The performance metrics listed above are good for getting a general understanding of the performance characteristics of most sites on the web. They're also good for having a common set of metrics for sites to compare their performance against their competitors.
-
-
-% 2013 Meenan
-%- First, it is important to understand that no single number will answer that question. Even if you have defined exactly what you are trying to measure on your Web site, performance will vary widely across your user base and across the different pages on your site
-%- Nothing beats application-specific knowledge and measurements
-
-% 2021 Meenan
-%- own / user specific metrics, e.g. time to first tweet for twitter 
-
-
-% 2013 Grigork
-%- "there is no one single metric that holds true for every application, which means that we must carefully define custom metrics in each case"
-%-  "Custom and application-specific metrics are the key to establishing a sound performance strategy"
-
-
-
-% [Using APIs]
+The performance metrics described so far are relevant to gaining insight into page weight, such as how many requests it takes to build the website, to gaining an understanding of navigation timings, such as how long certain processes take in the CRP, and to gaining an understanding of user-perceived performance by calculating the Speed Index or measuring the time it takes to render the largest element.
+These metrics are good for getting a general overview of the website's performance or comparing it to the competition, but they are not able to reflect the very unique and individual performance metrics tailored to the business.
+Custom metrics are needed for this.
 
 % https://web.dev/custom-metrics/
 %- Universal metrics offer a good baseline, but in many cases you need to measure more than just these metrics in order to capture the full experience for your particular site.
 %- Custom metrics allow you to measure aspects of your site's experience that may only apply to your site
-- you need custom code
-- difficult to compare custom metrics with competitor, as they do not have the same metrics
-User Timing API, Long Tasks API, Element Timing API
 
+% [References]
 
+Almost all authors encourage and recommend the use of custom metrics:
+Meenan notes that "nothing beats application-specific knowledge and measurements", and suggest, for example, a performance metric such as "Time to First Tweet" for Twitter. % zitat: 2013 Meenan, twitter: 2021 Meenan
+And Grigorik notes that "custom and application-specific metrics are the key to establishing a sound performance strategy". % 2013 Grigork
+
+% 2013 Grigork
+%- "there is no one single metric that holds true for every application, which means that we must carefully define custom metrics in each case"
+
+% [Using APIs]
+
+Custom JS code is required to measure custom metrics.
+As described in Section \ref{subsubsection:w3c_performance_specifications}, several Web APIs are available to retrieve useful browser timings, i.e. paint events.
+User Timing, in particular, is of particular interest for custom metrics, as it allows for the creation and retrieval of custom timestamps.
+One disadvantage of custom metrics is that they are not comparable to any kind of benchmarks or competitors, since most likely no one else is measuring the exact same metric.
 
 
 % -----------------------------------------------------------------------
@@ -3028,6 +3009,10 @@ User Timing API, Long Tasks API, Element Timing API
 
 
 [summary table]
+
+% Page-Centric, Navigation-Centric, User-Centric, Custom
+% Add info Synthetic / RUM ?
+% Add info what is needed to measure them, e.g. APIs
 
 % Navigation Timings: Coming from CRP, Loading Process, exposed by APIs
 % User Centric: General visual metrics
