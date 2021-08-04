@@ -984,8 +984,10 @@ Understanding the correlation between user satisfaction and website performance 
 RUM enables the collection of data from each real user.
 RUM will be covered in section \ref{subsection:RUM}.
 
+Before that, a common synthetic monitoring tool, \textit{WebPageTest}, is briefly discussed.
 
-%TODO cut out google lighthouse completely ?
+
+% cut out google lighthouse completely ?
 %- Google Lighthouse
 
 % add waterfall ?
@@ -1001,30 +1003,68 @@ RUM will be covered in section \ref{subsection:RUM}.
 
 % -------------------------------
 
-%TODO
 \subsection{WebPageTest}
 \label{subsection:webpagetest}
 
+To tackle the research question, a synthetic monitoring tool has to be used to measure common performance metrics.
+The tool used is WebPageTest (WPT) and will hence briefly discussed here.
 
-% 2016 Viscomi
-% https://docs.webpagetest.org/
+"WebPageTest is a web performance tool providing deep diagnostic information about how a page performs under a variety of conditions." % https://docs.webpagetest.org/
+
 
 % 2011 Grigorik https://hpbn.co/primer-on-web-performance/
+open source
+free web service
+provides a system for testing the performance
+results are then available through a web interface
+"indispensable power tool in your web performance toolkit"
 
-\subsubsection{Overview}
 
-[tbd]
 
-%What is it
-%Why to use it, Who uses it, how to use it
-%Waterfall and Grades
-%See in performance tab for details about grades and optimization techniques
+% https://github.com/WPO-Foundation/webpagetest
+
+
+% 2016 Viscomi
+public release in 2008.
+
+was acquired in September of 2020 by Catchpoint https://www.catchpoint.com/webpagetest-joins-catchpoint
+
+Problem/SOlution: THey had very fast internet, and needed a way to analyze and share the performance that users experienced in Internet Explorer, on Windows, and in the slow connectivity environments that existed at the time
+core mission has been very consistent: to provide detailed information to developers about the loading performance of their pages in a realistic end user environment.
+test locations provided by over fifty companies and individuals.
+
+It doesn’t require installing anything, all you need is a browser. 
+makes it easy to save and share results
+covers a wide range of performance metrics:
+- It has waterfall charts with the associated request and response headers
+- It has timing metrics including time to first byte, document complete, and fully loaded.
+- breaks down the number of requests and bytes by content type
+- CPU utilization, bandwidth, and main thread timelines
+- focus on filmstrip views and side-by-side videos
+- development of the Speed Index metric
+"WebPageTest is the leading web performance tool in the world today"
+
+
+
+\subsubsection{Architecture}
+
+agent and server
 
 
 
 \subsubsection{Configuration}
 
-[tbd]
+% 2011 Grigorik https://hpbn.co/primer-on-web-performance/
+multiple locations
+the browser runs within a virtual machine and can be configured and scripted with a variety of connection and browser-oriented settings
+
+
+
+
+% 2016 VIscomi
+Tools like WebPageTest are considered to be synthetic because of their artificial testing environments. Akin to a clean room in a laboratory, WebPageTest gives its testers granular control over many of the variables that contribute to performance changes, such as geographic location and type of network connection. By making these variables constant, the root causes of poor frontend performance can be more easily identified and measured
+
+
 
 % Meenans video as resource
 
@@ -1036,30 +1076,37 @@ RUM will be covered in section \ref{subsection:RUM}.
 
 \subsubsection{Private Instances}
 
-[tbd]
+- open source
+- full control
+
+will see in approach how I used private instance
 
 % Meenans video as resource
 
-%Architecture
-%AWS
-%Docker localhost
-%Bulk tests
+% AWS
+% Docker localhost
+% Bulk tests
 
 
-%TODO put this on Waterfall somewhere else? Maybe in Terms and Definitions ?
-% [Waterfall: Resource Waterfall and Connection View]
 
-% 2011 Grigorik Analyzing the Resource Waterfall in https://hpbn.co/primer-on-web-performance/
 
+% [Transition]
+
+
+% Metrics measured by WPT discussed in section X.
+
+
+
+
+% add ??
+% Waterfall and Grades
+% See in performance tab for details about grades and optimization techniques
+% Differnce between conenction view and request view as described in section X.
 
 % 2014 Hogan ch 2
 %- A waterfall chart such as Figure 2-2 shows you how much time it takes to request the contents of a page, such as CSS, images, or HTML, and how much time it takes to download this content before displaying it in a browser.
-
-% Differnce between conenction view and request view as described in section X.
-
-
-
-% [Metrics] discussed below
+% 2011 Grigorik Analyzing the Resource Waterfall in https://hpbn.co/primer-on-web-performance/
+% [Waterfall: Resource Waterfall and Connection View]
 
 
 % ----------------------------------------------------------------------------------------------
