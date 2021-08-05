@@ -90,6 +90,12 @@
   \url{https://amp.dev/static/files/The_Total_Economic_Impact_Of_AMP.pdf},
   Abruf: 2021-06-06
 
+\bibitem[FV]{2021Franco}
+\textsc{Franco}, Luis ; \textsc{Valdés}, Mayra:
+\newblock \emph{History of Google Analytics}.
+\newblock \url{https://onward.justia.com/history-of-google-analytics/}, Abruf:
+  2021-08-05
+
 \bibitem[GA]{2017Brainfood}
 \textsc{Google} ; \textsc{Awwwards}:
 \newblock \emph{Speed Matters. Designing for Mobile Performance}.
@@ -103,10 +109,24 @@
 \newblock \,Version:\,05.06.2021. --
 \newblock code.talks 2019
 
+\bibitem[Gria]{2019GrigorikDOM}
+\textsc{Grigorik}, Ilya:
+\newblock \emph{Constructing the Object Model}.
+\newblock
+  \url{https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model},
+  Abruf: 2021-08-03
+
+\bibitem[Grib]{2019GrigorikCSS}
+\textsc{Grigorik}, Ilya:
+\newblock \emph{Render Blocking CSS}.
+\newblock
+  \url{https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css},
+  Abruf: 2021-08-03
+
 \bibitem[Gri13]{2013Grigorik}
 \textsc{Grigorik}, Ilya:
 \newblock \emph{High Performance Browser Networking}.
-\newblock Beijing ; Sebastopol, CA : O'Reilly, 2013
+\newblock Beijing; Sebastopol, CA : O'Reilly, 2013
 
 \bibitem[Hei20]{2020Heinemann}
 \textsc{Heinemann}, Gerrit:
@@ -119,6 +139,18 @@
 \newblock E-Commerce: History and Impact on the Business and Consumers.
 \newblock {In: }\emph{International Journal of Engineering Science} 9 (2019),
   Nr. 3
+
+\bibitem[Hog14]{2014Hogan}
+\textsc{Hogan}, Lara~C.:
+\newblock \emph{Designing for performance: Weighing Aesthetics and Speed}.
+\newblock First edition.
+\newblock Sebastapol CA : O'Reilly Media, 2014
+
+\bibitem[HTT]{2021HTTPArchiveStateOfTheWeb}
+\textsc{HTTPArchive}:
+\newblock \emph{Report: State of the Web}.
+\newblock \url{https://httparchive.org/reports/state-of-the-web}, Abruf:
+  2021-08-04
 
 \bibitem[IKOK10]{2010Islam}
 \textsc{Islam}, A.K.M.~N. ; \textsc{Koivulahti-Ojala}, Mervi  ;
@@ -133,6 +165,14 @@
 \newblock Understanding {User}-{Web} {Interactions} via {Web} {Analytics}.
 \newblock {In: }\emph{Synthesis Lectures on Information Concepts, Retrieval,
   and Services} 1 (2009), Januar, Nr. 1, S. 1--102
+
+\bibitem[Joh]{2018Johnson}
+\textsc{Johnson}, Benjamin:
+\newblock \emph{How CSS works: Parsing and painting CSS in the critical
+  rendering path}.
+\newblock
+  \url{https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/},
+  Abruf: 2021-08-04
 
 \bibitem[Key]{2018KeyCDN}
 \textsc{KeyCDN}:
@@ -183,14 +223,21 @@
 \textsc{Mayer}, Marissa:
 \newblock \emph{Conference Keynote, Web 2.0, 2006}
 
-\bibitem[MDNa]{2021MDNHowBrowsersWork}
+\bibitem[MDNa]{2021MDNCRP}
+\textsc{MDN}, Contributors:
+\newblock \emph{Critical rendering path}.
+\newblock
+  \url{https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path},
+  Abruf: 2021-08-03
+
+\bibitem[MDNb]{2021MDNHowBrowsersWork}
 \textsc{MDN}, Contributors:
 \newblock \emph{Populating the page: how browsers work}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work},
   Abruf: 2021-08-03
 
-\bibitem[MDNb]{2021MDNLatency}
+\bibitem[MDNc]{2021MDNLatency}
 \textsc{MDN}, Contributors:
 \newblock \emph{Understanding latency}.
 \newblock

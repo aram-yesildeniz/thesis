@@ -244,7 +244,7 @@ At the same time, this thesis focuses on metrics to measure performance on the f
 Before going into what happens in the browser once the website data arrives, I will briefly describe the preceding steps of establishing a connection between the browser (client) and the server, which can still be considered part of the network.
 
 
-%TODO add this ?
+% add this ?
 % Use other techniques such as CDNs, caching, pre-fetching, etc % 2013 Grigorik
 % CDN: Help against this issue. Put stuff close to client % 2013 Grigorik
 % Some direct implications for performance measurement ?
@@ -254,20 +254,15 @@ Before going into what happens in the browser once the website data arrives, I w
 
 % --------------------------------------------------------------------------------------------
 
-%TODO
-\subsubsection{Network Navigation Steps}
+\subsubsection{Network Navigation Steps} % korrigiert
 \label{subsubsection:network_navigation_steps}
 
-% Protocols to establish a reliable and secure connection between front-end and back-end
+When the user enters a URL into the browser, a series of steps are taken to render and present the website to the user.
+These steps consist of DNS lookup, TCP and TLS negotiation, and the HTTP request, among others.
+These steps are necessary to establish a secure and reliable connection between the browser (client) and the server, and are described below.
 
-[tbd]
-
-I will explain briefly the main navigation steps: It begins when the user is submitting a URL in the browser and ends when he received website data.
-
+% add this ?
 % "To start, it is important to recognize that every HTTP request is composed of a number of separate stages [...]: DNS resolution, TCP connection handshake, TLS negotiation (if required), dispatch of the HTTP request, followed by content download." % cite Grigorik 2013
-
-
-%TODO add this ?
 % Understanding Latency https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
 %Network Timings:
 %- Blocked: When a request is in queue
@@ -332,21 +327,21 @@ For a detailed discussion of TLS, see "Transport Layer Security (TLS)" in \cite{
 \paragraph{HTTP Request and Response} % korrigiert
 
 Now that a secure connection has been established, the client fetches the first resources via HTTP GET request.
-In most cases, the server responds by returning the index.html file, which can then be used by the browser to build the website. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+In most cases, the server responds by returning the index.html file, which can then be used by the browser to build the website \cite{2021MDNHowBrowsersWork}.
 
-The time taken by this first response, which contains the first byte to build the site, is reflected in the metric TTFB, which is explained in section X.
-
+% add this ? Then i would probably mention all metrics here already...
+% The time taken by this first response, which contains the first byte to build the site, is reflected in the metric TTFB, which is explained in section X.
 
 % [Connection vs Request]
 
 Normally, many more resources are requested from the browser to complete the construction of the website.
-Currently, the average is about 70 requests per website (see section X.). % footnote https://httparchive.org/reports/state-of-the-web#reqTotal
+Currently, the average is about 70 requests per website \cite{2021HTTPArchiveStateOfTheWeb}.
 
 A request is not the same as a connection:
 Once the connection is established using the methods described above, such as DNS lookup, TCP, and TLS handshakes, multiple requests can be transmitted over the same connection.
 Typically, the number of requests is much higher than the number of connections to load a website because the browser maintains connections to keep them open for multiple requests.
-The average number of connections for a website today is about 13 (see section X.). % footnoe https://httparchive.org/reports/state-of-the-web#tcp
-Modern browsers like Chrome allow up to six connections open in parallel. % cite 2014 Hogan
+The average number of connections for a website today is about 13 \cite{2021HTTPArchiveStateOfTheWeb}.
+Modern browsers like Chrome allow up to six connections open in parallel \cite{2014Hogan}. \\
 
 
 % [Transition to CRP]
@@ -355,11 +350,8 @@ At this point, the browser has received the first data about the website and it 
 Exactly how this happens is explained in the next section.
 
 
-
-
 % --------------------------------------------------------------------------------------------
 % --------------------------------------------------------------------------------------------
-
 
 
 \subsection{The Website Loading Process in the Frontend: Critical Rendering Path} % korrigiert
@@ -377,11 +369,10 @@ Rendering is "critical" because it is the very first rendering, the first visibl
 The resources needed to render the page for the first time are considered critical.
 Without the critical resources, the browser cannot display the content on the screen.
 An example of a critical resource is the first HTML file that the browser receives, because without it, nothing can be seen on the screen.
-Non-critical resources, on the other hand, do not prevent the browser from displaying the first content on the screen. % cite https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
+Non-critical resources, on the other hand, do not prevent the browser from displaying the first content on the screen \cite{2018Johnson}.
 
 
 % [CRP Steps]
-
 
 There are a number of steps that the browser goes through to render the page.
 The basic idea is to convert HTML, CSS, and JS into actual pixels on the screen.
@@ -392,8 +383,7 @@ The content of the CSS files is parsed into the CSSOM.
 JavaScript must be retrieved and executed.
 Once the DOM and CSSOM are available, the render tree is created.
 When the render tree is available, the layout is created.
-Finally, the pixels can be output to the screen.
-% cite https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
+Finally, the pixels can be output to the screen \cite{2021MDNCRP}.
 
 The individual steps are described in more detail below.
 
@@ -427,10 +417,10 @@ The individual steps are described in more detail below.
 
 As soon as the browser receives the first bytes of the HTML file, it begins to decompose it into the \textit{Document Object Model} (DOM).
 Building the DOM is the first step the browser takes when it receives data.
-The DOM is a tree structure and an internal representation of the HTML for the browser. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+The DOM is a tree structure and an internal representation of the HTML for the browser \cite{2021MDNHowBrowsersWork}.
 
-The general parsing process consists of translating bytes into characters, into tokens, into nodes, and finally into the object model. % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
-The specification of the DOM is maintained by the WHATWG living standard (for standards, see section X). % footnote https://dom.spec.whatwg.org/
+The general parsing process consists of translating bytes into characters, into tokens, into nodes, and finally into the object model \cite{2019GrigorikDOM}.
+The specification of the DOM is maintained by the WHATWG living standard (for standards, see section \ref{subsubsection:web_standards}).
 
 % The Parsing of the HTML into the DOM is defined in the HTML standard % footnote https://html.spec.whatwg.org/multipage/parsing.html#parsing
 
@@ -442,16 +432,14 @@ The styling is defined in the CSS (see next section).
 Once HTML and CSS have been transferred and processed by the browser, the \textit{Render Tree} can be created to reflect the actual information and its styling that the browser can display.
 In this context, it is possible to categorize resources into render-blocking and non-render-blocking:
 A render-blocking resource is a resource that prevents the browser from rendering the content on the screen.
-HTML and CSS are render-blocking resources because the parsing process of these files prevents the browser from rendering the page on the screen. % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css
+HTML and CSS are render-blocking resources because the parsing process of these files prevents the browser from rendering the page on the screen \cite{2019GrigorikCSS}.
 
 % CSS parsing and render tree construction will be discussed below.
 
-
 % [Incrementally]
 
-As soon as the first data packets of HTML arrive in the browser, the parsing process begins. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+As soon as the first data packets of HTML arrive in the browser, the parsing process begins \cite{2021MDNHowBrowsersWork}.
 The DOM is created incrementally, which means that the browser can begin processing the HTML before all of the content is transmitted over the network.
-
 
 % [Resources]
 
@@ -477,9 +465,8 @@ How the external resources CSS and JavaScript are handled by the browser is expl
 % [Introduction]
 
 The CSS resource contains all the information about the styling of the page.
-As with HTML, CSS is converted from bytes to characters, tokens, nodes, and finally to the \textit{CSS Object Model} (CSSOM). % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
-CSSOM construction is usually very fast % cite https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
-and is standardized by the W3C (for standards, see section X).% footnote https://drafts.csswg.org/cssom/
+As with HTML, CSS is converted from bytes to characters, tokens, nodes, and finally to the \textit{CSS Object Model} (CSSOM) \cite{2019GrigorikDOM}.
+CSSOM construction is usually very fast and is standardized by the W3C \cite{2021MDNHowBrowsersWork}.
 
 % The DOM and and CSSOM are separated structures and not yet connected.
 % The Render Tree reflects the combination of the two models and will be discussed below.
@@ -491,7 +478,7 @@ and is standardized by the W3C (for standards, see section X).% footnote https:/
 Unlike the HTML parsing process, CSS cannot be translated into CSSOM incrementally.
 The reason for this is the cascading nature of stylesheets, which can cause styling rules defined at the beginning of the file to be overwritten by rules defined at the very end of the CSS file.
 Partial CSSOM is therefore not possible.
-Thus, the browser needs the entire CSS file before it can create the CSSOM. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
+Thus, the browser needs the entire CSS file before it can create the CSSOM \cite{2021MDNCRP}.
 
 
 % [Not Parser Blocking]
@@ -702,7 +689,7 @@ New layout calculations or re-flows are triggered as soon as the screen area cha
 Once the layout is resolved, the browser continues painting pixels on the screen.
 
 
-%TODO add viewport? The projection area is dependent and defined by the viewport
+% add viewport? The projection area is dependent and defined by the viewport
 
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
 %- The viewport meta tag defines the width of the layout viewport, impacting the layout.
@@ -1118,7 +1105,7 @@ The evaluation of the controlled experiment to answer this question shows that R
 % [Diversity of Users and Data]
 
 RUM is independent of the user's setup or environment and collects data for all active users:
-Regardless of the user's device, browser, network conditions, or geographic location, RUM collects data as long as the measurement script is loaded into the user's browser.% cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+Regardless of the user's device, browser, network conditions, or geographic location, RUM collects data as long as the measurement script is loaded into the user's browser. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
 So the RUM data represents each individual user experience. % cite 2016 Viscomi
 
 Due to the diversity of users and the unique environment of each user, RUM data tends to be more diverse and heterogeneous than data collected through synthetic monitoring. % cite 2013 Meenan
@@ -1142,7 +1129,7 @@ With techniques such as cookies (see section X.), it is also possible to track u
 % [Tools]
 
 There are several RUM tools and JS libraries, such as Boomerang from Akamai.\footnote{\url{https://github.com/akamai/boomerang} [23.06.2021]}
-The main player, Google Analytics, is discussed in more detail in section X.
+The main player, Google Analytics, is discussed in more detail in section \ref{subsection:google_analytics}.
 
 % SpeedKit ?
 
@@ -1192,64 +1179,76 @@ The CrUX only collects data from Chrome users and is therefore not a complete sa
 The collected data is available via Google's PageSpeed Insights, the CrUX Dashboard or the BigQuery and CrUX API. % cite https://developers.google.com/web/tools/chrome-user-experience-report
 
 
+%TODO add why is it important... used for metrics, as benchmark, etc.: CHeck in text where crux is used.
+
+
 % add here which metrics it collects?
 
 % ----------------------------------------------------------------------------------------------
 
-
-%TODO
 \subsection{Google Analytics}
+\label{subsection:google_analytics}
 
-[tbd]
+% [Why]
+
+As will be discussed in Section X, I will use a RUM tool to measure and compare performance metrics in the context of a controlled experiment, which will help answer the research question.
+There are many RUM tools available. 
+The tool used is Google Analytics (GA) and will therefore be briefly discussed here.
+
+
+% [Definition]
+
+GA is a RUM solution that helps to "determine how successful your site is at turning users into customers"\footnote{\url{https://marketingplatform.google.com/about/resources/analytics-product-overview/} [05.08.2021]}.
+
+% [Short History]
+
+GA is today by far the most used analysis tool today.
+\footnote{\url{https://w3techs.com/technologies/overview/traffic_analysis} [05.08.2021]}
+
+% https://onward.justia.com/history-of-google-analytics/ \cite{2021Franco}
+Version 1: Urchin 2005
+Version 2: Classic GA in 2007
+Version 3: Universal Analytics in 2013
+Version 4: GA4 in 2020
+
+I use UA as explained in section X.
+
+
+% [Features]
+
+
+
+\footnote{\url{https://marketingplatform.google.com/about/analytics/features/} [05.08.2021]}
+
+analytics intelligence: analysis of collected data
+Reporting: Real-time reports, audience reports, conversion reports, ...
+Data Analysis and Visualization: visualization and monitoring, segmentation
+
+Data tracked relevant for web performance is discussed in section X.
+
+
+
+
+% [How it works]
+
+page tagging as explained in section X.
+
+Real life examples and other aspects such as the position of the script are discussed in section X.
+
 
 
 % Kessler 2012 p. 581
-% marek 2011: glossary
-
-% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
-% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
-% Real User Measurement (RUM) with Google Analytics
-
-
-\subsubsection{The Tracking Script}
-
-[tbd]
-
-
-%Show multiple code examples
-%Explain whats going on: script tag, create script element etc.
-%Maybe also show Hotjar example to see that they are similar
-
-
-% https://developers.google.com/analytics/devguides/collection/analyticsjs
-%- this async pattern is used so that all browsers will load it async
-%- we can just use async attribute for newer browsers...
-
-
-% Compare how GA script is included into web site with some other analytics services examples
-% Some other real life examples of RUM here? To demonstrate async... boomeraing readme for example has nice explanation
-
-
-% https://speedcurve.com/setup/lux/
-% SpeedCurve tracking script position: To add real user monitoring (RUM) to your site, paste this snippet at the top of the <HEAD> tag on your pages.
-
-
-
-% [Examples]
-
-\subsubsection{Real World Examples}
-
-[tbd]
 
 
 % ----------------------------------------------------------------------------------------------
 
-%TODO
-\subsection{Log Files and Surveys}
+%TODO add this ??
 
-[tbd]
+% \subsection{Log Files and Surveys}
 
-Other methods are surveys and log file analysis.
+% [tbd]
+
+% Other methods are surveys and log file analysis.
 
 % 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 
