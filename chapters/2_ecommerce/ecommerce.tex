@@ -265,32 +265,29 @@ What web analytics exactly is, what tools are available and what a web analytics
 % -------------------------------------------------------------------------------------------
 
 
-\section{Web Analytics}
-\label{chapter:web_analytics}
+\section{Web Analytics} % korrigiert
+\label{section:web_analytics}
 
 This section is about web analytics.
-I will first discuss definitions and give a short introduction to web analytics in section \ref{chapter:web_analytics_introduction}.
-Then, a brief history of web analytics will be given in section \ref{chapter:web_analytics_history} to help contextualize.
-After characterizing two web analytics process descriptions in section \ref{chapter:web_analytics_process}, data collection methods will be discussed in section \ref{chapter:web_analytics_logfile_pagetagging}.
-
-% Finally, web performance will be explained in chapter \ref{chapter:web_performance}, which leads the way to the research questions.
-
-%TODO add metrics
+I will first discuss definitions and give a short introduction to web analytics in section \ref{section:web_analytics_introduction}.
+Then, a brief history of web analytics will be given in section \ref{subsection:web_analytics_history} to help contextualize.
+After describing how web analytics can be applied in practice in section \ref{subsection:web_analytics_practice}, section \ref{subsection:web_analytics_logfile_pagetagging} discusses methods for data collection.
+Finally, section \ref{subsection:web_analytics_metrics} discusses metrics used in web analytics.
 
 
-\subsection{Introduction to Web Analytics}
-\label{chapter:web_analytics_introduction}
+\subsection{Introduction to Web Analytics} % korrigiert
+\label{section:web_analytics_introduction}
 
 % [Definitions]
 What is \textit{Web Analytics}?
-Reviewing the literature, it is clear that there are several definitions:
+A review of the literature shows that there are several definitions:
 
-Nakatani et al. state that "Web analytics is used to understand online customers and their behaviors, design actions influential to them, and ultimately foster behaviors beneficial to the business and achieve the organization's goal." \cite{2011Nakatani}
-According to this definition, web analytics is about getting insights of the users using the system, not only who or what they are, but also how they interact with the system.
-Additionally, the definition emphasizes that the underlying motivation of web analytics is to achieve business goals.
+Nakatani et al. state that "Web analytics is used to understand online customers and their behaviors, design actions influential to them, and ultimately foster behaviors beneficial to the business and achieve the organization's goal" \cite{2011Nakatani}.
+According to this definition, web analytics is about gaining insight into the users of the system, not only who or what they are, but also how they interact with the system.
+In addition, the definition emphasizes that the underlying motivation of web analytics is to achieve business goals.
 
-Singal et al. provide a more technical definition by pointing out that "Web Analytics is the objective tracking, collection, measurement, reporting and analysis of quantitative internet data to optimize websites and web marketing initiatives" \cite{2014Singal}. %TODO note that this definition is directly taken from Kaushik ?
-Again, the ultimate goal is to drive business, but supported by data science methods and tools such as tracking, collecting and analysing massive amounts of data.
+Singal et al. provide a more technical definition by pointing out that "Web Analytics is the objective tracking, collection, measurement, reporting and analysis of quantitative internet data to optimize websites and web marketing initiatives" \cite{2014Singal}.
+Again, the ultimate goal is to drive business, but using data science methods and tools, such as big data tracking, collection and analysis.
 
 Bekavac et al. provide a similar definition by pointing out that web analytics is "the analysis of qualitative and quantitative data on the website in order to continuously improve the online experience of visitors, which leads to more efficient and effective realization of the company's planned goals" \cite{2015Bekavac}.
 
@@ -313,7 +310,8 @@ Zheng et al. describe four main use cases for web analytics \cite{2015Zheng}:
 % This is discussed further in chapter \ref{chapter:web_performance}.
 \end{itemize}
 
-Summarizing the above definitions, it is noticeable that web analytics consists of two important elements: a data-driven, information-oriented and technical element of collecting and analysing data about users and a commercial and business-driven element that provides the main motivation for collecting the data primarily by setting business goals.
+Summarizing the above definitions, it is noticeable that web analytics consists of two important elements: a data-driven, information-oriented and technical element of collecting and analysing data about users, and a commercial and business-oriented element that provides the main motivation for collecting the data primarily by setting business goals.
+
 
 % [Challenges]
 
@@ -331,21 +329,23 @@ Privacy and the information collected from visitors and customers can be another
 % ------------------------------------------
 
 
-\subsection{Brief History of Web Analytics}
-\label{chapter:web_analytics_history}
+\subsection{Brief History of Web Analytics} % korrigiert
+\label{subsection:web_analytics_history}
 
 The history of web analytics can be described as a transformation from an IT domain and a technical log file analysis tool to a sophisticated, polymorphic tool for marketers.
 
 % [For IT: Logs]
+
 Each time a user requests an HTML file or other resource from a web server, the server makes an entry in a special log file \cite{2014Singal}.
 The first log entries followed the \textit{Common Log Format} (CLF) which provides rudimentary information such as the date, the HTTP status code or the number of bytes transmitted.
 In 1996, the \textit{Extended Log Format} (ELF) was introduced with more flexibility and information in mind.
 Thanks to the standardized format of the log files, it was possible to create software that evaluates the log files and presents them to users in a readable form.
-\textit{GetStats} was one of the first tools which generated statistics and user friendly output for analysts \cite{2009Croll}. %TODO add p. 69?
+\textit{GetStats} was one of the first tools which generated statistics and user friendly output for analysts \cite{2009Croll}. % add p. 69?
 In 1995, Dr. Stephen Turner developed \textit{Analog}, the first free software for analysing log files \cite{2015Zheng}.
-Log file analysis will be further discussed in section \ref{chapter:log_file}.
+Log file analysis will be further discussed in section \ref{subsubsection:log_file}.
 
 % [Shift]
+
 What was initially mainly interesting for maintenance and IT staff, who for example answered the question of how many 404s occurred on the server, developed into an interesting website information pool for marketers.
 
 As the available information increased, it became clear that the data could be used for more than just analysing server behaviour.
@@ -370,19 +370,19 @@ or \textit{Quantified} by Urchin in the same year \cite{2009Croll}.
 Page tagging made it possible to collect not only technical data, but also business-relevant information.
 Visitors and their behaviour were the focus, shaping questions like: How is this user behaviour related to a purchase? If a user buys shoes, will he also buy socks?
 The development and implementation of cookies enabled the identification of unique users.
-Not only business-relevant questions were asked and answered, but also studies on performance and usability \cite{2009Croll}. %TODO add p. 69 ?
-More details about page tagging can be found in chapter \ref{chapter:page_tagging}.
+Not only business-relevant questions were asked and answered, but also studies on performance and usability \cite{2009Croll}. % add p. 69 ?
+More details about page tagging can be found in section \ref{subsubsection:page_tagging}.
 \\
 
 % [WAA, Today]
+
 In 2003, Edwards, Eisenberg and Sterne founded the \textit{Web Analytics Association} (WAA).
 The WAA brings together and supports all the players in web analytics such as users, marketers and IT specialists on an international stage.
 Due to digitalization and its all-encompassing effects, the WAA has renamed itself \textit{Digital Analytics Association} (DAA) in 2012 because the web is not the only area where users leave their digital footprint \cite{2014Singal}.
-%TODO rewrite above sentence
 
 As described in the section above, participant and user numbers on the Internet continue to rise and now all Fortune 500 companies operate websites, with web analytics a key marketing tool \cite{2019Kumar}.
 
-Some of the most established tools today are \textit{Google Analytics}, \textit{Adobe SiteCatalyst}, \textit{Webtrekk} and \textit{Piwik} \cite{2020Heinemann}. %TODO add chapter 4.1.4
+Some of the most established tools today are \textit{Google Analytics}, \textit{Adobe SiteCatalyst}, \textit{Webtrekk} and \textit{Piwik} \cite{2020Heinemann}. %  add chapter 4.1.4 ?
 Google Analytics will be further discussed in section \ref{subsection:google_analytics}.
 
 % [Future]
@@ -400,8 +400,8 @@ Looking ahead, Zheng et al. identify several trends for web analytics, such as m
 % ------------------------------------------
 
 
-\subsection{Web Analytics in Practice}
-\label{chapter:web_analytics_process}
+\subsection{Web Analytics in Practice} % korrigiert
+\label{subsection:web_analytics_practice}
 
 Web analytics can be described as a process in which the main goal is usually to increase sales.
 The literature cites two main ideas and processes, the first from the Web Analytics Association and the second from industry best practices.
@@ -412,7 +412,7 @@ Both processes have in common that they are aimed at improving the website and t
 % [KPIs]
 
 \textit{Key Performance Indicators} (KPIs) are the ideal tool for the instrumentation of web analytics and help to identify areas and potential for improvement.
-They are an integral part and play an important role in any web analytics process as they provide a "in-depth picture of visitor behavior on a site" \cite{2009Jansen}. %TODO add ch. 6.2 ?
+They are an integral part and play an important role in any web analytics process as they provide a "in-depth picture of visitor behavior on a site" \cite{2009Jansen}. % add ch. 6.2 ?
 
 KPIs can differ depending on the business in which they operate.
 For commercial domains, common KPIs are conversion rates, average order or visit value, customer loyalty, bounce rate, etc. \cite{2014Singal}.
@@ -423,11 +423,11 @@ Defining the right KPIs and aligning them with business goals is a critical step
 % 2015 Bekavac:  KPIs for commercial model: Ratio of new to returning visitors, percentage of new visitors, referring domains, search keywords/phrases, average order value, key conversion rates
 
 
-\subsubsection{WAA Process Guide}
+\subsubsection{WAA Process Guide} % korrigiert
 
 % TODO compare both processes directly with a table with 2 columns?
 
-The Web Analytics Association offers a web analytics guide that consists of nine steps. They are \cite{2009Jansen}: %TODO add ch. 6.2 ?
+The Web Analytics Association offers a web analytics guide that consists of nine steps. They are \cite{2009Jansen}: % add ch. 6.2 ?
 
 %TODO actually i think its nicer to draw a diagram here, with boxes connected with arrows. Will also take less space
 \begin{enumerate}
@@ -443,9 +443,9 @@ The Web Analytics Association offers a web analytics guide that consists of nine
 \end{enumerate}
 
 
-\subsubsection{Industries Best Practices}
+\subsubsection{Industries Best Practices} % korrigiert
 
-On the contrary, Waisberg and Kaushik \cite{2009Waisberg} derive a five-step process from industry best practices with the main goal of improving the website and increasing sales: %TODO improve waisberg citation
+On the contrary, Waisberg and Kaushik \cite{2009Waisberg} derive a five-step process from industry best practices with the main goal of improving the website and increasing sales: 
 
 \begin{itemize}
 \item Define Goals
@@ -460,6 +460,7 @@ On the contrary, Waisberg and Kaushik \cite{2009Waisberg} derive a five-step pro
 
 
 % [Comparison]
+
 When comparing the two proposed processes, it becomes clear that both focus on identifying and being aware of the most important business goals.
 The WAA process is a finer-grained and more practical approach, with Waisberg and Kaushik abstracting the main activities.
 
@@ -467,38 +468,38 @@ The WAA process is a finer-grained and more practical approach, with Waisberg an
 % ------------------------------------------
 
 
-\subsection{Data Collection: Log File Analysis and Page Tagging}
-\label{chapter:web_analytics_logfile_pagetagging}
+\subsection{Data Collection: Log File Analysis and Page Tagging} % korrigiert
+\label{subsection:web_analytics_logfile_pagetagging}
 
 There are four main methods of collecting data for web analytics: through log file analysis, JavaScript page tagging, web beacons, and packet sniffing \cite{2009Waisberg}.
 
-As already mentioned in section \ref{chapter:web_analytics_history}, the two most important methods of data collection are log file analysis and page tagging.
+As mentioned in section \ref{subsection:web_analytics_history}, the two main methods of data collection are log file analysis and page tagging.
 In this section I will briefly describe and compare both mechanisms.
 
 
-\subsubsection{Log File Analysis}
-\label{chapter:log_file}
+\subsubsection{Log File Analysis} % korrigiert
+\label{subsubsection:log_file}
 
-
-As already described, the log file analysis is about gaining knowledge from the log file records of the web server.
-Log file analysis is considered to be the traditional and original approach to web analytics \cite{2011Marek}, \cite{2015Zheng}. %TODO improve Marek citation
-As soon as the user types a URL into the browser and presses the enter key, the request arrives at a web server.
-The server then creates an entry in a log file and sends the requested page or resource back to the client in response \cite{2009Waisberg}.
-The information within the log entry can vary depending on the log format, usually IP, browser, time stamp, time required, transferred bytes, whether a cache hit occurs and the referrer is specified \cite{2009Waisberg}.
-The standardized Common Log Format provides host, ident, authuser, date, request, status, bytes, as can be seen in listing \ref{lst:log}.\footnote{\url{https://www.w3.org/Daemon/User/Config/Logging.html\#common-logfile-format} [03.06.2021]}
+As described earlier, log file analysis is about gaining insights from the log file records of the web server.
+Log file analysis is considered the traditional and original approach to web analytics \cite{2011Marek}, \cite{2015Zheng}.
+Once the user types a URL into the browser and presses enter, the request is forwarded to a web server.
+The server then creates an entry in a log file and sends the requested page or resource back to the client as a response \cite{2009Waisberg}.
+The information within the log entry can vary depending on the log format.
+Typically, the IP, browser, timestamp, time taken, bytes transferred, whether there is a cache hit, and the referrer are specified \cite{2009Waisberg}.
+The standardized Common Log format includes host, ident, authuser, date, request, status, and bytes, as shown in listing \ref{lst:log}.\footnote{\url{https://www.w3.org/Daemon/User/Config/Logging.html\#common-logfile-format} [03.06.2021]}
 
 \begin{center}
 \begin{lstlisting}[caption={CLF}, language=bash, numbers=none, basicstyle=\tiny, label={lst:log}]
 127.0.0.1 user-identifier frank [10/Oct/2000:13:55:36 -0700] "GET /apache_pb.gif HTTP/1.0" 200 2326
 \end{lstlisting}
 \end{center}
-% TODO add caption
+% TODO better caption
 
-Standard formats of log files and entries enable log file analysis software to process, evaluate and report valuable statistics such as \textit{Analog}, \textit{Webalizer} or \textit{AWStats} to users \cite{2015Zheng}.
+Standard formats of log files and entries allow log file analysis software such as \textit{Analog}, \textit{Webalizer} or \textit{AWStats} to process, analyze and report valuable statistics to users \cite{2015Zheng}.
 
 % [Pro]
 
-Below are a few points that describe the pros and cons of log file analysis.
+Below are some points that describe the advantages and disadvantages of log file analysis.
 The advantages of log file analysis are (\cite{2009Waisberg}, \cite{2011Nakatani}, \cite{2014Singal}, \cite{2015Zheng}):
 %TODO just cite here above all or in the list ?
 
@@ -510,7 +511,7 @@ The advantages of log file analysis are (\cite{2009Waisberg}, \cite{2011Nakatani
 \item Log entries are reliable %cite 2011 Nakatani
 \item The standard format of log files enables easy switching of analysis tools %cite 2011 Nakatani
 \item The web server also logs failed requests %cite 2011 Nakatani
-\item No modification on the web page needed %cite 2015 Zheng
+\item No modifications to the website required %cite 2015 Zheng
 \item Does not demand more bandwidth %cite 2014 Singal
 \end{itemize}
 
@@ -520,42 +521,38 @@ The advantages of log file analysis are (\cite{2009Waisberg}, \cite{2011Nakatani
 Some disadvantages of log file analysis are (\cite{2011Marek}, \cite{2015Zheng}):
 
 \begin{itemize}
-\item Log entries provide mainly technical information, which may not be very useful for user behaviour analysis. Business related metrics such as bounce rates are not available. % cite Marek 2011
-\item Only direct requests from the client to the web server are logged: Any user interaction in the web browser that does not trigger a request is not logged. Responses from caches and proxies are also not visible in the web server's log file. Only interactions with the web server are logged.
+\item The log entries mainly contain technical information that is not very useful for analyzing user behavior. Business-related metrics such as bounce rates are not available. % cite Marek 2011
+\item Only direct requests from the client to the web server are logged: Any user interaction in the web browser that does not trigger a request is not logged. Responses from caches and proxies are also not visible in the web server log file. Only interactions with the web server are logged.
 %cite 2015 Zheng
 \end{itemize}
 
 
 % ------------------------------------------
 
+\subsubsection{Page Tagging} % korrigiert
+\label{subsubsection:page_tagging}
 
-\subsubsection{Page Tagging}
-\label{chapter:page_tagging}
+In a nutshell, page tagging describes the analytics method where JavaScript is embedded into the website that collects data and sends it to an analytics server \cite{2011Marek}.
+For this purpose, JavaScript must be integrated on each page to be analysed \cite{2009Waisberg}.
+Page tagging is the most important method of web analytics today \cite{2015Zheng}.
 
-
-In a nutshell, page tagging describes the analysis method used to incorporate JavaScript into the website, which collects data and sends it to an analysis server \cite{2011Marek}.
-To do this, JavaScript must be integrated on every page to be analysed \cite{2009Waisberg}.
-Page tagging is the most important method in web analytics today \cite{2015Zheng}.
-
-
-Croll provides a illustration (figure \ref{figure:page_tagging}) of the page tagging process which is explained below \cite{2009Croll}.
+Croll provides a illustration (figure \ref{figure:page_tagging}) of the page tagging process, which is explained below \cite{2009Croll}.
 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{page_tagging.png}
-\caption{Page Tagging}
+\caption{Page Tagging, taken from \cite{2009Croll}}
 \label{figure:page_tagging}
 \end{center}
 \end{figure}
 
 The client (browser) requests a page from the web server (1, 2).
-Within the HTML file an external JavaScript resource, the analytics code, is linked and received from the analytics server (3, 4).
-The analytics script tracks and measures the user behaviour and eventually sends the data back to the analytics server (5, 6, 7).
+Within the HTML file, an external JavaScript resource, the analysis code, is linked and received by the analysis server (3, 4).
+The analysis script tracks and measures user behaviour and finally sends the data back to the analysis server (5, 6, 7).
 
-The data collected can also be stored in cookies, which contain data beyond a session and enable the user to be identified, e.g. the next time he visits the page \cite{2019Kumar}.
+The collected data may also be stored in cookies that contain data beyond one session and allow the identification of the user, for example, the next time the user visits the site \cite{2019Kumar}.
 
-
-The advantages and disadvantages of page tagging are as follows, starting with the pros (\cite{2009Waisberg}, \cite{2011Nakatani}, \cite{2011Marek}, \cite{2014Singal}, \cite{2015Zheng}):
+The advantages and disadvantages of page tagging are as follows, starting with the advantages (\cite{2009Waisberg}, \cite{2011Nakatani}, \cite{2011Marek}, \cite{2014Singal}, \cite{2015Zheng}):
 
 %TODO again put all references on top ?
 
@@ -571,15 +568,11 @@ The advantages and disadvantages of page tagging are as follows, starting with t
 \item Real time reporting is possible %cite  2014 Singal 
 \end{itemize}
 
-
 % [Con]
 
-Some drawbacks are mainly privacy concerns and the permission to collect data by the user,  that the analysis process relies on the use of JavaScript and cookies that can be disabled by the user \cite{2011Marek}, that every page that is supposed to collect data must contain the analytics script and due to the use of a third party analytics service it is pretty difficult to switch tools \cite{2014Singal}.
+Some disadvantages are mainly privacy concerns and user permission to collect data, that the analytics process relies on the use of JavaScript and cookies that can be disabled by the user \cite{2011Marek}, that any page that needs to collect data must include the analytics script, and that it is quite difficult to switch tools due to the use of a third-party analytics service \cite{2014Singal}.
 
-
-
-%TODO reference here that page tagging is used in RUM and RUM will be later explained in section X.
-
+Page tagging is the underlying technique of Real-User Monitoring, which is discussed in \ref{subsection:RUM}.
 
 % 2017 Hassler ch. 2 -> some good stuff there regarding pros and cons, see my notes
 % TODO web beacons and packet sniffig ?:
@@ -587,12 +580,11 @@ Some drawbacks are mainly privacy concerns and the permission to collect data by
 % 2011 Nakatani
 % 2014 Singal
 
-
-
 % ------------------------------------------
 
 
-\subsection{Web Analytics Metrics}
+\subsection{Web Analytics Metrics} % korrigiert
+\label{subsection:web_analytics_metrics}
 
 %TODO go through the books again to have some nice introduction:
 % why metrics, how are they useful, interpretation, etc.
@@ -606,96 +598,95 @@ Some drawbacks are mainly privacy concerns and the permission to collect data by
 % [Business Metrics]
 
 In this thesis, two kinds of metrics occur: Web Analyitcs metrics and Web Performance metrics.
-Web Analytics metrics are metrics which reflect and quantify any business related aspect of the website.
-I use the term "business" or "non-performance" metrics to draw a line between metrics mainly concerned with a websites performance and metrics reflecting other web analytics aspects.
-I will use the terms "business", "non-performance" and "web analytics" metrics interchangeably.
-Business metrics are not directly responsible to capture performance data such as loading speed of a website.
-Performance metrics on the other hand are mainly related to website performance, for example site speed, as discussed in section X.
-
+Web analytics metrics are metrics that reflect and quantify all business-related aspects of the website.
+I use the term "business" or "non-performance" metrics to draw a line between metrics that are primarily concerned with website performance and metrics that reflect other web analytics aspects.
+I will use the terms "business," "non-performance," and "web analytics" metrics interchangeably.
+Business metrics are not directly responsible for capturing performance data such as website load speed.
+Performance metrics, on the other hand, are primarily concerned with the performance of a website, such as website speed, as discussed in \ref{section:web_performance_metrics}.
 
 % [Relevance]
 
-The selection of any kind of metrics and especially their relevance for the websites business enhancement is crucial.
-It is important to measure what is important and relevant for the users and reaching business goals, while "each business has its own definitions of success". % cite 2009 Croll p 7,  https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-Hence, metrics are ideally tailored and custom to the website and they should track if "your business benefited in some way from their [the users] visits." % cite 2009 Croll p 15
-Just as each website is unique and serves a different purpose, so should metrics be, which quantify the website.
-As for each specific business question or use case, metrics can be made up, an unlimited amount of metrics exist.
+The selection of any type of metrics and especially their relevance to the business development of the website is crucial.
+It is important to measure what is important and relevant for the users and the achievement of the business goals, while "each business has its own definitions of success". % cite 2009 Croll p 7,  https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
+Therefore, metrics are ideally tailored to the website and should track if "your business benefited in some way from their [the users] visits." % cite 2009 Croll p 15
+Just as each website is unique and serves a different purpose, so should be the metrics that quantify it.
+Metrics can be developed for any specific business question or use case, and there are an unlimited number of metrics.
 
+%TODO should i link here to Custom Metrics ?
 
 % [Usable]
 
-Metrics are only helpful when they are useful.
-That implies that the collection and measurement of metrics should be consistent and their representation should be user-friendly and understandable. % cite https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-Kumar states that ideally, good metrics are uncomplex, relevant, timely, and instantly useful.  \\% cite 2012 Kumar
+Metrics are only helpful if they are useful.
+This means that the collection and measurement of metrics should be consistent and their presentation should be user-friendly and understandable. % cite https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
+Kumar explains that ideally, good metrics are not too complex, relevant, timely, and immediately useful.  \\% cite 2012 Kumar
 
 
 % [Interpretation]
 
-
-
-
+%TODO add something here ?
 
 % [Transition]
 
-In this section, I will describe metrics which are more likely correlated and mapped to business topics, such as conversion or bounce rate.
-In literature, a core corpus of web analytics metrics can be found and multiple ideas of structuring and categorizing those metrics exist.
-The different possibilities of categorizations are discussed next.
-Afterwards, one approach of categorization is then used to list a selection of common web analytics metrics.
+In this section, I describe metrics that correlate more with and map to business issues, such as conversion rate or bounce rate.
+A core set of web analytics metrics can be found in the literature, and there are several ideas for structuring and categorizing these metrics.
+The different ways of categorizing them are discussed below.
+Then, one approach to categorization is used to list a selection of common web analytics metrics.
 
 
 % ------------------------------------
 
+\subsubsection{Web Analytics Metrics Categorizations} % korrigiert
 
-\subsubsection{Web Analytics Metrics Categorizations}
+Categories help to better grasp and understand key figures, and they can provide structure and order.
+Below are some examples of categorizing business metrics as found in the literature.
 
+Peterson argues from a marketing perspective and categorizes metrics according to the customer lifecycle, which includes the reach, acquisition, conversion, and retention phases. % cite 2004 Peterson
 
-Categories help to better grasp and comprehend metrics, and they can provide structure and order.
-Following are some examples of business metrics categorizations as they are presented in literature.
+Metrics for measuring \textit{reach} are, for example, the number or percentage of new visitors.
+The category \textit{Acquisition} contains metrics such as average number of visits per visitor or average pages viewed per visitor.
+The \textit{Conversion} category contains metrics such as conversion or abandonment rates.
+And the last category \textit{Retention} includes metrics like the number of returning visitors.
+This proposed categorization is very customer-centric and customer-focused, from the marketer's point of view. 
 
-Peterson arguments from a marketing perspective and categorizes the metrics according to the customer life cycle, which includes the phases reach, acquisition, conversion, and retention. % cite 2004 Peterson
-
-Metrics for measuring \textit{Reach} are for example number or percentage of new visitor.
-\textit{Acquisition} contains metrics such as average number of visits per visitor or average pages viewed per visitor.
-The category \textit{Conversion} includes metrics such as conversion or abandonment rates.
-And the last category \textit{Retention} includes metrics such as the number of returning visitors.
-This proposed categorization is highly customer-related and customer-centric and from a marketers perspective. 
-
-%Reach:  - Overall Traffic Volumes,  Number of Visits
+% Reach:  - Overall Traffic Volumes,  Number of Visits
 % Measuring Acquisition: - Percent New Visitors, - Average Number of Page Views per Visit
-  
-The Web Analytics Association defines three types and accordingly categories of metrics: \textit{Counts}, \textit{Ratios} and \textit{KPIs},% cite 2007 Burby
-Where counts are metrics which are single numbers like the number of visits, ratios consist of counts divided by other counts, such as page views per visit.
-KPIs are counts or ratios with a specific meaning and importance for the specific business.
+
+The Web Analytics Association defines three types and, accordingly, categories of metrics: \textit{Counts}, \textit{Ratios}, and \textit{Key Performance Indicators}. % cite 2007 Burby
+Counts are metrics that represent single numbers such as the number of visits, while ratios consist of counts divided by other counts, such as page views per visit.
+KPIs are counts or ratios with a specific meaning and importance to the business in question.
 
 Jansen defines four categories for web analytics metrics: % cite 2009 Jansen p.30
-\textit{Site Usage}, which encompasses metrics such as demographics and system statistics, but also visitor length and type,
-\textit{Referrers}, that are metrics describing the referring URL,
+\textit{Site Usage}, which includes metrics such as demographics and system statistics, as well as visitor length and type,,
+\textit{Referrers}, which are metrics that describe the referring URL,
 \textit{Site Content Analysis}, which includes metrics such as top pages or visitor paths, and
-\textit{Quality Assurance} with metrics reflecting errors or other quality aspects of the measured system.
+\textit{Quality Assurance} which includes metrics that reflect errors or other quality aspects of the system being measured.
 
 % Site usage: Internal Search Information
 % Referrers: keyword Analysis	
-	 
-Croll arguments that all metrics answer at least one of four user-centric questions: \textit{What did they do?}, \textit{How did they do it?,} \textit{Why did they do it?}, and \textit{Could they do it?}. % cite 2009 Croll
-Accordingly, the metrics are categorised by the question they answer.
 
-Bekavac organizes the metric according to what they describe: \textit{Visits}, such as entry or exit page,
-\textit{Visitors}, such as the metrics capturing new or returning visitors,
-metrics such as page exit ratio or bounce rate which describe \textit{Visitor Engagement},
-and metrics describing \textit{Conversions} as the conversion rate. % cite 2015 Bekavac
+Croll argues that all metrics answer at least one of four user-centered questions: \textit{What did they do?}, \textit{How did they do it?}, \textit{Why did they do it?}, and \textit{Could they do it?}. % cite 2009
+Accordingly, the metrics are categorized by the question they answer.
+
+Bekavac breaks down metrics by what they describe: \textit{Visits}, such as entry or exit page,
+\textit{Visitors}, such as metrics that capture new or returning visitors,
+metrics such as page exit rate or bounce rate that describe \textit{Visitor Engagement},
+and metrics that describe \textit{Conversions}, such as conversion rate.. % cite 2015 Bekavac
 
 %visits: entry page, landing page, exit page, visit duration, referrer, ctr
 %- For describing Visitors: repeat visitor, visits per visitor, recency, frequency
 %- For describing Visitor engagement: page exit ratio, bounce rate
 
-Hassler proposes a classification which is close and similar to the WAA proposed categorisation.
-The metrics are ordered by their type: % cite 2017 Hassler
-\textit{Counts} are absolute values like visitors or total sales,
-\textit{Relations} put counts into relation for example as percentages, such as page views per visitor,
-and \textit{Values} include non-numerical metrics such as referrer or search term.
+Hassler proposes a classification that is very similar to the categorization proposed by WAA.
+The metrics are ordered according to their type: % cite 2017 Hassler
+\textit{Counts} are absolute values like visitors or total revenue,
+\textit{Relations} put counts in relation, e.g. as percentages, such as page views per visitor.
+and \textit{Values} include non-numeric metrics such as referrers or search terms.
 
-Gessert et al.  propose a semantic categorization of metrics, they structure the metrics according to their meaning and their domain membership.
-The categories are \textit{Performance}, which includes performance metrics such as Time to First Byte or First Input Delay (see section X.), \textit{User Engagement} metrics such as the session length or the bounce rate, \textit{Business KPIs} such as the cart size or the amount of transaction, but also conversion rates and revenue, and \textit{QA Metadata} which subsumes technical metrics like JS errors or the browser distribution.% cite 2020 Wolle https://www.youtube.com/watch?v=avPcOFzUa1Q&ab_channel=WolframWingerath
+Gessert et al. propose a semantic categorization of metrics. They structure metrics according to their meaning and domain membership.
+The categories are \textit{performance}, which includes performance metrics (as described in section \ref{section:web_performance_metrics}),
+\textit{User Engagement} metrics such as session duration or bounce rate,
+\textit{Business KPIs} such as cart size or transaction amount, as well as conversion rates and revenue,
+and \textit{QA metadata} that summarize technical metrics such as JS errors or browser distribution. % cite 2020 Wolle https://www.youtube.com/watch?v=avPcOFzUa1Q&ab_channel=WolframWingerath
 
 %- User Engagement: Session Length, First user interaction
 % QA Metadata: Page views and sessions, Caching insights
@@ -741,14 +732,13 @@ The categories are \textit{Performance}, which includes performance metrics such
 
 % [Conclusion]
 
-As described above, multiple categorizations of metrics are proposed in literature.
-While some authors group the metrics by their type of value, e.g. if they count something or represent a ratio, others use a more semantic approach and group the metrics by their meaning, with some extreme examples by authors which group only through a marketing perspective.
+As described above, several categorizations of metrics have been proposed in the literature.
+The different ways of categorizing them are summarized in table \ref{table:business_metrics_categorizations}.
+While some authors group metrics by the nature of their value, e.g., whether they count something or represent a ratio, others use a more semantic approach and group metrics by their meaning, with some extreme examples of authors grouping only from a marketing perspective.
 % Orthogonal to semantic: "number" categorization: Count, ratio, ...
 
-In the following, I will list some metrics and provide brief explanations, following the categorization of counts,ratios and values.
-After that, i will take a look at metrics which are specific for performance.
-
-
+In the following, I will list and briefly explain some metrics, following the categorization of counts, ratios, and values.
+After that, the focus will be narrowed down to web performance and the corresponding metrics to capture it.
 
 %TODO add ?
 % Customer Life Cycle and Pyramid
@@ -758,9 +748,6 @@ After that, i will take a look at metrics which are specific for performance.
 
 % 2008 Reese
 %- Pyramidenmodell 
-
-
-
 
 % ---------------------------------------------------------------
 
