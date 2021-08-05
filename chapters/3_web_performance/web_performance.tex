@@ -60,9 +60,6 @@
 % ---------------------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------------------
 
-
-
-
 \section{Introduction} % korrigiert
 \label{section:web_performance_introduction}
 
@@ -74,7 +71,7 @@ The studies cited in the relevant section show that increasing website performan
 A good overview of web performance topics and goals is provided by the MDN Web Docs\footnote{\url{https://developer.mozilla.org/en-US/docs/Learn/Performance/What_is_web_performance} [03.06.2021]}, which serve as an outline for this chapter and are briefly described below.
 
 
-\paragraph{Reducing load time}
+\paragraph{Reducing load time} % korrigiert
 
 To understand how load times occur, the technical aspect of how websites are loaded and presented to the user by the browser must be understood.
 This subject is addressed in section \ref{section:website_loading_process}.
@@ -82,13 +79,13 @@ This subject is addressed in section \ref{section:website_loading_process}.
 Concrete optimization steps and techniques to reduce loading times are not the subject of this work.
 
 
-\paragraph{Usability and interactivity}
+\paragraph{Usability and interactivity} % korrigiert
 
 There are several metrics that attempt to reflect areas of performance such as load time, smoothness, and interactivity, and there are specific metrics to distinguish between technical and user-perceived performance.
 Web performance metrics are discussed in section \ref{section:web_performance_metrics}.
 
 
-\paragraph{Performance perception}
+\paragraph{Performance perception} % korrigiert
 
 Perceptions of performance are generally subjective.
 As seen earlier in section \ref{chapter:user_satisfaction}, there are some quantifiable time intervals that correlate with human psychology regarding received performance.
@@ -122,7 +119,7 @@ Thresholds for certain performance metrics and the psychological rationale for s
 % financial aspect of downloading data and big websites
 
 
-\paragraph{Performance measurements}
+\paragraph{Performance measurements} % korrigiert
 
 Measuring the performance of a website is an important and non-trivial task.
 Two main methods for measuring the performance of a website exist:
@@ -228,7 +225,8 @@ Or as Belshe puts it, "[reducing] cross-atlantic RTTs from 150ms to 100ms [...] 
 
 These observations can be explained by the many short, small connections and requests made while browsing websites and the contrary basic structure of the communication protocols, which are "optimized for long-lived connections and bulk data transfers" \cite{2013Grigorik}. % add ch 10 ?
 But simply reducing latency is not easy: the speed of data transmission is already 2/3 the speed of light, but the physical conditions are the limiting factor, e.g. there is a minimum distance between London and New York that cannot be "optimized" further \cite{2013Grigorik}. % add Ch 1 ?
-%TODO add more here? Why is this here?
+
+% add more here? Why is this here?
 
 
 % [Mobile]
@@ -558,7 +556,7 @@ Since JS execution blocks DOM creation and HTML processing itself is rendering b
 The behaviour is identical for an external JS file and a script inserted directly into the HTML code.
 
 
-%TODO add this?
+% add this?
 
 % This means that excessive scripts can be a significant bottleneck % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 
@@ -633,7 +631,7 @@ HTML, CSS and JS are now processed and the CRP proceeds to build the render tree
 
 % [More stuff]
 
-%TODO add this? preload scanner
+% add this? preload scanner
 % https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 %- Though the browser's preload scanner hastens this process.
 
@@ -664,7 +662,6 @@ HTML, CSS and JS are now processed and the CRP proceeds to build the render tree
 
 \paragraph{Building the Render Tree} % korrigiert
 
-
 As described above, both HTML and CSS are rendering blockers because they prevent the page from rendering.
 Rendering can only occur once the render tree is available.
 The render tree is the combination of DOM and CSSOM and captures all visible content with their styles to be displayed on the screen.
@@ -673,7 +670,7 @@ If an element has a CSS property like \verb|display: none;|, it is not displayed
 The calculated render tree is then used for the layout of the content on the page.
 
 
-%TODO add this ? Check again when chapter about WPT metrics is done
+% add this ? Check again when chapter about WPT metrics is done
 % 2014 Hogan https://designingforperformance.com/
 %Chapter 2
 %- Start Render Metric in WPT
@@ -687,7 +684,6 @@ In the layout process, the position and size of the nodes are calculated from th
 New layout calculations or re-flows are triggered as soon as the screen area changes, e.g. by rotating the device or resizing the window, or when the DOM and the render tree change. % cite How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 
 Once the layout is resolved, the browser continues painting pixels on the screen.
-
 
 % add viewport? The projection area is dependent and defined by the viewport
 
@@ -706,7 +702,7 @@ Finally, the browser can paint the content on the screen.
 When content changes, browsers are optimized to redraw only the affected areas on the screen. % cite  https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
 
 
-%TODO add This ?
+% add This ?
 
 % metrics ?
 % How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
@@ -873,6 +869,7 @@ How is it connected to measurement methods and metrics?
 
 %TODO
 \section{Measurement Methods}
+\label{section:measurement_methods}
 
 
 [tbd]
@@ -933,7 +930,6 @@ A feature of the controlled environment provided by synthetic monitoring is that
 
 
 \paragraph{Synthetic Monitoring is not about Real Users} % korrigiert
-
 
 Synthetic monitoring does not collect data from real users, as traffic on the website is generated artificially.
 Real user behaviour is approximated by simulating users, e.g., by prescribing user paths.
@@ -1113,18 +1109,15 @@ Due to the diversity of users and the unique environment of each user, RUM data 
 
 \subsubsection{RUM Measures Behaviour of Real Users} % korrigiert
 
-%TODO here i need to introduce maybe in e-commerce again? Or what is the roter faden? like funnel analysis all this stuff reference it here?
-
 % [E-Commerce Background]
 
 As discussed in section X, website performance and user satisfaction are directly related.
-An important component of RUM is not only the collection of performance metrics, but also the measurement of user behavior, e.g., how the user interacts with the website and where he or she clicks. % cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+An important component of RUM is not only the collection of performance metrics, but also the measurement of user behaviour, e.g., how the user interacts with the website and where he or she clicks. % cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
 In an e-commerce context, user behaviour questions are of interest, such as whether a new campaign changes user behaviour as expected or where users leave the check-out process. % cite 2021 wolle and % https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
 
 RUM enables the combination of collected metrics with user behaviour and business KPIs and can answer questions such as whether and how website performance affects user behaviour, e.g. whether users buy more or less depending on the speed of the website. % cite Eggplant whitepaper
 Thus RUM is not only important to understand user behaviour, but also to optimize the website and increase sales.
 With techniques such as cookies (see section X.), it is also possible to track user behaviour not only for one page visit, but over a series of website visits, resulting in even more detailed insights about the visitor. % cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-
 
 % [Tools]
 
@@ -1133,12 +1126,10 @@ The main player, Google Analytics, is discussed in more detail in section \ref{s
 
 % SpeedKit ?
 
-
 % [Transition]
 
 Google collects RUM and browser data from Chrome users who have consented to it.
 The data is accessible via the Chrome User Experience Report (CrUX) and is discussed below.
-
 
 
 % add this here?
@@ -1186,59 +1177,44 @@ The collected data is available via Google's PageSpeed Insights, the CrUX Dashbo
 
 % ----------------------------------------------------------------------------------------------
 
-\subsection{Google Analytics}
+
+\subsection{Google Analytics} % korrigiert
 \label{subsection:google_analytics}
 
 % [Why]
 
-As will be discussed in Section X, I will use a RUM tool to measure and compare performance metrics in the context of a controlled experiment, which will help answer the research question.
+As will be explained in Section X, I will use a RUM tool to measure and compare performance metrics in the context of a controlled experiment, which will help answer the research question.
 There are many RUM tools available. 
 The tool used is Google Analytics (GA) and will therefore be briefly discussed here.
 
-
 % [Definition]
 
-GA is a RUM solution that helps to "determine how successful your site is at turning users into customers"\footnote{\url{https://marketingplatform.google.com/about/resources/analytics-product-overview/} [05.08.2021]}.
+GA is a RUM solution that helps to "determine how successful your site is at turning users into customers".\footnote{\url{https://marketingplatform.google.com/about/resources/analytics-product-overview/} [05.08.2021]}
 
 % [Short History]
 
-GA is today by far the most used analysis tool today.
-\footnote{\url{https://w3techs.com/technologies/overview/traffic_analysis} [05.08.2021]}
-
-% https://onward.justia.com/history-of-google-analytics/ \cite{2021Franco}
-Version 1: Urchin 2005
-Version 2: Classic GA in 2007
-Version 3: Universal Analytics in 2013
-Version 4: GA4 in 2020
-
-I use UA as explained in section X.
-
+GA is by far the most widely used analysis tool today.\footnote{\url{https://w3techs.com/technologies/overview/traffic_analysis} [05.08.2021]}
+The first version of GA was initially developed by Urchin Software Corporation and acquired by Google in 2005.
+The second version, Classic GA, was released in 2007.
+The third version, Universal Analytics, was released in 2013 and the latest version, Google Analytics 4, was released in 2020.
+Each version improved the quality of measured data and integration with other Google products \cite{2021Franco}.
 
 % [Features]
 
+GA offers a wide range of functions.\footnote{\url{https://marketingplatform.google.com/about/analytics/features/} [05.08.2021]}
+Worth mentioning, for example, is analytical intelligence, a system that answers specific questions asked by the tool's users by extracting answers from the data;
+a variety of reports, such as real-time reports or conversion reports;
+or general data analysis, visualization and monitoring, such as with custom segmentation.
 
-
-\footnote{\url{https://marketingplatform.google.com/about/analytics/features/} [05.08.2021]}
-
-analytics intelligence: analysis of collected data
-Reporting: Real-time reports, audience reports, conversion reports, ...
-Data Analysis and Visualization: visualization and monitoring, segmentation
-
-Data tracked relevant for web performance is discussed in section X.
-
-
-
+GA also tracks a number of web performance metrics.
+What these are and how they are calculated is described in Section X.
 
 % [How it works]
 
-page tagging as explained in section X.
-
-Real life examples and other aspects such as the position of the script are discussed in section X.
-
-
+GA is a RUM method and therefore relies on the page tagging technique, as explained in Section X.
+Some examples and aspects of how to integrate the GA tracking script into the monitored website are explained in Section X.
 
 % Kessler 2012 p. 581
-
 
 % ----------------------------------------------------------------------------------------------
 
@@ -1277,7 +1253,7 @@ Real life examples and other aspects such as the position of the script are disc
 
 \subsection{Measurement Methods Conclusion} % korrigiert
 
-There are two main complementary techniques to measure the performance of a website: synthetic monitoring and Real-User Monitoring (RUM) (see figure \ref{table:synthetic_monitoring_rum_comparison}).
+There are two main complementary techniques to measure the performance of a website: synthetic monitoring and Real-User Monitoring (RUM) (table \ref{table:synthetic_monitoring_rum_comparison}).
 
 Synthetic monitoring measures the performance of a website in a controlled environment using test agents and is particularly useful for finding a baseline for website performance and for continuous monitoring and health checks.
 Performance as perceived by end users can only be approximated, as it is not captured by synthetic monitoring.
@@ -1319,11 +1295,10 @@ There are a variety of web performance metrics.
 What they are, how they have evolved, and what they monitor will be covered in the next section.
 
 
-
 % ----------------------------------------------------------------------------------------------------
 % ----------------------------------------------------------------------------------------------------
 
-
+%TODO
 \section{Web Performance Metrics} % korrigiert
 \label{section:web_performance_metrics}
 
@@ -1697,7 +1672,7 @@ The definitions are taken directly from the W3C specifications or MDN Web Docs, 
 These timestamps are used to calculate performance metrics, as described in the next section.
 
 
-%TODO is it ok to copy paste here from specs and MDN ?
+%TODO write in table caption taken from...
 
 \begin{center}
 	\small
@@ -1754,6 +1729,7 @@ These timestamps are used to calculate performance metrics, as described in the 
 	\label{table:navigation_resource_attributes}
 	\end{longtable}
 \end{center}
+%TODO in caption: definitions taken from XX.
 
 
 The document states and events mentioned above, such as DOMContentLoaded, and their triggering by the user agent are defined in the HTML standard.
