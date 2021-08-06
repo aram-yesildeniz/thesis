@@ -541,7 +541,8 @@ Croll provides a illustration (figure \ref{figure:page_tagging}) of the page tag
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{page_tagging.png}
-\caption{Page Tagging, taken from \cite{2009Croll}}
+% \caption{Page Tagging, taken from \cite{2009Croll}}
+\caption[Page Tagging]{Page Tagging, taken from \cite{2009Croll}}
 \label{figure:page_tagging}
 \end{center}
 \end{figure}
@@ -751,12 +752,11 @@ After that, the focus will be narrowed down to web performance and the correspon
 
 % ---------------------------------------------------------------
 
-%TODO
-\subsubsection{Web Analytics Metrics Examples}
+\subsubsection{Web Analytics Metrics Examples} % korrigiert
+\label{subsubsection:web_analytics_metrics_examples}
 
-
-Table X provides web analytics metrics which are not directly concerned with performance.
-The categories used to structure the metrics are \textit{Counts}, \textit{Ratios} and \textit{Non-Numerical Values}, like they are already defined by Hassler or WAA in the section above. % cite ?
+Table X contains web analytics metrics that are not directly related to performance.
+The categories used to structure the metrics are \textit{Counts}, \textit{Ratios} and \textit{Non-Numeric Values} as already defined by Hassler or WAA as described in the section above.
 
 % even add this? already described above
 % [Counts]
@@ -780,65 +780,66 @@ The categories used to structure the metrics are \textit{Counts}, \textit{Ratios
 	\hline
 	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Counts} \\
 	\hline
-	Hits & Represent amount of requests to the server.  \\ % 2004 Peterson
+	Hits & Represents the number of requests to the server. \\ % 2004 Peterson
 	\hline
-	Visits or Sessions & Count how many users view the website \\ % 2004 Peterson
+	Visits or Sessions & Counts how many users visit the website. \\ % 2004 Peterson
 	\hline
-	Session Length & How long the session endures \\ % 2007 Burby
+	Session Length & The duration of the session. \\ % 2007 Burby
 	\hline
-	Page Views & How often a page has been viewed \\ % 2004 Peterson
+	Page Views & How many times a page has been viewed. \\ % 2004 Peterson
 	\hline
-	Single Page Visits & Sessions where one page has been viewed \\ % 2007 Burby
+	Single Page Visits & Sessions in which only one page was viewed. \\ % 2007 Burby
 	\hline
-	New / Unique / Repeat / Return Visitors & ... \\
-	\hline
+%	New / Unique / Repeat / Return Visitors & ... \\
+%	\hline
 %	Time on Page & ... \\
 	%\hline
 %	Time between Visits & ... \\
 %	\hline
-	JS Errors & How many JS errors occured \\
+	JS Errors & How many JS errors occurred. \\
 	\hline
-	Cart Size & ... \\
+	Cart Size & How many items are in the shopping cart. \\
 	\hline
-	Conversions & ...  (business specific) \\
+	Conversions & How many visitors perform the desired action. In e-commerce, this could be the purchase of a product, for example. \\
 	\hline
 	\textit{etc.} &  \\
 
 	\hline
 	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Ratios} \\
 	\hline
-	Conversion Rate & ... \\
+	Conversion Rate & Percentage of users that result in a conversion (perform a desired action). \\
 	\hline
-	Bounce Rate & ... \\
+	Bounce Rate & Percentage of all sessions in which only a single page was viewed and no interaction took place. \\
 	\hline
-	Abandonment Rate & ... \\
-	\hline
-	Page Views per Visitor & ... \\
-	\hline
-	New Visitors Percentage & ... \\
-	\hline
-	Visits per Visitor & ... \\
-	\hline
-	Page Exit Ratio & ... \\
-	\hline
-	Click Through Rate (CTR) & ... \\
+%	Abandonment Rate & ... \\
+%	\hline
+%	Page Views per Visitor & ... \\
+%	\hline
+%	New Visitors Percentage & ... \\
+%	\hline
+%	Visits per Visitor & ... \\
+%	\hline
+%	Page Exit Ratio & ... \\
+%	\hline
+	Click Through Rate (CTR) & Percentage of visitors who have clicked on a specific link. Used in advertising campaigns, for example. \\
 	\hline
 	\textit{etc.} & \\	
 	
 	\hline
 	\multicolumn{2}{|c|}{ \cellcolor{lightgrey} Non-Numerical Values} \\
 	\hline
-	Demographics & ... \\	
+	Demographics & Information about visitors to the website, such as age, gender, geographic location, language, etc. \\	
 	\hline
-	Referrer & ... \\	
+	Referrer & The website from which the user came to the current website. \\	
 	\hline
 	\textit{etc.} &  \\
 	\hline
 	
-	\caption{Business Metrics Examples}
+	\caption{Web Analytics or Business Metrics Examples, taken from } % 2004 Peterson,  2007 Burby
 	\label{table:businessmetrics}
 	\end{longtable}
 \end{center}
+%TODO cite
 
 
 %\paragraph{Hits}
@@ -935,7 +936,7 @@ The categories used to structure the metrics are \textit{Counts}, \textit{Ratios
 % % -------------- NON_NUMERICAL_VALUES --------------
 
 
-%TODO find some more examples here
+% find some more examples here
 
 %\paragraph{Demographics}
 %age, gender, browser, geography, ...
@@ -949,35 +950,15 @@ The categories used to structure the metrics are \textit{Counts}, \textit{Ratios
 % --------------------------------------
 
 
-% [Transition]
+% [Transition] % korrigiert
 
-The table X provides a selection of common business metrics, following the proposed categorization of counts, ratios and non-numerical values and is not complete.
-In the next section, I will discuss web performance and accordingly web performance metrics, which are designed to directly capture performance related data.
+The selection of common business metrics in Table X is not exhaustive and provides only a glimpse of web analytics metrics.
 
-
-%TODO
-
-[Transition to Web Performance]
+The main focus of this thesis is web performance.
+What web performance is, what factors play a role in website performance, and what measurement methods and metrics exist will be covered in the next chapter.
 
 
-
-
-
-
-
-
-
-
-
-%TODO even add this? outline can be made in beginning of next section
-%As performance is directly connected to time, most of those performance metrics are measuring a timestamp.
-%Some are also displaying a score. 
-%This will be discussed.
-
-
-
-%TODO should i show how to actual measure those metrics, like visits, hits, conversion rate etc ?
-
+% should i show how to actual measure those metrics, like visits, hits, conversion rate etc ?
 
 % Kessler 2012 -> dont have this digital...
 % Erfolg messen und bewerten
