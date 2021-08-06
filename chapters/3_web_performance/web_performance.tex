@@ -1,59 +1,34 @@
 % Terms and Definitions
-\chapter{Web Performance}
+\chapter{Web Performance} % korrigiert
 \label{chapter:web_performance}
-
-%TODO make it clear the difference between web analytics and web performance
-% web performance is also an analysis of the website, but not which users or how they interact with the website
-% is about the website itself, how fast it is and how users perceive this performance
 
 %TODO roter faden: What is web performance in web analytics context ?
 
-% This is another test blablabla
+% [Last chapter]
+
+In the last chapter, we saw how important performance is in e-commerce and how web analytics help measure many aspects of e-commerce websites.
+This provides the context for the following chapter.
+
+% [This chapter]
+
+This chapter is about web performance.
+Web performance is also about analysing the website, but not about business-related issues such as the type of users, how they interact with the website, or whether they lead to conversions.
+Web performance is about the website itself, specifically how fast it is and how users perceive performance.
+
+The introduction section \ref{section:web_performance_introduction} gives an overview of some general ideas and aspects of web performance.
+Some of them will be discussed in more detail.
+To understand web performance, one must know how websites are loaded into the browser and presented to the user.
+Section \ref{section:website_loading_process} explains this process, focusing on the steps within the network and the front end.
+What techniques exist for measuring and evaluating the performance of a website are discussed in section \ref{section:measurement_methods}.
+Finally, section \ref{section:web_performance_metrics} discusses metrics that reflect and capture the performance of a website.
 
 
-[tbd]
+% [Relevance of this chapter for research question] ??
 
 
-[Last chapter]
+% [Next chapter]
 
-
-
-[This chapter]
-
-% In this chapter, I will cover measurement methods and discuss common performance metrics
-% - This chapter should cover all relevant terms and definitions within web performance measurement
-% How terms can be structured / taxonomy
-% Ambiguity of definitions
-
-
-
-
-[Relevance of this chapter for research question]
-
-
-
-
-
-[Next chapter]
-
-
-
-
-
-[Outline of this chapter]
-
-% Introduction
-% refernces topics
-
-%- Technical Background
-%	   - Network
-%	   - Front End: Navigation and CRP
-
-%- Measuring Methods	
-
-%- Metrics
-
-
+Before describing the approach and practical work done to address the research question in chapter \ref{chapter:approach}, the next chapter \ref{chapter:related_work} discusses some other research in this area.
 
 
 
@@ -730,33 +705,21 @@ When content changes, browsers are optimized to redraw only the affected areas o
 
 % ------------------------------------------------------------
 
-%TODO
-\subsection{Technical Background Conclusion}
+\subsection{The Website Loading Process: Conclusion} % korrigiert
 
-% metrics ??
+The loading process of a website is complex and multi-layered.
+The goal of this section was to provide a general understanding and idea of it.
+For this purpose, the loading process is divided into three components: The front-end, the back-end, and the network.
+We have seen that within the network component there are several mechanisms to ensure a reliable and secure connection between the front-end and the back-end.
+Within the front-end component, the Critical Rendering Path describes the steps that the browser must take to retrieve and render a website.
 
-[tbd]
+% [Link to next section]
 
-Can be divided into Network, BE and FE.
-We have seen that in the Network Latency and Bandwidth, and the different Navigation steps.
-In FE, CRP is important with all its steps.
-
-For many steps, aspects, etc. performance metrics exist.
-
-Before those metrics are discussed, we need to observe how we can measure them, bzw. performance.
-
-[Link to next section]
-Why was this section important for research question?
-How is it connected to measurement methods and metrics?
+It is important to have a general understanding of the loading process of a website in order to understand web performance metrics.
+Before discussing web performance metrics in section \ref{section:web_performance_metrics}, methods for measuring them are described in the next section.
 
 
-% We could see that performance Metrics are directly derived from this process ??
-% Measurement methods will be discussed next
-% After that, i will talk about which metrics are available to capture performance data
-
-
-
-%TODO add ?
+% add ?
 % give some links and references to optimization
 
 % [Optimizations]
@@ -2745,7 +2708,11 @@ One disadvantage of custom metrics is that they are not comparable to any kind o
 
 [tbd]
 
+WebPageTest and GA are very common tools to measure web performance.
+One is synthetic monitoring the other one is RUM.
+They are already described in section X and X.
 
+As they are both used in the experiment, the performance metrics they measure and expose are discussed here.
 
 
 % ----------------------------------------------------------------
