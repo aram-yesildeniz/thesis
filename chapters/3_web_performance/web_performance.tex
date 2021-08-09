@@ -1240,15 +1240,8 @@ What they are, how they have evolved, and what they monitor will be covered in t
 % ----------------------------------------------------------------------------------------------------
 % ----------------------------------------------------------------------------------------------------
 
-%TODO
 \section{Web Performance Metrics} % korrigiert
 \label{section:web_performance_metrics}
-
-[tbd]
-
-[Link to Research Question] \\
-
-% roter faden: motivate with context web analytics, web performance, user satisfaction etc
 
 
 % [Performance Metrics]
@@ -1268,14 +1261,19 @@ Ideally, metrics are precise and serve as objective criteria for evaluating the 
 
 
 % [Outline]
-%TODO check again if all sections are mentioned here
 
 As with web analytics metrics, there are several ways to structure and categorize performance metrics.
 One way to bring order to performance metrics is to distinguish between \textit{Navigation Timing Metrics} (section \ref{subsection:navigation_timing_metrics}), which measure elapsed time for specific processes and navigation steps from the CRP, and \textit{User-Centric Performance Metrics} (section \ref{subsection:user_centric_performance_metrics}), which approximate user-perceived performance through visual analysis.
 Both classes of metrics are discussed below.
 
 Before that, I'll discuss \textit{Page Weight} (section \ref{subsection:page_weight}), a metric that characterizes the size of a website.
-The benefits of \textit{Custom Metrics} (section \ref{subsection:custom_metrics}) and why they are important will conclude the section on performance metrics.
+The benefits of \textit{Custom Metrics }and why they are important are discussed in section \ref{subsection:custom_metrics}.
+
+As described in section X, WebPageTest and Google Analyitcs are common tools for synthethic monitoring and RUM, respectively, and will be used in the controlled experiment described in chapter X.
+What performance metrics they measure is described in section \ref{subsection:wpt_ga_metrics}.
+
+
+% [Link to Research Question] ??
 
 
 % add this ?
@@ -1299,8 +1297,6 @@ The benefits of \textit{Custom Metrics} (section \ref{subsection:custom_metrics}
 % No official definitions, lack of definitions (enghardt)
 % Still there are informal standard
 % Implementation can vary between tools who measure metrics
-
-
 
 % -----------------------------------------------------------------------
 
@@ -2681,27 +2677,54 @@ One disadvantage of custom metrics is that they are not comparable to any kind o
 
 % -----------------------------------------------------------------------
 
-%TODO
 \subsection{WebPageTest and Google Analytics Metrics}
+\label{subsection:wpt_ga_metrics}
 
-[tbd]
-
-WebPageTest and GA are very common tools to measure web performance.
-One is synthetic monitoring the other one is RUM.
-They are already described in section X and X.
-
-As they are both used in the experiment, the performance metrics they measure and expose are discussed here.
+WebPageTest (WPT) and Google Analytics (GA) are common tools for synthetic monitoring and RUM, respectively.
+Since they are used in the controlled experiment described in chapter X, the metrics they reveal are discussed in this section.
 
 
 % ----------------------------------------------------------------
 
-%TODO
 \subsubsection{WebPageTest Metrics}
 
-[tbd]
+WPT offers a variety of performance metrics, and describing them all here is too much.
+I will mention only a selection of metrics and those which are used in the controlled experiment.
 
 
-% 2016 Viscomi
+% From test result main page
+- First byte
+- start render
+- FCP
+- Speed index
+- web vitals: LCP CLS, TBT
+- Document Complete
+- Fully loaded
+
+- Waterfall chart
+
+- Content breakdown in requests and bytes
+
+
+% [Metrics Categories according to WPT Docs]
+
+
+% [Waterfall]
+
+- say thats important
+- what is it
+- but i will actually not use it, as im comparing different versions. for this, waterfall is not so practical, as its visual
+
+
+%  [Optimization Grades]
+	%  Keep-alive Enabled
+	%  Compress Text
+	%  Compress Images
+	%  Cache Static Content
+	%  Use of CDN
+
+
+% 2016 Viscomi. Taken from WPT book p. 34,
 covers a wide range of performance metrics:
 - It has waterfall charts with the associated request and response headers
 - It has timing metrics including time to first byte, document complete, and fully loaded.
@@ -2710,23 +2733,45 @@ covers a wide range of performance metrics:
 - focus on filmstrip views and side-by-side videos
 - development of the Speed Index metric
 
+- waterfall: Undeniably, the most important part of a web performance report is the waterfall diagram. Waterfalls are a visualization of the network activity, which is broken down into individual HTTP requests
+
 
 
 % https://docs.webpagetest.org/getting-started/
+Categorization:
+- Page Level Metrics:
+	- Technical Page Metrics
+	- Visual Metrics
+	- Interactivity Metrics
+	- Javascript and CPU timings
+	- Page Information
+	- Browser State
+	- Lighthouse Summary Metrics
+	- Optimization Checks/Grades
+	- Instrumented Metrics
+	- Test Information
+	- Misc
 
 
-% [Metrics Categories according to WPT Docs]
+- Request Level Metrics:
+	- Request Details
+	- Request Timings
+	- Request Stats
+	- Headers
+	- Protocol Information
+	- Javascript/CPU details
+	- Optimization Checks
+	- Misc
 
-% Metrics Categories:
 
-	%  High Level Metrics:
-		%  Document Complete
-		%  Fully Loaded
-		%  Load Time
-		%  First Byte
-		%  Start Render
-		%  Requests
-		%  Bytes In (Page Size)
+Page Level Metrics:
+Load Time
+Fully Loaded
+First Byte (TTFB)
+Start Render
+Speed Index
+DOM Elements
+
 
 	%  Page-level Metrics:
 
@@ -2764,31 +2809,10 @@ covers a wide range of performance metrics:
 		%  Misc	
 
 
-
-	
-%  [Optimization Grades]
-	%  Keep-alive Enabled
-	%  Compress Text
-	%  Compress Images
-	%  Cache Static Content
-	%  Use of CDN
-
-
-% [First View and Repeat View]
+% https://speedcurve.com/blog/rendering-metrics/
 
 
 
-% Taken from WPT book p. 34, ...
-% https://www.webpagetest.org/forums/showthread.php?tid=10315
-% https://www.webpagetest.org/forums/showthread.php?tid=13266
-% https://www.webpagetest.org/forums/showthread.php?tid=332
-% https://www.webpagetest.org/forums/showthread.php?tid=10732
-% https://www.webpagetest.org/forums/showthread.php?tid=12846
-
-
-
-% Move those definitions to chapter above?
-% Here i could only describe which metrics are available in WPT
 
 \begin{center}
 	\small
@@ -2822,7 +2846,13 @@ covers a wide range of performance metrics:
 \end{center}
 
 
-% https://speedcurve.com/blog/rendering-metrics/
+
+% not working...
+% https://www.webpagetest.org/forums/showthread.php?tid=10315
+% https://www.webpagetest.org/forums/showthread.php?tid=13266
+% https://www.webpagetest.org/forums/showthread.php?tid=332
+% https://www.webpagetest.org/forums/showthread.php?tid=10732
+% https://www.webpagetest.org/forums/showthread.php?tid=12846
 
 
 % ----------------------------------------------------------------
@@ -2831,6 +2861,10 @@ covers a wide range of performance metrics:
 \subsubsection{GA Site Speed Metrics}
 
 [tbd]
+
+a lot of metrics
+but erstaunlicherweise not so many performance metrics
+only site speed report
 
 
 % Default performance metrics captured by analytics.js.
