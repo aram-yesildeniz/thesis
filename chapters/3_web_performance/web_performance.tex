@@ -1778,12 +1778,14 @@ Due to the lack of standardization and definition of the metrics, it is therefor
 	& Also called Server Response Time by Akamai \\ % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 	
 	\hline
-	DOM Content Loaded,DOM Content Load
-	& MDN defines DOM Content Loaded as $domContentLoadedEventEnd - domContentLoadedEventStart$, that is the DOMContentLoaded event duration. \\
+	DOM Content Loaded
+	& MDN defines this metric as the interval between the start and end points of the DomContentLoaded event: $[domContentLoadedEventEnd - domContentLoadedEventStart]$. \\
 		% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#domcontentloaded_event
 		% https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
-	& Akamai defines a "DOM Content Load" time which represents the time from navigation start until the DOMContentLoaded event has been fired, captured by domContentLoadedEventEnd. \\
-		% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US		
+	& Akamai defines it as the time from the start of navigation to the end of the DOMContentLoaded event: $[domContentLoadedEventEnd - navigationStart]$. \\
+		% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+	& Google defines the metric similarly to Akamai, but uses the start point instead of the end point of the event for the calculation (see section X):
+$[domContentLoadedEventStart - navigationStart]$. \\
 
 	\hline
 	Page Download Time,
@@ -2072,7 +2074,7 @@ Table \ref{table:apis_summary} provides an overview of all specifications discus
 	& Provides accurate, stable and reliable time measurements. \\
 	\hline
 	Navigation Timing
-	& Level 1: REC December 2021 \\
+	& Level 1: REC December 2012 \\
 	& Level 2: Current WD \\
 	& Exposes information about the navigation timing of the main document. \\
 	\hline
@@ -2857,69 +2859,113 @@ DOM Elements
 
 % ----------------------------------------------------------------
 
-%TODO
-\subsubsection{GA Site Speed Metrics}
+\subsubsection{Google Analytics Site Speed Metrics} % korrigiert
+\label{subsubsection:ga_metrics}
 
-[tbd]
+As described in section \ref{subsection:google_analytics}, there are several versions of GA.
+Since Universal Analytics was used in the approach section, I will describe the performance metrics of that version here.
+Other versions may have different metrics.
 
-a lot of metrics
-but erstaunlicherweise not so many performance metrics
-only site speed report
+% [Reports]
+
+GA provides the collected data in multiple reports, such as real-time reports or audience reports with demographic information.
+Within the behavioural report, there is a "Site Speed" section that presents the collected performance data and metrics.
+Compared to other metrics measured by GA, the variety and quantity of performance metrics collected is rather small.
+
+% [Metrics]
+
+The performance metrics collected by Universal Analytics are Navigation Timing Metrics only (see section \ref{subsection:navigation_timing_metrics}) and not user-centric metrics (see section \ref{subsection:user_centric_performance_metrics}).
+Visual metrics such as FCP or LCP are not available.
+The metrics are listed in table \ref{table:ga_metrics}.
+
+\begin{table}[h]
+	\small
+	\centering
+	\begin{tabular}{ | l | l |}
+	\hline
+	Page Load Time (sec) & Domain Lookup Time (sec) \\
+	\hline
+	Page Download Time (sec) & Redirection Time (sec) \\
+	\hline
+	Server Connection Time (sec) & Server Response Time (sec) \\
+	\hline
+	Document Interactive Time (sec) & Document Content Loaded Time (sec) \\
+	\hline
+	\end{tabular}
+	\medskip
+	\caption[Performance Metrics tracked by GA (Universal Analytics)]{Performance Metrics tracked by GA (Universal Analytics), taken from } % cite https://support.google.com/analytics/answer/2383341?hl=en&ref_topic=1282106#zippy=%2Cin-this-article
+	\label{table:ga_metrics}
+\end{table}
 
 
-% Default performance metrics captured by analytics.js.
-% Show with analytics.js that it is indeed those navigation timing api calculations.
-% Ec = function (a)...
+% [Code example]
 
-% 2013 Girgorik: "Google Analytics automatically gathers Navigation Timing data when the analytics tracker is installed." ch. primer on web performance
+The calculations can be seen directly in the Analytics source code file.
+Since the code is only available in a minified version, some variables may appear cryptic.\footnote{\url{
+https://www.google-analytics.com/analytics.js} [09.08.2021]}
+
+The implementation relies on the old Navigation Timing API (not Level 2), i.e. the performance data is retrieved via performance.timing.
+Features such as high-resolution timing, as available in Navigation Timing Level 2, are not included in this implementation (see section \ref{subsubsection:w3c_performance_specifications}).
+
+\begin{center}
+\begin{lstlisting}[caption={Performance Metrics Calculations in analytics.js}, label={listing:analyticsjs}, numbers=none]
+Ec = function (a) {
+	var b = O.performance || O.webkitPerformance;
+
+	// b is window.performance.timing, as exposed
+	// by Navigation Timing Level 1
+	b = b && b.timing;
+
+	if (!b) return !1;
+	var c = b.navigationStart;
+	if (0 == c) return !1;
+	a[Eb] = b.loadEventStart - c; // Page Load Time
+	
+	// Domain Lookup Time
+	a[Gb] = b.domainLookupEnd - b.domainLookupStart;
+	
+	a[Jb] = b.connectEnd - b.connectStart; // Server Connection Time
+	a[Ib] = b.responseStart - b.requestStart; // Server Response Time
+	a[Fb] = b.responseEnd - b.responseStart; // Page Download Time
+	a[Hb] = b.fetchStart - c; // Redirection Time
+	a[Kb] = b.domInteractive - c; // Document Interactive Time
+	
+	// Document Content Loaded Time (sec)
+	a[Lb] = b.domContentLoadedEventStart - c;
+	// ...
+}
+\end{lstlisting}
+\end{center}
+
+
 
 % GA does not really provide any UX metrics! The site speed metrics are all from navigation timing api which are measurements from the browser.
 % GA Site Speed Metrics (description from \url{https://support.google.com/analytics/answer/2383341?hl=en&ref_topic=1282106})
 % \url{https://stackoverflow.com/questions/18972615/how-do-the-metrics-of-google-analytics-site-speed-map-to-the-w3c-navigation-timi}
 
 
-
-\begin{center}
-\small
-
-	\begin{tabular}{ p{0.3\linewidth} | p{0.6\linewidth} }
-	Name & Description  \\ 
-	\hline
-	Page Load Sample & The number of pageviews that were sampled to calculate the average page-load time.  \\
-	
-	Speed Metrics Sample & The sample set (or count) of pageviews used to calculate the averages of site speed metrics. This metric is used in all site speed average calculations, including avgDomainLookupTime, avgPageDownloadTime, avgRedirectionTime, avgServerConnectionTime, and avgServerResponseTime.  \\
-	
-	DOM Latency Metrics Sample & Sample set (or count) of pageviews used to calculate the averages for site speed DOM metrics. This metric is used to calculate ga:avgDomContentLoadedTime and ga:avgDomInteractiveTime.  \\
-
-	Page Load Time (sec) & The average amount of time (in seconds) it takes that page to load, from initiation of the pageview (e.g., click on a page link) to load completion in the browser.  \\
-	
-	Domain Lookup Time (sec) & The average amount of time spent in DNS lookup for the page.  \\
-	
-	Page Download Time (sec) & The time to download your page.  \\
-	
-	Redirection Time (sec) & The time spent in redirection before fetching the page. If there are no redirects, the value for this metric is expected to be 0.  \\
-	
-	Server Connection Time (sec) & The time needed for the user to connect to your server.  \\
-
-	Server Response Time (sec) & The time for your server to respond to a user request, including the network time from the user's location to your server.  \\
-	
-	Document Interactive Time (sec) & The average time (in seconds) that the browser takes to parse the document (DOMInteractive), including the network time from the user's location to your server. At this time, the user can interact with the Document Object Model even though it is not fully loaded.  \\
-
-	Document Content Loaded Time (sec) & The average time (in seconds) that the browser takes to parse the document and execute deferred and parser-inserted scripts (DOMContentLoaded), including the network time from the user's location to your server. Parsing of the document is finished, the Document Object Model is ready, but referenced style sheets, images, and subframes may not be finished loading. This event is often the starting point for javascript framework execution, e.g., JQuery's onready() callback, etc.  \\
-	\end{tabular}
-\end{center}
-
-
-
 % DNS Resolution = GAs Avg. Domain Lookup Time (sec) % https://metriclabs.com.au/glossary/analytics-metrics/avg-domain-lookup-time-sec/
+
+
+%\begin{center}
+%\small
+%	\begin{tabular}{ p{0.3\linewidth} | p{0.6\linewidth} }
+%	Name & Description  \\ 
+%	\hline
+%	Page Load Sample & The number of pageviews that were sampled to calculate the average page-load time.  \\
+%	Speed Metrics Sample & The sample set (or count) of pageviews used to calculate the averages of site speed metrics. This metric is used in all site speed average calculations, including avgDomainLookupTime, avgPageDownloadTime, avgRedirectionTime, avgServerConnectionTime, and avgServerResponseTime.  \\
+%	DOM Latency Metrics Sample & Sample set (or count) of pageviews used to calculate the averages for site speed DOM metrics. This metric is used to calculate ga:avgDomContentLoadedTime and ga:avgDomInteractiveTime.  \\
+%	\end{tabular}
+%\end{center}
 
 
 % ----------------------------------------------------------------
 
-%TODO
-\subsubsection{Comparison GA and WPT Metrics}
+%TODO even add this ???
 
-[tbd]
+%\subsubsection{Comparison GA and WPT Metrics}
+
+%[tbd]
 
 % We can show that above relations are true with experiments
 % Load test page on a specific day only once and save timings exposed by performance.timing object (from console)
@@ -2927,30 +2973,26 @@ only site speed report
 % Get GA data for that day and save it
 
 
-%TODO use graphical comparison ?
+% use graphical comparison ?
 % or get rid of navigation timing column and dont use landscape
 
-\begin{sidewaysfigure}
+%\begin{sidewaysfigure}
 
-\begin{center}
-	\begin{tabular}{ l | l | l }
-	Navigation Timing API & WPT & GA \\ 
-	\hline
-	loadEventStart - navigationStart & Document Complete, Load Event Start & pageLoadTime \\
-	domainLookupEnd - domainLookupStart & DNS lookup, dns\textunderscore ms & domainLookupTime \\
-	connectEnd - connectStart & connect\textunderscore ms & serverConnectionTime \\
-	responseStart - requestStart & .. & serverResponseTime \\
-	responseEnd - responseStart & .. & pageDownloadTime \\
-	fetchStart - navigationStart & .. & redirectionTime \\
-	domInteractive - navigationStart & .. & domInteractiveTime \\
-	domContentLoadedEventStart - navigationStart & domContentLoadedEventStart & domContentLoadedTime \\
-	\end{tabular}
-\end{center}
-
-
-\end{sidewaysfigure}
-
-
+%\begin{center}
+%	\begin{tabular}{ l | l | l }
+%	Navigation Timing API & WPT & GA \\ 
+%	\hline
+%	loadEventStart - navigationStart & Document Complete, Load Event Start & pageLoadTime \\
+%	domainLookupEnd - domainLookupStart & DNS lookup, dns\textunderscore ms & domainLookupTime \\
+%	connectEnd - connectStart & connect\textunderscore ms & serverConnectionTime \\
+%	responseStart - requestStart & .. & serverResponseTime \\
+%	responseEnd - responseStart & .. & pageDownloadTime \\
+%	fetchStart - navigationStart & .. & redirectionTime \\
+%	domInteractive - navigationStart & .. & domInteractiveTime \\
+%	domContentLoadedEventStart - navigationStart & domContentLoadedEventStart & domContentLoadedTime \\
+%	\end{tabular}
+%\end{center}
+%\end{sidewaysfigure}
 
 
 % ----------------------------------------------------------------
