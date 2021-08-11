@@ -467,8 +467,7 @@ As soon as the parser encounters a reference to an external stylesheet such as i
 
 it requests the resource and proceeds to parse the HTML.
 CSS is not a resource that blocks the parser.
-When the CSS arrives in the browser, CSSOM construction begins.
-% cite  https://blog.logrocket.com/how-browser-rendering-works-behind-the-scenes-6782b0e8fb10/
+When the CSS arrives in the browser, CSSOM construction begins \cite{2021Ohans}.
 
 
 % add FOUC ?
@@ -479,8 +478,7 @@ When the CSS arrives in the browser, CSSOM construction begins.
 
 CSSOM creation does not block the parser, but it does block rendering.
 The browser blocks rendering of the page until it has received and parsed all the CSS.
-Rendering content to the screen is possible only if CSSOM and thus CSS are available. 
-% cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css
+Rendering content to the screen is possible only if CSSOM and thus CSS are available \cite{2019GrigorikCSS}.
 
 
 % [When finished]
@@ -523,12 +521,12 @@ When the browser encounters a script tag like in listing \ref{listing:js},
 \end{lstlisting}
 \end{center}
 
-it pauses its current task of parsing, immediately fetches the resource and executes its contents, and only then continues to create the DOM (see figure \ref{figure:script_loading}). % cite % Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
+it pauses its current task of parsing, immediately fetches the resource and executes its contents, and only then continues to create the DOM (see figure \ref{figure:script_loading}) \cite{2013GrigorikFluent}.
 
 This means that JS blocks the parser: JS can manipulate and query the DOM tree and modify the HTML file directly.
-Since the HTML file is the input stream for the parser, the parser stops until the JS is downloaded and executed. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
+Since the HTML file is the input stream for the parser, the parser stops until the JS is downloaded and executed \cite{2021MDNCRP}.
 Only when the execution of the script is complete, HTML parsing continues.
-Since JS execution blocks DOM creation and HTML processing itself is rendering blocking, JS is implicitly rendering blocking as well. % cite Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
+Since JS execution blocks DOM creation and HTML processing itself is rendering blocking, JS is implicitly rendering blocking as well \cite{2013GrigorikFluent}.
 The behaviour is identical for an external JS file and a script inserted directly into the HTML code.
 
 
@@ -553,7 +551,7 @@ Since JS can also manipulate the styling of the page, its execution is blocked u
 This means that JS execution is on hold until the CSSOM is ready.
 
 In summary, while JS blocks the parsing of the HTML into the DOM, JS execution itself is blocked by the creation of the CSSOM.
-CSSOM blocks JS, and JS blocks the building of the DOM. % cite 2013 Grigorik ch 10
+CSSOM blocks JS, and JS blocks the building of the DOM\cite{2013Grigorik}. % add ch 10 ?
 
 Several attributes for the script tag can change the behavior of the browser.
 \textit{Async} and \textit{defer} are options that counteract the blocking nature of the script tag.
@@ -565,11 +563,11 @@ They are discussed now. \\
 
 With the async attribute, the browser downloads the JS in the background while it continues parsing the HTML (see figure \ref{figure:script_loading}).
 Parsing is not blocked and the browser can continue with its task. 
-Once the JS is downloaded and available, the parser is blocked: The browser stops parsing and executes the JS. % cite https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script
+Once the JS is downloaded and available, the parser is blocked: The browser stops parsing and executes the JS \cite{2021MDNScript}.
 
 The order of all asynchronous scripts within the document is no longer maintained.
 As soon as a script is downloaded and available, it is executed.
-It does not matter whether an asynchronous script is inserted at the beginning or the end of the HTML document. % cite https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
+It does not matter whether an asynchronous script is inserted at the beginning or the end of the HTML document \cite{2020Monus}.
 
 % https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
 %- The async attribute is recommended for independent third-party scripts, such as ads, trackers, and analytics scripts. For example, Google Analytics recommends adding the async attribute to support asynchronous loading in modern browsers.
@@ -578,8 +576,7 @@ It does not matter whether an asynchronous script is inserted at the beginning o
 % [defer attribute]
 
 As with async, scripts with the defer attribute allow the browser to download the script in parallel while it continues parsing the HTML (see figure \ref{figure:script_loading}).
-Unlike async, defer scripts are not executed until the page parsing is complete and the DOM tree is fully built, and the order of the scripts is maintained. % cite  https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/
-
+Unlike async, defer scripts are not executed until the page parsing is complete and the DOM tree is fully built, and the order of the scripts is maintained \cite{2020Monus}.
 
 \begin{figure}[h!]
 \begin{center}
@@ -591,7 +588,8 @@ Unlike async, defer scripts are not executed until the page parsing is complete 
 
 
 The async and defer attributes do not apply to inline scripts.
-The HTML standard states that "scripts may specify defer or async, but must not specify either unless the src attribute is present." % \footnote https://html.spec.whatwg.org/multipage/scripting.html#attr-script-async
+The HTML standard states that "scripts may specify defer or async, but must not specify either unless the src attribute is present."\footnote{\url{https://html.spec.whatwg.org/multipage/scripting.html} [11.08.2021]}
+
 Since inline scripts do not contain a src attribute because the source of the script is inside the script tags and not external, the async and defer attributes are not applicable.
 
 
@@ -641,7 +639,7 @@ HTML, CSS and JS are now processed and the CRP proceeds to build the render tree
 As described above, both HTML and CSS are rendering blockers because they prevent the page from rendering.
 Rendering can only occur once the render tree is available.
 The render tree is the combination of DOM and CSSOM and captures all visible content with their styles to be displayed on the screen.
-If an element has a CSS property like \verb|display: none;|, it is not displayed in the render tree. % cite https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
+If an element has a CSS property like \verb|display: none;|, it is not displayed in the render tree \cite{2019GrigorikRenderTree}.
 
 The calculated render tree is then used for the layout of the content on the page.
 
@@ -657,7 +655,7 @@ The calculated render tree is then used for the layout of the content on the pag
 \paragraph{Layout} % korrigiert
 
 In the layout process, the position and size of the nodes are calculated from the render tree.
-New layout calculations or re-flows are triggered as soon as the screen area changes, e.g. by rotating the device or resizing the window, or when the DOM and the render tree change. % cite How Browsers Work https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+New layout calculations or re-flows are triggered as soon as the screen area changes, e.g. by rotating the device or resizing the window, or when the DOM and the render tree change \cite{2021MDNHowBrowsersWork}.
 
 Once the layout is resolved, the browser continues painting pixels on the screen.
 
@@ -675,8 +673,7 @@ Once the layout is resolved, the browser continues painting pixels on the screen
 \paragraph{Paint} % korrigiert
 
 Finally, the browser can paint the content on the screen.
-When content changes, browsers are optimized to redraw only the affected areas on the screen. % cite  https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path
-
+When content changes, browsers are optimized to redraw only the affected areas on the screen \cite{2021MDNCRP}.
 
 % add This ?
 
@@ -857,55 +854,57 @@ After this section on measurement methods, I describe which performance metrics 
 
 As the name implies, synthetic monitoring is a measurement method performed in an artificial, laboratory-like, synthetic environment.
 Test agents simulate real users and are configured to run a browser, load the observed website, and collect performance data in the process.
-Synthetic monitoring does not take into account real user traffic. % cite 2015 cito
+Synthetic monitoring does not take into account real user traffic \cite{2015Cito}.
 
+%TODO
 Performance data can be collected via common performance APIs as described in section X.
-In addition, user-centric metrics such as Speed Index can be calculated through video recording and analysis (see Section X). % cite 2021 Wolle 
+In addition, user-centric metrics such as Speed Index can be calculated through video recording and analysis (see Section X) \cite{2021Wingerath}.
 
-Synthetic monitoring controls many possible configurations and variables of the test agent (client), such as location (geography), network conditions, device type, browser version, and so on. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+Synthetic monitoring controls many possible configurations and variables of the test agent (client), such as location (geography), network conditions, device type, browser version, and so on \cite{2021MDNRUMvsSynthetic}.
 So the tester has control over many variables that affect performance, and can also change these variables to test how they affect performance.
 
 The controlled environment enables the collection of performance data for a specific configuration, such as the location of the test agent or browser version, which can help identify issues with specific user segments.
-For example, a test could check the performance of all users using Firefox on macOS in Germany. % cite 2009 Croll
+For example, a test could check the performance of all users using Firefox on macOS in Germany \cite{2009Croll}.
 
-In addition to defining the technical configuration, such as browser version or network conditions, the tester can also define artificial user journeys to simulate real user behaviour. % cite 2021 Wolle
+In addition to defining the technical configuration, such as browser version or network conditions, the tester can also define artificial user journeys to simulate real user behaviour \cite{2021Wingerath}.
 
-A feature of the controlled environment provided by synthetic monitoring is that the measured data and test results are relatively consistent with little variability, providing a performance baseline for the site being monitored and facilitating performance optimization. % cite 2013 Meenan
+A feature of the controlled environment provided by synthetic monitoring is that the measured data and test results are relatively consistent with little variability, providing a performance baseline for the site being monitored and facilitating performance optimization \cite{2013Meenan}.
 
 
 \paragraph{Synthetic Monitoring is not about Real Users} % korrigiert
 
 Synthetic monitoring does not collect data from real users, as traffic on the website is generated artificially.
 Real user behaviour is approximated by simulating users, e.g., by prescribing user paths.
-Measured performance data does not necessarily reflect the actual user experience, and the tester should not assume that "synthetic results are like real-user metrics". % cite 2016 Viscomi
+Measured performance data does not necessarily reflect the actual user experience, and the tester should not assume that "synthetic results are like real-user metrics" \cite{2016Viscomi}.
 
-Capturing the wide variety and diversity of real users, such as the pages visited, the user's general configuration such as CPU, GPU, and memory performance, what data is stored in the browser cache and what browser version is used, screen size, operating system, and network connection, to name a few, is difficult to represent in synthetic monitoring. % cite 2013 Meenan, 2013 Grigorik
-The selected test configuration in synthetic monitoring only reflects a specific use case and can only approximate what a user with a similar configuration might experience. % cite 2016 Viscomi
-In short, synthetic monitoring test results "are synthetic and therefore not representative for actual user data".  % cite 2021 Wolle
+Capturing the wide variety and diversity of real users, such as the pages visited, the user's general configuration such as CPU, GPU, and memory performance, what data is stored in the browser cache and what browser version is used, screen size, operating system, and network connection, to name a few, is difficult to represent in synthetic monitoring \cite{2013Meenan}, \cite{2013Grigorik}.
+The selected test configuration in synthetic monitoring only reflects a specific use case and can only approximate what a user with a similar configuration might experience \cite{2016Viscomi}.
+In short, synthetic monitoring test results "are synthetic and therefore not representative for actual user data" \cite{2021Wingerath}.
 
 
 \subsubsection{The "Monitoring" Aspect in Synthetic Monitoring} % korrigiert
 
-Synthetic monitoring can be automated and used to monitor a system's performance in real time and provide up-to-date reports for the system administrator. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
-Monitoring makes it possible to check site availability around the globe, % cite 2009 Croll
-detect performance problems before users notice them, % cite 2013 Grigorik https://hpbn.co/primer-on-web-performance/
-and is generally useful for continuous "health checks" of the running system.  % cite 2021 Wolle 
+Synthetic monitoring can be automated and used to monitor a system's performance in real time and provide up-to-date reports for the system administrator \cite{2021MDNRUMvsSynthetic}.
+Monitoring makes it possible to check site availability around the globe \cite{2009Croll},
+detect performance problems before users notice them \cite{2013Grigorik},
+and is generally useful for continuous "health checks" of the running system \cite{2021Wingerath}.
 
-Since each website can be tested synthetically, it is possible to compare the performance data of several competitors. % cite 2009 Croll
+Since each website can be tested synthetically, it is possible to compare the performance data of several competitors \cite{2009Croll}.
 
 
 % [Tools]
 
-There are many synthetic monitoring tools (see, for example, Kaur 2016 for a list of tools). %TODO add online sources
+There are many synthetic monitoring tools (see for example \cite{2016Kaur} for a list of tools). %TODO add online sources
 \textit{WebPageTest} is one of them and is discussed in section \ref{subsection:webpagetest}.
 
 
 % [Transition]
 
+%TODO
 As described in Section X, the performance of an online store correlates with sales.
 Synthetic monitoring enables the collection of performance metrics independent of real user behaviour.
 Real user behaviour is not measured in synthetic monitoring.
-Since only real users are able to generate revenue, synthetic monitoring cannot detect correlations between user satisfaction (and revenue) and performance (as described in Section X).% cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+Since only real users are able to generate revenue, synthetic monitoring cannot detect correlations between user satisfaction (and revenue) and performance (as described in Section X) \cite{2021Wingerath}.
 
 Understanding the correlation between user satisfaction and website performance requires Real-User Monitoring (RUM).
 RUM enables the collection of data from each real user.
@@ -933,19 +932,20 @@ Before that, a common synthetic monitoring tool, \textit{WebPageTest}, is briefl
 \subsection{WebPageTest} % korrigiert
 \label{subsection:webpagetest}
 
+%TODO
 As will be discussed in Section X, I will use a synthetic monitoring tool to measure and compare performance metrics in the context of a controlled experiment, which will help answer the research question.
 There are many synthetic monitoring tools available. 
 The tool used is WebPageTest (WPT) and will therefore be briefly discussed here.
 
-"WebPageTest is a web performance tool providing deep diagnostic information about how a page performs under a variety of conditions." % https://docs.webpagetest.org/
+"WebPageTest is a web performance tool providing deep diagnostic information about how a page performs under a variety of conditions."\footnote{\url{https://docs.webpagetest.org/} [11.08.2021]}
 WPT was made available to the public in 2008 and was acquired by Catchpoint in September 2020\footnote{\url{https://www.catchpoint.com/webpagetest-joins-catchpoint} [04.08.2021]}.
 WPT is open source\footnote{\url{https://github.com/WPO-Foundation/webpagetest} [04.08.2021]} and offered as a free web service\footnote{\url{https://www.webpagetest.org/} [04.08.2021]} and can be used by anyone.
 
-Some of the key features of WPT are that it measures and provides a variety of metrics (see Section X), it facilitates saving and sharing performance test results, it provides waterfall graphs, a breakdown of the website's content, or even film strips and video recordings of the loading process. % 2016 Viscomi
+Some of the key features of WPT are that it measures and provides a variety of metrics (see Section X), it facilitates saving and sharing performance test results, it provides waterfall graphs, a breakdown of the website's content, or even film strips and video recordings of the loading process \cite{2016Viscomi}.
 
-The main goal of WPT is to "provide detailed information to developers about the loading performance of their pages in a realistic end user environment." % 2016 Viscomi
+The main goal of WPT is to "provide detailed information to developers about the loading performance of their pages in a realistic end user environment" \cite{2016Viscomi}.
 
-WPT is widely used, "the leading web performance tool in the world today", and an "indispensable power tool in your web performance toolkit". % erstes: 2016 Vicsomi, zweites: 2011 Grigorik https://hpbn.co/primer-on-web-performance/
+WPT is widely used, "the leading web performance tool in the world today" \cite{2016Viscomi}, and an "indispensable power tool in your web performance toolkit" \cite{2013Grigorik}.
 
 % add this ??
 % API: 
@@ -957,7 +957,7 @@ WPT is widely used, "the leading web performance tool in the world today", and a
 \subsubsection{Configuration} % korrigiert
 
 WPT is highly configurable and allows performance testing for almost any desired configuration.
-One of the key configuration options is that testing can be performed from multiple geographic locations, with test sites provided by over fifty companies and individuals. % 2016 VIscomi
+One of the key configuration options is that testing can be performed from multiple geographic locations, with test sites provided by over fifty companies and individuals \cite{2016Viscomi}.
 
 Other configurations include, for example, the possible selection of different devices and browsers, e.g., Chrome emulation from an iPad in Taiwan; the setting of Repeat View, which instructs the browser to load the website not only the first time but also the second time, which provides insight into the caching setup of the website; and the throttling of the network, e.g., whether to use DSL or 5G.
 
@@ -971,7 +971,7 @@ The settings used for the experiment to answer the research question are explain
 \subsubsection{Private Instances} % korrigiert
 
 The public WPT instance is reliable and configurable, but depending on the test location, it can also lead to waiting times because other people are also using it.
-Also, the public WPT instance can only access and thus test and evaluate publicly accessible websites. % 2016 Viscomi
+Also, the public WPT instance can only access and thus test and evaluate publicly accessible websites \cite{2016Viscomi}.
 There are also daily limits on how much testing can be done.
 
 Private WPT instances help to counteract the problems described.
@@ -1020,7 +1020,7 @@ The next section discusses another important method for measuring web performanc
 
 As the name suggests, Real-User Monitoring (RUM) is about collecting and measuring data from real users who visit the website.
 Unlike synthetic monitoring, which artificially generates website traffic and only approximates the performance experience of real users, RUM data relies on real user traffic and captures data directly from each user's browser. 
-RUM measures performance as experienced by users. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+RUM measures performance as experienced by users \cite{2021MDNRUMvsSynthetic}.
 
 
 \subsubsection{The Page Tagging Technique in RUM} % korrigiert
@@ -1031,24 +1031,23 @@ As described in Section X., page tagging is a technique that instruments the use
 RUM is based on page tagging, i.e., a JS code snippet ("tracking code") that is loaded into the user's browser.
 Once this tracking code is loaded and executed in the browser, it collects data and sends it back to an analytics service.
 If the user blocks JS or the script cannot be downloaded for other reasons, RUM will not work.
-Once the data arrives at an analytics service, it must be stored and an interface must be provided for the analyst to query the data and gain insights, such as by providing a dashboard.
-% cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+Once the data arrives at an analytics service, it must be stored and an interface must be provided for the analyst to query the data and gain insights, such as by providing a dashboard \cite{2021Wingerath}.
 
 Since RUM relies on the JS code, the very first opportunity to measure data is when this JS code has been downloaded and executed.
 Anything that happens before that step is invisible to the tracking script, and therefore invisible to the analyst.
-Meenan notes that about 20\% of the loading process is outside the RUM measurement range and that "getting a reliable start time for measurements from the real world has been the biggest barrier to using RUM". % cite 2013 Meenan
+Meenan notes that about 20\% of the loading process is outside the RUM measurement range and that "getting a reliable start time for measurements from the real world has been the biggest barrier to using RUM" \cite{2013Meenan}.
 
-Another facet of RUM is that the measurement of data should ideally have as little impact as possible on the site rendering process, and network capacity should not be taken up by RUM scripts and block resources of the CRP. % cite  2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+Another facet of RUM is that the measurement of data should ideally have as little impact as possible on the site rendering process, and network capacity should not be taken up by RUM scripts and block resources of the CRP \cite{2021Wingerath}.
 One of the research questions of this paper is whether RUM, as a page marking technique, slows down the observed website.
 The evaluation of the controlled experiment to answer this question shows that RUM...., as described in section X. %TODO add conclusion of evaluation here
 
 % [Diversity of Users and Data]
 
 RUM is independent of the user's setup or environment and collects data for all active users:
-Regardless of the user's device, browser, network conditions, or geographic location, RUM collects data as long as the measurement script is loaded into the user's browser. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
-So the RUM data represents each individual user experience. % cite 2016 Viscomi
+Regardless of the user's device, browser, network conditions, or geographic location, RUM collects data as long as the measurement script is loaded into the user's browser \cite{2021MDNRUMvsSynthetic}.
+So the RUM data represents each individual user experience \cite{2016Viscomi}.
 
-Due to the diversity of users and the unique environment of each user, RUM data tends to be more diverse and heterogeneous than data collected through synthetic monitoring. % cite 2013 Meenan
+Due to the diversity of users and the unique environment of each user, RUM data tends to be more diverse and heterogeneous than data collected through synthetic monitoring \cite{2013Meenan}.
 
 
 \subsubsection{RUM Measures Behaviour of Real Users} % korrigiert
@@ -1056,8 +1055,8 @@ Due to the diversity of users and the unique environment of each user, RUM data 
 % [E-Commerce Background]
 
 As discussed in section X, website performance and user satisfaction are directly related.
-An important component of RUM is not only the collection of performance metrics, but also the measurement of user behaviour, e.g., how the user interacts with the website and where he or she clicks. % cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-In an e-commerce context, user behaviour questions are of interest, such as whether a new campaign changes user behaviour as expected or where users leave the check-out process. % cite 2021 wolle and % https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic
+An important component of RUM is not only the collection of performance metrics, but also the measurement of user behaviour, e.g., how the user interacts with the website and where he or she clicks \cite{2021Wingerath}.
+In an e-commerce context, user behaviour questions are of interest, such as whether a new campaign changes user behaviour as expected or where users leave the check-out process \cite{2021Wingerath}, \cite{2021MDNRUMvsSynthetic}.
 
 RUM enables the combination of collected metrics with user behaviour and business KPIs and can answer questions such as whether and how website performance affects user behaviour, e.g. whether users buy more or less depending on the speed of the website. % cite Eggplant whitepaper
 Thus RUM is not only important to understand user behaviour, but also to optimize the website and increase sales.
