@@ -2679,7 +2679,7 @@ One disadvantage of custom metrics is that they are not comparable to any kind o
 
 % -----------------------------------------------------------------------
 
-\subsection{WebPageTest and Google Analytics Metrics}
+\subsection{WebPageTest and Google Analytics Metrics} % korrigiert
 \label{subsection:wpt_ga_metrics}
 
 WebPageTest (WPT) and Google Analytics (GA) are common tools for synthetic monitoring and RUM, respectively.
@@ -2689,36 +2689,85 @@ Since they are used in the controlled experiment described in chapter X, the met
 % ----------------------------------------------------------------
 
 \subsubsection{WebPageTest Metrics}
+\label{subsubsection:wpt_metrics}
 
-WPT offers a variety of performance metrics, and describing them all here is too much.
-I will mention only a selection of metrics and those which are used in the controlled experiment.
+WPT measures and provides a variety of performance metrics.
+First, I will briefly discuss how WPT categorizes their metrics.
+Then, the most prominent metrics, those are the metrics visible on the result pages after running a test, are discussed.
+Breakdowns...
+Finally, two significant WPT performance analyses are briefly described, waterfall charts and grades.
 
+
+\paragraph{Metrics Categories}
+
+According to the documentation, the two main categories for performance metrics are Page-level metrics and Request-Level Metrics.
+
+The WPT documentation categorizes the metrics in Page-level and Request-level metrics.
+Page-level metrics include technical and visual metrics, as they are described in section X and section X, respectively.
+(see table X).
+% more here ?
+
+\begin{table}[h]
+	\small
+	\centering
+	\begin{tabular}{l | l}
+	\hline
+	Page-Level Metrics & Technical Page Metrics, Visual Metrics, \\
+	& Interactivity Metrics, Javascript and CPU timings, \\
+	& Page Information, Browser State \\
+	\hline
+	Request-Level Metrics & Request Details, Request Timings, \\
+	& Request Stats, Headers, \\
+	& Protocol Information, Javascript/CPU details, \\
+	& Optimization Checks, Misc \\
+	\hline
+	\end{tabular}
+	\medskip
+	\caption{Metrics categorizes according to the WPT documentation.}
+	\label{table:wpt_metrics_categories}
+\end{table}
+
+
+\paragraph{Result Page Metrics}
+
+% https://docs.webpagetest.org/getting-started/#high-level-metrics%3A
+
+They are already described in the above section.
 
 % From test result main page
-- First byte
-- start render
-- FCP
-- Speed index
-- web vitals: LCP CLS, TBT
-- Document Complete
-- Fully loaded
-
-- Waterfall chart
-
-- Content breakdown in requests and bytes
+First byte (same as TTFB)
+Start Render
+Speed Index
+FCP
+Web Vitals: LCP CLS, TBT
+Document Complete: "up until the browser considered the page loaded (onLoad event)". Same as PLT.
+Fully Loaded: "up until there was 2 seconds of no network activity after Document Complete"
+% https://docs.webpagetest.org/getting-started/
 
 
-% [Metrics Categories according to WPT Docs]
+\paragraph{Breakdowns}
+
+- Breakdowns:
+	- content by type (requests and bytes)
+	- by domain
+	- Main-thread processing and time breakdown
+	
+- Request Details
 
 
-% [Waterfall]
+
+
+\paragraph{Waterfalls and Optimization Grades}
+
+- Waterfall View
+- Connection View
 
 - say thats important
 - what is it
 - but i will actually not use it, as im comparing different versions. for this, waterfall is not so practical, as its visual
 
 
-%  [Optimization Grades]
+
 	%  Keep-alive Enabled
 	%  Compress Text
 	%  Compress Images
@@ -2726,94 +2775,16 @@ I will mention only a selection of metrics and those which are used in the contr
 	%  Use of CDN
 
 
-% 2016 Viscomi. Taken from WPT book p. 34,
-covers a wide range of performance metrics:
-- It has waterfall charts with the associated request and response headers
-- It has timing metrics including time to first byte, document complete, and fully loaded.
-- breaks down the number of requests and bytes by content type
-- CPU utilization, bandwidth, and main thread timelines
-- focus on filmstrip views and side-by-side videos
-- development of the Speed Index metric
+
 
 - waterfall: Undeniably, the most important part of a web performance report is the waterfall diagram. Waterfalls are a visualization of the network activity, which is broken down into individual HTTP requests
 
 
 
-% https://docs.webpagetest.org/getting-started/
-Categorization:
-- Page Level Metrics:
-	- Technical Page Metrics
-	- Visual Metrics
-	- Interactivity Metrics
-	- Javascript and CPU timings
-	- Page Information
-	- Browser State
-	- Lighthouse Summary Metrics
-	- Optimization Checks/Grades
-	- Instrumented Metrics
-	- Test Information
-	- Misc
-
-
-- Request Level Metrics:
-	- Request Details
-	- Request Timings
-	- Request Stats
-	- Headers
-	- Protocol Information
-	- Javascript/CPU details
-	- Optimization Checks
-	- Misc
-
-
-Page Level Metrics:
-Load Time
-Fully Loaded
-First Byte (TTFB)
-Start Render
-Speed Index
-DOM Elements
-
-
-	%  Page-level Metrics:
-
-		%  Technical Page Metrics:
-			%  -> APIs, GA Site Speed Metrics
-			%  TTFB
-			%  loadTime
-			%  docTime
-			%  ...
-
-		%  Visual Metrics:
-			%  SpeedIndex
-			%  firstPaint
-			%  firstContentfulPaint
-			%  firstMeaningfulPaint
-			%  ...
-
-		%  Javascript and CPU timings
-		%  Page Information
-		%  Browser State
-		%  Lighthouse Summary Metrics
-		%  Optimization Checks/Grades
-		%  Instrumented Metrics
-		%  Test Information
-		%  Misc
-
-	%  Request-level metrics:
-		%  Request Details
-		%  Request Timings
-		%  Request Stats
-		%  Headers
-		%  Protocol Information
-		%  Javascript/CPU details
-		%  Optimization Checks
-		%  Misc	
+% Filmstrips ?
 
 
 % https://speedcurve.com/blog/rendering-metrics/
-
-
 
 
 \begin{center}
@@ -2847,6 +2818,16 @@ DOM Elements
 	\end{longtable}
 \end{center}
 
+
+
+% 2016 Viscomi. Taken from WPT book p. 34,
+%covers a wide range of performance metrics:
+%- It has waterfall charts with the associated request and response headers
+%- It has timing metrics including time to first byte, document complete, and fully loaded.
+%- breaks down the number of requests and bytes by content type
+%- CPU utilization, bandwidth, and main thread timelines
+%- focus on filmstrip views and side-by-side videos
+%- development of the Speed Index metric
 
 
 % not working...
