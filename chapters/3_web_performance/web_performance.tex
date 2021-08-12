@@ -2681,30 +2681,30 @@ One disadvantage of custom metrics is that they are not comparable to any kind o
 \subsection{WebPageTest and Google Analytics Metrics} % korrigiert
 \label{subsection:wpt_ga_metrics}
 
-WebPageTest (WPT) and Google Analytics (GA) are common tools for synthetic monitoring and RUM, respectively.
+WebPageTest (WPT) and Google Analytics (GA) are common tools for synthetic monitoring and RUM, respectively (see section X).
 Since they are used in the controlled experiment described in chapter X, the metrics they reveal are discussed in this section.
 
 
 % ----------------------------------------------------------------
 
-\subsubsection{WebPageTest Metrics}
+\subsubsection{WebPageTest Metrics} % korrigiert
 \label{subsubsection:wpt_metrics}
 
-WPT measures and provides a variety of performance metrics.
-First, I will briefly discuss how WPT categorizes their metrics.
-Then, the most prominent metrics, those are the metrics visible on the result pages after running a test, are discussed.
-Breakdowns...
-Finally, two significant WPT performance analyses are briefly described, waterfall charts and grades.
+WPT measures and delivers a variety of performance metrics.
+First, I will briefly discuss how WPT categorizes its metrics.
+Then, the most important metrics will be discussed, i.e., the metrics that are visible on the results pages after a test is run.
+Next, the variety of website breakdowns offered by WPT is described.
+Finally, two important performance analyses offered by WPT are briefly described: Waterfall charts and grades.
 
 
-\paragraph{Metrics Categories}
+\paragraph{Metrics Categories} % korrigiert
 
-According to the documentation, the two main categories for performance metrics are Page-level metrics and Request-Level Metrics.
+According to the documentation, there are two main categories for performance metrics: Page-Level metrics and Request-Level metrics. % footnote https://docs.webpagetest.org/
+Page-level metrics include technical and visual metrics, as described in Section X and Section X, as well as other site-related data such as page information, e.g. URL or DOM elements, or the state of the browser, e.g. its name or resolution.
+Request-level metrics provide information about each individual request, such as the HTTP method used, DNS or TCP timings, and bytes received, to name a few.
 
-The WPT documentation categorizes the metrics in Page-level and Request-level metrics.
-Page-level metrics include technical and visual metrics, as they are described in section X and section X, respectively.
-(see table X).
-% more here ?
+Table X contains a summary of the categories.
+Detailed descriptions of the categories and the metrics they contain can be found in the documentation.
 
 \begin{table}[h]
 	\small
@@ -2722,61 +2722,87 @@ Page-level metrics include technical and visual metrics, as they are described i
 	\hline
 	\end{tabular}
 	\medskip
-	\caption{Metrics categorizes according to the WPT documentation.}
+	\caption{Metrics categories according to the WPT documentation.}
 	\label{table:wpt_metrics_categories}
 \end{table}
 
 
-\paragraph{Result Page Metrics}
+\paragraph{Result Page Metrics} % korrigiert
 
-% https://docs.webpagetest.org/getting-started/#high-level-metrics%3A
-
-They are already described in the above section.
-
-% From test result main page
-First byte (same as TTFB)
-Start Render
-Speed Index
-FCP
-Web Vitals: LCP CLS, TBT
-Document Complete: "up until the browser considered the page loaded (onLoad event)". Same as PLT.
-Fully Loaded: "up until there was 2 seconds of no network activity after Document Complete"
-% https://docs.webpagetest.org/getting-started/
+After completing a performance test, WPT displays a results page.
+At the top of the results page, some metrics are displayed.
+In the documentation, these metrics are called "High-Level Metrics". % footnote https://docs.webpagetest.org/getting-started/
+They are listed in Table X.
 
 
-\paragraph{Breakdowns}
+\begin{table}[h]
+	\small
+	\centering
+	\begin{tabular}{| l | l | l | l |}
+	\hline
+	First byte (TTFB) & Start Render & Speed Index & FCP \\
+	\hline
+	Web Vitals (LCP CLS, TBT) & Document Complete & Fully Loaded & \\
+	\hline
+	\end{tabular}
+	\medskip
+	\caption{High-Level Metrics from the main test result page.}
+	\label{table:wpt_metrics_categories}
+\end{table}
 
-- Breakdowns:
-	- content by type (requests and bytes)
-	- by domain
-	- Main-thread processing and time breakdown
-	
-- Request Details
+The metrics are similar to those described in Section X, and their meaning is also given in this section, where Document Complete is the same as PLT.
+Fully Loaded is a WPT-specific metric and indicates the time when there has been no network activity for two seconds after Document Complete. % f0otnote https://docs.webpagetest.org/getting-started/
 
-
-
-
-\paragraph{Waterfalls and Optimization Grades}
-
-- Waterfall View
-- Connection View
-
-- say thats important
-- what is it
-- but i will actually not use it, as im comparing different versions. for this, waterfall is not so practical, as its visual
-
+% more here ??
 
 
-	%  Keep-alive Enabled
-	%  Compress Text
-	%  Compress Images
-	%  Cache Static Content
-	%  Use of CDN
+\paragraph{Breakdowns} % korrigiert
+
+WPT also provides breakdowns of the content of websites.
+The various dimensions are a breakdown of content by MIME type, which is similar to the Page Weight described in Section X.
+In addition, a breakdown by requested domains and a breakdown by main thread processing and time are reported.
+
+% more here ??
 
 
+\paragraph{Waterfalls and Optimization Grades} % korrigiert
 
+In addition to the performance metrics and breakdowns described above, WPT also reports on waterfall charts and evaluates the site by assigning grades.
 
-- waterfall: Undeniably, the most important part of a web performance report is the waterfall diagram. Waterfalls are a visualization of the network activity, which is broken down into individual HTTP requests
+% [Waterfall]
+
+Waterfall diagrams are a visualization of network activity.
+There are two types of waterfall diagrams in WPT:
+A request-level waterfall diagram and a connection-level waterfall diagram.
+The difference between a request and a connection is described in Section X.
+For a more detailed explanation, see "Reading a Waterfall" in Viscomi.
+
+% - waterfall: Undeniably, the most important part of a web performance report is the waterfall diagram. 
+
+% more here ??
+
+% [Grades]
+
+Another special feature of the WPT are the performance grades.
+Grades are a "set of web performance must-haves to which [...] pages should adhere" and they "evaluate the page data captured by the test and show whether the page has passed or failed a certain goal". % Viscomi p 51
+The grades calculated by WPT are listed in table X.
+Detailed explanations are described in the documentation.
+% footnote https://docs.webpagetest.org/getting-started/
+
+\begin{table}[h]
+	\small
+	\centering
+	\begin{tabular}{| l | l | l | l |}
+	\hline
+	Security Score & First Byte Time & Keep-alive Enabled & Compress Transfer \\
+	\hline
+	Compress Images & Cache Static Content & Effective use of CDN & \\	
+	\hline
+	\end{tabular}
+	\medskip
+	\caption{High-Level Metrics from the main test result page.}
+	\label{table:wpt_metrics_categories}
+\end{table}
 
 
 
@@ -2785,37 +2811,9 @@ Fully Loaded: "up until there was 2 seconds of no network activity after Documen
 
 % https://speedcurve.com/blog/rendering-metrics/
 
+% Document Complete: The time from the initial request until the browser fires load event. Also known as the document complete time. This is the time at which the Document Object Model (DOM) has been created and all images have been downloaded and displayed. For most traditional web pages, the load time is a suitable metric for representing how long a user must wait until the page becomes usable. This is the default performance metric on WebPageTest. Also known as Load Time (?). Around this time, the page's script is hard at work in the load-event handler firing off more requests for secondary content. The incomplete nature of this metric is why Fully Loaded was added to the table of metrics from the previous section. window.onload (?). The point where the browser onLoad event fires. The equivalent Navigation Timing event is loadEventStart. Document Complete Time: Amount of time that has elapsed from the initial page request until the browser fires the load event. This is the time at which the Document Object Model (DOM) has been created and all images have been downloaded and displayed.
 
-\begin{center}
-	\small
-	\begin{longtable}{ p{0.3\linewidth} | p{0.6\linewidth} }
-	Name & Description \\ 
-	\hline
-	Successful Tests & Amount of tests who completed successfully  \\
-	
-	Document Complete & ...  \\ % The time from the initial request until the browser fires load event. Also known as the document complete time. This is the time at which the Document Object Model (DOM) has been created and all images have been downloaded and displayed. For most traditional web pages, the load time is a suitable metric for representing how long a user must wait until the page becomes usable. This is the default performance metric on WebPageTest. Also known as Load Time (?). Around this time, the page's script is hard at work in the load-event handler firing off more requests for secondary content. The incomplete nature of this metric is why Fully Loaded was added to the table of metrics from the previous section. window.onload (?). The point where the browser onLoad event fires. The equivalent Navigation Timing event is loadEventStart. Document Complete Time: Amount of time that has elapsed from the initial page request until the browser fires the load event. This is the time at which the Document Object Model (DOM) has been created and all images have been downloaded and displayed. \\
-	
-	Fully Loaded & ...  \\ % The time from the initial request until WebPageTest determines that the page has finished loading content. The page might have waited for the load event to defer loading secondary content. The time it takes to load the secondary content is accounted for in the Fully Loaded Time. The time (in ms) the page took to be fully loaded — e.g., 2 seconds of no network activity after Document Complete. This will usually include any activity that is triggered by javascript after the main page loads. The point after onLoad where network activity has stopped for 2 seconds. Specific to WebPageTest and not provided by Performance API. Fully loaded waits for 2 seconds of no network activity (and no outstanding requests) after onLoad and then calls it done (only measures to the last activity, doesn't include the 2 seconds of silence in the measurement). Fully Loaded is a measure based on the network activity and is the point after onload when there was no activity for 2 seconds. \\
-	
-	First Byte & ...  \\ % Time until the server responds with the first byte of the response.  \\
-	
-	Start Render & ...  \\ % Time until the browser paints content to the screen. The time for the browser to display the first pixel of content (paint) on the screen. Time until the browser paints content to the screen. WebPageTest's own metric, determined by programmatically watching for visual changes to the page. Same as First Render? \\
-	
-	Bytes In (Doc) & ...  \\ % Total size of the Document Complete Requests' response bodies in bytes.  \\
-	
-	Requests (Doc) & ...  \\ % Number of HTTP requests before the load event, not including the initial request. \\
-	
-	Load Event Start & ...  \\ % Time in ms since navigation started until window.onload event was triggered (from W3C Navigation Timing). \\
-	
-	Speed Index	& ...  \\ % See Speed Index  \\
-	
-	Last Visual Change & ...  \\ % Time in ms until the last visual changed occured. Last change is a completely visual measurement and is the last point in the test when something visually changed on the screen. It could be something as simple as an animated gif or ad even that didn't really cause much CPU work but changed some pixels on the screen. It is only captured when video is recorded because it depends on the video capture to measure it. \\
-	
-	Visually Complete & ...  \\ % Time in ms when page was visually completed. Is measured from a video capture of the viewport loading and is the point when the visible part of the page first reached 100\% "completeness" compared to the end state of the test. \\
-	\caption{Your caption here} % needs to go inside longtable environment
-	\label{tab:myfirstlongtable}
-	\end{longtable}
-\end{center}
+% Fully Loaded: The time from the initial request until WebPageTest determines that the page has finished loading content. The page might have waited for the load event to defer loading secondary content. The time it takes to load the secondary content is accounted for in the Fully Loaded Time. The time (in ms) the page took to be fully loaded — e.g., 2 seconds of no network activity after Document Complete. This will usually include any activity that is triggered by javascript after the main page loads. The point after onLoad where network activity has stopped for 2 seconds. Specific to WebPageTest and not provided by Performance API. Fully loaded waits for 2 seconds of no network activity (and no outstanding requests) after onLoad and then calls it done (only measures to the last activity, doesn't include the 2 seconds of silence in the measurement). Fully Loaded is a measure based on the network activity and is the point after onload when there was no activity for 2 seconds. \\
 
 
 
