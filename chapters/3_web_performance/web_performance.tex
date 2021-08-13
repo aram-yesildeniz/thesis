@@ -1365,10 +1365,10 @@ The W3C manages and publishes documents that describe and define web technologie
 
 % [Recommendation Process]
 
-The creation of a document or specification follows a "recommendation track" that describes the hurdles a document must overcome to move from an idea to a final recommendation and web standard that browser vendors implement as concrete APIs. % cite  https://www.w3.org/2020/Process-20200915/#rec-track
+The creation of a document or specification follows a "recommendation track" that describes the hurdles a document must overcome to move from an idea to a final recommendation and web standard that browser vendors implement as concrete APIs \cite{2020W3CProcessDocument}.
 The stages of the recommendation process are described by the "maturity levels" of the document and are as follows:
-First Public Working Draft (FPWD) $\,\to\,$ Working Draft (WD) $\,\to\,$ Candidate Recommendations (CR) $\,\to\,$ Proposed Recommendation (PR) $\,\to\,$ W3C Recommendation (REC).  % cite https://www.w3.org/2015/Process-20150901/#maturity-levels
-W3C recommendations are considered web standards. % cite https://www.w3.org/standards/faq
+First Public Working Draft (FPWD) $\,\to\,$ Working Draft (WD) $\,\to\,$ Candidate Recommendations (CR) $\,\to\,$ Proposed Recommendation (PR) $\,\to\,$ W3C Recommendation (REC) \cite{2015W3CProcessDocument}.
+W3C recommendations are considered web standards \cite{2021W3CFAQ}.
 
 %TODO maybe draw some nice graphic for the recommendation track ?
 
@@ -1377,12 +1377,12 @@ W3C recommendations are considered web standards. % cite https://www.w3.org/stan
 
 % [Introduction]
 
-Within the W3C there are several groups, each dealing with a specific topic in the WWW universe. % cite https://www.w3.org/groups/wg/
-Founded in 2010, the Web Performance Working Group is a group whose mission is to "provide methods to measure aspects of application performance of user agent features and APIs."\footnote{\url{https://www.w3.org/webperf/} [11.07.2021]}.
+Within the W3C there are several groups, each dealing with a specific topic in the WWW universe \cite{2021W3CWorkingGroups}.
+Founded in 2010, the Web Performance Working Group is a group whose mission is to "provide methods to measure aspects of application performance of user agent features and APIs" \cite{2021W3CWebPerformanceWorkingGroup}.
 
 % [Specs]
 
-The Web Performance Working Group publishes and maintains a number of documents that address performance measurement, such as High Resolution Time, Navigation Timing, and Page Visibility. % cite https://www.w3.org/groups/wg/webperf/publications
+The Web Performance Working Group publishes and maintains a number of documents that address performance measurement, such as High Resolution Time, Navigation Timing, and Page Visibility \cite{2021W3CWebPerformanceWorkingGroupPublications}.
 The published papers that are particularly relevant to performance measurement are discussed below.
 
 % add this ?
@@ -1413,18 +1413,17 @@ The published papers that are particularly relevant to performance measurement a
 \paragraph{High Resolution Time} % korrigiert
 
 There are two versions of High Resolution Time.
-High Resolution Time Level 2 has the maturity level of a W3C Recommendation and was released in November 2019. % footnote https://www.w3.org/TR/hr-time-2/
-The newer specification, simply High Resolution Time, is a current working draft. % footnote https://www.w3.org/TR/hr-time-3/
+High Resolution Time Level 2 has the maturity level of a W3C Recommendation and was released in November 2019 \cite{2019W3CHRTime2}.
+The newer specification, simply High Resolution Time, is a current working draft \cite{2021W3CHRTime}.
 The High Resolution Time specification does not directly define performance metrics, but serves as the basis for other specifications for measuring and recording time values.
 
 % [Date/Clock Issue]
 
-Prior to High Resolution Time, time values were calculated using the ECMAScripts Date object, which represents time in milliseconds since January 1, 1970 UTC. % footnote https://tc39.es/ecma262/#sec-date-objects
+Prior to High Resolution Time, time values were calculated using the ECMAScripts Date object, which represents time in milliseconds since January 1, 1970 UTC \cite{2021Ecma}.
 This time definition is inaccurate with respect to time shifts and system clock adjustments.
 It is possible that the time values derived from the Date object do not increase monotonically or sometimes even decrease.
 
-High Resolution Time solves these problems and provides monotonically increasing time values, sub-millisecond resolution, and a starting value that refers to the beginning of the navigation process on the website instead of the year 1970, making it easier to understand and calculate timestamps and intervals.
-% cite https://www.w3.org/TR/hr-time-3/
+High Resolution Time solves these problems and provides monotonically increasing time values, sub-millisecond resolution, and a starting value that refers to the beginning of the navigation process on the website instead of the year 1970, making it easier to understand and calculate timestamps and intervals \cite{2021W3CHRTime}.
 The specifications described below use the precise time information provided by High Resolution Time.
 
 % High Resolution Time defines a Performance interface, which exposes a function $now()$, which returns the current time.
@@ -1468,13 +1467,12 @@ The specifications described below use the precise time information provided by 
 % [Introduction]
 
 There are two versions of Navigation Timing.
-A W3C recommendation "Navigation Timing" (Level 1) from December 2012 % footnote https://www.w3.org/TR/navigation-timing/
-and "Navigation Timing Level 2", a current Working Draft. % footnote https://www.w3.org/TR/navigation-timing-2/
+A W3C recommendation "Navigation Timing" (Level 1) from December 2012 \cite{2012W3CNavigationTiming}
+and "Navigation Timing Level 2", a current Working Draft \cite{2021W3CNavigationTimingLevel2}.
 
 Level 1, which is still used for backward compatibility, uses the less accurate time measurement from January 1, 1970.
 Level 2 replaces Level 1 and is based on the accurate high-resolution time measurement as described above.
-A summary of the improvements from Level 1 to Level 2 is given in X. % https://www.w3.org/TR/navigation-timing-2/#sotd
-% cite  https://www.w3.org/TR/navigation-timing/, https://www.w3.org/TR/navigation-timing-2/
+A summary of the improvements from Level 1 to Level 2 is given in \cite{2021W3CNavigationTimingLevel2}.
 
 
 % https://www.w3.org/TR/navigation-timing/
@@ -1486,18 +1484,18 @@ A summary of the improvements from Level 1 to Level 2 is given in X. % https://w
 
 Navigation Timing displays timestamps of events that occur during the navigation and loading process of a website.
 All relevant timing information from the document loading process is accessible through Navigation Timing.
-The navigation or loading process represents the conversion of the received HTML document and other resources into a functioning website and takes place in the browser, as described in section \ref{section:website_loading_process}. % cite https://w3c.github.io/perf-timing-primer/
+The navigation or loading process represents the conversion of the received HTML document and other resources into a functioning website and takes place in the browser, as described in section \ref{section:website_loading_process} \cite{2020W3CPrimer}.
 
 Navigation Timing captures only time values from the main HTML document.
 Within the main document, requests are made to other linked resources.
-Timing information for these linked resources is captured and presented via Resource Timing, as described in the next paragraph. % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
+Timing information for these linked resources is captured and presented via Resource Timing, as described in the next paragraph \cite{2021MDNNavigationAndResourceTimings}.
 
 The exposed timing events are shown in figure \ref{figure:navigation_resource_timestamps} and described in table \ref{table:navigation_resource_attributes}.
 The metrics calculated directly with Navigation Timing (and Resource Timing) are listed in table \ref{table:navigation_timing_metrics}.
 
 % [PerformanceNavigationTiming Interface]
 
-Navigation Timing timestamps are exposed via the PerformanceNavigationTiming interface and can be retrieved in the browser via $window.performance.getEntriesByType("navigation")$, as seen in figure \ref{figure:navigation_console}. % cite https://www.w3.org/TR/navigation-timing-2/
+Navigation Timing timestamps are exposed via the PerformanceNavigationTiming interface and can be retrieved in the browser via $window.performance.getEntriesByType("navigation")$, as seen in figure \ref{figure:navigation_console} \cite{2021W3CNavigationTimingLevel2}.
 
 % add here that values in image are coming from multiple interfaces ?
 
@@ -1552,6 +1550,7 @@ Navigation Timing timestamps are exposed via the PerformanceNavigationTiming int
 \paragraph{Resource Timing} % korrigiert
 
 % [Introduction]
+%TODO i am here with citation
 
 There are two versions of Resource Timing.
 A Candidate Recommendation, Resource Timing Level 1, from March 2017, % https://www.w3.org/TR/resource-timing-1/

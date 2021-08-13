@@ -182,6 +182,11 @@
   tool.
 \newblock {In: }\emph{AMCIS 2010 Proceedings} 8 (2010)
 
+\bibitem[Int]{2021Ecma}
+\textsc{International}, Ecma:
+\newblock \emph{ECMAScript 2022 Language Specification}.
+\newblock \url{https://tc39.es/ecma262/}, Abruf: 2021-08-13
+
 \bibitem[Jan09]{2009Jansen}
 \textsc{Jansen}, Bernard~J.:
 \newblock Understanding {User}-{Web} {Interactions} via {Web} {Analytics}.
@@ -276,35 +281,42 @@
   \url{https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance},
   Abruf: 2021-08-18
 
-\bibitem[MDNc]{2021MDNRUMvsSynthetic}
+\bibitem[MDNc]{2021MDNNavigationAndResourceTimings}
+\textsc{MDN}, Contributors:
+\newblock \emph{Navigation and resource timings}.
+\newblock
+  \url{https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings},
+  Abruf: 2021-08-13
+
+\bibitem[MDNd]{2021MDNRUMvsSynthetic}
 \textsc{MDN}, Contributors:
 \newblock \emph{Performance Monitoring: RUM vs synthetic monitoring}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic},
   Abruf: 2021-08-03
 
-\bibitem[MDNd]{2021MDNHowBrowsersWork}
+\bibitem[MDNe]{2021MDNHowBrowsersWork}
 \textsc{MDN}, Contributors:
 \newblock \emph{Populating the page: how browsers work}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work},
   Abruf: 2021-08-03
 
-\bibitem[MDNe]{2021MDNScript}
+\bibitem[MDNf]{2021MDNScript}
 \textsc{MDN}, Contributors:
 \newblock \emph{<script>: The Script element}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script},
   Abruf: 2021-08-03
 
-\bibitem[MDNf]{2021MDNLatency}
+\bibitem[MDNg]{2021MDNLatency}
 \textsc{MDN}, Contributors:
 \newblock \emph{Understanding latency}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency},
   Abruf: 2021-08-03
 
-\bibitem[MDNg]{2021MDNWebStandards}
+\bibitem[MDNh]{2021MDNWebStandards}
 \textsc{MDN}, Contributors:
 \newblock \emph{The web and web standards}.
 \newblock
@@ -422,10 +434,61 @@
   field}.
 \newblock \url{https://web.dev/chrome-ux-report/}, Abruf: 2021-08-13
 
-\bibitem[W3C]{2021W3CFAQ}
+\bibitem[W3Ca]{2021W3CHRTime}
+\textsc{W3C}:
+\newblock \emph{High Resolution Time}.
+\newblock \url{https://www.w3.org/TR/hr-time-3/}, Abruf: 2021-08-13
+
+\bibitem[W3Cb]{2019W3CHRTime2}
+\textsc{W3C}:
+\newblock \emph{High Resolution Time Level 2}.
+\newblock \url{https://www.w3.org/TR/hr-time-2/}, Abruf: 2021-08-13
+
+\bibitem[W3Cc]{2012W3CNavigationTiming}
+\textsc{W3C}:
+\newblock \emph{Navigation Timing}.
+\newblock \url{https://www.w3.org/TR/navigation-timing/}, Abruf: 2021-08-13
+
+\bibitem[W3Cd]{2021W3CNavigationTimingLevel2}
+\textsc{W3C}:
+\newblock \emph{Navigation Timing Level 2}.
+\newblock \url{https://www.w3.org/TR/navigation-timing-2/}, Abruf: 2021-08-13
+
+\bibitem[W3Ce]{2020W3CPrimer}
+\textsc{W3C}:
+\newblock \emph{A Primer for Web Performance Timing APIs}.
+\newblock \url{https://w3c.github.io/perf-timing-primer/}, Abruf: 2021-08-13
+
+\bibitem[W3Cf]{2021W3CFAQ}
 \textsc{W3C}:
 \newblock \emph{Standards FAQ}.
 \newblock \url{https://www.w3.org/standards/faq}, Abruf: 2021-08-13
+
+\bibitem[W3Cg]{2020W3CProcessDocument}
+\textsc{W3C}:
+\newblock \emph{W3C Process Document}.
+\newblock \url{https://www.w3.org/2020/Process-20200915/}, Abruf: 2021-08-13
+
+\bibitem[W3Ch]{2021W3CWebPerformanceWorkingGroup}
+\textsc{W3C}:
+\newblock \emph{Web Performance Working Group}.
+\newblock \url{https://www.w3.org/webperf/}, Abruf: 2021-08-13
+
+\bibitem[W3Ci]{2021W3CWebPerformanceWorkingGroupPublications}
+\textsc{W3C}:
+\newblock \emph{Web Performance Working Group - Publications}.
+\newblock \url{https://www.w3.org/groups/wg/webperf/publications}, Abruf:
+  2021-08-13
+
+\bibitem[W3Cj]{2021W3CWorkingGroups}
+\textsc{W3C}:
+\newblock \emph{Working Groups}.
+\newblock \url{https://www.w3.org/groups/wg/}, Abruf: 2021-08-13
+
+\bibitem[W3Ck]{2015W3CProcessDocument}
+\textsc{W3C}:
+\newblock \emph{World Wide Web Consortium Process Document}.
+\newblock \url{https://www.w3.org/2015/Process-20150901/}, Abruf: 2021-08-13
 
 \bibitem[Wal]{2019Walton}
 \textsc{Walton}, Philip:
