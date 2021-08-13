@@ -110,6 +110,13 @@
 \newblock \url{https://www.awwwards.com/brain-food-perceived-performance/},
   Abruf: 2021-05-06
 
+\bibitem[Goo]{2021Crux}
+\textsc{Google}:
+\newblock \emph{Chrome User Experience Report}.
+\newblock
+  \url{https://developers.google.com/web/tools/chrome-user-experience-report},
+  Abruf: 2021-08-13
+
 \bibitem[Gria]{2013GrigorikFluent}
 \textsc{Grigorik}, Ilya:
 \newblock \emph{Building Faster Websites. Crash Course on Web Performance
@@ -189,11 +196,19 @@
   \url{https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/},
   Abruf: 2021-08-04
 
-\bibitem[Key]{2018KeyCDN}
+\bibitem[Keya]{2018KeyCDN}
 \textsc{KeyCDN}:
 \newblock \emph{How to Reduce DNS Lookups}.
 \newblock \url{https://www.keycdn.com/support/reduce-dns-lookups}, Abruf:
   2021-08-03
+
+\bibitem[Keyb]{2021Eggplant}
+\textsc{Keysight}, Technolgies:
+\newblock \emph{How to Build a Complete Picture of Performance With Synthetic
+  Monitoring and Real User Monitoring.}
+\newblock
+  \url{https://info.eggplantsoftware.com/how-to-make-your-synthetic-and-real-user-monitoring-solutions-complementary},
+  Abruf: 2021-08-13
 
 \bibitem[KKK16]{2016Kaur}
 \textsc{Kaur}, Sukhpuneet ; \textsc{Kaur}, Kulwant  ; \textsc{Kaur}, Parminder:
@@ -254,33 +269,47 @@
   \url{https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path},
   Abruf: 2021-08-03
 
-\bibitem[MDNb]{2021MDNRUMvsSynthetic}
+\bibitem[MDNb]{2021MDNMeasuringPerformance}
+\textsc{MDN}, Contributors:
+\newblock \emph{Measuring performance}.
+\newblock
+  \url{https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance},
+  Abruf: 2021-08-18
+
+\bibitem[MDNc]{2021MDNRUMvsSynthetic}
 \textsc{MDN}, Contributors:
 \newblock \emph{Performance Monitoring: RUM vs synthetic monitoring}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic},
   Abruf: 2021-08-03
 
-\bibitem[MDNc]{2021MDNHowBrowsersWork}
+\bibitem[MDNd]{2021MDNHowBrowsersWork}
 \textsc{MDN}, Contributors:
 \newblock \emph{Populating the page: how browsers work}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work},
   Abruf: 2021-08-03
 
-\bibitem[MDNd]{2021MDNScript}
+\bibitem[MDNe]{2021MDNScript}
 \textsc{MDN}, Contributors:
 \newblock \emph{<script>: The Script element}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script},
   Abruf: 2021-08-03
 
-\bibitem[MDNe]{2021MDNLatency}
+\bibitem[MDNf]{2021MDNLatency}
 \textsc{MDN}, Contributors:
 \newblock \emph{Understanding latency}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency},
   Abruf: 2021-08-03
+
+\bibitem[MDNg]{2021MDNWebStandards}
+\textsc{MDN}, Contributors:
+\newblock \emph{The web and web standards}.
+\newblock
+  \url{https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards},
+  Abruf: 2021-08-13
 
 \bibitem[Mee13]{2013Meenan}
 \textsc{Meenan}, Patrick:
@@ -386,6 +415,23 @@
 \newblock First edition.
 \newblock Sebastopol, CA : O'Reilly, 2015. --
 \newblock ISBN 9781491902592
+
+\bibitem[Vis]{2020Viscomi}
+\textsc{Viscomi}, Rick:
+\newblock \emph{Using the Chrome UX Report to look at performance in the
+  field}.
+\newblock \url{https://web.dev/chrome-ux-report/}, Abruf: 2021-08-13
+
+\bibitem[W3C]{2021W3CFAQ}
+\textsc{W3C}:
+\newblock \emph{Standards FAQ}.
+\newblock \url{https://www.w3.org/standards/faq}, Abruf: 2021-08-13
+
+\bibitem[Wal]{2019Walton}
+\textsc{Walton}, Philip:
+\newblock \emph{User-centric performance metrics}.
+\newblock \url{https://web.dev/user-centric-performance-metrics/}, Abruf:
+  2021-08-13
 
 \bibitem[Wik16]{wiki:wissarbeit}
 \textsc{Wikipedia}:

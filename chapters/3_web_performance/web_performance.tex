@@ -1058,9 +1058,9 @@ As discussed in section X, website performance and user satisfaction are directl
 An important component of RUM is not only the collection of performance metrics, but also the measurement of user behaviour, e.g., how the user interacts with the website and where he or she clicks \cite{2021Wingerath}.
 In an e-commerce context, user behaviour questions are of interest, such as whether a new campaign changes user behaviour as expected or where users leave the check-out process \cite{2021Wingerath}, \cite{2021MDNRUMvsSynthetic}.
 
-RUM enables the combination of collected metrics with user behaviour and business KPIs and can answer questions such as whether and how website performance affects user behaviour, e.g. whether users buy more or less depending on the speed of the website. % cite Eggplant whitepaper %TODO i am here
+RUM enables the combination of collected metrics with user behaviour and business KPIs and can answer questions such as whether and how website performance affects user behaviour, e.g. whether users buy more or less depending on the speed of the website \cite{2021Eggplant}.
 Thus RUM is not only important to understand user behaviour, but also to optimize the website and increase sales.
-With techniques such as cookies (see section X.), it is also possible to track user behaviour not only for one page visit, but over a series of website visits, resulting in even more detailed insights about the visitor. % cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
+With techniques such as cookies (see section X.), it is also possible to track user behaviour not only for one page visit, but over a series of website visits, resulting in even more detailed insights about the visitor \cite{2021Wingerath}.
 
 % [Tools]
 
@@ -1108,13 +1108,11 @@ The data is accessible via the Chrome User Experience Report (CrUX) and is discu
 
 The Chrome User Experience Report (CrUX) is a RUM method implemented by Google that collects real user data from Chrome users.
 Once the Chrome user gives consent, data collection can begin and does not need to be set up.
-The CrUX only collects data from Chrome users and is therefore not a complete sample of the Internet user population, as it does not collect data from users who browse the Internet using Firefox or Safari, for example.
-% cite 2021 Wolle blog post https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-The collected data is available via Google's PageSpeed Insights, the CrUX Dashboard or the BigQuery and CrUX API. % cite https://developers.google.com/web/tools/chrome-user-experience-report
+The CrUX only collects data from Chrome users and is therefore not a complete sample of the Internet user population, as it does not collect data from users who browse the Internet using Firefox or Safari, for example \cite{2021Wingerath}.
+The collected data is available via Google's PageSpeed Insights, the CrUX Dashboard or the BigQuery and CrUX API \cite{2021Crux}.
 
 CrUX is important in that it collects data from real users across millions of websites and measures user data such as device types, but also performance metrics such as Core Web Vitals (see section \ref{subsubsection:core_web_vitals}).
-CrUX therefore provides insight into how a broad spread of real users experience the website and also enables direct comparison with competitors.
-% cite  https://web.dev/chrome-ux-report/
+CrUX therefore provides insight into how a broad spread of real users experience the website and also enables direct comparison with competitors \cite{2020Viscomi}.
 
 % ----------------------------------------------------------------------------------------------
 
@@ -1148,7 +1146,7 @@ a variety of reports, such as real-time reports or conversion reports;
 or general data analysis, visualization and monitoring, such as with custom segmentation.
 
 GA also tracks a number of web performance metrics.
-What these are and how they are calculated is described in Section X.
+What these are and how they are calculated is described in section \ref{subsubsection:ga_metrics}.
 
 % [How it works]
 
@@ -1253,10 +1251,10 @@ Performance metrics are created to measure various aspects of a website's perfor
 % [Quantification and Analysis]
 
 Performance metrics make performance quantifiable because the metrics reflect performance in numbers.
-Once performance is mapped into numbers, they can be compared with each other, e.g., over time, after a change in the measured application, or with a competitor's numbers. % cite https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
+Once performance is mapped into numbers, they can be compared with each other, e.g., over time, after a change in the measured application, or with a competitor's numbers \cite{2021MDNMeasuringPerformance}.
 By quantifying performance, metrics facilitate the analysis of website traffic.
-Specific metric values can be used as targets for goal achievement and are therefore an important tool for improving websites. % cite 2009 Jansen
-Ideally, metrics are precise and serve as objective criteria for evaluating the measured website. % cite https://web.dev/user-centric-performance-metrics/
+Specific metric values can be used as targets for goal achievement and are therefore an important tool for improving websites \cite{2009Jansen}.
+Ideally, metrics are precise and serve as objective criteria for evaluating the measured website \cite{2019Walton}.
 
 
 % [Outline]
@@ -1266,7 +1264,7 @@ One way to bring order to performance metrics is to distinguish between \textit{
 Both classes of metrics are discussed below.
 
 Before that, I'll discuss \textit{Page Weight} (section \ref{subsection:page_weight}), a metric that characterizes the size of a website.
-The benefits of \textit{Custom Metrics }and why they are important are discussed in section \ref{subsection:custom_metrics}.
+The benefits of \textit{Custom Metrics} and why they are important are discussed in section \ref{subsection:custom_metrics}.
 
 As described in section X, WebPageTest and Google Analyitcs are common tools for synthethic monitoring and RUM, respectively, and will be used in the controlled experiment described in chapter X.
 What performance metrics they measure is described in section \ref{subsection:wpt_ga_metrics}.
@@ -1349,7 +1347,7 @@ I will then discuss performance-related specifications and the metrics they prov
 \subsubsection{Web Standards} % korrigiert
 \label{subsubsection:web_standards}
 
-Web standards are documents that describe the technology used to build the WWW. % cite https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards
+Web standards are documents that describe the technology used to build the WWW \cite{2021MDNWebStandards}.
 These documents, also called specifications, are maintained by various groups and organizations.
 There are several organizations that create and maintain standards for different areas and technologies of the Web.
 Such organizations include the WHATWG, which maintains the living HTML standard\footnote{\url{https://whatwg.org/} [07/11/2021]}, or Ecma International, which maintains the specification for JS.\footnote{\url{https://www.ecma-international.org/} [11.07.2021]}.
@@ -1361,8 +1359,8 @@ The World Wide Web Consortium (W3C) is an organization that maintains various st
 
 % [What is W3C]
 
-The W3C was founded in 1994 by Tim Berners-Lee with the goal of bringing together "representatives from many different technology companies to work together on the creation of web technology specifications". % cite https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards
-The W3C manages and publishes documents that describe and define web technologies such as DOM, SVG or CSS. % cite https://www.w3.org/standards/faq
+The W3C was founded in 1994 by Tim Berners-Lee with the goal of bringing together "representatives from many different technology companies to work together on the creation of web technology specifications" \cite{2021MDNWebStandards}.
+The W3C manages and publishes documents that describe and define web technologies such as DOM, SVG or CSS \cite{2021W3CFAQ}.
 
 
 % [Recommendation Process]
