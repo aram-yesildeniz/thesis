@@ -19,45 +19,45 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: thesis.bib
 Warning--empty year in 2006Mayer
-You've used 87 entries,
+You've used 96 entries,
             4793 wiz_defined-function locations,
-            1386 strings with 21027 characters,
-and the built_in function-call counts, 45511 in all, are:
-= -- 4788
-> -- 1126
-< -- 1162
-+ -- 1317
-- -- 360
-* -- 2796
-:= -- 7676
-add.period$ -- 100
-call.type$ -- 87
-change.case$ -- 400
+            1423 strings with 22246 characters,
+and the built_in function-call counts, 48923 in all, are:
+= -- 5145
+> -- 1198
+< -- 1205
++ -- 1369
+- -- 378
+* -- 2984
+:= -- 8248
+add.period$ -- 108
+call.type$ -- 96
+change.case$ -- 436
 chr.to.int$ -- 61
-cite$ -- 88
-duplicate$ -- 1380
-empty$ -- 3301
-format.name$ -- 770
-if$ -- 9320
-int.to.chr$ -- 27
+cite$ -- 97
+duplicate$ -- 1505
+empty$ -- 3576
+format.name$ -- 824
+if$ -- 10068
+int.to.chr$ -- 36
 int.to.str$ -- 0
-missing$ -- 460
-newline$ -- 468
-num.names$ -- 262
-pop$ -- 743
+missing$ -- 514
+newline$ -- 512
+num.names$ -- 289
+pop$ -- 827
 preamble$ -- 1
-purify$ -- 574
+purify$ -- 628
 quote$ -- 0
-skip$ -- 2388
+skip$ -- 2544
 stack$ -- 0
-substring$ -- 2857
-swap$ -- 319
-text.length$ -- 226
-text.prefix$ -- 61
+substring$ -- 2990
+swap$ -- 346
+text.length$ -- 244
+text.prefix$ -- 70
 top$ -- 0
-type$ -- 837
+type$ -- 927
 warning$ -- 1
-while$ -- 374
-width$ -- 91
-write$ -- 1090
+while$ -- 401
+width$ -- 99
+write$ -- 1196
 (There was 1 warning)

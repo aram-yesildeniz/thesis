@@ -1878,7 +1878,7 @@ Some of these are briefly discussed below.
 \paragraph{User Timing} % korrigiert
 
 User Timing Level 2 is a February 2019 Recommendation and User Timing Level 3 is the current Working Draft.
-User Timing provides methods for creating custom, specific, and unique high-resolution timestamps, querying them, and calculating intervals and elapsed time between these created timestamps. % cite https://www.w3.org/TR/user-timing-3/
+User Timing provides methods for creating custom, specific, and unique high-resolution timestamps, querying them, and calculating intervals and elapsed time between these created timestamps \cite{2021W3CUserTiming}.
 User Timing simplifies and facilitates the use of Custom Metrics (see section \ref{subsection:custom_metrics}).
 
 % https://www.w3.org/TR/user-timing-3/
@@ -1891,8 +1891,7 @@ User Timing simplifies and facilitates the use of Custom Metrics (see section \r
 
 \paragraph{Performance Timeline} % korrigiert
 
-Performance Timeline is the December 2013 Recommendation % https://www.w3.org/TR/2013/REC-performance-timeline-20131212/
-and Performance Timeline Level 2 is the current working draft. % https://www.w3.org/TR/performance-timeline-2/
+Performance Timeline is the December 2013 Recommendation \cite{2013W3CPerformanceTimeline} and Performance Timeline Level 2 is the current working draft \cite{2021W3CPerformanceTimelineLevel2}.
 
 In short, the Performance Timeline defines an API and methods that make accessible all timing values captured by other specifications such as Navigation or Resource Timing.
 The Performance Timeline defines an interface for capturing a variety of performance measurements. 
@@ -1938,7 +1937,7 @@ In addition, a PerformanceObserver interface is defined that can be used to moni
 
 The Long Tasks API 1 was released in September 2017 as a First Public Working Draft.
 The goal of the API is to detect "long tasks", i.e. tasks that take the main thread longer than 50 ms.
-Long tasks are critical to performance because they block other critical tasks such as user input. % cite  https://www.w3.org/TR/longtasks-1/
+Long tasks are critical to performance because they block other critical tasks such as user input \cite{2017W3CLongTasks}.
 
 The Long Tasks API is used to calculate user-centric metrics (see section \ref{subsection:user_centric_performance_metrics}.
 
@@ -1959,7 +1958,7 @@ The Long Tasks API is used to calculate user-centric metrics (see section \ref{s
 Server Timing is a Working Draft.
 With specifications such as Navigation and Resource Timing, the user agent has access to a variety of different timings related to the navigation process.
 Not visible or available are measurements and timings within server processing, such as database queries.
-Server Timing solves this problem by allowing a server to transmit and communicate performance-related information to the user agent. % cite https://www.w3.org/TR/server-timing/
+Server Timing solves this problem by allowing a server to transmit and communicate performance-related information to the user agent \cite{2021W3CServerTiming}.
 
 % ----------------------------
 
@@ -1967,7 +1966,7 @@ Server Timing solves this problem by allowing a server to transmit and communica
 
 Paint Timing 1 was published as a First Public Working Draft in September 2017.  
 It specifies two "key moments" during the loading process: First Paint (FP) and First Contentful Paint (FCP).
-Table \ref{table:paint_timing} provides explanations of the key moments as defined in the specification. % cite https://www.w3.org/TR/paint-timing/
+Table \ref{table:paint_timing} provides explanations of the key moments as defined in the specification \cite{2017W3CPaintTiming}.
 
 The metrics can be accessed directly in the browser via $performance.getEntriesByType("paint")$.
 Therefore, FP and FCP can be captured in RUM.
@@ -1984,12 +1983,12 @@ Other visual metrics are mainly based on video analysis and require a synthetic 
 	\hline
 	\end{tabular}
 	\medskip
-	\caption{Key Moments specified by Paint Timing}
+	\caption[Key Moments specified by Paint Timing]{Key Moments specified by Paint Timing, taken from \cite{2017W3CPaintTiming}}
 	\label{table:paint_timing}
 \end{table}
 
 FP and FCP indicate when the user sees something other than the default white screen for the first time.
-Whether the visual change is important or useful to the user is not considered by FP or FCP. % cite 2013 Meenan
+Whether the visual change is important or useful to the user is not considered by FP or FCP \cite{2013Meenan}.
 Section \ref{subsection:user_centric_performance_metrics} discusses visual metrics that may be of importance to the user.
 
 % add this ??
@@ -2006,7 +2005,7 @@ Section \ref{subsection:user_centric_performance_metrics} discusses visual metri
 
 \paragraph{Web Incubator Community Group} % korrigiert
 
-The Web Incubator Community Group (WICG) is a W3C Community Group and "provides a lightweight venue for proposing and discussing new web platform features." % https://www.w3.org/community/groups/
+The Web Incubator Community Group (WICG) is a W3C Community Group and "provides a lightweight venue for proposing and discussing new web platform features."\footnote{\url{https://www.w3.org/community/groups/} [13.08.2021]}
 The WICG is working on and proposing a number of possible web technologies and standards.\footnote{\url{https://wicg.io/} [24.07.2021]}
 These specifications are unofficial drafts that have not been reviewed by the W3C, but may be included in the W3C Recommendations track in the future.
 Four of the proposed "incubations" are mentioned here because they serve as the basis for some user-centric metrics, as described in Section \ref{subsubsection:core_web_vitals}.
@@ -2124,7 +2123,7 @@ Metrics that deal with user-perceived performance focus mainly on visual changes
 
 Perceived performance deals with how fast a website "feels" to a user.
 As described earlier in Section X., different users perceive performance differently depending on factors such as gender, region, or stress level.
-Perceived performance can differ from actual load times, and user-centric performance metrics are typically more difficult to measure than navigation times because visual analysis or video recordings are required to calculate the metrics. % cite https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance
+Perceived performance can differ from actual load times, and user-centric performance metrics are typically more difficult to measure than navigation times because visual analysis or video recordings are required to calculate the metrics \cite{2021MDNPerceivedPerformance}.
 
 In Section \ref{subsubsection:visual_metrics}, I describe user-centric performance metrics that have become mainstream among performance monitoring vendors.
 With Web Vitals, Google defines its own set of user-centric metrics and focuses on website performance.
@@ -2148,15 +2147,12 @@ The three metrics described below appear frequently in synthetic monitoring tool
 \paragraph{Start Render, Time to First Paint (TTFP)} % korrigiert
 
 The Start Render time is the time when the browser made the first pixel on the screen visible to the user.
-The Start Render time is calculated using video analytics instead of using browser APIs such as Paint Timing.
-% cite https://blog.dareboost.com/en/2019/09/first-contentful-paint-fcp/
+The Start Render time is calculated using video analytics instead of using browser APIs such as Paint Timing \cite{2019Schapira}.
 
-Start Render is defined and exposed by a number of synthetic monitoring solutions such as speedcurve or WebPageTest.
-% cite https://support.speedcurve.com/en/articles/74078-what-do-the-different-speedcurve-metrics-represent
-% cite https://docs.webpagetest.org/metrics/page-metrics/
+Start Render is defined and exposed by a number of synthetic monitoring solutions such as SpeedCurve \cite{2021Souders} or WebPageTest (see section \ref{subsubsection:wpt_metrics}).
 
-Netravali et al. use the term Time to First Paint (TTFP) for the same metric, % cite 2018 Netravali
-while for Enghardt et al. TTFP is the same as FP measured within the browser and not by video analysis. % 2019 Enghardt
+Netravali et al. \cite{2018Netravali} use the term Time to First Paint (TTFP) for the same metric,
+while for Enghardt et al. \cite{2019Enghardt} TTFP is the same as FP measured within the browser and not by video analysis.
 
 This example shows that the definitions of metrics are not clear and different authors use different definitions.
 
@@ -2166,23 +2162,23 @@ This example shows that the definitions of metrics are not clear and different a
 \paragraph{Above the Fold Time (AFT)} % korrigiert
 
 The above-the-fold area is the area of the website that is visible to the user without scrolling.
-Above the Fold Time (AFT) is a non-standard metric that measures how long it takes the browser to render all the pixels in this above-the-fold area. % 2019 Enghardt
-AFT measurement must take into account both visually dynamic areas of the website, where frequent pixel changes are expected, and static areas, where pixel and color changes are not expected. % 2018 Netravali
+Above the Fold Time (AFT) is a non-standard metric that measures how long it takes the browser to render all the pixels in this above-the-fold area \cite{2019Enghardt}.
+AFT measurement must take into account both visually dynamic areas of the website, where frequent pixel changes are expected, and static areas, where pixel and color changes are not expecte \cite{2018Netravali}.
 
-AFT is measurable by synthetic monitoring and requires video recording and analysis. % cite 2013 Meenan
+AFT is measurable by synthetic monitoring and requires video recording and analysis \cite{2013Meenan}.
 
 % ------------------------
 
 \paragraph{Speed Index (SI)} % korrigiert
 
-The Speed Index (SI) is a metric developed by the founders of WebPageTest that aims to express user experience in a single number. % cite 2013 Meenan
+The Speed Index (SI) is a metric developed by the founders of WebPageTest that aims to express user experience in a single number \cite{2013Meenan}.
 
 Like the AFT, the SI reflects the visual completeness of the website.
-While the AFT only measures the time at which the viewport is fully rendered, the SI also takes into account the visual loading progress of the website and reflects "the average time at which visible parts of the page are displayed". % 2018 Netravali  and https://docs.webpagetest.org/metrics/speedindex/
-SI is not measured directly, but calculated and expressed in milliseconds. % https://gtmetrix.com/speed-index.html
+While the AFT only measures the time at which the viewport is fully rendered, the SI also takes into account the visual loading progress of the website and reflects "the average time at which visible parts of the page are displayed" \cite{2018Netravali}.
+SI is not measured directly, but calculated and expressed in milliseconds \cite{2021GTmetrix}.
 
-Like AFT, SI is reliable for static websites and unreliable for websites with dynamic and changing visual content. % https://medium.baqend.com/mobile-site-speed-measurement-best-practices-ff4a3f91b003
-The details of the SI calculation are covered in % https://docs.webpagetest.org/metrics/speedindex/
+Like AFT, SI is reliable for static websites and unreliable for websites with dynamic and changing visual content \cite{2021Wingerath}.
+The details of the SI calculation are covered in the official WebPageTest documentation.\footnote{\url{https://docs.webpagetest.org/metrics/speedindex/} [13.08.2021]}
 
 % 2021 Meenan vimeo 38:50
 % Measuring Real User Performance in the Browser

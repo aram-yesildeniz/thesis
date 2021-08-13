@@ -31,6 +31,13 @@
   \url{https://www.akamai.com/us/en/multimedia/documents/content/akamai-performance-matters-key-consumer-insights-ebook.pdf},
   Abruf: 2021-06-06
 
+\bibitem[Akac]{2018Akamai}
+\textsc{Akamai}:
+\newblock \emph{Using Navigation Timing APIs to understand your webpage}.
+\newblock
+  \url{https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US},
+  Abruf: 2021-06-13
+
 \bibitem[BAB{\etalchar{+}}20]{2020Bhatti}
 \textsc{Bhatti}, Anam ; \textsc{Akram}, Hamza ; \textsc{Basit}, Hafiz~M. ;
   \textsc{Khan}, Ahmed~U. ; \textsc{Naqvi}, Syeda Mahwish~R.  ; \textsc{Bilal},
@@ -307,42 +314,49 @@
   \url{https://developer.mozilla.org/en-US/docs/Glossary/Page_load_time},
   Abruf: 2021-08-13
 
-\bibitem[MDNe]{2021MDNRUMvsSynthetic}
+\bibitem[MDNe]{2021MDNPerceivedPerformance}
+\textsc{MDN}, Contributors:
+\newblock \emph{Perceived performance}.
+\newblock
+  \url{https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance},
+  Abruf: 2021-08-13
+
+\bibitem[MDNf]{2021MDNRUMvsSynthetic}
 \textsc{MDN}, Contributors:
 \newblock \emph{Performance Monitoring: RUM vs synthetic monitoring}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic},
   Abruf: 2021-08-03
 
-\bibitem[MDNf]{2021MDNHowBrowsersWork}
+\bibitem[MDNg]{2021MDNHowBrowsersWork}
 \textsc{MDN}, Contributors:
 \newblock \emph{Populating the page: how browsers work}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work},
   Abruf: 2021-08-03
 
-\bibitem[MDNg]{2021MDNScript}
+\bibitem[MDNh]{2021MDNScript}
 \textsc{MDN}, Contributors:
 \newblock \emph{<script>: The Script element}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script},
   Abruf: 2021-08-03
 
-\bibitem[MDNh]{2021MDNTTFB}
+\bibitem[MDNi]{2021MDNTTFB}
 \textsc{MDN}, Contributors:
 \newblock \emph{Time to first byte}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Glossary/time_to_first_byte},
   Abruf: 2021-08-13
 
-\bibitem[MDNi]{2021MDNLatency}
+\bibitem[MDNj]{2021MDNLatency}
 \textsc{MDN}, Contributors:
 \newblock \emph{Understanding latency}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency},
   Abruf: 2021-08-03
 
-\bibitem[MDNj]{2021MDNWebStandards}
+\bibitem[MDNk]{2021MDNWebStandards}
 \textsc{MDN}, Contributors:
 \newblock \emph{The web and web standards}.
 \newblock
@@ -413,6 +427,14 @@
 \newblock 2., aktualisierte und erweiterte Auflage.
 \newblock Bonn : Rheinwerk Verlag, 2019 (Rheinwerk {Computing})
 
+\bibitem[Sch]{2019Schapira}
+\textsc{Schapira}, Boris:
+\newblock \emph{First Contentful Paint (FCP), Start Render, First Paint. How to
+  properly measure the beginning of page rendering?}
+\newblock
+  \url{https://blog.dareboost.com/en/2019/09/first-contentful-paint-fcp/},
+  Abruf: 2021-08-13
+
 \bibitem[Sch99]{DBLP:books/infix/Schwarz99}
 \textsc{Schwarz}, Kerstin:
 \newblock \emph{DISDBIS}. Bd.~64: {\emph{{Das Konzept der Transaktionshülle
@@ -436,11 +458,18 @@
   ({Confluence})}.
 \newblock Noida : IEEE, September 2014, S. 24--29
 
-\bibitem[Sou]{2013Souders}
+\bibitem[Soua]{2013Souders}
 \textsc{Souders}, Steve:
 \newblock \emph{Moving beyond window.onload()}.
 \newblock
   \url{https://www.stevesouders.com/blog/2013/05/13/moving-beyond-window-onload/},
+  Abruf: 2021-08-13
+
+\bibitem[Soub]{2021Souders}
+\textsc{Souders}, Steve:
+\newblock \emph{What do the different SpeedCurve metrics represent?}
+\newblock
+  \url{https://support.speedcurve.com/en/articles/74078-what-do-the-different-speedcurve-metrics-represent},
   Abruf: 2021-08-13
 
 \bibitem[SSMG17]{2017DosSantos}
@@ -484,58 +513,90 @@
 \newblock \emph{High Resolution Time Level 2}.
 \newblock \url{https://www.w3.org/TR/hr-time-2/}, Abruf: 2021-08-13
 
-\bibitem[W3Cc]{2012W3CNavigationTiming}
+\bibitem[W3Cc]{2017W3CLongTasks}
+\textsc{W3C}:
+\newblock \emph{Long Tasks API 1}.
+\newblock \url{https://www.w3.org/TR/longtasks-1/}, Abruf: 2021-08-13
+
+\bibitem[W3Cd]{2012W3CNavigationTiming}
 \textsc{W3C}:
 \newblock \emph{Navigation Timing}.
 \newblock \url{https://www.w3.org/TR/navigation-timing/}, Abruf: 2021-08-13
 
-\bibitem[W3Cd]{2021W3CNavigationTimingLevel2}
+\bibitem[W3Ce]{2021W3CNavigationTimingLevel2}
 \textsc{W3C}:
 \newblock \emph{Navigation Timing Level 2}.
 \newblock \url{https://www.w3.org/TR/navigation-timing-2/}, Abruf: 2021-08-13
 
-\bibitem[W3Ce]{2020W3CPrimer}
+\bibitem[W3Cf]{2017W3CPaintTiming}
+\textsc{W3C}:
+\newblock \emph{Paint Timing 1}.
+\newblock \url{https://www.w3.org/TR/paint-timing/}, Abruf: 2021-08-13
+
+\bibitem[W3Cg]{2013W3CPerformanceTimeline}
+\textsc{W3C}:
+\newblock \emph{Performance Timeline}.
+\newblock \url{https://www.w3.org/TR/2013/REC-performance-timeline-20131212/},
+  Abruf: 2021-08-13
+
+\bibitem[W3Ch]{2021W3CPerformanceTimelineLevel2}
+\textsc{W3C}:
+\newblock \emph{Performance Timeline Level 2}.
+\newblock \url{https://www.w3.org/TR/performance-timeline-2/}, Abruf:
+  2021-08-13
+
+\bibitem[W3Ci]{2020W3CPrimer}
 \textsc{W3C}:
 \newblock \emph{A Primer for Web Performance Timing APIs}.
 \newblock \url{https://w3c.github.io/perf-timing-primer/}, Abruf: 2021-08-13
 
-\bibitem[W3Cf]{2017W3CResourceTimingLevel1}
+\bibitem[W3Cj]{2017W3CResourceTimingLevel1}
 \textsc{W3C}:
 \newblock \emph{Resource Timing Level 1}.
 \newblock \url{https://www.w3.org/TR/resource-timing-1/}, Abruf: 2021-08-13
 
-\bibitem[W3Cg]{2021W3CResourceTimingLevel2}
+\bibitem[W3Ck]{2021W3CResourceTimingLevel2}
 \textsc{W3C}:
 \newblock \emph{Resource Timing Level 2}.
 \newblock \url{https://www.w3.org/TR/resource-timing-2/}, Abruf: 2021-08-13
 
-\bibitem[W3Ch]{2021W3CFAQ}
+\bibitem[W3Cl]{2021W3CServerTiming}
+\textsc{W3C}:
+\newblock \emph{Server Timing}.
+\newblock \url{https://www.w3.org/TR/server-timing/}, Abruf: 2021-08-13
+
+\bibitem[W3Cm]{2021W3CFAQ}
 \textsc{W3C}:
 \newblock \emph{Standards FAQ}.
 \newblock \url{https://www.w3.org/standards/faq}, Abruf: 2021-08-13
 
-\bibitem[W3Ci]{2020W3CProcessDocument}
+\bibitem[W3Cn]{2021W3CUserTiming}
+\textsc{W3C}:
+\newblock \emph{User Timing Level 3}.
+\newblock \url{https://www.w3.org/TR/user-timing-3/}, Abruf: 2021-08-13
+
+\bibitem[W3Co]{2020W3CProcessDocument}
 \textsc{W3C}:
 \newblock \emph{W3C Process Document}.
 \newblock \url{https://www.w3.org/2020/Process-20200915/}, Abruf: 2021-08-13
 
-\bibitem[W3Cj]{2021W3CWebPerformanceWorkingGroup}
+\bibitem[W3Cp]{2021W3CWebPerformanceWorkingGroup}
 \textsc{W3C}:
 \newblock \emph{Web Performance Working Group}.
 \newblock \url{https://www.w3.org/webperf/}, Abruf: 2021-08-13
 
-\bibitem[W3Ck]{2021W3CWebPerformanceWorkingGroupPublications}
+\bibitem[W3Cq]{2021W3CWebPerformanceWorkingGroupPublications}
 \textsc{W3C}:
 \newblock \emph{Web Performance Working Group - Publications}.
 \newblock \url{https://www.w3.org/groups/wg/webperf/publications}, Abruf:
   2021-08-13
 
-\bibitem[W3Cl]{2021W3CWorkingGroups}
+\bibitem[W3Cr]{2021W3CWorkingGroups}
 \textsc{W3C}:
 \newblock \emph{Working Groups}.
 \newblock \url{https://www.w3.org/groups/wg/}, Abruf: 2021-08-13
 
-\bibitem[W3Cm]{2015W3CProcessDocument}
+\bibitem[W3Cs]{2015W3CProcessDocument}
 \textsc{W3C}:
 \newblock \emph{World Wide Web Consortium Process Document}.
 \newblock \url{https://www.w3.org/2015/Process-20150901/}, Abruf: 2021-08-13
@@ -560,13 +621,6 @@
 \newblock Demystifying page load performance with WProf.
 \newblock {In: }\emph{10th $\{$USENIX$\}$ Symposium on Networked Systems Design
   and Implementation ($\{$NSDI$\}$ 13)}, 2013, S. 473--485
-
-\bibitem[Wik16]{wiki:wissarbeit}
-\textsc{Wikipedia}:
-\newblock \emph{Wissenschaftliche Arbeit}.
-\newblock
-  \url{https://de.wikipedia.org/w/index.php?title=Wissenschaftliche\_Arbeit&oldid=156007167}.
-\newblock \,Version:\,2016, Abruf: 2016-07-21
 
 \bibitem[Win]{2021Wingerath}
 \textsc{Wingerath}, Wolfram:
