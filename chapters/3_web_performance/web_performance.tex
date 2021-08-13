@@ -1550,15 +1550,13 @@ Navigation Timing timestamps are exposed via the PerformanceNavigationTiming int
 \paragraph{Resource Timing} % korrigiert
 
 % [Introduction]
-%TODO i am here with citation
 
 There are two versions of Resource Timing.
-A Candidate Recommendation, Resource Timing Level 1, from March 2017, % https://www.w3.org/TR/resource-timing-1/
-and Resource Timing Level 2, a current Working Draft. % https://www.w3.org/TR/resource-timing-2/
+A Candidate Recommendation, Resource Timing Level 1, from March 2017 \cite{2017W3CResourceTimingLevel1},
+and Resource Timing Level 2, the current Working Draft \cite{2021W3CResourceTimingLevel2}.
 
 Navigation Timing outputs timing information for the main document, while Resource Timing outputs timing information for all other resources that the main document requests, and also for resources that request other resources.
-Other resources can be CSS, JS, other HTML documents, images and so on.
-% https://www.w3.org/TR/resource-timing-2/
+Other resources can be CSS, JS, other HTML documents, images and so on  \cite{2021W3CResourceTimingLevel2}.
 
 The timestamps displayed by Resource Timing are mainly network-related time values (see table \ref{table:navigation_resource_attributes}).
 For example, the time it takes to download a particular resource.
@@ -1588,25 +1586,22 @@ The black coloured timestamps associated with the blue boxes in Figure \ref{figu
 The yellow coloured timestamps are captured by Resource Timing.
 All attributes can be accessed in the browser via $performance.getEntriesByType("navigation")$.
 Figure \ref{figure:navigation_resource_timestamps} does not contain all defined and available values from the specification definitions, but only those visible within the navigation process.
-For documents with different origins, the attributes in parentheses may not be available. % cite https://www.w3.org/TR/navigation-timing-2/#processing-model
+For documents with different origins, the attributes in parentheses may not be available \cite{2021W3CNavigationTimingLevel2}.
 
 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1\textwidth]{timestamp_diagram.png}
-\caption{Timestamps from Navigation and Resource Timing}
+\caption[Timestamps from Navigation and Resource Timing]{Timestamps from Navigation and Resource Timing, taken from \cite{2021W3CNavigationTimingLevel2}}
 \label{figure:navigation_resource_timestamps}
 \end{center}
 \end{figure}
-% cite https://www.w3.org/TR/navigation-timing-2/
 
 
 Table \ref{table:navigation_resource_attributes} provides a brief explanation for each timestamp.
 The definitions are taken directly from the W3C specifications or MDN Web Docs, unless otherwise noted.
 These timestamps are used to calculate performance metrics, as described in the next section.
 
-
-%TODO write in table caption taken from...
 
 \begin{center}
 	\small
@@ -1659,11 +1654,10 @@ These timestamps are used to calculate performance metrics, as described in the 
 	\hline
 	responseEnd & Returns a timestamp immediately after the browser receives the last byte of the resource or immediately before the transport connection is closed, whichever comes first. \\
 	\hline
-	\caption{Navigation and Resource Timing Level 2 Attributes} % needs to go inside longtable environment
+	\caption[Navigation and Resource Timing Level 2 Attributes]{Navigation and Resource Timing Level 2 Attributes, taken from \cite{2021W3CNavigationTimingLevel2}, \cite{2021W3CResourceTimingLevel2}} % needs to go inside longtable environment
 	\label{table:navigation_resource_attributes}
 	\end{longtable}
 \end{center}
-%TODO in caption: definitions taken from XX.
 
 
 The document states and events mentioned above, such as DOMContentLoaded, and their triggering by the user agent are defined in the HTML standard.
@@ -1703,11 +1697,11 @@ Figure \ref{figure:navigation_timing_metrics} provides a graphical overview of t
 
 As with web analytics metrics, there is no single source of truth or set of definitions for navigation timing metrics.
 However, a review of the literature reveals a common set of navigation timing metrics.
-Literature sources include the MDN Glossary, % https://developer.mozilla.org/en-US/docs/Glossary
-Google developer guides, % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
-blog posts by other performance specialists, % cite https://gtmetrix.com/blog/browser-timings/
-research papers, % cite % 2013 Wang % 2018 Netravali % 2019 Enghardt
-or the documentation of common RUM tools. % cite https://github.com/akamai/boomerang/blob/master/doc/methodology.md
+Literature sources include the MDN Glossary\footnote{\url{https://developer.mozilla.org/en-US/docs/Glossary} [13.08.2021]},
+Google developer guides \cite{2020Wagner},
+blog posts by other performance specialists \cite{2020GTmetrix},
+research papers (\cite{2013Wang}, \cite{2018Netravali}, \cite{2019Enghardt})
+or the documentation of common RUM tools.\footnote{\url{https://github.com/akamai/boomerang/blob/master/doc/methodology.md} [13.08.2021]}
 
 The sources mentioned above sometimes explain the idea of metrics in a rather informal way.
 How exactly the metrics are implemented and calculated, e.g. which navigation timing attributes are used, is not always clear and is the responsibility of the RUM tool providers and can only be checked directly in the source code.
@@ -1729,16 +1723,16 @@ Due to the lack of standardization and definition of the metrics, it is therefor
 	Time to First Byte (TTFB)
 	& $[responseStart - navigationStart]$ \\
 	& Indicates when the user agent received the first byte of the websites data. \\
-	& "Time it takes between the start of the request and the start of the response".  \\% cite https://developer.mozilla.org/en-US/docs/Glossary/time_to_first_byte
-	%TODO add more here ?
+	& "Time it takes between the start of the request and the start of the response" \cite{2021MDNTTFB}.  \\
+	% add more here ?
 	
 	\hline
 	Page Load Time (PLT)
 	& $[loadEventStart - navigationStart]$ \\
-	& The MDN Docs define PLT as the "time it takes for a page to load" and it is calculated as stated above.  \\ % cite https://developer.mozilla.org/en-US/docs/Glossary/Page_load_time	
+	& The MDN Docs define PLT as the "time it takes for a page to load" and it is calculated as stated in the square brackets \cite{2021MDNPLT}.  \\
 	& Across multiple authors, PLT is defined as the time from navigation start until the load event\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event} [16.07.2021]} has been fired.
 	The load event is fired when the main document and its associated resources have been loaded. \\
-	& Grigorik notes that PLT "has been the de facto metric of the web performance world", but is inaccurate today due to the shift from static websites to dynamic web applications that load resources differently (see also 2018 Netravali) and \\ % https://www.stevesouders.com/blog/2013/05/13/moving-beyond-window-onload/
+	& Grigorik notes that PLT "has been the de facto metric of the web performance world" \cite{2013Grigorik}, but is inaccurate today due to the shift from static websites to dynamic web applications that load resources differently (see also \cite{2018Netravali}, \cite{2013Souders}). \\
 			
 		% more here ?
 		% Akamai defines PLT similarly as the elapsed time from navigation start until the "page is completely available for the user to interact with", using also loadEventStart as the point when loading has finished.
@@ -1749,14 +1743,12 @@ Due to the lack of standardization and definition of the metrics, it is therefor
 	\hline
 	DNS Lookup Time
 	& $[domainLookupEnd - domainLookupStart]$ \\
-	& Time it takes for a DNS lookup.  \\
-		% cite % https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#dns_lookup_time
-		% cite https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+	& Time it takes for a DNS lookup \cite{2021MDNNavigationAndResourceTimings}, \cite{2020Wagner}. \\
 	
 	\hline
 	TCP Handshake % / Server Connect Time ?
 	& $[connectEnd - connectStart]$ \\
-	& "The time it takes for the TCP handshake." \\ % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#tcp
+	& Time it takes for the TCP handshake \cite{2021MDNNavigationAndResourceTimings}. \\
 % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
 	% Also called Connection Time.  % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
@@ -1764,43 +1756,37 @@ Due to the lack of standardization and definition of the metrics, it is therefor
 	\hline
 	TLS Handshake Time
 	& Time it takes to secure connection with TLS.  \\
-	& MDN Docs defines TLS time with $[requestStart - secureConnectionStart]$ \\
-	& Google defines TLS Time as $[connectEnd - secureConnectionStart]$ \\ % https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing
+	& MDN Docs defines TLS time with $[requestStart - secureConnectionStart]$ \cite{2021MDNNavigationAndResourceTimings}. \\
+	& Google defines TLS Time as $[connectEnd - secureConnectionStart]$ \cite{2020Wagner}. \\
 
 	\hline
 	Request Time, 
 	& $[responseStart - requestStart]$ \\ 
-	Server Response Time & How long it takes for the request. \\ % cite https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#request_time
-	& Also called Server Response Time by Akamai \\ % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+	Server Response Time & How long it takes for the request \cite{2021MDNNavigationAndResourceTimings}. \\
+	& Also called Server Response Time by Akamai \cite{2018Akamai}. \\
 	
 	\hline
 	DOM Content Loaded
-	& MDN defines this metric as the interval between the start and end points of the DomContentLoaded event: $[domContentLoadedEventEnd - domContentLoadedEventStart]$. \\
-		% https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings#domcontentloaded_event
-		% https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
-	& Akamai defines it as the time from the start of navigation to the end of the DOMContentLoaded event: $[domContentLoadedEventEnd - navigationStart]$. \\
-		% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-	& Google defines the metric similarly to Akamai, but uses the start point instead of the end point of the event for the calculation (see section X):
+	& MDN defines this metric as the interval between the start and end points of the DomContentLoaded event\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event} [13.08.2021]} $[domContentLoadedEventEnd - domContentLoadedEventStart]$ \cite{2021MDNNavigationAndResourceTimings}. \\
+	& Akamai defines it as the time from the start of navigation to the end of the DOMContentLoaded event: $[domContentLoadedEventEnd - navigationStart]$ \cite{2018Akamai}. \\
+	& Google defines the metric similarly to Akamai, but uses the start point instead of the end point of the event for the calculation (see section \ref{subsubsection:ga_metrics}):
 $[domContentLoadedEventStart - navigationStart]$. \\
 
 	\hline
 	Page Download Time,
 	& $[responseEnd - responseStart]$ \\
 	Receiving Time,  & How long it takes to download the page. \\
-	Transfer Time & Also called Transfer time by Akamai or Receiving Time by MDN \\
-	% https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-	% https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+	Transfer Time & Also called Transfer time by Akamai \cite{2018Akamai} or Receiving Time by MDN \cite{2021MDNLatency}. \\
 
 	\hline
 	Latency
 	& $[responseStart - fetchStart]$ \\ 
-	& Latency is defined as the elapsed time from when the browser requests the resource until the first byte from it is received.  \\ % cite https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
-		% cite https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+	& Latency is defined as the elapsed time from when the browser requests the resource until the first byte from it is received (\cite{2018Akamai}, \cite{2021MDNLatency}). \\
 
 	\hline
 	DOM Interactive
 	& $[domInteractive - navigationStart]$ \\
-	& When the "browser has completed parsing the entire HTML and constructed the DOM" \\ % https://community.akamai.com/customers/s/article/Using-Navigation-Timing-APIs-to-understand-your-webpage?language=en_US
+	& When the "browser has completed parsing the entire HTML and constructed the DOM" \cite{2018Akamai}. \\
 
 	
 %TODO add this? maybe check again after WPT done
@@ -1820,7 +1806,7 @@ $[domContentLoadedEventStart - navigationStart]$. \\
 %	\end{itemize} \\
 
 	\hline
-	\caption{Metrics} % needs to go inside longtable environment
+	\caption{Navigation Timing Metrics} % needs to go inside longtable environment
 	\label{table:navigation_timing_metrics}
 	\end{longtable}
 \end{center}
@@ -1877,7 +1863,7 @@ $[domContentLoadedEventStart - navigationStart]$. \\
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1\textwidth]{nav_metrics.png}
-\caption{Navigation Timing Metrics}
+\caption{Navigation Timing Metrics, graphical representation}
 \label{figure:navigation_timing_metrics}
 \end{center}
 \end{figure}
