@@ -164,10 +164,15 @@
 \newblock \emph{High Performance Browser Networking}.
 \newblock Beijing; Sebastopol, CA : O'Reilly, 2013
 
-\bibitem[GTm]{2020GTmetrix}
+\bibitem[GTma]{2020GTmetrix}
 \textsc{GTmetrix}:
 \newblock \emph{Browser Timings}.
 \newblock \url{https://gtmetrix.com/blog/browser-timings/}, Abruf: 2021-08-13
+
+\bibitem[GTmb]{2021GTmetrix}
+\textsc{GTmetrix}:
+\newblock \emph{Lighthouse: Speed Index}.
+\newblock \url{https://gtmetrix.com/speed-index.html}, Abruf: 2021-08-13
 
 \bibitem[Hei20]{2020Heinemann}
 \textsc{Heinemann}, Gerrit:
@@ -405,6 +410,13 @@
 \newblock {In: }\emph{15th $\{$USENIX$\}$ Symposium on Networked Systems Design
   and Implementation ($\{$NSDI$\}$ 18)}, 2018, S. 217--231
 
+\bibitem[OG]{2019OsmaniGrigorik}
+\textsc{Osmani}, Addy ; \textsc{Grigorik}, Ilya:
+\newblock \emph{Speed is now a landing page factor for Google Search and Ads}.
+\newblock
+  \url{https://developers.google.com/web/updates/2018/07/search-ads-speed},
+  Abruf: 2021-08-13
+
 \bibitem[Oha]{2021Ohans}
 \textsc{Ohans}, Emmanuel:
 \newblock \emph{How browser rendering works - behind the scenes}.
@@ -457,6 +469,14 @@
   {The} {Next} {Generation} {Information} {Technology} {Summit}
   ({Confluence})}.
 \newblock Noida : IEEE, September 2014, S. 24--29
+
+\bibitem[SM]{2020SullivanMichal}
+\textsc{Sullivan}, Annie ; \textsc{Mocny}, Michal:
+\newblock \emph{Exploring the Future of Core Web Vitals. Chrome Dev Summit
+  2020.}
+\newblock
+  \url{https://www.youtube.com/watch?v=iNfz9tg-wyg&ab_channel=GoogleChromeDevelopers},
+  Abruf: 2021-08-13
 
 \bibitem[Soua]{2013Souders}
 \textsc{Souders}, Steve:
@@ -609,11 +629,16 @@
   \url{https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing},
   Abruf: 2021-08-13
 
-\bibitem[Wal]{2019Walton}
+\bibitem[Wala]{2019WaltonUserCentric}
 \textsc{Walton}, Philip:
 \newblock \emph{User-centric performance metrics}.
 \newblock \url{https://web.dev/user-centric-performance-metrics/}, Abruf:
   2021-08-13
+
+\bibitem[Walb]{2020WaltonVitals}
+\textsc{Walton}, Philip:
+\newblock \emph{Web Vitals}.
+\newblock \url{https://web.dev/vitals/}, Abruf: 2021-08-13
 
 \bibitem[WBKW13]{2013Wang}
 \textsc{Wang}, Xiao~S. ; \textsc{Balasubramanian}, Aruna ;
