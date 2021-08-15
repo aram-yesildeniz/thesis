@@ -124,12 +124,49 @@
 \newblock \url{https://www.awwwards.com/brain-food-perceived-performance/},
   Abruf: 2021-05-06
 
-\bibitem[Goo]{2021Crux}
+\bibitem[Ges]{2021Gessert}
+\textsc{Gessert}, Felix:
+\newblock \emph{Largest Contentful Paint is about to drop by 20 \% in Chrome
+  88}.
+\newblock
+  \url{https://medium.baqend.com/the-core-web-vital-largest-contentful-paint-just-changed-dramatically-b7bf5b7f17f3},
+  Abruf: 2021-08-13
+
+\bibitem[GHMP04]{2004Galletta}
+\textsc{Galletta}, Dennis~F. ; \textsc{Henry}, Raymond ; \textsc{McCoy}, Scott
+  ; \textsc{Polak}, Peter:
+\newblock Web site delays: How tolerant are users?
+\newblock {In: }\emph{Journal of the Association for Information Systems} 5
+  (2004), Nr. 1, S.~1
+
+\bibitem[Gooa]{2021Crux}
 \textsc{Google}:
 \newblock \emph{Chrome User Experience Report}.
 \newblock
   \url{https://developers.google.com/web/tools/chrome-user-experience-report},
   Abruf: 2021-08-13
+
+\bibitem[Goob]{2019GoogleFirstCPUIdle}
+\textsc{Google}:
+\newblock \emph{First CPU Idle}.
+\newblock \url{https://web.dev/first-cpu-idle/}, Abruf: 2021-08-13
+
+\bibitem[Gooc]{2017GoogleInteractive}
+\textsc{Google}:
+\newblock \emph{First Interactive and Consistently Interactive}.
+\newblock
+  \url{https://docs.google.com/document/d/1GGiI9-7KeY3TPqS3YT271upUVimo-XiL5mwWorDUD4c/edit},
+  Abruf: 2021-08-13
+
+\bibitem[Good]{2019GoogleFMP}
+\textsc{Google}:
+\newblock \emph{First Meaningful Paint}.
+\newblock \url{https://web.dev/first-meaningful-paint/}, Abruf: 2021-08-13
+
+\bibitem[Gooe]{2021GoogleTTI}
+\textsc{Google}:
+\newblock \emph{Time to Interactive}.
+\newblock \url{https://web.dev/interactive/}, Abruf: 2021-08-13
 
 \bibitem[Gria]{2013GrigorikFluent}
 \textsc{Grigorik}, Ilya:
@@ -173,6 +210,12 @@
 \textsc{GTmetrix}:
 \newblock \emph{Lighthouse: Speed Index}.
 \newblock \url{https://gtmetrix.com/speed-index.html}, Abruf: 2021-08-13
+
+\bibitem[HD00]{2000Hoxmeier}
+\textsc{Hoxmeier}, John~A. ; \textsc{DiCesare}, Chris:
+\newblock System response time and user satisfaction: An experimental study of
+  browser-based applications.
+\newblock {In: }\emph{AMCIS 2000 Proceedings}  (2000), S. 347
 
 \bibitem[Hei20]{2020Heinemann}
 \textsc{Heinemann}, Gerrit:
@@ -291,6 +334,12 @@
 \textsc{Mayer}, Marissa:
 \newblock \emph{Conference Keynote, Web 2.0, 2006}
 
+\bibitem[McQ]{2020McQuade}
+\textsc{McQuade}, Bryan:
+\newblock \emph{Defining the Core Web Vitals metrics thresholds}.
+\newblock \url{https://web.dev/defining-core-web-vitals-thresholds/}, Abruf:
+  2021-08-13
+
 \bibitem[MDNa]{2021MDNCRP}
 \textsc{MDN}, Contributors:
 \newblock \emph{Critical rendering path}.
@@ -298,70 +347,77 @@
   \url{https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path},
   Abruf: 2021-08-03
 
-\bibitem[MDNb]{2021MDNMeasuringPerformance}
+\bibitem[MDNb]{2021MDNFMP}
+\textsc{MDN}, Contributors:
+\newblock \emph{First Meaningful Paint}.
+\newblock
+  \url{https://developer.mozilla.org/en-US/docs/Glossary/first_meaningful_paint},
+  Abruf: 2021-08-03
+
+\bibitem[MDNc]{2021MDNMeasuringPerformance}
 \textsc{MDN}, Contributors:
 \newblock \emph{Measuring performance}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance},
   Abruf: 2021-08-18
 
-\bibitem[MDNc]{2021MDNNavigationAndResourceTimings}
+\bibitem[MDNd]{2021MDNNavigationAndResourceTimings}
 \textsc{MDN}, Contributors:
 \newblock \emph{Navigation and resource timings}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings},
   Abruf: 2021-08-13
 
-\bibitem[MDNd]{2021MDNPLT}
+\bibitem[MDNe]{2021MDNPLT}
 \textsc{MDN}, Contributors:
 \newblock \emph{Page load time}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Glossary/Page_load_time},
   Abruf: 2021-08-13
 
-\bibitem[MDNe]{2021MDNPerceivedPerformance}
+\bibitem[MDNf]{2021MDNPerceivedPerformance}
 \textsc{MDN}, Contributors:
 \newblock \emph{Perceived performance}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance},
   Abruf: 2021-08-13
 
-\bibitem[MDNf]{2021MDNRUMvsSynthetic}
+\bibitem[MDNg]{2021MDNRUMvsSynthetic}
 \textsc{MDN}, Contributors:
 \newblock \emph{Performance Monitoring: RUM vs synthetic monitoring}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic},
   Abruf: 2021-08-03
 
-\bibitem[MDNg]{2021MDNHowBrowsersWork}
+\bibitem[MDNh]{2021MDNHowBrowsersWork}
 \textsc{MDN}, Contributors:
 \newblock \emph{Populating the page: how browsers work}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work},
   Abruf: 2021-08-03
 
-\bibitem[MDNh]{2021MDNScript}
+\bibitem[MDNi]{2021MDNScript}
 \textsc{MDN}, Contributors:
 \newblock \emph{<script>: The Script element}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script},
   Abruf: 2021-08-03
 
-\bibitem[MDNi]{2021MDNTTFB}
+\bibitem[MDNj]{2021MDNTTFB}
 \textsc{MDN}, Contributors:
 \newblock \emph{Time to first byte}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Glossary/time_to_first_byte},
   Abruf: 2021-08-13
 
-\bibitem[MDNj]{2021MDNLatency}
+\bibitem[MDNk]{2021MDNLatency}
 \textsc{MDN}, Contributors:
 \newblock \emph{Understanding latency}.
 \newblock
   \url{https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency},
   Abruf: 2021-08-03
 
-\bibitem[MDNk]{2021MDNWebStandards}
+\bibitem[MDNl]{2021MDNWebStandards}
 \textsc{MDN}, Contributors:
 \newblock \emph{The web and web standards}.
 \newblock
@@ -376,6 +432,12 @@
 \newblock \url{http://dx.doi.org/10.1145/2436696.2446236}. --
 \newblock DOI 10.1145/2436696.2446236. --
 \newblock ISSN 1542--7730, 1542--7749
+
+\bibitem[MK]{2021MeenanKadlec}
+\textsc{Meenan}, Patrick ; \textsc{Kadlec}, Tim:
+\newblock \emph{From ‘Fully Loaded’ to Core Web Vitals: Understanding the
+  Evolution of Performance Metrics}.
+\newblock \url{https://vimeo.com/546383250}, Abruf: 2021-08-15
 
 \bibitem[Mon]{2020Monus}
 \textsc{Monus}, Anna:
@@ -423,6 +485,14 @@
 \newblock
   \url{https://blog.logrocket.com/how-browser-rendering-works-behind-scenes/},
   Abruf: 2021-08-11
+
+\bibitem[OTRK05]{2005Oulasvirta}
+\textsc{Oulasvirta}, Antti ; \textsc{Tamminen}, Sakari ; \textsc{Roto}, Virpi
+  ; \textsc{Kuorelahti}, Jaana:
+\newblock Interaction in 4-second bursts: the fragmented nature of attentional
+  resources in mobile HCI.
+\newblock {In: }\emph{Proceedings of the SIGCHI conference on Human factors in
+  computing systems}, 2005, S. 919--928
 
 \bibitem[SB19]{2019Stone}
 \textsc{Stone}, Brad ; \textsc{Bezos}, Jeffrey:
@@ -491,6 +561,11 @@
 \newblock
   \url{https://support.speedcurve.com/en/articles/74078-what-do-the-different-speedcurve-metrics-represent},
   Abruf: 2021-08-13
+
+\bibitem[SS]{2021Sullivan}
+\textsc{Sullivan}, Annie ; \textsc{Song}, Hongbo:
+\newblock \emph{Evolving the CLS metric}.
+\newblock \url{https://web.dev/evolving-cls/}, Abruf: 2021-08-13
 
 \bibitem[SSMG17]{2017DosSantos}
 \textsc{Santos}, Valdeci Ferreira~d. ; \textsc{Sabino}, Leandro~R. ;
@@ -629,13 +704,38 @@
   \url{https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing},
   Abruf: 2021-08-13
 
-\bibitem[Wala]{2019WaltonUserCentric}
+\bibitem[Wala]{2019WaltonFCP}
+\textsc{Walton}, Philip:
+\newblock \emph{First Contentful Paint (FCP)}.
+\newblock \url{https://web.dev/fcp/}, Abruf: 2021-08-13
+
+\bibitem[Walb]{2020WaltonFID}
+\textsc{Walton}, Philip:
+\newblock \emph{First Input Delay (FID)}.
+\newblock \url{https://web.dev/fid/}, Abruf: 2021-08-13
+
+\bibitem[Walc]{2020WaltonLCP}
+\textsc{Walton}, Philip:
+\newblock \emph{Largest Contentful Paint (LCP)}.
+\newblock \url{https://web.dev/lcp/}, Abruf: 2021-08-13
+
+\bibitem[Wald]{2019WaltonTTI}
+\textsc{Walton}, Philip:
+\newblock \emph{Time to Interactive (TTI)}.
+\newblock \url{https://web.dev/tti/}, Abruf: 2021-08-13
+
+\bibitem[Wale]{2020WaltonTBT}
+\textsc{Walton}, Philip:
+\newblock \emph{Total Blocking Time (TBT)}.
+\newblock \url{https://web.dev/tbt/}, Abruf: 2021-08-13
+
+\bibitem[Walf]{2019WaltonUserCentric}
 \textsc{Walton}, Philip:
 \newblock \emph{User-centric performance metrics}.
 \newblock \url{https://web.dev/user-centric-performance-metrics/}, Abruf:
   2021-08-13
 
-\bibitem[Walb]{2020WaltonVitals}
+\bibitem[Walg]{2020WaltonVitals}
 \textsc{Walton}, Philip:
 \newblock \emph{Web Vitals}.
 \newblock \url{https://web.dev/vitals/}, Abruf: 2021-08-13
@@ -658,6 +758,11 @@
 \textsc{Waisberg}, Daniel ; \textsc{Kaushik}, Avinash:
 \newblock Web Analytics 2.0: Empowering Customer Centricity.
 \newblock   (2009)
+
+\bibitem[WM]{2020WaltonCLS}
+\textsc{Walton}, Philip ; \textsc{Mihajlija}, Milica:
+\newblock \emph{Cumulative Layout Shift (CLS)}.
+\newblock \url{https://web.dev/cls/}, Abruf: 2021-08-13
 
 \bibitem[ZP15]{2015Zheng}
 \textsc{Zheng}, Guangzhi ; \textsc{Peltsverger}, Svetlana:
