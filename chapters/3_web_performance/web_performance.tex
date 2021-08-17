@@ -938,7 +938,7 @@ There are many synthetic monitoring tools available.
 The tool used is WebPageTest (WPT) and will therefore be briefly discussed here.
 
 "WebPageTest is a web performance tool providing deep diagnostic information about how a page performs under a variety of conditions."\footnote{\url{https://docs.webpagetest.org/} [11.08.2021]}
-WPT was made available to the public in 2008 and was acquired by Catchpoint in September 2020\footnote{\url{https://www.catchpoint.com/webpagetest-joins-catchpoint} [04.08.2021]}.
+WPT was made available to the public in 2008 and was acquired by Catchpoint in September 2020.\footnote{\url{https://www.catchpoint.com/webpagetest-joins-catchpoint} [04.08.2021]}
 WPT is open source\footnote{\url{https://github.com/WPO-Foundation/webpagetest} [04.08.2021]} and offered as a free web service\footnote{\url{https://www.webpagetest.org/} [04.08.2021]} and can be used by anyone.
 
 Some of the key features of WPT are that it measures and provides a variety of metrics (see Section X), it facilitates saving and sharing performance test results, it provides waterfall graphs, a breakdown of the website's content, or even film strips and video recordings of the loading process \cite{2016Viscomi}.
@@ -2051,7 +2051,7 @@ Table \ref{table:apis_summary} provides an overview of all specifications discus
 	\hline
 	High Resolution Time
 	& Level 2: REC November 2019 \\
-	& Current WD \\
+	& Current specification as WD \\
 	& Provides accurate, stable and reliable time measurements. \\
 	\hline
 	Navigation Timing
@@ -2065,7 +2065,7 @@ Table \ref{table:apis_summary} provides an overview of all specifications discus
 	& Exposes timing information of requested resources and the resources they requested. \\
 	\hline
 	Navigation and Resource Timing
-	& Used to calculated a variety of metrics. \\
+	& Used to calculate a variety of metrics. \\
 	\hline
 	User Timing
 	& Level 2: REC February 2019 \\
@@ -2703,7 +2703,7 @@ Detailed descriptions of the categories and the metrics they contain can be foun
 After completing a performance test, WPT displays a results page.
 At the top of the results page, some metrics are displayed.
 In the documentation, these metrics are called "High-Level Metrics".
-They are listed in Table X.
+They are listed in table \ref{table:wpt_high_level_metrics}.
 
 
 \begin{table}[h]
@@ -2718,7 +2718,7 @@ They are listed in Table X.
 	\end{tabular}
 	\medskip
 	\caption{High-Level Metrics from the main test result page.}
-	\label{table:wpt_metrics_categories}
+	\label{table:wpt_high_level_metrics}
 \end{table}
 
 The metrics are similar to those described in Section X, and their meaning is also given in this section, where Document Complete is the same as PLT.
@@ -2756,7 +2756,7 @@ For a more detailed explanation, see "Reading a Waterfall" in \cite{2016Viscomi}
 
 Another special feature of WPT are the performance grades.
 Grades are a "set of web performance must-haves to which [...] pages should adhere" and they "evaluate the page data captured by the test and show whether the page has passed or failed a certain goal" \cite[p. 51]{2016Viscomi}.
-The grades calculated by WPT are listed in table X.
+The grades calculated by WPT are listed in table \ref{table:wpt_grades}.
 Detailed explanations are described in the documentation.\footnote{\url{https://docs.webpagetest.org/getting-started/} [15.08.2021]}
 
 \begin{table}[h]
@@ -2770,8 +2770,8 @@ Detailed explanations are described in the documentation.\footnote{\url{https://
 	\hline
 	\end{tabular}
 	\medskip
-	\caption{High-Level Metrics from the main test result page.}
-	\label{table:wpt_metrics_categories}
+	\caption{WPT Grades}
+	\label{table:wpt_grades}
 \end{table}
 
 
@@ -2848,7 +2848,7 @@ The metrics are listed in table \ref{table:ga_metrics}.
 
 % [Code example]
 
-The calculations can be seen directly in the Analytics source code file.
+The calculations can be seen directly in the analytics source code file.
 Since the code is only available in a minified version, some variables may appear cryptic.\footnote{\url{
 https://www.google-analytics.com/analytics.js} [09.08.2021]}
 
@@ -2948,7 +2948,7 @@ Ec = function (a) {
 \subsection{Web Performance Metrics Conclusion}
 
 Web performance metrics capture the performance of a website.
-There are several types of web performance metrics (Table X):
+There are several types of web performance metrics (table \ref{table:performance_metrics_conclusion}):
 
 Page weight metrics measure the size of the website, i.e., the amount of bytes and requests required to build the website.
 
