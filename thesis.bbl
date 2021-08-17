@@ -47,6 +47,12 @@
   and Networking} 13 (2020), Nr. 2, S. 1449--1452. --
 \newblock ISSN 2233--7857 IJFGCN
 
+\bibitem[BBC{\etalchar{+}}07]{2007Burby}
+\textsc{Burby}, Jason ; \textsc{Brown}, Angie ; \textsc{Committee}, WAA~S.
+  u.\,a.:
+\newblock Web analytics definitions.
+\newblock {In: }\emph{Washington DC: Web Analytics Association}  (2007)
+
 \bibitem[Bel]{2010Belshe}
 \textsc{Belshe}, Mike:
 \newblock \emph{More Bandwidth Doesn’t Matter (much)}.
@@ -163,7 +169,14 @@
 \newblock \emph{First Meaningful Paint}.
 \newblock \url{https://web.dev/first-meaningful-paint/}, Abruf: 2021-08-13
 
-\bibitem[Gooe]{2021GoogleTTI}
+\bibitem[Gooe]{2021Google}
+\textsc{Google}:
+\newblock \emph{Interpret Site Speed}.
+\newblock
+  \url{https://support.google.com/analytics/answer/2383341?hl=en&ref_topic=1282106#zippy=%2Cin-this-article},
+  Abruf: 2021-08-13
+
+\bibitem[Goof]{2021GoogleTTI}
 \textsc{Google}:
 \newblock \emph{Time to Interactive}.
 \newblock \url{https://web.dev/interactive/}, Abruf: 2021-08-13
@@ -210,6 +223,21 @@
 \textsc{GTmetrix}:
 \newblock \emph{Lighthouse: Speed Index}.
 \newblock \url{https://gtmetrix.com/speed-index.html}, Abruf: 2021-08-13
+
+\bibitem[GW]{2020GessertWingerath}
+\textsc{Gessert}, Felix ; \textsc{Wingerath}, Wolfram:
+\newblock \emph{Batching was Yesterday! Real-Time Tracking For 100+ Million
+  Visitors}.
+\newblock
+  \url{https://www.youtube.com/watch?v=avPcOFzUa1Q&ab_channel=WolframWingerath},
+  Abruf: 2021-08-13
+
+\bibitem[Has17]{2017Hassler}
+\textsc{Hassler}, Marco:
+\newblock \emph{Digital und {Web} {Analytics}: {Metriken} auswerten,
+  {Besucherverhalten} verstehen, {Website} optimieren}.
+\newblock s.l : mitp Verlag, 2017 (mitp {Business}). --
+\newblock ISBN 9783958453593
 
 \bibitem[HD00]{2000Hoxmeier}
 \textsc{Hoxmeier}, John~A. ; \textsc{DiCesare}, Chris:
@@ -304,6 +332,13 @@
   of {Tools}, {Techniques}, and {Practices}.
 \newblock {In: }\emph{International Journal of Cyber Behavior, Psychology and
   Learning} 10 (2020), Januar, Nr. 1, S. 1--14
+
+\bibitem[KSK12]{2012Kumar}
+\textsc{Kumar}, Lakhwinder ; \textsc{Singh}, Hardeep  ; \textsc{Kaur},
+  Ramandeep:
+\newblock Web analytics and metrics: a survey.
+\newblock {In: }\emph{Proceedings of the International Conference on Advances
+  in Computing, Communications and Informatics}, 2012, S. 966--971
 
 \bibitem[Lin]{2006Linden}
 \textsc{Linden}, Greg:
@@ -424,6 +459,13 @@
   \url{https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards},
   Abruf: 2021-08-13
 
+\bibitem[MDNm]{2021MDNWhatIsPerformance}
+\textsc{MDN}, Contributors:
+\newblock \emph{What is web performance?}
+\newblock
+  \url{https://developer.mozilla.org/en-US/docs/Learn/Performance/What_is_web_performance},
+  Abruf: 2021-08-13
+
 \bibitem[Mee13]{2013Meenan}
 \textsc{Meenan}, Patrick:
 \newblock How {Fast} is {Your} {Web} {Site}?: {Web} site performance data has
@@ -493,6 +535,18 @@
   resources in mobile HCI.
 \newblock {In: }\emph{Proceedings of the SIGCHI conference on Human factors in
   computing systems}, 2005, S. 919--928
+
+\bibitem[PAW]{2020Pavic}
+\textsc{Pavic}, Bojan ; \textsc{Anstey}, Chris  ; \textsc{Wagner}, Jeremy:
+\newblock \emph{Why does speed matter?}
+\newblock \url{https://web.dev/why-speed-matters/}, Abruf: 2021-08-13
+
+\bibitem[Pet04]{2004Peterson}
+\textsc{Peterson}, Eric~T.:
+\newblock \emph{Web analytics demystified: a marketer's guide to understanding
+  how your web site affects your business}.
+\newblock s.l : Celio Group Media and Cafe Press, 2004. --
+\newblock ISBN 9780974358420
 
 \bibitem[SB19]{2019Stone}
 \textsc{Stone}, Brad ; \textsc{Bezos}, Jeffrey:

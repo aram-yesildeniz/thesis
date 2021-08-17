@@ -547,7 +547,6 @@ Croll provides a illustration (figure \ref{figure:page_tagging}) of the page tag
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{page_tagging.png}
-% \caption{Page Tagging, taken from \cite{2009Croll}}
 \caption[Page Tagging]{Page Tagging, taken from \cite{2009Croll}}
 \label{figure:page_tagging}
 \end{center}
@@ -614,8 +613,8 @@ Performance metrics, on the other hand, are primarily concerned with the perform
 % [Relevance]
 
 The selection of any type of metrics and especially their relevance to the business development of the website is crucial.
-It is important to measure what is important and relevant for the users and the achievement of the business goals, while "each business has its own definitions of success". % cite 2009 Croll p 7,  https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-Therefore, metrics are ideally tailored to the website and should track if "your business benefited in some way from their [the users] visits." % cite 2009 Croll p 15
+It is important to measure what is important and relevant for the users and the achievement of the business goals, while "each business has its own definitions of success" \cite[p. 7]{2009Croll}, \cite{2021MDNMeasuringPerformance}.
+Therefore, metrics are ideally tailored to the website and should track if "your business benefited in some way from their [the users] visits" \cite[p. 15]{2009Croll}.
 Just as each website is unique and serves a different purpose, so should be the metrics that quantify it.
 Metrics can be developed for any specific business question or use case, and there are an unlimited number of metrics.
 
@@ -624,8 +623,8 @@ Metrics can be developed for any specific business question or use case, and the
 % [Usable]
 
 Metrics are only helpful if they are useful.
-This means that the collection and measurement of metrics should be consistent and their presentation should be user-friendly and understandable. % cite https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance
-Kumar explains that ideally, good metrics are not too complex, relevant, timely, and immediately useful.  \\% cite 2012 Kumar
+This means that the collection and measurement of metrics should be consistent and their presentation should be user-friendly and understandable \cite{2021MDNMeasuringPerformance}.
+Kumar explains that ideally, good metrics are not too complex, relevant, timely, and immediately useful \cite{2012Kumar}. \\
 
 
 % [Interpretation]
@@ -647,7 +646,7 @@ Then, one approach to categorization is used to list a selection of common web a
 Categories help to better grasp and understand key figures, and they can provide structure and order.
 Below are some examples of categorizing business metrics as found in the literature.
 
-Peterson argues from a marketing perspective and categorizes metrics according to the customer lifecycle, which includes the reach, acquisition, conversion, and retention phases. % cite 2004 Peterson
+Peterson \cite{2004Peterson} argues from a marketing perspective and categorizes metrics according to the customer lifecycle, which includes the reach, acquisition, conversion, and retention phases.
 
 Metrics for measuring \textit{reach} are, for example, the number or percentage of new visitors.
 The category \textit{Acquisition} contains metrics such as average number of visits per visitor or average pages viewed per visitor.
@@ -658,12 +657,12 @@ This proposed categorization is very customer-centric and customer-focused, from
 % Reach:  - Overall Traffic Volumes,  Number of Visits
 % Measuring Acquisition: - Percent New Visitors, - Average Number of Page Views per Visit
 
-The Web Analytics Association defines three types and, accordingly, categories of metrics: \textit{Counts}, \textit{Ratios}, and \textit{Key Performance Indicators}. % cite 2007 Burby
+The Web Analytics Association \cite{2007Burby} defines three types and, accordingly, categories of metrics: \textit{Counts}, \textit{Ratios}, and \textit{Key Performance Indicators}.
 Counts are metrics that represent single numbers such as the number of visits, while ratios consist of counts divided by other counts, such as page views per visit.
 KPIs are counts or ratios with a specific meaning and importance to the business in question.
 
-Jansen defines four categories for web analytics metrics: % cite 2009 Jansen p.30
-\textit{Site Usage}, which includes metrics such as demographics and system statistics, as well as visitor length and type,,
+Jansen \cite{2009Jansen} defines four categories for web analytics metrics. % p. 30 ?
+\textit{Site Usage}, which includes metrics such as demographics and system statistics, as well as visitor length and type,
 \textit{Referrers}, which are metrics that describe the referring URL,
 \textit{Site Content Analysis}, which includes metrics such as top pages or visitor paths, and
 \textit{Quality Assurance} which includes metrics that reflect errors or other quality aspects of the system being measured.
@@ -671,29 +670,30 @@ Jansen defines four categories for web analytics metrics: % cite 2009 Jansen p.3
 % Site usage: Internal Search Information
 % Referrers: keyword Analysis	
 
-Croll argues that all metrics answer at least one of four user-centered questions: \textit{What did they do?}, \textit{How did they do it?}, \textit{Why did they do it?}, and \textit{Could they do it?}. % cite 2009
+Croll \cite{2009Croll} argues that all metrics answer at least one of four user-centered questions: \textit{What did they do?}, \textit{How did they do it?}, \textit{Why did they do it?}, and \textit{Could they do it?}.
 Accordingly, the metrics are categorized by the question they answer.
 
-Bekavac breaks down metrics by what they describe: \textit{Visits}, such as entry or exit page,
+Bekavac et al. \cite{2015Bekavac} break down metrics by what they describe: \textit{Visits}, such as entry or exit page,
 \textit{Visitors}, such as metrics that capture new or returning visitors,
 metrics such as page exit rate or bounce rate that describe \textit{Visitor Engagement},
-and metrics that describe \textit{Conversions}, such as conversion rate.. % cite 2015 Bekavac
+and metrics that describe \textit{Conversions}, such as conversion rate.
 
 %visits: entry page, landing page, exit page, visit duration, referrer, ctr
 %- For describing Visitors: repeat visitor, visits per visitor, recency, frequency
 %- For describing Visitor engagement: page exit ratio, bounce rate
 
-Hassler proposes a classification that is very similar to the categorization proposed by WAA.
-The metrics are ordered according to their type: % cite 2017 Hassler
+Hassler \cite{2017Hassler} proposes a classification that is very similar to the categorization proposed by the WAA.
+The metrics are ordered according to their type:
 \textit{Counts} are absolute values like visitors or total revenue,
 \textit{Relations} put counts in relation, e.g. as percentages, such as page views per visitor.
 and \textit{Values} include non-numeric metrics such as referrers or search terms.
 
-Gessert et al. propose a semantic categorization of metrics. They structure metrics according to their meaning and domain membership.
+Gessert et al. \cite{2020GessertWingerath} propose a semantic categorization of metrics.
+They structure metrics according to their meaning and domain membership.
 The categories are \textit{performance}, which includes performance metrics (as described in section \ref{section:web_performance_metrics}),
 \textit{User Engagement} metrics such as session duration or bounce rate,
 \textit{Business KPIs} such as cart size or transaction amount, as well as conversion rates and revenue,
-and \textit{QA metadata} that summarize technical metrics such as JS errors or browser distribution. % cite 2020 Wolle https://www.youtube.com/watch?v=avPcOFzUa1Q&ab_channel=WolframWingerath
+and \textit{QA metadata} that summarize technical metrics such as JS errors or browser distribution.
 
 %- User Engagement: Session Length, First user interaction
 % QA Metadata: Page views and sessions, Caching insights
@@ -711,7 +711,6 @@ and \textit{QA metadata} that summarize technical metrics such as JS errors or b
 
 %- also customer life cycle
 
-%TODO \ref{table:business_metrics_categorizations} somewhere...
 \begin{table}[h]
 	% \renewcommand{\arraystretch}{1.5} %TODO decide if spacing is needed
 	\small
@@ -841,11 +840,10 @@ The categories used to structure the metrics are \textit{Counts}, \textit{Ratios
 	\textit{etc.} &  \\
 	\hline
 	
-	\caption{Web Analytics or Business Metrics Examples, taken from } % 2004 Peterson,  2007 Burby
+	\caption[Web Analytics or Business Metrics Examples]{Web Analytics or Business Metrics Examples, taken from \cite{2004Peterson}, \cite{2007Burby}.} % 2004 Peterson,  2007 Burby
 	\label{table:businessmetrics}
 	\end{longtable}
 \end{center}
-%TODO cite
 
 
 %\paragraph{Hits}

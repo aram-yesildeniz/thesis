@@ -40,10 +40,10 @@ Before describing the approach and practical work done to address the research q
 
 % [Introduction]
 
-As described in section \ref{chapter:user_satisfaction}, web performance plays a non-negligible role in user satisfaction and business success.
-The studies cited in the relevant section show that increasing website performance also increases sales, or as Google puts it, "Performance plays a major role in the success of any online venture."\footnote{\url{https://web.dev/why-speed-matters/} [03.06.2021]}
+As described in section \ref{subsection:user_satisfaction}, web performance plays a non-negligible role in user satisfaction and business success.
+The studies cited in the relevant section show that increasing website performance also increases sales, or as Google puts it, "Performance plays a major role in the success of any online venture" \cite{2020Pavic}.
 
-A good overview of web performance topics and goals is provided by the MDN Web Docs\footnote{\url{https://developer.mozilla.org/en-US/docs/Learn/Performance/What_is_web_performance} [03.06.2021]}, which serve as an outline for this chapter and are briefly described below.
+A good overview of web performance topics and goals is provided by the MDN Web Docs \cite{2021MDNWhatIsPerformance}, which serve as an outline for this chapter and are briefly described below.
 
 
 \paragraph{Reducing load time} % korrigiert
@@ -63,7 +63,7 @@ Web performance metrics are discussed in section \ref{section:web_performance_me
 \paragraph{Performance perception} % korrigiert
 
 Perceptions of performance are generally subjective.
-As seen earlier in section \ref{chapter:user_satisfaction}, there are some quantifiable time intervals that correlate with human psychology regarding received performance.
+As seen earlier in section \ref{subsection:user_satisfaction}, there are some quantifiable time intervals that correlate with human psychology regarding received performance.
 Table \ref{table:perception} provides "unofficial rules of thumb" for delay thresholds \cite{2013Grigorik}.
 
 \begin{table}[h]
@@ -81,7 +81,7 @@ Table \ref{table:perception} provides "unofficial rules of thumb" for delay thre
 	\hline
 	\end{tabular}
 	\medskip
-	\caption{Rule of thumbs for delay}
+	\caption[Rule of thumbs for delay]{Rule of thumbs for delay, taken from \cite{2013Grigorik}}
 	\label{table:perception}
 \end{table}
 
@@ -126,7 +126,7 @@ How the back-end processes requests and creates responses is not part of this wo
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{timing_overview_blanco2.png}
-\caption{Timing Overview}
+\caption[The loading process of the website, divided into network, backend and frontend.]{The loading process of the website, divided into network, backend and frontend, taken from \cite{2012W3CNavigationTiming}}
 \label{figure:timing_overview}
 \end{center}
 \end{figure}
@@ -365,7 +365,7 @@ The individual steps are described in more detail below.
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.7\textwidth]{crp.png}
-\caption{Critical Rendering Path}
+\caption[Critical Rendering Path]{Critical Rendering Path, taken from \cite{2013GrigorikFluent}}
 \label{img:crp}
 \end{center}
 \end{figure}
@@ -581,7 +581,7 @@ Unlike async, defer scripts are not executed until the page parsing is complete 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{scripts.png}
-\caption{Scripts}
+\caption[Script processing by attribute]{Script processing by attribute \footnote{taken from \url{https://html.spec.whatwg.org/multipage/scripting.html} [11.08.2021]}} %TODO fix this, is not shown
 \label{figure:script_loading}
 \end{center}
 \end{figure}
@@ -2215,7 +2215,8 @@ Web Vitals are "metrics relevant to users" \cite{2019WaltonUserCentric}.
 \begin{table}[h]
 	\small
 	\centering
-	\begin{tabular}{ p{0.3\linewidth} | p{0.6\linewidth} }
+	\begin{tabular}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
+	\hline
 	\textit{Is it happening?} & Did the navigation start successfully? Has the server responded? \\
 	\hline
 	\textit{Is it useful?} & Has enough content rendered that users can engage with it? \\
@@ -2223,6 +2224,7 @@ Web Vitals are "metrics relevant to users" \cite{2019WaltonUserCentric}.
 	\textit{Is it usable?} & Can users interact with the page, or is it busy? \\
 	\hline
 	\textit{Is it delightful?} & Are the interactions smooth and natural, free of lag and jank? \\
+	\hline
 	\end{tabular}
 	\medskip
 	\caption[Key Questions for defining Web Vitals]{Key Questions for defining Web Vitals, taken from \cite{2019WaltonUserCentric}}
@@ -2240,7 +2242,8 @@ Like the key questions, these types provide a guide and framework for organizing
 \begin{table}[h]
 	\small
 	\centering
-	\begin{tabular}{ p{0.3\linewidth} | p{0.6\linewidth} }
+	\begin{tabular}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
+	\hline
 	\textit{Perceived load speed} & How quickly a page can load and render all of its visual elements to the screen. \\
 	\hline
 	\textit{Load responsiveness} & How quickly a page can load and execute any required JavaScript code in order for components to respond quickly to user interaction. \\
@@ -2250,6 +2253,7 @@ Like the key questions, these types provide a guide and framework for organizing
 	\textit{Visual stability} & Do elements on the page shift in ways that users don't expect and potentially interfere with their interactions? \\
 	\hline
 	\textit{Smoothness} & Do transitions and animations render at a consistent frame rate and flow fluidly from one state to the next? \\
+	\hline
 	\end{tabular}
 	\medskip
 	\caption[Types of Web Vitals Metrics]{Types of Web Vitals Metrics, taken from \cite{2019WaltonUserCentric}}
@@ -2381,12 +2385,14 @@ and are also made available via the web-vitals library.\footnote{\url{https://gi
 \begin{table}[h]
 	\small
 	\centering
-	\begin{tabular}{  p{0.3\linewidth} | p{0.6\linewidth} }
+	\begin{tabular}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
+	\hline
 	\textit{Largest Contentful Paint (LCP)} & Measures loading performance.  \\
 	\hline
 	\textit{First Input Delay (FID)} & Measures interactivity. \\
 	\hline
-	\textit{Cumulative Layout Shift (CLS)} & Measures visual stability.  \\
+	\textit{Cumulative Layout Shift (CLS)} & Measures visual stability. \\
+	\hline
 	\end{tabular}
 	\medskip
 	\caption{Core Web Vitals}
@@ -2500,7 +2506,6 @@ While LCP and FID are specified in milliseconds, CLS is a calculated value.
 The exact rationale for the thresholds set for the Core Web Vitals can be found in \cite{2020McQuade}.
 
 %TODO put them in one figure and use figure caption
-%TODO always write: taken from url.... !!! for all figures
 \begin{table}[h]
 	\centering
 	\begin{tabular}{ c c c }
@@ -2509,7 +2514,7 @@ The exact rationale for the thresholds set for the Core Web Vitals can be found 
 	\includegraphics[width=0.3\textwidth]{cls} \\
 	\end{tabular}
 	\medskip
-	\caption{Core Web Vitals Thresholds}
+	\caption[Core Web Vitals Thresholds]{Core Web Vitals Thresholds, taken from \cite{2020McQuade}}
 	\label{table:vitals_thresholds}
 \end{table}
 
@@ -2675,7 +2680,7 @@ Detailed descriptions of the categories and the metrics they contain can be foun
 \begin{table}[h]
 	\small
 	\centering
-	\begin{tabular}{l | l}
+	\begin{tabular}{ | l | l | }
 	\hline
 	Page-Level Metrics & Technical Page Metrics, Visual Metrics, \\
 	& Interactivity Metrics, Javascript and CPU timings, \\
@@ -2940,49 +2945,65 @@ Ec = function (a) {
 
 % ----------------------------------------------------------------
 
-%TODO
 \subsection{Web Performance Metrics Conclusion}
 
+Web performance metrics capture the performance of a website.
+There are several types of web performance metrics (Table X):
 
-[tbd]
+Page weight metrics measure the size of the website, i.e., the amount of bytes and requests required to build the website.
 
-%TODO ideally come up with a nice table which abstracts and summarizes everything about metrics:
-% e.g. measured by: browser, server. Technical stuff is measured in browser, everything else not in browser
+Navigation timing metrics measure each time interval within the website loading process and are calculated directly through a variety of web APIs.
+
+While navigation timings provide insight into the loading process, they say nothing about how performance feels to the user.
+User-centric performance metrics are introduced for this purpose.
+They use visual analytics to measure how quickly pixels of website content are rendered into the user-viewable area.
+
+With Web and Core Web Vitals, Google defines its own set of user-centric performance metrics.
+As they feed into the Page Rank algorithm, website owners must take them into account.
+
+As a gold standard and to achieve the best results, every website should consider implementing custom metrics tailored to the website's goals.
+
+
+\begin{table}[h]
+	\small
+	\centering
+	\begin{tabular}{ | l | l | }
+%	\begin{tabular}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
+	\hline
+	Page Weight & Bytes and requests for each resource type, such as \\
+	& HTML, CSS, JS, Fonts, Images, etc. \\
+	\hline
+	Navigation Timing Metrics & TTFB, PLT, DNS/TCP/TLS Time, \\
+	& DOM Content Loaded, DOM Interactive, \\
+	& Request Time, Page Download Time \\
+	\hline
+	Visual and User-Centric Metrics & Start Render, AFT, Speed Index \\
+	& Web Vitals: FCP, FMP, TTI, TBT \\
+	& Core Web Vitals: LCP, FID, CLS \\
+	\hline
+	\end{tabular}
+	\medskip
+	\caption{Web Performance Metrics Overview}
+	\label{table:performance_metrics_conclusion}
+\end{table}
+
+
+
+% add e.g. measured by: browser, server. Technical stuff is measured in browser, everything else not in browser
 % technical, UX, ...
 
-
-
 % [3.4.1 Page Weight]
-
-
-
 % [3.4.2 Navigation Timing Metrics]
-
 % Web Standards: W3C, Web Performance Working Group
 % Specifications... and their metrics
 % WICG
-
-
-
-
 % [3.4.3 User-Centric Performance Metrics]
-
 % Visual Metircs
 % Web Vitals
 
-
-
 % [3.4.4 Custom Metrics]
-
-
-
-
 % [3.4.5 WebPageTest and Google Analytics Metrics]
 
-
-
-
-[summary table]
 
 % Page-Centric, Navigation-Centric, User-Centric, Custom
 % Add info Synthetic / RUM ?
@@ -2997,8 +3018,6 @@ Ec = function (a) {
 
 
 % [Observer Effect]
-
-[tbd]
 
 % https://www.youtube.com/watch?v=yrWLi524YLM&ab_channel=NicJansma
 %Avoiding the Observer Effect
@@ -3021,10 +3040,4 @@ Ec = function (a) {
 %The first rule of effective performance measurement is to make sure your performance measurement techniques aren't causing performance issues themselves.
 
 
-
-%Before tackling this question with an experiment, I will discuss one synthetic monitoring tool WPT and one RUM tool GA which I will then use in the approach.
-%Also some research in this field will be discussed.
-
-
-
-
+% Also some research in this field will be discussed.
