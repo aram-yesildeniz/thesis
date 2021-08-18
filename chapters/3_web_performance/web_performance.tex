@@ -1409,6 +1409,8 @@ The published papers that are particularly relevant to performance measurement a
 \subsubsection{W3C Performance Specifications}
 \label{subsubsection:w3c_performance_specifications}
 
+%TODO add somewhere that those specs are not implemented by all browsers --> can i use
+
 
 \paragraph{High Resolution Time} % korrigiert
 
@@ -1602,7 +1604,7 @@ Table \ref{table:navigation_resource_attributes} provides a brief explanation fo
 The definitions are taken directly from the W3C specifications or MDN Web Docs, unless otherwise noted.
 These timestamps are used to calculate performance metrics, as described in the next section.
 
-
+%TODO tabelle splitten
 \begin{center}
 	\small
 	\begin{longtable}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
@@ -2855,6 +2857,7 @@ https://www.google-analytics.com/analytics.js} [09.08.2021]}
 The implementation relies on the old Navigation Timing API (not Level 2), i.e. the performance data is retrieved via performance.timing.
 Features such as high-resolution timing, as available in Navigation Timing Level 2, are not included in this implementation (see section \ref{subsubsection:w3c_performance_specifications}).
 
+%TODO use floating environment so that listing fits on one page
 \begin{center}
 \begin{lstlisting}[caption={Performance Metrics Calculations in analytics.js}, label={listing:analyticsjs}, numbers=none]
 Ec = function (a) {
@@ -2980,6 +2983,43 @@ As a gold standard and to achieve the best results, every website should conside
 	Visual and User-Centric Metrics & Start Render, AFT, Speed Index \\
 	& Web Vitals: FCP, FMP, TTI, TBT \\
 	& Core Web Vitals: LCP, FID, CLS \\
+	\hline
+	\end{tabular}
+	\medskip
+	\caption{Web Performance Metrics Overview}
+	\label{table:performance_metrics_conclusion}
+\end{table}
+
+
+%TODO make new table:
+
+\begin{table}[h]
+	\small
+	\centering
+	\begin{tabular}{ | l | l | c | c | }
+%	\begin{tabular}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
+	\hline
+	Type \cellcolor{lightgrey} & Metric \cellcolor{lightgrey} & Synthetic Monitoring \cellcolor{lightgrey} &  RUM \cellcolor{lightgrey} \\ 
+	\hline
+%	Page Weight & Bytes and requests for each resource type, such as \\
+%	& HTML, CSS, JS, Fonts, Images, etc. \\
+	Navigation Timing &TTFB & x & - \\
+	& PLT & - & - \\
+	& DNS/TCP/TLS Time & - & - \\
+	& DOM Events/Timings & - & - \\
+	& Request Time & - & - \\
+	& Page Download Time & - & - \\
+	\hline
+	Visual and User-Centric Metrics & Start Render & - & - \\
+	& AFT & - & - \\
+	& Speed Index & - & - \\
+	Web Vitals & FCP & - & - \\
+	& FMP & - & - \\
+	& TTI & - & - \\
+	& TBT & - & - \\
+	Core Web Vitals & LCP & - & - \\
+	& FID & - & - \\
+	& CLS & - & - \\
 	\hline
 	\end{tabular}
 	\medskip
