@@ -1,36 +1,32 @@
 \chapter{Approach}
 \label{chapter:approach}
 
-\begin{itemize}
-	\item Last chapter...
-	\item This chapter: Describe shortly all sections from this chapter
-	\item In the next chapter...
-\end{itemize}
 
-\begin{itemize}
-\item In this chapter the practical work should be documented and explained
-\item Elaboration of how the practical work could help answer the research question
-\item Discussion of real-life setup and how experiments approach it
-\end{itemize}
+% [Last chapter]
+
+% [This chapter: Describe shortly all sections from this chapter]
+
+- In this chapter the practical work should be documented and explained
+- Elaboration of how the practical work could help answer the research question
+- Discussion of real-life setup and how experiments approach it
 
 
+% [In the next chapter]
+
+- Evaluation of data is in next chapter
 
 
-
-% --------------------------------------------------------
-% --------------------------------------------------------
-
+% ---------------------------------------------------------------------------------------------
 
 \section{Empirical Research Methods}
 
 
-\begin{itemize}
-\item Overview of methods
-\item reproduceability etc.
-\item validity
-\item Justification why following approaches are conducted as controlled experiments
-\item Change something: Delete this item again
-\end{itemize}
+% Overview of methods
+
+% reproduceability, validity etc
+
+% Justification why following approaches are conducted as controlled experiments
+
 
 % 2005 Sjoberg: experiments in computer science evaluation
 
@@ -50,80 +46,89 @@
 % --------------------------------------------------------
 
 
+\subsection{Controlled Experiments in Computer Science}
 
 
-\subsection{Controlled Experiment}
+% Short overview about controlled experiments in computer science
+% Design: Show test setup image: Independent and dependent variables
+% Hypothesis testing
 
-\begin{itemize}
-\item Short overview about controlled experiments in computer science
-\item Design: Show test setup image: Independent and dependent variables
-\item Hypothesis testing
-\end{itemize}
 
 % 2006 Wohlin:
 % Design, analysis and interpretation
 
 % 2014 Tedre: Controlled experiments
 
-
 % Measuring Real User Performance in the Browser: Avoiding the Observer Effect
 
 
 
+% ---------------------------------------------------------------------------------------------
+
+
+\section{Test Setup / Design}
+
+
+% What is test object (website)
+% What are dependent variables: Performance metrics
+% What are independent variables: Specific changes in test object (see next chapter)
+% Kohavi 2016: Sample size, collect right metrics, track right users, randomization unit
+
+% add here this test setup image, and following subsections explain the different parts
+
+
 % --------------------------------------------------------
 
 
+\subsection{The Test Object: Website}
+
+% HTML Template
+
+% Depending on different approaches / Ideas (see next chapter), template looks different
+% But general structure stays the same and independent variables can be defined
+% Here we show different independent variables and variants
 
 
-\subsection{Test Setup}
-
-\begin{itemize}
-\item What is test object (website)
-\item What are dependent variables: Performance metrics
-\item What are independent variables: Specific changes in test object (see next chapter)
-\item Kohavi 2016: Sample size, collect right metrics, track right users, randomization unit
-\end{itemize}
+% --------------------------------------------------------
 
 
-\paragraph{Measure effects: Dependent Variables}
+\subsection{User Simulation and Data Collection using Synthetic Monitoring and RUM}
 
-\begin{itemize}
-\item Performance metrics from Lab and Field, see terms and definitions
-\item But also quality of RUM data. Because we could have a nice performance but RUM will be of bad quality. 
-\end{itemize}
+% Synthetic monitoring: Double role: creats traffic which is captured by RUM, and also measured the website
 
-
-\paragraph{Test object / HTML Template}
-
-\begin{itemize}
-\item Depending on different approaches / Ideas (see next chapter), template looks different
-\item But general structure stays the same and independent variables can be defined
-\item Here we show different independent variables and variants
-\end{itemize}
+% I want to collect Lab and field data for dependent variables for comparison
+% This setup is a special case because lab bots (e.g. WPT) simulate at the same time real users for RUM data
 
 
-\subsubsection{Lab and Field}
 
-\begin{itemize}
-\item I want to collect Lab and field data for dependent variables for comparison
-\item This setup is a special case because lab bots (e.g. WPT) simulate at the same time real users for RUM data
-\end{itemize}
-
-
+\subsubsection{Synthetic Monitoring: WPT}
 
 
 % WebPageTest Configuration
 
-Possibilites:
-- preconfigured Amazon Web Services (AWS) AMIs
-- localhost Docker
+% Possibilites:
+%- preconfigured Amazon Web Services (AWS) AMIs
+%- localhost Docker
+
+
+\subsubsection{RUM: Google Analytics}
+
 
 
 % --------------------------------------------------------
 
 
+\subsection{Dependent Variables}
 
-\subsection{Independent Variables within template}
+% Measure effects
+% Performance metrics from Lab and Field, see terms and definitions
+% But also quality of RUM data. Because we could have a nice performance but RUM will be of bad quality
+
+
+% --------------------------------------------------------
+
+
+\subsection{Independent Variables}
 
 
 \begin{itemize}
@@ -132,8 +137,6 @@ Possibilites:
 \item IV 3 OTHER SCRIPT: Other tracking script included
 \item Other IVs not included but worth mentioning
 \end{itemize}
-
-
 
 
 \begin{table}[]
@@ -156,9 +159,6 @@ The default values are:
 Position: top-head
 Attribute: no attribute
 Other Script: false
-
-
-
 
 
 
@@ -205,22 +205,6 @@ Other Script: false
 
 % https://speedcurve.com/setup/lux/
 % SpeedCurve tracking script position: To add real user monitoring (RUM) to your site, paste this snippet at the top of the <HEAD> tag on your pages.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -478,11 +462,7 @@ It creates another script tag which is async and which loads the tracking code.
 
 
 
-
-
-
-% --------------------------------------------------------
-% --------------------------------------------------------
+% ------------------------------------------------------------------------------
 
 
 \section{Test Object: HTML Template / Test website ideas}
