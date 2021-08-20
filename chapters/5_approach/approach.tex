@@ -346,6 +346,19 @@ GA tracks this, as explained in section X.
 
 
 
+Measured by WPT and GA:
+- page load time
+- domain lookup time
+- page download time
+- redirection time
+- server connection time
+- server response time
+- Dom interactive time
+- Dom content loaded time
+
+
+
+
 % --------------------------------------------------
 
 \subsection{The Test Object: An E-Commerce Website}
@@ -374,12 +387,16 @@ GA tracks this, as explained in section X.
 % [Why]
 % Idea: Lab environment to have control over all and see effects of changing independent variables
 % Use this as the simplest test possible, not even POC (POC is http archive site)
+% boil it down to the script only: use different script sizes and see what happens when including them
     
 % [Setup]
 % website: simple html document
-% Hosting: github pages
+% source code: https://github.com/aramovski/aramovski.github.io
+% Hosting: github pages: https://aramovski.github.io/
 
 % [Evaluation]
+% Information gained from this experiment
+% Limitations and questions which can not be answered with this approach
 % Problem: Too far away from reality
 
 % --------------------------------------------------------
@@ -392,7 +409,8 @@ GA tracks this, as explained in section X.
 
 % [Setup]
 % website: mimic page weight as reported on http archive
-% Hosting: github pages
+% source. https://github.com/aram-yesildeniz/median/tree/gh-pages
+% Hosting: github pages: https://aram-yesildeniz.github.io/median/
 
 % [Evaluation]
 % Only good as a POC: Show that changing independent variables X affect result
@@ -614,7 +632,6 @@ GA tracks this, as explained in section X.
 
 
 
-
 % ----------------------
 
 
@@ -648,6 +665,20 @@ GA tracks this, as explained in section X.
 % as long as internet connection is stable along all tests, it should not make a big difference because i compare the different variants. Therefore internet connection will fall out of the equation
 
 
+% ----------------------
+
+\paragraph{Usage of the Bulk Test Feature}
+
+
+% Bulk testing is a feature for private instances only
+% actually gives pretty nice comparison graphics
+% Misuse this feature to test the same website X times
+
+% Measured metrics are exposed through a variety of files
+% Ill download csv files Summary and detail ? TODO check again how this is called
+
+% keep in mind that FV and RV for one test are directly next to each other
+% so to get data for all FVs, i would need data from rows 1 3 5 etc
 
 
 % --------------------------------------------------
@@ -658,16 +689,21 @@ GA tracks this, as explained in section X.
 % Setup: Use Unversial Analytics
 % Set sample rate to 100% for speed metrics
 
+% show code here
+
+% Data: could get it from GA dashboard / reports
+% but ill use the API to fetch the data more easily: https://aram-yesildeniz.github.io/google-analytics/
+
 
 
 % ------------------------------------------------------------------------------------------
-% ------------------------------------------------------------------------------------------s
+% ------------------------------------------------------------------------------------------
 
 
 \section{Conducting the Experiment}
 
 
-\subsection{Test Plan and Data Collection}
+\subsection{Test Runs and Data Collection}
 
 % The Google Analytics code is more or less fixed and there are no configurations.
 % It would be possible to change config of script, e.g. change sample rate, track other metrics etc.
@@ -682,23 +718,21 @@ GA tracks this, as explained in section X.
 \begin{table}[h]
 	\small
 	\centering
-	\begin{tabular}{ |c|c|c|c| } 
+	\begin{tabular}{ | l | l | l | l | } 
 	 \hline
-	  Variant \cellcolor{lightgrey} & Traffic Shaping \cellcolor{lightgrey} & Runs \cellcolor{lightgrey} & Date \cellcolor{lightgrey} \\
+	  Variant \cellcolor{lightgrey} &  Date \cellcolor{lightgrey} & Traffic Shaping \cellcolor{lightgrey} & Runs \cellcolor{lightgrey} \\
 	  \hline
-	  Original Website & 50 mbit/s & 500 & 2021-01-01 \\
-	  Mock without GA included & .. & .. & .. \\
+	  Original Website & 2021-05-28 & 50 Mbit/s & 500 \\
+	  Mock without GA included & 2021-05-29 & " & " \\
 	  \hline
-	  V-P1 & DSL & 500 & 2021-05-07 \\
-	  V-P2 & DSL & 500 & 2021-05-07 \\
-	  V-P3 & DSL & 500 & 2021-05-07 \\
+	  Variant P1 & 2021-05-30 & " & " \\
+	  Variant P2 & 2021-05-31 & " & " \\
+	  Variant P3 & 2021-06-02 & " & " \\
 	  \hline
-	  V-A1 & DSL & 500 & 2021-05-07 \\
-	  V-A2 & DSL & 500 & 2021-05-07 \\
-	  V-A3 & DSL & 500 & 2021-05-07 \\
+	  Variant A2 & 2021-06-04 & " & " \\
+	  Variant A3 & 2021-06-09 & " & " \\
 	  \hline
-	  V-OS1 & DSL & 500 & 2021-05-07 \\
-	  V-OS1 & DSL & 500 & 2021-05-07 \\
+	  Variant OS2 & 2021-06-03 & " & " \\
 	  \hline
 	  \end{tabular}
 	\medskip
