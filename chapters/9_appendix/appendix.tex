@@ -1,9 +1,234 @@
 \chapter{Appendix}
 
-\section{WebPageTest Bulk Tests}
+\section{Test Object Variants}
+
+
+\subsection{IV Position}
+
+\begin{sidewaysfigure}
+\begin{multicols}{3}
+\begin{center}
+\begin{lstlisting}[caption={Position 1}, language=html, numbers=none]
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Google Analytics -->
+        <script></script>
+        <!-- End Google Analytics -->
+
+        <title>
+        <meta>
+        <link>
+        <script>
+    </head>
+
+    <body>
+        ...
+    </body>
+</html>
+\end{lstlisting}
+\end{center}
+
+\columnbreak
+
+\begin{center}
+\begin{lstlisting}[caption={Position 2}, language=html, numbers=none]
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+        <meta>
+        <link>
+        <script>
+        
+        <!-- Google Analytics -->
+        <script></script>
+        <!-- End Google Analytics -->
+    </head>
+
+    <body>
+        ...
+    </body>
+</html>
+\end{lstlisting}
+\end{center}
+
+\columnbreak
+
+\begin{center}
+\begin{lstlisting}[caption={Position 3}, language=html, numbers=none]
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+        <meta>
+        <link>
+        <script>
+        
+    </head>
+
+    <body>
+        ...
+        <!-- Google Analytics -->
+        <script></script>
+        <!-- End Google Analytics -->
+    </body>
+</html>
+\end{lstlisting}
+\end{center}
+\end{multicols}
+\end{sidewaysfigure}
+
+
+\subsection{IV 2 Attribute}
+
+\begin{sidewaysfigure}
+\begin{multicols}{3}
+\begin{center}
+\begin{lstlisting}[caption={Attribute 1}, language=html, numbers=none]
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Google Analytics -->
+        <script></script>
+        <!-- End Google Analytics -->
+
+        <title>
+        <meta>
+        <link>
+        <script>
+    </head>
+
+    <body>
+        ...
+    </body>
+</html>
+\end{lstlisting}
+\end{center}
+
+\columnbreak
+
+\begin{center}
+\begin{lstlisting}[caption={Attribute 2}, language=html, numbers=none]
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Google Analytics -->
+        <script async></script>
+        <!-- End Google Analytics -->
+
+        <title>
+        <meta>
+        <link>
+        <script>
+    </head>
+
+    <body>
+        ...
+    </body>
+</html>
+\end{lstlisting}
+\end{center}
+
+\columnbreak
+
+\begin{center}
+\begin{lstlisting}[caption={Attribute 3}, language=html, numbers=none]
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Google Analytics -->
+        <script defer></script>
+        <!-- End Google Analytics -->
+
+        <title>
+        <meta>
+        <link>
+        <script>
+    </head>
+
+    <body>
+        ...
+    </body>
+</html>
+\end{lstlisting}
+\end{center}
+\end{multicols}
+\end{sidewaysfigure}
+
+
+
+
+
+
+
+
+\subsection{IV 3 Other Script}
+
+\begin{sidewaysfigure}
+\begin{multicols}{2}
+\begin{center}
+\begin{lstlisting}[caption={Other Script 1}, language=html, numbers=none]
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Google Analytics -->
+        <script></script>
+        <!-- End Google Analytics -->
+        
+
+
+
+
+        <title>
+        <meta>
+        <link>
+        <script>
+    </head>
+
+    <body>
+        ...
+    </body>
+</html>
+\end{lstlisting}
+\end{center}
+
+\columnbreak
+
+\begin{center}
+\begin{lstlisting}[caption={Other Script 2}, language=html, numbers=none]
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Google Analytics -->
+        <script></script>
+        <!-- End Google Analytics -->
+        
+        <!-- Other Script-->
+        <script></script>
+        <!-- End Other Script -->
+
+        <title>
+        <meta>
+        <link>
+        <script>
+    </head>
+
+    <body>
+        ...
+    </body>
+</html>
+\end{lstlisting}
+\end{center}
+\end{multicols}
+\end{sidewaysfigure}
+
+
+% ------------------------------------------------------------------------------------------------
+
+
 
 \subsection{Single Test Raw page data}
-
 
 WPT Metrics from summary file
 \begin{center}
@@ -161,14 +386,3 @@ the viewport above the fold. \\
 	\label{tab:myfirstlongtable}
 	\end{longtable}
 \end{center}
-
-
-\subsection{Single Test Raw object data}
-
-\subsection{Single Test Http archive (.har)}
-
-\subsection{Combined Test Raw page data}
-
-\subsection{Combined Test Raw object data}
-
-\subsection{Combined Test Aggregate data}
