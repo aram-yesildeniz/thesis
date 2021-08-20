@@ -6,19 +6,19 @@
 
 % [This chapter: Describe shortly all sections from this chapter]
 
-- In this chapter the practical work should be documented and explained
-- Elaboration of how the practical work could help answer the research question
-- Discussion of real-life setup and how experiments approach it
+%- In this chapter the practical work should be documented and explained
+%- Elaboration of how the practical work could help answer the research question
+%- Discussion of real-life setup and how experiments approach it
 
 
 % [In the next chapter]
 
-- Evaluation of data is in next chapter
+%- Evaluation of data is in next chapter
 
 
-% ---------------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------------------
 
-\section{Empirical Research Methods}
+\section{Introduction to Empirical Research Methods}
 
 
 % Overview of methods
@@ -63,10 +63,10 @@
 
 
 
-% ---------------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------------------
 
 
-\section{Test Setup / Design}
+\section{Experiment / Test Setup / Design}
 
 
 % What is test object (website)
@@ -77,59 +77,35 @@
 % add here this test setup image, and following subsections explain the different parts
 
 
-% --------------------------------------------------------
+% --------------------------------------------------
 
 
-\subsection{The Test Object: Website}
-
-% HTML Template
-
-% Depending on different approaches / Ideas (see next chapter), template looks different
-% But general structure stays the same and independent variables can be defined
-% Here we show different independent variables and variants
+\subsection{Components Overview}
 
 
-% --------------------------------------------------------
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{design.pdf}
+\caption{Components from the Controlled Experiment}
+\label{figure:design_setup}
+\end{center}
+\end{figure}
+
+a) Independent Variables
+
+b) Dependent Variables
+
+c) Test Object: Website, see section X.
+
+d) RUM
+
+e) Synthetic Monitoring
 
 
-\subsection{User Simulation and Data Collection using Synthetic Monitoring and RUM}
-
-% Synthetic monitoring: Double role: creats traffic which is captured by RUM, and also measured the website
-
-% I want to collect Lab and field data for dependent variables for comparison
-% This setup is a special case because lab bots (e.g. WPT) simulate at the same time real users for RUM data
-
-
-
-\subsubsection{Synthetic Monitoring: WPT}
-
-
-% WebPageTest Configuration
-
-% Possibilites:
-%- preconfigured Amazon Web Services (AWS) AMIs
-%- localhost Docker
-
-
-\subsubsection{RUM: Google Analytics}
-
-
-
-% --------------------------------------------------------
-
-
-\subsection{Dependent Variables}
-
-% Measure effects
-% Performance metrics from Lab and Field, see terms and definitions
-% But also quality of RUM data. Because we could have a nice performance but RUM will be of bad quality
-
-
-% --------------------------------------------------------
+% --------------------------------------------------
 
 
 \subsection{Independent Variables}
-
 
 \begin{itemize}
 \item IV 1 POSITION: Position of included analyitcs script. Values: top-head, bottom-head, bottom-body
@@ -139,17 +115,21 @@
 \end{itemize}
 
 
-\begin{table}[]
+\begin{table}[h]
+	\small
 	\centering
-	\begin{tabular}{| l | l | }
+	\begin{tabular}{ | l | l | }
 	\hline
-	Variable & Values \\
+	Independent Variable \cellcolor{lightgrey} & Possible Values \cellcolor{lightgrey} \\
 	\hline
 	Position & top-head, bottom-head, bottom-body \\
 	Attribute & no attribute, async, defer \\
 	Other Script & false, true \\
 	\hline
 	\end{tabular}
+	\medskip
+	\caption{Independent Variables}
+	\label{table:independent_variables}
 \end{table}
 
 I will compare the values from one independent variable only.
@@ -160,20 +140,12 @@ Position: top-head
 Attribute: no attribute
 Other Script: false
 
+% IV 1 explained in section X, ...
 
 
-\paragraph{Other IVs not included but worth mentioning}
+% -------------------------
 
-\begin{itemize}
-\item More or less infinite number of independent variables
-\item Again the big and important fact that each website is different
-\end{itemize}
-
-
-
-
-% ---- Position ----
-
+\subsubsection{IV 1: Position of the Tracking Script}
 
 % [GA Tracking Code]
 
@@ -185,8 +157,6 @@ Other Script: false
 % GA page: 
 
 % From Hotjar installation page: "Paste the Hotjar code into the <head> of every page you wish to track users and collect feedback. And then verify your installation."
-
-
 
 
 %Show multiple code examples
@@ -207,14 +177,8 @@ Other Script: false
 % SpeedCurve tracking script position: To add real user monitoring (RUM) to your site, paste this snippet at the top of the <HEAD> tag on your pages.
 
 
-
-
-
-
 \begin{sidewaysfigure}
-
 \begin{multicols}{3}
-
 \begin{center}
 \begin{lstlisting}[caption={Position 1}, language=html, numbers=none]
 <!DOCTYPE html>
@@ -284,18 +248,15 @@ Other Script: false
 </html>
 \end{lstlisting}
 \end{center}
-
 \end{multicols}
-
 \end{sidewaysfigure}
 
 
+% -------------------------
 
-% ------------------------------------------------------
+\subsubsection{IV 2: Attribute of the Tracking Script}
 
 
-
-% Attribute
 as described in section X. async and defer attributes on inline scripts are ignored.
 Still, as many suggest to add them, i will test this as well.
 it looks like attribute on inline script is ignored... "Inline JavaScript script tags ignore the defer or async attribute"
@@ -310,9 +271,7 @@ It creates another script tag which is async and which loads the tracking code.
 
 
 \begin{sidewaysfigure}
-
 \begin{multicols}{3}
-
 \begin{center}
 \begin{lstlisting}[caption={Attribute 1}, language=html, numbers=none]
 <!DOCTYPE html>
@@ -382,22 +341,17 @@ It creates another script tag which is async and which loads the tracking code.
 </html>
 \end{lstlisting}
 \end{center}
-
 \end{multicols}
-
 \end{sidewaysfigure}
 
 
+% -------------------------
 
-% ------------------------------------------------------
+\subsubsection{IV 3: Other Tracking Script Included}
 
 
-
-% Other Script
 \begin{sidewaysfigure}
-
 \begin{multicols}{2}
-
 \begin{center}
 \begin{lstlisting}[caption={Other Script 1}, language=html, numbers=none]
 <!DOCTYPE html>
@@ -451,70 +405,114 @@ It creates another script tag which is async and which loads the tracking code.
 </html>
 \end{lstlisting}
 \end{center}
-
-
 \end{multicols}
-
 \end{sidewaysfigure}
 
 
+% -------------------------
+
+\subsubsection{Other IVs not included but worth mentioning}
+
+% More or less infinite number of independent variables
+% Again the big and important fact that each website is different
+
+
+% --------------------------------------------------
+
+
+\subsection{Dependent Variables}
+
+% Measure effects
+% Performance metrics from Lab and Field, see terms and definitions
+% But also quality of RUM data. Because we could have a nice performance but RUM will be of bad quality
+
+
+Synthetic Monitoring Metrics:
+
+- Page Weight:
+	- Bytes
+	- Requests
+	
+- Navigation Timing Metrics:
+	- TTFB
+	- Document Complete
+	- Fully Loaded
+	
+- User-Centric Metrics:
+	- FCP
+	- Speed Index
+	- LCP
+	- CLS
+
+
+RUM Metrics:
+
+- PLT
+- Page Download Time
+- Server Connection Time
+- Domain Lookup Time
+- Redirection Time
+- Server Response Time
+- Domain interactive time
+- Domain Content Loaed Time
 
 
 
 
-% ------------------------------------------------------------------------------
 
+% --------------------------------------------------
 
-\section{Test Object: HTML Template / Test website ideas}
+\subsection{The Test Object: An E-Commerce Website}
 
+% Ideal: Use a real website. Is not possible
+% Mimic the website is one thing, but also all other aspects should be fairly similar: infrastructure (hosting), hardware used, network speed, traffic, etc.
+% This experiment/test is only an approximation and can serve as a starting point for further investigations
 
-\begin{itemize}
-\item Several ideas are proposed
-\item Each idea has pro and contra: each idea should be discussed of its usefulness, advantages and disadvantages
-\end{itemize}
+% Concrete File to mimic: HTML Template / document with all other resources that build up the website: CSS, JS, Fonts, Images, Videos, etc.
 
+% Depending on different approaches / Ideas (see next chapter), template looks different
+% But general structure stays the same and independent variables can be defined
+% Here we show different independent variables and variants
+
+% Several ideas are proposed
+% Each idea has pro and contra: each idea should be discussed of its usefulness, advantages and disadvantages
+
+% skeletal explained in section X, wordpress in section X, etc.
 
 
 % --------------------------------------------------------
 
-
-\subsection{WordPress}
-
-\begin{itemize}
-    \item Show usage of WordPress with some statistics: Why is it so verbreitet
-    \item Explain Plugin system
-    \item Explain Setup on localhost with wocommerce and GA plugin
-    \item Elaborate why this idea was not used
-\end{itemize}
+\subsubsection{Plain / Skeletal Website}
 
 
+% [Why]
+% Idea: Lab environment to have control over all and see effects of changing independent variables
+% Use this as the simplest test possible, not even POC (POC is http archive site)
+    
+% [Setup]
+% website: simple html document
+% Hosting: github pages
 
-
-% --------------------------------------------------------
-
-
-
-\subsection{Plain / Skeletal Website}
-
-\begin{itemize}
-    \item Idea: Lab environment to have control over all and see effects of changing independent variables
-    \item Problem: Too far away from reality
-    \item Use this as the simplest test possible, not even POC (POC is http archive site)
-\end{itemize}
-
-
-
+% [Evaluation]
+% Problem: Too far away from reality
 
 % --------------------------------------------------------
 
+\subsubsection{HTTP Archive inspired website}
 
 
-\subsection{HTTP Archive inspired website}
+% [Why]
+% Idea: Get correct page weight
 
-\begin{itemize}
-    \item Idea: Get correct page weight
-    \item POC: Show that changing independent variables X affect result
-\end{itemize}
+% [Setup]
+% website: mimic page weight as reported on http archive
+% Hosting: github pages
+
+% [Evaluation]
+% Only good as a POC: Show that changing independent variables X affect result
+% too far away from reality
+% maybe compare with real website ?
+
 
 % 2011 Butkiewicz: Correlation between website complexity and its performance:
 % -> Therefore it makes sense for me to use http archive inspired website approach, since page weight / page complexity impacts performance
@@ -524,19 +522,46 @@ It creates another script tag which is async and which loads the tracking code.
 
 
 % 2011 Grigorik Anatomy of modern web application
-- Chart with changes on time: apps are growing
+% - Chart with changes on time: apps are growing
 
 
 % 2014 Hogan basics-of-page-speed/ What Is the HTTP Archive?
 
+
+% --------------------------------------------------------
+
+\subsubsection{WordPress}
+
+
+% [Why]
+% Show usage of WordPress with some statistics: Why is it so verbreitet
+
+% [Plugins]
+% Explain Plugin system
+
+% [Setup]
+% Explain Setup on localhost with wocommerce and GA plugin
+
+% [Evaluation]
+% Elaborate why this idea was not used
 
 
 
 % --------------------------------------------------------
 
 
+\subsubsection{Mirroring a complete e-commerce website}
 
-\subsection{Mirroring a complete e-commerce website}
+
+% [Why]
+% Close to reality as possible
+
+% [Setup]
+% Tool support to mirror / download complete website
+% Use free hosting service to serve website
+
+% [Evaluation]
+% see evaluation chapter
 
 \begin{itemize}
 \item Which website / shop to clone? Show some statistics about biggest e-commerce websites in germany
@@ -640,13 +665,42 @@ Comparison Diagrams with fixed traffic shaping:
 
 
 
-
-% --------------------------------------------------------
-
+% --------------------------------------------------
 
 
+\subsection{Synthetic Monitoring: Create Traffic and Collect Data}
 
-\section{Test Runs}
+% Synthetic monitoring: Double role: creats traffic which is captured by RUM, and also measured the website
+
+% I want to collect Lab and field data for dependent variables for comparison
+% This setup is a special case because lab bots (e.g. WPT) simulate at the same time real users for RUM data
+
+
+% -------------------------------------
+
+
+\subsubsection{WebPageTest}
+
+
+% WebPageTest Configuration
+
+% Possibilites:
+%- preconfigured Amazon Web Services (AWS) AMIs
+%- localhost Docker
+
+
+% --------------------------------------------------
+
+
+\subsection{Real-User Monitoring: Google Analytics}
+
+
+
+
+% ------------------------------------------------------------------------------------------
+
+
+\section{Conducting the Experiment}
 
 \begin{itemize}
     \item This section covers all conducted test runs
@@ -655,7 +709,7 @@ Comparison Diagrams with fixed traffic shaping:
 
 
 
-% --------------------------------------------------------
+% --------------------------------------------------
 
 
 
@@ -878,7 +932,7 @@ The comparison between mock and original is part of chapter Test Object
 
 
 
-\subsection{Test Protocol}
+\subsection{Test Protocol, Experiment Conducting Procedure}
 
 \begin{itemize}
 \item Deploy variant of index.html by pushing to GitHub
@@ -893,16 +947,3 @@ The comparison between mock and original is part of chapter Test Object
 
 
 
-
-% --------------------------------------------------------
-
-
-
-
-\subsection{Tool support for diagrams and data analysis}
-
-\begin{itemize}
-\item python
-\item Matplotlib
-\item seaborn library
-\end{itemize}
