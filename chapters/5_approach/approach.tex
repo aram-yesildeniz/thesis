@@ -68,20 +68,29 @@
 
 \section{Experiment / Test Setup / Design}
 
+% [Research Question]
 
-% What is test object (website)
-% What are dependent variables: Performance metrics
-% What are independent variables: Specific changes in test object (see next chapter)
-% Kohavi 2016: Sample size, collect right metrics, track right users, randomization unit
-
-% add here this test setup image, and following subsections explain the different parts
+The research question is... as explained in section X.
+One way to approximate answers is with the following experiment.
 
 
-% --------------------------------------------------
+% [Design]
 
+The goal of the experiment is to measure / observe changes if the tracking script, instrumented by the independent variables, changes the performance of the website, instrumented by the dependent variables.
 
-\subsection{Components Overview}
+The setup consists of five parts (figure X):
 
+a) Independent Variables Specific changes in test object (see next chapter)
+
+b) Dependent Variables; Performance metrics
+
+c) Test Object: Website, see section X.
+
+d) RUM
+
+e) Synthetic Monitoring
+
+The different parts will be discussed in more detail below.
 
 \begin{figure}[h!]
 \begin{center}
@@ -91,29 +100,26 @@
 \end{center}
 \end{figure}
 
-a) Independent Variables
 
-b) Dependent Variables
 
-c) Test Object: Website, see section X.
-
-d) RUM
-
-e) Synthetic Monitoring
+% Kohavi 2016: Sample size, collect right metrics, track right users, randomization unit
 
 
 % --------------------------------------------------
 
-
 \subsection{Independent Variables}
 
-\begin{itemize}
-\item IV 1 POSITION: Position of included analyitcs script. Values: top-head, bottom-head, bottom-body
-\item IV 2 ATTRIBUTE: Attribute of included analyitcs script: no-attribute, async, defer
-\item IV 3 OTHER SCRIPT: Other tracking script included
-\item Other IVs not included but worth mentioning
-\end{itemize}
+% [What are they representing]
 
+As will be explained in section X, the test object is a website, a main HTML document to be precise.
+I want to see if and how the tracking script influences the performance of the website.
+The independent variables reflect how the tracking script is included into the website.
+
+% [Page Tagging]
+
+As described in section X, page tagging is the method of choice of including a tracking script into a website.
+Different configurations and options exist of how to include a script into a website.
+The independent variables reflect those options (table X).
 
 \begin{table}[h]
 	\small
@@ -122,9 +128,9 @@ e) Synthetic Monitoring
 	\hline
 	Independent Variable \cellcolor{lightgrey} & Possible Values \cellcolor{lightgrey} \\
 	\hline
-	Position & top-head, bottom-head, bottom-body \\
-	Attribute & no attribute, async, defer \\
-	Other Script & false, true \\
+	Position of the Tracking Script & top-head, bottom-head, bottom-body \\
+	Attribute of the Tracking Script & none, async, defer \\
+	Other Tracking Script included & no, yes \\
 	\hline
 	\end{tabular}
 	\medskip
@@ -132,41 +138,58 @@ e) Synthetic Monitoring
 	\label{table:independent_variables}
 \end{table}
 
-I will compare the values from one independent variable only.
+% [Comparison]
+
+When evaluating,I will compare the values from one independent variable only.
 Therefore, when comparing the values of one independent variable, i need to set a default value for the other independent variables.
-The default values are:
 
-Position: top-head
-Attribute: no attribute
-Other Script: false
+Each IV is explained in more detail below.
 
-% IV 1 explained in section X, ...
-
+Of course theoretically there are unlimited possible IVs.
+Some examples are described in section X.
 
 % -------------------------
 
 \subsubsection{IV 1: Position of the Tracking Script}
+
+I use GA.
+
+Multiple options exist.
+
+What is Google suggesting?
 
 % [GA Tracking Code]
 
 % Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
 % And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
 
-% Multiple positions possible
-
-% GA page: 
-
-% From Hotjar installation page: "Paste the Hotjar code into the <head> of every page you wish to track users and collect feedback. And then verify your installation."
-
-
-%Show multiple code examples
-%Explain whats going on: script tag, create script element etc.
-%Maybe also show Hotjar example to see that they are similar
-
 
 % https://developers.google.com/analytics/devguides/collection/analyticsjs
 %- this async pattern is used so that all browsers will load it async
 %- we can just use async attribute for newer browsers...
+
+
+% [Explanation]
+
+What is the GA script doing?
+Actually, it creates another async script tag which loads the actual analytics JS.
+So basically it should not really play a role where we place it.
+Evaluation will show.
+
+What does the code snippet do?
+Basically the sync part is only..
+It creates another script tag which is async and which loads the tracking code.
+
+
+% [Other examples]
+
+Other vendors suggest other positions.
+
+% From Hotjar installation page: "Paste the Hotjar code into the <head> of every page you wish to track users and collect feedback. And then verify your installation."
+
+% Show multiple code examples
+% Explain whats going on: script tag, create script element etc.
+% Maybe also show Hotjar example to see that they are similar
 
 
 % Compare how GA script is included into web site with some other analytics services examples
@@ -182,24 +205,33 @@ Other Script: false
 
 \subsubsection{IV 2}
 
-as described in section X. async and defer attributes on inline scripts are ignored.
+As explained above, inside the GA tracking code snippet, another script tag with the attribute async is created.
+Async has the effect, that..., as explained in section X.
+
+As described in section X. async and defer attributes on inline scripts are ignored, see section X.
+"Inline JavaScript script tags ignore the defer or async attribute"
+As the "wrapper" snippet is a inline script (no src attribute), the attributes on this script tag should not have any effect.
 Still, as many suggest to add them, i will test this as well.
-it looks like attribute on inline script is ignored... "Inline JavaScript script tags ignore the defer or async attribute"
-so those variables will not make any sense? Do i see this in the data?
-As i can see how the GA is included, it will create a async attribute to fetch the analytics.js
 
+I expect that changing this variable has no impact.
+Evaluation shows that...
 
-% Explanation of Tracking Script
-What does the code snippet do?
-Basically the sync part is only..
-It creates another script tag which is async and which loads the tracking code.
-
-% see appendix X
+% for a code example of IV 2, see appendix X
 
 
 % -------------------------
 
 \subsubsection{IV 3}
+
+Many websites use multiple RUM / tracking scripts.
+%show some examples
+
+Do they effect each other?
+
+From technical perspective, loading another script will take some extra time, depending on network, connection, bytes needed to transfer etc.
+
+With changing this IV, we can see the impact of it in evaluation.
+
 
 % see appendix X
 
@@ -215,14 +247,11 @@ It creates another script tag which is async and which loads the tracking code.
 
 \subsubsection{Possible Variations of the Independent Variables}
 
+When combining all IVs, different variations occur (table X).
+
 % as described before, i will compare the values within one independent variable. 
 % This is needed in order to compare the impact of the different values within one IV.
 % For example, i want to measure if there is a difference in performance between the different script attributes. To measure this, i set the default values for the other IVs and vary the values for the IV attribute
-
-% Positions:
-% 1: Top of head element
-% 2: just before closing head element
-% 3: just before closing body element
 
 
 \begin{table}[h]
@@ -249,6 +278,14 @@ It creates another script tag which is async and which loads the tracking code.
 	\label{table:test_object_variants}
 \end{table}
 
+% [Table Explanation]
+
+Some variants are there twice:
+Hence i will cut out variants X and Y.
+
+
+% [Comparison]
+
 % I will not compare variants which are not from the same subgroup, e.g. Variant A2 will not be compared to Variant OS2.
 % Because the first row of the variants table also includes the default values for Attribute and Other Scripts, VP1 is equal to VA1 and VO1.
 
@@ -271,13 +308,18 @@ It creates another script tag which is async and which loads the tracking code.
 % Performance metrics from Lab and Field, see terms and definitions
 % But also quality of RUM data. Because we could have a nice performance but RUM will be of bad quality
 
+\subsubsection{Page Weight}
 
-Synthetic Monitoring Metrics:
-
-- Page Weight:
 	- Bytes
 	- Requests
-	
+
+\subsubsection{Measures from Synthetic Monitoring}
+
+Categories explained in section X.
+WPT measures this in section X.
+
+I will measure this:
+
 - Navigation Timing Metrics:
 	- TTFB
 	- Document Complete
@@ -289,8 +331,9 @@ Synthetic Monitoring Metrics:
 	- LCP
 	- CLS
 
+\subsubsection{Measures from RUM}
 
-RUM Metrics:
+GA tracks this, as explained in section X.
 
 - PLT
 - Page Download Time
@@ -300,8 +343,6 @@ RUM Metrics:
 - Server Response Time
 - Domain interactive time
 - Domain Content Loaed Time
-
-
 
 
 
@@ -626,17 +667,16 @@ RUM Metrics:
 \section{Conducting the Experiment}
 
 
-
 \subsection{Test Plan and Data Collection}
 
-The Google Analytics code is more or less fixed and there are no configurations.
-It would be possible to change config of script, e.g. change sample rate, track other metrics etc.
-But it is not possible to change default tracking behaviour (?)
+% The Google Analytics code is more or less fixed and there are no configurations.
+% It would be possible to change config of script, e.g. change sample rate, track other metrics etc.
+% But it is not possible to change default tracking behaviour (?)
 
-How the script is included into the file should reflected withing Website Variations
+% How the script is included into the file should reflected withing Website Variations
 
-I will use only one WPT Configuration for all tests.
-Other WPT config can be used in future work, e.g. emulate mobile device.
+% I will use only one WPT Configuration for all tests.
+% Other WPT config can be used in future work, e.g. emulate mobile device.
 
 
 \begin{table}[h]
@@ -646,7 +686,7 @@ Other WPT config can be used in future work, e.g. emulate mobile device.
 	 \hline
 	  Variant \cellcolor{lightgrey} & Traffic Shaping \cellcolor{lightgrey} & Runs \cellcolor{lightgrey} & Date \cellcolor{lightgrey} \\
 	  \hline
-	  Original Website & .. & .. & .. \\
+	  Original Website & 50 mbit/s & 500 & 2021-01-01 \\
 	  Mock without GA included & .. & .. & .. \\
 	  \hline
 	  V-P1 & DSL & 500 & 2021-05-07 \\
@@ -673,7 +713,7 @@ Other WPT config can be used in future work, e.g. emulate mobile device.
 
 \begin{itemize}
 \item Deploy variant of index.html by pushing to GitHub
-\item Start Network Link Conditioner with specified config on local machine
+% \item Start Network Link Conditioner with specified config on local machine
 \item Test internet speed with speedtest-cli
 \item Start local WPT server and agent
 \item Configure WPT according to specified setup and add list of urls to bulk test interface
