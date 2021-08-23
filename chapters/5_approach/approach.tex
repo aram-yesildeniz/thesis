@@ -92,6 +92,7 @@ e) Synthetic Monitoring
 
 The different parts will be discussed in more detail below.
 
+%TODO write Variant N in figure and use dots in between V2 and VN
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{design.pdf}
@@ -230,10 +231,12 @@ Do they effect each other?
 
 From technical perspective, loading another script will take some extra time, depending on network, connection, bytes needed to transfer etc.
 
-With changing this IV, we can see the impact of it in evaluation.
+With changing this IV, we can see the impact of it in evaluation?
 
+I will use Hotjar as another script.
+Show here that it works with Hotjar dashboard
 
-% see appendix X
+% see appendix X for html code example
 
 % -------------------------
 
@@ -328,8 +331,7 @@ I will measure this:
 - User-Centric Metrics:
 	- FCP
 	- Speed Index
-	- LCP
-	- CLS
+	- Core Web Vitals: LCP, CLS, TBT (proxy for FID)
 
 \subsubsection{Measures from RUM}
 
@@ -679,6 +681,8 @@ Measured by WPT and GA:
 
 % keep in mind that FV and RV for one test are directly next to each other
 % so to get data for all FVs, i would need data from rows 1 3 5 etc
+
+% i use this for quick comparison of original to test object
 
 
 % --------------------------------------------------

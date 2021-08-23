@@ -10,7 +10,7 @@
 % [In the next chapter]
 
 
-
+%TODO not in own section this...
 \section{Preamble: Tool support for diagrams and data analysis}
 
 
@@ -35,7 +35,7 @@
 % -------------------------------------------------------------
 
 
-\subsection{Original Website vs Mock without GA}
+\subsection{Original Website vs Test Website without GA}
 
 % how "good" is the mock?
 
@@ -44,28 +44,43 @@
 % -------------------------------------------------------------
 
 
-\subsection{Mock without GA vs Variant P X}
+\subsection{Test Website without GA vs Variant P X}
 
 % use position X is which is suggested by Google
 
 
+% Density in CLS ??
+
+
 % -------------------------------------------------------------
 
-\subsection{Position: Variant P1 vs Variant P2 vs Variant P3}
+\subsection{IV Position: Variant P1 vs Variant P2 vs Variant P3}
 
 
 % whats the impact of the position ?
 
+TTFB:
+- Repeat View is slower (on median)
+
 % -------------------------------------------------------------
 
 
-\subsection{Attribute: Variant A1 vs Variant A2 vs Variant A3}
+\subsection{IV Attribute: Variant A1 vs Variant A2 vs Variant A3}
 
 % so does it really not matter ?
 
+The GA measurements are median over all views, first view and repeat view.
+Hence they are always the same for FV and RV.
+With this setup, we do not have different data for RUM measurements from Google depending on if the website was loaded the first time or from cache.
+
+
+CLS:
+- medians are all the same
+- 
+
 % -------------------------------------------------------------
 
-\subsection{Other Script: Variant OS1 vs Variant OS2}
+\subsection{IV Other Script: Variant OS1 vs Variant OS2}
 
 
 
