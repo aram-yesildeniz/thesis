@@ -92,7 +92,6 @@ e) Synthetic Monitoring
 
 The different parts will be discussed in more detail below.
 
-%TODO write Variant N in figure and use dots in between V2 and VN
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{design.pdf}
@@ -108,7 +107,7 @@ The different parts will be discussed in more detail below.
 
 % --------------------------------------------------
 
-\subsection{Independent Variables}
+\subsection{(a) Independent Variables}
 
 % [What are they representing]
 
@@ -182,6 +181,15 @@ Basically the sync part is only..
 It creates another script tag which is async and which loads the tracking code.
 
 
+% what exactly is the script doing? https://developers.google.com/analytics/devguides/collection/analyticsjs/
+
+
+% where to include: https://developers.google.com/analytics/devguides/collection/analyticsjs/
+% The Google Analytics tag should be added near the top of the <head> tag and before any other script or CSS tags
+
+
+
+
 % [Other examples]
 
 Other vendors suggest other positions.
@@ -204,7 +212,7 @@ Other vendors suggest other positions.
 
 % -------------------------
 
-\subsubsection{IV 2}
+\subsubsection{IV 2: Attribute of the Tracking Script}
 
 As explained above, inside the GA tracking code snippet, another script tag with the attribute async is created.
 Async has the effect, that..., as explained in section X.
@@ -222,7 +230,7 @@ Evaluation shows that...
 
 % -------------------------
 
-\subsubsection{IV 3}
+\subsubsection{IV 3: Other Tracking Script is included}
 
 Many websites use multiple RUM / tracking scripts.
 %show some examples
@@ -305,12 +313,13 @@ Hence i will cut out variants X and Y.
 % --------------------------------------------------
 
 
-\subsection{Dependent Variables}
+\subsection{(b) Dependent Variables}
 
 % Measure effects
 % Performance metrics from Lab and Field, see terms and definitions
 % But also quality of RUM data. Because we could have a nice performance but RUM will be of bad quality
 
+%TODO maybe i dont need own sections for those. Reference here where they are explained
 \subsubsection{Page Weight}
 
 	- Bytes
@@ -363,7 +372,7 @@ Measured by WPT and GA:
 
 % --------------------------------------------------
 
-\subsection{The Test Object: An E-Commerce Website}
+\subsection{(c) The Test Object: An E-Commerce Website}
 
 % Ideal: Use a real website. Is not possible
 % Mimic the website is one thing, but also all other aspects should be fairly similar: infrastructure (hosting), hardware used, network speed, traffic, etc.
@@ -563,14 +572,17 @@ Measured by WPT and GA:
 
 % [Evaluation]
 
+
+% add screenshots of original vs test
 % see evaluation chapter
+
 
 
 
 % --------------------------------------------------
 
 
-\subsection{Synthetic Monitoring: Create Traffic and Collect Data}
+\subsection{(d) Synthetic Monitoring: Create Traffic and Collect Data}
 
 % Synthetic monitoring: Double role: creats traffic which is captured by RUM, and also measured the website
 
@@ -688,7 +700,7 @@ Measured by WPT and GA:
 % --------------------------------------------------
 
 
-\subsection{Real-User Monitoring: Google Analytics}
+\subsection{(e) Real-User Monitoring: Google Analytics}
 
 % Setup: Use Unversial Analytics
 % Set sample rate to 100% for speed metrics
@@ -697,6 +709,12 @@ Measured by WPT and GA:
 
 % Data: could get it from GA dashboard / reports
 % but ill use the API to fetch the data more easily: https://aram-yesildeniz.github.io/google-analytics/
+
+% what exactly is the script doing? https://developers.google.com/analytics/devguides/collection/analyticsjs/
+
+
+% where to include: https://developers.google.com/analytics/devguides/collection/analyticsjs/
+% The Google Analytics tag should be added near the top of the <head> tag and before any other script or CSS tags
 
 
 
@@ -707,7 +725,7 @@ Measured by WPT and GA:
 \section{Conducting the Experiment}
 
 
-\subsection{Test Runs and Data Collection}
+% [Schedule Runs]
 
 % The Google Analytics code is more or less fixed and there are no configurations.
 % It would be possible to change config of script, e.g. change sample rate, track other metrics etc.
@@ -745,9 +763,7 @@ Measured by WPT and GA:
 \end{table}
 
 
-% --------------------------------------------------
-
-\subsection{Test Protocol, Experiment Conducting Procedure}
+% [Procedure]
 
 \begin{itemize}
 \item Deploy variant of index.html by pushing to GitHub
@@ -760,6 +776,13 @@ Measured by WPT and GA:
 \item On GA helper site, fetch and download data for the current day
 \end{itemize}
 
+
+% [Data Collection]
+
+
+% [Data Analysis]
+
+% python code footnote github
 
 
 % [Transition]

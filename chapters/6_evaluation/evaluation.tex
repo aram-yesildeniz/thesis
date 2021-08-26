@@ -10,16 +10,13 @@
 % [In the next chapter]
 
 
-%TODO not in own section this...
-\section{Preamble: Tool support for diagrams and data analysis}
 
+% [Tools]
 
 % python
 % Matplotlib
 % seaborn library
 % source code for creating plots is here: 
-
-
 
 
 % https://hpbn.co/primer-on-web-performance/#analyzing-real-user-measurement-data
@@ -39,17 +36,109 @@
 
 % how "good" is the mock?
 
+%TODO add page weight
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/original_vs_test/plt_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/original_vs_test/plt_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Page Load Time. First and Repeat View.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+Figure \ref{figure:plt_original_test}:
+FV: very similar, original has less distribution
+RV: test slightly faster, difference in median is 595 ms 
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/original_vs_test/fcp_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/original_vs_test/fcp_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Firct Contentful Paint. First and Repeat View.}
+	\label{figure:fcp_original_test}
+\end{figure}
+
+Figure \ref{figure:fcp_original_test}:
+Similar as for PLT.
+FV: more or less the same
+RV: Test is slightly faster. This is because on test environment i can not control caching / cache-header settings of webserver. So more resources get cached automatically.
+
+
+
+% add LCP / Speed Index ?
+
+
 
 
 % -------------------------------------------------------------
 
 
-\subsection{Test Website without GA vs Variant P X}
+\subsection{Test Website without GA vs Variant P1}
 
-% use position X is which is suggested by Google
+% use position 1 (top of head) is which is suggested by Google
 
 
-% Density in CLS ??
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/test_vs_position/plt_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/test_vs_position/plt_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Page Load Time. First and Repeat View.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/test_vs_position/lcp_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/test_vs_position/lcp_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Largest Contentful Paint. First and Repeat View.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+
 
 
 % -------------------------------------------------------------
