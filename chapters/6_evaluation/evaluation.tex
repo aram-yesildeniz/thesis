@@ -52,7 +52,7 @@
 		%\caption{A subfigure}
 		\label{fig:sub2}
 	\end{subfigure}
-	\caption{Page Load Time. First and Repeat View.}
+	\caption{Page Load Time, Original vs Test.}
 	\label{figure:plt_original_test}
 \end{figure}
 
@@ -75,7 +75,7 @@ RV: test slightly faster, difference in median is 595 ms
 		%\caption{A subfigure}
 		\label{fig:sub2}
 	\end{subfigure}
-	\caption{Firct Contentful Paint. First and Repeat View.}
+	\caption{First Contentful Paint, Original vs Test.}
 	\label{figure:fcp_original_test}
 \end{figure}
 
@@ -113,7 +113,7 @@ RV: Test is slightly faster. This is because on test environment i can not contr
 		%\caption{A subfigure}
 		\label{fig:sub2}
 	\end{subfigure}
-	\caption{Page Load Time. First and Repeat View.}
+	\caption{Page Load Time, Test vs Variant P1.}
 	\label{figure:plt_original_test}
 \end{figure}
 
@@ -133,7 +133,7 @@ RV: Test is slightly faster. This is because on test environment i can not contr
 		%\caption{A subfigure}
 		\label{fig:sub2}
 	\end{subfigure}
-	\caption{Largest Contentful Paint. First and Repeat View.}
+	\caption{Largest Contentful Paint, Test vs Variant P1.}
 	\label{figure:plt_original_test}
 \end{figure}
 
@@ -151,6 +151,94 @@ RV: Test is slightly faster. This is because on test environment i can not contr
 TTFB:
 - Repeat View is slower (on median)
 
+
+% DOM Content Loaded
+% Page Load Time
+% Speed Index
+% Largest Contentful Paint
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV1_position/dcl_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV1_position/dcl_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{DOM Content Loaded, Variant P1 vs Variant P2 vs Variant P3, with GA.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV1_position/plt_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV1_position/plt_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Page Load Time, Variant P1 vs Variant P2 vs Variant P3, with GA.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV1_position/si_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV1_position/si_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Speed Index, Variant P1 vs Variant P2 vs Variant P3.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV1_position/lcp_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV1_position/lcp_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Largest Contentful Paint, Variant P1 vs Variant P2 vs Variant P3.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+
+
+
+
 % -------------------------------------------------------------
 
 
@@ -163,18 +251,198 @@ Hence they are always the same for FV and RV.
 With this setup, we do not have different data for RUM measurements from Google depending on if the website was loaded the first time or from cache.
 
 
-CLS:
-- medians are all the same
-- 
+% Page Load Time
+% Fully Loaded
+% Speed Index
+% Largest Contentful Paint
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV2_attribute/plt_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV2_attribute/plt_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Page Load Time, Variant A1 vs Variant A2 vs Variant A3, with GA.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV2_attribute/fully_loaded_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV2_attribute/fully_loaded_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Fully Loaded, Variant A1 vs Variant A2 vs Variant A3.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+% FV: A1 seems to have less distribution, where as A2 and A3 have some distributed data
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV2_attribute/si_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV2_attribute/si_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Speed Index, Variant A1 vs Variant A2 vs Variant A3.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV2_attribute/lcp_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV2_attribute/lcp_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Largest Contentful Paint, Variant A1 vs Variant A2 vs Variant A3.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+
+
+
+%CLS:
+%- medians are all the same
 
 % -------------------------------------------------------------
 
 \subsection{IV Other Script: Variant OS1 vs Variant OS2}
 
 
+% Page Load Time
+% Fully Loaded
+% Speed Index
+% Total Blocking Time
 
 
 
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV3_other_script/plt_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV3_other_script/plt_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Page Load Time, Variant OS1 vs Variant OS2, with GA.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV3_other_script/fully_loaded_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV3_other_script/fully_loaded_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Fully Loaded, Variant OS1 vs Variant OS2.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV3_other_script/si_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV3_other_script/si_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Speed Index, Variant OS1 vs Variant OS2.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV3_other_script/tbt_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV3_other_script/tbt_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Total Blocking Time, Variant OS1 vs Variant OS2.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+% only IV OS seems to have some impact on the performance of the website
+% This makes sense as an additional resource has to be loaded.
+% The IVs Position and Attribute only alter how the resource is being loaded, but they dont change the page weight
 
 
 % ----------------------------------------------------------------------------------------------------
