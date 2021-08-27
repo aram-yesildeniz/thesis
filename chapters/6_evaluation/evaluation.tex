@@ -35,8 +35,55 @@
 \subsection{Original Website vs Test Website without GA}
 
 % how "good" is the mock?
+here is some text here is some text here is some text here is some text here is some text here is some text 
+here is some text here is some text here is some text here is some text here is some text here is some text 
+here is some text here is some text here is some text here is some text here is some text here is some text 
 
-%TODO add page weight
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/original_vs_test/bytes_fv.pdf}
+		%\caption{Bytes First View}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/original_vs_test/requests_fv.pdf}
+		%\caption{Requests First View}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Page Weight First View, Original vs Test.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/original_vs_test/bytes_rv.pdf}
+		%\caption{Bytes First View}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/original_vs_test/requests_rv.pdf}
+		%\caption{Requests}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Page Weight Repeat View, Original vs Test.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+
+here is some text here is some text here is some text here is some text here is some text here is some text 
+here is some text here is some text here is some text here is some text here is some text here is some text 
+here is some text here is some text here is some text here is some text here is some text here is some text 
+here is some text here is some text here is some text here is some text here is some text here is some text 
+
+
 
 \begin{figure}
 	\centering
@@ -59,6 +106,8 @@
 Figure \ref{figure:plt_original_test}:
 FV: very similar, original has less distribution
 RV: test slightly faster, difference in median is 595 ms 
+
+here is some text here is some text here is some text here is some text here is some text here is some text 
 
 
 \begin{figure}
@@ -97,6 +146,30 @@ RV: Test is slightly faster. This is because on test environment i can not contr
 \subsection{Test Website without GA vs Variant P1}
 
 % use position 1 (top of head) is which is suggested by Google
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/test_vs_position/bytes_fv.pdf}
+		\caption{Bytes First View}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/test_vs_position/requests_fv.pdf}
+		\caption{Requests First View}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Page Weight First View, Test vs Variant P1.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+% Bytes FV: as expected, we load a little bit more JS (the GA alanytics script). The rest is the same.
+% Requests FV: additionally to the more JS request in P1, some more resources are fetched, which are requested by the analyitcs script (check this again)
+
 
 
 \begin{figure}
@@ -148,8 +221,8 @@ RV: Test is slightly faster. This is because on test environment i can not contr
 
 % whats the impact of the position ?
 
-TTFB:
-- Repeat View is slower (on median)
+%TTFB:
+%- Repeat View is slower (on median)
 
 
 % DOM Content Loaded
@@ -449,6 +522,9 @@ With this setup, we do not have different data for RUM measurements from Google 
 
 
 \section{Other Aspects and Points of Discussion}
+
+% Quality of the collected data.
+% this is part of research question: do the different variants change the collected data ?
 
 
 % For each attempt, describe: Threats to validity, generalizability
