@@ -1,6 +1,7 @@
 \chapter{Approach}
 \label{chapter:approach}
 
+[tbd]
 
 % [Last chapter]
 
@@ -20,6 +21,7 @@
 
 \section{Introduction to Empirical Research Methods}
 
+[tbd]
 
 % Overview of methods
 
@@ -48,6 +50,8 @@
 
 \subsection{Controlled Experiments in Computer Science}
 
+[tbd]
+
 
 % Short overview about controlled experiments in computer science
 % Design: Show test setup image: Independent and dependent variables
@@ -72,6 +76,7 @@
 % [Research Question and Design]
 
 As stated in section X, a hypothesis of this work is that tracking tools such as RUM slow down websites.
+In order to test the hypothesis, an experiment is implemented.
 Figure X displays the different parts of the experiment:
 
 \begin{enumerate}[label=(\alph*)]
@@ -82,7 +87,6 @@ Figure X displays the different parts of the experiment:
 \item RUM (the tracking script) is included into the test object by different variants. 
 \end{enumerate}
 
-The different parts of the experiment setup will be discussed in more detail below.
 
 \begin{figure}[h!]
 \begin{center}
@@ -91,6 +95,8 @@ The different parts of the experiment setup will be discussed in more detail bel
 \label{figure:design_setup}
 \end{center}
 \end{figure}
+
+The different parts of the experiment setup will be discussed in more detail below.
 
 
 % Kohavi 2016: Sample size, collect right metrics, track right users, randomization unit
@@ -102,26 +108,28 @@ The different parts of the experiment setup will be discussed in more detail bel
 
 % [What are they representing]
 
-As will be explained in section X, the test object is a website, a main HTML document to be precise.
-I want to see if and how the tracking script influences the performance of the website.
-The independent variables reflect how the tracking script is included into the website.
+The IVs reflect two things:
+How the tracking script is included into the website, and if another tracking script is present or not.
+All IVs and the values they can take are listed in table X:
 
-% [Page Tagging]
+As described in section X, page tagging is the method of choice when including a tracking script into a website.
+Page tagging is in essence the addition of a <script>-Tag to the main HTML document.
+Different options exist when adding a script to the main document.
+IV 1 describes the the position of the tracking script within the main document.
+IV 2 describes the attribute of the included script tag.
 
-As described in section X, page tagging is the method of choice of including a tracking script into a website.
-Different configurations and options exist of how to include a script into a website.
-The independent variables reflect those options (table X).
+If another tracking script, which may interfere with the "main" tracking script, is presented in the main document or not, is reflected in IV 3.
 
 \begin{table}[h]
 	\small
 	\centering
-	\begin{tabular}{ | l | l | }
+	\begin{tabular}{ | l | l | l | }
 	\hline
-	Independent Variable \cellcolor{lightgrey} & Possible Values \cellcolor{lightgrey} \\
+	IV \cellcolor{lightgrey} & Describes \cellcolor{lightgrey} & Possible Values \cellcolor{lightgrey} \\
 	\hline
-	Position of the Tracking Script & top-head, bottom-head, bottom-body \\
-	Attribute of the Tracking Script & none, async, defer \\
-	Other Tracking Script included & no, yes \\
+	1 & Position of the Tracking Script & top-head, bottom-head, bottom-body \\
+	2 & Attribute of the Tracking Script & none, async, defer \\
+	3 & Other Tracking Script included & no, yes \\
 	\hline
 	\end{tabular}
 	\medskip
@@ -129,95 +137,61 @@ The independent variables reflect those options (table X).
 	\label{table:independent_variables}
 \end{table}
 
-% [Comparison]
 
-When evaluating,I will compare the values from one independent variable only.
-Therefore, when comparing the values of one independent variable, i need to set a default value for the other independent variables.
-
-Each IV is explained in more detail below.
-
-Of course theoretically there are unlimited possible IVs.
-Some examples are described in section X.
+The three IVs are discussed in more detail in the following.
+Other IVs considered, but not incorporated within the experiment, are discussed in section X.
 
 % -------------------------
 
 \subsubsection{IV 1: Position of the Tracking Script}
 
-I use GA.
-
-Multiple options exist.
-
-What is Google suggesting?
 
 % [GA Tracking Code]
 
-% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
-% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
-
-
-% https://developers.google.com/analytics/devguides/collection/analyticsjs
-%- this async pattern is used so that all browsers will load it async
-%- we can just use async attribute for newer browsers...
-
-
-% [Explanation]
-
-What is the GA script doing?
-Actually, it creates another async script tag which loads the actual analytics JS.
-So basically it should not really play a role where we place it.
-Evaluation will show.
-
-What does the code snippet do?
-Basically the sync part is only..
-It creates another script tag which is async and which loads the tracking code.
-
-
-% what exactly is the script doing? https://developers.google.com/analytics/devguides/collection/analyticsjs/
-
-
-% where to include: https://developers.google.com/analytics/devguides/collection/analyticsjs/
-% The Google Analytics tag should be added near the top of the <head> tag and before any other script or CSS tags
-
-
-
+Google Analytics (GA) is used as the tracking script.
+In general, scripts can be included within the head or body section of the HTML document. % https://www.w3schools.com/js/js_whereto.asp
+The documentation suggests that the GA script "should be added near the top of the <head> tag and before any other script or CSS tags".
+% cite https://developers.google.com/analytics/devguides/collection/analyticsjs
+What exactly the GA script is doing is explained in section X.
 
 % [Other examples]
 
-Other vendors suggest other positions.
+Other RUM vendors propose a similar position:
+Hotjar suggests that "Paste the Tracking Code into the <head> section of your website."
+And Akamai says for there tracking tool boomerang:
+"Paste the following code snippet into every page of your site at the top of the HEAD, but after sensitive META tags."
+% https://developer.akamai.com/tools/boomerang#dealing-with-script-error
 
-% From Hotjar installation page: "Paste the Hotjar code into the <head> of every page you wish to track users and collect feedback. And then verify your installation."
+The three positions top-head, bottom-head, and bottom-body are visualized in appendix X.
+This IV may help understand if the position of the tracking script affects the performance.
 
-% Show multiple code examples
-% Explain whats going on: script tag, create script element etc.
-% Maybe also show Hotjar example to see that they are similar
-
-
-% Compare how GA script is included into web site with some other analytics services examples
-% Some other real life examples of RUM here? To demonstrate async... boomeraing readme for example has nice explanation
 
 
 % https://speedcurve.com/setup/lux/
 % SpeedCurve tracking script position: To add real user monitoring (RUM) to your site, paste this snippet at the top of the <HEAD> tag on your pages.
 
-% see appendix X
+% Grigorik Conference Talk https://www.youtube.com/watch?v=PkOBnYxqj3k&ab_channel=IlyaGrigorik
+% And slides https://www.igvita.com/slides/2013/fluent-perfcourse.pdf
+
 
 % -------------------------
 
 \subsubsection{IV 2: Attribute of the Tracking Script}
 
-As explained above, inside the GA tracking code snippet, another script tag with the attribute async is created.
-Async has the effect, that..., as explained in section X.
+% [How GA script works]
 
-As described in section X. async and defer attributes on inline scripts are ignored, see section X.
+In section X it is explained how the GA tracking script exactly works.
+Basically, there are two scripts, a wrapper and function which creates another script tag within the main document.
+
+The IV 2 is about the attribute of the outer script tag, the wrapper.
+This script is an inline script, as it does not have any src attribute.
+In theory,  async and defer attributes on inline scripts are ignored, as explained in section X.
 "Inline JavaScript script tags ignore the defer or async attribute"
 As the "wrapper" snippet is a inline script (no src attribute), the attributes on this script tag should not have any effect.
-Still, as many suggest to add them, i will test this as well.
 
+This IV should check if that holds true.
 I expect that changing this variable has no impact.
-Evaluation shows that...
-
-% for a code example of IV 2, see appendix X
-
+The three attributes none, async, and defer are visualized in appendix X.
 
 % -------------------------
 
@@ -235,14 +209,17 @@ With changing this IV, we can see the impact of it in evaluation?
 I will use Hotjar as another script.
 Show here that it works with Hotjar dashboard
 
-% see appendix X for html code example
+The two options, one with an additional script and one without, are visualized in appendix X.
 
 % -------------------------
 
 \subsubsection{Other IVs not included but worth mentioning}
 
 % More or less infinite number of independent variables
-% Again the big and important fact that each website is different
+each aspect of the whole setup could be an independent variable, such as on infrastructure level, which servers are used, which webserver version, condition of the network, end users device, the operating system, the browser, etc.
+But also any aspect of the website itself, how it is implemented, how the code is structured, which libraries are used, how many resources are being loaded, images, videos, etc.
+
+In practice, each website is unique and the difficulty for conducting research on websites is to find a common ground or website that mimics reality.
 
 
 % -------------------------
@@ -284,6 +261,12 @@ When combining all IVs, different variations occur (table X).
 
 Some variants are there twice:
 Hence i will cut out variants X and Y.
+
+
+% [Comparison]
+
+In the evaluation, I will compare the different possible values of one IV, while the values of the other IVs remain unchanged.
+For example, the different positions (IV 1) are compared with each other, while the attribute (IV 2) and whether or not another script is included (IV 3) remain the same for all positions.
 
 
 % [Comparison]
@@ -721,6 +704,19 @@ Measured by WPT and GA:
 
 % Data: could get it from GA dashboard / reports
 % but ill use the API to fetch the data more easily: https://aram-yesildeniz.github.io/google-analytics/
+
+% what exactly is the script doing? https://developers.google.com/analytics/devguides/collection/analyticsjs/
+
+
+What is the GA script doing?
+Actually, it creates another async script tag which loads the actual analytics JS.
+So basically it should not really play a role where we place it.
+Evaluation will show.
+
+What does the code snippet do?
+Basically the sync part is only..
+It creates another script tag which is async and which loads the tracking code.
+
 
 % what exactly is the script doing? https://developers.google.com/analytics/devguides/collection/analyticsjs/
 
