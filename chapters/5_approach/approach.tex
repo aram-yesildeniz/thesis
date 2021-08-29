@@ -145,14 +145,14 @@ Other IVs considered, but not incorporated within the experiment, are discussed 
 
 \subsubsection{IV 1: Position of the Tracking Script}
 
-
 % [GA Tracking Code]
 
+This IV may help understand if the position of the tracking script affects the performance.
 Google Analytics (GA) is used as the tracking script.
 In general, scripts can be included within the head or body section of the HTML document. % https://www.w3schools.com/js/js_whereto.asp
-The documentation suggests that the GA script "should be added near the top of the <head> tag and before any other script or CSS tags".
+The GA documentation suggests that the GA script "should be added near the top of the <head> tag and before any other script or CSS tags".
 % cite https://developers.google.com/analytics/devguides/collection/analyticsjs
-What exactly the GA script is doing is explained in section X.
+Some details about the GA script are given in section X.
 
 % [Other examples]
 
@@ -162,9 +162,7 @@ And Akamai says for there tracking tool boomerang:
 "Paste the following code snippet into every page of your site at the top of the HEAD, but after sensitive META tags."
 % https://developer.akamai.com/tools/boomerang#dealing-with-script-error
 
-The three positions top-head, bottom-head, and bottom-body are visualized in appendix X.
-This IV may help understand if the position of the tracking script affects the performance.
-
+The three possible positions of the tracking script, top-head, bottom-head, and bottom-body, are visualized in appendix X.
 
 
 % https://speedcurve.com/setup/lux/
@@ -178,48 +176,51 @@ This IV may help understand if the position of the tracking script affects the p
 
 \subsubsection{IV 2: Attribute of the Tracking Script}
 
-% [How GA script works]
+The IV 2 is about the attribute of tracking script tag.
+As explained in section X, possible attributes, next to have no attribute, are async and defer, and attributes are not applied on inline scripts.
 
-In section X it is explained how the GA tracking script exactly works.
-Basically, there are two scripts, a wrapper and function which creates another script tag within the main document.
+As the GA script is included inline, different attributes should not affect the behaviour of the website nor its performance.
+This IV should verify if this statement holds true and it is expected that changing this variable has no impact on performance.
 
-The IV 2 is about the attribute of the outer script tag, the wrapper.
-This script is an inline script, as it does not have any src attribute.
-In theory,  async and defer attributes on inline scripts are ignored, as explained in section X.
-"Inline JavaScript script tags ignore the defer or async attribute"
-As the "wrapper" snippet is a inline script (no src attribute), the attributes on this script tag should not have any effect.
-
-This IV should check if that holds true.
-I expect that changing this variable has no impact.
 The three attributes none, async, and defer are visualized in appendix X.
+
 
 % -------------------------
 
 \subsubsection{IV 3: Other Tracking Script is included}
 
-Many websites use multiple RUM / tracking scripts.
-%show some examples
+Many websites use more than one tracking script to collect user data or even resort to custom tracking solutions.
+Adding and loading another script within the website will increase the page weight, which leads to more requests and bytes, and depending for example on the network speed, loading an additional resource may impact performance badly.
 
-Do they effect each other?
+The other script should not be any kind of script, but also a RUM solution, which has the objective to collect and report user data.
+This IV is binary and models if another tracking script is included or not.
+Changing this variable may capture if multiple tracking scripts interfere with each other.
 
-From technical perspective, loading another script will take some extra time, depending on network, connection, bytes needed to transfer etc.
+Hotjar will be used as the additional tracking script.
+The two variants, one with an additional script and one without, are visualized in appendix X.
 
-With changing this IV, we can see the impact of it in evaluation?
-
-I will use Hotjar as another script.
-Show here that it works with Hotjar dashboard
-
-The two options, one with an additional script and one without, are visualized in appendix X.
+% footnoe hotjar
 
 % -------------------------
 
 \subsubsection{Other IVs not included but worth mentioning}
 
-% More or less infinite number of independent variables
-each aspect of the whole setup could be an independent variable, such as on infrastructure level, which servers are used, which webserver version, condition of the network, end users device, the operating system, the browser, etc.
-But also any aspect of the website itself, how it is implemented, how the code is structured, which libraries are used, how many resources are being loaded, images, videos, etc.
+Many other IV could be chosen and they could reflect variables of the tracking script itself, the website, or the infrastructure around it.
 
-In practice, each website is unique and the difficulty for conducting research on websites is to find a common ground or website that mimics reality.
+% [Script]
+
+Regarding additional IVs for the tracking script, variables may reflect the quality of the tracking script, e.g. which kind of user data it is collecting.
+Other variables may compare different versions and implementations of the same RUM script.
+
+% [Website]
+
+Possible variables for the website may reflect how it is implemented, how the code is structured, which libraries are used, how many resources such as images and videos are being loaded, how they are arranged, how the CSS is handled, etc.
+
+% [Infrastructure]
+
+And in terms of infrastructure, IVs may model which servers are being used, which webservers run on them, the condition of the network, the device of the end users, or his operating system, browser version, and so on.
+
+Especially on a website and infrastructure level, nearly countless IVs are imaginable.
 
 
 % -------------------------
@@ -344,9 +345,13 @@ Measured by WPT and GA:
 
 
 
-% --------------------------------------------------
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
 
 \subsection{(c) The Test Object: An E-Commerce Website}
+
+In the real world, each website is unique and follows its own design and architecture principles.
+The difficulty for conducting research on websites such as within this thesis, is to find a common ground or general website that approximates real world examples as good as possible.
 
 % is a goal of this thesis
 
@@ -697,6 +702,9 @@ Measured by WPT and GA:
 
 \subsection{(e) Real-User Monitoring: Google Analytics}
 
+% 2 functions: RUM itself is represented by the script, so it is basically the object where the IVs are applied to
+% but also its used to collect data
+
 % Setup: Use Unversial Analytics
 % Set sample rate to 100% for speed metrics
 
@@ -716,6 +724,12 @@ Evaluation will show.
 What does the code snippet do?
 Basically the sync part is only..
 It creates another script tag which is async and which loads the tracking code.
+
+This script is an inline script, as it does not have any src attribute.
+In theory,  async and defer attributes on inline scripts are ignored, as explained in section X.
+"Inline JavaScript script tags ignore the defer or async attribute"
+As the "wrapper" snippet is a inline script (no src attribute), the attributes on this script tag should not have any effect.
+
 
 
 % what exactly is the script doing? https://developers.google.com/analytics/devguides/collection/analyticsjs/

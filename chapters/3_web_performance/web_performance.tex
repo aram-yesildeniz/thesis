@@ -561,7 +561,7 @@ They are discussed now. \\
 
 % [async attribute]
 
-With the async attribute, the browser downloads the JS in the background while it continues parsing the HTML (see figure \ref{figure:script_loading}).
+With the async attribute, the browser downloads the JS in the background while it continues parsing the HTML (figure \ref{figure:script_loading}).
 Parsing is not blocked and the browser can continue with its task. 
 Once the JS is downloaded and available, the parser is blocked: The browser stops parsing and executes the JS \cite{2021MDNScript}.
 
@@ -575,7 +575,7 @@ It does not matter whether an asynchronous script is inserted at the beginning o
 
 % [defer attribute]
 
-As with async, scripts with the defer attribute allow the browser to download the script in parallel while it continues parsing the HTML (see figure \ref{figure:script_loading}).
+As with async, scripts with the defer attribute allow the browser to download the script in parallel while it continues parsing the HTML (figure \ref{figure:script_loading}).
 Unlike async, defer scripts are not executed until the page parsing is complete and the DOM tree is fully built, and the order of the scripts is maintained \cite{2020Monus}.
 
 \begin{figure}[h!]
