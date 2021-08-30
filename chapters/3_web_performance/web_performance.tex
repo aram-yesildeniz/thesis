@@ -2951,6 +2951,20 @@ Ec = function (a) {
 %\end{sidewaysfigure}
 
 
+% copy this to textedit to see nice tabs
+
+%Navigation Timing Metric						WPT					GA
+%
+%PLT: loadEventStart - navigationStart					Document Complete, Load Event Start	pageLoadTime
+%domainLookupEnd - domainLookupStart					DNS lookup, dns_ms			domainLookupTime
+%connectEnd - connectStart						connect_ms				serverConnectionTime
+%responseStart - requestStart						...					serverResponseTime
+%responseEnd - responseStart						...					pageDownloadTime
+%fetchStart - navigationStart						...					redirectionTime
+%domInteractive - navigationStart					...					domInteractiveTime
+%DOM Content Loaded: domContentLoadedEventStart - navigationStart	domContentLoadedEventStart		domContentLoadedTime
+
+
 % ----------------------------------------------------------------
 
 \subsection{Web Performance Metrics Conclusion}

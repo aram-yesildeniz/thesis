@@ -209,8 +209,8 @@ Many other IVs could be chosen and they could reflect variables of the tracking 
 
 % [Script]
 
-As for the additional IVs for the tracking script, the variables can reflect the quality or complexity of the tracking script, e.g., what kind of user data is collected and in what quantity.
-Other variables may compare different versions and implementations of the same RUM script.
+As for the additional IVs for the tracking script, other variables could reflect the quality or complexity of the tracking script, e.g., what kind of user data is collected and in what quantity.
+Other variables may reflect the file size of the script, or compare different versions and implementations of the same RUM script.
 
 % [Website]
 
@@ -226,12 +226,10 @@ Especially on a website and infrastructure level, nearly countless IVs are imagi
 
 \subsubsection{Possible Variations of the Independent Variables}
 
-Combining the three defined IVs, different variants emerge as display in table X.
+% [Variants]
 
-% as described before, i will compare the values within one independent variable. 
-% This is needed in order to compare the impact of the different values within one IV.
-% For example, i want to measure if there is a difference in performance between the different script attributes. To measure this, i set the default values for the other IVs and vary the values for the IV attribute
-
+When putting the three defined IVs "Position", "Attribute", and "Other Script" together, different possible combinations emerge as displayed in table X.
+The variants A1 and OS2 are redundant and will be dismissed as their IV configuration is already represented in variant P1.
 
 \begin{table}[h]
 	\small
@@ -253,95 +251,36 @@ Combining the three defined IVs, different variants emerge as display in table X
 	  \hline
 	\end{tabular}
 	\medskip
-	\caption{Test Object Variants}
+	\caption{Possible Test Object Variants when combining the IVs.}
 	\label{table:test_object_variants}
 \end{table}
 
-% [Table Explanation]
 
-Some variants are there twice:
-Hence i will cut out variants X and Y.
+% [What are the Variants]
 
+The variants themselves are different index.html files from the test website.
+The difference between the variants are only the options and position of the tracking script, as described above.
+The rest of the test website is remaining the same over all variants.
+How the test website is constructed, is discussed below.
 
-% [Comparison]
+% [Evaluation/Comparison]
 
-In the evaluation, I will compare the different possible values of one IV, while the values of the other IVs remain unchanged.
+For evaluation, I will compare the different possible values of one IV with each other, while the values of the other IVs remain unchanged.
 For example, the different positions (IV 1) are compared with each other, while the attribute (IV 2) and whether or not another script is included (IV 3) remain the same for all positions.
-
-
-% [Comparison]
-
-% I will not compare variants which are not from the same subgroup, e.g. Variant A2 will not be compared to Variant OS2.
-% Because the first row of the variants table also includes the default values for Attribute and Other Scripts, VP1 is equal to VA1 and VO1.
-
-% With the defined IVs and variants, I can create the test objects, that is the index.html files with the corresponding setup.
-% Because its easier to differentiate i will create for the three equal variants nevertheless own index files.
-
-% For each test variant, I will create a concrete test artefact, which is a modified index.html.
-% This index.html needs to be uploaded to the webserver before starting with the tests.
-
-% All variants will have the same name which is index.html. This is the default file which will be delivered by the webserver when accessing root path of webpage.
-
+This is needed in order to measure the impact when changing one IV.
+Variants which are not from the same subgroup are not compared with each other, e.g. variant A2 will not be compared to variant OS2.
 
 
 % --------------------------------------------------
 
-
 \subsection{(b) Dependent Variables}
 
-% Measure effects
-% Performance metrics from Lab and Field, see terms and definitions
-% But also quality of RUM data. Because we could have a nice performance but RUM will be of bad quality
+The dependent variables measure the outcome of the change in IVs with respect to web performance.
+They are web performance metrics.
+The synthetic monitoring and RUM solutions implemented in the experiment measure and deliver the dependent variables.
 
-%TODO maybe i dont need own sections for those. Reference here where they are explained
-\subsubsection{Page Weight}
-
-	- Bytes
-	- Requests
-
-\subsubsection{Measures from Synthetic Monitoring}
-
-Categories explained in section X.
-WPT measures this in section X.
-
-I will measure this:
-
-- Navigation Timing Metrics:
-	- TTFB
-	- Document Complete
-	- Fully Loaded
-	
-- User-Centric Metrics:
-	- FCP
-	- Speed Index
-	- Core Web Vitals: LCP, CLS, TBT (proxy for FID)
-
-\subsubsection{Measures from RUM}
-
-GA tracks this, as explained in section X.
-
-- PLT
-- Page Download Time
-- Server Connection Time
-- Domain Lookup Time
-- Redirection Time
-- Server Response Time
-- Domain interactive time
-- Domain Content Loaed Time
-
-
-
-Measured by WPT and GA:
-- page load time
-- domain lookup time
-- page download time
-- redirection time
-- server connection time
-- server response time
-- Dom interactive time
-- Dom content loaded time
-
-
+The dependent variables are visualized in order to facilitate the interpretation of the data.
+Considered dependent variables (web performance metrics) are common web performance metrics as described in section X, such as page weight, navigation timing metrics such as TTFB and PLT, and user-centric metrics such as Speed Index or LCP.
 
 
 % -------------------------------------------------------------------------
@@ -349,54 +288,63 @@ Measured by WPT and GA:
 
 \subsection{(c) The Test Object: An E-Commerce Website}
 
+% [Difficulty]
+
 In the real world, each website is unique and follows its own design and architecture principles.
 The difficulty for conducting research on websites such as within this thesis, is to find a common ground or general website that approximates real world examples as good as possible.
 
-% is a goal of this thesis
+%TODO add best would be real life scenario ?
 
-% Ideal: Use a real website. Is not possible
 % Mimic the website is one thing, but also all other aspects should be fairly similar: infrastructure (hosting), hardware used, network speed, traffic, etc.
 % This experiment/test is only an approximation and can serve as a starting point for further investigations
 
-% Concrete File to mimic: HTML Template / document with all other resources that build up the website: CSS, JS, Fonts, Images, Videos, etc.
+% Ideal: Use a real website. Is not possible
 
-% Depending on different approaches / Ideas (see next chapter), template looks different
-% But general structure stays the same and independent variables can be defined
-% Here we show different independent variables and variants
 
-% Several ideas are proposed
-% Each idea has pro and contra: each idea should be discussed of its usefulness, advantages and disadvantages
+% [Goal]
 
-% skeletal explained in section X, wordpress in section X, etc.
+One goal of this thesis is to create a test website which mimics a real life e-commerce website as good as possible.
+Multiple ideas to achieve this goal are presented and discussed in the following.
 
 
 % --------------------------------------------------------
 
-\subsubsection{Plain / Skeletal Website}
+\subsubsection{Minimal Website}
 
+% [Idea]
 
-% [Why]
-% Idea: Lab environment to have control over all and see effects of changing independent variables
-% Use this as the simplest test possible, not even POC (POC is http archive site)
-% boil it down to the script only: use different script sizes and see what happens when including them
+The idea of the minimal website is to have a clean, laboratory-like environment which is in full control of the tester.
+The minimal website is constructed without any content but only a link to an external script, which represents the tracking script.
+The script itself has only place holder content which adds bytes to the file size, but does not execute any logic.
     
 % [Setup]
-% website: simple html document
-% source code: https://github.com/aramovski/aramovski.github.io
-% Hosting: github pages: https://aramovski.github.io/
+
+The website is hosted, like all following test websites, on GitHub Pages, which is a quick, easy and fast way to deploy a website onto a real server.
+The source code for the minimal website is available on GitHub, and the page is deployed to https://aramovski.github.io/.
+% footnote : https://github.com/aramovski/aramovski.github.io
+% Footnote https://pages.github.com/ [30.08.2021]
 
 % [Evaluation]
-% Information gained from this experiment
-% Limitations and questions which can not be answered with this approach
-% Problem: Too far away from reality
+
+The benefit of this approach is that the tester has a lot of control about the website, as there are not many complex coherences or variables within the website itself.
+The three discussed IVs can easily be changed.
+In addition, the script file size can be changed quickly.
+As a downside, the minimal website is too far away from any real world website, e.g. no images or other resources are requested.
+Also, it does not cover any e-commerce scenario.
+Hence, this idea has been withdrawn.
+
 
 % --------------------------------------------------------
 
-\subsubsection{"Median" Website from HTTP Archive}
+\subsubsection{Median Website}
 
+% [Idea]
 
-% [Why]
-% Idea: Get correct page weight
+The idea of the median website is to construct a website which represents an "average" website as good as possible.
+The median website is created with a median page weight.
+This means, it has an average amount of requests and bytes for each resource type such as images, fonts, or videos.
+The data for the median values is taken from HTTPArchive.
+
 
 % [Setup]
 % website: mimic page weight as reported on http archive
@@ -425,10 +373,12 @@ The difficulty for conducting research on websites such as within this thesis, i
 
 % --------------------------------------------------------
 
-\subsubsection{WordPress}
+\subsubsection{WordPress Website}
 
+% [Idea]
 
-% [Why]
+The idea of the WordPress website is to leverage one of the most widely used website building frameworks in order to cover many real world examples.
+WordPress powers nearly...
 % Show usage of WordPress with some statistics: Why is it so verbreitet
 
 % [Plugins]
@@ -576,6 +526,10 @@ The difficulty for conducting research on websites such as within this thesis, i
 \end{figure}
 
 
+
+
+
+%TODO add some comparison table? like all ideas, with columns such as "control", "complexity", "generaliseabilty", etc. ?
 
 
 % --------------------------------------------------
@@ -803,6 +757,7 @@ As the "wrapper" snippet is a inline script (no src attribute), the attributes o
 
 % [Data Analysis]
 
+% those files are then used to analyse  and visualize data
 % python code footnote github
 
 
