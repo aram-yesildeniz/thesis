@@ -414,7 +414,7 @@ Both, Otto and Zalando, are within the top three of e-commerce websites with hig
 % [Setup]
 
 Multiple tools exist to clone, mirror or download a complete website.
-Tools used here are HTTrack and the Google Chrome extensions "Save All Resources"
+Tools used here are HTTrack and the Google Chrome extensions "Save All Resources".
 As with the other approaches, the downloaded website will then be hosted on GitHub Pages.
 % footnote https://www.httrack.com/
 % footnote https://chrome.google.com/webstore/detail/save-all-resources/abpdnfjocnmdomablahdcfnoggeeiedb?hl=en
@@ -482,24 +482,16 @@ For economic and effort reasons this is not feasible, therefore another original
 
 % [Why]
 
-% Idea: It looks like zalando page does not has that many cache-control headers, therefore it may be easier to clone so that RVs are more similar.
-
-% Luckily, Zalano has different caching... Therefore I use a different e-commerce website which does not shut down caching so that the RV results are more similar.
+For https://www.zalando.de/, the cache control configuration of the webserver differs and the issues of caching and repeat views are not occurring.
+This makes the website easier to clone and the favourite candidate to serve as the test object.
 
 % [Setup]
 
-% use plugin to download page
-% host it on github pages
-
-% [Evaluation]
-
-
-% see evaluation chapter
-Similar enough...
-Page weight figure X.
-PLT figure X.
-FCP figure X.
-
+The website is downloaded via the "Save All Resources" Chrome extension and the content is uploaded to GitHub, from where it will be served through GitHub Pages.
+The source code of the test website is published at GitHub and the website is accessible at https://aram-yesildeniz.github.io/.
+% footnote https://github.com/aram-yesildeniz/aram-yesildeniz.github.io
+How the test website differs from the original website is shown in the next chapter.
+Figure X provides screenshots from the original and the test website.
 
 \begin{figure}
 	\centering
@@ -516,18 +508,31 @@ FCP figure X.
 		\label{fig:sub2}
 	\end{subfigure}
 	\caption{Original vs Test Object}
-	\label{figure:plt_original_test}
+	\label{figure:zalando_original_test}
 \end{figure}
 
 
+Table X summarizes the discussed approaches.
 
 
-% -----------------
-
-[Comparison Table ?]
-
-%TODO Conclusion ?
-% add some comparison table? like all ideas, with columns such as "control", "complexity", "generaliseabilty", "tool used / relies on", "tool support": httrack, plugin, httarchive, wordpress, ..." etc. ?
+\begin{table}[h]
+	\small
+	\centering
+	\begin{tabular}{ | l | l | c | c | }
+%	\begin{tabular}{ | p{0.3\linewidth} | p{0.6\linewidth} | }
+	\hline
+	\cellcolor{lightgrey} Idea & \cellcolor{lightgrey} Template & \cellcolor{lightgrey} Complexity & \cellcolor{lightgrey} Close to Reality \\
+	\hline
+	Minimal & Basic HTML Template & - & - \\
+	Median & HTTPArchive & + & + \\
+	WordPress & WordPress Default & ++ & + \\
+	Clone & E-Commerce Website & ++ & +++ \\
+	\hline
+	\end{tabular}
+	\medskip
+	\caption{Approaches Summary}
+	\label{table:performance_metrics_conclusion}
+\end{table}
 
 
 % --------------------------------------------------
@@ -535,47 +540,46 @@ FCP figure X.
 
 \subsection{(d) Synthetic Monitoring: Create Traffic and Collect Data}
 
-% Synthetic monitoring: Double role: creats traffic which is captured by RUM, and also measured the website
+The Synthetic Monitoring component within the experiment design has two functions:
+One, it measures the performance of the website, and two, it generates traffic on the website, which is needed in order for RUM to measure data.
 
-% I want to collect Lab and field data for dependent variables for comparison
 % This setup is a special case because lab bots (e.g. WPT) simulate at the same time real users for RUM data
 
 
-% -------------------------------------
-
-\subsubsection{WebPageTest}
+% \subsubsection{WebPageTest}
 
 % [Setup]
 
-% Possibilites:
-% use public version
-% API
+WebPageTest (WPT) is used as the synthetic monitoring component.
+Multiple options of using WPT exist:
+The quickest way is to use the public version which is available at https://www.webpagetest.org/.
+Due to long waiting times, and possible fluctuations for example in peak hours, this option is not suitable.
+Another option is to programmatically use the public version via the public API.
+This option is not feasible as the API is throttled by limits and quotas.
 
-% Private:
-%- preconfigured Amazon Web Services (AWS) AMIs
-%- localhost Docker
+WPT is open source and can be downloaded and run in private instances.
+One option of running a private instance is by using a preconfigured Amazon Machine Image which runs within the Amazon Cloud.
+This option is disregarded due to financial aspects.
+The most affordable and also most controllable approach is to run WPT on localhost.
+For the experiment, a private instance of WPT running on localhost within a Docker environment is used.
+% footnote: Guide: https://medium.com/@francis.john/local-webpagetest-using-docker-90441d7c2513
 
+% [Configuration]
 
-\paragraph{Configuration}
+As described in section X, WPT is highly configurable.
+The configuration for this experiment is described in table X.
 
-% already described in section X.
-
-% [FV vs RV]
-
-% First View: "First View refers to the cold cache setup in which nothing is served locally"
-%Repeat View: "Repeat View refers to the warm cache containing everything instantiated by the first view" (2016 Using WPT p. 62)
-
+[more here?]
 
 \begin{table}[h]
 	\small
 	\centering
-	\begin{tabular}{  | c | c | } 
+	\begin{tabular}{  | l | l | } 
 	\hline
 	\cellcolor{lightgrey} Configuration Setting & \cellcolor{lightgrey} Option \\
 	\hline
 %	Test Location & Test Location \\ 
 	Browser & Chrome \\
-	\hline
 	Connection & LAN (connection speed is determined by hotspot) \\
 	Desktop Browser Dimensions & default (1366x768) \\
 	Number of Tests to Run & 1 \\
@@ -596,56 +600,55 @@ FCP figure X.
 \end{table}
 
 
+% [FV vs RV] ??
+
+% First View: "First View refers to the cold cache setup in which nothing is served locally"
+%Repeat View: "Repeat View refers to the warm cache containing everything instantiated by the first view" (2016 Using WPT p. 62)
+
 
 % ----------------------
-
 
 \paragraph{Traffic Shaping}
 
 % [Why]
 
-% Network Condition is very important for performance
-% Already described in section X issue with Latency vs Bandwidth
+The network condition has a not negligible role in web performance, as described in section X.
+For reliable and comparable data, it is important to keep the network connectivity stable and similar over all test runs (see also X).
+In general, exactly which bandwidth and latency is chosen for the test is secondary, as long as the configuration remains the same for all test runs.
+% cite https://calendar.perfplanet.com/2016/testing-with-realistic-networking-conditions/
+
+% [Solutions]
+
+WPT ships with a traffic shaping functionality.
+Unfortunately, this functionality is not available when running a private WPT instance on Docker on macOS (the localhosts OS).
+Hence, the network connection of the whole machine has to be throttled.
+This can be achieved through a software or hardware solution:
+
+The software solution is to use a tool like Network Link Conditioner to slow down the whole machine.
+This tool is also suggested by the developer of WPT. % cite blogpost
+% footnote https://nshipster.com/network-link-conditioner/
+Spot tests indicate that this solution is not that reliable and the internet speed still varies.
+Therefore in the experiment, a hardware solution is chosen.
+The network condition relies on a mobile hotspot device which is throttled to 50 mbit/s.
 
 % Overview table with different settings:
 % https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
 
+% WPT also slows down their whole machines https://forums.webpagetest.org/t/measure-internet-speed/11593
 
-% Important to have stable and realistic network condition
-% Chromes tool is not the best for this % see blogpost https://calendar.perfplanet.com/2016/testing-with-realistic-networking-conditions/
-
-
-% [Network Link Conditioner]
-
-% Private WPT Instance docker on mac does not allow traffic shaping functionality from WPT
-% One approach: I use Network Link Conditioner from Apple to slow down the whole machine. See in same blogpost that Patrick highly recommends this
-% WPT also slows down their whole machines % https://forums.webpagetest.org/t/measure-internet-speed/11593
-% In general internet connection is very unstable. If i run network link conditionier with e.g. DSL each speedtest gives different results. And other test platforms such as fast.com gives also different result.
 % i will use the durchschnitt in germany which seems to be 40 mbit per second. or actually i use LTE profile from network conditioner which is 50 mbit per second 
-
-
-% [Hotspot]
-
-% Solution: Use Mobile Hotspot with 50 mbit/s
-% as long as internet connection is stable along all tests, it should not make a big difference because i compare the different variants. Therefore internet connection will fall out of the equation
-
 
 % ----------------------
 
 \paragraph{Usage of the Bulk Test Feature}
 
-
-% Bulk testing is a feature for private instances only
-% actually gives pretty nice comparison graphics
-% Misuse this feature to test the same website X times
-
-% Measured metrics are exposed through a variety of files
-% Ill download csv files Summary and detail ? TODO check again how this is called
+As will be discussed in section X, the synthetic monitoring component should not only measure the test website once, but multiple times.
+The private instance of WPT offers a feature called Bulk Test, which enables the tester to pass a list of URLs to the test agent which processes the list in one go.
+This feature is used to trigger multiple test runs.
+When completed, the measured data is collected over all tests and summarized in one csv file, which is downloaded and used for further analysis.
 
 % keep in mind that FV and RV for one test are directly next to each other
 % so to get data for all FVs, i would need data from rows 1 3 5 etc
-
-% i use this for quick comparison of original to test object
 
 
 % --------------------------------------------------
@@ -688,6 +691,35 @@ As the "wrapper" snippet is a inline script (no src attribute), the attributes o
 
 % where to include: https://developers.google.com/analytics/devguides/collection/analyticsjs/
 % The Google Analytics tag should be added near the top of the <head> tag and before any other script or CSS tags
+
+
+\begin{center}
+\begin{lstlisting}[caption={The Google Analyitcs Tracking Script}, label={listing:ga_script}, numbers=none]
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })
+  (window, document, 'script',
+   'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', {
+    trackingId: 'UA-XXXXXXXXX-X',
+    cookieDomain: 'auto',
+    siteSpeedSampleRate: 100
+  });
+  
+  ga('send', 'pageview');
+</script>
+\end{lstlisting}
+\end{center}
+
 
 
 
