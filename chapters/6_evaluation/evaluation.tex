@@ -1,5 +1,7 @@
 \chapter{Evaluation}
 
+[tbd]
+
 
 % [Last chapter]
 
@@ -25,8 +27,9 @@
 % -------------------------------------------------------------
 
 
-\section{Data Visualization and Interpretation}
+\section{Results of the Experiment}
 
+[tbd]
 
 % [General IV Interpretation]
 
@@ -35,11 +38,11 @@
 % only difference was visible when adding another script
 % simple explained, as another resource has to be downloaded and the browser needs to wait for its execution
 
-Quality of collected data by RUM and synth. is difficult to asses as they are "only" performance data.
-When other data is tracked such as web analytics metrics it may be more obvious, e.g. to see effect on bounce rate.
+% Quality of collected data by RUM and synth. is difficult to asses as they are "only" performance data.
+% When other data is tracked such as web analytics metrics it may be more obvious, e.g. to see effect on bounce rate.
 
 % IV1
-many vendors suggest to insert in at the top of head, so that it is as quickly as possible available and data collection can start as soon as possible.
+%many vendors suggest to insert in at the top of head, so that it is as quickly as possible available and data collection can start as soon as possible.
 
 
 % IV2...
@@ -51,10 +54,24 @@ many vendors suggest to insert in at the top of head, so that it is as quickly a
 \subsection{Original Website vs Test Website without GA}
 
 % how "good" is the mock?
-here is some text here is some text here is some text here is some text here is some text here is some text 
-here is some text here is some text here is some text here is some text here is some text here is some text 
-here is some text here is some text here is some text here is some text here is some text here is some text 
 
+Page Weight: ....
+
+PLT: ...
+% Figure \ref{figure:plt_original_test}:
+%FV: very similar, original has less distribution
+%RV: test slightly faster, difference in median is 595 ms 
+
+FCP: ...
+%Figure \ref{figure:fcp_original_test}:
+%Similar as for PLT.
+%FV: more or less the same
+%RV: Test is slightly faster. This is because on test environment i can not control caching / cache-header %settings of webserver. So more resources get cached automatically.
+
+
+
+
+% --- Page Weight FV ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -73,7 +90,7 @@ here is some text here is some text here is some text here is some text here is 
 	\label{figure:plt_original_test}
 \end{figure}
 
-
+% --- Page Weight RV ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -93,10 +110,7 @@ here is some text here is some text here is some text here is some text here is 
 \end{figure}
 
 
-
-\clearpage
-
-
+% --- PLT ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -115,13 +129,8 @@ here is some text here is some text here is some text here is some text here is 
 	\label{figure:plt_original_test}
 \end{figure}
 
-Figure \ref{figure:plt_original_test}:
-FV: very similar, original has less distribution
-RV: test slightly faster, difference in median is 595 ms 
 
-here is some text here is some text here is some text here is some text here is some text here is some text 
-
-
+% --- FCP ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -140,16 +149,9 @@ here is some text here is some text here is some text here is some text here is 
 	\label{figure:fcp_original_test}
 \end{figure}
 
-Figure \ref{figure:fcp_original_test}:
-Similar as for PLT.
-FV: more or less the same
-RV: Test is slightly faster. This is because on test environment i can not control caching / cache-header settings of webserver. So more resources get cached automatically.
-
-
-
 % add LCP / Speed Index ?
 
-
+\clearpage
 
 
 % -------------------------------------------------------------
@@ -159,7 +161,16 @@ RV: Test is slightly faster. This is because on test environment i can not contr
 
 % use position 1 (top of head) is which is suggested by Google
 
+Page Weight: ...
+% Bytes FV: as expected, we load a little bit more JS (the GA alanytics script). The rest is the same.
+% Requests FV: additionally to the more JS request in P1, some more resources are fetched, which are requested by the analyitcs script (check this again)
 
+PLT: ...
+
+LCP: ...
+
+
+% --- Page Weight FV ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -179,11 +190,7 @@ RV: Test is slightly faster. This is because on test environment i can not contr
 \end{figure}
 
 
-% Bytes FV: as expected, we load a little bit more JS (the GA alanytics script). The rest is the same.
-% Requests FV: additionally to the more JS request in P1, some more resources are fetched, which are requested by the analyitcs script (check this again)
-
-
-
+% --- PLT ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -202,8 +209,8 @@ RV: Test is slightly faster. This is because on test environment i can not contr
 	\label{figure:plt_original_test}
 \end{figure}
 
-\clearpage
 
+% --- LCP ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -223,7 +230,7 @@ RV: Test is slightly faster. This is because on test environment i can not contr
 \end{figure}
 
 
-
+\clearpage
 
 
 % -------------------------------------------------------------
@@ -233,16 +240,18 @@ RV: Test is slightly faster. This is because on test environment i can not contr
 
 % whats the impact of the position ?
 
-%TTFB:
-%- Repeat View is slower (on median)
+%TTFB: - Repeat View is slower (on median) ??
 
 
-% DOM Content Loaded
-% Page Load Time
-% Speed Index
-% Largest Contentful Paint
+DOM Content Loaded: ...
 
+PLT: ...
 
+Speed Index: ...
+
+LCP: ...
+
+% --- DCL ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -262,7 +271,7 @@ RV: Test is slightly faster. This is because on test environment i can not contr
 \end{figure}
 
 
-
+% --- PLT ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -281,8 +290,8 @@ RV: Test is slightly faster. This is because on test environment i can not contr
 	\label{figure:plt_original_test}
 \end{figure}
 
-\clearpage
 
+% --- SI ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -302,6 +311,7 @@ RV: Test is slightly faster. This is because on test environment i can not contr
 \end{figure}
 
 
+% --- LCP ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -321,7 +331,7 @@ RV: Test is slightly faster. This is because on test environment i can not contr
 \end{figure}
 
 
-
+\clearpage
 
 
 
@@ -332,17 +342,23 @@ RV: Test is slightly faster. This is because on test environment i can not contr
 
 % so does it really not matter ?
 
-The GA measurements are median over all views, first view and repeat view.
-Hence they are always the same for FV and RV.
-With this setup, we do not have different data for RUM measurements from Google depending on if the website was loaded the first time or from cache.
+%The GA measurements are median over all views, first view and repeat view.
+%Hence they are always the same for FV and RV.
+%With this setup, we do not have different data for RUM measurements from Google depending on if the website was loaded the first time or from cache.
 
 
-% Page Load Time
-% Fully Loaded
-% Speed Index
-% Largest Contentful Paint
+PLT: ...
+
+Fully Loaded: ...
+
+Speed Index: ...
+
+LCP: ...
 
 
+%CLS: medians are all the same ??
+
+% --- PLT ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -362,6 +378,7 @@ With this setup, we do not have different data for RUM measurements from Google 
 \end{figure}
 
 
+% --- Fully Loaded ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -381,8 +398,9 @@ With this setup, we do not have different data for RUM measurements from Google 
 \end{figure}
 
 % FV: A1 seems to have less distribution, where as A2 and A3 have some distributed data
-\clearpage
 
+
+% --- SI ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -401,7 +419,7 @@ With this setup, we do not have different data for RUM measurements from Google 
 	\label{figure:plt_original_test}
 \end{figure}
 
-
+% --- LCP ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -422,23 +440,30 @@ With this setup, we do not have different data for RUM measurements from Google 
 
 
 
+\clearpage
 
 
-%CLS:
-%- medians are all the same
 
 % -------------------------------------------------------------
 
 \subsection{IV Other Script: Variant OS1 vs Variant OS2}
 
-
-% Page Load Time
-% Fully Loaded
-% Speed Index
-% Total Blocking Time
+% only IV OS seems to have some impact on the performance of the website
+% This makes sense as an additional resource has to be loaded.
+% The IVs Position and Attribute only alter how the resource is being loaded, but they dont change the page weight
 
 
 
+PLT: ...
+
+Fully Loaded: ...
+
+Speed Index: ...
+
+Total Blocking Time: ...
+
+
+% --- PLT ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -458,6 +483,7 @@ With this setup, we do not have different data for RUM measurements from Google 
 \end{figure}
 
 
+% --- Fully Loaded ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -476,8 +502,8 @@ With this setup, we do not have different data for RUM measurements from Google 
 	\label{figure:plt_original_test}
 \end{figure}
 
-\clearpage
 
+% --- SI ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -497,6 +523,7 @@ With this setup, we do not have different data for RUM measurements from Google 
 \end{figure}
 
 
+% --- TBT ---
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -515,21 +542,7 @@ With this setup, we do not have different data for RUM measurements from Google 
 	\label{figure:plt_original_test}
 \end{figure}
 
-
-
-
-
-
-
-
-
-
-
-
-
-% only IV OS seems to have some impact on the performance of the website
-% This makes sense as an additional resource has to be loaded.
-% The IVs Position and Attribute only alter how the resource is being loaded, but they dont change the page weight
+\clearpage
 
 
 % ----------------------------------------------------------------------------------------------------

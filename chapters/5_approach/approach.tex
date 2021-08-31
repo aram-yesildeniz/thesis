@@ -656,45 +656,35 @@ When completed, the measured data is collected over all tests and summarized in 
 
 \subsection{(e) Real-User Monitoring: Google Analytics}
 
-% 2 functions: RUM itself is represented by the script, so it is basically the object where the IVs are applied to
-% but also its used to collect data
+RUM is integrated into the test website to measure data and on the same time represents the tracking script on which the IV are applied to.
+Google Analytics is used and integrated into the website with the code snippet in listing X.
 
-% Setup: Use Unversial Analytics
+% [Code explanation]
+
+[Explain Code]
+
 % Set sample rate to 100% for speed metrics
 
-% show code here
-
-% Data: could get it from GA dashboard / reports
-% but ill use the API to fetch the data more easily: https://aram-yesildeniz.github.io/google-analytics/
-
-% what exactly is the script doing? https://developers.google.com/analytics/devguides/collection/analyticsjs/
+% https://developers.google.com/analytics/devguides/collection/analyticsjs/
 
 
-What is the GA script doing?
-Actually, it creates another async script tag which loads the actual analytics JS.
-So basically it should not really play a role where we place it.
-Evaluation will show.
+% Actually, it creates another async script tag which loads the actual analytics JS.
+% So basically it should not really play a role where we place it.
+% Basically the sync part is only..
+% It creates another script tag which is async and which loads the tracking code.
 
-What does the code snippet do?
-Basically the sync part is only..
-It creates another script tag which is async and which loads the tracking code.
+% Meaning for IV Attribute:
+% This script is an inline script, as it does not have any src attribute.
+% In theory,  async and defer attributes on inline scripts are ignored, as explained in section X.
+% "Inline JavaScript script tags ignore the defer or async attribute"
+% As the "wrapper" snippet is a inline script (no src attribute), the attributes on this script tag should not have any effect.
 
-This script is an inline script, as it does not have any src attribute.
-In theory,  async and defer attributes on inline scripts are ignored, as explained in section X.
-"Inline JavaScript script tags ignore the defer or async attribute"
-As the "wrapper" snippet is a inline script (no src attribute), the attributes on this script tag should not have any effect.
-
-
-
-% what exactly is the script doing? https://developers.google.com/analytics/devguides/collection/analyticsjs/
-
-
-% where to include: https://developers.google.com/analytics/devguides/collection/analyticsjs/
-% The Google Analytics tag should be added near the top of the <head> tag and before any other script or CSS tags
+% Evaluation will show.
 
 
 \begin{center}
 \begin{lstlisting}[caption={The Google Analyitcs Tracking Script}, label={listing:ga_script}, numbers=none]
+<!-- Google Analytics -->
 <script>
   (function (i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r;
@@ -717,30 +707,26 @@ As the "wrapper" snippet is a inline script (no src attribute), the attributes o
   
   ga('send', 'pageview');
 </script>
+<!-- End Google Analytics -->
 \end{lstlisting}
 \end{center}
 
 
+% [Data Collection]
+
+The data is available through the Google Analyitcs dashboard.
+To get quicker access to the data and only fetch the data needed, which is about site speed, I use a helper tool which uses the API to retrieve the data.
+The source code of the helper tool is on GitHub and deployed to https://aram-yesildeniz.github.io/google-analytics/.
+% footnote https://github.com/aram-yesildeniz/google-analytics
 
 
 % ------------------------------------------------------------------------------------------
 % ------------------------------------------------------------------------------------------
-
 
 \section{Conducting the Experiment}
 
-
-% [Schedule Runs]
-
-% The Google Analytics code is more or less fixed and there are no configurations.
-% It would be possible to change config of script, e.g. change sample rate, track other metrics etc.
-% But it is not possible to change default tracking behaviour (?)
-
-% How the script is included into the file should reflected withing Website Variations
-
-% I will use only one WPT Configuration for all tests.
-% Other WPT config can be used in future work, e.g. emulate mobile device.
-
+All variants are tested according to the plan in table X.
+For each test run, I follow a rigorous testing procedure to eliminate possible careless mistakes (table X).
 
 \begin{table}[h]
 	\small
@@ -750,7 +736,7 @@ As the "wrapper" snippet is a inline script (no src attribute), the attributes o
 	  Variant \cellcolor{lightgrey} &  Date \cellcolor{lightgrey} & Traffic Shaping \cellcolor{lightgrey} & Runs \cellcolor{lightgrey} \\
 	  \hline
 	  Original Website & 2021-05-28 & 50 Mbit/s & 500 \\
-	  Mock without GA included & 2021-05-29 & " & " \\
+	  Test Website without GA included & 2021-05-29 & " & " \\
 	  \hline
 	  Variant P1 & 2021-05-30 & " & " \\
 	  Variant P2 & 2021-05-31 & " & " \\
@@ -763,34 +749,34 @@ As the "wrapper" snippet is a inline script (no src attribute), the attributes o
 	  \hline
 	  \end{tabular}
 	\medskip
-	\caption{Test Runs}
-	\label{table:test_runs}
+	\caption{Test Plan}
+	\label{table:test_plan}
 \end{table}
 
 
-% [Procedure]
-
-\begin{itemize}
-\item Deploy variant of index.html by pushing to GitHub
+\begin{table}[h]
+	\small
+	\centering
+	\begin{tabular}{ | p{0.1\linewidth} | p{0.8\linewidth} | } 
+	\hline
+	Step \cellcolor{lightgrey} & Task \cellcolor{lightgrey} \\
+	1 & Deploy the required variant of test website by pushing the specific index.html file to GitHub \\
 % \item Start Network Link Conditioner with specified config on local machine
-\item Test internet speed with speedtest-cli
-\item Start local WPT server and agent
-\item Configure WPT according to specified setup and add list of urls to bulk test interface
-\item Run test
-\item When finished, download summary csv file
-\item On GA helper site, fetch and download data for the current day
-\end{itemize}
-
+	2 & Verify that the internet speed of test machine is around 50 mbit/s (by using speedtest-cli) \\
+	3 & Start the private Docker instance of WebPageTest on localhost \\
+	4 & Set the WebPageTest configuration according to the predefined configuration and add the list of URLs to bulk test interface \\
+	5 & Start the test run \\
+	6 & When testing is done, download the summary csv file which contains all relevant data \\
+	7 & On the GA helper site, download the measured data for the current day \\
+	\hline
+	\end{tabular}
+	\medskip
+	\caption{Test Run Checklist}
+	\label{table:test_run_checklist}
+\end{table}
+% footnote https://www.speedtest.net/apps/cli
 
 % [Data Collection]
 
-
-% [Data Analysis]
-
-% those files are then used to analyse  and visualize data
-% python code footnote github
-
-
-% [Transition]
-
-% Now lets see the data in chapter X Evaluation
+As described, the data used for further analysis is downloaded from the WebPageTest test summary page and from the GA helper site.
+The evaluation and analysis of the data is subject of the next chapter.
