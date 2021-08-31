@@ -340,33 +340,24 @@ Hence, this idea has been withdrawn.
 
 % [Idea]
 
-The idea of the median website is to construct a website which represents an "average" website as good as possible.
+The idea of the median website is to construct a website which represents an "average" website as good as possible in order to cover as many real life examples as possible.
 The median website is created with a median page weight.
 This means, it has an average amount of requests and bytes for each resource type such as images, fonts, or videos.
-The data for the median values is taken from HTTPArchive.
-
-
-% [Setup]
-% website: mimic page weight as reported on http archive
-% source. https://github.com/aram-yesildeniz/median/tree/gh-pages
-% Hosting: github pages: https://aram-yesildeniz.github.io/median/
+The data for the median values is taken from HTTPArchive. %footnote
+The source code is available on GitHub and the page is deployed to https://aram-yesildeniz.github.io/median/.
+%footnote source. https://github.com/aram-yesildeniz/median/tree/gh-pages
 
 % [Evaluation]
-% Only good as a POC: Show that changing independent variables X affect result
-% too far away from reality
-% maybe compare with real website ?
 
-
-% 2011 Butkiewicz: Correlation between website complexity and its performance:
-% -> Therefore it makes sense for me to use http archive inspired website approach, since page weight / page complexity impacts performance
-% - Measures impact of website complexity on performance
-% - Finds out that top 5 metrics that determine performance are:
-% total number of objects loaded,  the number of these objects that are Javascripts,  the total web- page size,  and the number of servers and origins contacted in loading objects on the page.
+The evaluation of the median website idea leads to the conclusion that this approach could only serve as a proof of concept or initial iteration for environment or other contextual components testing.
+Additionally, it could serve as a basis for questions regarding page weight only.
+The architecture of the median website is artifial, e.g. all resources are loaded in sequence.
+There is no dynamic content, no navigation items or sub-pages, and no resemblance to an e-commerce website.
+In short, the median website is too far away from reality.
 
 
 % 2011 Grigorik Anatomy of modern web application
 % - Chart with changes on time: apps are growing
-
 
 % 2014 Hogan basics-of-page-speed/ What Is the HTTP Archive?
 
@@ -377,114 +368,112 @@ The data for the median values is taken from HTTPArchive.
 
 % [Idea]
 
-The idea of the WordPress website is to leverage one of the most widely used website building frameworks in order to cover many real world examples.
-WordPress powers nearly...
-% Show usage of WordPress with some statistics: Why is it so verbreitet
+The idea of the WordPress website is to leverage one of the most widely used website building frameworks in order to cover many real world examples, which also rely on this content management system.
+WordPress is roughly used by 40% of all websites.
+% footnote https://w3techs.com/technologies/details/cm-wordpress
 
 % [Plugins]
-% Explain Plugin system
 
-% WooCommerce
+WordPress follows a plugin system which allows the operators of the website to easily integrate new features and tools into the website.
+WooCommerce, an e-commerce plugin, is the most widely used plugin and used by nearly a fifth of all websites running on WordPress.
+% footnote https://w3techs.com/technologies/details/cm-wordpress
 
 % [Setup]
-% Explain Setup on localhost with wocommerce and GA plugin
+
+The WordPress website is constructed by downloading the latest version of WordPress and running it on the local webserver MAMP.
+The idea of running the website on localhost is that it gives more control to the tester.
+% footnote https://wordpress.org/download/
+% footnote https://www.mamp.info/de/mac/
+Additionally, WooCommerce and Google Analytics are integrated as plugins into the website.
+Finally, WebPageTest is configured to measure and generate traffic for the website running on localhost.
+%footnote https://www.monsterinsights.com/
 
 % [Evaluation]
-% Elaborate why this idea was not used
 
+The idea of running WordPress on localhost was withdrawn:
+Although the generated pages and templates from WordPress approximated real life websites, they could not compensate missing content and resources such as images or stylesheets.
+As with the approaches described above, the WordPress website is too far away from a real life scenario.
+
+%The rather unconventional setup to run WordPress on localhost and not on a common webhosting service.
 
 
 % --------------------------------------------------------
 
-
 \subsubsection{Mirroring a complete e-commerce website}
 
+% [Idea]
 
-% [Why]
-
-% Close to reality as possible
-
-
-% Idea: Close to reality as possible
-% Problems when mirroring a website
-% Elaborate why this idea of mirroring complete website was not used
-% I used mock of start page of otto, which works fine
-% Compare original otto website with mock
-
-
-% Why Otto and Zalando ?Which website / shop to clone? Show some statistics about biggest e-commerce websites in germany
-
-
-
+The three approaches described above all have the same problem: they do not get sufficiently close to mimic real websites.
+To counter attack this issue, the idea of mirroring a complete e-commerce website evolved, with the aim to approximate reality as close as possible.
+Candidates for cloning are e-commerce websites with the biggest revenue in Germany.
+% footnote https://de.statista.com/statistik/daten/studie/170530/umfrage/umsatz-der-groessten-online-shops-in-deutschland/
+The first candidate is https://www.otto.de/, which is discarded as discussed below.
+The second candidate https://www.zalando.de/ is used as the test object for the experiment.
+Both, Otto and Zalando, are within the top three of e-commerce websites with highest revenue.
 
 % [Setup]
 
-% Tool support to mirror / download complete website: httrack and chrome plugin
-% Use free hosting service to serve website
-
-% Otto first try
-% Zalando final version
-
-% [Evaluation]
-% see evaluation chapter
+Multiple tools exist to clone, mirror or download a complete website.
+Tools used here are HTTrack and the Google Chrome extensions "Save All Resources"
+As with the other approaches, the downloaded website will then be hosted on GitHub Pages.
+% footnote https://www.httrack.com/
+% footnote https://chrome.google.com/webstore/detail/save-all-resources/abpdnfjocnmdomablahdcfnoggeeiedb?hl=en
 
 
 % --------------
 
 \paragraph{Otto}
 
-
 % [Manual Adjustments]
 
-% Manual adjustments needed:
-% - Move everything to test folder because top domain is /otto
+The naive approach is to download https://www.otto.de/ via HTTrack and move the content to GitHub Pages, which serves the website.
+Some issues evolved with this approach, which were mostly cookie related issues and probably dynamic created resources, that could not be found and served.
+This caused the web server to return more than a few 404s.
+
+Additionally, problems with caching in combination with WebPageTests repeat view feature occurred:
+The free webhosting service offered by GitHub does not allow to configure the webserver.
+Especially caching in terms of HTTP cache-control headers can not be adjusted.
+Therefore, the webserver decides which resources should be cached by the browser.
+The configuration is such that many resources served will be cached by the browser.
+This behaviour differs from the behaviour found on https://www.otto.de/, where caching is disabled for many resources, and resources will be downloaded again from the server also for repeat views.
+The problem is not only that caching behaviour differs between the test object and the original website, but also that WebPageTests repeat view runs are failing when encountering too many missing resources.
+Hence, data for repeat views is corrupt and can not be collected.
+
+% Add Workaround ?
+% Therefore i mock the missing ressources so that WPT can run bulk tests successfully.
+% It is not possible to change the github request headers. We can modify the http request headers via html, but this is not a clean solution.
+% Not possible to set cache control in html meta tag https://html.spec.whatwg.org/multipage/semantics.html#attr-meta-http-equiv
 
 
-% What did not work (mostly 404s):
+% [Evaluation]
+
+Due to the caching problems and the failing repeat view runs in WebPageTest, this approach was declined.
+Ideally, the test website is hosted on a similar infrastructure like the original website, with similar webserver configurations.
+For economic and effort reasons this is not feasible, therefore another original website to clone with less caching issued has to be taken into account.
+
+[more here ?]
+
 % - user-set-consent-id-cookie: Cookie with name consentId is not set, user-set-consent-id-cookie returns therefore 404
 % - subscribeToNewsletterSnippetContent: Change path did not work...
 % - amount.json: Not found, also wl\_miniWishlistAmount in local storage does not created
 % - a\_info: Mock a\_info response json does not work...
 
-% - footer
+% - footer not visible
 % - userTiming
 
 
-% WPT RV is returning empty csv when 404s are encountered.
-% Therefore i mock the missing ressources so that WPT can run bulk tests successfully.
-
 % - mock image sprite\_all\_1ba408b2.png
-
 % - create empty file called user-set-consent-id-cookie
-
 % - change path for subscribeToNewsletterSnippetContent: This will remove the cookie banner... but then WPT works
-
 
 
 % -------------------
 
-\subparagraph{Comparison to original webpage}
-
+%TODO add Compare original otto website with mock ?
+% \subparagraph{Comparison to original webpage}
 % Maybe use here just WPTs comparison tool
-
 % Show some diagrams here
 % The other diagrams with Zalando should go into evaluation chapter
-
-
-
-% -----------
-
-\subparagraph{Problem with Caching and Repeat View}
-
-% - Problem with RV, Caching:
-% Otto sets request headers to cache-control: no-cache which means that RV basically downloads all resources again.
-% The mock is hosted on Github, where the cache-control header is set to ...
-% It is not possible to change the github request headers. We can modify the http request headers via html, but this is not a clean solution.
-% Therefore I use a different e-commerce website which does not shut down caching so that the RV results are more similar.
-
-% Ideally I would host the mock website on a similar infrastructure as the original site with the same webserver configuration. This is for a masters thesis not feasible.
-
-% Not possible to set cache control in html meta tag https://html.spec.whatwg.org/multipage/semantics.html#attr-meta-http-equiv
 
 
 % --------------------------------------------------------
@@ -495,6 +484,8 @@ WordPress powers nearly...
 
 % Idea: It looks like zalando page does not has that many cache-control headers, therefore it may be easier to clone so that RVs are more similar.
 
+% Luckily, Zalano has different caching... Therefore I use a different e-commerce website which does not shut down caching so that the RV results are more similar.
+
 % [Setup]
 
 % use plugin to download page
@@ -503,8 +494,11 @@ WordPress powers nearly...
 % [Evaluation]
 
 
-% add screenshots of original vs test
 % see evaluation chapter
+Similar enough...
+Page weight figure X.
+PLT figure X.
+FCP figure X.
 
 
 \begin{figure}
@@ -528,8 +522,12 @@ WordPress powers nearly...
 
 
 
+% -----------------
 
-%TODO add some comparison table? like all ideas, with columns such as "control", "complexity", "generaliseabilty", etc. ?
+[Comparison Table ?]
+
+%TODO Conclusion ?
+% add some comparison table? like all ideas, with columns such as "control", "complexity", "generaliseabilty", "tool used / relies on", "tool support": httrack, plugin, httarchive, wordpress, ..." etc. ?
 
 
 % --------------------------------------------------
