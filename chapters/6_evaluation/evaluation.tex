@@ -21,7 +21,11 @@
 % source code for creating plots is here: 
 
 
+% [Diagrams]
+
 % https://hpbn.co/primer-on-web-performance/#analyzing-real-user-measurement-data
+- distribution (histogram)
+- medians
 
 
 % -------------------------------------------------------------
@@ -52,23 +56,44 @@
 
 
 \subsection{Original Website vs Test Website without GA}
+%TODO make metric names big or something
 
-% how "good" is the mock?
+The aim of this comparison is to evaluate how good the test website approximates the original e-commerce website.
 
-Page Weight: ....
+% [Page Weight]
 
-PLT: ...
+The first metric to compare is page weight:
+For the first view, when the website is loaded for the first time and no resource is in the browsers cache, the test website has a little bit more bytes and triggers more requests, especially for HTML and image resources, whereas the original website requests more JS and other resources.
+For the repeat View, when the browser is loading the website for the second time and only requests resources that are not already in the browsers cache, much more bytes are downloaded and requests are made for the original website.
+The reason for this lies in the webservers configuration, as described in section X.
+The test website is hosted on GitHub Pages, which sets the cache control header to a caching supportive option.
+The webserver of the original website on the other hand has a less cache affirmative policy, leading to more requests and downloads for repeat views.
+
+% add figure ref
+
+% [PLT]
+
+The Page Load Times for the first view between the original and test website are very similar, whereas the data for the original website is less distributed, and the medians are almost identical.
+The PLT is in the repeat view slightly faster for the test website and the difference in the medians is 595 ms.
+This is expected, as the page weight for the test website is much smaller than the original website for the repeat view, and a "lighter" website is more likely to load faster.
+
 % Figure \ref{figure:plt_original_test}:
-%FV: very similar, original has less distribution
-%RV: test slightly faster, difference in median is 595 ms 
 
-FCP: ...
+
+% [FCP]
+
+The data for the visual metric FCP resembles the data for PLT:
+Where FCP is nearly similar for first view, the test website is slightly faster in repeat views than its original counterpart.
+
 %Figure \ref{figure:fcp_original_test}:
-%Similar as for PLT.
-%FV: more or less the same
-%RV: Test is slightly faster. This is because on test environment i can not control caching / cache-header %settings of webserver. So more resources get cached automatically.
 
 
+% [Conclusion]
+
+In conclusion, the test website is nearly identical in terms of page weight, PLT, and FCP, for the first loading of the website.
+When viewing the website for a second time, the test website performance better, as more resources have been cached by the browser.
+
+% add more here, like it is a good approximation ?
 
 
 % --- Page Weight FV ---
@@ -156,18 +181,31 @@ FCP: ...
 
 % -------------------------------------------------------------
 
-
 \subsection{Test Website without GA vs Variant P1}
 
-% use position 1 (top of head) is which is suggested by Google
+This section compares the test website which does not include any tracking script, and the variant P1 where the GA tracking script is included at top of the head section in the main html document. 
+Hence, the only difference between the two websites is the tracking script, which is represented in the diagrams.
 
-Page Weight: ...
-% Bytes FV: as expected, we load a little bit more JS (the GA alanytics script). The rest is the same.
-% Requests FV: additionally to the more JS request in P1, some more resources are fetched, which are requested by the analyitcs script (check this again)
+% [Page Weight]
 
-PLT: ...
+The bytes in the page weight in the first view is identical, only that more bytes for JS are downloaded.
+Those bytes are the tracking script.
+For the requests, apart from more requests for JS, also more images and other resources are requested in the variant P1 and it can be assumed that those requests are trigged by the tracking script.
 
-LCP: ...
+%figure X
+
+
+% [PLT, LCP]
+
+The values for the PLT, the metric which represents how long the navigation process takes place, are very similar for both versions, for the first and also repeat view.
+Same goes for the visual metric LCP, which is nearly identical for both versions.
+
+%figure X
+
+% [Conclusion]
+
+It can be concluded the adding the tracking script has nearly no effect on web performance.
+Although the page weight gets slightly bigger with the tracking script included, this weight has no negative impact on the page load time nor user-centric performance metrics such as LCP.
 
 
 % --- Page Weight FV ---
@@ -238,6 +276,7 @@ LCP: ...
 \subsection{IV Position: Variant P1 vs Variant P2 vs Variant P3}
 
 
+The first independent variable.. 
 % whats the impact of the position ?
 
 %TTFB: - Repeat View is slower (on median) ??
