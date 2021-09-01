@@ -1,48 +1,33 @@
 \chapter{Evaluation}
 
-[tbd]
+% [Last and this chapter]
 
-
-% [Last chapter]
-
-
-% [This chapter: Describe shortly all sections from this chapter]
-
+In the last chapter, the approach have been explained in detail.
+The outcome of the approach are test runs which produce data.
+This chapter is about two things:
+Section X is consists the presentation, analysis and interpretation of the collected data, and in section X, the chosen approach which produces the data is discussed and evaluated.
 
 % [In the next chapter]
 
+In the next chapter X, limitations of this thesis are reflected and ideas and food for thought about possible continuations of this work are given.
 
 
-% [Tools]
 
-% python
-% Matplotlib
-% seaborn library
-% source code for creating plots is here: 
-
-
-% [Diagrams]
-
-% https://hpbn.co/primer-on-web-performance/#analyzing-real-user-measurement-data
-- distribution (histogram)
-- medians
-- no cdf because....
-
-
-%TODO move all figures to appendix and only show here 1-2 in big format
+%TODO show here 1-2 figures in big format
+% add more percentages etc ? like increase by 30%...
 
 
 % -------------------------------------------------------------
 
-
 \section{Results of the Experiment}
 
-[tbd]
+This section starts with the comparison of the original website to the test website, and the comparison of test website to the variant which includes the tracking script at the top position.
+After that, the variants within each independent variable are compared with each other.
 
 % [General IV Interpretation]
 
-% tracking script has little to no effects on performance
-% this is due to the async mechanics of the include of the script
+The general observation is that the position nor the attribute of the tracking script impact performance, not negative or positive.
+This can be explained with the async mechanics the tracking script of the include of the script
 % only difference was visible when adding another script
 % simple explained, as another resource has to be downloaded and the browser needs to wait for its execution
 
@@ -55,6 +40,21 @@
 
 % IV2...
 
+
+
+% [Diagrams]
+
+The diagrams show the distribution of the data via kernel density estimations and the median values are displayed as vertical lines.
+The idea of adding cumulative distribution functions into the plots was considered but withdrawn, as they clutter the diagram and do not add substantial information.
+The diagrams are created with python and the visualization libraries matplotlib and seaborn.
+The source code, as well as the plots and the raw data, are on GitHub.
+All figures are in appendix X.
+
+% fn https://matplotlib.org/
+% footnote http://seaborn.pydata.org/
+% footnote https://github.com/aram-yesildeniz/plots
+
+% https://hpbn.co/primer-on-web-performance/#analyzing-real-user-measurement-data
 
 % -------------------------------------------------------------
 
@@ -188,24 +188,20 @@ GA also reports a difference by nearly 1 second.
 In repeat view, the differences are much smaller, but the tendency is still observable.
 A similar picture is reported on the Fully Loaded metric, where, especially in first view, the variant without an additional script performs better.
 
-Speed Index: ...
+% [Speed Index, TBT]
 
-A profound explanation for the bimodality in the distribution has still to be found.
-But for all repeat views, Speed Index has slightly bimodal distribution.
-Maybe this is WPT
-
-Also in terms of interactivity,
-
-as reported by the TBT metric.
-
-
+Also in terms of visual performance measured by the Speed Index, the variant without the additional script performance better, especially for the first view.
+In the repeat view, the distribution of the Speed Index has bimodal tendencies.
+In fact, for all repeat views, Speed Index has a slightly bimodal distribution.
+Further investigations are needed to find reasons for this behaviour.
+They may lie in how WebPageTest is measuring the website.
+The interactivity, as reported by the TBT metric, also performs better in the variant where no additional script is included.
 
 
 
 % ----------------------------------------------------------------------------------------------------
 
-
-\section{Other Aspects and Points of Discussion}
+\section{Evaluation of the Approach}
 
 % Quality of the collected data.
 % this is part of research question: do the different variants change the collected data ?
@@ -216,7 +212,7 @@ as reported by the TBT metric.
 
 % -------------------------------------------------------------
 
-\subsection{Generalizability}
+% [Generalizability]
 
 % meine Daten zeige nur für Chrome, MacBook, diese Geschwindigkeit etc.
 % Und auch nur für diese Test-Website
@@ -227,11 +223,7 @@ as reported by the TBT metric.
 
 % -------------------------------------------------------------
 
-
-
-\subsection{Internal and External Validity}
-
-
+% [Internal and External Validity]
 
 % The quality and quantity of the data needs to be discussed
 % Quality: There are chances that some data are malformed, e.g. because internet connection was bad, etc.
