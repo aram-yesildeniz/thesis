@@ -26,6 +26,10 @@
 % https://hpbn.co/primer-on-web-performance/#analyzing-real-user-measurement-data
 - distribution (histogram)
 - medians
+- no cdf because....
+
+
+%TODO move all figures to appendix and only show here 1-2 in big format
 
 
 % -------------------------------------------------------------
@@ -94,90 +98,7 @@ In conclusion, the test website is nearly identical in terms of page weight, PLT
 When viewing the website for a second time, the test website performance better, as more resources have been cached by the browser.
 
 % add more here, like it is a good approximation ?
-
-
-% --- Page Weight FV ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/original_vs_test/bytes_fv.pdf}
-		%\caption{Bytes First View}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/original_vs_test/requests_fv.pdf}
-		%\caption{Requests First View}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{Page Weight First View, Original vs Test.}
-	\label{figure:plt_original_test}
-\end{figure}
-
-% --- Page Weight RV ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/original_vs_test/bytes_rv.pdf}
-		%\caption{Bytes First View}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/original_vs_test/requests_rv.pdf}
-		%\caption{Requests}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{Page Weight Repeat View, Original vs Test.}
-	\label{figure:plt_original_test}
-\end{figure}
-
-
-% --- PLT ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/original_vs_test/plt_fv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/original_vs_test/plt_rv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{Page Load Time, Original vs Test.}
-	\label{figure:plt_original_test}
-\end{figure}
-
-
-% --- FCP ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/original_vs_test/fcp_fv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/original_vs_test/fcp_rv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{First Contentful Paint, Original vs Test.}
-	\label{figure:fcp_original_test}
-\end{figure}
-
 % add LCP / Speed Index ?
-
-\clearpage
-
 
 % -------------------------------------------------------------
 
@@ -208,380 +129,77 @@ It can be concluded the adding the tracking script has nearly no effect on web p
 Although the page weight gets slightly bigger with the tracking script included, this weight has no negative impact on the page load time nor user-centric performance metrics such as LCP.
 
 
-% --- Page Weight FV ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/test_vs_position/bytes_fv.pdf}
-		\caption{Bytes First View}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/test_vs_position/requests_fv.pdf}
-		\caption{Requests First View}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{Page Weight First View, Test vs Variant P1.}
-	\label{figure:plt_original_test}
-\end{figure}
-
-
-% --- PLT ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/test_vs_position/plt_fv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/test_vs_position/plt_rv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{Page Load Time, Test vs Variant P1.}
-	\label{figure:plt_original_test}
-\end{figure}
-
-
-% --- LCP ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/test_vs_position/lcp_fv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/test_vs_position/lcp_rv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{Largest Contentful Paint, Test vs Variant P1.}
-	\label{figure:plt_original_test}
-\end{figure}
-
-
-\clearpage
-
-
 % -------------------------------------------------------------
 
 \subsection{IV Position: Variant P1 vs Variant P2 vs Variant P3}
 
+In this section, the different values of the first independent variable are compared with each other and insights into the question if the position of the tracking script impacts the websites performance are given.
 
-The first independent variable.. 
-% whats the impact of the position ?
+% [DOM Content Loaded, PLT]
+
+The navigation timing metrics DOM Content Loaded and PLT are nearly identical for all variants across first and repeat views.
+The vertical "GA" lines in the figures report the values measured in RUM by Google Analytics.
+As GA is not differentiating between first and repeat views (at least within the site speed reports), the values are for both cases the same and they depict here the average over all views.
+For all results within this setup, no different data is available for RUM measurements from GA depending on whether the website was loaded the first time or from cache.
+GA reports slightly faster navigation timing metrics for position 3, but the differences are marginal and conclusions cannot be drawn.
+
+% [Speed Index, LCP]
+
+The same picture emerges for visual and user-centric metrics, where for all variants, the measured values are nearly the same.
+Outstanding is the fact that the overall performance, is much better in the repeat view, namely 3.5 seconds for Speed Index and around 1 second for LCP.
+
+% [Conclusion]
+
+With the given data, one may conclude that the position of the tracking script has no impact on performance.
+
 
 %TTFB: - Repeat View is slower (on median) ??
 
-
-DOM Content Loaded: ...
-
-PLT: ...
-
-Speed Index: ...
-
-LCP: ...
-
-% --- DCL ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV1_position/dcl_fv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV1_position/dcl_rv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{DOM Content Loaded, Variant P1 vs Variant P2 vs Variant P3, with GA.}
-	\label{figure:plt_original_test}
-\end{figure}
-
-
-% --- PLT ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV1_position/plt_fv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV1_position/plt_rv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{Page Load Time, Variant P1 vs Variant P2 vs Variant P3, with GA.}
-	\label{figure:plt_original_test}
-\end{figure}
-
-
-% --- SI ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV1_position/si_fv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV1_position/si_rv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{Speed Index, Variant P1 vs Variant P2 vs Variant P3.}
-	\label{figure:plt_original_test}
-\end{figure}
-
-
-% --- LCP ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV1_position/lcp_fv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV1_position/lcp_rv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{Largest Contentful Paint, Variant P1 vs Variant P2 vs Variant P3.}
-	\label{figure:plt_original_test}
-\end{figure}
-
-
-\clearpage
-
-
-
 % -------------------------------------------------------------
-
 
 \subsection{IV Attribute: Variant A1 vs Variant A2 vs Variant A3}
 
-% so does it really not matter ?
+The assumption is that the attribute has no effect on the performance, as discussed in section X.
+The data reveals that this assumption holds true:
 
-%The GA measurements are median over all views, first view and repeat view.
-%Hence they are always the same for FV and RV.
-%With this setup, we do not have different data for RUM measurements from Google depending on if the website was loaded the first time or from cache.
+For navigation timings metrics such as PLT and Fully Loaded as well as visual metrics such as Speed Index and LCP, the measured values over all variants are alike and the attribute of the GA tracking script has no impact on the performance.
+Worth mentioning is the observation that again, repeat views are always faster for all variants.
 
-
-PLT: ...
-
-Fully Loaded: ...
-
-Speed Index: ...
-
-LCP: ...
-
+%TODO ref figures
 
 %CLS: medians are all the same ??
-
-% --- PLT ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV2_attribute/plt_fv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV2_attribute/plt_rv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{Page Load Time, Variant A1 vs Variant A2 vs Variant A3, with GA.}
-	\label{figure:plt_original_test}
-\end{figure}
-
-
-% --- Fully Loaded ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV2_attribute/fully_loaded_fv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV2_attribute/fully_loaded_rv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{Fully Loaded, Variant A1 vs Variant A2 vs Variant A3.}
-	\label{figure:plt_original_test}
-\end{figure}
-
-% FV: A1 seems to have less distribution, where as A2 and A3 have some distributed data
-
-
-% --- SI ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV2_attribute/si_fv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV2_attribute/si_rv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{Speed Index, Variant A1 vs Variant A2 vs Variant A3.}
-	\label{figure:plt_original_test}
-\end{figure}
-
-% --- LCP ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV2_attribute/lcp_fv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV2_attribute/lcp_rv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{Largest Contentful Paint, Variant A1 vs Variant A2 vs Variant A3.}
-	\label{figure:plt_original_test}
-\end{figure}
-
-
-
-\clearpage
-
+%FV: A1 seems to have less distribution, where as A2 and A3 have some distributed data
 
 
 % -------------------------------------------------------------
 
 \subsection{IV Other Script: Variant OS1 vs Variant OS2}
 
-% only IV OS seems to have some impact on the performance of the website
-% This makes sense as an additional resource has to be loaded.
-% The IVs Position and Attribute only alter how the resource is being loaded, but they dont change the page weight
+%TODO add more metrics here where i also have GA values ?? to show that this is also visible in the RUM
 
+Observing the data, it seems that the only independent variable that affects performance is the one which adds an additional script to the website.
+This is expected as with an additional script, the page weight of the website increases and additional bytes have to be downloaded and requests have to be made.
+The other two independent variables only alter how the resource is being loaded, but they do not change the page weight.
 
+% [PLT, Fully Loaded]
 
-PLT: ...
-
-Fully Loaded: ...
+In terms of navigation timings, the first view PLT is visibly lower for the variant without an additional script, and the median is increased by about 65 % when adding another script to the website.
+GA also reports a difference by nearly 1 second.
+In repeat view, the differences are much smaller, but the tendency is still observable.
+A similar picture is reported on the Fully Loaded metric, where, especially in first view, the variant without an additional script performs better.
 
 Speed Index: ...
 
-Total Blocking Time: ...
+A profound explanation for the bimodality in the distribution has still to be found.
+But for all repeat views, Speed Index has slightly bimodal distribution.
+Maybe this is WPT
+
+Also in terms of interactivity,
+
+as reported by the TBT metric.
 
 
-% --- PLT ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV3_other_script/plt_fv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV3_other_script/plt_rv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{Page Load Time, Variant OS1 vs Variant OS2, with GA.}
-	\label{figure:plt_original_test}
-\end{figure}
 
-
-% --- Fully Loaded ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV3_other_script/fully_loaded_fv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV3_other_script/fully_loaded_rv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{Fully Loaded, Variant OS1 vs Variant OS2.}
-	\label{figure:plt_original_test}
-\end{figure}
-
-
-% --- SI ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV3_other_script/si_fv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV3_other_script/si_rv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{Speed Index, Variant OS1 vs Variant OS2.}
-	\label{figure:plt_original_test}
-\end{figure}
-
-
-% --- TBT ---
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV3_other_script/tbt_fv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{plots/IV3_other_script/tbt_rv.pdf}
-		%\caption{A subfigure}
-		\label{fig:sub2}
-	\end{subfigure}
-	\caption{Total Blocking Time, Variant OS1 vs Variant OS2.}
-	\label{figure:plt_original_test}
-\end{figure}
-
-\clearpage
 
 
 % ----------------------------------------------------------------------------------------------------

@@ -390,3 +390,419 @@
 % 	\label{tab:myfirstlongtable}
 % 	\end{longtable}
 % \end{center}
+
+
+
+\section{Measurement Results}
+
+\subsection{Original Website vs Test Website without GA}
+
+% --- Page Weight FV ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/original_vs_test/bytes_fv.pdf}
+		%\caption{Bytes First View}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/original_vs_test/requests_fv.pdf}
+		%\caption{Requests First View}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Page Weight First View, Original vs Test.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+% --- Page Weight RV ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/original_vs_test/bytes_rv.pdf}
+		%\caption{Bytes First View}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/original_vs_test/requests_rv.pdf}
+		%\caption{Requests}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Page Weight Repeat View, Original vs Test.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+% --- PLT ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/original_vs_test/plt_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/original_vs_test/plt_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Page Load Time, Original vs Test.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+% --- FCP ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/original_vs_test/fcp_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/original_vs_test/fcp_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{First Contentful Paint, Original vs Test.}
+	\label{figure:fcp_original_test}
+\end{figure}
+
+% add LCP / Speed Index ?
+
+\clearpage
+
+
+
+\subsection{Test Website without GA vs Variant P1}
+
+% --- Page Weight FV ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/test_vs_position/bytes_fv.pdf}
+		\caption{Bytes First View}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/test_vs_position/requests_fv.pdf}
+		\caption{Requests First View}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Page Weight First View, Test vs Variant P1.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+% --- PLT ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/test_vs_position/plt_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/test_vs_position/plt_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Page Load Time, Test vs Variant P1.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+% --- LCP ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/test_vs_position/lcp_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/test_vs_position/lcp_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Largest Contentful Paint, Test vs Variant P1.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+\clearpage
+
+
+\subsection{IV Position: Variant P1 vs Variant P2 vs Variant P3}
+
+% --- DCL ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV1_position/dcl_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV1_position/dcl_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{DOM Content Loaded, Variant P1 vs Variant P2 vs Variant P3, with GA.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+% --- PLT ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV1_position/plt_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV1_position/plt_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Page Load Time, Variant P1 vs Variant P2 vs Variant P3, with GA.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+% --- SI ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV1_position/si_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV1_position/si_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Speed Index, Variant P1 vs Variant P2 vs Variant P3.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+% --- LCP ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV1_position/lcp_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV1_position/lcp_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Largest Contentful Paint, Variant P1 vs Variant P2 vs Variant P3.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+\clearpage
+
+
+
+\subsection{IV Attribute: Variant A1 vs Variant A2 vs Variant A3}
+
+%CLS: medians are all the same ??
+
+% --- PLT ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV2_attribute/plt_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV2_attribute/plt_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Page Load Time, Variant A1 vs Variant A2 vs Variant A3, with GA.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+% --- Fully Loaded ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV2_attribute/fully_loaded_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV2_attribute/fully_loaded_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Fully Loaded, Variant A1 vs Variant A2 vs Variant A3.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+% --- SI ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV2_attribute/si_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV2_attribute/si_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Speed Index, Variant A1 vs Variant A2 vs Variant A3.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+% --- LCP ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV2_attribute/lcp_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV2_attribute/lcp_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Largest Contentful Paint, Variant A1 vs Variant A2 vs Variant A3.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+
+\clearpage
+
+
+
+% -------------------------------------------------------------
+
+\subsection{IV Other Script: Variant OS1 vs Variant OS2}
+
+
+% --- PLT ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV3_other_script/plt_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV3_other_script/plt_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Page Load Time, Variant OS1 vs Variant OS2, with GA.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+% --- Fully Loaded ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV3_other_script/fully_loaded_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV3_other_script/fully_loaded_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Fully Loaded, Variant OS1 vs Variant OS2.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+% --- SI ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV3_other_script/si_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV3_other_script/si_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Speed Index, Variant OS1 vs Variant OS2.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+
+% --- TBT ---
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV3_other_script/tbt_fv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{plots/IV3_other_script/tbt_rv.pdf}
+		%\caption{A subfigure}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Total Blocking Time, Variant OS1 vs Variant OS2.}
+	\label{figure:plt_original_test}
+\end{figure}
+
+\clearpage
+
+
